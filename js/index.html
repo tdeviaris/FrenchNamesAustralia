@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Names Along the Australian Coastline - Home</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        body { font-family: 'Lato', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .hero { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/Carte baudin zoom.jpg'); background-size: cover; background-position: center; height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; }
+        .hero h1 { font-family: 'Garamond', serif; font-size: 3.5rem; color: #FFD700; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); margin: 0; }
+        .hero p { font-size: 1.2rem; margin-top: 10px; font-style: italic; }
+        nav { background-color: #333; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 0 20px; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-size: 1.1rem; }
+        nav ul li a.active, nav ul li a:hover { background-color: #0056b3; }
+        .lang-switcher { margin-left: auto; color: white; font-size: 0.9rem; }
+        .lang-switcher span { cursor: pointer; padding: 5px; }
+        .lang-switcher span.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
+        .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .content-section h2 { font-family: 'Garamond', serif; font-size: 2.5rem; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
+        .historic-maps-section h3 { text-align: center; font-family: 'Garamond', serif; font-size: 2rem; margin-top: 40px; }
+        .historic-map { margin-bottom: 30px; }
+        .historic-map img { width: 100%; height: auto; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <h1 id="hero-title">French Names Along the Australian Coastline</h1>
+            <p id="hero-subtitle">The toponyms originated by the d’Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active" id="nav-home">Home</a></li>
+                <li><a href="map_dentrecasteaux.html" id="nav-map-dentre">Interactive Map: d'Entrecasteaux</a></li>
+                <li><a href="map_baudin.html" id="nav-map-baudin">Interactive Map: Baudin</a></li>
+                <li><a href="resources.html" id="nav-resources">Resources</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <span id="lang-fr">FR</span> | <span id="lang-en">EN</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content-section">
+            <h2 id="intro-title">Introduction</h2>
+            <p id="intro-p1">This project explores the distinctive legacy of French place naming along Australia’s coastlines, tracing how these toponyms—many still visible on modern maps—reflect the layered histories of European exploration. Set against the backdrop of First Nations peoples’ deep and enduring connection to Country, the French naming practices sit alongside those of Dutch and British navigators, forming a complex palimpsest of meaning and memory.</p>
+            <p id="intro-p2">By focusing on the over 670 sites named during the expeditions of d’Entrecasteaux and Baudin, the study brings to light a unique French perspective that enriches our understanding of Australia’s coastal history and its entangled global and local contexts.</p>
+            <p id="intro-p3"><em>The research in this website was supported by the RGSSA, the WAHF, …</em></p>
+        </section>
+        <section class="historic-maps-section">
+            <div class="historic-map"><h3>Carte de Freycinet, 1812</h3><img src="img/Carte de Freycinet 1812.jpg" alt="Historical map by Freycinet, 1812"></div>
+            <div class="historic-map"><h3>Carte de Beautemps-Beaupré, 1807</h3><img src="img/Carte de Beautemps-Beaupré 1807.jpg" alt="Historical map by Beautemps-Beaupré, 1807"></div>
+            <div class="historic-map"><h3>Carte de Baudin, 1802</h3><img src="img/Carte de Baudin 1802.jpg" alt="Historical map from Baudin expedition, 1802"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p id="footer-text">&copy; 2024 - Dany Bréelle - "French Names Along the Australian Coastline" Project</p>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
