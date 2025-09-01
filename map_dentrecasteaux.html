@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>d'Entrecasteaux Map - French Names Along the Australian Coastline</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        body { font-family: 'Lato', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        nav { background-color: #333; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 0 20px; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-size: 1.1rem; }
+        nav ul li a.active, nav ul li a:hover { background-color: #0056b3; }
+        .lang-switcher { margin-left: auto; color: white; font-size: 0.9rem; }
+        .lang-switcher span { cursor: pointer; padding: 5px; }
+        .lang-switcher span.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
+        .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .content-section h2 { font-family: 'Garamond', serif; font-size: 2.5rem; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
+        .map-container { height: 650px; width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 20px; }
+        footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .leaflet-popup-content-wrapper { border-radius: 5px; }
+        .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; }
+        .leaflet-popup-content p { margin: 5px 0; }
+        .leaflet-popup-content strong { color: #0056b3; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="nav-home">Home</a></li>
+                <li><a href="map_dentrecasteaux.html" class="active" id="nav-map-dentre">Interactive Map: d'Entrecasteaux</a></li>
+                <li><a href="map_baudin.html" id="nav-map-baudin">Interactive Map: Baudin</a></li>
+                <li><a href="resources.html" id="nav-resources">Resources</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <span id="lang-fr">FR</span> | <span id="lang-en">EN</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content-section">
+            <h2 id="dentre-title">Interactive Map: The d'Entrecasteaux Expedition (1791-1793)</h2>
+            <p id="dentre-desc">Explore the place names given during the expedition of Antoine Bruny d'Entrecasteaux, who charted in great detail the coasts of Tasmania in search of La Pérouse. Click on a marker to discover more information.</p>
+            <div id="map" class="map-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 - Dany Bréelle</p>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const map = L.map('map').setView([-30.5, 135], 4);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const places = [
+            { frenchName: "Baie de la Recherche", ausEName: "Recherche Bay", indigenousName: "Laylatiya", indigenousLanguage: "palawa kani, the language of Tasmanian Aborigines", lat: -43.55, lon: 146.90, characteristic: "named after the expedition’s first vessel, La Recherche, captained by Bruny d’Entrecasteaux", detailsLink: "details-recherche-bay.html" },
+            { frenchName: "Canal d'Entrecasteaux", ausEName: "D'Entrecasteaux Channel", indigenousName: "Unknown", indigenousLanguage: "", lat: -43.25, lon: 147.25, characteristic: "The channel separating Bruny Island from Tasmania, named after the expedition leader.", detailsLink: "#" },
+            { frenchName: "Île Bruny", ausEName: "Bruny Island", indigenousName: "Lunawanna-alonnah", indigenousLanguage: "palawa kani", lat: -43.33, lon: 147.33, characteristic: "Named in honor of the expedition leader, Antoine Bruny d'Entrecasteaux.", detailsLink: "#" }
+        ];
+
+        places.forEach(place => {
+            const marker = L.marker([place.lat, place.lon]).addTo(map);
+            
+            // On lie une FONCTION qui sera exécutée à chaque ouverture de la popup
+            marker.bindPopup(() => {
+                const currentLang = localStorage.getItem('language') || 'en';
+                const trans = translations[currentLang];
+
+                // On construit le HTML de la popup avec les textes traduits
+                return `
+                    <p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
+                    <p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p>
+                    <p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p>
+                    <p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p>
+                    <p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p>
+                    <p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
