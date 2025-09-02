@@ -84,7 +84,7 @@
             marker.bindPopup(() => {
                 const currentLang = localStorage.getItem('language') || 'en';
                 const trans = translations[currentLang];
-                return `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p><p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p><p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p><p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p><p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p><p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
+                return `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p><p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p><p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p><p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p><p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p><p><a href="${place.detailsLink}">${trans['popup-details-link']}</a></p>`;
             });
         });
     </script>
