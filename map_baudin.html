@@ -20,11 +20,12 @@
         .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .content-section h2 { font-family: 'Garamond', serif; font-size: 2.5rem; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
         .map-container { height: 650px; width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 20px; }
+        .historic-maps-section { margin-top: 30px; }
+        .historic-maps-section h3 { text-align: center; font-family: 'Garamond', serif; font-size: 2rem; margin-top: 40px; }
+        .historic-map img { width: 100%; height: auto; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-        .leaflet-popup-content-wrapper { border-radius: 5px; }
-        .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; }
-        .leaflet-popup-content p { margin: 5px 0; }
-        .leaflet-popup-content strong { color: #0056b3; }
+        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; }
+        .leaflet-popup-content p { margin: 5px 0; } .leaflet-popup-content strong { color: #0056b3; }
     </style>
 </head>
 <body>
@@ -36,54 +37,42 @@
                 <li><a href="map_baudin.html" class="active" id="nav-map-baudin">Interactive Map: Baudin</a></li>
                 <li><a href="resources.html" id="nav-resources">Resources</a></li>
             </ul>
-            <div class="lang-switcher">
-                <span id="lang-fr">FR</span> | <span id="lang-en">EN</span>
-            </div>
+            <div class="lang-switcher"><span id="lang-fr">FR</span> | <span id="lang-en">EN</span></div>
         </nav>
     </header>
 
     <main class="container">
          <section class="content-section">
             <h2 id="baudin-title">Interactive Map: The Nicolas Baudin Expedition (1800-1804)</h2>
-            <p id="baudin-desc">Explore the place names given during the scientific expedition of Nicolas Baudin, which charted significant portions of the west, south and east coasts of Australia. Click on a marker to discover more information.</p>
+            <p id="baudin-desc">Explore the place names given during the scientific expedition of Nicolas Baudin...</p>
             <div id="map" class="map-container"></div>
+        </section>
+        
+        <!-- MODIFICATION : Ajout de la carte historique de Baudin ici -->
+        <section class="historic-maps-section">
+            <div class="historic-map">
+                <h3 id="map-title-baudin">Map from Baudin expedition, 1802</h3>
+                <img src="img/carte-baudin-1802.jpg" alt="Historical map from Baudin expedition, 1802">
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 - Dany Bréelle</p>
-    </footer>
-
+    <footer><p>&copy; 2024 - Dany Bréelle</p></footer>
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
     <script>
         const map = L.map('map').setView([-30.5, 135], 4);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
         const places = [
             { frenchName: "Péninsule de Fleurieu", ausEName: "Fleurieu Peninsula", indigenousName: "Unknown", indigenousLanguage: "Kaurna", lat: -35.5, lon: 138.3, characteristic: "Named in honor of Charles Pierre Claret, Count of Fleurieu, an explorer and Minister of the Navy.", detailsLink: "#" },
             { frenchName: "Baie du Géographe", ausEName: "Geographe Bay", indigenousName: "Unknown", indigenousLanguage: "Wardandi", lat: -33.63, lon: 115.35, characteristic: "Named after the expedition's flagship, Le Géographe.", detailsLink: "#" }
         ];
-
         places.forEach(place => {
             const marker = L.marker([place.lat, place.lon]).addTo(map);
-
-            // On lie une FONCTION qui sera exécutée à chaque ouverture de la popup
             marker.bindPopup(() => {
                 const currentLang = localStorage.getItem('language') || 'en';
                 const trans = translations[currentLang];
-
-                // On construit le HTML de la popup avec les textes traduits
-                return `
-                    <p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
-                    <p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p>
-                    <p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p>
-                    <p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p>
-                    <p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p>
-                    <p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>
-                `;
+                return `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p><p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p><p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p><p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p><p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p><p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
             });
         });
     </script>
