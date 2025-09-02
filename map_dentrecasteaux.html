@@ -23,6 +23,9 @@
         footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
         .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; }
         .leaflet-popup-content p { margin: 5px 0; } .leaflet-popup-content strong { color: #0056b3; }
+        /* Style pour les paragraphes de texte additionnel */
+        .additional-text p { margin-bottom: 1em; text-align: justify; }
+        .additional-text .references { font-size: 0.8em; margin-top: 2em; }
     </style>
 </head>
 <body>
@@ -46,9 +49,15 @@
         </section>
 
         <!-- MODIFICATION : Ajout de la section de texte complémentaire -->
-        <section class="content-section">
-            <p id="dentre-text-p1">The first object of the d’Entrecastreaux expedition...</p>
-            <p id="dentre-text-p2">The east coasts of Van Diemen Land (Tasmania)...</p>
+        <section class="content-section additional-text">
+            <p id="dentre-text-p3">68 places were named along these coasts by d’Entrecasteaux...</p>
+            <p id="dentre-text-p4">It had not been an easy task for the commander to find common ground...</p>
+            <p id="dentre-text-p5">Officers, such as Jurien, and savants like the Benedictine chaplain Ambroise Pierson*...</p>
+            <p id="dentre-text-p6">The places visited and named by the d’Entrecasteaux expedition were obviously already well-known...</p>
+            <div class="references">
+                <p>[1] Jurien de La Gravière, P.-R., Jurien de La Gravière, J.-P.-E. Editor (1860) Souvenirs d'un amiral, Volume 1. Hachette et cie, p.114.</p>
+                <p>[2] Especially in Tasmania, named Lutruwita by its inhabitants. Daugeron, B. (2014) À la recherche de l'Espérance. Revisiter la rencontre des Aborigènes tasmaniens avec les Français (1772-1802). Ars Apodemica.</p>
+            </div>
         </section>
     </main>
 
