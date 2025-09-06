@@ -1,0 +1,342 @@
+[
+    {
+        "frenchName": "Port du Sud",
+        "ausEName": "Rocky Bay",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.57,
+        "lon": 146.89,
+        "characteristic": "Named with reference to its geographical location in Recherche Bay. Originally, in his narrative, d’Entrecasteaux referred to Port du Sud as ‘Baie des roches’ (today’s Rocky Bay) on account of the protruding rocks and reefs.",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Port du Nord",
+        "ausEName": "Pigsties Bay",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.53,
+        "lon": 146.9,
+        "characteristic": "Named with reference to its geographical location in Recherche Bay.",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Baie de la Recherche",
+        "ausEName": "Recherche Bay ",
+        "indigenousName": "Laylatiya",
+        "indigenousLanguage": "palawa (Tasmanian)",
+        "lat": -43.55,
+        "lon": 146.9,
+        "characteristic": "Named after the expedition’s first vessel, La Recherche, captained by Bruny d’Entrecasteaux",
+        "detailsLink": "details-entre03.html"
+    },
+    {
+        "frenchName": "Ile Stérile",
+        "ausEName": "Sterile Island  (the Actaeon Island Group)",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.55,
+        "lon": 146.99,
+        "characteristic": "The original naming of this group of islands and islet by the French as îles Stériles and Rocher Blanc (White Rock), reflect more on the voyagers’ earliest impressions during their initial running survey than on the actual natural environment of these islands: Sterile Island is covered with tussock grass and bushes and Blanche Rock is composed of dolerite rock of a dark grey colour.",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Rocher Blanc",
+        "ausEName": "Blanche Rock (the Actaeon Island Group)",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.48,
+        "lon": 147.0,
+        "characteristic": "The original naming of this group of islands and islet by the French as îles Stériles and Rocher Blanc (White Rock), reflect more on the voyagers’ earliest impressions during their initial running survey than on the actual natural environment of these islands: Sterile Island is covered with tussock grass and bushes and Blanche Rock is composed of dolerite rock of a dark grey colour.",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Anse des Ormiers",
+        "ausEName": "Little Lagoon Beach",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.48,
+        "lon": 147.0,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Cap Bruny",
+        "ausEName": "Cape Bruny Canal d'Entrecasteaux Ile Bruny",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.491139,
+        "lon": 147.142222,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Baie Mauvaise",
+        "ausEName": "Cloudy Bay Shown as 'Bad Bay' on Evans' map 1822, and on maps until Sprent's in 1859 when 'Bad or Cloudy Bay' appears.",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.45333,
+        "lon": 147.22566,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "La Grande anse",
+        "ausEName": "Great Taylors Bay, Canal d'Entrecasteaux Ile Bruny ",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.42271,
+        "lon": 147.15259,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile aux Perdrix",
+        "ausEName": "Partridge Island (English for perdrix) Canal d'Entrecasteaux Ile Bruny",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.4,
+        "lon": 147.1,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile Lahaye",
+        "ausEName": "Hope Island",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.33693,
+        "lon": 147.0423,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Port de l'Espérance",
+        "ausEName": "Port Esperance Canal d'Entrecasteaux ",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.3333,
+        "lon": 147.067,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile Huon",
+        "ausEName": "Huon Island . Besides,  Huon Point has been since also named ",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.28997,
+        "lon": 147.14431,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Riviere Huon",
+        "ausEName": "Huon River Canal d'Entrecasteaux Ile Bruny",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.4,
+        "lon": 147.0833,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Port des cygnes",
+        "ausEName": "Port Cygnet Besides, Cygnet Point had been since also named s well as Beaupre Point, on each entrance of the harbour Canal d'Entrecasteaux Ile Bruny",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.1685,
+        "lon": 147.0939,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile du satellite",
+        "ausEName": "Satellite Island ",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.3167,
+        "lon": 147.2167,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "L'Arche",
+        "ausEName": "Arch Rock (Ninepin Point Marine Nature Reserve)",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.28749,
+        "lon": 147.18028,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "La Petite Anse",
+        "ausEName": "Little Taylors Bay Canal d'Entrecasteaux Ile Bruny",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.35779,
+        "lon": 147.20896,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Pointe Riche ",
+        "ausEName": "Simpsons Point with also Simpsons bay Canal d'Entrecasteaux Ile Bruny",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.24766,
+        "lon": 147.2884,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Baie de l'Isthme",
+        "ausEName": "Isthmus Bay",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.2667,
+        "lon": 147.32,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Canal Dentrecasteaux",
+        "ausEName": "D'Entrecasteaux channel Canal d'Entrecasteaux Ile Bruny",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -43.217,
+        "lon": 147.283,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile du Mondrain",
+        "ausEName": "Mondrain Island",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.13722,
+        "lon": 122.24528,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Archipel de la Recherche",
+        "ausEName": "Archipelago of the Recherche",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.1005,
+        "lon": 123.1878,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Baie de l'Espérance",
+        "ausEName": "Esperance Bay",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -33.85694,
+        "lon": 121.92028,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile de l'Observatoire",
+        "ausEName": "Observatory Island",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -33.92417,
+        "lon": 121.79194,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile de Remarque",
+        "ausEName": "Remark Island",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.0667,
+        "lon": 121.9833,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Groupe de l'Ouest",
+        "ausEName": "West group ",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.0,
+        "lon": 121.833,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "La Chaussée",
+        "ausEName": "Causeway Channel",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -33.96095,
+        "lon": 122.0129,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Cap des Basses",
+        "ausEName": "Shoal Cape",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -33.86628,
+        "lon": 121.166998,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "l'Avant Garde",
+        "ausEName": "Termination Island",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.47083,
+        "lon": 121.99194,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Cap Riche",
+        "ausEName": "Cape Riche",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.608,
+        "lon": 118.75,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Ile Pelée",
+        "ausEName": "Bald island",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.9191861,
+        "lon": 118.4626333,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Pointe d'Entrecasteaux",
+        "ausEName": "Point d'Entrecasteaux",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.83819,
+        "lon": 116.00448,
+        "characteristic": "",
+        "detailsLink": "#"
+    },
+    {
+        "frenchName": "Iles Saint-Alouarn",
+        "ausEName": "Saint Alouarn Island",
+        "indigenousName": "",
+        "indigenousLanguage": "",
+        "lat": -34.40465,
+        "lon": 115.1965,
+        "characteristic": "",
+        "detailsLink": "#"
+    }
+]

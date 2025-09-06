@@ -63,18 +63,19 @@
     <script>
         const map = L.map('map').setView([-30.5, 135], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-        const places = [
-            { frenchName: "Péninsule de Fleurieu", ausEName: "Fleurieu Peninsula", indigenousName: "Unknown", indigenousLanguage: "Kaurna", lat: -35.5, lon: 138.3, characteristic: "Named in honor of Charles Pierre Claret, Count of Fleurieu, an explorer and Minister of the Navy.", detailsLink: "#" },
-            { frenchName: "Baie du Géographe", ausEName: "Geographe Bay", indigenousName: "Unknown", indigenousLanguage: "Wardandi", lat: -33.63, lon: 115.35, characteristic: "Named after the expedition's flagship, Le Géographe.", detailsLink: "#" }
-        ];
-        places.forEach(place => {
-            const marker = L.marker([place.lat, place.lon]).addTo(map);
-            marker.bindPopup(() => {
-                const currentLang = localStorage.getItem('language') || 'en';
-                const trans = translations[currentLang];
-                return `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p><p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p><p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p><p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p><p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p><p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
+
+        fetch('data/baudin.json')
+            .then(response => response.json())
+            .then(places => {
+                places.forEach(place => {
+                    const marker = L.marker([place.lat, place.lon]).addTo(map);
+                    marker.bindPopup(() => {
+                        const currentLang = localStorage.getItem('language') || 'en';
+                        const trans = translations[currentLang];
+                        return `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p><p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p><p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p><p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p><p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p><p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
+                    });
+                });
             });
-        });
     </script>
 </body>
 </html>

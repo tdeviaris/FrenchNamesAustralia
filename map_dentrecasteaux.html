@@ -74,19 +74,19 @@
     <script>
         const map = L.map('map').setView([-30.5, 135], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-        const places = [
-            { frenchName: "Baie de la Recherche", ausEName: "Recherche Bay", indigenousName: "Laylatiya", indigenousLanguage: "palawa kani, the language of Tasmanian Aborigines", lat: -43.55, lon: 146.90, characteristic: "named after the expedition’s first vessel, La Recherche, captained by Bruny d’Entrecasteaux", detailsLink: "details-recherche-bay.html" },
-            { frenchName: "Canal d'Entrecasteaux", ausEName: "D'Entrecasteaux Channel", indigenousName: "Unknown", indigenousLanguage: "", lat: -43.25, lon: 147.25, characteristic: "The channel separating Bruny Island from Tasmania, named after the expedition leader.", detailsLink: "#" },
-            { frenchName: "Île Bruny", ausEName: "Bruny Island", indigenousName: "Lunawanna-alonnah", indigenousLanguage: "palawa kani", lat: -43.33, lon: 147.33, characteristic: "Named in honor of the expedition leader, Antoine Bruny d'Entrecasteaux.", detailsLink: "#" }
-        ];
-        places.forEach(place => {
-            const marker = L.marker([place.lat, place.lon]).addTo(map);
-            marker.bindPopup(() => {
-                const currentLang = localStorage.getItem('language') || 'en';
-                const trans = translations[currentLang];
-                return `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p><p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p><p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p><p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p><p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p><p><a href="${place.detailsLink}">${trans['popup-details-link']}</a></p>`;
+
+        fetch('data/entrecasteaux.json')
+            .then(response => response.json())
+            .then(places => {
+                places.forEach(place => {
+                    const marker = L.marker([place.lat, place.lon]).addTo(map);
+                    marker.bindPopup(() => {
+                        const currentLang = localStorage.getItem('language') || 'en';
+                        const trans = translations[currentLang];
+                        return `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p><p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p><p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage}:</strong> ${place.indigenousName}</p><p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat)}° S; ${place.lon}° E</p><p><strong>${trans['popup-characteristic']}</strong> ${place.characteristic}</p><p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
+                    });
+                });
             });
-        });
     </script>
 </body>
 </html>
