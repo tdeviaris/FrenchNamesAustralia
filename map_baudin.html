@@ -24,8 +24,28 @@
         .historic-maps-section h3 { text-align: center; font-family: 'Garamond', serif; font-size: 2rem; margin-top: 40px; }
         .historic-map img { width: 100%; height: auto; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; }
+        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto !important; }
         .leaflet-popup-content p { margin: 5px 0; } .leaflet-popup-content strong { color: #0056b3; }
+        
+        /* Styles pour la mise en page de la popup */
+        .popup-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .popup-text-container {
+            width: 280px; /* Largeur fixe pour le texte, avec ou sans image */
+            flex-shrink: 0; /* Empêche le texte de se réduire */
+        }
+        .popup-image-wrapper {
+            flex-basis: 260px; /* Largeur de l'image (130px * 2) */
+            flex-shrink: 0;
+        }
+        .popup-image-wrapper .popup-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -73,25 +93,25 @@
                         const currentLang = localStorage.getItem('language') || 'en';
                         const trans = translations[currentLang];
                         
-                        let popupHtml = `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
+                        let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
 <p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p>`;
 
                         if (place.indigenousName && place.indigenousName.trim() !== "") {
-                            popupHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
+                            textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
                         }
 
-                        popupHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat).toFixed(3)}° S; ${place.lon.toFixed(3)}° E</p>`;
+                        textHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat).toFixed(3)}° S; ${place.lon.toFixed(3)}° E</p>`;
 
                         // Characteristic
                         let characteristicText = (currentLang === 'fr' && place.characteristic_fr) ? place.characteristic_fr : place.characteristic;
                         if (characteristicText && characteristicText.trim() !== "") {
-                            popupHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${characteristicText}</p>`;
+                            textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${characteristicText}</p>`;
                         }
 
                         // Origin of the name
                         let originText = (currentLang === 'fr' && place.origin_fr) ? place.origin_fr : place.origin;
                         if (originText && originText.trim() !== "") {
-                            popupHtml += `<p><strong>${trans['popup-origin-label']}</strong> ${originText}</p>`;
+                            textHtml += `<p><strong>${trans['popup-origin-label']}</strong> ${originText}</p>`;
                         }
 
                         // Wikipedia link
@@ -99,19 +119,37 @@
                         if (wikiLink && wikiLink.trim() !== "") {
                             let linkText = wikiLink.substring(wikiLink.lastIndexOf('/') + 1);
                             linkText = decodeURIComponent(linkText).replace(/_/g, ' ');
-                            popupHtml += `<p><strong>${trans['popup-wiki-label']}</strong> <a href="${wikiLink}" target="_blank">${linkText}</a></p>`;
+                            textHtml += `<p><strong>${trans['popup-wiki-label']}</strong> <a href="${wikiLink}" target="_blank">${linkText}</a></p>`;
                         }
 
                         // Other source link
                         if (place.other_link && place.other_link.trim() !== "") {
-                            popupHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
+                            textHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
                         }
 
                         // Details link
                         if (place.detailsLink && place.detailsLink.trim() !== "" && place.detailsLink.trim() !== "#") {
-                            popupHtml += `<p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
+                            textHtml += `<p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
                         }
-                        return popupHtml;
+
+                        // Si une image est disponible, créer une mise en page à deux colonnes.
+                        if (place.imgUrl && place.imgUrl.trim() !== "") {
+                            const imageLinkTarget = (wikiLink && wikiLink.trim() !== "") ? wikiLink : place.imgUrl;
+                            const imageHtml = `
+                                <div class="popup-image-wrapper">
+                                    <a href="${imageLinkTarget}" target="_blank" title="Voir sur Wikipedia">
+                                        <img src="${place.imgUrl}" alt="${place.frenchName}" class="popup-image">
+                                    </a>
+                                </div>`;
+
+                            return `<div class="popup-layout">
+                                        <div class="popup-text-container">${textHtml}</div>
+                                        ${imageHtml}
+                                    </div>`;
+                        } else {
+                            // Sinon, retourner uniquement le texte dans un conteneur de largeur fixe.
+                            return `<div class="popup-text-container">${textHtml}</div>`;
+                        }
                     });
                 });
             });

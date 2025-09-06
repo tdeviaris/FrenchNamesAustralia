@@ -1,0 +1,14 @@
+Code,Nom Français,Nom Anglais,Latitude,Longitude,Source coordonnées,Lien test
+Baudin326,Baie Cuvier,Cuvier Bay,-40.48016,144.74591,"Bonzle (carte, centre de baie)","https://www.google.com/maps?q=-40.48016,144.74591"
+Baudin327,Pointe Cuvier,Cuvier Point,-40.48085,144.72347,Bonzle (FAQ: lat/lon),"https://www.google.com/maps?q=-40.48085,144.72347"
+Baudin328,Île Bird,Bird Island,-40.60424,144.72007,Mapcarta (fiche lieu),"https://www.google.com/maps?q=-40.60424,144.72007"
+Baudin329,Île Steep,Steep Island,-40.56384,144.68266,Mapcarta (fiche lieu),"https://www.google.com/maps?q=-40.56384,144.68266"
+Baudin330,Île Trefoil,Trefoil Island,-40.633,144.683,Wikipedia (coordonnées),"https://www.google.com/maps?q=-40.633,144.683"
+Baudin331,Île Stack,Stack Island,-40.60587,144.77691,GeoNames (fiche île),"https://www.google.com/maps?q=-40.60587,144.77691"
+Baudin332,Pointe Keafer,Keafer Point,,,Nom confirmé sur carte TAS TF03 (pas de coordonnées trouvées),
+Baudin333,Cap Rochon,Cape Rochon,-40.39328,144.9537,Bonzle (FAQ: lat/lon),"https://www.google.com/maps?q=-40.39328,144.9537"
+Baudin334,Cap Adamson,Cape Adamson,-40.45691,144.94983,Mapcarta (fiche cap),"https://www.google.com/maps?q=-40.45691,144.94983"
+Baudin335,Cap Buache,Cape Buache,-40.57973,144.92758,"Bonzle (carte, centre du cap)","https://www.google.com/maps?q=-40.57973,144.92758"
+Baudin336,Baie Boullanger,Boullanger Bay,-40.7123,144.9428,Key Biodiversity Areas (coordonnées centrales du site),"https://www.google.com/maps?q=-40.7123,144.9428"
+Baudin337,Baie Coulomb,Coulomb Bay,-40.4472,144.878,Molluscs of Tasmania (fiche baie),"https://www.google.com/maps?q=-40.4472,144.878"
+Baudin338,Pointe Weber,Weber Point,-40.50521,144.73323,"Bonzle (carte, centre du point)","https://www.google.com/maps?q=-40.50521,144.73323"
