@@ -48,7 +48,15 @@ const translations = {
         'detail-rb-p5': "Ces trois cartes ci-dessous montrent des parties des côtes de la Terre de Van Diemen visitées par l'expédition. Elles sont extraites de la première édition (1807) de l'atlas du voyage de d'Entrecasteaux et indiquent l'emplacement des lieux qu'il avait nommés[7]. Elles ont été modifiées pour indiquer et distinguer par des couleurs les tracés de 1792 (en bleu) et 1793 (en violet) des navires et de leurs équipes de relevé (en 1792, en rouge, principalement dans la partie sud, et plus tard, en 1793, en vert, surtout au nord du Canal). Les méandres des tracés sur ces cartes suggèrent les difficultés rencontrées par les arpenteurs pour approcher et explorer le littoral, ce que les noms donnés à certains lieux expriment parfois, comme le '<em>Cap des Contrariétés</em>'*.",
         
         // --- Étiquettes pour les fiches des cartes (Popups) ---
-        'popup-french-name': "Nom français :", 'popup-ause-name': "Nom AusE :", 'popup-indigenous-name': "En", 'popup-coordinates': "Coordonnées :", 'popup-characteristic': "Caractéristique :", 'popup-details-link': "Pour un compte-rendu détaillé et les références, cliquez ici."
+        'popup-french-name': "Nom Français :",
+        'popup-ause-name': "Nom Australien :",
+        'popup-indigenous-name': "En",
+        'popup-coordinates': "Coordonnées :",
+        'popup-characteristic-label': "Caractéristique :",
+        'popup-origin-label': "Origine du nom :",
+        'popup-wiki-label': "Wikipédia :",
+        'popup-othersource-label': "Autre source :",
+        'popup-details-link': "Pour un compte-rendu détaillé et les références, cliquez ici."
     },
     'en': {
         // --- General text ---
@@ -98,6 +106,14 @@ const translations = {
         'detail-rb-p5': "These three charts below show parts of the coasts of Van Diemen’s Land visited by the expedition. They are extract from the first edition (1807) of the atlas of d’Entrecasteaux voyage and mark the location of the places he had named[7]. They have been altered to indicate and distinguish with colors the 1792 (in blue) and 1793 (in purple) tracks of the vessels and of their surveying parties (in 1792, in red, mainly in the south part, and later, in 1793, in green, especially in the north of the Canal). The twists and turns of the tracks plotted on these charts suggest the difficulties faced by the surveyors in approaching and exploring the coastline, which names given to some places occasionally express, such as ‘<em>Cap des Contrariétés</em>’*.",
 
         // --- Labels for Map Popups ---
-        'popup-french-name': "French name:", 'popup-ause-name': "AusE name:", 'popup-indigenous-name': "In", 'popup-coordinates': "Coordinates:", 'popup-characteristic': "Characteristic:", 'popup-details-link': "For a detailed account and references, click here."
+        'popup-french-name': "French name:",
+        'popup-ause-name': "Australian name:",
+        'popup-indigenous-name': "In",
+        'popup-coordinates': "Coordinates:",
+        'popup-characteristic-label': "Characteristic:",
+        'popup-origin-label': "Origin of the name:",
+        'popup-wiki-label': "Wikipedia:",
+        'popup-othersource-label': "Other source:",
+        'popup-details-link': "For a detailed account and references, click here."
     }
 };
