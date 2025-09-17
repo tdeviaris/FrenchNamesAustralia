@@ -2,6 +2,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     const langFrButton = document.getElementById('lang-fr');
     const langEnButton = document.getElementById('lang-en');
+    const footerContainer = document.querySelector('[data-include-footer]');
+
+    if (footerContainer) {
+        fetch('partials/footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                footerContainer.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Failed to load footer:', error);
+            });
+    }
 
     const switchLanguage = (lang) => {
         // Sauvegarde le choix dans le navigateur

@@ -9,7 +9,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
         body { font-family: 'Lato', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { width: 100%; max-width: none; margin: 0; padding: 12px 20px 28px; box-sizing: border-box; }
+        @media (max-width: 768px) {
+            .container { padding: 10px 12px 24px; }
+        }
         nav { background-color: #333; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 0 20px; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
         nav ul li a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-size: 1.1rem; }
@@ -19,9 +22,9 @@
         .lang-switcher button.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
         .lang-switcher button:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
         .lang-switcher .lang-separator { opacity: 0.7; }
-        .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .content-section h2 { font-family: 'Garamond', serif; font-size: 2.5rem; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
-        .map-container { height: 650px; width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 20px; }
+        .content-section { background-color: white; padding: 16px 18px 20px; margin-top: 12px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .content-section h2 { font-family: 'Garamond', serif; font-size: 2.35rem; border-bottom: 2px solid #0056b3; padding-bottom: 6px; margin-bottom: 12px; }
+        .map-container { height: 650px; width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 12px; }
         .historic-maps-section { margin-top: 30px; }
         .historic-maps-section h3 { text-align: center; font-family: 'Garamond', serif; font-size: 2rem; margin-top: 40px; }
         .historic-map img { width: 100%; height: auto; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
@@ -43,10 +46,64 @@
             flex-basis: 260px; /* Largeur de l'image (130px * 2) */
             flex-shrink: 0;
         }
+        .popup-image-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+        }
+        .popup-image-button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
         .popup-image-wrapper .popup-image {
             width: 100%;
             height: auto;
             border-radius: 4px;
+            border: 4px solid #ffffff;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-modal.open { display: flex; }
+        .image-modal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            background: #fff;
+        }
+        .image-modal button {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            line-height: 1;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .image-modal button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -55,8 +112,8 @@
         <nav>
             <ul>
                 <li><a href="index.html" id="nav-home">Home</a></li>
-                <li><a href="map_dentrecasteaux.html" id="nav-map-dentre">Interactive Map: d'Entrecasteaux</a></li>
-                <li><a href="map_baudin.html" class="active" id="nav-map-baudin">Interactive Map: Baudin</a></li>
+                <li><a href="map_dentrecasteaux.html" id="nav-map-dentre">d'Entrecasteaux Map</a></li>
+                <li><a href="map_baudin.html" class="active" id="nav-map-baudin">Baudin Map</a></li>
                 <li><a href="resources.html" id="nav-resources">Resources</a></li>
             </ul>
             <div class="lang-switcher"><button type="button" id="lang-fr">FR</button><span aria-hidden="true" class="lang-separator">|</span><button type="button" id="lang-en">EN</button></div>
@@ -65,7 +122,7 @@
 
     <main class="container">
          <section class="content-section">
-            <h2 id="baudin-title">Interactive Map: The Nicolas Baudin Expedition (1800-1804)</h2>
+            <h2 id="baudin-title">Baudin Map (1800-1804)</h2>
             <p id="baudin-desc">Explore the place names given during the scientific expedition of Nicolas Baudin...</p>
             <div id="map" class="map-container"></div>
         </section>
@@ -79,14 +136,30 @@
         </section>
     </main>
 
-    <footer><p>&copy; 2024 - Dany Bréelle</p></footer>
+    <div id="image-modal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <button type="button" id="image-modal-close" aria-label="Fermer l'image">&times;</button>
+        <img src="" alt="" id="image-modal-image">
+    </div>
+
+    <div data-include-footer></div>
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
     <script>
-        const map = L.map('map').setView([-30.5, 135], 4);
+        const defaultCenter = [-30.5, 135];
+        const defaultZoom = 4;
+        const focusZoomLevel = 8;
+        const popupTopMargin = 32;
+        const popupBottomMargin = 32;
+        const popupAnchorOffset = 70;
+
+        const map = L.map('map').setView(defaultCenter, defaultZoom);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
         const isFiniteNumber = (value) => (Number.isFinite ? Number.isFinite(value) : isFinite(value));
+        const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => {
+            const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+            return chars[char] || char;
+        });
 
         const extractCoordinates = (place) => {
             const lat = Number(place.lat);
@@ -106,9 +179,123 @@
             return `${latValue}° ${latDir}; ${lonValue}° ${lonDir}`;
         };
 
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('image-modal-image');
+        const modalCloseButton = document.getElementById('image-modal-close');
+
+        const closeImageModal = () => {
+            if (!modal) { return; }
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            modalImage.src = '';
+            modalImage.alt = '';
+        };
+
+        const openImageModal = (src, alt) => {
+            if (!modal || !modalImage) { return; }
+            modalImage.src = src;
+            modalImage.alt = alt;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            if (modalCloseButton) {
+                modalCloseButton.focus({ preventScroll: true });
+            }
+        };
+
+        if (modal) {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeImageModal();
+                }
+            });
+        }
+        if (modalCloseButton) {
+            modalCloseButton.addEventListener('click', closeImageModal);
+        }
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal?.classList.contains('open')) {
+                closeImageModal();
+            }
+        });
+
+        const adjustPopupView = (popup, attempt = 0) => {
+            const marker = popup._source;
+            if (!marker) {
+                return;
+            }
+
+            const targetLatLng = marker.getLatLng();
+            const targetZoom = Math.max(map.getZoom(), focusZoomLevel);
+            const popupElement = popup.getElement();
+
+            if (!popupElement && attempt < 5) {
+                requestAnimationFrame(() => adjustPopupView(popup, attempt + 1));
+                return;
+            }
+
+            let centerLatLng = targetLatLng;
+
+            if (popupElement) {
+                const mapSize = map.getSize();
+                const popupHeight = popupElement.offsetHeight;
+                const anchorHeight = popupElement.querySelector('.leaflet-popup-tip')?.offsetHeight || 0;
+                const effectivePopupHeight = popupHeight - anchorHeight + popupAnchorOffset;
+
+                const mapHalf = mapSize.y / 2;
+                let desiredPixelY = mapHalf;
+
+                if (mapHalf - effectivePopupHeight < popupTopMargin) {
+                    desiredPixelY = Math.min(mapSize.y - popupBottomMargin, effectivePopupHeight + popupTopMargin);
+                }
+
+                const deltaY = mapHalf - desiredPixelY;
+                if (deltaY !== 0) {
+                    const targetPixel = map.project(targetLatLng, targetZoom);
+                    const centerPixel = targetPixel.add([0, deltaY]);
+                    centerLatLng = map.unproject(centerPixel, targetZoom);
+                }
+            }
+
+            const currentCenter = map.getCenter();
+            const isSameCenter = currentCenter.distanceTo(centerLatLng) < 1e-6;
+            const currentZoom = map.getZoom();
+
+            if (isSameCenter && currentZoom === targetZoom) {
+                return;
+            }
+
+            map.flyTo(centerLatLng, targetZoom, { duration: 0.45, easeLinearity: 0.2 });
+        };
+
+        const attachPopupImageHandler = (popup, attempt = 0) => {
+            const popupElement = popup.getElement();
+            if (!popupElement && attempt < 5) {
+                requestAnimationFrame(() => attachPopupImageHandler(popup, attempt + 1));
+                return;
+            }
+            if (!popupElement) {
+                return;
+            }
+            const button = popupElement.querySelector('.popup-image-button');
+            const image = popupElement.querySelector('.popup-image-wrapper .popup-image');
+            if (button && image) {
+                if (!button.dataset.modalBound) {
+                    button.addEventListener('click', () => openImageModal(image.src, image.alt));
+                    button.dataset.modalBound = 'true';
+                }
+            }
+        };
+
+        map.on('popupopen', (event) => {
+            adjustPopupView(event.popup);
+            attachPopupImageHandler(event.popup);
+        });
+
         fetch('data/baudin.json')
             .then(response => response.json())
             .then(places => {
+                const bounds = L.latLngBounds();
+
                 places.forEach(place => {
                     const coordinates = extractCoordinates(place);
                     if (!coordinates) {
@@ -117,9 +304,11 @@
 
                     const [lat, lon] = coordinates;
                     const marker = L.marker([lat, lon]).addTo(map);
+                    bounds.extend([lat, lon]);
                     marker.bindPopup(() => {
                         const currentLang = localStorage.getItem('language') || 'en';
                         const trans = translations[currentLang];
+                        const safeAlt = escapeHtml(place.frenchName || '');
 
                         let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
 <p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p>`;
@@ -163,15 +352,11 @@
 
                         // Si une image est disponible, créer une mise en page à deux colonnes.
                         if (place.imgUrl && place.imgUrl.trim() !== "") {
-                            const imageLinkTarget = (wikiLink && wikiLink.trim() !== "") ? wikiLink : place.imgUrl;
-                            const imageTitleKey = (wikiLink && wikiLink.trim() !== "" && imageLinkTarget === wikiLink)
-                                ? 'popup-image-title-wiki'
-                                : 'popup-image-title-source';
                             const imageHtml = `
                                 <div class="popup-image-wrapper">
-                                    <a href="${imageLinkTarget}" target="_blank" title="${trans[imageTitleKey]}">
-                                        <img src="${place.imgUrl}" alt="${place.frenchName}" class="popup-image">
-                                    </a>
+                                    <button type="button" class="popup-image-button" aria-label="${trans['popup-image-expand-label']}">
+                                        <img src="${place.imgUrl}" alt="${safeAlt}" class="popup-image">
+                                    </button>
                                 </div>`;
 
                             return `<div class="popup-layout">
@@ -184,6 +369,12 @@
                         return `<div class="popup-text-container">${textHtml}</div>`;
                     });
                 });
+
+                if (bounds.isValid()) {
+                    map.fitBounds(bounds, { padding: [40, 40], maxZoom: focusZoomLevel });
+                } else {
+                    map.setView(defaultCenter, defaultZoom);
+                }
             });
     </script>
 </body>

@@ -3,8 +3,8 @@ const translations = {
     'fr': {
         // --- Textes généraux ---
         'hero-title': "Noms Français le long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d’Entrecasteaux (1791-1794) et Baudin (1800-1804)",
-        'nav-home': "Accueil", 'nav-map-dentre': "Carte Interactive : d'Entrecasteaux", 'nav-map-baudin': "Carte Interactive : Baudin", 'nav-resources': "Ressources",
-        'footer-text': '&copy; 2024 - Dany Bréelle - Projet "Noms Français le long de la côte Australienne"',
+        'nav-home': "Accueil", 'nav-map-dentre': "Carte d'Entrecasteaux", 'nav-map-baudin': "Carte Baudin", 'nav-resources': "Ressources",
+        'footer-text': '&copy; 2025 - Dany Bréelle - Projet "Noms Français le long de la côte Australienne"',
 
         // --- Page d'accueil (index.html) ---
         'intro-title': "Introduction",
@@ -14,7 +14,7 @@ const translations = {
         'map-title-freycinet': "Carte de Freycinet, 1812", 'map-title-beautemps': "Carte de Beautemps-Beaupré, 1807",
 
         // --- Page Carte d'Entrecasteaux ---
-        'dentre-title': "Carte Interactive : L'Expédition d'Entrecasteaux (1791-1793)",
+        'dentre-title': "Carte d'Entrecasteaux (1791-1793)",
         'dentre-desc': "Explorez les noms de lieux donnés lors de l'expédition d'Antoine Bruny d'Entrecasteaux, qui a cartographié en grand détail les côtes de la Tasmanie à la recherche de La Pérouse. Cliquez sur un marqueur pour découvrir plus d'informations.",
         'dentre-text-p1': "Le premier objectif de l'expédition d'Entrecasteaux, la recherche de La Pérouse, disparu, s'est soldé par un échec. Aucune trace de ses deux navires ou de leur équipage ne fut trouvée sur les îles du Pacifique occidental qu'ils explorèrent. Cependant, le second volet de la mission de l'expédition, la cartographie des côtes des Terres Australes encore partiellement inconnues des Européens, fut une grande réussite. Ces découvertes redonnèrent espoir et motivation à l'équipage après une traversée difficile de l'océan Indien austral dans une mer agitée. La nomenclature laissée par d'Entrecasteaux le long des côtes de ce qui est aujourd'hui la Tasmanie et l'Australie-Occidentale rend hommage à son équipage méritant qui a rendu ces découvertes possibles, ainsi qu'au voyage en général.",
         'dentre-text-p2': "Les côtes est de la Terre de Van Diemen (Tasmanie) furent visitées en avril-mai 1792 et de nouveau fin janvier-février 1793, et les côtes sud-ouest de la Nouvelle-Hollande (Australie-Occidentale) fin décembre 1792 - janvier 1793.",
@@ -24,7 +24,7 @@ const translations = {
         'dentre-text-p6': "Les lieux visités et nommés par l'expédition d’Entrecasteaux étaient évidemment déjà bien connus, identifiés et désignés d'une manière ou d'une autre par les communautés aborigènes locales. Pourtant, bien que l'équipage en ait rencontré certains à plusieurs reprises[2], les Français ne se sont pas enquis auprès des aborigènes de la manière dont ils nommaient leur terre et les noms des lieux relevés par les membres de l'expédition. Cette pratique de dénomination unilatérale était liée au concept européen de ‘première découverte’ et aux fantasmes des Lumières européennes qui suggéraient aux visiteurs que les natifs (du moins ceux qu'ils rencontrèrent en Tasmanie en termes amicaux) étaient des ‘bons sauvages’ vivant dans un état ‘primitif’ originel non corrompu par la civilisation et ignorant des développements scientifiques et techniques en Europe.",
         
         // --- Page Carte Baudin ---
-        'baudin-title': "Carte Interactive : L'Expédition de Nicolas Baudin (1800-1804)", 'baudin-desc': "Explorez les noms de lieux donnés lors de l'expédition scientifique de Nicolas Baudin...", 'map-title-baudin': "Carte de Baudin, 1802",
+        'baudin-title': "Carte Baudin (1800-1804)", 'baudin-desc': "Explorez les noms de lieux donnés lors de l'expédition scientifique de Nicolas Baudin...", 'map-title-baudin': "Carte de Baudin, 1802",
 
         // --- Page Ressources ---
         'resources-title': "Ressources", 'resources-p1': "Cette page contiendra des ressources additionnelles...", 'resources-p2': "<em>(Contenu à ajouter)</em>",
@@ -57,8 +57,7 @@ const translations = {
         'popup-wiki-label': "Wikipédia :",
         'popup-othersource-label': "Autre source :",
         'popup-details-link': "Pour un compte-rendu détaillé et les références, cliquez ici.",
-        'popup-image-title-wiki': "Voir sur Wikipédia",
-        'popup-image-title-source': "Afficher la source",
+        'popup-image-expand-label': "Agrandir l'image",
         'direction-north': "N",
         'direction-south': "S",
         'direction-east': "E",
@@ -67,8 +66,8 @@ const translations = {
     'en': {
         // --- General text ---
         'hero-title': "French Names Along the Australian Coastline", 'hero-subtitle': "The toponyms originated by the d’Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
-        'nav-home': "Home", 'nav-map-dentre': "Interactive Map: d'Entrecasteaux", 'nav-map-baudin': "Interactive Map: Baudin", 'nav-resources': "Resources",
-        'footer-text': '&copy; 2024 - Dany Bréelle - "French Names Along the Australian Coastline" Project',
+        'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux Map", 'nav-map-baudin': "Baudin Map", 'nav-resources': "Resources",
+        'footer-text': '&copy; 2025 - Dany Bréelle - "French Names Along the Australian Coastline" Project',
 
         // --- Homepage (index.html) ---
         'intro-title': "Introduction",
@@ -78,7 +77,7 @@ const translations = {
         'map-title-freycinet': "Map by Freycinet, 1812", 'map-title-beautemps': "Map by Beautemps-Beaupré, 1807",
 
         // --- d'Entrecasteaux Map Page ---
-        'dentre-title': "Interactive Map: The d'Entrecasteaux Expedition (1791-1793)",
+        'dentre-title': "d'Entrecasteaux Map (1791-1793)",
         'dentre-desc': "Explore the place names given during the expedition of Antoine Bruny d'Entrecasteaux, who charted in great detail the coasts of Tasmania in search of La Pérouse. Click on a marker to discover more information.",
         'dentre-text-p1': "The first object of the d’Entrecastreaux expedition, the search for the missing Lapérouse, ended in failure. They found no trace of his two ships or their crew on any islands in the western Pacific they sighted. However, the second parts of the expedition’s mission, the mapping of coasts in the Southern Lands still partially unknown to Europeans, proved highly successful. These discoveries gave new hope and motivation to the crew after a difficult crossing of the southern Indian Ocean in rough sea. D'Entrecasteaux's nomenclature bestowed along the coasts of what is now known as Tasmania and Western Australia pays tribute to his deserving crew who made these discoveries possible, and the voyage in general.",
         'dentre-text-p2': "The east coasts of Van Diemen Land (Tasmania) coasts were visited in April-May 1792 and again in late January-February 1793, and the south-west coasts of New Holland (Western Australia) in late December 1792 - January 1793.",
@@ -88,7 +87,7 @@ const translations = {
         'dentre-text-p6': "The places visited and named by the d’Entrecasteaux expedition were obviously already well-known, identified and labelled in some way or another by the local aboriginal communities. Yet, despite the crew encountering some of them on several occasions[2], the French did not make inquiries of the aborigines on how they named their land and the names of the places surveyed by the members of the expedition. This one-sided naming practice was linked to the European concept of ‘first discovery’, and the fantasies of the European Enlightenment which suggested to the visitors that natives (at least the natives they met in Tasmania in friendly terms) were ‘noble savages’ living in an original ‘primitive’ state uncorrupted by civilization and ignorant of scientific and technical developments in Europe.",
         
         // --- Baudin Map Page ---
-        'baudin-title': "Interactive Map: The Nicolas Baudin Expedition (1800-1804)", 'baudin-desc': "Explore the place names given during the scientific expedition of Nicolas Baudin...", 'map-title-baudin': "Map from Baudin expedition, 1802",
+        'baudin-title': "Baudin Map (1800-1804)", 'baudin-desc': "Explore the place names given during the scientific expedition of Nicolas Baudin...", 'map-title-baudin': "Map from Baudin expedition, 1802",
 
         // --- Resources Page ---
         'resources-title': "Resources", 'resources-p1': "This page will contain additional resources...", 'resources-p2': "<em>(Content to be added)</em>",
@@ -121,8 +120,7 @@ const translations = {
         'popup-wiki-label': "Wikipedia:",
         'popup-othersource-label': "Other source:",
         'popup-details-link': "For a detailed account and references, click here.",
-        'popup-image-title-wiki': "View on Wikipedia",
-        'popup-image-title-source': "Open source image",
+        'popup-image-expand-label': "View larger image",
         'direction-north': "N",
         'direction-south': "S",
         'direction-east': "E",
