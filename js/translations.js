@@ -56,7 +56,13 @@ const translations = {
         'popup-origin-label': "Origine du nom :",
         'popup-wiki-label': "Wikipédia :",
         'popup-othersource-label': "Autre source :",
-        'popup-details-link': "Pour un compte-rendu détaillé et les références, cliquez ici."
+        'popup-details-link': "Pour un compte-rendu détaillé et les références, cliquez ici.",
+        'popup-image-title-wiki': "Voir sur Wikipédia",
+        'popup-image-title-source': "Afficher la source",
+        'direction-north': "N",
+        'direction-south': "S",
+        'direction-east': "E",
+        'direction-west': "O"
     },
     'en': {
         // --- General text ---
@@ -114,6 +120,12 @@ const translations = {
         'popup-origin-label': "Origin of the name:",
         'popup-wiki-label': "Wikipedia:",
         'popup-othersource-label': "Other source:",
-        'popup-details-link': "For a detailed account and references, click here."
+        'popup-details-link': "For a detailed account and references, click here.",
+        'popup-image-title-wiki': "View on Wikipedia",
+        'popup-image-title-source': "Open source image",
+        'direction-north': "N",
+        'direction-south': "S",
+        'direction-east': "E",
+        'direction-west': "W"
     }
 };

@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Met à jour le style du bouton actif
         langFrButton.classList.toggle('active', lang === 'fr');
         langEnButton.classList.toggle('active', lang === 'en');
+        langFrButton.setAttribute('aria-pressed', lang === 'fr');
+        langEnButton.setAttribute('aria-pressed', lang === 'en');
     };
 
     // Ajoute les écouteurs d'événements

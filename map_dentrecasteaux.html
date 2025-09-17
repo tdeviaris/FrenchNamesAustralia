@@ -14,9 +14,11 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
         nav ul li a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-size: 1.1rem; }
         nav ul li a.active, nav ul li a:hover { background-color: #0056b3; }
-        .lang-switcher { margin-left: auto; color: white; font-size: 0.9rem; }
-        .lang-switcher span { cursor: pointer; padding: 5px; }
-        .lang-switcher span.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
+        .lang-switcher { margin-left: auto; color: white; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+        .lang-switcher button { background: none; border: none; color: inherit; cursor: pointer; padding: 5px; font: inherit; }
+        .lang-switcher button.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
+        .lang-switcher button:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
+        .lang-switcher .lang-separator { opacity: 0.7; }
         .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .content-section h2 { font-family: 'Garamond', serif; font-size: 2.5rem; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
         .map-container { height: 650px; width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 20px; }
@@ -57,7 +59,7 @@
                 <li><a href="map_baudin.html" id="nav-map-baudin">Interactive Map: Baudin</a></li>
                 <li><a href="resources.html" id="nav-resources">Resources</a></li>
             </ul>
-            <div class="lang-switcher"><span id="lang-fr">FR</span> | <span id="lang-en">EN</span></div>
+            <div class="lang-switcher"><button type="button" id="lang-fr">FR</button><span aria-hidden="true" class="lang-separator">|</span><button type="button" id="lang-en">EN</button></div>
         </nav>
     </header>
 
@@ -95,11 +97,37 @@
         const map = L.map('map').setView([-30.5, 135], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
+        const isFiniteNumber = (value) => (Number.isFinite ? Number.isFinite(value) : isFinite(value));
+
+        const extractCoordinates = (place) => {
+            const lat = Number(place.lat);
+            const lon = Number(place.lon);
+
+            if (!isFiniteNumber(lat) || !isFiniteNumber(lon) || lat === 0 || lon === 0) {
+                return null;
+            }
+
+            return [lat, lon];
+        };
+        const formatCoordinates = (lat, lon, trans) => {
+            const latValue = Math.abs(lat).toFixed(3);
+            const lonValue = Math.abs(lon).toFixed(3);
+            const latDir = lat > 0 ? trans['direction-north'] : trans['direction-south'];
+            const lonDir = lon > 0 ? trans['direction-east'] : trans['direction-west'];
+            return `${latValue}° ${latDir}; ${lonValue}° ${lonDir}`;
+        };
+
         fetch('data/entrecasteaux.json')
             .then(response => response.json())
             .then(places => {
                 places.forEach(place => {
-                    const marker = L.marker([place.lat, place.lon]).addTo(map);
+                    const coordinates = extractCoordinates(place);
+                    if (!coordinates) {
+                        return;
+                    }
+
+                    const [lat, lon] = coordinates;
+                    const marker = L.marker([lat, lon]).addTo(map);
                     marker.bindPopup(() => {
                         const currentLang = localStorage.getItem('language') || 'en';
                         const trans = translations[currentLang];
@@ -111,7 +139,8 @@
                             textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
                         }
 
-                        textHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${Math.abs(place.lat).toFixed(3)}° S; ${place.lon.toFixed(3)}° E</p>`;
+                        const coordinatesText = formatCoordinates(lat, lon, trans);
+                        textHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${coordinatesText}</p>`;
 
                         // Characteristic
                         const characteristicText = (currentLang === 'fr' && place.characteristic_fr) ? place.characteristic_fr : place.characteristic;
@@ -146,9 +175,12 @@
                         // Si une image est disponible, créer une mise en page à deux colonnes.
                         if (place.imgUrl && place.imgUrl.trim() !== "") {
                             const imageLinkTarget = (wikiLink && wikiLink.trim() !== "") ? wikiLink : place.imgUrl;
+                            const imageTitleKey = (wikiLink && wikiLink.trim() !== "" && imageLinkTarget === wikiLink)
+                                ? 'popup-image-title-wiki'
+                                : 'popup-image-title-source';
                             const imageHtml = `
                                 <div class="popup-image-wrapper">
-                                    <a href="${imageLinkTarget}" target="_blank" title="Voir sur Wikipedia">
+                                    <a href="${imageLinkTarget}" target="_blank" title="${trans[imageTitleKey]}">
                                         <img src="${place.imgUrl}" alt="${place.frenchName}" class="popup-image">
                                     </a>
                                 </div>`;
@@ -157,10 +189,10 @@
                                         <div class="popup-text-container">${textHtml}</div>
                                         ${imageHtml}
                                     </div>`;
-                        } else {
-                            // Sinon, retourner uniquement le texte dans un conteneur de largeur fixe.
-                            return `<div class="popup-text-container">${textHtml}</div>`;
                         }
+
+                        // Sinon, retourner uniquement le texte dans un conteneur de largeur fixe.
+                        return `<div class="popup-text-container">${textHtml}</div>`;
                     });
                 });
             });
