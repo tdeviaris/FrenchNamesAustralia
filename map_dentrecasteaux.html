@@ -550,7 +550,10 @@
             }
         };
 
-        fetch('data/entrecasteaux.json')
+        const dataVersion = '20250209';
+        const dataUrl = `data/entrecasteaux.json?v=${dataVersion}`;
+
+        fetch(dataUrl, { cache: 'no-cache' })
             .then(response => response.json())
             .then(places => {
                 hideSpinner();

@@ -532,7 +532,10 @@
             }
         };
 
-        fetch('data/baudin.json')
+        const dataVersion = '20250209';
+        const dataUrl = `data/baudin.json?v=${dataVersion}`;
+
+        fetch(dataUrl, { cache: 'no-cache' })
             .then(response => response.json())
             .then(places => {
                 hideSpinner();
