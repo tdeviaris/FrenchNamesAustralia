@@ -13,20 +13,47 @@
         @media (max-width: 768px) {
             .container { padding: 10px 12px 24px; }
         }
-        nav { background-color: #333; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 0 20px; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-        nav ul li a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-size: 1.1rem; }
+        nav { background-color: #333; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 6px 18px; gap: 12px; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
+        nav ul li a { display: block; color: white; text-decoration: none; padding: 12px 22px; font-size: 1.05rem; border-radius: 4px; }
         nav ul li a.active, nav ul li a:hover { background-color: #0056b3; }
         .lang-switcher { margin-left: auto; color: white; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
         .lang-switcher button { background: none; border: none; color: inherit; cursor: pointer; padding: 5px; font: inherit; }
         .lang-switcher button.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
         .lang-switcher button:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
         .lang-switcher .lang-separator { opacity: 0.7; }
-        .content-section { background-color: white; padding: 16px 18px 20px; margin-top: 12px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .content-section h2 { font-family: 'Garamond', serif; font-size: 2.35rem; border-bottom: 2px solid #0056b3; padding-bottom: 6px; margin-bottom: 12px; }
-        .map-container { height: 650px; width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 12px; }
+        .content-section { background-color: white; padding: 14px 16px 18px; margin-top: 8px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .content-section h2 { font-family: 'Lato', sans-serif; font-size: 1.9rem; font-weight: 700; text-align: center; margin: 4px 0 10px; }
+        .map-container { height: min(720px, calc(100vh - 220px)); width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 10px; }
+        .map-wrapper { position: relative; }
+        .map-spinner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1500;
+            transition: opacity 0.3s ease;
+        }
+        .map-spinner.hidden { opacity: 0; pointer-events: none; }
+        .map-spinner::after {
+            content: "";
+            width: 48px;
+            height: 48px;
+            border: 4px solid #cfd8dc;
+            border-top-color: #0056b3;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
         .historic-maps-section { margin-top: 30px; }
-        .historic-maps-section h3 { text-align: center; font-family: 'Garamond', serif; font-size: 2rem; margin-top: 40px; }
+        .historic-maps-section h3 { text-align: center; font-family: 'Lato', sans-serif; font-size: 2rem; margin-top: 40px; }
         .historic-map img { width: 100%; height: auto; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
         .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto !important; }
@@ -39,11 +66,11 @@
             gap: 15px;
         }
         .popup-text-container {
-            width: 280px; /* Largeur fixe pour le texte, avec ou sans image */
-            flex-shrink: 0; /* Empêche le texte de se réduire */
+            width: 280px;
+            flex-shrink: 0;
         }
         .popup-image-wrapper {
-            flex-basis: 260px; /* Largeur de l'image (130px * 2) */
+            flex-basis: clamp(240px, 38vw, 360px);
             flex-shrink: 0;
         }
         .popup-image-button {
@@ -52,6 +79,7 @@
             padding: 0;
             cursor: pointer;
             width: 100%;
+            display: block;
         }
         .popup-image-button:focus-visible {
             outline: 2px solid #FFD700;
@@ -60,11 +88,29 @@
         .popup-image-wrapper .popup-image {
             width: 100%;
             height: auto;
-            border-radius: 4px;
-            border: 4px solid #ffffff;
-            background-color: #ffffff;
-            box-sizing: border-box;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            nav { flex-direction: column; align-items: stretch; padding: 8px 12px; }
+            nav ul { flex-direction: column; width: 100%; gap: 0; }
+            nav ul li a { width: 100%; text-align: center; padding: 12px 0; border-radius: 0; border-top: 1px solid rgba(255,255,255,0.15); }
+            nav ul li:first-child a { border-top: none; }
+            .lang-switcher { margin-left: 0; justify-content: center; padding-top: 6px; }
+            .popup-layout {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .popup-text-container {
+                width: 100%;
+            }
+            .popup-image-wrapper {
+                flex-basis: auto;
+                width: 100%;
+            }
+            .popup-image-wrapper .popup-image {
+                max-width: 100%;
+            }
         }
         .image-modal {
             position: fixed;
@@ -105,6 +151,80 @@
             outline: 2px solid #FFD700;
             outline-offset: 2px;
         }
+        .map-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .map-modal.open { display: flex; }
+        .map-modal-content {
+            background: #fff;
+            width: 96vw;
+            max-width: 1150px;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .map-modal-header {
+            padding: 12px 16px;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .map-modal-title {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin: 0;
+            color: #333;
+        }
+        .map-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #333;
+        }
+        .map-modal-close:focus-visible {
+            outline: 2px solid #0056b3;
+            outline-offset: 2px;
+        }
+        .map-modal-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            overflow: hidden;
+        }
+        .map-modal-body iframe,
+        .map-modal-body embed,
+        .map-modal-body object {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+        .map-modal-body img {
+            max-width: 96vw;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -123,8 +243,10 @@
     <main class="container">
          <section class="content-section">
             <h2 id="baudin-title">Baudin Map (1800-1804)</h2>
-            <p id="baudin-desc">Explore the place names given during the scientific expedition of Nicolas Baudin...</p>
-            <div id="map" class="map-container"></div>
+            <div class="map-wrapper">
+                <div class="map-spinner" id="map-spinner" role="status" aria-live="polite" aria-label="Loading map"></div>
+                <div id="map" class="map-container"></div>
+            </div>
         </section>
         
         <section class="historic-maps-section">
@@ -141,6 +263,16 @@
         <img src="" alt="" id="image-modal-image">
     </div>
 
+    <div id="map-modal" class="map-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="map-modal-content">
+            <div class="map-modal-header">
+                <h3 class="map-modal-title" id="map-modal-title"></h3>
+                <button type="button" class="map-modal-close" id="map-modal-close" aria-label="Close map">&times;</button>
+            </div>
+            <div class="map-modal-body" id="map-modal-body"></div>
+        </div>
+    </div>
+
     <div data-include-footer></div>
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
@@ -150,7 +282,6 @@
         const focusZoomLevel = 8;
         const popupTopMargin = 32;
         const popupBottomMargin = 32;
-        const popupAnchorOffset = 70;
 
         const map = L.map('map').setView(defaultCenter, defaultZoom);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
@@ -183,6 +314,11 @@
         const modalImage = document.getElementById('image-modal-image');
         const modalCloseButton = document.getElementById('image-modal-close');
 
+        const mapModal = document.getElementById('map-modal');
+        const mapModalBody = document.getElementById('map-modal-body');
+            const mapModalTitle = document.getElementById('map-modal-title');
+            const mapModalCloseButton = document.getElementById('map-modal-close');
+
         const closeImageModal = () => {
             if (!modal) { return; }
             modal.classList.remove('open');
@@ -202,6 +338,59 @@
             }
         };
 
+        const closeMapModal = () => {
+            if (!mapModal) { return; }
+            mapModal.classList.remove('open');
+            mapModal.setAttribute('aria-hidden', 'true');
+            if (mapModalBody) {
+                mapModalBody.innerHTML = '';
+            }
+            if (mapModalTitle) {
+                mapModalTitle.textContent = '';
+            }
+        };
+
+        const openMapModal = (url, title) => {
+            if (!mapModal || !mapModalBody) { return; }
+            const normalizedUrl = (() => {
+                if (!url) { return ''; }
+                const hasRepresentativeImage = /representativeimage/i.test(url);
+                if (!hasRepresentativeImage) {
+                    return url;
+                }
+                const hasQuery = url.includes('?');
+                const widParam = hasQuery ? '&wid=2000' : '?wid=2000';
+                if (/wid=\d+/i.test(url)) {
+                    return url;
+                }
+                return url + widParam;
+            })();
+
+            mapModalBody.innerHTML = '';
+            const isImage = /\.(jpg|jpeg|png|gif|webp)(\?|$)/i.test(normalizedUrl) || /representativeimage/i.test(normalizedUrl);
+            let contentNode;
+            if (isImage) {
+                contentNode = document.createElement('img');
+                contentNode.src = normalizedUrl;
+                contentNode.alt = title || '';
+            } else {
+                contentNode = document.createElement('iframe');
+                contentNode.src = normalizedUrl;
+                contentNode.title = title || 'Map viewer';
+                contentNode.setAttribute('loading', 'lazy');
+            }
+            mapModalBody.appendChild(contentNode);
+
+            if (mapModalTitle) {
+                mapModalTitle.textContent = title || '';
+            }
+            mapModal.classList.add('open');
+            mapModal.setAttribute('aria-hidden', 'false');
+            if (mapModalCloseButton) {
+                mapModalCloseButton.focus({ preventScroll: true });
+            }
+        };
+
         if (modal) {
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) {
@@ -212,9 +401,27 @@
         if (modalCloseButton) {
             modalCloseButton.addEventListener('click', closeImageModal);
         }
+        if (mapModal) {
+            mapModal.addEventListener('click', (event) => {
+                if (event.target === mapModal) {
+                    closeMapModal();
+                }
+            });
+        }
+        if (mapModalCloseButton) {
+            mapModalCloseButton.addEventListener('click', closeMapModal);
+        }
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && modal?.classList.contains('open')) {
+            const escapePressed = event.key === 'Escape';
+            if (!escapePressed) {
+                return;
+            }
+            if (modal?.classList.contains('open')) {
                 closeImageModal();
+                return;
+            }
+            if (mapModal?.classList.contains('open')) {
+                closeMapModal();
             }
         });
 
@@ -239,19 +446,24 @@
                 const mapSize = map.getSize();
                 const popupHeight = popupElement.offsetHeight;
                 const anchorHeight = popupElement.querySelector('.leaflet-popup-tip')?.offsetHeight || 0;
-                const effectivePopupHeight = popupHeight - anchorHeight + popupAnchorOffset;
 
-                const mapHalf = mapSize.y / 2;
-                let desiredPixelY = mapHalf;
+                if (popupHeight) {
+                    const markerPixel = map.project(targetLatLng, targetZoom);
+                    let desiredMarkerY = markerPixel.y;
+                    const popupTop = desiredMarkerY - (popupHeight - anchorHeight);
+                    const popupBottom = desiredMarkerY + anchorHeight;
 
-                if (mapHalf - effectivePopupHeight < popupTopMargin) {
-                    desiredPixelY = Math.min(mapSize.y - popupBottomMargin, effectivePopupHeight + popupTopMargin);
-                }
+                    if (popupTop < popupTopMargin) {
+                        desiredMarkerY += popupTopMargin - popupTop;
+                    }
+                    if (popupBottom > mapSize.y - popupBottomMargin) {
+                        desiredMarkerY -= popupBottom - (mapSize.y - popupBottomMargin);
+                    }
 
-                const deltaY = mapHalf - desiredPixelY;
-                if (deltaY !== 0) {
-                    const targetPixel = map.project(targetLatLng, targetZoom);
-                    const centerPixel = targetPixel.add([0, deltaY]);
+                    const centerPixel = [
+                        markerPixel.x,
+                        markerPixel.y + (mapSize.y / 2) - desiredMarkerY
+                    ];
                     centerLatLng = map.unproject(centerPixel, targetZoom);
                 }
             }
@@ -267,10 +479,10 @@
             map.flyTo(centerLatLng, targetZoom, { duration: 0.45, easeLinearity: 0.2 });
         };
 
-        const attachPopupImageHandler = (popup, attempt = 0) => {
+        const attachPopupActions = (popup, attempt = 0) => {
             const popupElement = popup.getElement();
             if (!popupElement && attempt < 5) {
-                requestAnimationFrame(() => attachPopupImageHandler(popup, attempt + 1));
+                requestAnimationFrame(() => attachPopupActions(popup, attempt + 1));
                 return;
             }
             if (!popupElement) {
@@ -283,17 +495,47 @@
                     button.addEventListener('click', () => openImageModal(image.src, image.alt));
                     button.dataset.modalBound = 'true';
                 }
+
+                const ensureAdjusted = () => adjustPopupView(popup);
+                if (image.complete) {
+                    requestAnimationFrame(ensureAdjusted);
+                } else {
+                    image.addEventListener('load', ensureAdjusted, { once: true });
+                }
+            }
+
+            const mapLink = popupElement.querySelector('.popup-map-link');
+            if (mapLink && !mapLink.dataset.modalBound) {
+                mapLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const url = mapLink.dataset.mapUrl;
+                    const title = mapLink.dataset.mapTitle || '';
+                    if (url && url.trim() !== '') {
+                        openMapModal(url, title);
+                    }
+                });
+                mapLink.dataset.modalBound = 'true';
             }
         };
 
         map.on('popupopen', (event) => {
             adjustPopupView(event.popup);
-            attachPopupImageHandler(event.popup);
+            attachPopupActions(event.popup);
         });
+
+        const mapSpinner = document.getElementById('map-spinner');
+
+        const hideSpinner = () => {
+            if (mapSpinner) {
+                mapSpinner.classList.add('hidden');
+                setTimeout(() => mapSpinner.remove(), 500);
+            }
+        };
 
         fetch('data/baudin.json')
             .then(response => response.json())
             .then(places => {
+                hideSpinner();
                 const bounds = L.latLngBounds();
 
                 places.forEach(place => {
@@ -327,9 +569,9 @@
                         }
 
                         // Origin of the name
-                        const originText = (currentLang === 'fr' && place.origin_fr) ? place.origin_fr : place.origin;
-                        if (originText && originText.trim() !== "") {
-                            textHtml += `<p><strong>${trans['popup-origin-label']}</strong> ${originText}</p>`;
+                        const historyText = (currentLang === 'fr' && place.history_fr) ? place.history_fr : place.history;
+                        if (historyText && historyText.trim() !== "") {
+                            textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${historyText}</p>`;
                         }
 
                         // Wikipedia link
@@ -345,9 +587,17 @@
                             textHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
                         }
 
+                        // Map source link
+                        if (place.mapUrl && place.mapUrl.trim() !== "") {
+                            const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
+                            const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : escapeHtml(place.frenchName || '');
+                            textHtml += `<p><a href="#" class="popup-map-link" data-map-url="${place.mapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a></p>`;
+                        }
+
                         // Details link
-                        if (place.detailsLink && place.detailsLink.trim() !== "" && place.detailsLink.trim() !== "#") {
-                            textHtml += `<p><a href="${place.detailsLink}" target="_blank">${trans['popup-details-link']}</a></p>`;
+                        const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
+                        if (detailsUrl && detailsUrl.trim() !== "" && detailsUrl.trim() !== "#") {
+                            textHtml += `<p><a href="${detailsUrl}" target="_blank">${trans['popup-details-link']}</a></p>`;
                         }
 
                         // Si une image est disponible, créer une mise en page à deux colonnes.
@@ -375,6 +625,10 @@
                 } else {
                     map.setView(defaultCenter, defaultZoom);
                 }
+            })
+            .catch(error => {
+                console.error('Failed to load baudin data:', error);
+                hideSpinner();
             });
     </script>
 </body>
