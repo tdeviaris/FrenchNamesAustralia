@@ -363,6 +363,16 @@
             }
         });
 
+        const nameForTooltip = (place, lang) => {
+            if (!place) {
+                return '';
+            }
+            if (lang === 'fr') {
+                return (place.frenchName || place.ausEName || '').trim();
+            }
+            return (place.ausEName || place.frenchName || '').trim();
+        };
+
         const isFiniteNumber = (value) => (Number.isFinite ? Number.isFinite(value) : isFinite(value));
         const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => {
             const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -625,6 +635,32 @@
                     const [lat, lon] = coordinates;
                     const marker = L.marker([lat, lon]).addTo(map);
                     bounds.extend([lat, lon]);
+
+                    marker.bindTooltip('', {
+                        direction: 'top',
+                        offset: [0, -10],
+                        opacity: 0.95,
+                        sticky: true
+                    });
+
+                    const refreshTooltip = () => {
+                        const currentLang = localStorage.getItem('language') || 'en';
+                        const tooltipName = nameForTooltip(place, currentLang);
+                        if (!tooltipName) {
+                            marker.closeTooltip();
+                            return;
+                        }
+                        marker.setTooltipContent(tooltipName);
+                    };
+
+                    marker.on('mouseover', () => {
+                        refreshTooltip();
+                        if (marker.getTooltip()) {
+                            marker.openTooltip();
+                        }
+                    });
+                    marker.on('mouseout', () => marker.closeTooltip());
+
                     marker.bindPopup(() => {
                         const currentLang = localStorage.getItem('language') || 'en';
                         const trans = translations[currentLang];
