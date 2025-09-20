@@ -53,19 +53,22 @@
             to { transform: rotate(360deg); }
         }
         .map-info-control {
-            background: rgba(255,255,255,0.92);
-            padding: 3px 8px;
-            border-radius: 6px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            margin: 0 0 14px 14px;
+            background: #fff;
+            padding: 4px 10px;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 0.55rem;
-            line-height: 1.2;
+            gap: 8px;
+            font-size: 0.7rem;
+            line-height: 1.3;
             color: #333;
             font-family: 'Lato', sans-serif;
             pointer-events: none;
+        }
+        .leaflet-bottom.leaflet-left .leaflet-control.map-info-control {
+            margin: 0;
         }
         .map-info-coordinates { white-space: nowrap; }
         .map-info-scale-wrapper { display: flex; align-items: flex-end; }
@@ -78,11 +81,11 @@
             color: #333;
             border: 1px solid #555;
             border-bottom: none;
-            padding: 1px 6px 0;
-            border-radius: 4px 4px 0 0;
+            padding: 2px 6px 0;
+            border-radius: 0;
             box-shadow: none;
-            font-size: 0.55rem;
-            line-height: 1.2;
+            font-size: 0.7rem;
+            line-height: 1.3;
         }
         .historic-maps-section { margin-top: 30px; }
         .historic-maps-section h3 { text-align: center; font-family: 'Lato', sans-serif; font-size: 2rem; margin-top: 40px; }
@@ -337,6 +340,22 @@
         const popupTopMargin = 32;
         const popupBottomMargin = 32;
         const popupHeightRatio = 2 / 3;
+
+        const disableMarkerTooltips = (() => {
+            const touchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0;
+            if (touchPoints > 0) {
+                return true;
+            }
+            if ('ontouchstart' in window) {
+                return true;
+            }
+            if (window.matchMedia) {
+                if (window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches) {
+                    return true;
+                }
+            }
+            return false;
+        })();
 
         const map = L.map('map').setView(defaultCenter, defaultZoom);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
@@ -716,30 +735,32 @@
                     const marker = L.marker([lat, lon]).addTo(map);
                     bounds.extend([lat, lon]);
 
-                    marker.bindTooltip('', {
-                        direction: 'top',
-                        offset: [0, -10],
-                        opacity: 0.95,
-                        sticky: true
-                    });
+                    if (!disableMarkerTooltips) {
+                        marker.bindTooltip('', {
+                            direction: 'top',
+                            offset: [0, -10],
+                            opacity: 0.95,
+                            sticky: true
+                        });
 
-                    const refreshTooltip = () => {
-                        const currentLang = localStorage.getItem('language') || 'en';
-                        const tooltipName = nameForTooltip(place, currentLang);
-                        if (!tooltipName) {
-                            marker.closeTooltip();
-                            return;
-                        }
-                        marker.setTooltipContent(tooltipName);
-                    };
+                        const refreshTooltip = () => {
+                            const currentLang = localStorage.getItem('language') || 'en';
+                            const tooltipName = nameForTooltip(place, currentLang);
+                            if (!tooltipName) {
+                                marker.closeTooltip();
+                                return;
+                            }
+                            marker.setTooltipContent(tooltipName);
+                        };
 
-                    marker.on('mouseover', () => {
-                        refreshTooltip();
-                        if (marker.getTooltip()) {
-                            marker.openTooltip();
-                        }
-                    });
-                    marker.on('mouseout', () => marker.closeTooltip());
+                        marker.on('mouseover', () => {
+                            refreshTooltip();
+                            if (marker.getTooltip()) {
+                                marker.openTooltip();
+                            }
+                        });
+                        marker.on('mouseout', () => marker.closeTooltip());
+                    }
 
                     marker.bindPopup(() => {
                         const currentLang = localStorage.getItem('language') || 'en';
