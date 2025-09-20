@@ -231,7 +231,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre09E.rtf"
   },
   {
     "code": "Entre10",
@@ -257,7 +257,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre10E.rtf"
   },
   {
     "code": "Entre11",
@@ -283,7 +283,7 @@
     "mapTitle_en": "",
     "origin_fr": "La Billardière, botaniste et scientifique le plus distingué de l'expédition, a rédigé un compte-rendu de ses travaux sur la flore et la faune. Sa collection se composait de 22 caisses contenant des spécimens de plantes, de fleurs, d'insectes, de poissons, de reptiles, d'oiseaux, un petit kangourou et des spécimens minéralogiques. Tous ces éléments, tout comme les documents et les cartes de l'expédition, tombèrent entre les mains du gouvernement anglais. Grâce aux bons offices de Sir Joseph Banks, tout fut restitué à Rossel en 1802. La Pointe la Billardière figure sur la carte de D'Entrecasteaux.",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre11E.rtf"
   },
   {
     "code": "Entre12",
@@ -309,7 +309,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre12E.rtf"
   },
   {
     "code": "Entre13",
@@ -335,7 +335,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre13E.rtf"
   },
   {
     "code": "Entre14",
@@ -361,7 +361,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre14E.rtf"
   },
   {
     "code": "Entre15",
@@ -387,7 +387,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre15E.rtf"
   },
   {
     "code": "Entre16",
@@ -413,7 +413,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre16E.rtf"
   },
   {
     "code": "Entre17",
@@ -422,7 +422,7 @@
     "frenchName": "Riviere Huon",
     "variantName": "",
     "ausEName": "Huon River Canal d'Entrecasteaux Ile Bruny",
-    "indigenousName": "",
+    "indigenousName": "Taluna",
     "indigenousLanguage": "",
     "lat": -43.4,
     "lon": 147.0833,
@@ -439,7 +439,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre16E.rtf"
   },
   {
     "code": "Entre18",
@@ -465,7 +465,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre18E.rtf"
   },
   {
     "code": "Entre19",
@@ -491,7 +491,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre19E.rtf"
   },
   {
     "code": "Entre20",
@@ -517,7 +517,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre20E.rtf"
   },
   {
     "code": "Entre21",
@@ -543,7 +543,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre12E.rtf"
   },
   {
     "code": "Entre22",
@@ -569,7 +569,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre22E.rtf"
   },
   {
     "code": "Entre23",
@@ -595,7 +595,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre09E.rtf"
   },
   {
     "code": "Entre24",
@@ -621,7 +621,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre24E.rtf"
   },
   {
     "code": "Entre25",
@@ -647,7 +647,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre25E.rtf"
   },
   {
     "code": "Entre26",
@@ -673,7 +673,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre26E.rtf"
   },
   {
     "code": "Entre27",
@@ -699,7 +699,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "Entre27E.rtf"
   },
   {
     "code": "Entre28",
@@ -1256,15 +1256,15 @@
     "ausEName": "Hippolyte Rocks Port Buache Presqu'île Tasman",
     "indigenousName": "",
     "indigenousLanguage": "",
-    "lat": -43.04884,
-    "lon": 147.98223,
+    "lat": -43.1222,
+    "lon": 148.053,
     "characteristic_fr": "",
     "characteristic": "",
     "history_fr": "",
     "history": "",
-    "wiki_fr": "",
-    "wiki_en": "",
-    "imgUrl": "",
+    "wiki_fr": "https://en.wikipedia.org/wiki/Hippolyte_Rocks",
+    "wiki_en": "https://en.wikipedia.org/wiki/Hippolyte_Rocks",
+    "imgUrl": "https://commons.wikimedia.org/wiki/Category:Hippolyte_Rocks#/media/File:Hippolyte_Rocks.jpg",
     "other_link": "",
     "mapUrl": "",
     "mapTitle_fr": "",
