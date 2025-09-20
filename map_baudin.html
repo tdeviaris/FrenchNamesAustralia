@@ -87,6 +87,28 @@
         footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
         .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto !important; }
         .leaflet-popup-content p { margin: 5px 0; } .leaflet-popup-content strong { color: #0056b3; }
+        .leaflet-popup-content.has-scrollbar {
+            overflow-y: auto;
+            padding-right: 12px;
+            scrollbar-width: thin;
+            scrollbar-gutter: stable;
+        }
+        .leaflet-popup-content.has-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .leaflet-popup-content.has-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.35);
+            border-radius: 4px;
+        }
+        .leaflet-popup-content.has-scrollbar::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            margin: 16px 0 12px;
+        }
+        .leaflet-container .leaflet-popup-close-button {
+            right: 14px;
+            top: 10px;
+        }
         
         /* Styles pour la mise en page de la popup */
         .popup-layout {
@@ -311,6 +333,7 @@
         const focusZoomLevel = 8;
         const popupTopMargin = 32;
         const popupBottomMargin = 32;
+        const popupHeightRatio = 2 / 3;
 
         const map = L.map('map').setView(defaultCenter, defaultZoom);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
@@ -349,6 +372,66 @@
             if (coordinatesElement) {
                 coordinatesElement.textContent = 'Lat: --°  Lon: --°';
             }
+        });
+
+        const enforcePopupMaxHeight = (popup) => {
+            if (!popup) {
+                return;
+            }
+
+            const mapContainer = map.getContainer();
+            if (!mapContainer) {
+                return;
+            }
+
+            const popupElement = popup.getElement();
+            if (!popupElement) {
+                return;
+            }
+
+            const contentElement = popupElement.querySelector('.leaflet-popup-content');
+            if (!contentElement) {
+                return;
+            }
+
+            contentElement.classList.remove('has-scrollbar');
+            contentElement.style.maxHeight = '';
+            contentElement.style.overflowY = '';
+
+            requestAnimationFrame(() => {
+                const refreshedPopup = popup.getElement();
+                const refreshedContent = refreshedPopup?.querySelector('.leaflet-popup-content');
+                const currentMapHeight = mapContainer.clientHeight;
+
+                if (!refreshedPopup || !refreshedContent || !currentMapHeight) {
+                    return;
+                }
+
+                const maxPopupHeight = Math.floor(currentMapHeight * popupHeightRatio);
+                if (!maxPopupHeight) {
+                    return;
+                }
+
+                const nonContentHeight = refreshedPopup.offsetHeight - refreshedContent.offsetHeight;
+                const allowedContentHeight = Math.max(120, maxPopupHeight - nonContentHeight);
+
+                if (refreshedPopup.offsetHeight <= maxPopupHeight || allowedContentHeight <= 0) {
+                    return;
+                }
+
+                refreshedContent.style.maxHeight = `${allowedContentHeight}px`;
+                refreshedContent.style.overflowY = 'auto';
+                refreshedContent.classList.add('has-scrollbar');
+            });
+        };
+
+        map.on('resize', () => {
+            const activePopup = map._popup;
+            if (!activePopup) {
+                return;
+            }
+            enforcePopupMaxHeight(activePopup);
+            requestAnimationFrame(() => adjustPopupView(activePopup));
         });
 
         const nameForTooltip = (place, lang) => {
@@ -571,7 +654,10 @@
                     button.dataset.modalBound = 'true';
                 }
 
-                const ensureAdjusted = () => adjustPopupView(popup);
+                const ensureAdjusted = () => {
+                    enforcePopupMaxHeight(popup);
+                    requestAnimationFrame(() => adjustPopupView(popup));
+                };
                 if (image.complete) {
                     requestAnimationFrame(ensureAdjusted);
                 } else {
@@ -594,7 +680,8 @@
         };
 
         map.on('popupopen', (event) => {
-            adjustPopupView(event.popup);
+            enforcePopupMaxHeight(event.popup);
+            requestAnimationFrame(() => adjustPopupView(event.popup));
             attachPopupActions(event.popup);
         });
 
