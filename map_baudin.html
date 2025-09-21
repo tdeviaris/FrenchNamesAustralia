@@ -319,6 +319,98 @@
             object-fit: contain;
             display: block;
         }
+        .details-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3200;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .details-modal.open { display: flex; }
+        .details-modal-dialog {
+            background: #fff;
+            width: min(840px, 96vw);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .details-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 22px;
+            background: #f7f7f7;
+        }
+        .details-modal-title {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            color: #333;
+        }
+        .details-modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #333;
+            padding: 4px;
+        }
+        .details-modal-close:focus-visible {
+            outline: 2px solid #0056b3;
+            outline-offset: 2px;
+        }
+        .details-modal-body {
+            position: relative;
+            flex: 1;
+            background: #fff;
+        }
+        .details-modal-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.92);
+            color: #333;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            z-index: 10;
+            transition: opacity 0.2s ease;
+        }
+        .details-modal-loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .details-modal-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #cfd8dc;
+            border-top-color: #0056b3;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        .details-modal-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -363,6 +455,22 @@
                 <button type="button" class="map-modal-close" id="map-modal-close" aria-label="Close map">&times;</button>
             </div>
             <div class="map-modal-body" id="map-modal-body"></div>
+        </div>
+    </div>
+
+    <div id="details-modal" class="details-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="details-modal-dialog" tabindex="-1">
+            <div class="details-modal-header">
+                <h3 class="details-modal-title" id="details-modal-title"></h3>
+                <button type="button" class="details-modal-close" id="details-modal-close" aria-label="Close details">&times;</button>
+            </div>
+            <div class="details-modal-body">
+                <div class="details-modal-loading" id="details-modal-loading">
+                    <div class="details-modal-spinner" aria-hidden="true"></div>
+                    <span id="details-loading-message">Loading…</span>
+                </div>
+                <iframe id="details-modal-frame" class="details-modal-frame" title="Details" loading="lazy"></iframe>
+            </div>
         </div>
     </div>
 
@@ -510,6 +618,19 @@
             const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
             return chars[char] || char;
         });
+        const resolveDetailsUrl = (rawValue = '') => {
+            const value = (rawValue || '').trim();
+            if (!value) {
+                return '';
+            }
+            if (/^(?:https?:|data:|mailto:|#)/i.test(value)) {
+                return value;
+            }
+            if (value.startsWith('details/')) {
+                return value;
+            }
+            return `details/${value}`;
+        };
 
         const extractCoordinates = (place) => {
             const lat = Number(place.lat);
@@ -542,6 +663,14 @@
         let mapModalOverlaySpinner;
         let mapModalOverlayMessage;
         let mapModalOverlayOpenedAt = 0;
+
+        const detailsModal = document.getElementById('details-modal');
+        const detailsModalDialog = detailsModal?.querySelector('.details-modal-dialog');
+        const detailsModalFrame = document.getElementById('details-modal-frame');
+        const detailsModalLoading = document.getElementById('details-modal-loading');
+        const detailsModalLoadingMessage = document.getElementById('details-loading-message');
+        const detailsModalTitle = document.getElementById('details-modal-title');
+        const detailsModalCloseButton = document.getElementById('details-modal-close');
 
         const ensureMapModalOverlay = () => {
             if (!mapModalContent) { return null; }
@@ -599,6 +728,58 @@
             if (mapModalOverlayMessage) {
                 mapModalOverlayMessage.textContent = message;
             }
+        };
+
+        const closeDetailsModal = () => {
+            if (!detailsModal) {
+                return;
+            }
+            detailsModal.classList.remove('open');
+            detailsModal.setAttribute('aria-hidden', 'true');
+            if (detailsModalFrame) {
+                detailsModalFrame.src = 'about:blank';
+            }
+            if (detailsModalLoading) {
+                detailsModalLoading.classList.remove('hidden');
+            }
+        };
+
+        const openDetailsModal = (rawUrl, title) => {
+            const resolvedUrl = resolveDetailsUrl(rawUrl);
+            if (!resolvedUrl) {
+                return;
+            }
+            if (!detailsModal || !detailsModalFrame || !detailsModalLoading) {
+                window.location.href = resolvedUrl;
+                return;
+            }
+
+            if (detailsModalTitle) {
+                detailsModalTitle.textContent = title || '';
+            }
+            if (detailsModalCloseButton) {
+                detailsModalCloseButton.setAttribute('aria-label', translate('details-close-label') || 'Close');
+            }
+            if (detailsModalLoadingMessage) {
+                detailsModalLoadingMessage.textContent = translate('details-loading-message') || 'Loading page...';
+            }
+
+            detailsModalLoading.classList.remove('hidden');
+            detailsModal.classList.add('open');
+            detailsModal.setAttribute('aria-hidden', 'false');
+
+            if (detailsModalDialog) {
+                detailsModalDialog.focus({ preventScroll: true });
+            }
+
+            const handleFrameLoad = () => {
+                detailsModalLoading.classList.add('hidden');
+                detailsModalFrame.removeEventListener('load', handleFrameLoad);
+            };
+
+            detailsModalFrame.addEventListener('load', handleFrameLoad);
+            detailsModalFrame.setAttribute('title', title || translate('details-frame-title') || 'Details');
+            detailsModalFrame.src = resolvedUrl;
         };
 
         const closeImageModal = () => {
@@ -732,6 +913,16 @@
         if (mapModalCloseButton) {
             mapModalCloseButton.addEventListener('click', closeMapModal);
         }
+        if (detailsModal) {
+            detailsModal.addEventListener('click', (event) => {
+                if (event.target === detailsModal) {
+                    closeDetailsModal();
+                }
+            });
+        }
+        if (detailsModalCloseButton) {
+            detailsModalCloseButton.addEventListener('click', closeDetailsModal);
+        }
         document.addEventListener('keydown', (event) => {
             const escapePressed = event.key === 'Escape';
             if (!escapePressed) {
@@ -739,6 +930,10 @@
             }
             if (modal?.classList.contains('open')) {
                 closeImageModal();
+                return;
+            }
+            if (detailsModal?.classList.contains('open')) {
+                closeDetailsModal();
                 return;
             }
             if (mapModal?.classList.contains('open')) {
@@ -840,6 +1035,20 @@
                 });
                 mapLink.dataset.modalBound = 'true';
             }
+
+            const detailsLinks = popupElement.querySelectorAll('.popup-details-link');
+            detailsLinks.forEach((detailsLink) => {
+                if (detailsLink.dataset.detailsBound === 'true') {
+                    return;
+                }
+                detailsLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const url = detailsLink.dataset.detailsUrl || detailsLink.getAttribute('href') || '';
+                    const title = detailsLink.dataset.detailsTitle || detailsLink.textContent || '';
+                    openDetailsModal(url, title);
+                });
+                detailsLink.dataset.detailsBound = 'true';
+            });
         };
 
         map.on('popupopen', (event) => {
@@ -914,11 +1123,18 @@
                         if (place.mapUrl && place.mapUrl.trim() !== "") {
                             const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
                             const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
-                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${place.mapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                            const safeMapUrl = escapeHtml(place.mapUrl);
+                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
                         }
 
-                        if (detailsUrl && detailsUrl.trim() !== "" && detailsUrl.trim() !== "#") {
-                            linkSegments.push(`<a href="${detailsUrl}" target="_blank">${trans['popup-details-link']}</a>`);
+                        if (detailsUrl && detailsUrl.trim() !== '' && detailsUrl.trim() !== '#') {
+                            const resolvedDetailsHref = resolveDetailsUrl(detailsUrl);
+                            if (resolvedDetailsHref) {
+                                const detailsTitle = currentLang === 'fr'
+                                    ? (place.frenchName || place.ausEName || '')
+                                    : (place.ausEName || place.frenchName || '');
+                                linkSegments.push(`<a href="${escapeHtml(resolvedDetailsHref)}" class="popup-details-link" data-details-url="${escapeHtml(resolvedDetailsHref)}" data-details-title="${escapeHtml(detailsTitle)}">${trans['popup-details-link']}</a>`);
+                            }
                         }
 
                         if (linkSegments.length) {

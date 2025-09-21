@@ -378,6 +378,22 @@
         </div>
     </div>
 
+    <div id="details-modal" class="details-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="details-modal-dialog" tabindex="-1">
+            <div class="details-modal-header">
+                <h3 class="details-modal-title" id="details-modal-title"></h3>
+                <button type="button" class="details-modal-close" id="details-modal-close" aria-label="Close details">&times;</button>
+            </div>
+            <div class="details-modal-body">
+                <div class="details-modal-loading" id="details-modal-loading">
+                    <div class="details-modal-spinner" aria-hidden="true"></div>
+                    <span id="details-loading-message">Loading…</span>
+                </div>
+                <iframe id="details-modal-frame" class="details-modal-frame" title="Details" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
     <div data-include-footer></div>
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
@@ -522,6 +538,19 @@
             const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
             return chars[char] || char;
         });
+        const resolveDetailsUrl = (rawValue = '') => {
+            const value = (rawValue || '').trim();
+            if (!value) {
+                return '';
+            }
+            if (/^(?:https?:|data:|mailto:|#)/i.test(value)) {
+                return value;
+            }
+            if (value.startsWith('details/')) {
+                return value;
+            }
+            return `details/${value}`;
+        };
 
         const extractCoordinates = (place) => {
             const lat = Number(place.lat);
@@ -554,6 +583,14 @@
         let mapModalOverlaySpinner;
         let mapModalOverlayMessage;
         let mapModalOverlayOpenedAt = 0;
+
+        const detailsModal = document.getElementById('details-modal');
+        const detailsModalDialog = detailsModal?.querySelector('.details-modal-dialog');
+        const detailsModalFrame = document.getElementById('details-modal-frame');
+        const detailsModalLoading = document.getElementById('details-modal-loading');
+        const detailsModalLoadingMessage = document.getElementById('details-loading-message');
+        const detailsModalTitle = document.getElementById('details-modal-title');
+        const detailsModalCloseButton = document.getElementById('details-modal-close');
 
         const ensureMapModalOverlay = () => {
             if (!mapModalContent) { return null; }
@@ -611,6 +648,58 @@
             if (mapModalOverlayMessage) {
                 mapModalOverlayMessage.textContent = message;
             }
+        };
+
+        const closeDetailsModal = () => {
+            if (!detailsModal) {
+                return;
+            }
+            detailsModal.classList.remove('open');
+            detailsModal.setAttribute('aria-hidden', 'true');
+            if (detailsModalFrame) {
+                detailsModalFrame.src = 'about:blank';
+            }
+            if (detailsModalLoading) {
+                detailsModalLoading.classList.remove('hidden');
+            }
+        };
+
+        const openDetailsModal = (rawUrl, title) => {
+            const resolvedUrl = resolveDetailsUrl(rawUrl);
+            if (!resolvedUrl) {
+                return;
+            }
+            if (!detailsModal || !detailsModalFrame || !detailsModalLoading) {
+                window.location.href = resolvedUrl;
+                return;
+            }
+
+            if (detailsModalTitle) {
+                detailsModalTitle.textContent = title || '';
+            }
+            if (detailsModalCloseButton) {
+                detailsModalCloseButton.setAttribute('aria-label', translate('details-close-label') || 'Close');
+            }
+            if (detailsModalLoadingMessage) {
+                detailsModalLoadingMessage.textContent = translate('details-loading-message') || 'Loading page...';
+            }
+
+            detailsModalLoading.classList.remove('hidden');
+            detailsModal.classList.add('open');
+            detailsModal.setAttribute('aria-hidden', 'false');
+
+            if (detailsModalDialog) {
+                detailsModalDialog.focus({ preventScroll: true });
+            }
+
+            const handleFrameLoad = () => {
+                detailsModalLoading.classList.add('hidden');
+                detailsModalFrame.removeEventListener('load', handleFrameLoad);
+            };
+
+            detailsModalFrame.addEventListener('load', handleFrameLoad);
+            detailsModalFrame.setAttribute('title', title || translate('details-frame-title') || 'Details');
+            detailsModalFrame.src = resolvedUrl;
         };
 
         const closeImageModal = () => {
@@ -744,12 +833,26 @@
         if (mapModalCloseButton) {
             mapModalCloseButton.addEventListener('click', closeMapModal);
         }
+        if (detailsModal) {
+            detailsModal.addEventListener('click', (event) => {
+                if (event.target === detailsModal) {
+                    closeDetailsModal();
+                }
+            });
+        }
+        if (detailsModalCloseButton) {
+            detailsModalCloseButton.addEventListener('click', closeDetailsModal);
+        }
         document.addEventListener('keydown', (event) => {
             if (event.key !== 'Escape') {
                 return;
             }
             if (modal?.classList.contains('open')) {
                 closeImageModal();
+                return;
+            }
+            if (detailsModal?.classList.contains('open')) {
+                closeDetailsModal();
                 return;
             }
             if (mapModal?.classList.contains('open')) {
@@ -839,18 +942,32 @@
                 }
             }
 
-            const mapLink = popupElement.querySelector('.popup-map-link');
-            if (mapLink && !mapLink.dataset.modalBound) {
-                mapLink.addEventListener('click', (event) => {
+           const mapLink = popupElement.querySelector('.popup-map-link');
+           if (mapLink && !mapLink.dataset.modalBound) {
+               mapLink.addEventListener('click', (event) => {
+                   event.preventDefault();
+                   const url = mapLink.dataset.mapUrl;
+                   const title = mapLink.dataset.mapTitle || '';
+                   if (url && url.trim() !== '') {
+                       openMapModal(url, title);
+                   }
+               });
+               mapLink.dataset.modalBound = 'true';
+           }
+
+            const detailsLinks = popupElement.querySelectorAll('.popup-details-link');
+            detailsLinks.forEach((detailsLink) => {
+                if (detailsLink.dataset.detailsBound === 'true') {
+                    return;
+                }
+                detailsLink.addEventListener('click', (event) => {
                     event.preventDefault();
-                    const url = mapLink.dataset.mapUrl;
-                    const title = mapLink.dataset.mapTitle || '';
-                    if (url && url.trim() !== '') {
-                        openMapModal(url, title);
-                    }
+                    const url = detailsLink.dataset.detailsUrl || detailsLink.getAttribute('href') || '';
+                    const title = detailsLink.dataset.detailsTitle || detailsLink.textContent || '';
+                    openDetailsModal(url, title);
                 });
-                mapLink.dataset.modalBound = 'true';
-            }
+                detailsLink.dataset.detailsBound = 'true';
+            });
         };
 
         map.on('popupopen', (event) => {
@@ -925,11 +1042,18 @@
                         if (place.mapUrl && place.mapUrl.trim() !== "") {
                             const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
                             const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
-                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${place.mapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                            const safeMapUrl = escapeHtml(place.mapUrl);
+                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
                         }
 
-                        if (detailsUrl && detailsUrl.trim() !== "" && detailsUrl.trim() !== "#") {
-                            linkSegments.push(`<a href="${detailsUrl}" target="_blank">${trans['popup-details-link']}</a>`);
+                        if (detailsUrl && detailsUrl.trim() !== '' && detailsUrl.trim() !== '#') {
+                            const resolvedDetailsHref = resolveDetailsUrl(detailsUrl);
+                            if (resolvedDetailsHref) {
+                                const detailsTitle = currentLang === 'fr'
+                                    ? (place.frenchName || place.ausEName || '')
+                                    : (place.ausEName || place.frenchName || '');
+                                linkSegments.push(`<a href="${escapeHtml(resolvedDetailsHref)}" class="popup-details-link" data-details-url="${escapeHtml(resolvedDetailsHref)}" data-details-title="${escapeHtml(detailsTitle)}">${trans['popup-details-link']}</a>`);
+                            }
                         }
 
                         if (linkSegments.length) {
