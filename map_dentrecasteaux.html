@@ -26,29 +26,6 @@
         .content-section h2 { font-family: 'Lato', sans-serif; font-size: 1.9rem; font-weight: 700; text-align: center; margin: 4px 0 10px; }
         .map-wrapper { position: relative; }
         .map-container { height: min(720px, calc(100vh - 220px)); width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 10px; }
-        .map-spinner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1500;
-            transition: opacity 0.3s ease;
-        }
-        .map-spinner.hidden { opacity: 0; pointer-events: none; }
-        .map-spinner::after {
-            content: "";
-            width: 48px;
-            height: 48px;
-            border: 4px solid #cfd8dc;
-            border-top-color: #0056b3;
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-        }
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
@@ -89,7 +66,16 @@
         }
         footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
         .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto !important; }
-        .leaflet-popup-content p { margin: 5px 0; } .leaflet-popup-content strong { color: #0056b3; }
+        .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
+        .popup-link-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+        .popup-link-row .popup-link-separator {
+            color: #888;
+        }
         .leaflet-popup-content.has-scrollbar {
             overflow-y: auto;
             padding-right: 12px;
@@ -264,6 +250,57 @@
             justify-content: center;
             background: #000;
             overflow: hidden;
+            position: relative;
+        }
+        .map-modal-content {
+            position: relative;
+        }
+        .map-modal-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.78);
+            color: #f5f5f5;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            z-index: 20;
+            text-align: center;
+            padding: 24px;
+            transition: opacity 0.2s ease;
+        }
+        .map-modal-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .map-modal-overlay .map-modal-spinner-icon {
+            width: 56px;
+            height: 56px;
+            border: 5px solid rgba(255,255,255,0.35);
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        .map-modal-overlay.error .map-modal-spinner-icon {
+            border-color: rgba(255,255,255,0.35);
+            border-top-color: #f67280;
+            animation: none;
+        }
+        .map-modal-overlay-message {
+            margin-top: 4px;
+        }
+        .map-modal-content-wrapper {
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-modal-content-wrapper.visible {
+            display: flex;
         }
         .map-modal-body iframe,
         .map-modal-body embed,
@@ -303,7 +340,6 @@
         <section class="content-section">
             <h2 id="dentre-title">d'Entrecasteaux Map (1791-1793)</h2>
             <div class="map-wrapper">
-                <div class="map-spinner" id="map-spinner" role="status" aria-live="polite" aria-label="Loading map"></div>
                 <div id="map" class="map-container"></div>
             </div>
         </section>
@@ -352,6 +388,9 @@
         const popupTopMargin = 32;
         const popupBottomMargin = 32;
         const popupHeightRatio = 2 / 3;
+
+        const getCurrentLanguage = () => localStorage.getItem('language') || 'en';
+        const translate = (key) => translations[getCurrentLanguage()]?.[key] || '';
 
         const disableMarkerTooltips = (() => {
             const touchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0;
@@ -510,6 +549,69 @@
         const mapModalBody = document.getElementById('map-modal-body');
         const mapModalTitle = document.getElementById('map-modal-title');
         const mapModalCloseButton = document.getElementById('map-modal-close');
+        const mapModalContent = mapModal?.querySelector('.map-modal-content');
+        let mapModalOverlay;
+        let mapModalOverlaySpinner;
+        let mapModalOverlayMessage;
+        let mapModalOverlayOpenedAt = 0;
+
+        const ensureMapModalOverlay = () => {
+            if (!mapModalContent) { return null; }
+            if (!mapModalOverlay) {
+                mapModalOverlay = document.createElement('div');
+                mapModalOverlay.className = 'map-modal-overlay hidden';
+                mapModalOverlaySpinner = document.createElement('div');
+                mapModalOverlaySpinner.className = 'map-modal-spinner-icon';
+                mapModalOverlayMessage = document.createElement('span');
+                mapModalOverlayMessage.className = 'map-modal-overlay-message';
+                mapModalOverlay.append(mapModalOverlaySpinner, mapModalOverlayMessage);
+                mapModalContent.appendChild(mapModalOverlay);
+            }
+            return mapModalOverlay;
+        };
+
+        const showMapModalOverlay = (messageKey) => {
+            const overlay = ensureMapModalOverlay();
+            if (!overlay) { return; }
+            const message = translate(messageKey) || translate('map-loading-message') || 'Loading map...';
+            mapModalOverlayOpenedAt = performance.now();
+            overlay.classList.remove('hidden', 'error');
+            if (mapModalOverlayMessage) {
+                mapModalOverlayMessage.textContent = message;
+            }
+        };
+
+        const hideMapModalOverlay = (callback) => {
+            const overlay = ensureMapModalOverlay();
+            if (!overlay) {
+                callback?.();
+                return;
+            }
+            overlay.classList.remove('error');
+            const elapsed = performance.now() - mapModalOverlayOpenedAt;
+            const minimum = 350;
+            const finalize = () => {
+                overlay.classList.add('hidden');
+                callback?.();
+            };
+            if (elapsed >= minimum) {
+                finalize();
+            } else {
+                setTimeout(finalize, minimum - elapsed);
+            }
+        };
+
+        const showMapModalOverlayError = () => {
+            const overlay = ensureMapModalOverlay();
+            if (!overlay) { return; }
+            const message = translate('map-loading-error') || 'Unable to load the map. Please try again.';
+            mapModalOverlayOpenedAt = performance.now();
+            overlay.classList.remove('hidden');
+            overlay.classList.add('error');
+            if (mapModalOverlayMessage) {
+                mapModalOverlayMessage.textContent = message;
+            }
+        };
 
         const closeImageModal = () => {
             if (!modal) { return; }
@@ -540,6 +642,7 @@
             if (mapModalTitle) {
                 mapModalTitle.textContent = '';
             }
+            hideMapModalOverlay();
         };
 
         const openMapModal = (url, title) => {
@@ -557,20 +660,59 @@
                 return `${url}${separator}wid=2000`;
             })();
 
+            showMapModalOverlay('map-loading-message');
+
             mapModalBody.innerHTML = '';
+            const contentWrapper = document.createElement('div');
+            contentWrapper.className = 'map-modal-content-wrapper';
+            mapModalBody.appendChild(contentWrapper);
+
+            let settled = false;
+            const revealContent = () => {
+                if (settled) { return; }
+                settled = true;
+                hideMapModalOverlay(() => {
+                    contentWrapper.classList.add('visible');
+                });
+            };
+            const handleError = () => {
+                if (settled) { return; }
+                settled = true;
+                showMapModalOverlayError();
+            };
+
             const isImage = /\.(jpg|jpeg|png|gif|webp)(\?|$)/i.test(normalizedUrl) || /representativeimage/i.test(normalizedUrl);
-            let contentNode;
             if (isImage) {
-                contentNode = document.createElement('img');
-                contentNode.src = normalizedUrl;
-                contentNode.alt = title || '';
+                const image = new Image();
+                image.alt = title || '';
+                const attachImage = () => {
+                    if (!contentWrapper.contains(image)) {
+                        contentWrapper.appendChild(image);
+                    }
+                    revealContent();
+                };
+                image.addEventListener('load', () => {
+                    if (typeof image.decode === 'function') {
+                        image.decode().then(attachImage).catch(attachImage);
+                    } else {
+                        attachImage();
+                    }
+                }, { once: true });
+                image.addEventListener('error', handleError, { once: true });
+                image.src = normalizedUrl;
             } else {
-                contentNode = document.createElement('iframe');
-                contentNode.src = normalizedUrl;
-                contentNode.title = title || 'Map viewer';
-                contentNode.setAttribute('loading', 'lazy');
+                const frame = document.createElement('iframe');
+                frame.src = normalizedUrl;
+                frame.title = title || 'Map viewer';
+                frame.setAttribute('loading', 'lazy');
+                frame.style.visibility = 'hidden';
+                contentWrapper.appendChild(frame);
+                frame.addEventListener('load', () => {
+                    frame.style.visibility = 'visible';
+                    revealContent();
+                }, { once: true });
+                frame.addEventListener('error', handleError, { once: true });
             }
-            mapModalBody.appendChild(contentNode);
 
             if (mapModalTitle) {
                 mapModalTitle.textContent = title || '';
@@ -717,22 +859,12 @@
             attachPopupActions(event.popup);
         });
 
-        const mapSpinner = document.getElementById('map-spinner');
-
-        const hideSpinner = () => {
-            if (mapSpinner) {
-                mapSpinner.classList.add('hidden');
-                setTimeout(() => mapSpinner.remove(), 500);
-            }
-        };
-
         const dataVersion = '20250209';
         const dataUrl = `data/entrecasteaux.json?v=${dataVersion}`;
 
         fetch(dataUrl, { cache: 'no-cache' })
             .then(response => response.json())
             .then(places => {
-                hideSpinner();
                 const bounds = L.latLngBounds();
 
                 places.forEach(place => {
@@ -775,6 +907,7 @@
                     marker.bindPopup(() => {
                         const currentLang = localStorage.getItem('language') || 'en';
                         const trans = translations[currentLang];
+                        const safeAlt = escapeHtml(place.frenchName || '');
 
                         let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
 <p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p>`;
@@ -786,13 +919,30 @@
                         const coordinatesText = formatCoordinates(lat, lon, trans);
                         textHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${coordinatesText}</p>`;
 
+                        const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
+                        const linkSegments = [];
+
+                        if (place.mapUrl && place.mapUrl.trim() !== "") {
+                            const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
+                            const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
+                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${place.mapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                        }
+
+                        if (detailsUrl && detailsUrl.trim() !== "" && detailsUrl.trim() !== "#") {
+                            linkSegments.push(`<a href="${detailsUrl}" target="_blank">${trans['popup-details-link']}</a>`);
+                        }
+
+                        if (linkSegments.length) {
+                            textHtml += `<p class="popup-link-row">${linkSegments.join('<span class="popup-link-separator">|</span>')}</p>`;
+                        }
+
                         // Characteristic
                         const characteristicText = (currentLang === 'fr' && place.characteristic_fr) ? place.characteristic_fr : place.characteristic;
                         if (characteristicText && characteristicText.trim() !== "") {
                             textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${characteristicText}</p>`;
                         }
 
-                        // Origin of the name
+                        // Narrative path / origin of the name
                         const historyText = (currentLang === 'fr' && place.history_fr) ? place.history_fr : place.history;
                         if (historyText && historyText.trim() !== "") {
                             textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${historyText}</p>`;
@@ -811,21 +961,9 @@
                             textHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
                         }
 
-                        if (place.mapUrl && place.mapUrl.trim() !== "") {
-                            const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
-                            const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : escapeHtml(place.frenchName || '');
-                            textHtml += `<p><a href="#" class="popup-map-link" data-map-url="${place.mapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a></p>`;
-                        }
-
-                        // Details link
-                        const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
-                        if (detailsUrl && detailsUrl.trim() !== "" && detailsUrl.trim() !== "#") {
-                            textHtml += `<p><a href="${detailsUrl}" target="_blank">${trans['popup-details-link']}</a></p>`;
-                        }
                         
                         // Si une image est disponible, créer une mise en page à deux colonnes.
                         if (place.imgUrl && place.imgUrl.trim() !== "") {
-                            const safeAlt = escapeHtml(place.frenchName || '');
                             const imageHtml = `
                                 <div class="popup-image-wrapper">
                                     <button type="button" class="popup-image-button" aria-label="${trans['popup-image-expand-label']}">
@@ -852,7 +990,6 @@
             })
             .catch(error => {
                 console.error('Failed to load entrecasteaux data:', error);
-                hideSpinner();
             });
     </script>
 </body>
