@@ -6,26 +6,62 @@
     <title>d'Entrecasteaux Map - French Names Along the Australian Coastline</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
-        body { font-family: 'Lato', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
-        .container { width: 100%; max-width: none; margin: 0; padding: 12px 20px 28px; box-sizing: border-box; }
-        @media (max-width: 768px) {
-            .container { padding: 10px 12px 24px; }
+        :root {
+            --nav-height: 72px;
         }
-        nav { background-color: #333; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 6px 18px; gap: 12px; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
-        nav ul li a { display: block; color: white; text-decoration: none; padding: 12px 22px; font-size: 1.05rem; border-radius: 4px; }
-        nav ul li a.active, nav ul li a:hover { background-color: #0056b3; }
-        .lang-switcher { margin-left: auto; color: white; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
-        .lang-switcher button { background: none; border: none; color: inherit; cursor: pointer; padding: 5px; font: inherit; }
-        .lang-switcher button.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Lato', sans-serif; 
+            background-color: #f4f4f4; 
+            color: #333; 
+            padding-top: var(--nav-height); 
+        }
+        nav {
+            background: #1f1f1f;
+            color: #fff;
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: var(--nav-height);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 clamp(18px, 4vw, 40px);
+            box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+        }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(8px, 2vw, 18px); }
+        nav ul li a {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            padding: 10px 18px;
+            font-size: 1.05rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        nav ul li a.active, nav ul li a:hover { background-color: #0056b3; color: #fff; }
+        .lang-switcher {
+            position: absolute;
+            right: clamp(18px, 4vw, 40px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+        }
+        .lang-switcher button { background: none; border: none; color: inherit; cursor: pointer; padding: 4px 6px; font: inherit; }
+        .lang-switcher button.active { font-weight: 700; color: #FFD700; text-decoration: underline; }
         .lang-switcher button:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
         .lang-switcher .lang-separator { opacity: 0.7; }
-        .content-section { background-color: white; padding: 14px 16px 18px; margin-top: 8px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .content-section h2 { font-family: 'Lato', sans-serif; font-size: 1.9rem; font-weight: 700; text-align: center; margin: 4px 0 10px; }
-        .map-wrapper { position: relative; }
-        .map-container { height: min(720px, calc(100vh - 220px)); width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 10px; }
+
+        #map {
+            width: 100%;
+            height: calc(100vh - var(--nav-height));
+        }
+
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
@@ -64,14 +100,13 @@
             font-size: 0.7rem;
             line-height: 1.3;
         }
-        footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
         .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto !important; }
         .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
         .popup-link-row {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 12px;
+            gap: 8px 12px;
         }
         .popup-link-row .popup-link-separator {
             color: #888;
@@ -132,11 +167,13 @@
             display: block;
         }
         @media (max-width: 768px) {
-            nav { flex-direction: column; align-items: stretch; padding: 8px 12px; }
-            nav ul { flex-direction: column; width: 100%; gap: 0; }
-            nav ul li a { width: 100%; text-align: center; padding: 12px 0; border-radius: 0; border-top: 1px solid rgba(255,255,255,0.15); }
-            nav ul li:first-child a { border-top: none; }
-            .lang-switcher { margin-left: 0; justify-content: center; padding-top: 6px; }
+            :root { --nav-height: 60px; }
+            body { padding-top: 0; } /* Map is fixed, no need for body padding */
+            nav { height: auto; flex-direction: column; gap: 10px; padding: 12px; }
+            .lang-switcher { position: static; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            nav ul li a { border-radius: 999px; padding: 10px 14px; font-size: 0.95rem; }
+            #map { top: 0; height: 100vh; }
             .popup-layout {
                 flex-direction: column;
                 align-items: stretch;
@@ -405,56 +442,24 @@
         .details-modal-frame {
             width: 100%;
             height: 100%;
-            border: none;
             background: #fff;
             display: block;
+            border: none;
         }
-        /* Style pour les paragraphes de texte additionnel */
-        .additional-text { overflow: visible; position: static; max-height: none; }
-        .additional-text::after { content: none; }
-        .additional-text p { margin-bottom: 1em; text-align: justify; }
-        .additional-text .references { font-size: 0.8em; margin-top: 2em; }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html" id="nav-home">Home</a></li>
-                <li><a href="map_dentrecasteaux.html" class="active" id="nav-map-dentre">d'Entrecasteaux Map</a></li>
-                <li><a href="map_baudin.html" id="nav-map-baudin">Baudin Map</a></li>
-                <li><a href="resources.html" id="nav-resources">Resources</a></li>
-            </ul>
-            <div class="lang-switcher"><button type="button" id="lang-fr">FR</button><span aria-hidden="true" class="lang-separator">|</span><button type="button" id="lang-en">EN</button></div>
-        </nav>
-    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="map_dentrecasteaux.html" class="active" id="nav-map-dentre">d'Entrecasteaux Map</a></li>
+            <li><a href="map_baudin.html" id="nav-map-baudin">Baudin Map</a></li>
+            <li><a href="resources.html" id="nav-resources">Resources</a></li>
+        </ul>
+        <div class="lang-switcher"><button type="button" id="lang-fr">FR</button><span aria-hidden="true" class="lang-separator">|</span><button type="button" id="lang-en">EN</button></div>
+    </nav>
 
-    <main class="container">
-        <section class="content-section">
-            <h2 id="dentre-title">d'Entrecasteaux Map (1791-1793)</h2>
-            <div class="map-wrapper">
-                <div id="map" class="map-container"></div>
-            </div>
-        </section>
-
-        <!-- Section de texte complémentaire -->
-        <section class="content-section additional-text">
-            <!-- Premier paragraphe de l'ancien texte -->
-            <p id="dentre-text-p1">The first object of the d’Entrecastreaux expedition, the search for the missing Lapérouse, ended in failure. They found no trace of his two ships or their crew on any islands in the western Pacific they sighted. However, the second parts of the expedition’s mission, the mapping of coasts in the Southern Lands still partially unknown to Europeans, proved highly successful. These discoveries gave new hope and motivation to the crew after a difficult crossing of the southern Indian Ocean in rough sea. D'Entrecasteaux's nomenclature bestowed along the coasts of what is now known as Tasmania and Western Australia pays tribute to his deserving crew who made these discoveries possible, and the voyage in general.</p>
-            <!-- Deuxième paragraphe de l'ancien texte -->
-            <p id="dentre-text-p2">The east coasts of Van Diemen Land (Tasmania) coasts were visited in April-May 1792 and again in late January-February 1793, and the south-west coasts of New Holland (Western Australia) in late December 1792 - January 1793.</p>
-            <hr style="margin: 2em 0;">
-            <!-- NOUVEAU TEXTE DÉTAILLÉ -->
-            <p id="dentre-text-p3">68 places were named along these coasts by d’Entrecasteaux and, after the voyage, for a couple of them, by Rossel*. They have been subdivided into two sections: the names on the east coasts of Van Diemen Land (Tasmania) coasts visited in April-May 1792 and again in late January-February 1793, and the names along the south-west coasts of New Holland (Western Australia) in late December 1792 - January 1793.</p>
-            <p id="dentre-text-p4">It had not been an easy task for the commander to find common ground between nautical issues, the schedule of his itinerary, surveying and hydrographical work, and the focus of his savants on natural history and the discovery of new species. The naturalists were often complaining that the officers were given precedence (for example, they, the savants, had to wait far longer than the officers for the coxswain) and occasionally the relationships between officers and savants deteriorated enough to create an incident (For example, in January 1793, exasperated by the botanist Labillardière*, the officer Bonvouloir threw two bottles at the savant who was eating his breakfast). This task was made the more arduous for d’Entrecasteaux and his successors by the divergent requirements of the naturalists and by the political divisions between the savants. Labillardière, Riche* and, after some hesitation, Ventenat*, were republicans while others supported the royalist’s cause. Despite these various political hues, d’Entrecasteaux fostered the work of his naturalists and encouraged them to specialise in different specific areas to avoid duplication and interference with each other’s research work. In addition, by drawing attention on the discovery and natural history mission of his voyage, d’Entrecasteaux enhanced the zeal of his officers. In his memoirs, Jurien de La Gravière* reported that ‘the naturalists inoculate us with the passion for collections. Everyone on board had its own. The search for shells was the dominant one. The savants are worried about potential rivals who might discover new species and steal their thunder. They address their complaints to the Amiral, and he asked us to submit to them the result of all our fishing. This order, as you can imagine, had the sole effect to make us hide our treasures more closely than ever’[1].</p>
-            <p id="dentre-text-p5">Officers, such as Jurien, and savants like the Benedictine chaplain Ambroise Pierson* were of a conciliatory disposition, and most of the sailors were not focusing on politics. Together, they contributed to ease tensions among the crew.</p>
-            <p id="dentre-text-p6">The places visited and named by the d’Entrecasteaux expedition were obviously already well-known, identified and labelled in some way or another by the local aboriginal communities. Yet, despite the crew encountering some of them on several occasions[2], the French did not make inquiries of the aborigines on how they named their land and the names of the places surveyed by the members of the expedition. This one-sided naming practice was linked to the European concept of ‘first discovery’, and the fantasies of the European Enlightenment which suggested to the visitors that natives (at least the natives they met in Tasmania in friendly terms) were ‘noble savages’ living in an original ‘primitive’ state uncorrupted by civilization and ignorant of scientific and technical developments in Europe.</p>
-            <div class="references">
-                <p>[1] Jurien de La Gravière, P.-R., Jurien de La Gravière, J.-P.-E. Editor (1860) Souvenirs d'un amiral, Volume 1. Hachette et cie, p.114.</p>
-                <p>[2] Especially in Tasmania, named Lutruwita by its inhabitants. Daugeron, B. (2014) À la recherche de l'Espérance. Revisiter la rencontre des Aborigènes tasmaniens avec les Français (1772-1802). Ars Apodemica.</p>
-            </div>
-        </section>
-    </main>
+    <div id="map"></div>
 
     <div id="image-modal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
         <button type="button" id="image-modal-close" aria-label="Fermer l'image">&times;</button>
@@ -517,8 +522,29 @@
             return false;
         })();
 
-        const map = L.map('map').setView(defaultCenter, defaultZoom);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+        const map = L.map('map', {
+            zoomControl: false // We will add it back in a different position
+        }).setView(defaultCenter, defaultZoom);
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        // --- Layer Control ---
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        });
+        const esriImagery = L.esri.basemapLayer('Imagery', { zIndex: 10 });
+        const esriLabels  = L.esri.basemapLayer('ImageryLabels', { zIndex: 30 });
+        const imageryWithLabels = L.layerGroup([esriImagery, esriLabels]);
+        const esriTransport = L.esri.basemapLayer('ImageryTransportation', { zIndex: 20 });
+
+        imageryWithLabels.addTo(map);
+
+        L.control.layers({
+            "Orthophoto Esri + noms": imageryWithLabels,
+            "OpenStreetMap": osm
+        }, {
+            "Routes (Esri Transportation)": esriTransport
+        }, { collapsed: false, position: 'topright' }).addTo(map);
 
         const scaleControl = L.control.scale({ position: 'bottomleft', metric: true, imperial: false });
         scaleControl.addTo(map);
