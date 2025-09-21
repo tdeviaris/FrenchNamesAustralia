@@ -3,98 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details: Baie de la Recherche - French Names Along the Australian Coastline</title>
+    <title>Baie de la Recherche | Recherche Bay</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
-        body { font-family: 'Lato', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        nav { background-color: #333; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 6px 18px; gap: 12px; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
-        nav ul li a { display: block; color: white; text-decoration: none; padding: 12px 22px; font-size: 1.05rem; border-radius: 4px; }
-        nav ul li a:hover { background-color: #0056b3; }
-        .lang-switcher { margin-left: auto; color: white; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
-        .lang-switcher button { background: none; border: none; color: inherit; cursor: pointer; padding: 5px; font: inherit; }
-        .lang-switcher button.active { font-weight: bold; color: #FFD700; text-decoration: underline; }
-        .lang-switcher button:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
-        .lang-switcher .lang-separator { opacity: 0.7; }
-        @media (max-width: 768px) {
-            nav { flex-direction: column; align-items: stretch; padding: 8px 12px; }
-            nav ul { flex-direction: column; width: 100%; gap: 0; }
-            nav ul li a { width: 100%; text-align: center; padding: 12px 0; border-radius: 0; border-top: 1px solid rgba(255,255,255,0.15); }
-            nav ul li:first-child a { border-top: none; }
-            .lang-switcher { margin-left: 0; justify-content: center; padding-top: 6px; }
+        :root {
+            color-scheme: light;
         }
-        .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .content-section h2 { font-family: 'Garamond', serif; font-size: 2.5rem; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
-        .content-section h3 { font-family: 'Garamond', serif; font-size: 1.8rem; margin-top: 2em; }
-        .content-section p { text-align: justify; line-height: 1.7; margin-bottom: 1em; }
-        .detail-figure { float: right; margin: 0 0 1em 2em; max-width: 450px; }
-        .detail-figure img { width: 100%; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-        .detail-figure figcaption { font-size: 0.85em; font-style: italic; color: #555; margin-top: 0.5em; text-align: left; }
-        .legend { list-style: none; padding: 0; font-size: 0.9em; }
-        .legend-item { margin-bottom: 0.5em; display: flex; align-items: center; }
-        .legend-color { display: inline-block; width: 40px; height: 3px; margin-right: 10px; vertical-align: middle; }
-        .references { font-size: 0.9em; margin-top: 2em; border-top: 1px solid #ccc; padding-top: 1em; }
-        .references p { font-size: 0.9em; margin-bottom: 0.5em; }
-        footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; clear: both; }
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            background: #f6f6f6;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+        .details-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: min(40px, 4vw) min(32px, 4vw) 56px;
+        }
+        .content-section {
+            background: #fff;
+            padding: min(36px, 4vw);
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        .content-section p {
+            margin: 0 0 1em 0;
+            text-align: justify;
+        }
+        .content-section h3 {
+            font-family: 'Garamond', serif;
+            font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+            margin: 2em 0 0.75em;
+        }
+        .detail-figure {
+            float: right;
+            margin: 0 0 1.5em 2em;
+            max-width: min(420px, 38vw);
+        }
+        .detail-figure img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        }
+        .detail-figure figcaption {
+            font-size: 0.85em;
+            font-style: italic;
+            color: #555;
+            margin-top: 0.75em;
+        }
+        .detail-figure a {
+            word-break: break-word;
+            color: #0056b3;
+        }
+        .legend {
+            list-style: none;
+            padding: 0;
+            margin: 1em 0 0;
+            font-size: 0.9em;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+            margin-bottom: 0.4em;
+        }
+        .legend-color {
+            width: 44px;
+            height: 3px;
+            border-radius: 3px;
+        }
+        .references {
+            border-top: 1px solid #dedede;
+            padding-top: 1.5em;
+            margin-top: 2.5em;
+            font-size: 0.92em;
+        }
+        .references p {
+            margin-bottom: 0.65em;
+        }
+        @media (max-width: 768px) {
+            .detail-figure {
+                float: none;
+                margin: 0 0 1.5em;
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="../index.html" id="nav-home">Home</a></li>
-                <li><a href="../map_dentrecasteaux.html" id="nav-map-dentre">d'Entrecasteaux Map</a></li>
-                <li><a href="../map_baudin.html" id="nav-map-baudin">Baudin Map</a></li>
-                <li><a href="../resources.html" id="nav-resources">Resources</a></li>
-            </ul>
-            <div class="lang-switcher"><button type="button" id="lang-fr">FR</button><span aria-hidden="true" class="lang-separator">|</span><button type="button" id="lang-en">EN</button></div>
-        </nav>
-    </header>
+    <div class="language-hooks" style="display:none;">
+        <button type="button" id="lang-fr">FR</button>
+        <span aria-hidden="true">|</span>
+        <button type="button" id="lang-en">EN</button>
+    </div>
 
-    <main class="container">
+    <main class="details-wrapper">
         <section class="content-section">
-            <h2 id="detail-rb-title">Baie de la Recherche / Recherche Bay</h2>
-            
             <figure class="detail-figure">
                 <img src="../img/recherche-bay-tracks.gif" alt="Ship tracks of the expedition in Recherche Bay">
                 <figcaption>
-                    <p id="detail-rb-fig-caption">Fig.1. Recherche Bay, section of the map...</p>
-                    <a id="detail-rb-fig-link" href="https://nla.gov.au/nla.obj-230810562/view" target="_blank">https://nla.gov.au/nla.obj-230810562/view</a>
-                    <p id="detail-rb-fig-legend" style="margin-top: 1em;">The tracks of the vessels and boats have been colored differently...</p>
-                    <ul class="legend" style="margin-top: 1em;">
-                        <li class="legend-item"><span style="font-weight: bold; font-size: 1.5em; line-height: 0;">&#8593;</span>&nbsp;&nbsp;<span id="detail-rb-legend-north">North</span></li>
-                        <li class="legend-item"><span class="legend-color" style="background-color: #149feb;"></span><span id="detail-rb-legend-vessels1792">track of la Recherche...</span></li>
+                    <p id="detail-rb-fig-caption">Fig.1. Recherche Bay, section of the map …</p>
+                    <a id="detail-rb-fig-link" href="https://nla.gov.au/nla.obj-230810562/view" target="_blank" rel="noopener">https://nla.gov.au/nla.obj-230810562/view</a>
+                    <p id="detail-rb-fig-legend" style="margin-top: 1em;">The tracks …</p>
+                    <ul class="legend">
+                        <li class="legend-item"><span style="font-weight: bold; font-size: 1.5em; line-height: 0;">↑</span><span id="detail-rb-legend-north">North</span></li>
+                        <li class="legend-item"><span class="legend-color" style="background-color: #149feb;"></span><span id="detail-rb-legend-vessels1792">track of la Recherche and l’Espérance’ vessels in 1792</span></li>
                         <li class="legend-item"><span class="legend-color" style="background-color: #fb0007;"></span><span id="detail-rb-legend-longboats1792">track of the longboats in 1792</span></li>
-                        <li class="legend-item"><span class="legend-color" style="background-color: #e600f1;"></span><span id="detail-rb-legend-vessels1793">track of la Recherche...</span></li>
+                        <li class="legend-item"><span class="legend-color" style="background-color: #e600f1;"></span><span id="detail-rb-legend-vessels1793">track of la Recherche and l’Espérance’ vessels in 1793</span></li>
                         <li class="legend-item"><span class="legend-color" style="background-color: #20f306;"></span><span id="detail-rb-legend-longboats1793">track of the longboats in 1793</span></li>
                     </ul>
                 </figcaption>
             </figure>
 
-            <h3 id="detail-rb-heading1">The frigates’ blustery arrival...</h3>
-            <p id="detail-rb-p1">The frigates reached Teneriffe on 23 October...</p>
-            <p id="detail-rb-p2">The southeastern Tasmanian coast was first sighted on 20 April 1792...</p>
-            
+            <h3 id="detail-rb-heading1">The frigates’ blustery arrival on the South-Eastern Tasmanian coasts</h3>
+            <p id="detail-rb-p1">The frigates reached Teneriffe on 23 October …</p>
+            <p id="detail-rb-p2">The southeastern Tasmanian coast was first sighted …</p>
+
             <h3 id="detail-rb-heading2">The naming of the d’Entrecasteaux channel</h3>
-            <p id="detail-rb-p3">During their stay, the hydrographers and officers prepared...</p>
-            <p id="detail-rb-p4">Along the shores of Van Diemen Land, the commander named...</p>
-            <p id="detail-rb-p5">These three charts below show parts of the coasts...</p>
-            
+            <p id="detail-rb-p3">During their stay, the hydrographers and officers prepared …</p>
+            <p id="detail-rb-p4">Along the shores of Van Diemen Land, the commander named …</p>
+            <p id="detail-rb-p5">These three charts below show parts of the coasts …</p>
+
             <div class="references">
-                <h4>References</h4>
-                <p>[1] In the proposed itinerary, Fleurieu had suggested that they sailed directly to New Holland after leaving the Cape of Good Hope: Bruni-Dentrecasteaux, J.A., edited by Rossel, É. (1808) Voyage de d’Entrecasteaux envoyé à la recherche de La Pérouse. Imprimerie Impériale, Tome1, p. XXV).</p>
-                <p>[2] Horner, F. (1996) <em>Looking for La Pérouse: d'Entrecasteaux in Australia and the South Pacific, 1792-1793</em>. Melbourne University Press., p.63</p>
-                <p>[3] Duyker, E., Duyker, M., Editors&Translators (2013) Bruny d'Entrecasteaux <em>Voyage to Australia and the Pacific 1791-1793</em>. Op. cit., p. 26.</p>
-                <p>[4] Bruni-d’Entrecasteaux, J.A., edited by Rossel, É. (1808) <em>Voyage de d’Entrecasteaux</em>, Tome1. Op cit., p.58</p>
-                <p>[5] However, d’Entrecasteaux did not honour his chief engineer hydrographer, Charles Beautemps-Beaupré, by bestowing his name on any natural feature in this channel, albeit ‘he could not praise enough the zeal and intelligence of Beautemps-Beaupré’. This may be due to his official grade of ‘engineer’, rated before the revolutionary period below those of officers and botanists. Some other officers, such as Alexis-Ignace de Crestin (also spelt Cretin), who had directed several successful missions in Tasmania were not acknowledged with the award of a Tasmanian place name, possibly because Crestin was responsible (at least according to Labillardière’s narrative) for the tearing of the main topsail when he was master on the 2d April 1792. But the contributions of both Beautemps-Beaupré and Cretin were recognised later in the voyage with place names in New Caledonia and in New Guinea.</p>
-                <p>[6] Most of them honoured its commanders and officers: Cap Bruny*, île Bruny, Canal d’Entrecasteaux (D’Entrecasteaux Channel), île Huon*, Rivière Huon, Pointe Le Grand*, Pointe Rossel*, Cap Trobriand*, Pointe Gicquel*, Pointe Jurien*, Pointe Laignel* , Cap Deslacs* and Rochers d’Hippolite*, île Willaumez*, île St Aignant*, Pointe Renard*, Pointe Joannet*, Cap Raoul*.<br>Four toponyms referred to the savants on board, whether royalist or revolutionary: The botanist Labillardière on la Recherche and his colleague naturalist Riche on l’Espérance, as well as the gardener who worked with Labillardiere, Felix Lahaie / Lahaye: Pointe Labillardière*, Pointe Riche*, Cap Riche, île Lahaye*,<br>Two peaks closed to each other in Tasmania honoured two priests, the naturalist Ventenat and the astronomer Pierson: Pointe Ventenat* and Pointe Pierson).</p>
-                <p>[7] Beautemps-Beaupré, C.-F., Bruny-d'Entrecasteaux, A.R.J. (1807) <em>Atlas du voyage de Bruny-Dentrecasteaux, contre-amiral de France, commandant les frégates la Recherche et l'Esperance</em>, Op. cit. <a href="http://nla.gov.au/nla.obj-230810006" target="_blank">http://nla.gov.au/nla.obj-230810006</a>.</p>
+                <p>[1] …</p>
+                <p>[2] …</p>
+                <p>[3] …</p>
+                <p>[4] …</p>
+                <p>[5] …</p>
+                <p>[6] …</p>
+                <p>[7] …</p>
             </div>
         </section>
     </main>
 
-    <div data-include-footer></div>
+    <div data-include-footer hidden></div>
 
     <script src="../js/translations.js"></script>
     <script src="../js/main.js"></script>

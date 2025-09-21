@@ -333,11 +333,11 @@
         .details-modal.open { display: flex; }
         .details-modal-dialog {
             background: #fff;
-            width: min(840px, 96vw);
-            max-height: 92vh;
+            width: min(1080px, 98vw);
+            max-height: 96vh;
             display: flex;
             flex-direction: column;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 0 12px 32px rgba(0,0,0,0.4);
             overflow: hidden;
         }
@@ -346,20 +346,21 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            padding: 18px 22px;
+            padding: 10px 18px;
             background: #f7f7f7;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
         }
         .details-modal-title {
             font-family: 'Lato', sans-serif;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             margin: 0;
-            color: #333;
+            color: #222;
         }
         .details-modal-close {
             background: none;
             border: none;
-            font-size: 2rem;
+            font-size: 1.6rem;
             line-height: 1;
             cursor: pointer;
             color: #333;
@@ -675,6 +676,7 @@
         let mapModalOverlaySpinner;
         let mapModalOverlayMessage;
         let mapModalOverlayOpenedAt = 0;
+        const placeNamesByUrl = Object.create(null);
 
         const detailsModal = document.getElementById('details-modal');
         const detailsModalDialog = detailsModal?.querySelector('.details-modal-dialog');
@@ -767,7 +769,22 @@
             }
 
             if (detailsModalTitle) {
-                detailsModalTitle.textContent = title || '';
+                const currentLang = getCurrentLanguage();
+                const labels = placeNamesByUrl[resolvedUrl] || {};
+                const frLabel = (labels.fr || '').trim();
+                const enLabel = (labels.en || '').trim();
+                const fallback = (title || '').trim();
+                let headerText = '';
+                if (frLabel && enLabel) {
+                    headerText = currentLang === 'fr'
+                        ? `${frLabel} | ${enLabel}`
+                        : `${enLabel} | ${frLabel}`;
+                } else if (currentLang === 'fr') {
+                    headerText = frLabel || enLabel || fallback;
+                } else {
+                    headerText = enLabel || frLabel || fallback;
+                }
+                detailsModalTitle.textContent = headerText;
             }
             if (detailsModalCloseButton) {
                 detailsModalCloseButton.setAttribute('aria-label', translate('details-close-label') || 'Close');
@@ -1141,9 +1158,17 @@
                         if (detailsUrl && detailsUrl.trim() !== '' && detailsUrl.trim() !== '#') {
                             const resolvedDetailsHref = resolveDetailsUrl(detailsUrl);
                             if (resolvedDetailsHref) {
+                                const frLabelRaw = (place.frenchName || '').trim();
+                                const enLabelRaw = (place.ausEName || '').trim();
+                                if (!placeNamesByUrl[resolvedDetailsHref]) {
+                                    placeNamesByUrl[resolvedDetailsHref] = {
+                                        fr: frLabelRaw,
+                                        en: enLabelRaw
+                                    };
+                                }
                                 const detailsTitle = currentLang === 'fr'
-                                    ? (place.frenchName || place.ausEName || '')
-                                    : (place.ausEName || place.frenchName || '');
+                                    ? (frLabelRaw || enLabelRaw)
+                                    : (enLabelRaw || frLabelRaw);
                                 linkSegments.push(`<a href="${escapeHtml(resolvedDetailsHref)}" class="popup-details-link" data-details-url="${escapeHtml(resolvedDetailsHref)}" data-details-title="${escapeHtml(detailsTitle)}">${trans['popup-details-link']}</a>`);
                             }
                         }
