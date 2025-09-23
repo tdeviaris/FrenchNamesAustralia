@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         langEnButton.classList.toggle('active', lang === 'en');
         langFrButton.setAttribute('aria-pressed', lang === 'fr');
         langEnButton.setAttribute('aria-pressed', lang === 'en');
+
+        // Déclenche un événement personnalisé pour que d'autres scripts puissent réagir
+        document.dispatchEvent(new Event('languageChanged'));
     };
 
     // Ajoute les écouteurs d'événements
