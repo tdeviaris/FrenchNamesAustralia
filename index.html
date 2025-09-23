@@ -99,11 +99,24 @@
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
 
         @media (max-width: 768px) {
-            nav { height: auto; flex-direction: column; gap: 10px; padding: 12px; }
-            body { padding-top: calc(var(--nav-height) + 20px); }
+            body { padding-top: 85px; } /* Ajustement du padding pour la hauteur du menu fixe */
+            nav {
+                height: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 4px 8px;
+                padding: 8px 12px;
+            }
             .lang-switcher { position: static; }
-            nav ul { flex-wrap: wrap; justify-content: center; }
-            nav ul li a { border-radius: 999px; padding: 10px 14px; font-size: 0.95rem; }
+            nav ul { display: contents; }
+            nav ul li a { border-radius: 999px; padding: 6px 10px; font-size: 0.85rem; }
+            .hero { min-height: 400px; height: 60vh; }
+            .hero h1 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+            .hero p { font-size: clamp(1rem, 3vw, 1.2rem); }
+            .content-section { padding: clamp(20px, 5vw, 30px); }
+            .content-section h2 { font-size: clamp(1.5rem, 5vw, 1.8rem); }
+            .content-section p { font-size: 0.9rem; }
+            .historic-maps-section h3 { font-size: clamp(1.3rem, 4vw, 1.6rem); }
         }
     </style>
 </head>

@@ -195,7 +195,7 @@
         }
         @media (max-width: 768px) {
             :root { --nav-height: 60px; }
-            body { padding-top: 0; }
+            body { padding-top: 85px; }
             nav {
                 height: auto;
                 flex-direction: row;
@@ -206,7 +206,7 @@
             .lang-switcher { position: static; }
             nav ul { display: contents; }
             nav ul li a { border-radius: 999px; padding: 6px 10px; font-size: 0.85rem; }
-            #map { top: 0; height: 100vh; }
+            #map { height: calc(100vh - 85px); }
             .leaflet-popup {
                 width: 85vw;
                 max-width: 380px;
@@ -226,6 +226,9 @@
             }
             .popup-image-wrapper .popup-image {
                 max-width: 100%;
+            }
+            .map-info-coordinates {
+                display: none;
             }
         }
         .image-modal {
