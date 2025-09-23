@@ -409,6 +409,7 @@
         .details-modal-dialog {
             background: #fff;
             width: 90vw;
+            max-width: 830px;
             height: 90vh;
             display: flex;
             flex-direction: column;
@@ -1319,7 +1320,7 @@
 
                         // Sinon, retourner uniquement le texte dans un conteneur de largeur fixe.
                         return `<div class="popup-text-container">${textHtml}</div>`;
-                    });
+                    }, { maxWidth: 700 });
                 });
 
                 if (bounds.isValid()) {
