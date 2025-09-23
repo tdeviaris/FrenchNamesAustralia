@@ -66,6 +66,7 @@ const translations = {
         'details-close-label': "Fermer la page détaillée",
         'details-frame-title': "Page de détails",
         'direction-north': "N",
+        'satellite-view-label': "Vue satellite",
         'direction-south': "S",
         'direction-east': "E",
         'direction-west': "O"
@@ -136,6 +137,7 @@ const translations = {
         'details-close-label': "Close details page",
         'details-frame-title': "Details page",
         'direction-north': "N",
+        'satellite-view-label': "Satellite view",
         'direction-south': "S",
         'direction-east': "E",
         'direction-west': "W"

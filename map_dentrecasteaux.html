@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>d'Entrecasteaux Map - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/esri-leaflet"></script>
@@ -112,7 +114,20 @@
             font-size: 0.7rem;
             line-height: 1.3;
         }
-        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto !important; }
+        .leaflet-control-satellite {
+            background: rgba(255,255,255,0.8);
+            padding: 5px 8px;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            backdrop-filter: blur(2px);
+        }
+        .leaflet-control-satellite label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto; }
         .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
         .popup-link-row {
             display: flex;
@@ -180,12 +195,24 @@
         }
         @media (max-width: 768px) {
             :root { --nav-height: 60px; }
-            body { padding-top: 0; } /* Map is fixed, no need for body padding */
-            nav { height: auto; flex-direction: column; gap: 10px; padding: 12px; }
+            body { padding-top: 0; }
+            nav {
+                height: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 4px 8px;
+                padding: 8px 12px;
+            }
             .lang-switcher { position: static; }
-            nav ul { flex-wrap: wrap; justify-content: center; }
-            nav ul li a { border-radius: 999px; padding: 10px 14px; font-size: 0.95rem; }
+            nav ul { display: contents; }
+            nav ul li a { border-radius: 999px; padding: 6px 10px; font-size: 0.85rem; }
             #map { top: 0; height: 100vh; }
+            .leaflet-popup {
+                width: 85vw;
+                max-width: 380px;
+            }
+            .leaflet-popup-content-wrapper { width: 100%; }
+            .leaflet-popup-content { font-size: 0.8rem; }
             .popup-layout {
                 flex-direction: column;
                 align-items: stretch;
@@ -295,10 +322,10 @@
         .map-modal-body {
             flex: 1;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             background: #000;
-            overflow: hidden;
+            overflow-y: auto;
             position: relative;
         }
         .map-modal-content {
@@ -360,9 +387,8 @@
             background: #000;
         }
         .map-modal-body img {
-            max-width: 96vw;
-            max-height: 90vh;
-            object-fit: contain;
+            width: 100%;
+            height: auto;
             display: block;
         }
         .details-modal {
@@ -561,16 +587,37 @@
         const esriImagery = L.esri.basemapLayer('Imagery', { zIndex: 10 });
         const esriLabels  = L.esri.basemapLayer('ImageryLabels', { zIndex: 30 });
         const imageryWithLabels = L.layerGroup([esriImagery, esriLabels]);
-        const esriTransport = L.esri.basemapLayer('ImageryTransportation', { zIndex: 20 });
 
-        imageryWithLabels.addTo(map);
+        osm.addTo(map);
 
-        L.control.layers({
-            "Orthophoto Esri + noms": imageryWithLabels,
-            "OpenStreetMap": osm
-        }, {
-            "Routes (Esri Transportation)": esriTransport
-        }, { collapsed: false, position: 'topright' }).addTo(map);
+        const SatelliteControl = L.Control.extend({
+            onAdd: function(map) {
+                const container = L.DomUtil.create('div', 'leaflet-control-satellite leaflet-control');
+                const label = L.DomUtil.create('label', '', container);
+                const checkbox = L.DomUtil.create('input', '', label);
+                checkbox.type = 'checkbox';
+                const span = L.DomUtil.create('span', '', label);
+                span.id = 'satellite-label';
+
+                L.DomEvent.disableClickPropagation(container);
+
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        map.removeLayer(osm);
+                        map.addLayer(imageryWithLabels);
+                    } else {
+                        map.removeLayer(imageryWithLabels);
+                        map.addLayer(osm);
+                    }
+                });
+                
+                document.addEventListener('languageChanged', () => { span.textContent = translate('satellite-view-label'); });
+                span.textContent = translate('satellite-view-label');
+
+                return container;
+            }
+        });
+        new SatelliteControl({ position: 'topleft' }).addTo(map);
 
         const scaleControl = L.control.scale({ position: 'bottomleft', metric: true, imperial: false });
         scaleControl.addTo(map);
