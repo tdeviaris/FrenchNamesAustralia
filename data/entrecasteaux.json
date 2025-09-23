@@ -22,8 +22,8 @@
     "mapTitle_fr": "Plan du port du sud, de la baie de la Recherche située à l'entrée méridionale du Canal Dentrecasteaux / levé par Jouvency, ingénieur. géographe en 1793, in \r\nAtlas du voyage de Bruny-Dentrecasteaux, 1807,\r\n",
     "mapTitle_en": "Plan of the south port, of Recherche Bay located at the southern entrance of the D'Entrecasteaux Channel / surveyed by Jouvency, engineer geographer in 1793, in Atlas du voyage de Bruny-Dentrecasteaux, 1807,\r\nSource: National Library of Australia\n",
     "origin_fr": "",
-    "detailsLink": "Entre01F.rtf",
-    "detailsLink_en": "Entre01E.rtf"
+    "detailsLink": "Entre01F.html",
+    "detailsLink_en": "Entre01E.html"
   },
   {
     "code": "Entre02",
@@ -48,8 +48,8 @@
     "mapTitle_fr": "Plan du port du nord, de la baie de la Recherche située à l'entrée méridionale du Canal Dentrecasteaux / levé par Jouvency, ingénieur. géographe et Beautemps-Beaupré en 1792, in \nAtlas du voyage de Bruny-Dentrecasteaux, 1807,\nSource: National Library of Australia",
     "mapTitle_en": "Plan of the north port, of Recherche Bay located at the southern entrance of the D'Entrecasteaux Channel / surveyed by Jouvency, engineer geographer and Beautemps-Beaupre in 1792, in Atlas du voyage de Bruny-Dentrecasteaux, 1807,\r\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Entre02F.rtf",
-    "detailsLink_en": "Entre02E.rtf"
+    "detailsLink": "Entre02F.html",
+    "detailsLink_en": "Entre02E.html"
   },
   {
     "code": "Entre03",
@@ -101,7 +101,7 @@
     "mapTitle_en": "Îles Stériles and Rocher Blanc, section of the map ‘Carte particulière du Canal Dentrecasteaux …’. By Beautemps-Beaupré, C.-F., in Atlas du voyage de Bruny-Dentrecasteaux, 1807, Op. cit., Plate 4. Source: National Library of Australia.",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre04E.rtf"
+    "detailsLink_en": "Entre04E.html"
   },
   {
     "code": "Entre05",
@@ -127,7 +127,7 @@
     "mapTitle_en": "Rocher Blanc, section of the map ‘Carte particulière du Canal Dentrecasteaux …’. By Beautemps-Beaupré, C.-F., in Atlas du voyage de Bruny-Dentrecasteaux, 1807, Op. cit., Plate 4. Source: National Library of Australia.",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre05E.rtf"
+    "detailsLink_en": "Entre05E.html"
   },
   {
     "code": "Entre06",
@@ -153,7 +153,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre06E.rtf"
+    "detailsLink_en": "Entre06E.html"
   },
   {
     "code": "Entre07",
@@ -179,7 +179,7 @@
     "mapTitle_en": "Sketch of the Baie des moules. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux, 1807, Plate 6. Source: National Library of Australia.",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre07E.rtf"
+    "detailsLink_en": "Entre07E.html"
   },
   {
     "code": "Entre08",
@@ -199,13 +199,13 @@
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/%C3%89lisabeth-Paul-%C3%89douard_de_Rossel_%281765%E2%80%931829%29.jpg",
-    "other_link": "Portrait of De Rossel (Elisabeth-Paul-Edouard), lithography, by Boilly, J. 1823. This portrait was made 30 years after the voyage, when the Institut was renamed Institut Royal de France, during the reign of Charles X.\nSource: Museum National d’Histoire Naturelle \nhttps://bibliotheques.mnhn.fr/medias/doc/EXPLOITATION/IFD/MNHN_PO1309/institut-royal-de-france-de-rossel",
+    "other_link": "Portrait of De Rossel (Elisabeth-Paul-Edouard), lithography, by Boilly, J. 1823\nSource: Museum National d’Histoire Naturelle \nhttps://bibliotheques.mnhn.fr/medias/doc/EXPLOITATION/IFD/MNHN_PO1309/institut-royal-de-france-de-rossel\n\n\n",
     "mapUrl": "https://nla.gov.au/nla.obj-230810562/representativeImage",
     "mapTitle_fr": "Croquis de la Baie des moules, avec la pointe Rossel sur le côté NE de la baie. Par Beautemps-Beaupré, C.-F.  Par C.-F. Beautemps-Beaupré, dans Atlas du voyage de Bruny-D’Entrecasteaux, 1807, planche 6. Source : National Library of Australia,",
     "mapTitle_en": "Sketch of the Baie des moules, with pointe Rossel on the NE side of the bay. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux, 1807, Plate 6.",
     "origin_fr": "",
     "detailsLink": "Entre08.html",
-    "detailsLink_en": "Entre08E.rtf"
+    "detailsLink_en": "Entre08E.html"
   },
   {
     "code": "Entre09",
@@ -231,7 +231,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre09E.rtf"
+    "detailsLink_en": "Entre09E.html"
   },
   {
     "code": "Entre10",
@@ -257,7 +257,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre10E.rtf"
+    "detailsLink_en": "Entre10E.html"
   },
   {
     "code": "Entre11",
@@ -283,7 +283,7 @@
     "mapTitle_en": "Pointe Labillardière (South West), pointe Ventenat, pointe Riche (North) on Bruny Island, Section of the map ‘Carte générale de la partie méridionale de la Nouvelle Hollande, appelée Terre d'Anthony Van Diemen’. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux ,1807, Op. cit. plate 3\nSource: National Library of Australia\nhttps://nla.gov.au/nla.obj-230810451/view\n",
     "origin_fr": "La Billardière, botaniste et scientifique le plus distingué de l'expédition, a rédigé un compte-rendu de ses travaux sur la flore et la faune. Sa collection se composait de 22 caisses contenant des spécimens de plantes, de fleurs, d'insectes, de poissons, de reptiles, d'oiseaux, un petit kangourou et des spécimens minéralogiques. Tous ces éléments, tout comme les documents et les cartes de l'expédition, tombèrent entre les mains du gouvernement anglais. Grâce aux bons offices de Sir Joseph Banks, tout fut restitué à Rossel en 1802. La Pointe la Billardière figure sur la carte de D'Entrecasteaux.",
     "detailsLink": "",
-    "detailsLink_en": "Entre11E.rtf"
+    "detailsLink_en": "Entre11E.html"
   },
   {
     "code": "Entre12",
@@ -309,7 +309,7 @@
     "mapTitle_en": "‘Carte générale de la partie mé́ridionale de la Nouvelle Hollande, appelée Terre d'Anthony Van Diemen’. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux ,1807, plate 3\nSource: National Library of Australia",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre12E.rtf"
+    "detailsLink_en": "Entre12E.html"
   },
   {
     "code": "Entre13",
@@ -335,7 +335,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre13E.rtf"
+    "detailsLink_en": "Entre13E.html"
   },
   {
     "code": "Entre14",
@@ -361,7 +361,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre14E.rtf"
+    "detailsLink_en": "Entre14E.html"
   },
   {
     "code": "Entre15",
@@ -387,7 +387,7 @@
     "mapTitle_en": "‘Carte particulière du Canal Dentrecasteaux …’.\nBy Beautemps-Beaupré, C.-F., by C.-F. Beautemps-Beaupré, in Atlas du voyage de Bruny-D’Entrecasteaux, 1807, plate 4. Source : National Library of Australia,",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre15E.rtf"
+    "detailsLink_en": "Entre15E.html"
   },
   {
     "code": "Entre16",
@@ -413,7 +413,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre16E.rtf"
+    "detailsLink_en": "Entre16E.html"
   },
   {
     "code": "Entre17",
@@ -439,7 +439,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre16E.rtf"
+    "detailsLink_en": "Entre16E.html"
   },
   {
     "code": "Entre18",
@@ -465,7 +465,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre18E.rtf"
+    "detailsLink_en": "Entre18E.html"
   },
   {
     "code": "Entre19",
@@ -491,7 +491,7 @@
     "mapTitle_en": "‘Carte particulière du Canal Dentrecasteaux …’.\nBy Beautemps-Beaupré, C.-F., by C.-F. Beautemps-Beaupré, in Atlas du voyage de Bruny-D’Entrecasteaux, 1807, plate 4. Source : National Library of Australia,",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre19E.rtf"
+    "detailsLink_en": "Entre19E.html"
   },
   {
     "code": "Entre20",
@@ -517,7 +517,7 @@
     "mapTitle_en": "‘Carte particulière du Canal Dentrecasteaux …’.\nBy Beautemps-Beaupré, C.-F., by C.-F. Beautemps-Beaupré, in Atlas du voyage de Bruny-D’Entrecasteaux, 1807, plate 4. Source : National Library of Australia,",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre20E.rtf"
+    "detailsLink_en": "Entre20E.html"
   },
   {
     "code": "Entre21",
@@ -543,7 +543,7 @@
     "mapTitle_en": "‘Carte générale de la partie méridionale de la Nouvelle Hollande, appelée Terre d'Anthony Van Diemen’. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux ,1807, plate 3\nSource: National Library of Australia",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre12E.rtf"
+    "detailsLink_en": "Entre12E.html"
   },
   {
     "code": "Entre22",
@@ -569,7 +569,7 @@
     "mapTitle_en": "‘Carte générale de la partie méridionale de la Nouvelle Hollande, appelée Terre d'Anthony Van Diemen’. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux ,1807, plate 3\nSource: National Library of Australia",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre22E.rtf"
+    "detailsLink_en": "Entre22E.html"
   },
   {
     "code": "Entre23",
@@ -595,7 +595,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre09E.rtf"
+    "detailsLink_en": "Entre09E.html"
   },
   {
     "code": "Entre24",
@@ -621,7 +621,7 @@
     "mapTitle_en": "‘Carte particulière du Canal Dentrecasteaux …’.\nBy Beautemps-Beaupré, C.-F., by C.-F. Beautemps-Beaupré, in Atlas du voyage de Bruny-D’Entrecasteaux, 1807, plate 4. Source : National Library of Australia",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre24E.rtf"
+    "detailsLink_en": "Entre24E.html"
   },
   {
     "code": "Entre25",
@@ -647,7 +647,7 @@
     "mapTitle_en": "‘Carte particulière du Canal Dentrecasteaux …’.\nBy Beautemps-Beaupré, C.-F., by C.-F. Beautemps-Beaupré, in Atlas du voyage de Bruny-D’Entrecasteaux, 1807, plate 4. Source : National Library of Australia",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre25E.rtf"
+    "detailsLink_en": "Entre25E.html"
   },
   {
     "code": "Entre26",
@@ -673,7 +673,7 @@
     "mapTitle_en": " ‘Plan du port du nord-ouest (dans le Canal Dentrecasteaux) / levé par Jouvency, ingénieur géographe en Fev. 1793 (an. 1er) ‘, by Jouvency. In Atlas du voyage de Bruny-Dentrecasteaux,1807. Op. cit., plate7\nSource : National Library of Australia\nhttps://nla.gov.au/nla.obj-230810891/view\n",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre26E.rtf"
+    "detailsLink_en": "Entre26E.html"
   },
   {
     "code": "Entre27",
@@ -699,7 +699,7 @@
     "mapTitle_en": "‘Carte générale de la partie méridionale de la Nouvelle Hollande, appelée Terre d'Anthony Van Diemen’. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux ,1807, plate 3",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre27E.rtf"
+    "detailsLink_en": "Entre27E.html"
   },
   {
     "code": "Entre28",
@@ -725,7 +725,7 @@
     "mapTitle_en": "‘Carte générale de la partie méridionale de la Nouvelle Hollande, appelée Terre d'Anthony Van Diemen’. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux ,1807, plate 3",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre28E.rtf"
+    "detailsLink_en": "Entre28E.html"
   },
   {
     "code": "Entre29",
@@ -751,7 +751,7 @@
     "mapTitle_en": "‘Carte particulière du Canal Dentrecasteaux …’.\nBy Beautemps-Beaupré, C.-F., by C.-F. Beautemps-Beaupré, in Atlas du voyage de Bruny-D’Entrecasteaux, 1807, plate 4. Source : National Library of Australia",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre29E.rtf"
+    "detailsLink_en": "Entre29E.html"
   },
   {
     "code": "Entre30",
@@ -764,10 +764,10 @@
     "indigenousLanguage": "",
     "lat": -43.24684,
     "lon": 147.42587,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "",
-    "history": "",
+    "characteristic_fr": "Le cap doit son nom à Jean François Sylvestre Denis de Trobriand (1765–1799), lieutenant à bord de l’Espérance. Né dans le Finistère, en Bretagne, il était le fils du comte de Trobriand, issu de la famille Denni. Il servit dans la marine française sous les ordres de Bougainville et participa à la guerre d’Indépendance américaine avant de rejoindre l’expédition d’Entrecasteaux. À son retour en France, il reçut le commandement de La Vestale et partit pour Saint-Domingue, où il mourut en 1799.",
+    "characteristic": "The cape was named after Jean François Sylvestre Denis de Trobriand (1765–1799), a lieutenant on board the Espérance. Born in Finistère, Brittany, he was the son of the comte de Trobriand, from the Denni family. He served in the French navy under Bougainville and took part in the American War of Independence before joining the d’Entrecasteaux expedition. Upon his return to France, he was given command of La Vestale and sailed to Saint-Domingue, where he died in 1799.",
+    "history_fr": "Le capitaine James Cook visita et cartographia Adventure Bay, sur la côte est de l’île Bruny, en janvier 1777, lors de son troisième voyage dans le Pacifique. Il identifia le point le plus septentrional de la baie comme étant le cap Frederik Henry. Les relevés effectués à Adventure Bay par les membres de l’expédition française, en février 1793, établirent que la latitude du cap connu maintenat sous le nom de Cape Queen Elizabeth se situait quelques minutes plus au sud que celle indiquée sur la carte de Cook, ce qui amena d’Entrecasteaux à lui donner un nom en l'honneur de l'un des membres de l'expedition, Trobriand",
+    "history": "Captain James Cook visited and charted Adventure Bay, on the east coast of Bruny Island, in January 1777 during his third voyage to the Pacific. He designated the northernmost point of the bay as Cape Frederik Henry. Surveys carried out at Adventure Bay by members of the French expedition in February 1793 determined that the cape’s latitude now known as Cape Queen Elizabeth  lay several minutes further south than that indicated on Cook’s chart. It was subsequently renamed by d’Entrecasteaux.",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
