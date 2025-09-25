@@ -136,6 +136,148 @@
             gap: 5px;
             cursor: pointer;
         }
+
+        /* Search Interface */
+        .search-container {
+            position: absolute;
+            top: 82px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 4px 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            min-width: 320px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            padding: 2px 4px;
+            color: #333;
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        .search-clear {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            color: #666;
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+            display: none;
+        }
+
+        .search-clear:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .search-clear.visible {
+            display: block;
+        }
+
+        .search-button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: #0056b3;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+            margin-left: 4px;
+        }
+
+        .search-button:hover {
+            background-color: rgba(0, 86, 179, 0.1);
+        }
+
+        .search-results {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 4px 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            color: #555;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-results.visible {
+            display: flex;
+        }
+
+        .search-nav-button {
+            background: rgba(0, 86, 179, 0.8);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        .search-nav-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                top: 95px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 40px);
+                max-width: 300px;
+            }
+
+            .search-box {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .search-input {
+                font-size: 0.8rem;
+            }
+
+            .search-results {
+                font-size: 0.8rem;
+            }
+        }
+
         .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto; }
         .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
         .popup-link-row {
@@ -527,6 +669,20 @@
     </nav>
 
     <div id="map"></div>
+
+    <!-- Search Interface -->
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" class="search-input" id="search-input" placeholder="Rechercher un lieu...">
+            <button type="button" class="search-clear" id="search-clear" title="Effacer">&times;</button>
+            <button type="button" class="search-button" id="search-button" title="Rechercher">🔍</button>
+        </div>
+        <div class="search-results" id="search-results">
+            <button type="button" class="search-nav-button" id="search-prev" title="Précédent">‹</button>
+            <span id="search-count">0 occurrence(s)</span>
+            <button type="button" class="search-nav-button" id="search-next" title="Suivant">›</button>
+        </div>
+    </div>
 
     <div id="image-modal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
         <button type="button" id="image-modal-close" aria-label="Fermer l'image">&times;</button>
@@ -1203,12 +1359,220 @@
             attachPopupActions(event.popup);
         });
 
+        // Search functionality
+        let allPlaces = [];
+        let allMarkers = [];
+        let searchResults = [];
+        let currentSearchIndex = 0;
+
+        const searchInput = document.getElementById('search-input');
+        const searchClear = document.getElementById('search-clear');
+        const searchButton = document.getElementById('search-button');
+        const searchResultsDiv = document.getElementById('search-results');
+        const searchCount = document.getElementById('search-count');
+        const searchPrev = document.getElementById('search-prev');
+        const searchNext = document.getElementById('search-next');
+
+        // Normalize text for search (remove accents, lowercase)
+        const normalizeText = (text) => {
+            if (!text) return '';
+            return text.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, ''); // Remove accents
+        };
+
+        // Check if all query words match at word beginnings (AND search)
+        const matchesWordStart = (text, query) => {
+            if (!text || !query) return false;
+            const normalizedText = normalizeText(text);
+            const normalizedQuery = normalizeText(query);
+
+            // Split query into individual words
+            const queryWords = normalizedQuery.split(/\s+/).filter(word => word.length > 0);
+
+            // Split text into words
+            const textWords = normalizedText.split(/[\s\-,.'()]+/);
+
+            // All query words must have a matching word start in the text (AND logic)
+            return queryWords.every(queryWord =>
+                textWords.some(textWord => textWord.startsWith(queryWord))
+            );
+        };
+
+        // Check if place has valid GPS coordinates
+        const hasValidCoordinates = (place) => {
+            return place.lat !== 0 || place.lon !== 0;
+        };
+
+        // Perform search in specified fields
+        const performSearch = (query) => {
+            if (!query.trim()) {
+                searchResults = [];
+                updateSearchUI();
+                return;
+            }
+
+            const matchingPlaces = allPlaces.filter(place => {
+                // First, exclude places without valid GPS coordinates
+                if (!hasValidCoordinates(place)) {
+                    return false;
+                }
+
+                const searchFields = [
+                    place.frenchName,
+                    place.variantName,
+                    place.ausEName,
+                    place.characteristic_fr,
+                    place.characteristic,
+                    place.history_fr,
+                    place.history
+                ];
+
+                return searchFields.some(field => matchesWordStart(field, query));
+            });
+
+            // Simple deduplication by unique code (codes are unique)
+            const uniquePlaces = new Map();
+            matchingPlaces.forEach(place => {
+                if (!uniquePlaces.has(place.code)) {
+                    uniquePlaces.set(place.code, place);
+                }
+            });
+
+            searchResults = Array.from(uniquePlaces.values());
+            currentSearchIndex = 0;
+            updateSearchUI();
+
+            if (searchResults.length > 0) {
+                focusOnResult(0);
+            }
+        };
+
+
+        // Update search UI
+        const updateSearchUI = () => {
+            const count = searchResults.length;
+            const trans = translations[getCurrentLanguage()] || {};
+            const occurrenceText = count === 1
+                ? trans['search-count-singular'] || 'occurrence'
+                : trans['search-count-plural'] || 'occurrences';
+
+            let displayText = `${count} ${occurrenceText}`;
+            if (count > 0) {
+                const currentNum = currentSearchIndex + 1;
+                const totalNum = count.toString().padStart(3, ' ');
+                displayText = `${currentNum}/${totalNum.trim()} ${occurrenceText}`;
+            }
+
+            searchCount.textContent = displayText;
+            searchResultsDiv.classList.toggle('visible', count > 0);
+
+            searchPrev.disabled = count === 0 || currentSearchIndex === 0;
+            searchNext.disabled = count === 0 || currentSearchIndex === count - 1;
+        };
+
+        // Focus on search result
+        const focusOnResult = (index) => {
+            if (index < 0 || index >= searchResults.length) return;
+
+            currentSearchIndex = index;
+            const place = searchResults[index];
+            const coordinates = extractCoordinates(place);
+
+            if (coordinates) {
+                const [lat, lon] = coordinates;
+
+                // Find the corresponding marker first
+                const targetMarker = allMarkers.find(marker => {
+                    const markerPlace = marker.place;
+                    return markerPlace && markerPlace.code === place.code;
+                });
+
+                if (targetMarker) {
+                    // Close any open popup first
+                    map.closePopup();
+
+                    // Simply open the popup and let Leaflet + adjustPopupView handle positioning
+                    // This mimics exactly what happens with manual marker clicks
+                    targetMarker.openPopup();
+                }
+            }
+
+            updateSearchUI();
+        };
+
+        // Update translations for search interface
+        const updateSearchTranslations = () => {
+            const trans = translations[getCurrentLanguage()] || {};
+            searchInput.placeholder = trans['search-placeholder'] || 'Search for a place...';
+            searchClear.title = trans['search-clear-title'] || 'Clear';
+            searchButton.title = trans['search-button-title'] || 'Search';
+            searchPrev.title = trans['search-prev-title'] || 'Previous';
+            searchNext.title = trans['search-next-title'] || 'Next';
+        };
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value;
+            searchClear.classList.toggle('visible', value.length > 0);
+
+            // Clear search results immediately if input is empty
+            if (value.trim().length === 0) {
+                searchResults = [];
+                updateSearchUI();
+            }
+            // No automatic search - user must click magnifier
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch(searchInput.value);
+            }
+        });
+
+        searchButton.addEventListener('click', () => {
+            performSearch(searchInput.value);
+        });
+
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchClear.classList.remove('visible');
+            searchResults = [];
+            updateSearchUI();
+            searchInput.focus();
+        });
+
+        searchPrev.addEventListener('click', () => {
+            if (currentSearchIndex > 0) {
+                focusOnResult(currentSearchIndex - 1);
+            }
+        });
+
+        searchNext.addEventListener('click', () => {
+            if (currentSearchIndex < searchResults.length - 1) {
+                focusOnResult(currentSearchIndex + 1);
+            }
+        });
+
+        // Update search interface translations when language changes
+        document.addEventListener('DOMContentLoaded', updateSearchTranslations);
+        document.getElementById('lang-fr')?.addEventListener('click', () => {
+            setTimeout(updateSearchTranslations, 100);
+        });
+        document.getElementById('lang-en')?.addEventListener('click', () => {
+            setTimeout(updateSearchTranslations, 100);
+        });
+
         const dataVersion = '20250209';
         const dataUrl = `data/baudin.json?v=${dataVersion}`;
 
         fetch(dataUrl, { cache: 'no-cache' })
             .then(response => response.json())
             .then(places => {
+                // Store places for search functionality
+                allPlaces = places;
+                allMarkers = [];
+
                 const bounds = L.latLngBounds();
 
                 places.forEach(place => {
@@ -1219,6 +1583,11 @@
 
                     const [lat, lon] = coordinates;
                     const marker = L.marker([lat, lon]).addTo(map);
+
+                    // Store marker for search functionality
+                    marker.place = place;
+                    allMarkers.push(marker);
+
                     bounds.extend([lat, lon]);
 
                     if (!disableMarkerTooltips) {
@@ -1345,6 +1714,9 @@
                 } else {
                     map.setView(defaultCenter, defaultZoom);
                 }
+
+                // Initialize search interface translations
+                updateSearchTranslations();
             })
             .catch(error => {
                 console.error('Failed to load baudin data:', error);

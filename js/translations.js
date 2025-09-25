@@ -69,7 +69,16 @@ const translations = {
         'satellite-view-label': "Vue satellite",
         'direction-south': "S",
         'direction-east': "E",
-        'direction-west': "O"
+        'direction-west': "O",
+
+        // --- Search Interface ---
+        'search-placeholder': "Rechercher un lieu...",
+        'search-clear-title': "Effacer",
+        'search-button-title': "Rechercher",
+        'search-prev-title': "Précédent",
+        'search-next-title': "Suivant",
+        'search-count-singular': "occurrence",
+        'search-count-plural': "occurrences"
     },
     'en': {
         // --- General text ---
@@ -140,6 +149,15 @@ const translations = {
         'satellite-view-label': "Satellite view",
         'direction-south': "S",
         'direction-east': "E",
-        'direction-west': "W"
+        'direction-west': "W",
+
+        // --- Search Interface ---
+        'search-placeholder': "Search for a place...",
+        'search-clear-title': "Clear",
+        'search-button-title': "Search",
+        'search-prev-title': "Previous",
+        'search-next-title': "Next",
+        'search-count-singular': "occurrence",
+        'search-count-plural': "occurrences"
     }
 };
