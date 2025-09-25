@@ -270,7 +270,7 @@
             }
 
             .search-input {
-                font-size: 0.8rem;
+                font-size: 16px; /* Prevents iOS auto-zoom */
             }
 
             .search-results {
@@ -380,6 +380,24 @@
             }
             .map-info-coordinates {
                 display: none;
+            }
+
+            /* Mobile UI Fixes */
+            .leaflet-control-zoom a {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 1.5rem;
+            }
+            .leaflet-control-satellite {
+                /* The control is in the top-left container, so we move it from there */
+                position: absolute;
+                top: auto;
+                left: 5px;
+                bottom: 35px; /* Above the scale/info bar */
+                right: auto;
+                margin: 0;
+                z-index: 1000;
             }
         }
         .image-modal {
