@@ -382,23 +382,21 @@
                 display: none;
             }
 
-            /* === Mobile UI Fixes (Attempt 3) === */
-
-            /* 1. Reduce size of map zoom buttons */
+            /* Mobile UI Fixes */
             .leaflet-control-zoom a {
-                width: 28px !important;
-                height: 28px !important;
-                line-height: 28px !important;
-                font-size: 1.4rem !important;
+                width: 28px;
+                height: 28px;
+                line-height: 28px;
+                font-size: 1.4rem;
             }
-
-            /* 2. Move Satellite view checkbox container */
-            .leaflet-top.leaflet-left {
-                top: auto !important;
-                bottom: 35px !important;
-                left: 10px !important;
-                right: auto !important;
-                z-index: 1001 !important; /* Above map info, below popups */
+            .leaflet-control-satellite {
+                position: absolute;
+                top: auto;
+                left: 10px;
+                bottom: 35px;
+                right: auto;
+                margin: 0;
+                z-index: 1001;
             }
         }
         .image-modal {
