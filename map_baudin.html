@@ -382,21 +382,46 @@
                 display: none;
             }
 
-            /* Mobile UI Fixes */
+            /* === Mobile UI Fixes (Attempt 4) === */
+
+            /* 1. Reduce size of map zoom buttons */
             .leaflet-control-zoom a {
                 width: 28px;
                 height: 28px;
                 line-height: 28px;
                 font-size: 1.4rem;
             }
+
+            /* 2. Move Satellite control into the bottom bar */
+            .leaflet-bottom.leaflet-left {
+                display: flex;
+                align-items: center;
+                background: white;
+            }
+
+            .leaflet-top.leaflet-left {
+                position: static; /* Remove absolute positioning */
+                order: 1; /* Will be the first item in the flex container */
+            }
+
             .leaflet-control-satellite {
-                position: absolute;
-                top: auto;
-                left: 10px;
-                bottom: 35px;
-                right: auto;
-                margin: 0;
-                z-index: 1001;
+                background: transparent;
+                box-shadow: none;
+                backdrop-filter: none;
+                padding: 4px 10px;
+            }
+
+            .leaflet-control-satellite label {
+                font-size: 0.7rem;
+                line-height: 1.3;
+                color: #333;
+                font-family: 'Lato', sans-serif;
+            }
+
+            .map-info-control {
+                order: 2; /* Will be the second item */
+                background: transparent;
+                box-shadow: none;
             }
         }
         .image-modal {
