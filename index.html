@@ -104,20 +104,22 @@
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
 
         @media (max-width: 768px) {
-            body { padding-top: 85px; } /* Ajustement du padding pour la hauteur du menu fixe */
+            body { padding-top: 70px; }
             nav {
                 justify-content: center;
                 height: auto;
                 flex-direction: row;
                 flex-wrap: wrap;
-                gap: 4px 8px;
-                padding: 8px 12px;
+                gap: 2px 6px;
+                padding: 4px 10px;
             }
-            .lang-switcher { 
-                position: static; 
-            }
+            .lang-switcher { position: static; }
             nav ul { display: contents; }
-            nav ul li a { border-radius: 999px; padding: 6px 10px; font-size: 0.85rem; }
+            nav ul li a {
+                border-radius: 999px;
+                padding: 4px 8px;
+                font-size: 0.8rem;
+            }
             .hero { min-height: 400px; height: 60vh; }
             .hero h1 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
             .hero p { font-size: clamp(1rem, 3vw, 1.2rem); }
@@ -132,8 +134,8 @@
     <nav>
         <ul>
             <li><a href="index.html" class="active" id="nav-home">Home</a></li>
-            <li><a href="map_dentrecasteaux.html" id="nav-map-dentre">d'Entrecasteaux Map</a></li>
-            <li><a href="map_baudin.html" id="nav-map-baudin">Baudin Map</a></li>
+            <li><a href="map_dentrecasteaux.html" id="nav-map-dentre">d'Entrecasteaux</a></li>
+            <li><a href="map_baudin.html" id="nav-map-baudin">Baudin</a></li>
             <li><a href="resources.html" id="nav-resources">Resources</a></li>
         </ul>
         <div class="lang-switcher">

@@ -3,7 +3,7 @@ const translations = {
     'fr': {
         // --- Textes généraux ---
         'hero-title': "Noms Français le long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d’Entrecasteaux (1791-1794) et Baudin (1800-1804)",
-        'nav-home': "Accueil", 'nav-map-dentre': "Carte d'Entrecasteaux", 'nav-map-baudin': "Carte Baudin", 'nav-resources': "Ressources",
+        'nav-home': "Accueil", 'nav-map-dentre': "Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Ressources",
         'footer-text': '&copy; 2025 - Dany Bréelle - Projet "Noms Français le long de la côte Australienne"',
 
         // --- Page d'accueil (index.html) ---
@@ -83,7 +83,7 @@ const translations = {
     'en': {
         // --- General text ---
         'hero-title': "French Names Along the Australian Coastline", 'hero-subtitle': "The toponyms originated by the d’Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
-        'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux Map", 'nav-map-baudin': "Baudin Map", 'nav-resources': "Resources",
+        'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Resources",
         'footer-text': '&copy; 2025 - Dany Bréelle - "French Names Along the Australian Coastline" Project',
 
         // --- Homepage (index.html) ---
