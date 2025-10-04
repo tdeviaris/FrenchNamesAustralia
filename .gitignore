@@ -1,0 +1,21 @@
+# Translation utility with API keys - DO NOT COMMIT
+traducteur-app/
+traducteur/
+
+# macOS
+.DS_Store
+Icon?
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~

@@ -1,0 +1,159 @@
+--- Début de la conversion ---
+Version de LibreOffice :
+LibreOffice 25.8.1.1 54047653041915e595ad4e45cccea684809c77b5
+
+Source : /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents
+Destination : /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details
+---------------------------------
+CONVERSION : Entre28E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre28E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre28E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre28E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre28E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre28E.html
+CONVERSION : Entre12E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre12E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre12E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre12E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre12E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre12E.html
+CONVERSION : Entre04E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre04E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre04E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre04E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre04E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre04E.html
+CONVERSION : Entre24E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre24E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre24E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre24E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre24E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre24E.html
+CONVERSION : Entre32E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre32E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre32E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre32E.html using filter : HTML
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre32E.html
+CONVERSION : Entre08E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre08E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre08E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre08E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre08E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre08E.html
+CONVERSION : Entre09E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre09E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre09E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre09E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre09E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre09E.html
+CONVERSION : Entre33E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre33E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre33E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre33E.html using filter : HTML
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre33E.html
+CONVERSION : Entre25E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre25E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre25E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre25E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre25E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre25E.html
+CONVERSION : Entre05E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre05E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre05E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre05E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre05E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre05E.html
+CONVERSION : Entre13E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre13E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre13E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre13E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre13E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre13E.html
+CONVERSION : Entre29E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre29E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre29E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre29E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre29E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre29E.html
+CONVERSION : Entre22E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre22E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre22E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre22E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre22E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre22E.html
+CONVERSION : Entre34E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre34E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre34E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre34E.html using filter : HTML
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre34E.html
+CONVERSION : Entre18E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre18E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre18E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre18E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre18E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre18E.html
+CONVERSION : Entre43E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre43E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre43E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre43E.html using filter : HTML
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre43E.html
+CONVERSION : Entre14E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre14E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre14E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre14E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre14E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre14E.html
+CONVERSION : Entre02E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre02E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre02E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre02E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre02E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre02E.html
+CONVERSION : Entre03E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre03E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre03E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre03E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre03E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre03E.html
+CONVERSION : Entre15E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre15E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre15E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre15E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre15E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre15E.html
+CONVERSION : Entre19E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre19E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre19E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre19E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre19E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre19E.html
+CONVERSION : Entre16E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre16E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre16E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre16E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre16E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre16E.html
+CONVERSION : Entre01E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre01E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre01E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre01E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre01E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre01E.html
+CONVERSION : Entre20.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre20.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre20.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre20.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre20.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre20.html
+CONVERSION : Entre06E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre06E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre06E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre06E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre06E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre06E.html
+CONVERSION : Entre10E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre10E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre10E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre10E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre10E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre10E.html
+CONVERSION : Entre30E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre30E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre30E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre30E.html using filter : HTML
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre30E.html
+CONVERSION : Entre26E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre26E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre26E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre26E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre26E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre26E.html
+CONVERSION : Entre27E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre27E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre27E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre27E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre27E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre27E.html
+CONVERSION : Entre11E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre11E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre11E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre11E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre11E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre11E.html
+CONVERSION : Entre07E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre07E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre07E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre07E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre07E.html
+  -> SUCCÈS
+[postprocess] Fichier mis à jour : Entre07E.html
+--- Conversion terminée ---
+Le journal complet est disponible dans : /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/convert_docs.log
