@@ -27,7 +27,7 @@ const translations = {
         'baudin-title': "Carte Baudin (1800-1804)", 'baudin-desc': "Explorez les noms de lieux donnés lors de l'expédition scientifique de Nicolas Baudin...", 'map-title-baudin': "Carte de Baudin, 1802",
 
         // --- Page Ressources ---
-        'resources-title': "Ressources", 'resources-p1': "Cette page contiendra des ressources additionnelles...", 'resources-p2': "<em>(Contenu à ajouter)</em>",
+        'resources-title': "Ressources", 'resources-glossary-entry': "<a href=\"glossaryF.html\">Glossaire des Termes</a>", 'resources-p1': "Cette page contiendra des ressources additionnelles...", 'resources-p2': "<em>(Contenu à ajouter)</em>",
 
         // --- Page de détail Baie de la Recherche ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",
@@ -56,7 +56,7 @@ const translations = {
         'popup-history-label': "Parcours narratif :",
         'popup-wiki-label': "Wikipédia :",
         'popup-othersource-label': "Autre source :",
-        'popup-details-link': "Détails",
+        'popup-details-link': "En savoir plus",
         'popup-image-expand-label': "Agrandir l'image",
         'popup-map-link': "Carte originale",
         'map-loading-message': "Chargement de la carte...",
@@ -107,7 +107,7 @@ const translations = {
         'baudin-title': "Baudin Map (1800-1804)", 'baudin-desc': "Explore the place names given during the scientific expedition of Nicolas Baudin...", 'map-title-baudin': "Map from Baudin expedition, 1802",
 
         // --- Resources Page ---
-        'resources-title': "Resources", 'resources-p1': "This page will contain additional resources...", 'resources-p2': "<em>(Content to be added)</em>",
+        'resources-title': "Resources", 'resources-glossary-entry': "<a href=\"glossaryE.html\">Glossary of Terms</a>", 'resources-p1': "This page will contain additional resources...", 'resources-p2': "<em>(Content to be added)</em>",
         
         // --- Detail Page Recherche Bay ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",
