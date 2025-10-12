@@ -2,6 +2,10 @@
 traducteur-app/
 traducteur/
 
+# Source RTF documents
+Source_documents/
+source_documents/
+
 # macOS
 .DS_Store
 Icon?
