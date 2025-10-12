@@ -79,6 +79,20 @@
         .lang-switcher button img { display: block; width: 28px; height: auto; }
         .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); min-height: 50vh;}
         .content-section h2 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
+        .resource-primary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .resource-primary-link:hover { background-color: #003f82; }
+        .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
         .resource-item { margin-top: 28px; }
         .resource-video-button {
             display: inline-flex;
@@ -99,7 +113,7 @@
         .video-overlay.is-visible { display: flex; }
         .video-container { position: relative; width: min(90vw, 960px); }
         .video-container video { width: 100%; border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,0.35); background: #000; }
-        .video-close { position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; border-radius: 50%; border: none; background: #fff; color: #333; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .video-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(255,255,255,0.95); color: #333; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2; }
         .video-close:hover { background: #f2f2f2; }
         .video-close:focus-visible { outline: 3px solid #FFD700; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
@@ -147,7 +161,7 @@
     <main class="container">
          <section class="content-section">
             <h2 id="resources-title">Resources</h2>
-            <p id="resources-glossary-entry"><a href="glossaryE.html">Glossary of Terms</a></p>
+            <p id="resources-glossary-entry"><a class="resource-primary-link" href="glossaryE.html">Glossary of Terms</a></p>
             <p id="resources-glossary-subtitle">French institutions, political regimes, wars, former country appellations and former scientific expeditions</p>
             <p id="resources-glossary-description">This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.</p>
             <div class="resource-item">
