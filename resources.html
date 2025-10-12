@@ -79,6 +79,29 @@
         .lang-switcher button img { display: block; width: 28px; height: auto; }
         .content-section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); min-height: 50vh;}
         .content-section h2 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
+        .resource-item { margin-top: 28px; }
+        .resource-video-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .resource-video-button:hover { background-color: #003f82; }
+        .resource-video-button:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .video-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
+        .video-overlay.is-visible { display: flex; }
+        .video-container { position: relative; width: min(90vw, 960px); }
+        .video-container video { width: 100%; border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,0.35); background: #000; }
+        .video-close { position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; border-radius: 50%; border: none; background: #fff; color: #333; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .video-close:hover { background: #f2f2f2; }
+        .video-close:focus-visible { outline: 3px solid #FFD700; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             body { padding-top: 70px; }
@@ -127,18 +150,87 @@
             <p id="resources-glossary-entry"><a href="glossaryE.html">Glossary of Terms</a></p>
             <p id="resources-glossary-subtitle">French institutions, political regimes, wars, former country appellations and former scientific expeditions</p>
             <p id="resources-glossary-description">This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.</p>
-            <p id="resources-p1">This page will contain additional resources, such as a bibliography, links to archives, academic papers, and other relevant materials.</p>
-            <p id="resources-p2"><em>(Content to be added)</em></p>
             <div class="resource-item">
-                <p id="resources-video-link"><a href="img/Topo1.mp4" target="_blank" rel="noopener">Exemple de croquis de profils des côtes</a></p>
+                <button id="resources-video-link" class="resource-video-button" type="button" data-video-src="img/Topo1.mp4" data-i18n-aria-label="resources-video-button-aria">Exemple de croquis de profils des côtes</button>
                 <p id="resources-video-caption">Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Beautemps-Beaupre, C. F &amp; Collin, E &amp; Beautemps-Beaupre, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source : <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener">National Library of Australia</a></p>
             </div>
         </section>
     </main>
 
+    <div class="video-overlay" role="dialog" aria-modal="true" aria-label="Video player" data-i18n-aria-label="resources-video-dialog-label">
+        <div class="video-container">
+            <button type="button" class="video-close" aria-label="Close" data-i18n-aria-label="resources-video-close-label">&times;</button>
+            <video id="resource-video" controls preload="metadata"></video>
+        </div>
+    </div>
+
     <div data-include-footer></div>
 
     <script src="js/translations.js?v=20241012"></script>
     <script src="js/main.js?v=20241012"></script>
+    <script>
+        (() => {
+            const trigger = document.getElementById('resources-video-link');
+            const overlay = document.querySelector('.video-overlay');
+            const video = document.getElementById('resource-video');
+            const closeBtn = document.querySelector('.video-close');
+            let lastFocusedElement = null;
+
+            const openOverlay = () => {
+                if (!overlay || !video || !trigger) return;
+                const videoSrc = trigger.getAttribute('data-video-src');
+                if (!videoSrc) return;
+                video.src = videoSrc;
+                overlay.classList.add('is-visible');
+                lastFocusedElement = document.activeElement;
+                video.play().catch(() => {});
+                document.addEventListener('keydown', handleKeydown);
+                closeBtn?.focus();
+            };
+
+            const closeOverlay = () => {
+                if (!overlay || !video) return;
+                video.pause();
+                video.currentTime = 0;
+                video.removeAttribute('src');
+                video.load();
+                overlay.classList.remove('is-visible');
+                document.removeEventListener('keydown', handleKeydown);
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            };
+
+            const handleKeydown = (event) => {
+                if (event.key === 'Escape') {
+                    closeOverlay();
+                } else if (event.key === 'Tab' && overlay?.classList.contains('is-visible')) {
+                    trapFocus(event);
+                }
+            };
+
+            const trapFocus = (event) => {
+                const focusable = overlay.querySelectorAll('button, video');
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            };
+
+            trigger?.addEventListener('click', openOverlay);
+            closeBtn?.addEventListener('click', closeOverlay);
+            overlay?.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    closeOverlay();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
