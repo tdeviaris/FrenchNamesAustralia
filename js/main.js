@@ -32,6 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+            const key = element.getAttribute('data-i18n-aria-label');
+            if (key && translations[lang][key]) {
+                element.setAttribute('aria-label', translations[lang][key]);
+            }
+        });
+
         // Met à jour la langue de la balise <html>
         document.documentElement.lang = lang;
 

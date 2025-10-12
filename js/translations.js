@@ -8,9 +8,32 @@ const translations = {
 
         // --- Page d'accueil (index.html) ---
         'intro-title': "Introduction",
+        'intro-link-dentre': "L'expédition d'Entrecasteaux",
+        'intro-link-baudin': "L'expédition Baudin",
         'intro-p1': "Ce projet explore l'héritage distinctif de la toponymie française le long des côtes australiennes, retraçant comment ces noms de lieux — dont beaucoup sont encore visibles sur les cartes modernes — reflètent les histoires superposées de l'exploration européenne. Dans le contexte du lien profond et durable des peuples des Premières Nations avec leur Territoire, les pratiques de dénomination françaises côtoient celles des navigateurs néerlandais et britanniques, formant un palimpseste complexe de sens et de mémoire.",
         'intro-p2': "En se concentrant sur les plus de 670 sites nommés lors des expéditions de d’Entrecasteaux et de Baudin, l'étude met en lumière une perspective française unique qui enrichit notre compréhension de l'histoire côtière de l'Australie et de ses contextes mondiaux et locaux enchevêtrés.",
         'intro-p3': "<em>La recherche présentée sur ce site a été soutenue par la RGSSA, la WAHF, …</em>",
+        'expedition-dentre-title': "L'expédition d'Entrecasteaux",
+        'expedition-dentre-p1': "La première priorité de l’expédition de d’Entrecasteaux, la recherche du disparu Lapérouse, se solda par un échec. Aucune trace de ses deux navires ni de leurs équipages ne fut retrouvée sur les îles du Pacifique occidental qu’ils aperçurent. En revanche, la seconde partie de la mission, le relevé des côtes des Terres australes encore partiellement inconnues des Européens, fut un grand succès. Ces découvertes redonnèrent espoir et motivation à l’équipage après une traversée éprouvante de l’océan Indien austral dans une mer agitée. Les côtes orientales de la Terre de Van Diemen (Tasmanie) furent visitées en avril-mai 1792 puis fin janvier-février 1793, et les côtes sud-ouest de la Nouvelle-Hollande (Australie-Occidentale) en décembre 1792 - janvier 1793.",
+        'expedition-dentre-p2': "La nomenclature laissée par d’Entrecasteaux le long de ces côtes rend un bel hommage au voyage et à son équipage méritant, qui les a explorées avec une grande motivation et de solides compétences.",
+        'expedition-baudin-title': "L'expédition Baudin",
+        'expedition-baudin-p1': "Les toponymes consignés dans les récits officiels et l’atlas du voyage de découverte de Baudin ne furent pas attribués pendant l’expédition elle-même mais plus tard, à Paris, entre 1806 et 1807 — trois ans après la mort de Baudin (16 septembre 1803) et après le retour des corvettes. La France était alors entrée dans une nouvelle ère politique : l’Empire napoléonien avait remplacé le Consulat, commanditaire initial de l’expédition. Le Consulat, pour sa part, était arrivé au pouvoir par le coup d’État du 18 Brumaire (10 novembre 1799) qui renversa le Directoire — le gouvernement sous lequel de nombreuses institutions savantes avaient préparé le voyage.",
+        'expedition-baudin-p2': "Cette recomposition politique imprégna la nomenclature géographique de l’expédition. Les noms retenus reflètent la succession de ces bouleversements : certains honorent le jeune général Bonaparte, héros militaire ascendant sous le Directoire ; d’autres célèbrent le Premier Consul Bonaparte, commanditaire de l’expédition ; beaucoup enfin rendent hommage à l’Empereur Napoléon et aux membres de sa famille impériale.",
+        'expedition-baudin-p3': "Les 602 toponymes choisis par Péron et Freycinet illustrent avec force l’évolution de l’esprit national français durant la période napoléonienne, qui supplantait les idéaux républicains ayant inspiré Baudin et sa nomenclature initiale. Péron et Freycinet privilégièrent des noms célébrant des personnalités françaises distinguées dans les sciences, les lettres, l’armée ou l’administration. Ces figures incarnaient le nouveau récit national — celui qui cherchait à réunifier le pays après les profondes divisions de la Terreur révolutionnaire. Plus de quatre-vingts pour cent des noms commémorent ainsi ces personnalités, transformant la carte des côtes australiennes en reflet du nouveau sentiment d’unité, de fierté et d’ambition impériale de la France.",
+        'illustration-nouvelle-hollande-title': "Nouvelle-Hollande, côte sud-ouest",
+        'cap-raoul-title': "Cap Raoul",
+        'cap-raoul-caption': "Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Piron, Jean &amp; Schoeder &amp; Beautemps-Beaupré, C. F &amp; France.<br>In <em>Atlas du voyage de Bruny d’Entrecasteaux</em> (1807).",
+        'cap-raoul-source': "Source : <a href=\"http://nla.gov.au/nla.obj-230811235\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>",
+        'illustration-nouvelle-hollande-title': "Nouvelle-Hollande, côte sud-ouest",
+        'southwest-caption': "Cape Marengo et cap des Représentations renommé cap Suffren (Point Grey) — 30 mars 1802<br>Relèvements au lavis des côtes des Terres australes réalisés par Le Sueur ou son assistant Nicolas-Martin Petit.",
+        'southwest-reference': "références : MAR/5JJ/51/1/35, MAR/5JJ/51/1 1-99. Archives numérisées <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
+        'southwest-illustration-label': "Afficher l'illustration de la Nouvelle-Hollande en plein écran",
+        'cap-raoul-illustration-label': "Afficher l'illustration du cap Raoul en plein écran",
+        'back-to-top-label': "Retour en haut de page",
+        'expedition-dentre-map-label': "Afficher la carte de Beautemps-Beaupré en plein écran",
+        'expedition-baudin-map-label': "Afficher la carte de Freycinet en plein écran",
+        'lightbox-close-label': "Fermer",
+        'lightbox-dialog-label': "Vue agrandie de la carte",
         'map-title-freycinet': "Carte de Freycinet, 1812", 'map-title-beautemps': "Carte de Beautemps-Beaupré, 1807",
 
         // --- Page Carte d'Entrecasteaux ---
@@ -27,7 +50,7 @@ const translations = {
         'baudin-title': "Carte Baudin (1800-1804)", 'baudin-desc': "Explorez les noms de lieux donnés lors de l'expédition scientifique de Nicolas Baudin...", 'map-title-baudin': "Carte de Baudin, 1802",
 
         // --- Page Ressources ---
-        'resources-title': "Ressources", 'resources-glossary-entry': "<a href=\"glossaryF.html\">Glossaire des Termes</a>", 'resources-p1': "Cette page contiendra des ressources additionnelles...", 'resources-p2': "<em>(Contenu à ajouter)</em>",
+        'resources-title': "Ressources", 'resources-glossary-entry': "<a href=\"glossaryF.html\">Glossaire des Termes</a>", 'resources-glossary-subtitle': "Institutions françaises, régimes politiques, guerres, anciennes appellations de pays et expéditions scientifiques", 'resources-glossary-description': "Ce glossaire explique les principaux termes historiques, politiques et scientifiques mentionnés dans le projet <em>French Names Along the Australian Coastline</em>.", 'resources-p1': "Cette page contiendra des ressources additionnelles...", 'resources-p2': "<em>(Contenu à ajouter)</em>",
 
         // --- Page de détail Baie de la Recherche ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",
@@ -88,9 +111,32 @@ const translations = {
 
         // --- Homepage (index.html) ---
         'intro-title': "Introduction",
+        'intro-link-dentre': "The d'Entrecasteaux Expedition",
+        'intro-link-baudin': "The Baudin Expedition",
         'intro-p1': "This project explores the distinctive legacy of French place naming along Australia’s coastlines, tracing how these toponyms—many still visible on modern maps—reflect the layered histories of European exploration. Set against the backdrop of First Nations peoples’ deep and enduring connection to Country, the French naming practices sit alongside those of Dutch and British navigators, forming a complex palimpsest of meaning and memory.",
         'intro-p2': "By focusing on the over 670 sites named during the expeditions of d’Entrecasteaux and Baudin, the study brings to light a unique French perspective that enriches our understanding of Australia’s coastal history and its entangled global and local contexts.",
         'intro-p3': "<em>The research in this website was supported by the RGSSA, the WAHF, …</em>",
+        'expedition-dentre-title': "The d'Entrecasteaux Expedition",
+        'expedition-dentre-p1': "The first object of the d’Entrecasteaux expedition, the search for the missing Lapérouse, ended in failure. They found no trace of his two ships or their crew on any islands in the western Pacific they sighted. However, the second parts of the expedition’s mission, the mapping of coasts in the Southern Lands still partially unknown to Europeans, proved highly successful. These discoveries gave hope and motivation to the crew after a difficult crossing of the southern Indian Ocean in rough sea. The east coasts of Van Diemen Land (Tasmania) coasts were visited in April-May 1792 and again in late January-February 1793, and the south-west coasts of New Holland (Western Australia) in late December 1792 - January 1793.",
+        'expedition-dentre-p2': "D'Entrecasteaux's nomenclature bestowed along these coasts pays a beautiful tribute to the voyage and his deserving crew who explored them with great motivation and skills.",
+        'expedition-baudin-title': "The Baudin Expedition",
+        'expedition-baudin-p1': "The place names included in the official accounts and atlas of Baudin’s voyage of discovery were not assigned during the expedition itself but later, in Paris, between 1806 and 1807 — three years after Baudin’s death (16 September 1803) and following the return of the corvettes. By that time, France had entered a new political era: the Napoleonic Empire had replaced the Consulate, the original sponsor of the expedition. The Consulate, in turn, had come to power through the coup of 18 Brumaire (10 November 1799), which overthrew the Directoire — the government under which many scholarly institutions had helped prepare the voyage.",
+        'expedition-baudin-p2': "This shifting political landscape left its mark on the expedition’s geographical nomenclature. The chosen place names reflect the sequence of these upheavals: some honour the young General Bonaparte, the rising military hero under the Directoire; others pay tribute to the First Consul Bonaparte, who sponsored the expedition; and many more commemorate Emperor Napoléon and members of his imperial family.",
+        'expedition-baudin-p3': "The 602 place names selected by Péron and Freycinet vividly illustrate the evolution of the French national spirit during the Napoleonic period, which supplanted the republican ideals that had inspired Baudin and his original nomenclature. Péron and Freycinet favoured names celebrating French figures distinguished in science, literature, military service, or public administration. These individuals embodied the new national narrative — one that sought to unify the country after the deep divisions of the Revolutionary Terror. Indeed, more than eighty per cent of the names commemorate such figures, transforming the map of Australia’s coasts into a reflection of France’s renewed sense of unity, pride, and imperial ambition.",
+        'illustration-nouvelle-hollande-title': "South-West New Holland",
+        'cap-raoul-title': "Cap Raoul",
+        'cap-raoul-caption': "Views of different parts of Van Diemen's Land<br>Piron, Jean &amp; Schoeder &amp; Beautemps-Beaupré, C. F &amp; France.<br>In <em>Atlas du voyage de Bruny d’Entrecasteaux</em> (1807).",
+        'cap-raoul-source': "Source: <a href=\"http://nla.gov.au/nla.obj-230811235\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>",
+        'illustration-nouvelle-hollande-title': "South-West New Holland",
+        'southwest-caption': "Cape Marengo and Cap des Représentations renamed Cap Suffren (Point Grey) — 30 March 1802<br>Ink wash surveys of the coasts of the southern lands by Le Sueur or his assistant Nicolas-Martin Petit.",
+        'southwest-reference': "References: MAR/5JJ/51/1/35, MAR/5JJ/51/1 1-99. Digitised archives, <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
+        'southwest-illustration-label': "View the South-West New Holland illustration in full screen",
+        'cap-raoul-illustration-label': "View the Cap Raoul illustration in full screen",
+        'back-to-top-label': "Back to top",
+        'expedition-dentre-map-label': "View the Beautemps-Beaupré map in full screen",
+        'expedition-baudin-map-label': "View the Freycinet map in full screen",
+        'lightbox-close-label': "Close",
+        'lightbox-dialog-label': "Expanded map view",
         'map-title-freycinet': "Map by Freycinet, 1812", 'map-title-beautemps': "Map by Beautemps-Beaupré, 1807",
 
         // --- d'Entrecasteaux Map Page ---
@@ -107,7 +153,7 @@ const translations = {
         'baudin-title': "Baudin Map (1800-1804)", 'baudin-desc': "Explore the place names given during the scientific expedition of Nicolas Baudin...", 'map-title-baudin': "Map from Baudin expedition, 1802",
 
         // --- Resources Page ---
-        'resources-title': "Resources", 'resources-glossary-entry': "<a href=\"glossaryE.html\">Glossary of Terms</a>", 'resources-p1': "This page will contain additional resources...", 'resources-p2': "<em>(Content to be added)</em>",
+        'resources-title': "Resources", 'resources-glossary-entry': "<a href=\"glossaryE.html\">Glossary of Terms</a>", 'resources-glossary-subtitle': "French institutions, political regimes, wars, former country appellations and former scientific expeditions", 'resources-glossary-description': "This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.", 'resources-p1': "This page will contain additional resources...", 'resources-p2': "<em>(Content to be added)</em>",
         
         // --- Detail Page Recherche Bay ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",
