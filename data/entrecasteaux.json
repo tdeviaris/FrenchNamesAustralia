@@ -828,8 +828,8 @@
     "mapTitle_fr": "Pointe Gicquel (au sud-ouest)  à l’entrée du Port du Nord-Ouest, extrait de la carte « Plan du port du Nord-Ouest (dans le canal d’Entrecasteaux) / levé par Jouvency, ingénieur géographe, en février 1793 (an I) », par Jouvency. Dans Atlas du voyage de Bruny-D’Entrecasteaux, 1807. Op. cit., pl. 7. Source: National Library of Australia",
     "mapTitle_en": "Pointe Gicquel (in the Southwest) and Pointe Pierson (in the Northeast) at the entrance of Port du Nord Ouest, section of the map ‘Plan du port du nord-ouest (dans le Canal Dentrecasteaux) / levé par Jouvency, ingénieur géographe en Fev. 1793 (an. 1er)’, by Jouvency. In Atlas du voyage de Bruny-Dentrecasteaux ,1807. Op. cit., plate7 Source: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Entre32F.rtf",
-    "detailsLink_en": "Entre32E.rtf"
+    "detailsLink": "Entre32F.html",
+    "detailsLink_en": "Entre32E.html"
   },
   {
     "code": "Entre33",
@@ -854,8 +854,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Entre33F.rtf",
-    "detailsLink_en": "Entre33E.rtf"
+    "detailsLink": "Entre33F.html",
+    "detailsLink_en": "Entre33E.html"
   },
   {
     "code": "Entre34",
@@ -880,8 +880,8 @@
     "mapTitle_fr": "Pointe Jurien. Section de la  ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. Par Beautemps-Beaupré, C.-F.  Atlas du voyage de Bruny-Dentrecasteaux … , 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia\n",
     "mapTitle_en": "Pointe Jurien. Section of the map ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux … , 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia\n",
     "origin_fr": "",
-    "detailsLink": "Entre34F.rtf",
-    "detailsLink_en": "Entre34E.rtf"
+    "detailsLink": "Entre34F.html",
+    "detailsLink_en": "Entre34E.html"
   },
   {
     "code": "Entre35",
@@ -1114,8 +1114,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Entre43F.rtf",
-    "detailsLink_en": "Entre43E.rtf"
+    "detailsLink": "Entre43F.html",
+    "detailsLink_en": "Entre43E.html"
   },
   {
     "code": "Entre44",
@@ -1453,7 +1453,7 @@
     "mapTitle_en": "‘Carte de l'archipel de la Recherche, situé à la partie occidentale de la terre de Nuyts, reconnu par le contre-amiral Bruny-Dentrecasteaux, en décembre 1792 (an 1er de l'ère Française) ‘, by Beautemps-Beaupré. In Atlas du voyage de Bruny-Dentrecasteaux, 1807. Op. cit., plate14.\nSource: National Library of Australia\n\n",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre56E.rtf"
+    "detailsLink_en": "Entre56E.html"
   },
   {
     "code": "Entre57",
@@ -1479,7 +1479,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre57E.rtf"
+    "detailsLink_en": "Entre57E.html"
   },
   {
     "code": "Entre58",
@@ -1504,8 +1504,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Entre58F.rtf",
-    "detailsLink_en": "Entre58E.rtf"
+    "detailsLink": "Entre58F.html",
+    "detailsLink_en": "Entre58E.html"
   },
   {
     "code": "Entre59",
@@ -1530,8 +1530,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Entre59F.rtf",
-    "detailsLink_en": "Entre59E.rtf"
+    "detailsLink": "Entre59F.html",
+    "detailsLink_en": "Entre59E.html"
   },
   {
     "code": "Entre60",
@@ -1634,8 +1634,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Entre63F.rtf",
-    "detailsLink_en": "Entre63E.rtf"
+    "detailsLink": "Entre63F.html",
+    "detailsLink_en": "Entre63E.html"
   },
   {
     "code": "Entre64",
@@ -1686,8 +1686,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Entre65F.rtf",
-    "detailsLink_en": "Entre65E.rtf"
+    "detailsLink": "Entre65F.html",
+    "detailsLink_en": "Entre65E.html"
   },
   {
     "code": "Entre66",
@@ -1739,7 +1739,7 @@
     "mapTitle_en": "",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre67E.rtf"
+    "detailsLink_en": "Entre67E.html"
   },
   {
     "code": "Entre68",
@@ -1765,6 +1765,6 @@
     "mapTitle_en": "St Allouarn (northwest) and Pointe Dentrecasteaux (south est). Section of the map ‘Carte de la terre de Leeuwin et de la partie occidentale de la terre de Nuyts (côte sud de la Nouvelle Hollande) reconnues en décembre 1792 (an 1er de l'ère Française)’. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux, 1807. Op. cit., plate 12: \nSource: National Library of Australia ",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Entre68E.rtf"
+    "detailsLink_en": "Entre68E.html"
   }
 ]
