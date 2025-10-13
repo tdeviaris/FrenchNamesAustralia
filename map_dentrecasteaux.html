@@ -797,16 +797,23 @@
             const height = window.innerHeight;
             const isPortrait = height > width;
 
+            let zoom;
             if (isPortrait && width < 768) {
-                // Mobile portrait : zoom plus petit
-                return 3.8;
+                // Mobile portrait : zoom beaucoup plus petit pour la largeur
+                zoom = 3.5;
             } else if (width < 768) {
                 // Mobile paysage
-                return 4.2;
+                zoom = 4.0;
+            } else if (width < 1024) {
+                // Tablette
+                zoom = 4.3;
             } else {
                 // Desktop
-                return 4.5;
+                zoom = 4.5;
             }
+
+            console.log(`Screen: ${width}x${height}, Portrait: ${isPortrait}, Zoom: ${zoom}`);
+            return zoom;
         };
         const defaultZoom = getDefaultZoom();
         const focusZoomLevel = 8;
