@@ -22,6 +22,27 @@
         .lang-switcher button:hover { background-color: rgba(0, 86, 179, 0.4); }
         .lang-switcher button.active { background-color: var(--accent); }
         .lang-switcher button img { display: block; width: 28px; height: auto; }
+
+        @media (max-width: 1040px) {
+            :root { --nav-height: 64px; }
+            body { padding-top: var(--nav-height); }
+            nav { padding: 0 18px; }
+            nav ul { gap: 10px; }
+            nav ul li a { padding: 8px 14px; font-size: 0.95rem; }
+            .lang-switcher { gap: 8px; }
+            .lang-switcher button { width: 38px; height: 38px; }
+            .lang-switcher button img { width: 22px; }
+        }
+        @media (max-width: 880px) {
+            :root { --nav-height: 60px; }
+            body { padding-top: var(--nav-height); }
+            nav { padding: 0 14px; }
+            nav ul { gap: 8px; }
+            nav ul li a { padding: 7px 12px; font-size: 0.9rem; }
+            .lang-switcher { gap: 6px; }
+            .lang-switcher button { width: 34px; height: 34px; }
+            .lang-switcher button img { width: 20px; }
+        }
         .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .content-section h1 { font-family: 'Garamond', serif; font-size: clamp(2rem, 3vw, 2.4rem); margin: 0 0 6px 0; }
         .content-section h2.subtitle { font-family: 'Lato', sans-serif; font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.2rem); margin: 0 0 14px 0; color: #444; }
@@ -34,7 +55,16 @@
         .entry-title a.backtop:hover img { opacity: 1; }
         .entry p { margin: 0.6em 0; line-height: 1.55; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
-        @media (max-width: 768px) { body { padding-top: 70px; } nav { justify-content: center; height: auto; flex-direction: row; flex-wrap: wrap; gap: 2px 6px; padding: 4px 10px; } .lang-switcher { position: static; } nav ul { display: contents; } nav ul li a { border-radius: 999px; padding: 4px 8px; font-size: 0.8rem; } }
+        @media (max-width: 768px) {
+            :root { --nav-height: 56px; }
+            body { padding-top: var(--nav-height); }
+            nav { height: var(--nav-height); padding: 0 10px; justify-content: space-between; gap: 6px; }
+            nav ul { display: flex; flex: 1; justify-content: center; gap: 6px; }
+            nav ul li a { padding: 5px 10px; font-size: 0.8rem; }
+            .lang-switcher { position: static; gap: 4px; }
+            .lang-switcher button { width: 30px; height: 30px; }
+            .lang-switcher button img { width: 18px; }
+        }
 
     </style>
 </head>

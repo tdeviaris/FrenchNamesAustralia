@@ -76,6 +76,28 @@
             height: auto;
         }
 
+        @media (max-width: 1040px) {
+            :root { --nav-height: 64px; }
+            body { padding-top: var(--nav-height); }
+            nav { padding: 0 18px; }
+            nav ul { gap: 10px; }
+            nav ul li a { padding: 8px 14px; font-size: 0.95rem; }
+            .lang-switcher { gap: 8px; }
+            .lang-switcher button { width: 38px; height: 38px; }
+            .lang-switcher button img { width: 22px; }
+        }
+
+        @media (max-width: 880px) {
+            :root { --nav-height: 60px; }
+            body { padding-top: var(--nav-height); }
+            nav { padding: 0 14px; }
+            nav ul { gap: 8px; }
+            nav ul li a { padding: 7px 12px; font-size: 0.9rem; }
+            .lang-switcher { gap: 6px; }
+            .lang-switcher button { width: 34px; height: 34px; }
+            .lang-switcher button img { width: 20px; }
+        }
+
         header.hero {
             position: relative;
             background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('img/carte-baudin-zoom.jpg');
@@ -124,22 +146,33 @@
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
 
         @media (max-width: 768px) {
-            body { padding-top: 70px; }
+            :root { --nav-height: 56px; }
+            body { padding-top: var(--nav-height); }
             nav {
-                justify-content: center;
-                height: auto;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 2px 6px;
-                padding: 4px 10px;
+                height: var(--nav-height);
+                padding: 0 10px;
+                justify-content: space-between;
+                gap: 6px;
             }
-            .lang-switcher { position: static; }
-            nav ul { display: contents; }
+            nav ul {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                gap: 6px;
+            }
             nav ul li a {
-                border-radius: 999px;
-                padding: 4px 8px;
+                padding: 5px 10px;
                 font-size: 0.8rem;
             }
+            .lang-switcher {
+                position: static;
+                gap: 4px;
+            }
+            .lang-switcher button {
+                width: 30px;
+                height: 30px;
+            }
+            .lang-switcher button img { width: 18px; }
             .hero { min-height: 400px; height: 60vh; }
             .hero h1 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
             .hero p { font-size: clamp(1rem, 3vw, 1.2rem); }
