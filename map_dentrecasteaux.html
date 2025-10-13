@@ -1908,11 +1908,8 @@
                     }, { maxWidth: 700 });
                 });
 
-                if (bounds.isValid()) {
-                    map.fitBounds(bounds, { padding: [40, 40], maxZoom: focusZoomLevel });
-                } else {
-                    map.setView(defaultCenter, defaultZoom);
-                }
+                // Toujours cadrer sur toute l'Australie au lieu des marqueurs
+                map.setView(defaultCenter, defaultZoom);
 
                 // Initialize search interface translations
                 updateSearchTranslations();

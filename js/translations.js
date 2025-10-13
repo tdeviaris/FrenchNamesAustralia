@@ -2,7 +2,7 @@
 const translations = {
     'fr': {
         // --- Textes généraux ---
-        'hero-title': "Noms Français le long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d’Entrecasteaux (1791-1794) et Baudin (1800-1804)",
+        'hero-title': "Noms Français le&nbsp;long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d’Entrecasteaux (1791-1794) et Baudin (1800-1804)",
         'nav-home': "Accueil", 'nav-map-dentre': "Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Ressources",
         'footer-text': '&copy; 2025 - Dany Bréelle - Projet "Noms Français le long de la côte Australienne"',
 
@@ -27,6 +27,8 @@ const translations = {
         'illustration-nouvelle-hollande-title': "Nouvelle-Hollande, côte sud-ouest",
         'southwest-caption': "Cape Marengo et cap des Représentations renommé cap Suffren (Point Grey) — 30 mars 1802<br>Relèvements au lavis des côtes des Terres australes réalisés par Le Sueur ou son assistant Nicolas-Martin Petit.",
         'southwest-reference': "références : MAR/5JJ/51/1/35, MAR/5JJ/51/1 1-99. Archives numérisées <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
+        'southwest-title': "Nouvelle-Hollande, côte sud-ouest",
+        'southwest-source': "Source : <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
         'southwest-illustration-label': "Afficher l'illustration de la Nouvelle-Hollande en plein écran",
         'cap-raoul-illustration-label': "Afficher l'illustration du cap Raoul en plein écran",
         'back-to-top-label': "Retour en haut de page",
@@ -105,7 +107,7 @@ const translations = {
     },
     'en': {
         // --- General text ---
-        'hero-title': "French Names Along the Australian Coastline", 'hero-subtitle': "The toponyms originated by the d’Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
+        'hero-title': "French Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms originated by the d’Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
         'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Resources",
         'footer-text': '&copy; 2025 - Dany Bréelle - "French Names Along the Australian Coastline" Project',
 
@@ -130,6 +132,8 @@ const translations = {
         'illustration-nouvelle-hollande-title': "South-West New Holland",
         'southwest-caption': "Cape Marengo and Cap des Représentations renamed Cap Suffren (Point Grey) — 30 March 1802<br>Ink wash surveys of the coasts of the southern lands by Le Sueur or his assistant Nicolas-Martin Petit.",
         'southwest-reference': "References: MAR/5JJ/51/1/35, MAR/5JJ/51/1 1-99. Digitised archives, <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
+        'southwest-title': "South-West New Holland",
+        'southwest-source': "Source: <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
         'southwest-illustration-label': "View the South-West New Holland illustration in full screen",
         'cap-raoul-illustration-label': "View the Cap Raoul illustration in full screen",
         'back-to-top-label': "Back to top",
