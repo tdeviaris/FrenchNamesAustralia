@@ -126,6 +126,13 @@
         .intro-links a:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
         #intro-title { scroll-margin-top: calc(var(--nav-height) + 24px); }
         .expedition-section { margin-top: clamp(32px, 5vw, 48px); scroll-margin-top: calc(var(--nav-height) + 24px); }
+
+        @media (max-width: 768px) {
+            #intro-title,
+            .expedition-section {
+                scroll-margin-top: calc(var(--nav-height) + 12px);
+            }
+        }
         .expedition-section h3 { font-size: clamp(1.6rem, 2.8vw, 2rem); margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
         .expedition-heading span { flex: 1; }
         .expedition-heading .backtop { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; }
