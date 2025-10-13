@@ -790,7 +790,25 @@
     <script src="js/main.js?v=20241012"></script>
     <script>
         const defaultCenter = [-27, 135];
-        const defaultZoom = 4.5;
+        // Ajuster le zoom en fonction de la taille de l'écran
+        // Sur mobile portrait, réduire le zoom pour voir toute l'Australie
+        const getDefaultZoom = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const isPortrait = height > width;
+
+            if (isPortrait && width < 768) {
+                // Mobile portrait : zoom plus petit
+                return 3.8;
+            } else if (width < 768) {
+                // Mobile paysage
+                return 4.2;
+            } else {
+                // Desktop
+                return 4.5;
+            }
+        };
+        const defaultZoom = getDefaultZoom();
         const focusZoomLevel = 8;
         const popupTopMargin = 26;
         const popupBottomMargin = 28;
@@ -1910,6 +1928,15 @@
 
                 // Toujours cadrer sur toute l'Australie au lieu des marqueurs
                 map.setView(defaultCenter, defaultZoom);
+
+                // Gérer le changement d'orientation sur mobile
+                window.addEventListener('resize', () => {
+                    const newZoom = getDefaultZoom();
+                    if (Math.abs(map.getZoom() - defaultZoom) < 0.5) {
+                        // Uniquement si l'utilisateur n'a pas zoomy/dézoomy manuellement
+                        map.setView(defaultCenter, newZoom, { animate: false });
+                    }
+                });
 
                 // Initialize search interface translations
                 updateSearchTranslations();
