@@ -25,12 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('language', lang);
 
         // Traduit les éléments de la page en utilisant l'objet du fichier translations.js
+        // D'abord par ID (ancien système)
         for (const id in translations[lang]) {
             const element = document.getElementById(id);
             if (element) {
                 element.innerHTML = translations[lang][id];
             }
         }
+
+        // Puis par data-i18n (nouveau système)
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+            const key = element.getAttribute('data-i18n');
+            if (key && translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
+        });
 
         document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
             const key = element.getAttribute('data-i18n-aria-label');
