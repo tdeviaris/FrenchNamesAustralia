@@ -863,7 +863,14 @@
         const esriLabels  = L.esri.basemapLayer('ImageryLabels', { zIndex: 30 });
         const imageryWithLabels = L.layerGroup([esriImagery, esriLabels]);
 
-        osm.addTo(map);
+        // Charger la vue par défaut depuis localStorage (par défaut: satellite)
+        const savedViewState = localStorage.getItem('satelliteView');
+        const useSatellite = savedViewState !== null ? savedViewState === 'true' : true;
+        if (useSatellite) {
+            imageryWithLabels.addTo(map);
+        } else {
+            osm.addTo(map);
+        }
 
         const scaleControl = L.control.scale({ position: 'bottomleft', metric: true, imperial: false });
         scaleControl.addTo(map);
@@ -888,10 +895,18 @@
             satelliteLabelElement = L.DomUtil.create('span', '', satelliteWrapper);
             satelliteLabelElement.id = 'satellite-label';
 
+            // Restaurer l'état depuis localStorage (par défaut: true)
+            const savedState = localStorage.getItem('satelliteView');
+            const isSatellite = savedState !== null ? savedState === 'true' : true;
+            satelliteCheckbox.checked = isSatellite;
+
             L.DomEvent.disableClickPropagation(satelliteWrapper);
             L.DomEvent.disableScrollPropagation(satelliteWrapper);
 
             satelliteCheckbox.addEventListener('change', function() {
+                // Sauvegarder l'état dans localStorage
+                localStorage.setItem('satelliteView', this.checked);
+
                 if (this.checked) {
                     map.removeLayer(osm);
                     map.addLayer(imageryWithLabels);
