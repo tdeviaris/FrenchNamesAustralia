@@ -59,6 +59,55 @@
         .entry-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
         .entry-text { flex: 1; min-width: 300px; }
         .entry-text p { margin: 0.6em 0; line-height: 1.55; }
+        .entry-image img { cursor: pointer; transition: opacity 0.2s ease; }
+        .entry-image img:hover { opacity: 0.85; }
+
+        /* Lightbox for fullscreen portrait display */
+        .portrait-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .portrait-lightbox.active {
+            display: flex;
+        }
+        .portrait-lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+        }
+        .portrait-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            font-size: 28px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background 0.2s ease;
+        }
+        .portrait-lightbox-close:hover {
+            background: #f2f2f2;
+        }
+        .portrait-lightbox-close:focus-visible {
+            outline: 3px solid #FFD700;
+        }
+
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             :root { --nav-height: 56px; }
@@ -206,5 +255,51 @@
     <footer>
         <p>&copy; 2025 - Dany Bréelle - "French Names Along the Australian Coastline" Project</p>
     </footer>
+
+    <!-- Lightbox for fullscreen portrait display -->
+    <div class="portrait-lightbox" id="portraitLightbox">
+        <button type="button" class="portrait-lightbox-close" aria-label="Close">&times;</button>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        // Lightbox management for portraits
+        const lightbox = document.getElementById('portraitLightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxClose = lightbox.querySelector('.portrait-lightbox-close');
+        const portraitImages = document.querySelectorAll('.entry-image img');
+
+        // Open lightbox on image click
+        portraitImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close on background click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
