@@ -58,17 +58,14 @@
             transition: background 0.2s ease;
         }
         .lang-switcher button:hover { background-color: rgba(0,86,179,0.35); }
-        .lang-switcher button.active { background-color: #0056b3; }
         .lang-switcher button img { width: 28px; height: auto; }
 
         main.story {
             position: relative;
-            z-index: 1;
         }
         .scene {
             position: relative;
-            min-height: 150vh;
-            z-index: 1;
+            min-height: 200vh;
         }
         .scene-media {
             position: fixed;
@@ -81,7 +78,6 @@
             background-repeat: no-repeat;
             filter: brightness(0.9);
             z-index: 0;
-            transition: opacity 0.6s ease-in-out;
         }
         .scene > .scene-media {
             display: none;
@@ -100,7 +96,6 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            z-index: 10;
         }
         .scene article {
             background: rgba(255,255,255,0.92);
@@ -120,30 +115,10 @@
         .scene article .source { font-size: 0.9rem; color: #555; }
 
         .media-hero { background-image: url('img/carte-baudin-zoom.jpg'); }
-        .media-beautemps {
-            background-image: url('img/carte-de-beautemps-beaupre-1807.jpg');
-            background-color: #2a2a2a;
-            background-size: contain;
-            background-position: center center;
-        }
-        .media-cap-raoul {
-            background-image: url('img/cap-raoul.jpg');
-            background-color: #2a2a2a;
-            background-size: contain;
-            background-position: center center;
-        }
-        .media-freycinet {
-            background-image: url('img/carte-de-freycinet-1812.jpg');
-            background-color: #2a2a2a;
-            background-size: contain;
-            background-position: center center;
-        }
-        .media-hollande {
-            background-image: url('img/nouvelle-hollande-cote-sud-ouest.jpg');
-            background-color: #2a2a2a;
-            background-size: contain;
-            background-position: center center;
-        }
+        .media-beautemps { background-image: url('img/carte-de-beautemps-beaupre-1807.jpg'); }
+        .media-cap-raoul { background-image: url('img/cap-raoul.jpg'); }
+        .media-freycinet { background-image: url('img/carte-de-freycinet-1812.jpg'); }
+        .media-hollande { background-image: url('img/nouvelle-hollande-cote-sud-ouest.jpg'); }
 
         .intro-card {
             background: rgba(0,0,0,0.7);
@@ -247,7 +222,7 @@
                 <article>
                     <h2 class="illustration-title" data-i18n="cap-raoul-title">Cap Raoul</h2>
                     <p data-i18n="cap-raoul-caption">Views of different parts of Van Diemen's Land<br>Piron, Jean &amp; Schoeder &amp; Beautemps-Beaupré, C. F &amp; France.<br>In <em>Atlas du voyage de Bruny d'Entrecasteaux</em> (1807).</p>
-                    <p class="source" data-i18n="cap-raoul-source">Source : <a href="http://nla.gov.au/nla.obj-230811235" target="_blank" rel="noopener">National Library of Australia</a></p>
+                    <p class="source">Source : <a href="http://nla.gov.au/nla.obj-230811235" target="_blank" rel="noopener">National Library of Australia</a></p>
                 </article>
             </div>
         </section>
@@ -271,7 +246,7 @@
                 <article>
                     <h2 class="illustration-title" data-i18n="southwest-title">Nouvelle-Hollande, côte sud-ouest</h2>
                     <p data-i18n="southwest-caption">Cape Marengo and Cap des Représentations renamed Cap Suffren (Point Grey) — 30 March 1802<br>Ink wash surveys of the coasts of the southern lands by Le Sueur or his assistant Nicolas-Martin Petit.</p>
-                    <p class="source" data-i18n="southwest-source">Source : <a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L" target="_blank" rel="noopener">Archives nationales de France</a></p>
+                    <p class="source">Source : <a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L" target="_blank" rel="noopener">Archives nationales de France</a></p>
                 </article>
             </div>
         </section>
@@ -280,27 +255,16 @@
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
     <script>
-        // Gestion du changement d'image de fond lors du scroll avec fondu enchaîné
+        // Gestion du changement d'image de fond lors du scroll
         const scenes = document.querySelectorAll('.scene');
 
-        // Créer deux couches pour le fondu enchaîné des images de fond
-        const backgroundLayer1 = document.createElement('div');
-        backgroundLayer1.className = 'scene-media';
-        backgroundLayer1.style.position = 'fixed';
-        backgroundLayer1.style.zIndex = '0';
-        backgroundLayer1.style.opacity = '1';
-        document.body.insertBefore(backgroundLayer1, document.querySelector('main'));
-
-        const backgroundLayer2 = document.createElement('div');
-        backgroundLayer2.className = 'scene-media';
-        backgroundLayer2.style.position = 'fixed';
-        backgroundLayer2.style.zIndex = '0';
-        backgroundLayer2.style.opacity = '0';
-        document.body.insertBefore(backgroundLayer2, document.querySelector('main'));
+        // Créer l'élément de fond fixe une seule fois
+        const fixedBackground = document.createElement('div');
+        fixedBackground.className = 'scene-media';
+        fixedBackground.style.zIndex = '0';
+        document.body.insertBefore(fixedBackground, document.querySelector('main'));
 
         let currentSceneIndex = -1;
-        let activeLayer = backgroundLayer1; // La couche actuellement visible
-        let hiddenLayer = backgroundLayer2; // La couche cachée pour préparer la prochaine image
 
         function updateBackground() {
             const scrollTop = window.scrollY;
@@ -317,33 +281,20 @@
                 }
             });
 
-            // Si la scène a changé, faire un fondu enchaîné
+            // Si la scène a changé, mettre à jour l'image de fond instantanément
             if (newSceneIndex !== currentSceneIndex && newSceneIndex >= 0) {
                 currentSceneIndex = newSceneIndex;
                 const currentScene = scenes[newSceneIndex];
                 const mediaElement = currentScene.querySelector('.scene-media');
 
                 if (mediaElement) {
-                    // Préparer la nouvelle image sur la couche cachée
-                    hiddenLayer.className = 'scene-media';
+                    // Copier toutes les classes CSS de l'élément media
+                    fixedBackground.className = 'scene-media';
                     Array.from(mediaElement.classList).forEach(cls => {
                         if (cls.startsWith('media-')) {
-                            hiddenLayer.classList.add(cls);
+                            fixedBackground.classList.add(cls);
                         }
                     });
-
-                    // Faire apparaître la nouvelle image en fondu
-                    hiddenLayer.style.opacity = '1';
-
-                    // Après la transition, cacher l'ancienne image et échanger les rôles
-                    setTimeout(() => {
-                        activeLayer.style.opacity = '0';
-
-                        // Échanger les rôles des deux couches
-                        const temp = activeLayer;
-                        activeLayer = hiddenLayer;
-                        hiddenLayer = temp;
-                    }, 650); // Légèrement après la fin de la transition CSS
                 }
             }
         }

@@ -817,9 +817,9 @@
         };
         const defaultZoom = getDefaultZoom();
         const focusZoomLevel = 8;
-        const popupTopMargin = 120;
-        const popupBottomMargin = 28;
-        const popupHeightRatio = 0.78;
+        const popupTopMargin = 180;
+        const popupBottomMargin = 50;
+        const popupHeightRatio = 0.65;
 
         const getPopupOverlayMargins = () => {
             const mapContainer = map.getContainer();
@@ -836,7 +836,8 @@
                 const searchRect = searchOverlay.getBoundingClientRect();
                 const overlap = Math.max(0, searchRect.bottom - mapRect.top);
                 if (overlap > 0) {
-                    topMargin = Math.max(topMargin, overlap + 8);
+                    // Ajouter 50px supplémentaires pour éviter le chevauchement avec le compteur d'occurrences
+                    topMargin = Math.max(topMargin, overlap + 50);
                 }
             }
 
@@ -1542,10 +1543,12 @@
 
             const pendingImages = Array.from(popupElement.querySelectorAll('img')).filter((img) => !img.complete);
             if (pendingImages.length === 0) {
+                // No pending images, position immediately
                 ensureVisible();
                 return;
             }
 
+            // Images still loading - wait for them before positioning
             let remaining = pendingImages.length;
             let settled = false;
             let timeoutId = window.setTimeout(() => {
@@ -1840,6 +1843,14 @@
                         marker.on('mouseout', () => marker.closeTooltip());
                     }
 
+                    // Preload image if available to get dimensions before opening popup
+                    const popupImageCache = {};
+                    if (place.imgUrl && place.imgUrl.trim() !== "") {
+                        const img = new Image();
+                        img.src = place.imgUrl;
+                        popupImageCache[place.code] = img;
+                    }
+
                     marker.bindPopup(() => {
                         const currentLang = localStorage.getItem('language') || 'en';
                         const trans = translations[currentLang];
@@ -1912,7 +1923,7 @@
                             textHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
                         }
 
-                        
+
                         // Si une image est disponible, créer une mise en page à deux colonnes.
                         if (place.imgUrl && place.imgUrl.trim() !== "") {
                             const imageHtml = `
