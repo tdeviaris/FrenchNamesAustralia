@@ -277,17 +277,25 @@
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
     <script>
-        // Gestion du changement d'image de fond lors du scroll
+        // Gestion du changement d'image de fond lors du scroll avec fondu enchaîné
         const scenes = document.querySelectorAll('.scene');
 
-        // Créer l'élément de fond fixe une seule fois
-        const fixedBackground = document.createElement('div');
-        fixedBackground.className = 'scene-media';
-        fixedBackground.style.zIndex = '0';
-        fixedBackground.style.opacity = '1';
-        document.body.insertBefore(fixedBackground, document.querySelector('main'));
+        // Créer deux couches pour le fondu enchaîné
+        const backgroundLayer1 = document.createElement('div');
+        backgroundLayer1.className = 'scene-media';
+        backgroundLayer1.style.zIndex = '0';
+        backgroundLayer1.style.opacity = '1';
+        document.body.insertBefore(backgroundLayer1, document.querySelector('main'));
+
+        const backgroundLayer2 = document.createElement('div');
+        backgroundLayer2.className = 'scene-media';
+        backgroundLayer2.style.zIndex = '1';
+        backgroundLayer2.style.opacity = '0';
+        document.body.insertBefore(backgroundLayer2, document.querySelector('main'));
 
         let currentSceneIndex = -1;
+        let activeLayer = backgroundLayer1; // La couche actuellement visible
+        let hiddenLayer = backgroundLayer2; // La couche cachée pour préparer la prochaine image
 
         function updateBackground() {
             const scrollTop = window.scrollY;
@@ -304,29 +312,33 @@
                 }
             });
 
-            // Si la scène a changé, mettre à jour l'image de fond avec fondu
+            // Si la scène a changé, faire un fondu enchaîné
             if (newSceneIndex !== currentSceneIndex && newSceneIndex >= 0) {
                 currentSceneIndex = newSceneIndex;
                 const currentScene = scenes[newSceneIndex];
                 const mediaElement = currentScene.querySelector('.scene-media');
 
                 if (mediaElement) {
-                    // Fondu sortant
-                    fixedBackground.style.opacity = '0';
+                    // Préparer la nouvelle image sur la couche cachée
+                    hiddenLayer.className = 'scene-media';
+                    Array.from(mediaElement.classList).forEach(cls => {
+                        if (cls.startsWith('media-')) {
+                            hiddenLayer.classList.add(cls);
+                        }
+                    });
 
-                    // Après le fondu, changer l'image et faire le fondu entrant
+                    // Faire apparaître la nouvelle image en fondu
+                    hiddenLayer.style.opacity = '1';
+
+                    // Après la transition, cacher l'ancienne image et échanger les rôles
                     setTimeout(() => {
-                        // Copier toutes les classes CSS de l'élément media
-                        fixedBackground.className = 'scene-media';
-                        Array.from(mediaElement.classList).forEach(cls => {
-                            if (cls.startsWith('media-')) {
-                                fixedBackground.classList.add(cls);
-                            }
-                        });
+                        activeLayer.style.opacity = '0';
 
-                        // Fondu entrant
-                        fixedBackground.style.opacity = '1';
-                    }, 600); // Correspond à la durée de la transition CSS
+                        // Échanger les rôles des deux couches
+                        const temp = activeLayer;
+                        activeLayer = hiddenLayer;
+                        hiddenLayer = temp;
+                    }, 650); // Légèrement après la fin de la transition CSS
                 }
             }
         }
