@@ -103,7 +103,8 @@ const translations = {
         'search-prev-title': "Précédent",
         'search-next-title': "Suivant",
         'search-count-singular': "occurrence",
-        'search-count-plural': "occurrences"
+        'search-count-plural': "occurrences",
+        'search-no-results': "Pas d'occurrences"
     },
     'en': {
         // --- General text ---
@@ -208,6 +209,7 @@ const translations = {
         'search-prev-title': "Previous",
         'search-next-title': "Next",
         'search-count-singular': "occurrence",
-        'search-count-plural': "occurrences"
+        'search-count-plural': "occurrences",
+        'search-no-results': "No occurrences"
     }
 };

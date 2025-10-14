@@ -304,7 +304,7 @@
             }
         }
 
-        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto; }
+        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.5; width: auto; overflow-x: hidden; }
         .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
         .popup-link-row {
             display: flex;
@@ -317,10 +317,11 @@
         }
         .leaflet-popup-content.has-scrollbar {
             overflow-y: auto;
-            padding-right: 12px;
+            overflow-x: hidden;
+            padding-right: 8px;
             scrollbar-width: thin;
-            scrollbar-gutter: stable;
             max-height: min(420px, 60vh);
+            box-sizing: content-box;
         }
         .leaflet-popup-content.has-scrollbar::-webkit-scrollbar {
             width: 8px;
@@ -344,14 +345,19 @@
             display: flex;
             align-items: flex-start;
             gap: 15px;
+            overflow-x: hidden;
+            box-sizing: border-box;
         }
         .popup-text-container {
             width: 280px;
             flex-shrink: 0;
+            min-width: 0;
+            box-sizing: border-box;
         }
         .popup-image-wrapper {
             flex-basis: clamp(240px, 38vw, 360px);
-            flex-shrink: 0;
+            flex-shrink: 1;
+            min-width: 0;
         }
         .popup-image-button {
             background: none;
@@ -1671,6 +1677,19 @@
 
             if (searchResults.length > 0) {
                 focusOnResult(0);
+            } else {
+                // Afficher "Pas d'occurrences" pendant 1 seconde puis effacer
+                const trans = translations[getCurrentLanguage()] || {};
+                const noResultsText = trans['search-no-results'] || 'No occurrences';
+                searchCount.textContent = noResultsText;
+                searchResultsDiv.classList.add('visible');
+
+                setTimeout(() => {
+                    searchResultsDiv.classList.remove('visible');
+                    searchInput.value = '';
+                    searchInput.focus();
+                    updateSearchUI();
+                }, 1000);
             }
         };
 
