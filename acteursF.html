@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les acteurs clés - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        :root { --nav-height: 72px; --accent: #0056b3; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; margin: 0; background-color: #999; color: #333; padding-top: var(--nav-height); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        nav { background: #1f1f1f; color: #fff; position: fixed; inset: 0 0 auto 0; height: var(--nav-height); z-index: 1100; display: flex; align-items: center; justify-content: center; padding: 0 clamp(18px, 4vw, 40px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(8px, 2vw, 18px); }
+        nav ul li a { display: block; color: inherit; text-decoration: none; padding: 10px 18px; font-size: 1.05rem; border-radius: 999px; transition: background 0.2s ease, color 0.2s ease; }
+        nav ul li a.active, nav ul li a:hover { background-color: var(--accent); color: #fff; }
+        .lang-switcher { position: absolute; right: clamp(18px, 4vw, 40px); display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
+        .lang-switcher button { position: relative; background-color: transparent; border: none; color: inherit; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.2s ease; }
+        .lang-switcher button:hover { background-color: rgba(0, 86, 179, 0.4); }
+        .lang-switcher button.active { background-color: var(--accent); }
+        .lang-switcher button img { display: block; width: 28px; height: auto; }
+
+        @media (max-width: 1040px) {
+            :root { --nav-height: 64px; }
+            body { padding-top: var(--nav-height); }
+            nav { padding: 0 18px; }
+            nav ul { gap: 10px; }
+            nav ul li a { padding: 8px 14px; font-size: 0.95rem; }
+            .lang-switcher { gap: 8px; }
+            .lang-switcher button { width: 38px; height: 38px; }
+            .lang-switcher button img { width: 22px; }
+        }
+        @media (max-width: 880px) {
+            :root { --nav-height: 60px; }
+            body { padding-top: var(--nav-height); }
+            nav { padding: 0 14px; }
+            nav ul { gap: 8px; }
+            nav ul li a { padding: 7px 12px; font-size: 0.9rem; }
+            .lang-switcher { gap: 6px; }
+            .lang-switcher button { width: 34px; height: 34px; }
+            .lang-switcher button img { width: 20px; }
+        }
+        .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .content-section h1 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 20px 0; }
+        .content-section h2.subtitle { font-family: 'Lato', sans-serif; font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.2rem); margin: 0 0 14px 0; color: #444; }
+        .content-section p.intro { margin: 0 0 18px 0; }
+        .toc { margin: 0 0 20px 0; padding-left: 18px; }
+        .toc li { margin: 6px 0; }
+        .entry-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin-top: 30px; scroll-margin-top: calc(var(--nav-height) + 16px); }
+        .entry-title a.backtop { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; }
+        .entry-title a.backtop img { width: 24px; height: 24px; opacity: 0.8; transition: opacity 0.2s ease; }
+        .entry-title a.backtop:hover img { opacity: 1; }
+        .entry { margin-bottom: 40px; }
+        .entry-content { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+        .entry-image { flex-shrink: 0; width: 200px; }
+        .entry-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .entry-text { flex: 1; min-width: 300px; }
+        .entry-text p { margin: 0.6em 0; line-height: 1.55; }
+        footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+        @media (max-width: 768px) {
+            :root { --nav-height: 56px; }
+            body { padding-top: var(--nav-height); }
+            nav { height: var(--nav-height); padding: 0 10px; justify-content: space-between; gap: 6px; }
+            nav ul { display: flex; flex: 1; justify-content: center; gap: 6px; }
+            nav ul li a { padding: 5px 10px; font-size: 0.8rem; }
+            .lang-switcher { position: static; gap: 4px; }
+            .lang-switcher button { width: 30px; height: 30px; }
+            .lang-switcher button img { width: 18px; }
+            .entry-content { flex-direction: column; }
+            .entry-image { width: 100%; max-width: 300px; margin: 0 auto; }
+        }
+
+    </style>
+</head>
+<body id="top">
+    <nav>
+        <ul>
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="map_dentrecasteaux.html" id="nav-map-dentre">d'Entrecasteaux</a></li>
+            <li><a href="map_baudin.html" id="nav-map-baudin">Baudin</a></li>
+            <li><a href="resources.html" class="active" id="nav-resources">Resources</a></li>
+        </ul>
+        <div class="lang-switcher">
+            <button type="button" id="lang-fr" class="active">
+                <img src="img/fr.svg" alt="Français">
+            </button>
+            <button type="button" id="lang-en" onclick="window.location.href='acteursE.html'">
+                <img src="img/au.svg" alt="English">
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="content-section">
+            <h1>Les acteurs clés <a href="resources.html"><img src="img/up-arrow.svg" alt="Retour à la page Ressources" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h1>
+            <h2 class="subtitle">Les explorateurs et scientifiques des expéditions d'Entrecasteaux et Baudin</h2>
+
+            <p class="intro">
+                Ces pages présentent les principaux acteurs des deux grandes expéditions françaises qui ont cartographié et nommé de nombreux lieux le long des côtes australiennes.
+            </p>
+
+            <ul class="toc">
+                <li><a href="#baudin">Nicolas Baudin</a></li>
+                <li><a href="#entrecasteaux">Antoine Bruny d'Entrecasteaux</a></li>
+                <li><a href="#freycinet">Louis de Freycinet</a></li>
+                <li><a href="#peron">François Péron</a></li>
+            </ul>
+
+            <section class="entry">
+                <h2 id="baudin" class="entry-title">
+                    <span>Nicolas Baudin</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/baudin.png" alt="Portrait de Nicolas Baudin">
+                    </div>
+                    <div class="entry-text">
+                        <p>Nicolas Baudin, né en 1754 à Saint-Martin-de-Ré, était un marin et explorateur français. Après plusieurs voyages dans l'océan Indien et aux Antilles, il fut choisi en 1800 pour diriger une expédition scientifique en Australie.</p>
+                        <p>Aux commandes des navires Le Géographe et Le Naturaliste, il explora et cartographia une grande partie des côtes australiennes entre 1801 et 1803. Son expédition fut l'une des plus importantes missions scientifiques de son époque, rapportant des dizaines de milliers de spécimens botaniques et zoologiques.</p>
+                        <p>Pendant son voyage, il rencontra le navigateur britannique Matthew Flinders et fit des relevés détaillés des côtes australiennes. L'expédition collecta 2 500 échantillons de minéraux, 12 cartons de notes et 1 500 esquisses et peintures.</p>
+                        <p>Malheureusement, Baudin mourut de la tuberculose en septembre 1803 à l'île Maurice, peu après son retour, laissant un héritage scientifique considérable. De nombreux lieux en Australie portent encore aujourd'hui les noms donnés par son équipage.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="entrecasteaux" class="entry-title">
+                    <span>Antoine Bruny d'Entrecasteaux</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/entrecasteaux.png" alt="Portrait d'Antoine Bruny d'Entrecasteaux">
+                    </div>
+                    <div class="entry-text">
+                        <p>Antoine Raymond Joseph de Bruni, chevalier d'Entrecasteaux (8 novembre 1737 – 21 juillet 1793) était un officier de marine, explorateur et administrateur colonial français. Formé dans une école jésuite, il fut enrôlé dans la Marine française en 1754 par son père qui s'opposa à sa vocation religieuse.</p>
+                        <p>Il est surtout connu pour avoir dirigé l'expédition de 1791-1794 à la recherche de La Pérouse, dont on était sans nouvelles depuis trois ans. Promu contre-amiral au départ de Brest le 28 septembre 1791, il commandait deux navires, La Recherche et L'Espérance.</p>
+                        <p>D'Entrecasteaux eut la chance d'avoir d'excellents officiers et scientifiques, notamment l'ingénieur hydrographe Charles-François Beautemps-Beaupré, aujourd'hui considéré comme le père de l'hydrographie française moderne. L'expédition cartographia en détail les côtes de la Tasmanie et de l'Australie-Occidentale en 1792-1793.</p>
+                        <p>D'Entrecasteaux mourut du scorbut le 21 juillet 1793. Bien qu'il n'ait pas retrouvé La Pérouse, son voyage produisit d'importants relevés de plusieurs îles du Pacifique, ainsi que des rapports sur leur végétation, leurs conditions météorologiques, leurs langues et leurs cultures.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="freycinet" class="entry-title">
+                    <span>Louis de Freycinet</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/freycinet.png" alt="Portrait de Louis de Freycinet">
+                    </div>
+                    <div class="entry-text">
+                        <p>Louis Claude de Saulces de Freycinet, né en 1779 à Montélimar, était un géographe et explorateur français du XIXe siècle. Il participa à l'expédition scientifique aux Terres Australes (1800-1803) dirigée par Nicolas Baudin, d'abord comme second du capitaine Hamelin sur Le Naturaliste, puis commandant de la goélette Casuarina.</p>
+                        <p>Pendant cette expédition, il contribua à cartographier les côtes australiennes, réalisant "la première carte publiée des côtes de la Nouvelle-Hollande (Australie)". Après le décès de Baudin, il travailla avec François Péron à la rédaction du récit de l'expédition et à la publication des cartes et atlas.</p>
+                        <p>En 1817-1820, il mena une expédition de circumnavigation à bord de l'Uranie, accompagné de son épouse Rose, déguisée en homme. Ses travaux scientifiques furent remarquables, collectant des données géographiques, ethnographiques et botaniques dans différentes régions du monde.</p>
+                        <p>Élu à l'Académie des sciences en 1825, il participa à la création de la Société de géographie et publia plusieurs ouvrages importants sur ses voyages, contribuant ainsi au rayonnement de la science française et à la connaissance des terres australes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="peron" class="entry-title">
+                    <span>François Péron</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/peron.png" alt="Portrait de François Péron">
+                    </div>
+                    <div class="entry-text">
+                        <p>François Péron est un naturaliste et explorateur français né en 1775 à Cérilly. Après avoir été militaire et blessé à la guerre, il se tourne vers l'étude de la médecine et de l'histoire naturelle à Paris. En 1800, il intègre l'expédition Baudin vers les Terres Australes à bord des navires Le Géographe et Le Naturaliste.</p>
+                        <p>Durant ce voyage scientifique, Péron et son collègue Charles-Alexandre Lesueur constituent une collection exceptionnelle de plus de 100 000 spécimens, dont 2 500 espèces nouvelles. Ses observations et travaux portent notamment sur la zoologie, l'anthropologie et la géographie des régions explorées.</p>
+                        <p>Après le décès de Baudin en 1803, Péron fut chargé de rédiger le récit officiel de l'expédition. Élu membre correspondant de l'Institut en 1805, il publia plusieurs mémoires scientifiques et contribua au récit du "Voyage de découvertes aux Terres Australes".</p>
+                        <p>Malheureusement, il mourut prématurément de la tuberculose en 1810 à l'âge de 35 ans, laissant derrière lui un héritage scientifique important qui enrichit considérablement les connaissances européennes sur l'Australie et le Pacifique.</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Dany Bréelle - Projet "Noms Français le long de la côte Australienne"</p>
+    </footer>
+</body>
+</html>
