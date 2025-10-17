@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Voyage — page 35 (Mirador, IIIF)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/mirador@3/dist/mirador.min.css" />
+  <style>
+    html,body{height:100%;margin:0}
+    #mirador{height:100vh; background:#0b0b0b;}
+
+    /* Simplify Mirador chrome */
+    .mirador-add-window-button,
+    .mirador-window-top-bar,
+    .mirador-companion-window,
+    .mirador-workspace-control-panel { display: none !important; }
+
+    /* Reposition OpenSeadragon controls */
+    .openseadragon-container .openseadragon-canvas { background: #0b0b0b; }
+    .openseadragon-container .openseadragon-container-overlay { pointer-events: none; }
+    .openseadragon-container .openseadragon-container-overlay > .openseadragon-controls {
+      position: absolute;
+      bottom: 16px;
+      right: 26px;
+      left: auto; pointer-events: auto; }
+    .openseadragon-container > .openseadragon-controls {
+      position: absolute !important;
+      top: auto !important;
+      bottom: 16px !important;
+      right: 26px !important;
+      left: auto !important;
+      display: flex !important;
+      gap: 4px;
+      background: rgba(10,10,10,0.82);
+      padding: 5px 8px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+    .openseadragon-container > .openseadragon-controls .openseadragon-button {
+      margin: 0 !important;
+      background: transparent !important;
+      border: none !important;
+    }
+    .openseadragon-container > .openseadragon-controls .openseadragon-button .openseadragon-button-icon {
+      width: 26px !important;
+      height: 26px !important;
+      background-size: 24px 24px !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="mirador"></div>
+
+  <script src="https://unpkg.com/mirador@3/dist/mirador.min.js"></script>
+  <script>
+    const manifest = 'https://iiif.archive.org/iiif/voyagededcouve03pr/manifest.json';
+    const canvasId = 'https://iiif.archive.org/iiif/voyagededcouve03pr/canvas/p1';
+    const windowId = 'vda-p1';
+
+    const viewer = Mirador.viewer({
+      id: 'mirador',
+
+      // Thème dark par défaut
+      selectedTheme: 'dark',
+      themes: {
+        dark: { palette: { type: 'dark', primary: { main: '#4db6ac' }, secondary: { main: '#4db6ac' } } }
+      },
+
+      // UI par défaut pour toutes les fenêtres
+      window: {
+        defaultView: 'single',
+        sideBarOpen: false,
+        allowFullscreen: false,
+        allowMaximize: false,
+        allowTopMenuButton: false,
+        panels: { info: false, annotations: false, search: false, layers: false },
+        allowWindowSideBar: false,
+        views: [
+          { key: 'single', behaviors: ['individuals'] }
+        ]
+      },
+
+      // Configuration OpenSeadragon
+      osdConfig: {
+        gestureSettingsMouse: { clickToZoom: true },
+        showNavigationControl: true,
+        showRotationControl: true,
+        showFullPageControl: true,
+        showHomeControl: true,
+        showFlipControl: false,
+        prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/'
+      },
+
+      // Activer la barre d'outils de manipulation
+      workspaceControlPanel: { enabled: false },
+
+      // Vignettes désactivées au chargement
+      thumbnailNavigation: { defaultPosition: 'off' },
+
+      // Workspace avec contrôles de zoom masqués
+      workspace: { type: 'mosaic', showZoomControls: false, isWorkspaceAddVisible: false },
+
+      // Fenêtre initiale - manifest avec mode single et maximized
+      windows: [{
+        manifestId: manifest,
+        view: 'single',
+        maximized: false
+      }],
+
+      // Catalogue avec le manifest
+      catalog: [{ manifestId: manifest }]
+    });
+
+    // S'abonner aux changements d'état pour détecter le chargement du manifest
+    let hasNavigated = false;
+    const tweakChrome = () => {
+      const hideSelectors = [
+        '.mirador-add-window-button',
+        '.mirador-window-top-bar',
+        '.mirador-companion-window',
+        '.mirador-window-side-bar',
+        '.mirador-workspace-control-panel',
+        '.mirador-main-menu-button',
+        '.mirador-workspace--control-panel',
+        '.mirador-add-window-overlay'
+      ];
+      hideSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => el.style.display = 'none');
+      });
+
+      const navBar = document.querySelector('[class*="osd-navigation"]');
+      const osdControls = document.querySelector('.openseadragon-container .openseadragon-controls');
+      console.log('[Viewer] navBar found?', Boolean(navBar));
+      console.log('[Viewer] osd controls found?', Boolean(osdControls));
+
+      const applyImportant = (element, styles) => {
+        Object.entries(styles).forEach(([prop, value]) => {
+          element.style.setProperty(prop, value, 'important');
+        });
+      };
+
+      if (navBar) {
+        applyImportant(navBar, {
+          position: 'fixed',
+          bottom: '20px',
+          right: '24px',
+          left: 'auto',
+          top: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          background: 'rgba(12,12,12,0.85)',
+          padding: '6px 12px',
+          borderRadius: '12px',
+          boxShadow: '0 12px 22px rgba(0,0,0,0.35)',
+          zIndex: '11000'
+        });
+      }
+
+      if (osdControls) {
+        const navWidth = navBar ? navBar.getBoundingClientRect().width : 0;
+        applyImportant(osdControls, {
+          position: 'fixed',
+          bottom: '20px',
+          right: `${24 + navWidth + (navWidth ? 16 : 0)}px`,
+          left: 'auto',
+          top: 'auto',
+          display: 'flex',
+          gap: '6px',
+          background: 'rgba(10,10,10,0.82)',
+          padding: '6px 8px',
+          borderRadius: '12px',
+          boxShadow: '0 10px 20px rgba(0,0,0,0.4)',
+          zIndex: '11000'
+        });
+        osdControls.querySelectorAll('.openseadragon-button-icon').forEach(icon => {
+          icon.style.setProperty('width', '24px', 'important');
+          icon.style.setProperty('height', '24px', 'important');
+          icon.style.setProperty('background-size', '22px 22px', 'important');
+        });
+      }
+
+      return Boolean(navBar || osdControls);
+    };
+const tweakInterval = setInterval(() => {
+      if (tweakChrome()) {
+        clearInterval(tweakInterval);
+      }
+    }, 500);
+
+    window.addEventListener('resize', tweakChrome);
+
+    viewer.store.subscribe(() => {
+      if (hasNavigated) return;
+
+      const state = viewer.store.getState();
+      const manifestData = state.manifests && state.manifests[manifest];
+
+      // Vérifier que le manifest est chargé (IIIF v3 utilise "items" au lieu de "sequences")
+      if (manifestData && manifestData.json && manifestData.json.items) {
+        const windowIds = Object.keys(state.windows);
+
+        if (windowIds.length > 0) {
+          const actualWindowId = windowIds[0];
+          const canvases = manifestData.json.items;
+
+          if (canvases && canvases.length > 34) {
+            hasNavigated = true;
+            const targetCanvasId = canvases[34].id;
+
+            // Utiliser setCanvas pour forcer le changement
+            setTimeout(() => {
+              viewer.store.dispatch(
+                Mirador.actions.setCanvas(actualWindowId, targetCanvasId)
+              );
+            }, 1000);
+          }
+        }
+      }
+    });
+
+    </script>
+</body>
+</html>

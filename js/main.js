@@ -41,6 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Gestion des éléments avec data-i18n-html
+        document.querySelectorAll('[data-i18n-html]').forEach((element) => {
+            const key = element.getAttribute('data-i18n-html');
+            if (key && translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
+        });
+
         document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
             const key = element.getAttribute('data-i18n-aria-label');
             if (key && translations[lang][key]) {

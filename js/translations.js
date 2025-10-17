@@ -52,7 +52,21 @@ const translations = {
         'baudin-title': "Carte Baudin (1800-1804)", 'baudin-desc': "Explorez les noms de lieux donnés lors de l'expédition scientifique de Nicolas Baudin...", 'map-title-baudin': "Carte de Baudin, 1802",
 
         // --- Page Ressources ---
-        'resources-title': "Ressources", 'resources-glossary-entry': "<a class=\"resource-primary-link\" href=\"glossaryF.html\">Glossaire des Termes</a>", 'resources-glossary-subtitle': "Institutions françaises, régimes politiques, guerres, anciennes appellations de pays et expéditions scientifiques", 'resources-glossary-description': "Ce glossaire explique les principaux termes historiques, politiques et scientifiques mentionnés dans le projet <em>French Names Along the Australian Coastline</em>.", 'resources-video-link': "Exemple de croquis de profils des côtes", 'resources-video-caption': "Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source : <a href=\"https://nla.gov.au/nla.obj-230811126/view\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>", 'resources-video-button-aria': "Lire la vidéo Exemple de croquis de profils des côtes", 'resources-video-dialog-label': "Lecteur vidéo pour l'exemple de croquis de profils des côtes", 'resources-video-close-label': "Fermer la vidéo",
+        'resources-title': "Ressources",
+        'resources-glossary-entry': "<a class=\"resource-primary-link\" href=\"glossaryF.html\">Glossaire des Termes</a>",
+        'resources-glossary-subtitle': "Institutions françaises, régimes politiques, guerres, anciennes appellations de pays et expéditions scientifiques",
+        'resources-glossary-description': "Ce glossaire explique les principaux termes historiques, politiques et scientifiques mentionnés dans le projet <em>French Names Along the Australian Coastline</em>.",
+        'resources-actors-entry': "<a class=\"resource-primary-link\" href=\"acteursF.html\">Acteurs clés</a>",
+        'resources-actors-subtitle': "Les explorateurs et scientifiques des expéditions d'Entrecasteaux et Baudin",
+        'resources-actors-description': "Résumés biographiques des principaux acteurs des deux grandes expéditions françaises qui ont cartographié et nommé de nombreux lieux le long des côtes australiennes.",
+        'resources-maps-entry': "<a class=\"resource-primary-link\" href=\"cartesF.html\">Cartes et illustrations</a>",
+        'resources-maps-subtitle': "Présentation des cartes et de la documentation réalisée grâce aux expéditions d'Entrecasteaux et Baudin",
+        'resources-maps-description': "Découvrez les cartes historiques, illustrations et documents issus des grandes expéditions françaises d'exploration des côtes australiennes.",
+        'resources-video-link': "Exemple de croquis de profils des côtes",
+        'resources-video-caption': "Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source : <a href=\"https://nla.gov.au/nla.obj-230811126/view\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>",
+        'resources-video-button-aria': "Lire la vidéo Exemple de croquis de profils des côtes",
+        'resources-video-dialog-label': "Lecteur vidéo pour l'exemple de croquis de profils des côtes",
+        'resources-video-close-label': "Fermer la vidéo",
 
         // --- Page de détail Baie de la Recherche ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",
@@ -158,7 +172,21 @@ const translations = {
         'baudin-title': "Baudin Map (1800-1804)", 'baudin-desc': "Explore the place names given during the scientific expedition of Nicolas Baudin...", 'map-title-baudin': "Map from Baudin expedition, 1802",
 
         // --- Resources Page ---
-        'resources-title': "Resources", 'resources-glossary-entry': "<a class=\"resource-primary-link\" href=\"glossaryE.html\">Glossary of Terms</a>", 'resources-glossary-subtitle': "French institutions, political regimes, wars, former country appellations and former scientific expeditions", 'resources-glossary-description': "This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.", 'resources-video-link': "Example of coastal profile sketches", 'resources-video-caption': "Views of different parts of Van Diemen's Land<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source: <a href=\"https://nla.gov.au/nla.obj-230811126/view\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>", 'resources-video-button-aria': "Play the coastal profile sketches video", 'resources-video-dialog-label': "Video player for the coastal profile sketches example", 'resources-video-close-label': "Close video",
+        'resources-title': "Resources",
+        'resources-glossary-entry': "<a class=\"resource-primary-link\" href=\"glossaryE.html\">Glossary of Terms</a>",
+        'resources-glossary-subtitle': "French institutions, political regimes, wars, former country appellations and former scientific expeditions",
+        'resources-glossary-description': "This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.",
+        'resources-actors-entry': "<a class=\"resource-primary-link\" href=\"acteursE.html\">Key Figures</a>",
+        'resources-actors-subtitle': "Explorers and scientists from the d'Entrecasteaux and Baudin expeditions",
+        'resources-actors-description': "Biographical summaries of the main figures from the two major French expeditions that charted and named numerous locations along the Australian coastline.",
+        'resources-maps-entry': "<a class=\"resource-primary-link\" href=\"cartesE.html\">Maps and Illustrations</a>",
+        'resources-maps-subtitle': "Presentation of maps and documentation produced by the d'Entrecasteaux and Baudin expeditions",
+        'resources-maps-description': "Discover the historical maps, illustrations and documents from the major French expeditions exploring the Australian coastline.",
+        'resources-video-link': "Example of coastal profile sketches",
+        'resources-video-caption': "Views of different parts of Anthony Van Diemen's Land<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministry of the Navy and Colonies. (1807).<br>Source: <a href=\"https://nla.gov.au/nla.obj-230811126/view\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>",
+        'resources-video-button-aria': "Play the coastal profile sketches video",
+        'resources-video-dialog-label': "Video player for the coastal profile sketches example",
+        'resources-video-close-label': "Close video",
         
         // --- Detail Page Recherche Bay ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",

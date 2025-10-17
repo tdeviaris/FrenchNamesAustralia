@@ -103,13 +103,24 @@
             z-index: 10;
         }
         .scene article {
-            background: rgba(255,255,255,0.92);
+            background: rgba(0, 0, 0, 0.85);
+            color: #f5f5f5;
             backdrop-filter: blur(6px);
             padding: clamp(24px, 5vw, 40px);
-            border-radius: 18px;
+            border-radius: 0;
             box-shadow: 0 18px 30px rgba(0,0,0,0.16);
             line-height: 1.65;
             width: 100%;
+        }
+        .scene article h2,
+        .scene article h3 {
+            color: inherit; /* Inherit the new light color from the article */
+        }
+        .scene article .source {
+            color: #aaa; /* Lighter gray for source text */
+        }
+        .scene article a {
+            color: #89cff0; /* A light blue for links */
         }
         h1 { font-family: 'Inter', 'Lato', sans-serif; font-weight: 700; letter-spacing: -0.02em; font-size: clamp(2.4rem, 5vw, 3.4rem); margin: 0 0 8px; color: #fff; text-shadow: 0 6px 20px rgba(0,0,0,0.45); }
         h2 { font-family: 'Inter', 'Lato', sans-serif; font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 600; margin: 0 0 12px; color: #003b78; text-shadow: none; letter-spacing: normal; }
@@ -285,7 +296,7 @@
 
         // Créer deux couches pour le fondu enchaîné des images de fond
         const backgroundLayer1 = document.createElement('div');
-        backgroundLayer1.className = 'scene-media';
+        backgroundLayer1.className = 'scene-media media-hero'; // Set initial background
         backgroundLayer1.style.position = 'fixed';
         backgroundLayer1.style.zIndex = '0';
         backgroundLayer1.style.opacity = '1';
@@ -301,8 +312,11 @@
         let currentSceneIndex = -1;
         let activeLayer = backgroundLayer1; // La couche actuellement visible
         let hiddenLayer = backgroundLayer2; // La couche cachée pour préparer la prochaine image
+        let isTransitioning = false;
 
         function updateBackground() {
+            if (isTransitioning) return; // Prevent new transitions while one is running
+
             const scrollTop = window.scrollY;
             let newSceneIndex = -1;
 
@@ -317,8 +331,14 @@
                 }
             });
 
+            // Handle case when scrolling above the first scene
+            if (newSceneIndex === -1 && scenes.length > 0 && scrollTop < scenes[0].offsetTop) {
+                newSceneIndex = 0;
+            }
+
             // Si la scène a changé, faire un fondu enchaîné
             if (newSceneIndex !== currentSceneIndex && newSceneIndex >= 0) {
+                isTransitioning = true; // Lock to prevent overlapping transitions
                 currentSceneIndex = newSceneIndex;
                 const currentScene = scenes[newSceneIndex];
                 const mediaElement = currentScene.querySelector('.scene-media');
@@ -343,7 +363,10 @@
                         const temp = activeLayer;
                         activeLayer = hiddenLayer;
                         hiddenLayer = temp;
+                        isTransitioning = false; // Unlock after transition is complete
                     }, 650); // Légèrement après la fin de la transition CSS
+                } else {
+                    isTransitioning = false; // Unlock if no media found
                 }
             }
         }
