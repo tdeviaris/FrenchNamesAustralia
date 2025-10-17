@@ -896,8 +896,18 @@
         const imageryWithLabels = L.layerGroup([esriImagery, esriLabels]);
 
         // Charger la vue par défaut depuis localStorage (par défaut: satellite)
-        const savedViewState = localStorage.getItem('satelliteView');
-        const useSatellite = savedViewState !== null ? savedViewState === 'true' : true;
+        // Réinitialisation forcée - supprimer cette ligne après le premier chargement si nécessaire
+        if (!localStorage.getItem('satelliteViewInitialized')) {
+            localStorage.setItem('satelliteView', 'true');
+            localStorage.setItem('satelliteViewInitialized', 'true');
+        }
+        let savedViewState = localStorage.getItem('satelliteView');
+        // Si aucune valeur n'existe, initialiser à 'true' (première visite)
+        if (savedViewState === null) {
+            savedViewState = 'true';
+            localStorage.setItem('satelliteView', 'true');
+        }
+        const useSatellite = savedViewState === 'true';
         if (useSatellite) {
             imageryWithLabels.addTo(map);
         } else {
@@ -929,7 +939,7 @@
 
             // Restaurer l'état depuis localStorage (par défaut: true)
             const savedState = localStorage.getItem('satelliteView');
-            const isSatellite = savedState !== null ? savedState === 'true' : true;
+            const isSatellite = savedState === null ? true : savedState === 'true';
             satelliteCheckbox.checked = isSatellite;
 
             L.DomEvent.disableClickPropagation(satelliteWrapper);
