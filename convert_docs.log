@@ -5,29 +5,14 @@ LibreOffice 25.8.1.1 54047653041915e595ad4e45cccea684809c77b5
 Source : /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents
 Destination : /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details
 ---------------------------------
-CONVERSION : Entre65E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre65E.html
-convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre65E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre65E.html using filter : HTML
+CONVERSION : Baudin006E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Baudin006E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Baudin006E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Baudin006E.html using filter : HTML
   -> SUCCÈS
-[postprocess] Fichier mis à jour : Entre65E.html
-CONVERSION : Entre68E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre68E.html
-convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre68E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre68E.html using filter : HTML
+[postprocess] Fichier mis à jour : Baudin006E.html
+CONVERSION : Baudin003E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Baudin003E.html
+convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Baudin003E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Baudin003E.html using filter : HTML
+Overwriting: /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Baudin003E.html
   -> SUCCÈS
-[postprocess] Fichier mis à jour : Entre68E.html
-CONVERSION : Entre63E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre63E.html
-convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre63E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre63E.html using filter : HTML
-  -> SUCCÈS
-[postprocess] Fichier mis à jour : Entre63E.html
-CONVERSION : Entre61E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre61E.html
-convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre61E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre61E.html using filter : HTML
-  -> SUCCÈS
-[postprocess] Fichier mis à jour : Entre61E.html
-CONVERSION : Entre40E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre40E.html
-convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre40E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre40E.html using filter : HTML
-  -> SUCCÈS
-[postprocess] Fichier mis à jour : Entre40E.html
-CONVERSION : Entre50E.rtf -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/./Entre50E.html
-convert /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/Source_documents/Entre50E.rtf as a Writer document -> /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/details/Entre50E.html using filter : HTML
-  -> SUCCÈS
-[postprocess] Fichier mis à jour : Entre50E.html
+[postprocess] Fichier mis à jour : Baudin003E.html
 --- Conversion terminée ---
 Le journal complet est disponible dans : /Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia/convert_docs.log
