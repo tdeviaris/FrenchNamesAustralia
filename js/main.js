@@ -24,6 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sauvegarde le choix dans le navigateur
         localStorage.setItem('language', lang);
 
+        // Gestion des pages dédiées par langue (cartes, etc.)
+        const pageMap = {
+            'cartesF.html': { 'en': 'cartesE.html' },
+            'cartesE.html': { 'fr': 'cartesF.html' }
+        };
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const redirectTarget = pageMap[currentPage]?.[lang];
+        if (redirectTarget && redirectTarget !== currentPage) {
+            window.location.href = redirectTarget;
+            return;
+        }
+
         // Traduit les éléments de la page en utilisant l'objet du fichier translations.js
         // D'abord par ID (ancien système)
         for (const id in translations[lang]) {
