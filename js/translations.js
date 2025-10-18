@@ -37,6 +37,8 @@ const translations = {
         'lightbox-close-label': "Fermer",
         'lightbox-dialog-label': "Vue agrandie de la carte",
         'map-title-freycinet': "Carte de Freycinet, 1812", 'map-title-beautemps': "Carte de Beautemps-Beaupré, 1807",
+        'nomenclature-title': "Nomenclatures contrastées",
+        'nomenclature-p1': "Les nomenclatures des expéditions d'Entrecasteaux et Baudin ont produit deux listes de noms contrastées qui reflètent l'évolution des changements politiques et culturels affectant la nation française de la période révolutionnaire à la période napoléonienne. Contrairement à celle de l'expédition d'Entrecasteaux, et sans parallèle dans les voyages de découvertes européens, les noms de lieux choisis par Baudin ne furent pas retenus par son zoologiste François Péron et son officier Louis Freycinet, qui, en l'absence de leur commandant décédé, furent nommés à Paris à leur demande comme éditeurs du récit et des atlas du voyage. À quelques exceptions près, lors de la préparation de l'atlas et du récit entre 1805 et 1807, Péron et Freycinet remplacèrent les noms de Baudin qui empruntaient principalement à l'histoire naturelle et au voyage par d'autres reflétant généralement l'esprit national français de l'époque napoléonienne, lorsque les voyages en haute mer et la découverte de terres lointaines jouaient un rôle moins important dans la stratégie de Napoléon. En revanche, Rossel, qui édita les journaux du voyage de d'Entrecasteaux, conserva tous les noms que son commandant avait donnés aux sites le long des côtes australiennes, malgré sa mort au cours du voyage.",
 
         // --- Page Carte d'Entrecasteaux ---
         'dentre-title': "Carte d'Entrecasteaux (1791-1793)",
@@ -158,6 +160,8 @@ const translations = {
         'lightbox-close-label': "Close",
         'lightbox-dialog-label': "Expanded map view",
         'map-title-freycinet': "Map by Freycinet, 1812", 'map-title-beautemps': "Map by Beautemps-Beaupré, 1807",
+        'nomenclature-title': "Contrasting Nomenclatures",
+        'nomenclature-p1': "The d'Entrecasteaux and Baudin nomenclatures produced two contrasting lists of names that reflect the evolving political and cultural changes affecting the French nation from the Revolutionary to the Napoleonic period. In contrast with that of the d'Entrecasteaux expedition, and unparalleled in European voyages of discoveries, the place names chosen by Baudin were not retained by his zoologist François Péron and his officer Louis Freycinet, who, in the absence of their deceased commander, were appointed in Paris at their request as editors of the narrative and the atlases of the voyage. With a few exceptions, when preparing the atlas and narrative between 1805 and 1807, Péron and Freycinet replaced Baudin's names which borrowed mainly from natural history and the voyage with others generally reflecting the French national spirit of the Napoleonic time, when voyages on the high seas and the discovery of distant lands played a less important role in Napoléon's strategy. In contrast, Rossel, who edited the journals of d'Entrecasteaux's voyage, retained all the names his commander had given to locations on Australia's coasts, despite his death during the course of the voyage.",
 
         // --- d'Entrecasteaux Map Page ---
         'dentre-title': "d'Entrecasteaux Map (1791-1793)",
