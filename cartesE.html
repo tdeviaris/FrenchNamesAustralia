@@ -70,6 +70,15 @@
         .image-close:hover { background: rgba(0,0,0,0.85); }
         .image-close:focus-visible { outline: 3px solid #FFD700; }
 
+        /* Modale vidéo */
+        .video-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
+        .video-overlay.is-visible { display: flex; }
+        .video-container { position: relative; width: min(90vw, 960px); }
+        .video-container video { width: 100%; border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,0.35); background: #000; }
+        .video-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(255,255,255,0.95); color: #333; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2; }
+        .video-close:hover { background: #f2f2f2; }
+        .video-close:focus-visible { outline: 3px solid #FFD700; }
+
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             :root { --nav-height: 52px; }
@@ -109,20 +118,27 @@
             <h2 class="subtitle">Documentation from the d'Entrecasteaux and Baudin expeditions</h2>
 
             <div class="entry">
-                <h3 class="entry-title">Historical Maps</h3>
+                <h3 class="entry-title">Charts and atlas historique</h3>
                 <p><button id="baudin-link" class="entry-link" data-image="img/carte-de-baudin.jpg">Baudin's Map</button></p>
                 <p class="entry-description">Map from the Baudin expedition (1800-1804), which produced the first complete map of Australia. The published atlas included 40 plates and an atlas of 14 charts and plans documenting the southern and western coasts of Australia.</p>
+                <p class="entry-description">This chart was produced during the voyage under the supervision of the expedition commander, Nicolas Baudin.<br>Section of the nautical chart "Fourteenth sheet. End of the Gulf of Melomanie at the extremity of which is located Port of Confidence, which according to verbal reports made to me... the entire outline of the port being surrounded by high wooded mountains... offers safe shelter.... by Boullanger, geographical engineer" 26 April 1802, 28-29 January 1803. <a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_438" target="_blank" rel="noopener">ANF/MAR/6JJ//B, Piece 88</a></p>
 
                 <p><button id="beautemps-link" class="entry-link" data-image="img/carte-de-beautemps-beaupre-1807.jpg">Beautemps-Beaupré's Map</button></p>
                 <p class="entry-description">General map of New Holland and the archipelagos of the Great Ocean, drawn in 1807 by Charles-François Beautemps-Beaupré, hydrographer of the d'Entrecasteaux expedition (1791-1793). Considered the father of modern hydrography, Beautemps-Beaupré charted the Australian coasts with remarkable precision.</p>
 
                 <p><button id="freycinet-link" class="entry-link" data-image="img/carte-de-freycinet-1812.jpg">Freycinet's Map</button></p>
-                <p class="entry-description">First complete map of New Holland published in 1812 by Louis de Freycinet, from the Baudin expedition. This map preceded Matthew Flinders' famous map by three years and remains one of the most iconic representations of Australia ever produced.</p>
+                <p class="entry-description">The "General Chart of New Holland, drawn by Mr. L. Freycinet, commander of the schooner Le Casuarina, in April 1808" was the first published map to represent, in its entirety, what is now known as Australia. It appeared in the first part of the Historical Atlas of the Voyage of Discovery to the Southern Lands, written by François Péron and completed by Louis de Freycinet, and published in 1811.</p>
+                <p class="entry-description">This map forms part of a Franco-British discussion regarding the priority of the first complete representation of the continent. During his detention on the Isle de France (today Mauritius), the British navigator Matthew Flinders had completed, in 1804, a similar map entitled Australia or Terra Australis. He had sent copies to Joseph Banks and to the British Admiralty, but his map was not published until 1814, after his return to London in 1810.</p>
+                <p class="entry-description">The French and British publications of these maps, appearing close in time and based on surveys carried out during contemporary expeditions, gave rise to debates about the chronology and recognition of each navigator's work.</p>
+
+                <h3 class="entry-title" style="margin-top: 40px;">Illustrations</h3>
+                <p><button id="resources-video-link" class="entry-link" type="button" data-video-src="img/Topo1.mp4">Example of coastal profile sketches</button></p>
+                <p class="entry-description">Views of different parts of Anthony Van Diemen's Land<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministry of the Navy and Colonies. (1807).<br>Source: <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener">National Library of Australia</a></p>
             </div>
 
             <div class="entry">
                 <p><button id="voyage-link" class="entry-link">Voyage of Discovery to the Southern Lands</button></p>
-                <p class="entry-description">Voyage of Discovery to the Southern Lands: executed by order of His Majesty the Emperor and King, on the corvettes the Géographe, the Naturaliste, and the schooner the Casuarina, during the years 1800, 1801, 1802, 1803 and 1804; [Historical account] published by imperial decree, under the ministry of M. de Champagny and written by M. F. Péron.</p>
+                <p class="entry-description">Voyage of Discovery to the Southern Lands: executed by order of His Majesty the Emperor and King, on the corvettes the Géographe, the Naturaliste, and the schooner the Casuarina, during the years 1800, 1801, 1802, 1803 and 1804; [Historical account] published by imperial decree, under the ministry of M. de Champagny and written by M. F. Péron.<br>Source: <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener">National Library of France</a></p>
             </div>
         </section>
     </main>
@@ -137,6 +153,13 @@
     <div class="image-overlay" role="dialog" aria-modal="true" aria-label="Image Viewer">
         <button type="button" class="image-close" aria-label="Close">&times;</button>
         <img id="modal-image" src="" alt="">
+    </div>
+
+    <div class="video-overlay" role="dialog" aria-modal="true" aria-label="Video player">
+        <div class="video-container">
+            <button type="button" class="video-close" aria-label="Close">&times;</button>
+            <video id="resource-video" controls preload="metadata"></video>
+        </div>
     </div>
 
     <div data-include-footer></div>
@@ -236,6 +259,70 @@
             imageOverlay?.addEventListener('click', (event) => {
                 if (event.target === imageOverlay) {
                     closeImageOverlay();
+                }
+            });
+        })();
+
+        // Video modal
+        (() => {
+            const trigger = document.getElementById('resources-video-link');
+            const overlay = document.querySelector('.video-overlay');
+            const video = document.getElementById('resource-video');
+            const closeBtn = document.querySelector('.video-close');
+            let lastFocusedElement = null;
+
+            const openOverlay = () => {
+                if (!overlay || !video || !trigger) return;
+                const videoSrc = trigger.getAttribute('data-video-src');
+                if (!videoSrc) return;
+                video.src = videoSrc;
+                overlay.classList.add('is-visible');
+                lastFocusedElement = document.activeElement;
+                video.play().catch(() => {});
+                document.addEventListener('keydown', handleKeydown);
+                closeBtn?.focus();
+            };
+
+            const closeOverlay = () => {
+                if (!overlay || !video) return;
+                video.pause();
+                video.currentTime = 0;
+                video.removeAttribute('src');
+                video.load();
+                overlay.classList.remove('is-visible');
+                document.removeEventListener('keydown', handleKeydown);
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            };
+
+            const handleKeydown = (event) => {
+                if (event.key === 'Escape') {
+                    closeOverlay();
+                } else if (event.key === 'Tab' && overlay?.classList.contains('is-visible')) {
+                    trapFocus(event);
+                }
+            };
+
+            const trapFocus = (event) => {
+                const focusable = overlay.querySelectorAll('button, video');
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            };
+
+            trigger?.addEventListener('click', openOverlay);
+            closeBtn?.addEventListener('click', closeOverlay);
+            overlay?.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    closeOverlay();
                 }
             });
         })();
