@@ -1,6 +1,6 @@
 [
   {
-    "code": "Baudin001",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Baie Paterson",
@@ -26,7 +26,7 @@
     "detailsLink_en": "Baudin001E.html"
   },
   {
-    "code": "Baudin002",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Baie de la Vénus",
@@ -52,7 +52,7 @@
     "detailsLink_en": "Baudin002E.html"
   },
   {
-    "code": "Baudin003",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Île des Français",
@@ -78,7 +78,7 @@
     "detailsLink_en": "Baudin003E.html"
   },
   {
-    "code": "Baudin004",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Île des Anglais",
@@ -104,7 +104,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin005",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Passe de l'Ouest",
@@ -130,7 +130,7 @@
     "detailsLink_en": "Baudin003E.html"
   },
   {
-    "code": "Baudin006",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Passe de l'Est",
@@ -156,7 +156,7 @@
     "detailsLink_en": "Baudin006E.html"
   },
   {
-    "code": "Baudin007",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Richelieu",
@@ -182,7 +182,7 @@
     "detailsLink_en": "Baudin007E.html"
   },
   {
-    "code": "Baudin008",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Baie Talleyrand",
@@ -208,7 +208,7 @@
     "detailsLink_en": "Baudin008E.html"
   },
   {
-    "code": "Baudin009",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Suffren",
@@ -234,7 +234,7 @@
     "detailsLink_en": "Baudin009E.html"
   },
   {
-    "code": "Baudin010",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Marengo",
@@ -260,7 +260,7 @@
     "detailsLink_en": "Baudin010E.html"
   },
   {
-    "code": "Baudin011",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Desaix",
@@ -286,7 +286,7 @@
     "detailsLink_en": "Baudin010E.html"
   },
   {
-    "code": "Baudin012",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Volney",
@@ -312,7 +312,7 @@
     "detailsLink_en": "Baudin012E.html"
   },
   {
-    "code": "Baudin013",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Folard",
@@ -338,7 +338,7 @@
     "detailsLink_en": "Baudin013E.html"
   },
   {
-    "code": "Baudin014",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Île Latreille",
@@ -364,7 +364,7 @@
     "detailsLink_en": "Baudin014E.html"
   },
   {
-    "code": "Baudin015",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Piton de la Reconnaissance",
@@ -390,7 +390,7 @@
     "detailsLink_en": "Baudin015E.html"
   },
   {
-    "code": "Baudin016",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap du Mont-Tabor",
@@ -416,7 +416,7 @@
     "detailsLink_en": "Baudin016E.html"
   },
   {
-    "code": "Baudin017",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Réaumur",
@@ -442,7 +442,7 @@
     "detailsLink_en": "Baudin017E.html"
   },
   {
-    "code": "Baudin018",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Île Fourcroy",
@@ -468,7 +468,7 @@
     "detailsLink_en": "Baudin018E.html"
   },
   {
-    "code": "Baudin019",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Baie Tourville",
@@ -494,7 +494,7 @@
     "detailsLink_en": "Baudin019E.html"
   },
   {
-    "code": "Baudin020",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Île du Dragon",
@@ -520,7 +520,7 @@
     "detailsLink_en": "Baudin020E.html"
   },
   {
-    "code": "Baudin021",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Montaigne",
@@ -546,7 +546,7 @@
     "detailsLink_en": "Baudin021E.rtf"
   },
   {
-    "code": "Baudin022",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Duquesne",
@@ -572,7 +572,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin023",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Baie Descartes",
@@ -598,7 +598,7 @@
     "detailsLink_en": "Baudin021E.rtf"
   },
   {
-    "code": "Baudin024",
+    "code": "",
     "expedition": "Baudin",
     "state": "VIC",
     "frenchName": "Cap Montesquieu",
@@ -624,7 +624,7 @@
     "detailsLink_en": "Baudin024E.rtf"
   },
   {
-    "code": "Baudin025",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Mont St Bernard",
@@ -650,7 +650,7 @@
     "detailsLink_en": "Baudin025E.rtf"
   },
   {
-    "code": "Baudin026",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap du Mont St Bernard",
@@ -676,7 +676,7 @@
     "detailsLink_en": "Baudin025E.rtf"
   },
   {
-    "code": "Baudin027",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Les Charpentiers",
@@ -702,7 +702,7 @@
     "detailsLink_en": "Baudin027E.rtf"
   },
   {
-    "code": "Baudin028",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Bélidor",
@@ -728,7 +728,7 @@
     "detailsLink_en": "Baudin028E.rtf"
   },
   {
-    "code": "Baudin029",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Boufflers",
@@ -754,7 +754,7 @@
     "detailsLink_en": "Baudin028E.rtf"
   },
   {
-    "code": "Baudin030",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie D'Estaing",
@@ -780,7 +780,7 @@
     "detailsLink_en": "Baudin030E.rtf"
   },
   {
-    "code": "Baudin031",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Buffon",
@@ -806,7 +806,7 @@
     "detailsLink_en": "Baudin031E.rtf"
   },
   {
-    "code": "Baudin032",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Lannes",
@@ -832,7 +832,7 @@
     "detailsLink_en": "Baudin032E.rtf"
   },
   {
-    "code": "Baudin033",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie de Rivoli",
@@ -858,7 +858,7 @@
     "detailsLink_en": "Baudin033E.rtf"
   },
   {
-    "code": "Baudin034",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap de Jaffa",
@@ -884,7 +884,7 @@
     "detailsLink_en": "Baudin034E.rtf"
   },
   {
-    "code": "Baudin035",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Rabelais",
@@ -910,7 +910,7 @@
     "detailsLink_en": "Baudin035E.rtf"
   },
   {
-    "code": "Baudin036",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Dombey",
@@ -936,7 +936,7 @@
     "detailsLink_en": "Baudin036E.rtf"
   },
   {
-    "code": "Baudin037",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie de Guichen",
@@ -962,7 +962,7 @@
     "detailsLink_en": "Baudin037E.rtf"
   },
   {
-    "code": "Baudin038",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Bernouilli",
@@ -988,7 +988,7 @@
     "detailsLink_en": "Baudin038E.rtf"
   },
   {
-    "code": "Baudin039",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Lacépède",
@@ -1014,7 +1014,7 @@
     "detailsLink_en": "Baudin039E.rtf"
   },
   {
-    "code": "Baudin040",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Morard-de-Galles",
@@ -1040,7 +1040,7 @@
     "detailsLink_en": "Baudin040E.rtf"
   },
   {
-    "code": "Baudin041",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Fermat",
@@ -1066,7 +1066,7 @@
     "detailsLink_en": "Baudin041E.rtf"
   },
   {
-    "code": "Baudin042",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Monge",
@@ -1092,7 +1092,7 @@
     "detailsLink_en": "Baudin042E.rtf"
   },
   {
-    "code": "Baudin043",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Caffarelli",
@@ -1118,7 +1118,7 @@
     "detailsLink_en": "Baudin043E.rtf"
   },
   {
-    "code": "Baudin044",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Villars",
@@ -1144,7 +1144,7 @@
     "detailsLink_en": "Baudin044E.rtf"
   },
   {
-    "code": "Baudin045",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Mollien ",
@@ -1170,7 +1170,7 @@
     "detailsLink_en": "Baudin045E.rtf"
   },
   {
-    "code": "Baudin046",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Mollien",
@@ -1196,7 +1196,7 @@
     "detailsLink_en": "Baudin046E.rtf"
   },
   {
-    "code": "Baudin047",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie  Crétet ",
@@ -1222,7 +1222,7 @@
     "detailsLink_en": "Baudin047E.rtf"
   },
   {
-    "code": "Baudin048",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Cretet",
@@ -1248,7 +1248,7 @@
     "detailsLink_en": "see Baudin047E.rtf"
   },
   {
-    "code": "Baudin049",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Iles Decaen",
@@ -1274,7 +1274,7 @@
     "detailsLink_en": "Baudin049E.rtf"
   },
   {
-    "code": "Baudin050",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Decaen",
@@ -1300,7 +1300,7 @@
     "detailsLink_en": "Baudin049E.rtf"
   },
   {
-    "code": "Baudin051",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Montalivet",
@@ -1326,7 +1326,7 @@
     "detailsLink_en": "Baudin051E.rtf"
   },
   {
-    "code": "Baudin052",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Dupleix",
@@ -1352,7 +1352,7 @@
     "detailsLink_en": "Baudin052E.rtf"
   },
   {
-    "code": "Baudin053",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Détroit de Colbert",
@@ -1378,7 +1378,7 @@
     "detailsLink_en": "Baudin053E.rtf"
   },
   {
-    "code": "Baudin054",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Îles Bourdet",
@@ -1404,7 +1404,7 @@
     "detailsLink_en": "Baudin054E.rtf"
   },
   {
-    "code": "Baudin055",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Golfe Joséphine",
@@ -1430,7 +1430,7 @@
     "detailsLink_en": "Baudin055E.rtf"
   },
   {
-    "code": "Baudin056",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap d'Alembert",
@@ -1456,7 +1456,7 @@
     "detailsLink_en": "Baudin056E.rtf"
   },
   {
-    "code": "Baudin057",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Sévigné",
@@ -1482,7 +1482,7 @@
     "detailsLink_en": "Baudin057E.rtf"
   },
   {
-    "code": "Baudin058",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Hortense",
@@ -1508,7 +1508,7 @@
     "detailsLink_en": "Baudin058E.rtf"
   },
   {
-    "code": "Baudin059",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Laetitia",
@@ -1534,7 +1534,7 @@
     "detailsLink_en": "Baudin059E.rtf"
   },
   {
-    "code": "Baudin060",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Vendôme",
@@ -1560,7 +1560,7 @@
     "detailsLink_en": "Baudin060E.rtf"
   },
   {
-    "code": "Baudin061",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Presqu'île Fleurieu",
@@ -1586,7 +1586,7 @@
     "detailsLink_en": "Baudin061E.rtf"
   },
   {
-    "code": "Baudin062",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Jeanne Hachette",
@@ -1612,7 +1612,7 @@
     "detailsLink_en": "Baudin062E.rtf"
   },
   {
-    "code": "Baudin063",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Stéphanie",
@@ -1638,7 +1638,7 @@
     "detailsLink_en": "Baudin063E.rtf"
   },
   {
-    "code": "Baudin064",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Nemours",
@@ -1664,7 +1664,7 @@
     "detailsLink_en": "Baudin064E.rtf"
   },
   {
-    "code": "Baudin065",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Lafayette",
@@ -1690,7 +1690,7 @@
     "detailsLink_en": "Baudin065E.rtf"
   },
   {
-    "code": "Baudin066",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Victorine",
@@ -1716,7 +1716,7 @@
     "detailsLink_en": "Baudin066E.rtf"
   },
   {
-    "code": "Baudin067",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Scudéry",
@@ -1742,7 +1742,7 @@
     "detailsLink_en": "Baudin067E.rtf"
   },
   {
-    "code": "Baudin068",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Pauline",
@@ -1768,7 +1768,7 @@
     "detailsLink_en": "Baudin068E.rtf"
   },
   {
-    "code": "Baudin069",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Deshoulière",
@@ -1794,7 +1794,7 @@
     "detailsLink_en": "Baudin069E.rtf"
   },
   {
-    "code": "Baudin070",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Caroline",
@@ -1820,7 +1820,7 @@
     "detailsLink_en": "Baudin070E.rtf"
   },
   {
-    "code": "Baudin071",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Dorothée",
@@ -1846,7 +1846,7 @@
     "detailsLink_en": "Baudin071E.rtf"
   },
   {
-    "code": "Baudin072",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Graffigny",
@@ -1872,7 +1872,7 @@
     "detailsLink_en": "Baudin072E.rtf"
   },
   {
-    "code": "Baudin073",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Julie",
@@ -1880,12 +1880,12 @@
     "ausEName": "Port Julia",
     "indigenousName": "",
     "indigenousLanguage": "",
-    "lat": -34.648333,
-    "lon": 137.750278,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Marie Julie Clary, née à Marseille le 26 décembre 1771 et morte le 7 avril 1845 à Florence (Toscane), fut l'épouse de Joseph Bonaparte et par conséquent reine de Naples de 1806 à 1808, puis reine d'Espagne de 1808 à 1813. Julie de Lespinasse. Femme de lettres française (Lyon 1732 – Paris 1776). Elle fut courtisée par d'Alembert, et Diderot mit en scène le couple dans le Rêve de d'Alembert. Elle conçut pour le comte de Guibert une passion impossible, exprimée dans une correspondance qui prit les dimensions d'une œuvre littéraire et qui trouve sa place aux côtés des lettres d'Héloïse et d'Abélard.",
-    "history": "Marie Julie Clary (26 December 1771 – 7 April 1845) was the wife of Joseph Bonaparte, and therefore Queen of Naples from 1806 to 1808, and then Queen of Spain from 1808 to 1813. Or Julie de Lespinasse (1732–1776), a French woman of letters, courted by d'Alembert.",
+    "lat": -34.42508,
+    "lon": 137.92365,
+    "characteristic_fr": "Située sur la rive orientale de la péninsule de York, la baie Julie désigne aujourd’hui l’étendue marine faisant face à  la ville d’Ardrossan et à son port en eau profonde. Une partie de son littoral est bordée de falaises abruptes atteignant jusqu’à vingt mètres de hauteur, constituées d’une argile rougeâtre à brunâtre. Freycinet observe d’ailleurs : « Cette dernière partie du golfe est assez profonde, et le sondage n’est pas descendu au-dessous de quatre brasses et demie ; la terre est également plus élevée que celle de la côte orientale, et l’on aperçoit parfois des falaises rougeâtres. »\n\nPéron et Freycinet pourraient avoir nommé la baie en hommage à Julie de Lespinasse (1732-1776), femme de lettres dont le salon parisien est souvent présenté comme le véritable laboratoire de l’ambitieuse Encyclopédie dirigée par Denis Diderot et Jean le Rond d’Alembert. Cette entreprise intellectuelle, emblématique de l’esprit des Lumières, visait à rassembler l’ensemble des savoirs contemporains. La plupart des auteurs qui y contribuèrent fréquentaient assidûment le salon de Julie de Lespinasse. Il est également possible que le toponyme “Julie” renvoie à Julie Clary (1771-1845), épouse de Joseph Bonaparte, frère aîné de Napoléon.",
+    "characteristic": "Located on the eastern side of York Peninsula, Baie Julie refers today to the waters off the township of Ardrossan, and its deepwater shipping port. Part of its seashore is lined by steep cliffs up to 20 m high, composed of a red/brown clay. Indeed, Freycinet notes: ‘This last part of the gulf is quite deep, and the sounding did not go below four and a half fathoms; the land is also higher than that of the eastern coast, and reddish cliffs can sometimes be seen’.\n\nPéron and Freycinet may have named the bay after Julie de Lespinasse (1732-1776), a woman of letter. Her salon in Paris is said to have been the laboratory of the voluminous Encyclopedia, edited by Denis Diderot and Jean le Rond d’Alembert*, which aimed to gather all the knowledge and reflected the thoughts of the Enlightenment. Most of the contributing authors attended Julie’s salons. The name Julie may also refer to Julie Clary (1771-1845), the wife of Napoléon’s older brother, Joseph Bonaparte.\n",
+    "history_fr": "L’œuvre épistolaire de Julie de Lespinasse jouissait d’une grande popularité à l’époque napoléonienne, et sa correspondance avec son amant, le colonel Guibert, fut publiée à titre posthume en 1809.\n\nQuant à Julie Clary, l’empereur fit de Joseph Bonaparte le roi de Naples en 1806, puis le roi d’Espagne en 1808, ce qui conféra à Julie le titre de reine. Selon la duchesse d’Abrantès, « son âme et son cœur étaient ceux d’un ange », et elle était admirée pour ses actions de bienfaisance. Elle joua également un rôle important en tant que conseillère et ambassadrice de son mari auprès de l’empereur.",
+    "history": "The epistolary work of Julie de Lespinasse was popular in Napoleonic time, and her correspondence with her lover, the colonel Guibert, was published posthumously in 1809.\nAs for Julie, in 1806, the emperor made Joseph King of Naples and, in 1808, King of Spain, which made Julie a Queen. According to the Duchess of Abrantès, ‘her [Julie’s] soul and her heart were that of an angel’, and she was esteemed for her charitable deeds. Although, she also played an important role as an advisor and ambassador of her husband to the emperor.\n",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Julie_Clary",
     "wiki_en": "https://en.wikipedia.org/wiki/Julie_Clary",
     "imgUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Dugommier.png",
@@ -1898,7 +1898,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin074",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Amélie",
@@ -1924,7 +1924,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin075",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": " Cap Jeanne d'Arc",
@@ -1950,7 +1950,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin076",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Adèle",
@@ -1976,7 +1976,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin077",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Dacier",
@@ -2002,7 +2002,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin078",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap La Rochefoucault",
@@ -2028,7 +2028,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin079",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Eliza",
@@ -2054,7 +2054,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin080",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe d'Agnesseau",
@@ -2080,7 +2080,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin081",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Molé",
@@ -2106,7 +2106,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin082",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Iles Vauban ",
@@ -2132,7 +2132,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin083",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Laubadère",
@@ -2158,7 +2158,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin084",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Mornay",
@@ -2184,7 +2184,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin085",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Berthier",
@@ -2210,7 +2210,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin086",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Presqu'île Cambacérès",
@@ -2236,7 +2236,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin087",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Dalberg",
@@ -2262,7 +2262,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin088",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Récif du Géographe",
@@ -2288,7 +2288,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin089",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Sully",
@@ -2314,7 +2314,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin090",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Duguesclin",
@@ -2340,7 +2340,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin091",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Dugommier",
@@ -2366,7 +2366,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin092",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Mondovi",
@@ -2392,7 +2392,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin093",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Pascal",
@@ -2418,7 +2418,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin094",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Condorcet",
@@ -2444,7 +2444,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin095",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Dubelloy ",
@@ -2470,7 +2470,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin096",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap St Vincent de Paule",
@@ -2496,7 +2496,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin097",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Fléchier",
@@ -2522,7 +2522,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin098",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Fénelon",
@@ -2548,7 +2548,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin099",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Bossuet",
@@ -2574,7 +2574,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin100",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Turenne",
@@ -2600,7 +2600,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin101",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Bayard",
@@ -2626,7 +2626,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin102",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Bernadotte",
@@ -2652,7 +2652,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin103",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Racine",
@@ -2678,7 +2678,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin104",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Voltaire",
@@ -2704,7 +2704,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin105",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Delille",
@@ -2730,7 +2730,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin106",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Lafontaine",
@@ -2756,7 +2756,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin107",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Corneille",
@@ -2782,7 +2782,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin108",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Molière",
@@ -2808,7 +2808,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin109",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Crébillon",
@@ -2834,7 +2834,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin110",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Chaulieu",
@@ -2860,7 +2860,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin111",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Piton du Casuarina",
@@ -2886,7 +2886,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin112",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Amyot",
@@ -2912,7 +2912,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin113",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Rollin",
@@ -2938,7 +2938,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin114",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Condillac",
@@ -2964,7 +2964,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin115",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Volney",
@@ -2990,7 +2990,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin116",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Mably",
@@ -3016,7 +3016,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin117",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Dolomieu",
@@ -3042,7 +3042,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin118",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Saussure",
@@ -3068,7 +3068,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin119",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap L'Hopital",
@@ -3094,7 +3094,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin120",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Fontanes",
@@ -3120,7 +3120,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin121",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Portalis",
@@ -3146,7 +3146,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin122",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Legendre",
@@ -3172,7 +3172,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin123",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Méchain",
@@ -3198,7 +3198,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin124",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Laplace",
@@ -3224,7 +3224,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin125",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe La Caille",
@@ -3250,7 +3250,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin126",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Anse Descartes",
@@ -3276,7 +3276,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin127",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île D'Alembert",
@@ -3302,7 +3302,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin128",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Euler",
@@ -3328,7 +3328,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin129",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Lalande",
@@ -3354,7 +3354,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin130",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Massena",
@@ -3380,7 +3380,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin131",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Roveredo",
@@ -3406,7 +3406,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin132",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Marceau",
@@ -3432,7 +3432,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin133",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Iles de Léoben",
@@ -3458,7 +3458,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin134",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Castiglione",
@@ -3484,7 +3484,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin135",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Mondovi",
@@ -3510,7 +3510,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin136",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Bassano",
@@ -3536,7 +3536,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin137",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Milesimo",
@@ -3562,7 +3562,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin138",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Dégo",
@@ -3588,7 +3588,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin139",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Voltri",
@@ -3614,7 +3614,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin140",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap de Thou",
@@ -3640,7 +3640,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin141",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Maret",
@@ -3666,7 +3666,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin142",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Gassendi",
@@ -3692,7 +3692,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin143",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Raynal",
@@ -3718,7 +3718,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin144",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Lagrange",
@@ -3744,7 +3744,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin145",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Port Champagny",
@@ -3770,7 +3770,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin146",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Bassin du Nord",
@@ -3796,7 +3796,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin147",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Passe du Nord",
@@ -3822,7 +3822,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin148",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Passe du Sud",
@@ -3848,7 +3848,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin149",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Bassin de l'Ouest",
@@ -3874,7 +3874,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin150",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Canal Dégérando",
@@ -3900,7 +3900,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin151",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Bassin du Sud",
@@ -3926,7 +3926,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin152",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Cérant",
@@ -3952,7 +3952,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin153",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Suzanne",
@@ -3978,7 +3978,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin154",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Victoire",
@@ -4004,7 +4004,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin155",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Chaillou (Chaliou)",
@@ -4030,7 +4030,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin156",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Colbert",
@@ -4056,7 +4056,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin157",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Duroc",
@@ -4082,7 +4082,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin158",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Berthier",
@@ -4108,7 +4108,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin159",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Clarke",
@@ -4134,7 +4134,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin160",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île d'Aboukir",
@@ -4160,7 +4160,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin161",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Marengo",
@@ -4186,7 +4186,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin162",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île de la Favorite",
@@ -4212,7 +4212,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin163",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap de Rivoli",
@@ -4238,7 +4238,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin164",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Turenne",
@@ -4264,7 +4264,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin165",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île d'Assas",
@@ -4290,7 +4290,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin166",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Valbelle",
@@ -4316,7 +4316,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin167",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Villars",
@@ -4342,7 +4342,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin168",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Montmorency",
@@ -4368,7 +4368,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin169",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "îles Catinat",
@@ -4394,7 +4394,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin170",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Golfe Bonaparte",
@@ -4420,7 +4420,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin171",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Ségur",
@@ -4446,7 +4446,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin172",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Grécourt",
@@ -4472,7 +4472,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin173",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Florian",
@@ -4498,7 +4498,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin174",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île St Lambert",
@@ -4524,7 +4524,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin175",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Jussieu",
@@ -4550,7 +4550,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin176",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Lavoisier",
@@ -4576,7 +4576,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin177",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Vauquelin",
@@ -4602,7 +4602,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin178",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Tournefort",
@@ -4628,7 +4628,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin179",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Guyton",
@@ -4654,7 +4654,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin180",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Carnot",
@@ -4680,7 +4680,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin181",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie d'Anville",
@@ -4706,7 +4706,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin182",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap de Mairan",
@@ -4732,7 +4732,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin183",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Feuillée",
@@ -4758,7 +4758,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin184",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Maupertuis",
@@ -4784,7 +4784,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin185",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Pingré",
@@ -4810,7 +4810,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin186",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "îles Laplace",
@@ -4836,7 +4836,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin187",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île le Gentil",
@@ -4862,7 +4862,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin188",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Lacondamine",
@@ -4888,7 +4888,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin189",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Rochon",
@@ -4914,7 +4914,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin190",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île La Caille",
@@ -4940,7 +4940,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin191",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Chappe",
@@ -4966,7 +4966,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin192",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Fermat",
@@ -4992,7 +4992,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin193",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Piton Borda",
@@ -5018,7 +5018,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin194",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Brune",
@@ -5044,7 +5044,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin195",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Latour d'Auvergne",
@@ -5070,7 +5070,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin196",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Desfontaines",
@@ -5096,7 +5096,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin197",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Delambre",
@@ -5122,7 +5122,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin198",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Montgolfier",
@@ -5148,7 +5148,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin199",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île des dauphins",
@@ -5174,7 +5174,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin200",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Pointe Liancourt",
@@ -5200,7 +5200,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin201",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Détroit de Lacépède ",
@@ -5226,7 +5226,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin202",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "île Decrès",
@@ -5252,7 +5252,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin203",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Sané",
@@ -5278,7 +5278,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin204",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Presqu'île la Gallissonière",
@@ -5304,7 +5304,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin205",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap d’Orvillier",
@@ -5330,7 +5330,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin206",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie du Guai-Trouin",
@@ -5356,7 +5356,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin207",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Anse des Sources",
@@ -5382,7 +5382,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin208",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Delambre",
@@ -5408,7 +5408,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin209",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Bougainville",
@@ -5434,7 +5434,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin210",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Port Daché",
@@ -5460,7 +5460,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin211",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap des Kanguroos",
@@ -5486,7 +5486,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin212",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Anse des Phoques",
@@ -5512,7 +5512,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin213",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap du Géographe",
@@ -5538,7 +5538,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin214",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Anse des Hauts-Fonds",
@@ -5564,7 +5564,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin215",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Rouge",
@@ -5590,7 +5590,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin216",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap  Vendôme",
@@ -5616,7 +5616,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin217",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap d'Estaing",
@@ -5642,7 +5642,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin218",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Cassini",
@@ -5668,7 +5668,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin219",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Prony",
@@ -5694,7 +5694,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin220",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Forbin",
@@ -5720,7 +5720,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin221",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Borda",
@@ -5746,7 +5746,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin222",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Ravine des Casoars",
@@ -5772,7 +5772,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin223",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Bedout",
@@ -5798,7 +5798,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin224",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Maupertuis",
@@ -5824,7 +5824,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin225",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Îlots du Casuarina",
@@ -5850,7 +5850,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin226",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Du-Couedic",
@@ -5876,7 +5876,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin227",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Bouguer",
@@ -5902,7 +5902,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin228",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Kersaint",
@@ -5928,7 +5928,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin229",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Vivonne",
@@ -5954,7 +5954,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin230",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Gantheaume",
@@ -5980,7 +5980,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin231",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Linois",
@@ -6006,7 +6006,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin232",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie d'Estrées",
@@ -6032,7 +6032,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin233",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap du Vétéran",
@@ -6058,7 +6058,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin234",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "îles Jérôme",
@@ -6084,7 +6084,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin235",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "ȋlots du Vétéran",
@@ -6110,7 +6110,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin236",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Meyronnet",
@@ -6136,7 +6136,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin237",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Andréossy",
@@ -6162,7 +6162,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin238",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Morio",
@@ -6188,7 +6188,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin239",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Dorothée",
@@ -6214,7 +6214,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin240",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Lecamus",
@@ -6240,7 +6240,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin241",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Corréa",
@@ -6266,7 +6266,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin242",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Poissonnier",
@@ -6292,7 +6292,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin243",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Percy",
@@ -6318,7 +6318,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin244",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Hallé",
@@ -6344,7 +6344,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin245",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Lemonier",
@@ -6370,7 +6370,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin246",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Fernel",
@@ -6396,7 +6396,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin247",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Corvisart",
@@ -6422,7 +6422,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin248",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Ambroise-Paré",
@@ -6448,7 +6448,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin249",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Cuvier",
@@ -6474,7 +6474,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin250",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Louis",
@@ -6500,7 +6500,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin251",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Lavoisier",
@@ -6526,7 +6526,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin252",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Missiessy",
@@ -6552,7 +6552,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin253",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Tréville",
@@ -6578,7 +6578,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin254",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Dubouchage",
@@ -6604,7 +6604,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin255",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Jean-Bart",
@@ -6630,7 +6630,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin256",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Richelieu",
@@ -6656,7 +6656,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin257",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Turenne",
@@ -6682,7 +6682,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin258",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "La Rambarde",
@@ -6708,7 +6708,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin259",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap d'Estrée",
@@ -6734,7 +6734,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin260",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Anse Decrès",
@@ -6760,7 +6760,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin261",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Vivonne",
@@ -6786,7 +6786,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin262",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Anse Suffren",
@@ -6812,7 +6812,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin263",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Thevenard",
@@ -6838,7 +6838,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin264",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Murat",
@@ -6864,7 +6864,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin265",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Eugène",
@@ -6890,7 +6890,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin266",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Iles Joséphine",
@@ -6916,7 +6916,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin267",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Eliza",
@@ -6942,7 +6942,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin268",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Julie",
@@ -6968,7 +6968,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin269",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Pauline",
@@ -6994,7 +6994,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin270",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Hortense",
@@ -7020,7 +7020,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin271",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Caroline",
@@ -7046,7 +7046,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin272",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Jérôme",
@@ -7072,7 +7072,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin273",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Beaufort",
@@ -7098,7 +7098,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin274",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Anse Tourville",
@@ -7124,7 +7124,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin275",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap du Gay Trouin",
@@ -7150,7 +7150,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin276",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Duquesne",
@@ -7176,7 +7176,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin277",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île du Géographe",
@@ -7202,7 +7202,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin278",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Barbier du Bocage",
@@ -7228,7 +7228,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin279",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Langlès",
@@ -7254,7 +7254,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin280",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Gosselin",
@@ -7280,7 +7280,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin281",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Rosily",
@@ -7306,7 +7306,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin282",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Caffarelli",
@@ -7332,7 +7332,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin283",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Motard",
@@ -7358,7 +7358,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin284",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Malouet",
@@ -7384,7 +7384,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin285",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Choiseul-Gouffier",
@@ -7410,7 +7410,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin286",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Coquebert",
@@ -7436,7 +7436,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin287",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Desbrosse",
@@ -7462,7 +7462,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin288",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Rubens",
@@ -7488,7 +7488,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin289",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Vernet",
@@ -7514,7 +7514,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin290",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Vien",
@@ -7540,7 +7540,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin291",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Gérard",
@@ -7566,7 +7566,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin292",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Le Poussin",
@@ -7592,7 +7592,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin293",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Lebrun",
@@ -7618,7 +7618,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin294",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Van-Spaendonck",
@@ -7644,7 +7644,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin295",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap David",
@@ -7670,7 +7670,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin296",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Denon",
@@ -7696,7 +7696,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin297",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Mansard",
@@ -7722,7 +7722,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin298",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Soufflot",
@@ -7748,7 +7748,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin299",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap Vaucanson",
@@ -7774,7 +7774,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin300",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Labourdonnais",
@@ -7800,7 +7800,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin301",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Rameau",
@@ -7826,7 +7826,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin302",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île de Montenotte",
@@ -7852,7 +7852,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin303",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Cap des Adieux",
@@ -7878,7 +7878,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin304",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Fénélon",
@@ -7904,7 +7904,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin305",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Talleyrand",
@@ -7930,7 +7930,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin306",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Malesherbes",
@@ -7956,7 +7956,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin307",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Massillon",
@@ -7982,7 +7982,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin308",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île Sully",
@@ -8008,7 +8008,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin309",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Île D'Après",
@@ -8034,7 +8034,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin310",
+    "code": "",
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Terre Napoleon",
@@ -8060,7 +8060,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin311",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "La Brioche",
@@ -8086,7 +8086,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin312",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Le Coin-de-Mire",
@@ -8112,7 +8112,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin313",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Le Cône",
@@ -8138,7 +8138,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin314",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Bonpland",
@@ -8164,7 +8164,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin315",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Olivier",
@@ -8190,7 +8190,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin316",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie des récifs",
@@ -8216,7 +8216,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin317",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap d'Anville",
@@ -8242,7 +8242,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin318",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Chardin",
@@ -8268,7 +8268,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin319",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Pointe Plumier",
@@ -8294,7 +8294,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin320",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Rocher des Éléphans",
@@ -8320,7 +8320,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin321",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie des Phoques",
@@ -8346,7 +8346,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin322",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Palmer",
@@ -8372,7 +8372,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin323",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Pointe Cowper",
@@ -8398,7 +8398,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin324",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "ȋle Fleurieu",
@@ -8424,7 +8424,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin325",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Keraudren",
@@ -8450,7 +8450,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin326",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Cuvier",
@@ -8476,7 +8476,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin327",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Lenoir",
@@ -8502,7 +8502,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin328",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Île Longue",
@@ -8528,7 +8528,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin329",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Île Cartier",
@@ -8554,7 +8554,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin330",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Lislet",
@@ -8580,7 +8580,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin331",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Île Breton",
@@ -8606,7 +8606,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin332",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Canal Péron",
@@ -8632,7 +8632,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin333",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Île Petit",
@@ -8658,7 +8658,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin334",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Cassard",
@@ -8684,7 +8684,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin335",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Coulomb",
@@ -8710,7 +8710,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin336",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Rochon",
@@ -8736,7 +8736,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin337",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Adanson",
@@ -8762,7 +8762,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin338",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Buache",
@@ -8788,7 +8788,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin339",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Boullanger",
@@ -8814,7 +8814,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin340",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Piton Faujas",
@@ -8840,7 +8840,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin341",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Elie",
@@ -8866,7 +8866,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin342",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Guyton",
@@ -8892,7 +8892,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin343",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Ransonnet",
@@ -8918,7 +8918,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin344",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Entrée du Casuarina",
@@ -8944,7 +8944,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin345",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Berthoud",
@@ -8970,7 +8970,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin346",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Riv Fleurieu",
@@ -8996,7 +8996,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin347",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Bassin Ransonnet",
@@ -9022,7 +9022,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin348",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Riv Brue",
@@ -9048,7 +9048,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin349",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Île Caves",
@@ -9074,7 +9074,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin350",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Presqu'île Tasman",
@@ -9100,7 +9100,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin351",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Port Buache",
@@ -9126,7 +9126,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin352",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Maingon",
@@ -9152,7 +9152,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin353",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Haüy",
@@ -9178,7 +9178,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin354",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Ȋle Muiron",
@@ -9204,7 +9204,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin355",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Monge",
@@ -9230,7 +9230,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin356",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Surville",
@@ -9256,7 +9256,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin357",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Presqi'île Forestier",
@@ -9282,7 +9282,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin358",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Paul Lamanon",
@@ -9308,7 +9308,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin359",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Pointe du Ressac",
@@ -9334,7 +9334,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin360",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Bernier",
@@ -9360,7 +9360,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin361",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Pointe des Galets",
@@ -9386,7 +9386,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin362",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "La Pyramide",
@@ -9412,7 +9412,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin363",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Péron",
@@ -9438,7 +9438,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin364",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Maurouard",
@@ -9464,7 +9464,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin365",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Pointe Maugé",
@@ -9490,7 +9490,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin366",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Riedlé",
@@ -9516,7 +9516,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin367",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap des Tombeaux",
@@ -9542,7 +9542,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin368",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Boullanger",
@@ -9568,7 +9568,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin369",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Ȋlot du Nord",
@@ -9594,7 +9594,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin370",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Ȋlot du Milieu",
@@ -9620,7 +9620,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin371",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Pointe Le Sueur",
@@ -9646,7 +9646,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin372",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Port Montbazin",
@@ -9672,7 +9672,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin373",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Bougainville",
@@ -9698,7 +9698,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin374",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Île des Phoques",
@@ -9724,7 +9724,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin375",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Bailly",
@@ -9750,7 +9750,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin376",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Baie Fleurieu",
@@ -9776,7 +9776,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin377",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Faure",
@@ -9802,7 +9802,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin378",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Ȋlots Taillefer",
@@ -9828,7 +9828,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin379",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Sonnerat",
@@ -9854,7 +9854,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin380",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Détroit du Géographe",
@@ -9880,7 +9880,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin381",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Degérando",
@@ -9906,7 +9906,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin382",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Forestier",
@@ -9932,7 +9932,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin383",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Île du Refuge",
@@ -9958,7 +9958,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin384",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "B. Thouin",
@@ -9984,7 +9984,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin385",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Tourville",
@@ -10010,7 +10010,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin386",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Presqu'ȋle Freycinet",
@@ -10036,7 +10036,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin387",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap Lodi",
@@ -10062,7 +10062,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin388",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Pic d'Arcole",
@@ -10088,7 +10088,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin389",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Piton Champagny",
@@ -10114,7 +10114,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin390",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "ȋle Maurouard",
@@ -10140,7 +10140,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin391",
+    "code": "",
     "expedition": "Baudin",
     "state": "Tas",
     "frenchName": "Cap du Naturaliste",
@@ -10166,7 +10166,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin392",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Port des deux peuples",
@@ -10192,7 +10192,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin393",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Rivière des Français",
@@ -10218,7 +10218,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin394",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île de l'Observatoire",
@@ -10244,7 +10244,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin395",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Anse de l'Aiguade",
@@ -10270,7 +10270,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin396",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Le cap Pingré",
@@ -10296,7 +10296,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin397",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Faujas",
@@ -10322,7 +10322,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin398",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Lacroix",
@@ -10348,7 +10348,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin399",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Iles du Casuarina",
@@ -10374,7 +10374,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin400",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Mably",
@@ -10400,7 +10400,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin401",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Gosselin ",
@@ -10426,7 +10426,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin402",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Hamelin",
@@ -10452,7 +10452,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin403",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Freycinet",
@@ -10478,7 +10478,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin404",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Mentelle",
@@ -10504,7 +10504,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin405",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Clairault",
@@ -10530,7 +10530,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin406",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap du Naturaliste ",
@@ -10556,7 +10556,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin407",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Anse Depuch",
@@ -10582,7 +10582,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin408",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Piquet",
@@ -10608,7 +10608,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin409",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie du Géographe",
@@ -10634,7 +10634,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin410",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Riviere Vasse",
@@ -10660,7 +10660,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin411",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Récif  du Naturaliste",
@@ -10686,7 +10686,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin412",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe du Casuarina",
@@ -10712,7 +10712,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin413",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Port Leschenault",
@@ -10738,7 +10738,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin414",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Bouvard",
@@ -10764,7 +10764,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin415",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Péron",
@@ -10790,7 +10790,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin416",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Buache",
@@ -10816,7 +10816,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin417",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Berthollet ",
@@ -10842,7 +10842,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin418",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "R. Giraud",
@@ -10868,7 +10868,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin419",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Entrée Moreau",
@@ -10894,7 +10894,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin420",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Isle Heirisson",
@@ -10920,7 +10920,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin421",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles Louis-Napoléon",
@@ -10946,7 +10946,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin422",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Faure",
@@ -10972,7 +10972,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin423",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Boullanger",
@@ -10998,7 +10998,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin424",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Leschenault",
@@ -11024,7 +11024,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin425",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie Breton",
@@ -11050,7 +11050,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin426",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Lancelin",
@@ -11076,7 +11076,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin427",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Boullanger",
@@ -11102,7 +11102,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin428",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie Jurien",
@@ -11128,7 +11128,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin429",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Piton Lesueur",
@@ -11154,7 +11154,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin430",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Piton Péron",
@@ -11180,7 +11180,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin431",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Montagne du Naturaliste",
@@ -11206,7 +11206,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin432",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Rouge",
@@ -11232,7 +11232,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin433",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie Gantheaume",
@@ -11258,7 +11258,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin434",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Bellefin",
@@ -11284,7 +11284,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin435",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Mondrain de direction",
@@ -11310,7 +11310,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin436",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Havre Inutile",
@@ -11336,7 +11336,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin437",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Heirisson",
@@ -11362,7 +11362,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin438",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Ransonnet ",
@@ -11388,7 +11388,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin439",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Le Coin de Mire",
@@ -11414,7 +11414,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin440",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie des Tétrodons",
@@ -11440,7 +11440,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin441",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île des Tétrodons",
@@ -11466,7 +11466,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin442",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe du Refuge",
@@ -11492,7 +11492,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin443",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Levillain",
@@ -11518,7 +11518,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin444",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "cap de l'Inscription",
@@ -11544,7 +11544,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin445",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Passage du Naturaliste",
@@ -11570,7 +11570,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin446",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap St Cricq",
@@ -11596,7 +11596,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin447",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋle Bernier",
@@ -11622,7 +11622,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin448",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Ronsard",
@@ -11648,7 +11648,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin449",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Passage du Géographe",
@@ -11674,7 +11674,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin450",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋle Lefebvre",
@@ -11700,7 +11700,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin451",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋle Lefebvre",
@@ -11726,7 +11726,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin452",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Entrée Depuch",
@@ -11752,7 +11752,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin453",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Giraud",
@@ -11778,7 +11778,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin454",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋle Leschenault",
@@ -11804,7 +11804,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin455",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋle aux trois Baies ",
@@ -11830,7 +11830,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin456",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Isthme Taillefer",
@@ -11856,7 +11856,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin457",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Moreau",
@@ -11882,7 +11882,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin458",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Presqu'ȋle Péron",
@@ -11908,7 +11908,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin459",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Lesueur",
@@ -11934,7 +11934,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin460",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Etang Montbazin",
@@ -11960,7 +11960,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin461",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie de l'Attaque",
@@ -11986,7 +11986,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin462",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie de Dampier",
@@ -12012,7 +12012,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin463",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Guichenault",
@@ -12038,7 +12038,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin464",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Havre Hamelin",
@@ -12064,7 +12064,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin465",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie Lharidon",
@@ -12090,7 +12090,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin466",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Petit",
@@ -12116,7 +12116,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin467",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Faure",
@@ -12142,7 +12142,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin468",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Banc des tortues",
@@ -12168,7 +12168,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin469",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Cuvier",
@@ -12194,7 +12194,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin470",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Murat",
@@ -12220,7 +12220,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin471",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles de Rivoli",
@@ -12246,7 +12246,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin472",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Muiron",
@@ -12272,7 +12272,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin473",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Victor",
@@ -12298,7 +12298,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin474",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Bessières",
@@ -12324,7 +12324,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin475",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Serrurier",
@@ -12350,7 +12350,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin476",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Thévenard",
@@ -12376,7 +12376,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin477",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Rosily",
@@ -12402,7 +12402,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin478",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Poivre",
@@ -12428,7 +12428,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin479",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie  Flacourt",
@@ -12454,7 +12454,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin480",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Malouet",
@@ -12480,7 +12480,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin481",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Dupuy",
@@ -12506,7 +12506,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin482",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Lowendal",
@@ -12532,7 +12532,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin483",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles de Montebello",
@@ -12558,7 +12558,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin484",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île La Trimouille",
@@ -12584,7 +12584,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin485",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île L'Hermite ",
@@ -12610,7 +12610,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin486",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie  Regnard",
@@ -12636,7 +12636,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin487",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Bruguière",
@@ -12662,7 +12662,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin488",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Legendre",
@@ -12688,7 +12688,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin489",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Haüy",
@@ -12714,7 +12714,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin490",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Archipel de Dampier",
@@ -12740,7 +12740,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin491",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Delambre",
@@ -12766,7 +12766,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin492",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Bézout",
@@ -12792,7 +12792,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin493",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Entrée Bouguer",
@@ -12818,7 +12818,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin494",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Picard",
@@ -12844,7 +12844,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin495",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Depuch",
@@ -12870,7 +12870,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin496",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Iles Forestier",
@@ -12896,7 +12896,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin497",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Îlot de sable",
@@ -12922,7 +12922,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin498",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Ronsard",
@@ -12948,7 +12948,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin499",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Basses du Géographe",
@@ -12974,7 +12974,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin500",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Cossigny",
@@ -13000,7 +13000,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin501",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Thouin",
@@ -13026,7 +13026,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin502",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Des Tortues",
@@ -13052,7 +13052,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin503",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Larrey",
@@ -13078,7 +13078,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin504",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Banc des Amphinomes",
@@ -13104,7 +13104,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin505",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Poissonnier",
@@ -13130,7 +13130,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin506",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Keraudren",
@@ -13156,7 +13156,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin507",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Bancs des Planaires",
@@ -13182,7 +13182,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin508",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Bedout",
@@ -13208,7 +13208,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin509",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Missiessy",
@@ -13234,7 +13234,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin510",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie  Desault",
@@ -13260,7 +13260,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin511",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Jaubert",
@@ -13286,7 +13286,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin512",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Frézier",
@@ -13312,7 +13312,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin513",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Duhamel",
@@ -13338,7 +13338,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin514",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Bossut",
@@ -13364,7 +13364,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin515",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie Géoffroy",
@@ -13390,7 +13390,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin516",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Récif du Casuarina",
@@ -13416,7 +13416,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin517",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Baie Lagrange",
@@ -13442,7 +13442,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin518",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Latouche-Tréville",
@@ -13468,7 +13468,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin519",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Gourdon",
@@ -13494,7 +13494,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin520",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Villaret",
@@ -13520,7 +13520,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin521",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Gantheaume",
@@ -13546,7 +13546,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin522",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Huygens",
@@ -13572,7 +13572,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin523",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Latreille",
@@ -13598,7 +13598,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin524",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Boileau",
@@ -13624,7 +13624,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin525",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Pointe Coulomb",
@@ -13650,7 +13650,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin526",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Bertholet",
@@ -13676,7 +13676,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin527",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Carnot",
@@ -13702,7 +13702,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin528",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles Lacépède",
@@ -13728,7 +13728,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin529",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Bancs des baleines",
@@ -13754,7 +13754,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin530",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles Emériau",
@@ -13780,7 +13780,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin531",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Borda",
@@ -13806,7 +13806,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin532",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Lévêque",
@@ -13832,7 +13832,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin533",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Caffarelli",
@@ -13858,7 +13858,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin534",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Récif Brué",
@@ -13884,7 +13884,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin535",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Du Géographe",
@@ -13910,7 +13910,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin536",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Mollien",
@@ -13936,7 +13936,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin537",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Adèle",
@@ -13962,7 +13962,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin538",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Archipel Bonaparte",
@@ -13988,7 +13988,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin539",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles Champagny",
@@ -14014,7 +14014,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin540",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Degérando",
@@ -14040,7 +14040,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin541",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles d'Arcole",
@@ -14066,7 +14066,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin542",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Freycinet",
@@ -14092,7 +14092,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin543",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Lucas",
@@ -14118,7 +14118,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin544",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Duguesclin",
@@ -14144,7 +14144,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin545",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île D'Aguesseau",
@@ -14170,7 +14170,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin546",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Commerson",
@@ -14196,7 +14196,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin547",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Forbin",
@@ -14222,7 +14222,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin548",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Colbert",
@@ -14248,7 +14248,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin549",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Buffon",
@@ -14274,7 +14274,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin550",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Desaix",
@@ -14300,7 +14300,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin551",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Desfontaines",
@@ -14326,7 +14326,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin552",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋle Bernouilli",
@@ -14352,7 +14352,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin553",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Keraudren",
@@ -14378,7 +14378,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin554",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Mably",
@@ -14404,7 +14404,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin555",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Fontanes",
@@ -14430,7 +14430,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin556",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Lamarck",
@@ -14456,7 +14456,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin557",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île  Tournefort",
@@ -14482,7 +14482,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin558",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Augereau",
@@ -14508,7 +14508,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin559",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Championnet",
@@ -14534,7 +14534,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin560",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Maret",
@@ -14560,7 +14560,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin561",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Jussieu",
@@ -14586,7 +14586,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin562",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Du Guillaume-Tell",
@@ -14612,7 +14612,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin563",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Corvisart",
@@ -14638,7 +14638,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin564",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Chateaurenault",
@@ -14664,7 +14664,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin565",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles Montalivet",
@@ -14690,7 +14690,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin566",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Suffren",
@@ -14716,7 +14716,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin567",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Berthier",
@@ -14742,7 +14742,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin568",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île De l'Institut",
@@ -14768,7 +14768,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin569",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Lavoisier",
@@ -14794,7 +14794,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin570",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Laplace",
@@ -14820,7 +14820,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin571",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Condillac",
@@ -14846,7 +14846,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin572",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Pascal",
@@ -14872,7 +14872,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin573",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Corneille",
@@ -14898,7 +14898,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin574",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Lafontaine",
@@ -14924,7 +14924,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin575",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Montesquieu",
@@ -14950,7 +14950,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin576",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Molière",
@@ -14976,7 +14976,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin577",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Racine",
@@ -15002,7 +15002,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin578",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Descartes",
@@ -15028,7 +15028,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin579",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Fénélon",
@@ -15054,7 +15054,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin580",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Monge",
@@ -15080,7 +15080,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin581",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Cassini",
@@ -15106,7 +15106,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin582",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Berthoud",
@@ -15132,7 +15132,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin583",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Borda",
@@ -15158,7 +15158,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin584",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Île Bougainville",
@@ -15184,7 +15184,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin585",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Voltaire",
@@ -15210,7 +15210,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin586",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Banc des Holothuries",
@@ -15236,7 +15236,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin587",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Golfe Joseph Bonaparte",
@@ -15262,7 +15262,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin588",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Ruthière (Rulhière)",
@@ -15288,7 +15288,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin589",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Iles Lesueur",
@@ -15314,7 +15314,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin590",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Dusséjour",
@@ -15340,7 +15340,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin591",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Bernier",
@@ -15366,7 +15366,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin592",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Mont du Casuarina",
@@ -15392,7 +15392,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin593",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap St Lambert",
@@ -15418,7 +15418,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin594",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Banc des Méduses",
@@ -15444,7 +15444,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin595",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Cap Berquin ",
@@ -15470,7 +15470,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin596",
+    "code": "",
     "expedition": "Baudin",
     "state": "WA",
     "frenchName": "Ȋles Lacrosse",
@@ -15496,7 +15496,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin597",
+    "code": "",
     "expedition": "Baudin",
     "state": "NT",
     "frenchName": "Cap Dombey",
@@ -15522,7 +15522,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin598",
+    "code": "",
     "expedition": "Baudin",
     "state": "NT",
     "frenchName": "Ȋles Barthélémy",
@@ -15548,7 +15548,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin599",
+    "code": "",
     "expedition": "Baudin",
     "state": "NT",
     "frenchName": "Ȋle Péron",
@@ -15574,7 +15574,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin600",
+    "code": "",
     "expedition": "Baudin",
     "state": "NT",
     "frenchName": "Cap Fourcroy",
@@ -15600,7 +15600,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin601",
+    "code": "",
     "expedition": "Baudin",
     "state": "NT",
     "frenchName": "Cap Helvétius",
@@ -15626,7 +15626,7 @@
     "detailsLink_en": ""
   },
   {
-    "code": "Baudin602",
+    "code": "",
     "expedition": "Baudin",
     "state": "NT",
     "frenchName": "Cap de Léoben",
