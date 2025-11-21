@@ -1195,6 +1195,11 @@
         };
         const WIKI_CARD_HEIGHT = 240;
 
+        const isTouchDevice = () => {
+            return window.matchMedia('(hover: none) and (pointer: coarse)').matches
+                || ('ontouchstart' in window);
+        };
+
         const fetchWikiSummary = (lang, title) => {
             const key = `${lang}:${title}`;
             if (wikiCardState.cache.has(key)) {
@@ -1309,6 +1314,28 @@
             }, 200);
         };
 
+        const getWikiUrlForLink = (link, lang, title) => {
+            if (!link) {
+                return '';
+            }
+            const href = link.getAttribute('href');
+            if (href && href !== '#') {
+                return href;
+            }
+            if (title) {
+                const wikiLang = lang === 'fr' ? 'fr' : 'en';
+                return `https://${wikiLang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+            }
+            return '';
+        };
+
+        const openWikiPage = (url) => {
+            if (!url) {
+                return;
+            }
+            window.open(url, '_blank', 'noopener');
+        };
+
         const showWikiCard = (link) => {
             const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
             const title = link.dataset.title;
@@ -1333,6 +1360,11 @@
                     }
                 });
                 card.addEventListener('mouseleave', () => hideWikiCard(false));
+                card.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const url = getWikiUrlForLink(wikiCardState.link, lang, title);
+                    openWikiPage(url);
+                });
             });
         };
 
@@ -1340,19 +1372,34 @@
             if (!link || link.dataset.wikiBound === 'true') {
                 return;
             }
-            link.addEventListener('mouseenter', () => showWikiCard(link));
-            link.addEventListener('mouseleave', () => hideWikiCard(false));
-            link.addEventListener('click', (event) => {
-                const href = link.getAttribute('href');
-                if (href && href !== '#') {
-                    return;
+            link.addEventListener('mouseenter', () => {
+                if (!isTouchDevice()) {
+                    showWikiCard(link);
                 }
-                event.preventDefault();
+            });
+            link.addEventListener('mouseleave', () => {
+                if (!isTouchDevice()) {
+                    hideWikiCard(false);
+                }
+            });
+            link.addEventListener('click', (event) => {
                 const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
                 const title = link.dataset.title;
-                if (title) {
-                    const wikiUrl = `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
-                    window.open(wikiUrl, '_blank', 'noopener');
+                const href = getWikiUrlForLink(link, lang, title);
+
+                if (isTouchDevice()) {
+                    event.preventDefault();
+                    if (wikiCardState.card && wikiCardState.link === link) {
+                        openWikiPage(href);
+                        return;
+                    }
+                    showWikiCard(link);
+                    return;
+                }
+
+                if (!href) {
+                    event.preventDefault();
+                    openWikiPage(getWikiUrlForLink(link, lang, title));
                 }
             });
             link.dataset.wikiBound = 'true';
@@ -1361,6 +1408,23 @@
         const initializeWikiLinks = (root = document) => {
             root.querySelectorAll('.wiki-link').forEach(bindWikiLink);
         };
+
+        document.addEventListener('pointerdown', (event) => {
+            if (!isTouchDevice()) {
+                return;
+            }
+            const card = wikiCardState.card;
+            if (!card) {
+                return;
+            }
+            if (card.contains(event.target)) {
+                return;
+            }
+            if (wikiCardState.link && wikiCardState.link.contains(event.target)) {
+                return;
+            }
+            hideWikiCard(true);
+        });
 
         const extractWikiIdentifier = (url = '') => {
             if (!url) {
