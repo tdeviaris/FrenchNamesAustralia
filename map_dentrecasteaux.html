@@ -724,6 +724,84 @@
     .leaflet-tile-pane .leaflet-layer:last-child {
             font-size: 14px !important;
         }
+        .wiki-link {
+            color: #0645ad;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .wiki-link:hover {
+            text-decoration: underline;
+        }
+        .wiki-card {
+            position: absolute;
+            z-index: 9999;
+            background: #fff;
+            border-radius: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            display: flex;
+            overflow: hidden;
+            max-width: 520px;
+            height: 240px;
+            font-size: 13px;
+        }
+        .wiki-card * {
+            box-sizing: border-box;
+        }
+        .wiki-card-image {
+            flex: 0 0 210px;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+            background: #000;
+        }
+        .wiki-card-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: top;
+        }
+        .wiki-card-content {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 12px 16px 8px 16px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .wiki-card-title {
+            font-weight: 600;
+            margin: 0 0 6px 0;
+            font-size: 15px;
+        }
+        .wiki-card-text {
+            flex: 1 1 auto;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+        .wiki-card-text p {
+            margin: 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 10;
+            overflow: hidden;
+        }
+        .wiki-card-source {
+            flex: 0 0 auto;
+            margin-top: 4px;
+            font-size: 11px;
+            color: #777;
+            text-align: right;
+            border-top: 1px solid #eee;
+            padding-top: 3px;
+        }
+        .wiki-card-source a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        .wiki-card-source a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -1107,6 +1185,237 @@
                 return value;
             }
             return `details/${value}`;
+        };
+
+        const wikiCardState = {
+            card: null,
+            link: null,
+            hideTimeout: null,
+            cache: new Map()
+        };
+        const WIKI_CARD_HEIGHT = 240;
+
+        const fetchWikiSummary = (lang, title) => {
+            const key = `${lang}:${title}`;
+            if (wikiCardState.cache.has(key)) {
+                return Promise.resolve(wikiCardState.cache.get(key));
+            }
+            const url = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+            return fetch(url)
+                .then((response) => response.ok ? response.json() : null)
+                .then((data) => {
+                    if (data) {
+                        wikiCardState.cache.set(key, data);
+                    }
+                    return data;
+                })
+                .catch(() => null);
+        };
+
+        const createWikiCard = (data, lang) => {
+            if (!data) {
+                return null;
+            }
+            const card = document.createElement('div');
+            card.className = 'wiki-card';
+
+            const imageWrapper = document.createElement('div');
+            imageWrapper.className = 'wiki-card-image';
+            const img = document.createElement('img');
+            img.src = data.thumbnail ? data.thumbnail.source : '';
+            img.alt = data.title || '';
+            imageWrapper.appendChild(img);
+            card.appendChild(imageWrapper);
+
+            const content = document.createElement('div');
+            content.className = 'wiki-card-content';
+
+            const title = document.createElement('div');
+            title.className = 'wiki-card-title';
+            title.textContent = data.title || '';
+
+            const text = document.createElement('div');
+            text.className = 'wiki-card-text';
+            const paragraph = document.createElement('p');
+            paragraph.textContent = data.extract || '';
+            text.appendChild(paragraph);
+
+            const source = document.createElement('div');
+            source.className = 'wiki-card-source';
+            const link = document.createElement('a');
+            link.textContent = 'Wikipedia';
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.href = (data.content_urls && data.content_urls.desktop && data.content_urls.desktop.page)
+                || `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(data.title || '')}`;
+            const label = lang === 'fr' ? 'Source\xa0: ' : 'Source: ';
+            source.append(label);
+            source.appendChild(link);
+
+            content.appendChild(title);
+            content.appendChild(text);
+            content.appendChild(source);
+
+            card.appendChild(content);
+            document.body.appendChild(card);
+            return card;
+        };
+
+        const positionWikiCard = (card, link) => {
+            const rect = link.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
+            const margin = 12;
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            let top;
+            let left;
+
+            if (vh - rect.bottom >= WIKI_CARD_HEIGHT + margin) {
+                top = rect.bottom + margin;
+            } else if (rect.top >= WIKI_CARD_HEIGHT + margin) {
+                top = rect.top - WIKI_CARD_HEIGHT - margin;
+            } else {
+                top = Math.max(margin, Math.min(rect.bottom + margin, vh - WIKI_CARD_HEIGHT - margin));
+            }
+
+            if (vw - rect.left >= cardRect.width + margin) {
+                left = rect.left;
+            } else {
+                left = rect.right - cardRect.width;
+                if (left < margin) {
+                    left = margin;
+                }
+            }
+
+            card.style.top = `${top + window.scrollY}px`;
+            card.style.left = `${left + window.scrollX}px`;
+        };
+
+        const hideWikiCard = (immediate = false) => {
+            if (wikiCardState.hideTimeout) {
+                clearTimeout(wikiCardState.hideTimeout);
+                wikiCardState.hideTimeout = null;
+            }
+            if (immediate) {
+                wikiCardState.card?.remove();
+                wikiCardState.card = null;
+                wikiCardState.link = null;
+                return;
+            }
+            wikiCardState.hideTimeout = setTimeout(() => {
+                wikiCardState.card?.remove();
+                wikiCardState.card = null;
+                wikiCardState.link = null;
+            }, 200);
+        };
+
+        const showWikiCard = (link) => {
+            const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
+            const title = link.dataset.title;
+            if (!title) {
+                return;
+            }
+
+            hideWikiCard(true);
+
+            fetchWikiSummary(lang, title).then((data) => {
+                const card = createWikiCard(data, lang);
+                if (!card) {
+                    return;
+                }
+                wikiCardState.card = card;
+                wikiCardState.link = link;
+                positionWikiCard(card, link);
+                card.addEventListener('mouseenter', () => {
+                    if (wikiCardState.hideTimeout) {
+                        clearTimeout(wikiCardState.hideTimeout);
+                        wikiCardState.hideTimeout = null;
+                    }
+                });
+                card.addEventListener('mouseleave', () => hideWikiCard(false));
+            });
+        };
+
+        const bindWikiLink = (link) => {
+            if (!link || link.dataset.wikiBound === 'true') {
+                return;
+            }
+            link.addEventListener('mouseenter', () => showWikiCard(link));
+            link.addEventListener('mouseleave', () => hideWikiCard(false));
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
+                const title = link.dataset.title;
+                if (title) {
+                    const wikiUrl = `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+                    window.open(wikiUrl, '_blank', 'noopener');
+                }
+            });
+            link.dataset.wikiBound = 'true';
+        };
+
+        const initializeWikiLinks = (root = document) => {
+            root.querySelectorAll('.wiki-link').forEach(bindWikiLink);
+        };
+
+        const extractWikiIdentifier = (url = '') => {
+            if (!url) {
+                return '';
+            }
+            const match = url.match(/\/wiki\/([^#?]+)/i);
+            if (match && match[1]) {
+                return decodeURIComponent(match[1]);
+            }
+            return '';
+        };
+
+        const createWikiLinkMarkup = (url, label, lang) => {
+            if (!url || !label) {
+                return '';
+            }
+            const safeLabel = escapeHtml(label);
+            const safeUrl = escapeHtml(url);
+            const identifier = extractWikiIdentifier(url);
+            const wikiLang = lang === 'fr' ? 'fr' : 'en';
+
+            if (identifier) {
+                const safeIdentifier = escapeHtml(identifier);
+                return `<a href="${safeUrl}" class="wiki-link" data-lang="${wikiLang}" data-title="${safeIdentifier}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+            }
+
+            return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+        };
+
+        const enhanceWikiText = (text, lang) => {
+            if (!text || typeof text !== 'string') {
+                return '';
+            }
+            const domain = lang === 'fr' ? 'fr' : 'en';
+            const pattern = /\$([^$]+)\$([^$]+)\$/g;
+            let lastIndex = 0;
+            let result = '';
+            let match;
+
+            while ((match = pattern.exec(text)) !== null) {
+                result += text.slice(lastIndex, match.index);
+                const label = (match[1] || '').trim();
+                const identifier = (match[2] || '').trim();
+
+                if (label && identifier) {
+                    const safeLabel = escapeHtml(label);
+                    const safeIdentifier = escapeHtml(identifier);
+                    result += `<a href="#" class="wiki-link" data-lang="${domain}" data-title="${safeIdentifier}">${safeLabel}</a>`;
+                } else {
+                    result += match[0];
+                }
+
+                lastIndex = pattern.lastIndex;
+            }
+
+            result += text.slice(lastIndex);
+            return result
+                .replace(/\r\n/g, '\n')
+                .replace(/\n/g, '<br>');
         };
 
         const extractCoordinates = (place) => {
@@ -1535,6 +1844,8 @@
                 });
                 detailsLink.dataset.detailsBound = 'true';
             });
+
+            initializeWikiLinks(popupElement);
         };
 
         const centerPopupOnceReady = (popup, attempt = 0) => {
@@ -1599,6 +1910,18 @@
         map.on('popupopen', (event) => {
             centerPopupOnceReady(event.popup);
             attachPopupActions(event.popup);
+        });
+        map.on('popupclose', () => hideWikiCard(true));
+
+        window.addEventListener('scroll', () => {
+            if (wikiCardState.card && wikiCardState.link) {
+                positionWikiCard(wikiCardState.card, wikiCardState.link);
+            }
+        });
+        window.addEventListener('resize', () => {
+            if (wikiCardState.card && wikiCardState.link) {
+                positionWikiCard(wikiCardState.card, wikiCardState.link);
+            }
         });
 
         // Search functionality
@@ -1927,16 +2250,20 @@
                             textHtml += `<p class="popup-link-row">${linkSegments.join('<span class="popup-link-separator">|</span>')}</p>`;
                         }
 
+                        const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+
                         // Characteristic
                         const characteristicText = (currentLang === 'fr' && place.characteristic_fr) ? place.characteristic_fr : place.characteristic;
                         if (characteristicText && characteristicText.trim() !== "") {
-                            textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${characteristicText}</p>`;
+                            const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
+                            textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${enrichedCharacteristic}</p>`;
                         }
 
                         // Narrative path / origin of the name
                         const historyText = (currentLang === 'fr' && place.history_fr) ? place.history_fr : place.history;
                         if (historyText && historyText.trim() !== "") {
-                            textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${historyText}</p>`;
+                            const enrichedHistory = enhanceWikiText(historyText, wikiLang);
+                            textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${enrichedHistory}</p>`;
                         }
 
                         // Wikipedia link
@@ -1944,7 +2271,8 @@
                         if (wikiLink && wikiLink.trim() !== "") {
                             let linkText = wikiLink.substring(wikiLink.lastIndexOf('/') + 1);
                             linkText = decodeURIComponent(linkText).replace(/_/g, ' ');
-                            textHtml += `<p><strong>${trans['popup-wiki-label']}</strong> <a href="${wikiLink}" target="_blank">${linkText}</a></p>`;
+                            const wikiMarkup = createWikiLinkMarkup(wikiLink, linkText, wikiLang);
+                            textHtml += `<p><strong>${trans['popup-wiki-label']}</strong> ${wikiMarkup}</p>`;
                         }
 
                         // Other source link
