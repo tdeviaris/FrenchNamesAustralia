@@ -1343,6 +1343,10 @@
             link.addEventListener('mouseenter', () => showWikiCard(link));
             link.addEventListener('mouseleave', () => hideWikiCard(false));
             link.addEventListener('click', (event) => {
+                const href = link.getAttribute('href');
+                if (href && href !== '#') {
+                    return;
+                }
                 event.preventDefault();
                 const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
                 const title = link.dataset.title;
@@ -1404,7 +1408,8 @@
                 if (label && identifier) {
                     const safeLabel = escapeHtml(label);
                     const safeIdentifier = escapeHtml(identifier);
-                    result += `<a href="#" class="wiki-link" data-lang="${domain}" data-title="${safeIdentifier}">${safeLabel}</a>`;
+                    const wikiUrl = `https://${domain}.wikipedia.org/wiki/${encodeURIComponent(identifier)}`;
+                    result += `<a href="${wikiUrl}" class="wiki-link" data-lang="${domain}" data-title="${safeIdentifier}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
                 } else {
                     result += match[0];
                 }
