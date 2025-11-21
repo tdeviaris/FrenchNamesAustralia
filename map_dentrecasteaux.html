@@ -377,6 +377,16 @@
             border-radius: 6px;
             display: block;
         }
+        @media (min-width: 769px) {
+            .leaflet-popup {
+                width: min(640px, calc(100vw - 60px));
+            }
+            .leaflet-popup-content-wrapper,
+            .leaflet-popup-content {
+                width: 100%;
+            }
+        }
+
         @media (max-width: 768px) {
             :root { --nav-height: 52px; }
             body { padding-top: var(--nav-height); }
