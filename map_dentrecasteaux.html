@@ -378,11 +378,11 @@
             display: block;
         }
         @media (min-width: 769px) {
-            .leaflet-popup {
-                width: min(640px, calc(100vw - 60px));
+            .leaflet-popup.popup-has-image {
+                width: min(720px, calc(100vw - 60px));
             }
-            .leaflet-popup-content-wrapper,
-            .leaflet-popup-content {
+            .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
+            .leaflet-popup.popup-has-image .leaflet-popup-content {
                 width: 100%;
             }
         }
@@ -1938,6 +1938,11 @@
             });
 
             initializeWikiLinks(popupElement);
+
+            const popupRoot = popupElement.closest('.leaflet-popup');
+            if (popupRoot) {
+                popupRoot.classList.toggle('popup-has-image', !!popupElement.querySelector('.popup-image-wrapper'));
+            }
         };
 
         const centerPopupOnceReady = (popup, attempt = 0) => {
