@@ -378,12 +378,10 @@
             display: block;
         }
         @media (min-width: 769px) {
-            .leaflet-popup.popup-has-image {
-                width: min(720px, calc(100vw - 60px));
-            }
             .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
             .leaflet-popup.popup-has-image .leaflet-popup-content {
-                width: 100%;
+                max-width: min(720px, calc(100vw - 60px));
+                width: auto;
             }
         }
 
