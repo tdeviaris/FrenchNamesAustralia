@@ -469,20 +469,22 @@
             if (videoIntroEnded) return; // Prevent multiple calls
             videoIntroEnded = true;
 
+            // Show nav immediately (no transition, no white bar)
+            if (nav) {
+                nav.style.transition = 'none';
+                nav.style.opacity = '1';
+            }
+
             // Fade out video overlay
             videoIntro.classList.add('fade-out');
 
-            // After fade out completes, show main content with fade in
+            // After video fade out completes, show main content with fade in
             setTimeout(() => {
                 if (mainContent) {
                     mainContent.style.transition = 'opacity 1.5s ease-in';
                     mainContent.style.opacity = '1';
                 }
-                if (nav) {
-                    nav.style.transition = 'opacity 1.5s ease-in';
-                    nav.style.opacity = '1';
-                }
-                // Remove the video overlay from DOM after fade
+                // Remove the video overlay from DOM after content fade
                 setTimeout(() => {
                     videoIntro.remove();
                 }, 1500);
