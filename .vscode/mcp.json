@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "brave-browser": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "brave-real-browser-mcp-server@latest"]
+    }
+  }
+}

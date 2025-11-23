@@ -2396,7 +2396,9 @@
                         if (place.imgUrl && place.imgUrl.trim() !== "") {
                             const imageHtml = `
                                 <div class="popup-image-wrapper">
-                                    <img src="${place.imgUrl}" alt="${safeAlt}" class="popup-image popup-image-button" aria-label="${trans['popup-image-expand-label']}" role="button" tabindex="0">
+                                    <button type="button" class="popup-image-button" aria-label="${trans['popup-image-expand-label']}">
+                                        <img src="${place.imgUrl}" alt="${safeAlt}" class="popup-image">
+                                    </button>
                                 </div>`;
 
                             return `<div class="popup-layout">

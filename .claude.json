@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "brave-browser": {
+      "command": "npx",
+      "args": ["brave-real-browser-mcp-server@latest"]
+    }
+  }
+}

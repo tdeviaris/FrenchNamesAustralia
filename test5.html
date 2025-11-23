@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wikipedia-like Overcard</title>
+
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    margin: 40px;
+    max-width: 900px;
+    font-size: 18px;
+  }
+
+  a.wiki-link {
+    color: #0645ad;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a.wiki-link:hover { text-decoration: underline; }
+
+  /* ---------- OVERCARD ---------- */
+
+  .wiki-card {
+    position: absolute;
+    z-index: 9999;
+    background: #ffffff;
+    border-radius: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    display: flex;
+    overflow: hidden; /* coupe l'image et le texte */
+    max-width: 560px;
+    height: 260px; /* hauteur fixe : texte tronqué en bas */
+    font-size: 13px;
+  }
+
+  .wiki-card * {
+    box-sizing: border-box;
+  }
+
+  .wiki-card-image {
+    flex: 0 0 220px;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    background: #000;
+  }
+
+  .wiki-card-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;      /* remplit la zone */
+    object-position: top;   /* coupe uniquement par le bas */
+  }
+
+  .wiki-card-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px 8px 16px;
+    overflow: hidden; /* coupe le texte en bas */
+    background: #fff;
+  }
+
+  .wiki-card-title {
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    font-size: 15px;
+  }
+
+  .wiki-card-text {
+    flex: 1 1 auto;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+
+  .wiki-card-text p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 12;
+    overflow: hidden;
+  }
+
+  .wiki-card-source {
+    flex: 0 0 auto;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #777;
+    text-align: right;
+    border-top: 1px solid #eee;
+    padding-top: 3px;
+  }
+
+  .wiki-card-source a {
+    color: #0645ad;
+    text-decoration: none;
+  }
+  .wiki-card-source a:hover { text-decoration: underline; }
+</style>
+</head>
+
+<body>
+
+<p>
+  <a href="#" class="wiki-link" data-lang="en" data-title="Empress_Joséphine">Joséphine</a>
+  sent
+  <a href="#" class="wiki-link" data-lang="en" data-title="Stéphanie_de_Beauharnais">Stéphanie</a>
+  to
+  <a href="#" class="wiki-link" data-lang="en" data-title="Henriette_Campan">Mme Campan</a>’s
+  boarding school (see the glossary) for further education, which the other young ladies of Joséphine and
+  <a href="#" class="wiki-link" data-lang="en" data-title="House_of_Bonaparte">Bonaparte’s</a>
+  families also attended. In line with
+  <a href="#" class="wiki-link" data-lang="en" data-title="Napoleon">Napoléon</a>’s ambition of raising his family
+  to the rank of a reigning dynasty, the emperor adopted Stéphanie in 1806 and married her to the future grand duke
+  of <a href="#" class="wiki-link" data-lang="en" data-title="Grand_Duchy_of_Baden">Bade</a>.
+  <a href="#" class="wiki-link" data-lang="en" data-title="Hortense_de_Beauharnais">Hortense</a>
+  wrote in her memoires: ‘
+  <a href="#" class="wiki-link" data-lang="en" data-title="Caroline_Bonaparte">Caroline</a>
+  was so upset at this elevation that in the big circles in which my cousin’s [Stephanie] new ranking has placed her
+  side by side with her [Caroline], she was turning her back on her affecting not to speak to her’.
+</p>
+
+<script>
+(function () {
+  let currentCard = null;
+  let currentLink = null;
+  let hideTimeout = null;
+  const cache = new Map();
+  const CARD_HEIGHT = 260;
+
+  function fetchSummary(lang, title) {
+    const key = lang + ":" + title;
+    if (cache.has(key)) return Promise.resolve(cache.get(key));
+
+    const url = "https://" + lang + ".wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(title);
+
+    return fetch(url)
+      .then(r => r.json())
+      .then(json => {
+        cache.set(key, json);
+        return json;
+      })
+      .catch(() => null);
+  }
+
+  function createCard(data, lang) {
+    if (!data) return null;
+
+    const card = document.createElement("div");
+    card.className = "wiki-card";
+
+    /* Image */
+    const imgWrap = document.createElement("div");
+    imgWrap.className = "wiki-card-image";
+
+    const img = document.createElement("img");
+    img.src = data.thumbnail ? data.thumbnail.source : "";
+    img.alt = data.title || "";
+    imgWrap.appendChild(img);
+    card.appendChild(imgWrap);
+
+    /* Content */
+    const content = document.createElement("div");
+    content.className = "wiki-card-content";
+
+    const h = document.createElement("div");
+    h.className = "wiki-card-title";
+    h.textContent = data.title || "";
+
+    const text = document.createElement("div");
+    text.className = "wiki-card-text";
+
+    const p = document.createElement("p");
+    p.textContent = data.extract || "";
+    text.appendChild(p);
+
+    const src = document.createElement("div");
+    src.className = "wiki-card-source";
+
+    const a = document.createElement("a");
+    a.textContent = "Wikipedia";
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.href =
+      (data.content_urls && data.content_urls.desktop && data.content_urls.desktop.page) ||
+      ("https://" +
+        lang +
+        ".wikipedia.org/wiki/" +
+        encodeURIComponent(data.title || ""));
+
+    src.append("Source : ");
+    src.appendChild(a);
+
+    content.appendChild(h);
+    content.appendChild(text);
+    content.appendChild(src);
+
+    card.appendChild(content);
+    document.body.appendChild(card);
+
+    return card;
+  }
+
+  function positionCard(card, link) {
+    const rect = link.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const margin = 12;
+
+    let top, left;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    /* Vertical : dessous si possible, sinon dessus */
+    if (vh - rect.bottom >= CARD_HEIGHT + margin) {
+      top = rect.bottom + margin;
+    } else if (rect.top >= CARD_HEIGHT + margin) {
+      top = rect.top - CARD_HEIGHT - margin;
+    } else {
+      top = Math.max(margin, Math.min(rect.bottom + margin, vh - CARD_HEIGHT - margin));
+    }
+
+    /* Horizontal : à droite si possible, sinon à gauche */
+    if (vw - rect.left >= cardRect.width + margin) {
+      left = rect.left;
+    } else {
+      left = rect.right - cardRect.width;
+      if (left < margin) left = margin;
+    }
+
+    card.style.top = top + window.scrollY + "px";
+    card.style.left = left + window.scrollX + "px";
+  }
+
+  function showCard(link) {
+    const lang = link.dataset.lang || "en";
+    const title = link.dataset.title;
+
+    if (!title) return;
+
+    if (hideTimeout) clearTimeout(hideTimeout);
+
+    if (currentCard) currentCard.remove();
+
+    fetchSummary(lang, title).then(summary => {
+      const card = createCard(summary, lang);
+      if (!card) return;
+      currentCard = card;
+      currentLink = link;
+      positionCard(card, link);
+      card.addEventListener("mouseenter", () => clearTimeout(hideTimeout));
+      card.addEventListener("mouseleave", scheduleHide);
+    });
+  }
+
+  function scheduleHide() {
+    hideTimeout = setTimeout(() => {
+      if (currentCard) currentCard.remove();
+      currentCard = null;
+    }, 200);
+  }
+
+  document.querySelectorAll(".wiki-link").forEach(link => {
+    link.addEventListener("mouseenter", () => showCard(link));
+    link.addEventListener("mouseleave", scheduleHide);
+    link.addEventListener("click", e => e.preventDefault());
+  });
+
+  window.addEventListener("scroll", () => {
+    if (currentCard && currentLink) positionCard(currentCard, currentLink);
+  });
+
+  window.addEventListener("resize", () => {
+    if (currentCard && currentLink) positionCard(currentCard, currentLink);
+  });
+})();
+</script>
+
+</body>
+</html>
