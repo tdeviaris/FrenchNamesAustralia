@@ -257,8 +257,8 @@
 <body>
     <!-- Video Introduction Overlay -->
     <div class="video-intro-overlay" id="video-intro">
-        <video id="intro-video" muted playsinline preload="auto" webkit-playsinline poster="img/introduction-poster.jpg">
-            <source src="img/introduction.mp4" type="video/mp4">
+        <video id="intro-video" muted playsinline preload="auto" webkit-playsinline poster="img/introduction-poster.jpg?v=20251123">
+            <source src="img/introduction.mp4?v=20251123" type="video/mp4">
         </video>
         <button class="video-skip-button" id="skip-video" data-i18n="skip-intro">Skip</button>
     </div>
@@ -491,34 +491,59 @@
 
         // When video ends naturally
         if (introVideo) {
+            console.log('Video element found:', introVideo);
+            console.log('Video src:', introVideo.querySelector('source')?.src);
+            console.log('Video readyState:', introVideo.readyState);
+
             introVideo.addEventListener('ended', endVideoIntro);
 
             // Handle video errors
             introVideo.addEventListener('error', (e) => {
-                console.error('Video failed to load:', e);
+                console.error('Video error event:', e);
+                console.error('Video error code:', introVideo.error?.code);
+                console.error('Video error message:', introVideo.error?.message);
                 endVideoIntro();
             });
 
+            // Handle source errors
+            const source = introVideo.querySelector('source');
+            if (source) {
+                source.addEventListener('error', (e) => {
+                    console.error('Source error:', e);
+                    endVideoIntro();
+                });
+            }
+
             // Wait for video to be ready, then try to play
             introVideo.addEventListener('loadedmetadata', () => {
-                console.log('Video metadata loaded, duration:', introVideo.duration);
+                console.log('✓ Video metadata loaded, duration:', introVideo.duration);
+            });
+
+            introVideo.addEventListener('loadeddata', () => {
+                console.log('✓ Video data loaded');
             });
 
             introVideo.addEventListener('canplay', () => {
-                console.log('Video can play');
+                console.log('✓ Video can play, attempting to start...');
                 // Explicitly try to play the video
                 const playPromise = introVideo.play();
 
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
-                        console.log('Video is playing');
+                        console.log('✓ Video is playing successfully');
                     }).catch((error) => {
-                        console.error('Autoplay failed:', error);
+                        console.error('✗ Autoplay failed:', error);
                         // If autoplay fails, show content immediately
                         endVideoIntro();
                     });
                 }
             });
+
+            // Try to load the video
+            console.log('Calling video.load()...');
+            introVideo.load();
+        } else {
+            console.error('Video element not found!');
         }
 
         // Skip button handler
