@@ -354,8 +354,8 @@
             box-sizing: border-box;
         }
         .popup-image-wrapper {
-            flex-basis: clamp(240px, 38vw, 360px);
-            flex-shrink: 1;
+            display: flex;
+            flex: 0 0 clamp(240px, 38vw, 360px);
             min-width: 0;
         }
         .popup-image-button {
@@ -749,7 +749,7 @@
             overflow: hidden;
             max-width: 520px;
             height: 240px;
-            font-size: 11px;
+            font-size: 12px;
         }
         .wiki-card:not(.has-image) {
             height: auto;
@@ -1733,13 +1733,13 @@
                 if (!hasRepresentativeImage) {
                     return url;
                 }
+                const hasQuery = url.includes('?');
+                const widParam = hasQuery ? '&wid=2000' : '?wid=2000';
                 if (/wid=\d+/i.test(url)) {
                     return url;
                 }
-                const separator = url.includes('?') ? '&' : '?';
-                return `${url}${separator}wid=2000`;
+                return url + widParam;
             })();
-
             showMapModalOverlay('map-loading-message');
 
             mapModalBody.innerHTML = '';
@@ -1835,7 +1835,8 @@
             detailsModalCloseButton.addEventListener('click', closeDetailsModal);
         }
         document.addEventListener('keydown', (event) => {
-            if (event.key !== 'Escape') {
+            const escapePressed = event.key === 'Escape';
+            if (!escapePressed) {
                 return;
             }
             if (modal?.classList.contains('open')) {
@@ -1923,18 +1924,18 @@
                 button.dataset.modalBound = 'true';
             }
 
-           const mapLink = popupElement.querySelector('.popup-map-link');
-           if (mapLink && !mapLink.dataset.modalBound) {
-               mapLink.addEventListener('click', (event) => {
-                   event.preventDefault();
-                   const url = mapLink.dataset.mapUrl;
-                   const title = mapLink.dataset.mapTitle || '';
-                   if (url && url.trim() !== '') {
-                       openMapModal(url, title);
-                   }
-               });
-               mapLink.dataset.modalBound = 'true';
-           }
+            const mapLink = popupElement.querySelector('.popup-map-link');
+            if (mapLink && !mapLink.dataset.modalBound) {
+                mapLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const url = mapLink.dataset.mapUrl;
+                    const title = mapLink.dataset.mapTitle || '';
+                    if (url && url.trim() !== '') {
+                        openMapModal(url, title);
+                    }
+                });
+                mapLink.dataset.modalBound = 'true';
+            }
 
             const detailsLinks = popupElement.querySelectorAll('.popup-details-link');
             detailsLinks.forEach((detailsLink) => {
@@ -2390,7 +2391,6 @@
                             textHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
                         }
 
-
                         // Si une image est disponible, créer une mise en page à deux colonnes.
                         if (place.imgUrl && place.imgUrl.trim() !== "") {
                             const imageHtml = `
@@ -2427,7 +2427,7 @@
                 updateSearchTranslations();
             })
             .catch(error => {
-                console.error('Failed to load entrecasteaux data:', error);
+                console.error('Failed to load baudin data:', error);
             });
     </script>
 </body>
