@@ -257,7 +257,7 @@
 <body>
     <!-- Video Introduction Overlay -->
     <div class="video-intro-overlay" id="video-intro">
-        <video id="intro-video" autoplay muted playsinline>
+        <video id="intro-video" muted playsinline preload="auto" webkit-playsinline>
             <source src="img/introduction.mp4" type="video/mp4">
         </video>
         <button class="video-skip-button" id="skip-video" data-i18n="skip-intro">Skip</button>
@@ -463,7 +463,12 @@
         if (mainContent) mainContent.style.opacity = '0';
         if (nav) nav.style.opacity = '0';
 
+        let videoIntroEnded = false;
+
         function endVideoIntro() {
+            if (videoIntroEnded) return; // Prevent multiple calls
+            videoIntroEnded = true;
+
             // Fade out video overlay
             videoIntro.classList.add('fade-out');
 
@@ -487,6 +492,33 @@
         // When video ends naturally
         if (introVideo) {
             introVideo.addEventListener('ended', endVideoIntro);
+
+            // Handle video errors
+            introVideo.addEventListener('error', (e) => {
+                console.error('Video failed to load:', e);
+                endVideoIntro();
+            });
+
+            // Wait for video to be ready, then try to play
+            introVideo.addEventListener('loadedmetadata', () => {
+                console.log('Video metadata loaded, duration:', introVideo.duration);
+            });
+
+            introVideo.addEventListener('canplay', () => {
+                console.log('Video can play');
+                // Explicitly try to play the video
+                const playPromise = introVideo.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Video is playing');
+                    }).catch((error) => {
+                        console.error('Autoplay failed:', error);
+                        // If autoplay fails, show content immediately
+                        endVideoIntro();
+                    });
+                }
+            });
         }
 
         // Skip button handler
@@ -494,13 +526,13 @@
             skipButton.addEventListener('click', endVideoIntro);
         }
 
-        // Fallback: if video fails to load or play, show content after 2 seconds
+        // Shorter fallback: if video hasn't started after 5 seconds, show content
         setTimeout(() => {
-            if (videoIntro && !videoIntro.classList.contains('fade-out')) {
+            if (!videoIntroEnded) {
                 console.warn('Video intro timeout - showing main content');
                 endVideoIntro();
             }
-        }, 30000); // 30 second timeout
+        }, 5000); // 5 second timeout (reduced from 30)
     </script>
 </body>
 </html>
