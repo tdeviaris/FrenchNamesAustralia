@@ -752,6 +752,14 @@
             height: 240px;
             font-size: 12px;
         }
+        .wiki-card:not(.has-image) {
+            height: auto;
+            max-height: 240px;
+            display: block;
+        }
+        .wiki-card:not(.has-image) .wiki-card-content {
+            padding-bottom: 10px;
+        }
         .wiki-card * {
             box-sizing: border-box;
         }
@@ -1232,13 +1240,18 @@
             const card = document.createElement('div');
             card.className = 'wiki-card';
 
-            const imageWrapper = document.createElement('div');
-            imageWrapper.className = 'wiki-card-image';
-            const img = document.createElement('img');
-            img.src = data.thumbnail ? data.thumbnail.source : '';
-            img.alt = data.title || '';
-            imageWrapper.appendChild(img);
-            card.appendChild(imageWrapper);
+            // Only add the image if it exists in the data
+            if (data.thumbnail && data.thumbnail.source) {
+                const imageWrapper = document.createElement('div');
+                imageWrapper.className = 'wiki-card-image';
+                const img = document.createElement('img');
+                img.src = data.thumbnail.source;
+                img.alt = data.title || '';
+                imageWrapper.appendChild(img);
+                card.appendChild(imageWrapper);
+                card.classList.add('has-image');
+            }
+
 
             const content = document.createElement('div');
             content.className = 'wiki-card-content';
