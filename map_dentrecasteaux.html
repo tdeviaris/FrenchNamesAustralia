@@ -1487,10 +1487,10 @@
                 let finalIdentifier = (identifier || '').trim();
                 const trimmedLabel = (label || '').trim();
 
-                if (finalIdentifier.toUpperCase().startsWith('FR')) {
+                if (finalIdentifier.startsWith('FR')) {
                     currentDomain = 'fr';
                     finalIdentifier = finalIdentifier.substring(2).trim();
-                } else if (finalIdentifier.toUpperCase().startsWith('EN')) {
+                } else if (finalIdentifier.startsWith('EN')) {
                     currentDomain = 'en';
                     finalIdentifier = finalIdentifier.substring(2).trim();
                 }
