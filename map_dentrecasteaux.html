@@ -380,8 +380,8 @@
         @media (min-width: 769px) {
             .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
             .leaflet-popup.popup-has-image .leaflet-popup-content {
+                width: min(720px, calc(100vw - 60px));
                 max-width: min(720px, calc(100vw - 60px));
-                width: auto;
             }
         }
 
@@ -1479,31 +1479,34 @@
             if (!text || typeof text !== 'string') {
                 return '';
             }
-            const domain = lang === 'fr' ? 'fr' : 'en';
+            const defaultDomain = lang === 'fr' ? 'fr' : 'en';
             const pattern = /\$([^$]+)\$([^$]+)\$/g;
-            let lastIndex = 0;
-            let result = '';
-            let match;
+            
+            const replacer = (match, label, identifier) => {
+                let currentDomain = defaultDomain;
+                let finalIdentifier = (identifier || '').trim();
+                const trimmedLabel = (label || '').trim();
 
-            while ((match = pattern.exec(text)) !== null) {
-                result += text.slice(lastIndex, match.index);
-                const label = (match[1] || '').trim();
-                const identifier = (match[2] || '').trim();
-
-                if (label && identifier) {
-                    const safeLabel = escapeHtml(label);
-                    const safeIdentifier = escapeHtml(identifier);
-                    const wikiUrl = `https://${domain}.wikipedia.org/wiki/${encodeURIComponent(identifier)}`;
-                    result += `<a href="${wikiUrl}" class="wiki-link" data-lang="${domain}" data-title="${safeIdentifier}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
-                } else {
-                    result += match[0];
+                if (finalIdentifier.toUpperCase().startsWith('FR')) {
+                    currentDomain = 'fr';
+                    finalIdentifier = finalIdentifier.substring(2).trim();
+                } else if (finalIdentifier.toUpperCase().startsWith('EN')) {
+                    currentDomain = 'en';
+                    finalIdentifier = finalIdentifier.substring(2).trim();
                 }
 
-                lastIndex = pattern.lastIndex;
-            }
+                if (trimmedLabel && finalIdentifier) {
+                    const safeLabel = escapeHtml(trimmedLabel);
+                    const safeIdentifier = escapeHtml(finalIdentifier);
+                    const wikiUrl = `https://${currentDomain}.wikipedia.org/wiki/${encodeURIComponent(safeIdentifier)}`;
+                    return `<a href="${wikiUrl}" class="wiki-link" data-lang="${currentDomain}" data-title="${safeIdentifier}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+                }
+                return match; // Return original if invalid
+            };
 
-            result += text.slice(lastIndex);
-            return result
+            const processedText = text.replace(pattern, replacer);
+            
+            return processedText
                 .replace(/\r\n/g, '\n')
                 .replace(/\n/g, '<br>');
         };
