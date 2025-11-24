@@ -1206,7 +1206,8 @@
             card: null,
             link: null,
             hideTimeout: null,
-            cache: new Map()
+            cache: new Map(),
+            pendingRequest: null  // Track pending fetch requests
         };
         const WIKI_CARD_HEIGHT = 240;
 
@@ -1317,21 +1318,33 @@
         };
 
         const hideWikiCard = (immediate = false) => {
+            // Cancel any pending request
+            if (wikiCardState.pendingRequest) {
+                wikiCardState.pendingRequest.cancelled = true;
+                wikiCardState.pendingRequest = null;
+            }
+
             if (wikiCardState.hideTimeout) {
                 clearTimeout(wikiCardState.hideTimeout);
                 wikiCardState.hideTimeout = null;
             }
-            if (immediate) {
-                wikiCardState.card?.remove();
-                wikiCardState.card = null;
+
+            const cleanup = () => {
+                // Remove the tracked card
+                if (wikiCardState.card) {
+                    wikiCardState.card.remove();
+                    wikiCardState.card = null;
+                }
+                // Also remove any orphaned wiki cards that might exist
+                document.querySelectorAll('.wiki-card').forEach(card => card.remove());
                 wikiCardState.link = null;
+            };
+
+            if (immediate) {
+                cleanup();
                 return;
             }
-            wikiCardState.hideTimeout = setTimeout(() => {
-                wikiCardState.card?.remove();
-                wikiCardState.card = null;
-                wikiCardState.link = null;
-            }, 200);
+            wikiCardState.hideTimeout = setTimeout(cleanup, 200);
         };
 
         const getWikiUrlForLink = (link, lang, title) => {
@@ -1370,16 +1383,42 @@
                 return;
             }
 
+            // Clean up immediately (this also cancels any pending requests)
             hideWikiCard(true);
 
+            // Create a request token to track this specific request
+            const requestToken = { cancelled: false };
+            wikiCardState.pendingRequest = requestToken;
+
             fetchWikiSummary(lang, title).then((data) => {
-                const card = createWikiCard(data, lang);
-                if (!card) {
+                // Check if this request was cancelled
+                if (requestToken.cancelled) {
                     return;
                 }
+
+                // Check if we're still the active request
+                if (wikiCardState.pendingRequest !== requestToken) {
+                    return;
+                }
+
+                const card = createWikiCard(data, lang);
+                if (!card) {
+                    wikiCardState.pendingRequest = null;
+                    return;
+                }
+
+                // One final check before showing the card
+                if (requestToken.cancelled) {
+                    card.remove();
+                    return;
+                }
+
                 wikiCardState.card = card;
                 wikiCardState.link = link;
+                wikiCardState.pendingRequest = null;
+
                 positionWikiCard(card, link);
+
                 card.addEventListener('mouseenter', () => {
                     if (wikiCardState.hideTimeout) {
                         clearTimeout(wikiCardState.hideTimeout);
@@ -1393,6 +1432,11 @@
                     hideWikiCard(true);
                     openWikiPage(url);
                 });
+            }).catch(() => {
+                // Clean up on error
+                if (wikiCardState.pendingRequest === requestToken) {
+                    wikiCardState.pendingRequest = null;
+                }
             });
         };
 
