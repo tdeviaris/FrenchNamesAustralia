@@ -559,15 +559,24 @@
             color: #333;
         }
         .map-modal-close {
-            background: none;
-            border: none;
-            font-size: 1.6rem;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            border: 2px solid #fff;
+            font-size: 1.5rem;
             line-height: 1;
+            padding: 8px 12px;
+            border-radius: 50%;
             cursor: pointer;
-            color: #333;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+        .map-modal-close:hover {
+            background: rgba(255,255,255,0.95);
+            color: #000;
+            transform: scale(1.1);
         }
         .map-modal-close:focus-visible {
-            outline: 2px solid #0056b3;
+            outline: 2px solid #FFD700;
             outline-offset: 2px;
         }
         .map-modal-body {
