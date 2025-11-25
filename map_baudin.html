@@ -2321,19 +2321,31 @@
             }
         };
 
+        const waitForLanguageChange = (expectedLang, callback, maxAttempts = 40) => {
+            let attempts = 0;
+            const checkLanguage = () => {
+                const currentLang = localStorage.getItem('language') || 'en';
+                if (currentLang === expectedLang) {
+                    callback();
+                } else if (attempts < maxAttempts) {
+                    attempts++;
+                    setTimeout(checkLanguage, 50);
+                }
+            };
+            checkLanguage();
+        };
+
         document.getElementById('lang-fr')?.addEventListener('click', () => {
-            // Wait longer to ensure language has changed in localStorage
-            setTimeout(() => {
+            waitForLanguageChange('fr', () => {
                 updateSearchTranslations();
                 refreshOpenPopup();
-            }, 300);
+            });
         });
         document.getElementById('lang-en')?.addEventListener('click', () => {
-            // Wait longer to ensure language has changed in localStorage
-            setTimeout(() => {
+            waitForLanguageChange('en', () => {
                 updateSearchTranslations();
                 refreshOpenPopup();
-            }, 300);
+            });
         });
 
         const dataVersion = '20250209';
