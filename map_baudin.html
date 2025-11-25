@@ -2321,31 +2321,10 @@
             }
         };
 
-        const waitForLanguageChange = (expectedLang, callback, maxAttempts = 40) => {
-            let attempts = 0;
-            const checkLanguage = () => {
-                const currentLang = localStorage.getItem('language') || 'en';
-                if (currentLang === expectedLang) {
-                    callback();
-                } else if (attempts < maxAttempts) {
-                    attempts++;
-                    setTimeout(checkLanguage, 50);
-                }
-            };
-            checkLanguage();
-        };
-
-        document.getElementById('lang-fr')?.addEventListener('click', () => {
-            waitForLanguageChange('fr', () => {
-                updateSearchTranslations();
-                refreshOpenPopup();
-            });
-        });
-        document.getElementById('lang-en')?.addEventListener('click', () => {
-            waitForLanguageChange('en', () => {
-                updateSearchTranslations();
-                refreshOpenPopup();
-            });
+        // Listen for the languageChanged event dispatched by main.js
+        document.addEventListener('languageChanged', () => {
+            updateSearchTranslations();
+            refreshOpenPopup();
         });
 
         const dataVersion = '20250209';
