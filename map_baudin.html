@@ -2305,11 +2305,35 @@
 
         // Update search interface translations when language changes
         document.addEventListener('DOMContentLoaded', updateSearchTranslations);
+        const refreshOpenPopup = () => {
+            // Check if a popup is currently open
+            const openPopup = map.getOpenPopup();
+            if (openPopup) {
+                // Get the marker that has this popup
+                const openMarker = allMarkers.find(m => m.getPopup() === openPopup);
+                if (openMarker) {
+                    // Close and reopen the popup to refresh with new language
+                    setTimeout(() => {
+                        openMarker.closePopup();
+                        setTimeout(() => {
+                            openMarker.openPopup();
+                        }, 50);
+                    }, 100);
+                }
+            }
+        };
+
         document.getElementById('lang-fr')?.addEventListener('click', () => {
-            setTimeout(updateSearchTranslations, 100);
+            setTimeout(() => {
+                updateSearchTranslations();
+                refreshOpenPopup();
+            }, 100);
         });
         document.getElementById('lang-en')?.addEventListener('click', () => {
-            setTimeout(updateSearchTranslations, 100);
+            setTimeout(() => {
+                updateSearchTranslations();
+                refreshOpenPopup();
+            }, 100);
         });
 
         const dataVersion = '20250209';
