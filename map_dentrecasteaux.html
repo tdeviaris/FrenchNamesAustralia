@@ -2078,11 +2078,23 @@
             });
         };
 
+        // Track currently open marker for language refresh
+        let currentOpenMarker = null;
+
         map.on('popupopen', (event) => {
+            // Store reference to the marker that owns this popup
+            map.eachLayer((layer) => {
+                if (layer.getPopup && layer.getPopup() === event.popup) {
+                    currentOpenMarker = layer;
+                }
+            });
             centerPopupOnceReady(event.popup);
             attachPopupActions(event.popup);
         });
-        map.on('popupclose', () => hideWikiCard(true));
+        map.on('popupclose', () => {
+            hideWikiCard(true);
+            currentOpenMarker = null;
+        });
 
         window.addEventListener('scroll', () => {
             if (wikiCardState.card && wikiCardState.link) {
@@ -2306,23 +2318,22 @@
         // Update search interface translations when language changes
         document.addEventListener('DOMContentLoaded', updateSearchTranslations);
         const refreshOpenPopup = () => {
-            // Check if a popup is currently open
-            const openPopup = map.getOpenPopup();
-            if (openPopup) {
-                // Get the marker that has this popup
-                const openMarker = allMarkers.find(m => m.getPopup() === openPopup);
-                if (openMarker) {
-                    // Close and reopen the popup to refresh with new language
-                    openMarker.closePopup();
-                    setTimeout(() => {
-                        openMarker.openPopup();
-                    }, 100);
-                }
+            // Use the tracked marker reference
+            if (currentOpenMarker) {
+                console.log('Refreshing popup for language change');
+                // Close and reopen the popup to refresh with new language
+                currentOpenMarker.closePopup();
+                setTimeout(() => {
+                    currentOpenMarker.openPopup();
+                }, 100);
+            } else {
+                console.log('No open marker to refresh');
             }
         };
 
         // Listen for the languageChanged event dispatched by main.js
         document.addEventListener('languageChanged', () => {
+            console.log('Language changed event received');
             updateSearchTranslations();
             refreshOpenPopup();
         });
