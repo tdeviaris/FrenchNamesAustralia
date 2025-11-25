@@ -4,7 +4,14 @@ const translations = {
         // --- Textes généraux ---
         'hero-title': "Noms Français le&nbsp;long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
         'nav-home': "Accueil", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Ressources",
+        'nav-actors': "Acteurs", 'nav-maps': "Cartes et illustrations", 'nav-glossary': "Glossaire", 'nav-expert': "Expert IA",
         'skip-intro': "Passer",
+
+        // --- Page Expert IA (expert.html) ---
+        'expert-title': "Expert Toponymes - Assistant IA",
+        'expert-subtitle': "Posez vos questions sur les toponymes français en Australie",
+        'expert-info': "Cet assistant IA spécialisé peut répondre à vos questions sur les expéditions de Baudin et d'Entrecasteaux, les toponymes français en Australie, et l'histoire de ces voyages d'exploration.",
+        'expert-loading': "Chargement de l'assistant...",
         'footer-text': '&copy; 2025 - Dany Bréelle - Projet "Noms Français le long de la côte Australienne"',
 
         // --- Page d'accueil (index.html) ---
@@ -131,7 +138,14 @@ const translations = {
         // --- General text ---
         'hero-title': "French Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms originated by the d'Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
         'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Resources",
+        'nav-actors': "Actors", 'nav-maps': "Maps and illustrations", 'nav-glossary': "Glossary", 'nav-expert': "AI Expert",
         'skip-intro': "Skip",
+
+        // --- AI Expert Page (expert.html) ---
+        'expert-title': "Toponyms Expert - AI Assistant",
+        'expert-subtitle': "Ask your questions about French place names in Australia",
+        'expert-info': "This specialized AI assistant can answer your questions about the Baudin and d'Entrecasteaux expeditions, French place names in Australia, and the history of these voyages of exploration.",
+        'expert-loading': "Loading assistant...",
         'footer-text': '&copy; 2025 - Dany Bréelle - "French Names Along the Australian Coastline" Project',
 
         // --- Homepage (index.html) ---

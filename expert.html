@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Toponymes - Assistant IA</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        :root {
+            --nav-height: 60px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .expert-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - var(--nav-height));
+            margin-top: var(--nav-height);
+            padding: 20px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .expert-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .expert-header h1 {
+            font-family: 'Lato', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0056b3;
+            margin: 0 0 10px 0;
+        }
+
+        .expert-header p {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 0;
+        }
+
+        .gpt-iframe-container {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gpt-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .loading-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #666;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #0056b3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .info-banner {
+            background: #e3f2fd;
+            border-left: 4px solid #0056b3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .info-banner svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-banner p {
+            margin: 0;
+            line-height: 1.6;
+            color: #1565c0;
+        }
+
+        @media (max-width: 768px) {
+            .expert-container {
+                padding: 10px;
+            }
+
+            .expert-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .expert-header p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <h1>Toponymes français en Australie</h1>
+            </a>
+            <ul>
+                <li><a href="index.html" data-i18n="nav-home">Accueil</a></li>
+                <li><a href="map_baudin.html" data-i18n="nav-baudin">Baudin</a></li>
+                <li><a href="map_dentrecasteaux.html" data-i18n="nav-dentrecasteaux">d'Entrecasteaux</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-toggle" data-i18n="nav-resources">Ressources</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="acteursF.html" data-i18n="nav-actors">Acteurs</a></li>
+                        <li><a href="cartesF.html" data-i18n="nav-maps">Cartes et illustrations</a></li>
+                        <li><a href="glossaryF.html" data-i18n="nav-glossary">Glossaire</a></li>
+                        <li><a href="expert.html" data-i18n="nav-expert">Expert IA</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="lang-switcher">
+                <button id="lang-fr" aria-label="Français">
+                    <img src="img/fr-flag.svg" alt="FR">
+                </button>
+                <button id="lang-en" aria-label="English">
+                    <img src="img/gb-flag.svg" alt="EN">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="expert-container">
+        <div class="expert-header">
+            <h1 data-i18n="expert-title">Expert Toponymes - Assistant IA</h1>
+            <p data-i18n="expert-subtitle">Posez vos questions sur les toponymes français en Australie</p>
+        </div>
+
+        <div class="info-banner">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0056b3" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <p data-i18n="expert-info">
+                Cet assistant IA spécialisé peut répondre à vos questions sur les expéditions de Baudin et d'Entrecasteaux,
+                les toponymes français en Australie, et l'histoire de ces voyages d'exploration.
+            </p>
+        </div>
+
+        <div class="gpt-iframe-container">
+            <div class="loading-message" id="loading-message">
+                <div class="loading-spinner"></div>
+                <p data-i18n="expert-loading">Chargement de l'assistant...</p>
+            </div>
+            <iframe
+                id="gpt-iframe"
+                class="gpt-iframe"
+                src="https://chatgpt.com/g/g-6925769166848191bd77c16d3a32ebea-toponymes"
+                title="Assistant Toponymes"
+                allow="clipboard-read; clipboard-write"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+            ></iframe>
+        </div>
+    </div>
+
+    <div data-include-footer></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Masquer le message de chargement une fois l'iframe chargée
+        const iframe = document.getElementById('gpt-iframe');
+        const loadingMessage = document.getElementById('loading-message');
+
+        iframe.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingMessage.style.display = 'none';
+            }, 500);
+        });
+
+        // Gérer les erreurs de chargement
+        iframe.addEventListener('error', () => {
+            loadingMessage.innerHTML = `
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                <p style="color: #d32f2f;">Impossible de charger l'assistant. Veuillez réessayer plus tard.</p>
+            `;
+        });
+    </script>
+</body>
+</html>
