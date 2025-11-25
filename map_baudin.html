@@ -2313,27 +2313,27 @@
                 const openMarker = allMarkers.find(m => m.getPopup() === openPopup);
                 if (openMarker) {
                     // Close and reopen the popup to refresh with new language
+                    openMarker.closePopup();
                     setTimeout(() => {
-                        openMarker.closePopup();
-                        setTimeout(() => {
-                            openMarker.openPopup();
-                        }, 50);
+                        openMarker.openPopup();
                     }, 100);
                 }
             }
         };
 
         document.getElementById('lang-fr')?.addEventListener('click', () => {
+            // Wait longer to ensure language has changed in localStorage
             setTimeout(() => {
                 updateSearchTranslations();
                 refreshOpenPopup();
-            }, 100);
+            }, 300);
         });
         document.getElementById('lang-en')?.addEventListener('click', () => {
+            // Wait longer to ensure language has changed in localStorage
             setTimeout(() => {
                 updateSearchTranslations();
                 refreshOpenPopup();
-            }, 100);
+            }, 300);
         });
 
         const dataVersion = '20250209';
