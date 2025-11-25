@@ -2321,10 +2321,12 @@
             // Use the tracked marker reference
             if (currentOpenMarker) {
                 console.log('Refreshing popup for language change');
+                // Save reference before closing (close event will set currentOpenMarker to null)
+                const markerToRefresh = currentOpenMarker;
                 // Close and reopen the popup to refresh with new language
-                currentOpenMarker.closePopup();
+                markerToRefresh.closePopup();
                 setTimeout(() => {
-                    currentOpenMarker.openPopup();
+                    markerToRefresh.openPopup();
                 }, 100);
             } else {
                 console.log('No open marker to refresh');
