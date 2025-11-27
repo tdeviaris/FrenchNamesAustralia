@@ -230,6 +230,40 @@
             font-weight: 600;
         }
 
+        .message-assistant .message-content h1,
+        .message-assistant .message-content h2,
+        .message-assistant .message-content h3,
+        .message-assistant .message-content h4 {
+            margin: 15px 0 10px 0;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .message-assistant .message-content h1 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .message-assistant .message-content h2 {
+            font-size: 1.3em;
+        }
+
+        .message-assistant .message-content h3 {
+            font-size: 1.15em;
+            color: var(--primary-blue);
+        }
+
+        .message-assistant .message-content h4 {
+            font-size: 1.05em;
+        }
+
+        .message-assistant .message-content br {
+            display: block;
+            content: "";
+            margin: 5px 0;
+        }
+
         .typing-indicator {
             display: inline-block;
             padding: 12px 18px;
@@ -425,6 +459,12 @@
             text = text.replace(/"\s*target="_blank"\s*rel="[^"]*"/g, '');
             text = text.replace(/>\s*$/gm, '');
 
+            // Titres (avant le gras pour éviter les conflits)
+            text = text.replace(/^####\s+(.+)$/gm, '<h4>$1</h4>');
+            text = text.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
+            text = text.replace(/^##\s+(.+)$/gm, '<h2>$1</h2>');
+            text = text.replace(/^#\s+(.+)$/gm, '<h1>$1</h1>');
+
             // Gras
             text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
             text = text.replace(/__(.+?)__/g, '<strong>$1</strong>');
@@ -455,6 +495,9 @@
 
             // Listes numérotées
             text = text.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+
+            // Retours à la ligne simples (transformer \n en <br> sauf si déjà dans une balise)
+            text = text.replace(/\n/g, '<br>');
 
             return text;
         }
