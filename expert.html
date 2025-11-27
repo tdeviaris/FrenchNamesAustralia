@@ -117,35 +117,23 @@
         }
 
         .expert-header {
-            text-align: center;
+            text-align: left;
             margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
 
         .expert-header h1 {
             font-size: 2.2rem;
             font-weight: 700;
             color: var(--primary-blue);
-            margin: 0 0 10px 0;
-            border-bottom: 2px solid var(--primary-blue);
-            padding-bottom: 10px;
+            margin: 0;
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
-        .expert-header p {
-            font-size: 1.1rem;
-            color: #666;
-            margin: 10px 0 0 0;
-        }
-
-        .info-banner {
-            background: var(--light-blue);
-            border-left: 4px solid var(--primary-blue);
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            color: #1565c0;
-            line-height: 1.6;
-        }
+        .info-banner { display: none; }
 
         .chat-container {
             flex: 1;
@@ -269,6 +257,25 @@
         .message-assistant .message-content h4 {
             font-size: 1.05em;
         }
+
+        .resource-back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 1;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .resource-back-button:hover { background: #003f82; }
+        .resource-back-button:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
 
         .message-assistant .message-content br {
             display: block;
@@ -402,7 +409,6 @@
             <li><a href="map_dentrecasteaux.html" id="nav-map-dentre">d'Entrecasteaux</a></li>
             <li><a href="map_baudin.html" id="nav-map-baudin">Baudin</a></li>
             <li><a href="resources.html" id="nav-resources">Resources</a></li>
-            <li><a href="expert.html" class="active" id="nav-expert">AI Expert</a></li>
         </ul>
         <div class="lang-switcher">
             <button type="button" id="lang-fr" title="Passer en Français">
@@ -417,12 +423,8 @@
     <main class="container">
         <div class="expert-container">
             <div class="expert-header">
-                <h1 data-i18n="expert-title">Expert Toponymes - AI Assistant</h1>
-                <p data-i18n="expert-subtitle">Ask your questions about French place names in Australia</p>
-            </div>
-
-            <div class="info-banner" data-i18n="expert-info">
-                This specialized AI assistant can answer your questions about the Baudin and d'Entrecasteaux expeditions, French place names in Australia, and the history of these voyages of exploration.
+                <a href="https://french-names-australia.vercel.app/resources.html" class="resource-back-button" aria-label="Back to resources">↑</a>
+                <h1 data-i18n="expert-title">AI Assistant</h1>
             </div>
 
             <div class="chat-container">
