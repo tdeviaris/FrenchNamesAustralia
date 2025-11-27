@@ -1,0 +1,18 @@
+{
+  "name": "french-names-australia",
+  "version": "1.0.0",
+  "description": "French toponyms along the Australian coastline",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "toponyms",
+    "australia",
+    "french",
+    "history"
+  ],
+  "author": "",
+  "license": "ISC"
+}

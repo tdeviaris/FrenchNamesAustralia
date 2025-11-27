@@ -68,6 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Gestion des sources audio/vidéo avec data-i18n-src
+        document.querySelectorAll('[data-i18n-src]').forEach((element) => {
+            const key = element.getAttribute('data-i18n-src');
+            if (key && translations[lang][key]) {
+                const source = element.querySelector('source');
+                if (source) {
+                    source.setAttribute('src', translations[lang][key]);
+                    element.load(); // Recharge l'élément audio/vidéo avec la nouvelle source
+                }
+            }
+        });
+
         // Met à jour la langue de la balise <html>
         document.documentElement.lang = lang;
 
