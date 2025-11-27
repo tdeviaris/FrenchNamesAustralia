@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerContainer = document.querySelector('[data-include-footer]');
 
     if (footerContainer) {
-        fetch('partials/footer.html')
+        // Chemin footer compatible GitHub Pages (sous-répertoire) et Vercel (racine)
+        const footerPath = window.location.hostname.includes('github.io')
+            ? '/FrenchNamesAustralia/partials/footer.html'
+            : '/partials/footer.html';
+
+        fetch(footerPath)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}`);
