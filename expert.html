@@ -508,9 +508,28 @@
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
 
-        // Rendu minimal : on échappe le HTML et on garde les retours à la ligne
+        // Rendu minimal : échappement + gras/italique + liens (Wikipédia avec titre)
         function markdownToHtml(text) {
-            return escapeHtml(text).replace(/\n/g, '<br>');
+            let safe = escapeHtml(text);
+
+            // URLs nues -> liens cliquables, avec titre pour Wikipedia
+            safe = safe.replace(/https?:\/\/[^\s<>"']+/g, (url) => {
+                const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                if (wikiMatch) {
+                    const title = decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ');
+                    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>`;
+                }
+                const display = url.replace(/^https?:\/\//, '');
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${display}</a>`;
+            });
+
+            // Gras **texte**
+            safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            // Italique *texte*
+            safe = safe.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+            // Retours à la ligne
+            return safe.replace(/\n/g, '<br>');
         }
 
         // Fonction pour ajouter un message
