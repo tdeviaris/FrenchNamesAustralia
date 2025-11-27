@@ -467,11 +467,10 @@
     <script src="js/main.js?v=20241012"></script>
     <script>
         // Configuration de l'URL de l'API
-        // En développement local avec Vercel CLI: http://localhost:3000/api/chat
-        // En production: utilise automatiquement l'URL actuelle (fonctionne avec preview et production)
+        // En local: Vercel CLI. En production: forcer le domaine Vercel pour éviter les appels github.io.
         const API_URL = window.location.hostname === 'localhost'
             ? 'http://localhost:3000/api/chat'
-            : `${window.location.origin}/api/chat`
+            : 'https://french-names-australia.vercel.app/api/chat';
 
         const chatMessages = document.getElementById('chat-messages');
         const chatForm = document.getElementById('chat-form');
