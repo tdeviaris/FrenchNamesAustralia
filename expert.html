@@ -465,10 +465,10 @@
             text = text.replace(/>\s*$/gm, '');
 
             // Titres - traiter AVANT toute autre transformation
-            // Utiliser [^\n] pour capturer uniquement jusqu'à la fin de la ligne
-            text = text.replace(/^####\s*([^\n]+)/gm, '<h4>$1</h4>\n');
-            text = text.replace(/^###\s*([^\n]+)/gm, '<h3>$1</h3>\n');
-            text = text.replace(/^##\s*([^\n]+)/gm, '<h2>$1</h2>\n');
+            // Gérer ### même s'il n'est pas en début de ligne (ex: ": ### Titre")
+            text = text.replace(/(\s|^)####\s*([^\n]+)/gm, '\n<h4>$2</h4>\n');
+            text = text.replace(/(\s|^)###\s*([^\n]+)/gm, '\n<h3>$2</h3>\n');
+            text = text.replace(/(\s|^)##\s*([^\n]+)/gm, '\n<h2>$2</h2>\n');
             text = text.replace(/^#\s+([^\n]+)/gm, '<h1>$1</h1>\n');
 
             // Gras
