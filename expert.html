@@ -196,10 +196,15 @@
             color: #333;
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
             text-align: left;
+            line-height: 1.6;
         }
 
         .message-assistant .message-content p {
-            margin: 0 0 10px 0;
+            margin: 10px 0;
+        }
+
+        .message-assistant .message-content p:first-child {
+            margin-top: 0;
         }
 
         .message-assistant .message-content p:last-child {
@@ -489,14 +494,32 @@
                 return `<a href="${match}" target="_blank" rel="noopener noreferrer">${shortUrl}${displayUrl.length > 50 ? '...' : ''}</a>`;
             });
 
-            // Listes à puces
+            // Listes à puces (avec gestion du retour à la ligne après le titre)
             text = text.replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>');
-            text = text.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+            text = text.replace(/(<li>.*?<\/li>(?:\s*<li>.*?<\/li>)*)/gm, '<ul>$1</ul>');
 
             // Listes numérotées
             text = text.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+            text = text.replace(/(<li>.*?<\/li>(?:\s*<li>.*?<\/li>)*)/gm, function(match) {
+                // Ne pas entourer de <ol> si déjà dans un <ul>
+                if (!match.includes('<ul>')) {
+                    return '<ol>' + match + '</ol>';
+                }
+                return match;
+            });
 
-            // Retours à la ligne simples (transformer \n en <br> sauf si déjà dans une balise)
+            // Ajouter un retour à la ligne après les titres
+            text = text.replace(/(<\/h[1-4]>)/g, '$1<br>');
+
+            // Remplacer les doubles sauts de ligne par des paragraphes
+            text = text.replace(/\n\n+/g, '</p><p>');
+
+            // Ajouter les balises de paragraphe si pas déjà présentes
+            if (!text.startsWith('<h') && !text.startsWith('<ul') && !text.startsWith('<ol')) {
+                text = '<p>' + text + '</p>';
+            }
+
+            // Retours à la ligne simples dans les paragraphes
             text = text.replace(/\n/g, '<br>');
 
             return text;
@@ -516,16 +539,8 @@
                 // Nettoyer le contenu (supprimer citations)
                 content = cleanAndFormatContent(content);
 
-                // Convertir les retours à la ligne en paragraphes
-                const paragraphs = content.split('\n\n');
-                paragraphs.forEach(para => {
-                    if (para.trim()) {
-                        const p = document.createElement('p');
-                        // Appliquer le formatage Markdown
-                        p.innerHTML = markdownToHtml(para.trim());
-                        contentDiv.appendChild(p);
-                    }
-                });
+                // Appliquer le formatage Markdown directement sur tout le contenu
+                contentDiv.innerHTML = markdownToHtml(content);
             }
 
             messageDiv.appendChild(contentDiv);
@@ -646,17 +661,9 @@
 
                                     // Nettoyer et mettre à jour le message progressivement
                                     const cleanedResponse = cleanAndFormatContent(fullResponse);
-                                    assistantMessage.innerHTML = '';
 
-                                    const paragraphs = cleanedResponse.split('\n\n');
-                                    paragraphs.forEach(para => {
-                                        if (para.trim()) {
-                                            const p = document.createElement('p');
-                                            // Appliquer le formatage Markdown
-                                            p.innerHTML = markdownToHtml(para.trim());
-                                            assistantMessage.appendChild(p);
-                                        }
-                                    });
+                                    // Appliquer le formatage Markdown directement
+                                    assistantMessage.innerHTML = markdownToHtml(cleanedResponse);
 
                                     chatMessages.scrollTop = chatMessages.scrollHeight;
                                 }
