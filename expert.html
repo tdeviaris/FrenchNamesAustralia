@@ -528,6 +528,9 @@
             // Italique *texte*
             safe = safe.replace(/\*(.+?)\*/g, '<em>$1</em>');
 
+            // Titres ### => bleu + gras
+            safe = safe.replace(/^###\s*(.+)$/gm, '<strong style="color: var(--primary-blue);">$1</strong>');
+
             // Retours à la ligne
             return safe.replace(/\n/g, '<br>');
         }
