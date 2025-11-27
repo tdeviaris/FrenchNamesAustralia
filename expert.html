@@ -110,27 +110,36 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 30px;
+            padding: clamp(28px, 4vw, 40px);
             min-height: calc(100vh - var(--nav-height) - 80px);
             display: flex;
             flex-direction: column;
         }
 
         .expert-header {
-            text-align: left;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
+            margin-bottom: 16px;
         }
 
-        .expert-header h1 {
+        .expert-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: 'Lato', sans-serif;
             font-size: 2.2rem;
             font-weight: 700;
-            color: var(--primary-blue);
-            margin: 0;
-            border-bottom: none;
-            padding-bottom: 0;
+            color: #333;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin: 0 0 10px 0;
+        }
+
+        .subtitle {
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1.05rem, 2vw, 1.2rem);
+            margin: 0 0 14px 0;
+            color: #444;
         }
 
         .info-banner { display: none; }
@@ -258,24 +267,15 @@
             font-size: 1.05em;
         }
 
-        .resource-back-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--primary-blue);
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 1;
-            border: none;
-            transition: background-color 0.2s ease;
+        .resource-back-button img {
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
         }
 
-        .resource-back-button:hover { background: #003f82; }
-        .resource-back-button:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .resource-back-button:hover img { opacity: 1; }
+        .resource-back-button:focus-visible img { outline: 2px solid #FFD700; outline-offset: 2px; }
 
         .message-assistant .message-content br {
             display: block;
@@ -420,11 +420,16 @@
         </div>
     </nav>
 
-    <main class="container">
-        <div class="expert-container">
+    <main class="container" id="top">
+        <div class="expert-container content-section">
             <div class="expert-header">
-                <a href="https://french-names-australia.vercel.app/resources.html" class="resource-back-button" aria-label="Back to resources">↑</a>
-                <h1 data-i18n="expert-title">AI Assistant</h1>
+                <h1 class="expert-title">
+                    <span data-i18n="expert-title">AI Assistant</span>
+                    <a href="https://french-names-australia.vercel.app/resources.html#podcast" class="resource-back-button" aria-label="Back to resources">
+                        <img src="img/up-arrow.svg" alt="Back to Resources">
+                    </a>
+                </h1>
+                <h2 class="subtitle" data-i18n="expert-subtitle">Ask your questions about French place names in Australia</h2>
             </div>
 
             <div class="chat-container">
