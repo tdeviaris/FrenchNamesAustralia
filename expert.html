@@ -223,12 +223,18 @@
 
         .message-assistant .message-content ul,
         .message-assistant .message-content ol {
-            margin: 10px 0;
+            margin: 15px 0;
             padding-left: 20px;
         }
 
         .message-assistant .message-content li {
-            margin: 5px 0;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .message-assistant .message-content p + ul,
+        .message-assistant .message-content p + ol {
+            margin-top: 10px;
         }
 
         .message-assistant .message-content strong {
@@ -495,19 +501,41 @@
                 return `<a href="${match}" target="_blank" rel="noopener noreferrer">${shortUrl}${displayUrl.length > 50 ? '...' : ''}</a>`;
             });
 
-            // Listes à puces (avec gestion du retour à la ligne après le titre)
+            // Ajouter un retour à la ligne avant les listes qui suivent du texte
+            text = text.replace(/([^\n])\n([\-\*]\s)/gm, '$1\n\n$2');
+
+            // Listes à puces
             text = text.replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>');
+            // Regrouper les <li> consécutifs en <ul>
+            text = text.replace(/(<li>[\s\S]*?<\/li>)(?=\s*(?:<li>|$))/g, function(match, p1) {
+                if (!match.includes('<ul>')) {
+                    let items = match;
+                    while (text.indexOf(match + '\n<li>') !== -1 || text.indexOf(match + '<li>') !== -1) {
+                        return match; // Laisser le regroupement se faire naturellement
+                    }
+                }
+                return match;
+            });
             text = text.replace(/(<li>.*?<\/li>(?:\s*<li>.*?<\/li>)*)/gm, '<ul>$1</ul>');
 
             // Listes numérotées
             text = text.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
             text = text.replace(/(<li>.*?<\/li>(?:\s*<li>.*?<\/li>)*)/gm, function(match) {
-                // Ne pas entourer de <ol> si déjà dans un <ul>
-                if (!match.includes('<ul>')) {
+                if (!match.includes('<ul>') && !match.includes('<ol>')) {
                     return '<ol>' + match + '</ol>';
                 }
                 return match;
             });
+
+            // Ajouter de l'espace autour des listes
+            text = text.replace(/([^\n])(<ul>)/g, '$1\n\n$2');
+            text = text.replace(/(<\/ul>)([^\n])/g, '$1\n\n$2');
+            text = text.replace(/([^\n])(<ol>)/g, '$1\n\n$2');
+            text = text.replace(/(<\/ol>)([^\n])/g, '$1\n\n$2');
+
+            // Ajouter un retour à la ligne après les titres en gras suivis de deux points
+            // (ex: "**Nombre total** :" devient "**Nombre total** :\n\n")
+            text = text.replace(/(<\/strong>)\s*:\s*([^\n])/g, '$1 :\n\n$2');
 
             // Remplacer les doubles sauts de ligne par des paragraphes
             text = text.replace(/\n\n+/g, '</p><p>');
