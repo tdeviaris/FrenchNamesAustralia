@@ -123,7 +123,7 @@
         .expert-title {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             gap: 12px;
             font-family: 'Lato', sans-serif;
             font-size: 2.2rem;
@@ -198,15 +198,11 @@
         }
 
         .message-assistant .message-content p {
-            margin: 10px 0;
+            margin: 0;
         }
 
-        .message-assistant .message-content p:first-child {
-            margin-top: 0;
-        }
-
-        .message-assistant .message-content p:last-child {
-            margin-bottom: 0;
+        .message-assistant .message-content p + p {
+            margin-top: 8px;
         }
 
         .message-assistant .message-content a {
@@ -429,7 +425,6 @@
                         <img src="img/up-arrow.svg" alt="Back to Resources">
                     </a>
                 </h1>
-                <h2 class="subtitle" data-i18n="expert-subtitle">Ask your questions about French place names in Australia</h2>
             </div>
 
             <div class="chat-container">
