@@ -417,21 +417,39 @@
 
         // Fonction pour convertir le Markdown en HTML
         function markdownToHtml(text) {
+            // D'abord, nettoyer les balises HTML mal formées ou partielles
+            text = text.replace(/<a\s+href="([^"]*)"[^>]*>([^<]*)<\/a>/gi, '[$2]($1)');
+            text = text.replace(/(<\/?[a-z][^>]*>)/gi, ''); // Supprimer autres balises HTML
+
+            // Nettoyer les attributs HTML orphelins
+            text = text.replace(/"\s*target="_blank"\s*rel="[^"]*"/g, '');
+            text = text.replace(/>\s*$/gm, '');
+
             // Gras
             text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
             text = text.replace(/__(.+?)__/g, '<strong>$1</strong>');
 
-            // Italique
-            text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            text = text.replace(/_(.+?)_/g, '<em>$1</em>');
+            // Italique (mais pas dans les URLs)
+            text = text.replace(/(?<!https?:\/\/[^\s]*)\*([^\*]+?)\*(?![^\s]*\))/g, '<em>$1</em>');
+            text = text.replace(/(?<!https?:\/\/[^\s]*)_([^_]+?)_(?![^\s]*\))/g, '<em>$1</em>');
 
-            // Liens [texte](url)
-            text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+            // Liens Markdown [texte](url) - décoder les URLs
+            text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function(match, linkText, url) {
+                // Décoder l'URL pour la rendre lisible
+                const decodedUrl = decodeURIComponent(url);
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+            });
 
-            // URLs nues (sans markdown)
-            text = text.replace(/(?<!\()(https?:\/\/[^\s<]+)(?!\))/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+            // URLs nues (https://... sans markdown) - ne traiter que si pas déjà dans un lien
+            text = text.replace(/(?<!href=["'])(?<!>)(https?:\/\/[^\s<"']+)(?![^<]*<\/a>)/g, function(match) {
+                // Décoder l'URL pour l'affichage
+                const displayUrl = decodeURIComponent(match);
+                // Extraire juste le domaine et le chemin pour un affichage plus court
+                const shortUrl = displayUrl.replace(/^https?:\/\//, '').substring(0, 50);
+                return `<a href="${match}" target="_blank" rel="noopener noreferrer">${shortUrl}${displayUrl.length > 50 ? '...' : ''}</a>`;
+            });
 
-            // Listes à puces (lignes commençant par - ou *)
+            // Listes à puces
             text = text.replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>');
             text = text.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
 
