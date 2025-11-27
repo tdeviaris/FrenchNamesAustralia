@@ -117,6 +117,30 @@
         .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
         .resource-item { margin-top: 28px; }
 
+        /* Assistant AI block */
+        .assistant-block {
+            margin-top: 18px;
+            padding: 0;
+            border: none;
+            background: transparent;
+        }
+        .assistant-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+        .assistant-button:hover { background-color: #003f82; transform: translateY(-1px); }
+        .assistant-button:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .assistant-description { margin: 10px 0 0 0; line-height: 1.5; }
+
         /* Podcast Section */
         .podcast-header {
             display: flex;
@@ -205,6 +229,10 @@
                 </audio>
             </div>
             <p data-i18n-html="resources-podcast-description">Ce podcast présente le projet <strong>Noms Français le long de la côte Australienne</strong>.<br>Les toponymes issus des voyages de Dantrecasteaux (1791-1794) et Baudin (1800-1804).</p>
+            <div class="assistant-block">
+                <a class="assistant-button" href="expert.html" data-i18n="resources-assistant-button">Assistant IA</a>
+                <p class="assistant-description" data-i18n="resources-assistant-description">Cet assistant IA spécialisé peut répondre à vos questions sur les expéditions de Baudin et d'Entrecasteaux, les toponymes français en Australie, et l'histoire de ces voyages d'exploration.</p>
+            </div>
 
             <div class="resource-item">
                 <p data-i18n-html="resources-glossary-entry"><a class="resource-primary-link" href="glossaryE.html">Glossary of Terms</a></p>

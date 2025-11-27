@@ -4,11 +4,11 @@ const translations = {
         // --- Textes généraux ---
         'hero-title': "Noms Français le&nbsp;long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
         'nav-home': "Accueil", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Ressources",
-        'nav-actors': "Acteurs", 'nav-maps': "Cartes et illustrations", 'nav-glossary': "Glossaire", 'nav-expert': "Expert IA",
+        'nav-actors': "Acteurs", 'nav-maps': "Cartes et illustrations", 'nav-glossary': "Glossaire", 'nav-expert': "Assistant IA",
         'skip-intro': "Passer",
 
         // --- Page Expert IA (expert.html) ---
-        'expert-title': "Expert Toponymes - Assistant IA",
+        'expert-title': "Assistant IA",
         'expert-subtitle': "Posez vos questions sur les toponymes français en Australie",
         'expert-info': "Cet assistant IA spécialisé peut répondre à vos questions sur les expéditions de Baudin et d'Entrecasteaux, les toponymes français en Australie, et l'histoire de ces voyages d'exploration.",
         'expert-loading': "Chargement de l'assistant...",
@@ -70,6 +70,8 @@ const translations = {
         'resources-podcast-title': "Podcast présentant le projet",
         'resources-podcast-src': "data/podcast_fr.m4a",
         'resources-podcast-description': "Ce podcast présente le projet <strong>Noms Français le long de la côte Australienne</strong>.<br>Les toponymes issus des voyages de Dantrecasteaux (1791-1794) et Baudin (1800-1804).",
+        'resources-assistant-button': "Assistant IA",
+        'resources-assistant-description': "Cet assistant IA spécialisé peut répondre à vos questions sur les expéditions de Baudin et d'Entrecasteaux, les toponymes français en Australie, et l'histoire de ces voyages d'exploration.",
         'resources-glossary-entry': "<a class=\"resource-primary-link\" href=\"glossaryF.html\">Glossaire des Termes</a>",
         'resources-glossary-subtitle': "Institutions françaises, régimes politiques, guerres, anciennes appellations de pays et expéditions scientifiques",
         'resources-glossary-description': "Ce glossaire explique les principaux termes historiques, politiques et scientifiques mentionnés dans le projet <em>French Names Along the Australian Coastline</em>.",
@@ -144,11 +146,11 @@ const translations = {
         // --- General text ---
         'hero-title': "French Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms originated by the d'Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
         'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Resources",
-        'nav-actors': "Actors", 'nav-maps': "Maps and illustrations", 'nav-glossary': "Glossary", 'nav-expert': "AI Expert",
+        'nav-actors': "Actors", 'nav-maps': "Maps and illustrations", 'nav-glossary': "Glossary", 'nav-expert': "AI Assistant",
         'skip-intro': "Skip",
 
         // --- AI Expert Page (expert.html) ---
-        'expert-title': "Toponyms Expert - AI Assistant",
+        'expert-title': "AI Assistant",
         'expert-subtitle': "Ask your questions about French place names in Australia",
         'expert-info': "This specialized AI assistant can answer your questions about the Baudin and d'Entrecasteaux expeditions, French place names in Australia, and the history of these voyages of exploration.",
         'expert-loading': "Loading assistant...",
@@ -211,6 +213,8 @@ const translations = {
         'resources-podcast-title': "Podcast presenting the project",
         'resources-podcast-src': "data/podcast_en.m4a",
         'resources-podcast-description': "This podcast presents the <strong>French Names Along the Australian Coastline</strong> project.<br>The toponyms originated from the Dantrecasteaux (1791-1794) and Baudin (1800-1804) voyages.",
+        'resources-assistant-button': "AI Assistant",
+        'resources-assistant-description': "This specialized AI assistant can answer your questions about the Baudin and d'Entrecasteaux expeditions, French place names in Australia, and the history of these voyages of exploration.",
         'resources-glossary-entry': "<a class=\"resource-primary-link\" href=\"glossaryE.html\">Glossary of Terms</a>",
         'resources-glossary-subtitle': "French institutions, political regimes, wars, former country appellations and former scientific expeditions",
         'resources-glossary-description': "This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.",

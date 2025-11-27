@@ -184,6 +184,7 @@
             padding: 12px 18px;
             border-radius: 18px;
             line-height: 1.6;
+            white-space: pre-wrap;
         }
 
         .message-user .message-content {
@@ -348,6 +349,27 @@
             cursor: not-allowed;
         }
 
+        .chat-stop-button {
+            padding: 12px 18px;
+            background: #9e9e9e;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .chat-stop-button:hover:not(:disabled) {
+            background: #7b7b7b;
+        }
+
+        .chat-stop-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .error-message {
             background: #ffebee;
             border-left: 4px solid #d32f2f;
@@ -423,6 +445,7 @@
                             autocomplete="off"
                         >
                         <button type="submit" class="chat-send-button" id="send-button" data-i18n="expert-send">Send</button>
+                        <button type="button" class="chat-stop-button" id="stop-button" disabled>Stop</button>
                     </form>
                 </div>
             </div>
@@ -445,111 +468,27 @@
         const chatForm = document.getElementById('chat-form');
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
+        const stopButton = document.getElementById('stop-button');
 
         let threadId = null; // Pour l'API Assistants
         let isProcessing = false;
+        let abortController = null;
 
         // Fonction pour nettoyer et formater le contenu
         function cleanAndFormatContent(content) {
-            // 1. Supprimer les citations sources 【...†...】
+            // Supprimer les citations sources 【...†...】
             content = content.replace(/【[^】]*】/g, '');
-
-            // 2. Nettoyer les espaces multiples
-            content = content.replace(/\s+/g, ' ').trim();
-
-            return content;
+            // Normaliser les retours à la ligne, conserver la mise en forme d'origine
+            return content.replace(/\r\n?/g, '\n').trim();
         }
 
-        // Fonction pour convertir le Markdown en HTML
-        function markdownToHtml(text) {
-            // D'abord, nettoyer les balises HTML mal formées ou partielles
-            text = text.replace(/<a\s+href="([^"]*)"[^>]*>([^<]*)<\/a>/gi, '[$2]($1)');
-            text = text.replace(/(<\/?[a-z][^>]*>)/gi, ''); // Supprimer autres balises HTML
-
-            // Nettoyer les attributs HTML orphelins
-            text = text.replace(/"\s*target="_blank"\s*rel="[^"]*"/g, '');
-            text = text.replace(/>\s*$/gm, '');
-
-            // Titres - traiter AVANT toute autre transformation
-            // Gérer ### même s'il n'est pas en début de ligne (ex: ": ### Titre")
-            text = text.replace(/(\s|^)####\s*([^\n]+)/gm, '\n<h4>$2</h4>\n');
-            text = text.replace(/(\s|^)###\s*([^\n]+)/gm, '\n<h3>$2</h3>\n');
-            text = text.replace(/(\s|^)##\s*([^\n]+)/gm, '\n<h2>$2</h2>\n');
-            text = text.replace(/^#\s+([^\n]+)/gm, '<h1>$1</h1>\n');
-
-            // Gras
-            text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            text = text.replace(/__(.+?)__/g, '<strong>$1</strong>');
-
-            // Italique (mais pas dans les URLs)
-            text = text.replace(/(?<!https?:\/\/[^\s]*)\*([^\*]+?)\*(?![^\s]*\))/g, '<em>$1</em>');
-            text = text.replace(/(?<!https?:\/\/[^\s]*)_([^_]+?)_(?![^\s]*\))/g, '<em>$1</em>');
-
-            // Liens Markdown [texte](url) - décoder les URLs
-            text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function(match, linkText, url) {
-                // Décoder l'URL pour la rendre lisible
-                const decodedUrl = decodeURIComponent(url);
-                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
-            });
-
-            // URLs nues (https://... sans markdown) - ne traiter que si pas déjà dans un lien
-            text = text.replace(/(?<!href=["'])(?<!>)(https?:\/\/[^\s<"']+)(?![^<]*<\/a>)/g, function(match) {
-                // Décoder l'URL pour l'affichage
-                const displayUrl = decodeURIComponent(match);
-                // Extraire juste le domaine et le chemin pour un affichage plus court
-                const shortUrl = displayUrl.replace(/^https?:\/\//, '').substring(0, 50);
-                return `<a href="${match}" target="_blank" rel="noopener noreferrer">${shortUrl}${displayUrl.length > 50 ? '...' : ''}</a>`;
-            });
-
-            // Ajouter un retour à la ligne avant les listes qui suivent du texte
-            text = text.replace(/([^\n])\n([\-\*]\s)/gm, '$1\n\n$2');
-
-            // Listes à puces
-            text = text.replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>');
-            // Regrouper les <li> consécutifs en <ul>
-            text = text.replace(/(<li>[\s\S]*?<\/li>)(?=\s*(?:<li>|$))/g, function(match, p1) {
-                if (!match.includes('<ul>')) {
-                    let items = match;
-                    while (text.indexOf(match + '\n<li>') !== -1 || text.indexOf(match + '<li>') !== -1) {
-                        return match; // Laisser le regroupement se faire naturellement
-                    }
-                }
-                return match;
-            });
-            text = text.replace(/(<li>.*?<\/li>(?:\s*<li>.*?<\/li>)*)/gm, '<ul>$1</ul>');
-
-            // Listes numérotées
-            text = text.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
-            text = text.replace(/(<li>.*?<\/li>(?:\s*<li>.*?<\/li>)*)/gm, function(match) {
-                if (!match.includes('<ul>') && !match.includes('<ol>')) {
-                    return '<ol>' + match + '</ol>';
-                }
-                return match;
-            });
-
-            // Ajouter de l'espace autour des listes
-            text = text.replace(/([^\n])(<ul>)/g, '$1\n\n$2');
-            text = text.replace(/(<\/ul>)([^\n])/g, '$1\n\n$2');
-            text = text.replace(/([^\n])(<ol>)/g, '$1\n\n$2');
-            text = text.replace(/(<\/ol>)([^\n])/g, '$1\n\n$2');
-
-            // Ajouter un retour à la ligne après les titres en gras suivis de deux points
-            // (ex: "**Nombre total** :" devient "**Nombre total** :\n\n")
-            text = text.replace(/(<\/strong>)\s*:\s*([^\n])/g, '$1 :\n\n$2');
-
-            // Remplacer les doubles sauts de ligne par des paragraphes
-            text = text.replace(/\n\n+/g, '</p><p>');
-
-            // Ajouter les balises de paragraphe si pas déjà présentes
-            if (!text.startsWith('<h') && !text.startsWith('<ul') && !text.startsWith('<ol')) {
-                text = '<p>' + text + '</p>';
-            }
-
-            // Retours à la ligne simples dans les paragraphes
-            text = text.replace(/\n/g, '<br>');
-
-            return text;
-        }
+        // Mode sans Markdown : rendu brut sécurisé
+        const escapeHtml = (str) => str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
 
         // Fonction pour ajouter un message
         function addMessage(content, isUser = false) {
@@ -564,9 +503,8 @@
             } else {
                 // Nettoyer le contenu (supprimer citations)
                 content = cleanAndFormatContent(content);
-
-                // Appliquer le formatage Markdown directement sur tout le contenu
-                contentDiv.innerHTML = markdownToHtml(content);
+                // Afficher le texte brut avec retours à la ligne
+                contentDiv.innerHTML = escapeHtml(content).replace(/\n/g, '<br>');
             }
 
             messageDiv.appendChild(contentDiv);
@@ -626,6 +564,8 @@
             isProcessing = true;
             chatInput.disabled = true;
             sendButton.disabled = true;
+            stopButton.disabled = false;
+            abortController = new AbortController();
 
             // Afficher l'indicateur de frappe
             showTypingIndicator();
@@ -640,7 +580,8 @@
                     body: JSON.stringify({
                         message: userMessage,
                         threadId: threadId
-                    })
+                    }),
+                    signal: abortController.signal
                 });
 
                 if (!response.ok) {
@@ -706,12 +647,23 @@
             } catch (error) {
                 console.error('Error:', error);
                 hideTypingIndicator();
-                showError('Error: Unable to reach the AI assistant. Please try again later.');
+                if (error.name !== 'AbortError') {
+                    showError('Error: Unable to reach the AI assistant. Please try again later.');
+                }
             } finally {
                 isProcessing = false;
                 chatInput.disabled = false;
                 sendButton.disabled = false;
+                stopButton.disabled = true;
+                abortController = null;
                 chatInput.focus();
+            }
+        });
+
+        // Bouton stop : annuler la requête en cours
+        stopButton.addEventListener('click', () => {
+            if (abortController && isProcessing) {
+                abortController.abort();
             }
         });
 
