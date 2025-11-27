@@ -1,0 +1,92 @@
+================================================================================
+                                SITE WEB : VERSION FRANÇAISE
+================================================================================
+
+--- PAGE : ACCUEIL (INDEX) ---
+
+[En-tête]
+TITRE : Noms Français le long de la côte Australienne
+SOUS-TITRE : Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)
+
+[Section : Introduction]
+Ce projet met en lumière comment les toponymes français le long des côtes australiennes révèlent une strate subtile de mémoire et de significations, tissée dans l'histoire des voyages de découverte européens.
+
+Sur des terres habitées depuis des millénaires par les peuples aborigènes, dont les traditions de nommage ont façonné le continent bien avant l'arrivée des Européens, les noms français se mêlent à ceux des navigateurs néerlandais et britanniques, formant un palimpseste riche d'histoires et de résonances.
+
+À partir des 670 toponymes documentés dans les atlas officiels des expéditions de d'Entrecasteaux et Baudin, le projet explore ces noms comme des repères historiques et culturels, offrant un regard français qui enrichit notre compréhension de l'histoire côtière de l'Australie.
+
+[Section : L'expédition d'Entrecasteaux]
+Le premier objectif de l'expédition d'Entrecasteaux, la recherche du disparu Lapérouse, se solda par un échec. Aucune trace de ses deux navires ni de leurs équipages ne fut retrouvée sur les îles du Pacifique occidental qu'ils aperçurent. En revanche, la seconde partie de la mission, le relevé des côtes des Terres australes encore partiellement inconnues des Européens, fut un grand succès. Ces découvertes redonnèrent espoir et motivation à l'équipage après une traversée éprouvante de l'océan Indien austral dans une mer agitée.
+
+L'expédition visita les côtes orientales de la Terre de Van Diemen (Tasmanie) en avril-mai 1792 puis fin janvier-février 1793, ainsi que les côtes sud-ouest de la Nouvelle-Hollande (Australie-Occidentale) fin décembre 1792 - janvier 1793, attribuant 68 nouveaux toponymes le long de ces rivages.
+
+[Section : L'expédition Baudin]
+Les toponymes consignés dans les récits officiels et l'atlas du voyage de découverte de Baudin ne furent pas attribués pendant l'expédition elle-même mais plus tard, à Paris, à partir de 1806 — trois ans après la mort de Baudin (16 septembre 1803) et après le retour des corvettes. La France était alors entrée dans une nouvelle ère politique : l'Empire napoléonien avait remplacé le Consulat, commanditaire initial de l'expédition. Le Consulat, pour sa part, était arrivé au pouvoir par le coup d'État du 18 Brumaire (10 novembre 1799) qui renversa le Directoire — le gouvernement sous lequel de nombreuses institutions savantes avaient préparé le voyage.
+
+Cette recomposition politique imprégna la nomenclature géographique de l’expédition. Les noms retenus reflètent la succession de ces bouleversements : certains honorent le jeune général Bonaparte, héros militaire ascendant sous le Directoire ; d’autres célèbrent le Premier Consul Bonaparte, commanditaire de l’expédition ; beaucoup enfin rendent hommage à l’Empereur Napoléon et aux membres de sa famille impériale.
+
+Les 602 toponymes choisis par Péron et Freycinet illustrent avec force l’évolution de l’esprit national français durant la période napoléonienne, qui supplantait les idéaux républicains ayant inspiré Baudin et sa nomenclature initiale. Péron et Freycinet privilégièrent des noms célébrant des personnalités françaises distinguées dans les sciences, les lettres, l’armée ou l’administration. Ces figures incarnaient le nouveau récit national — celui qui cherchait à réunifier le pays après les profondes divisions de la Terreur révolutionnaire. Plus de quatre-vingts pour cent des noms commémorent ainsi ces personnalités, transformant la carte des côtes australiennes en reflet du nouveau sentiment d’unité, de fierté et d’ambition impériale de la France.
+
+[Section : Deux nomenclatures contrastées]
+Traditionnellement, c'est le commandant d'une expédition qui nomme les lieux. Si cette convention fut respectée dans le cas de l'expédition d'Entrecasteaux malgré la mort de ce dernier au cours du voyage, le sort des dénominations de l'expédition Baudin fut tout autre. Après la mort de Baudin, dans un épisode sans équivalent parmi les grandes explorations européennes, le zoologiste François Péron et l'officier de marine Louis Freycinet, désignés à leur instance comme éditeurs du récit et des atlas du voyage, choisirent de remplacer la plupart des toponymes originaux : Ils substituèrent aux appellations de Baudin — inspirées pour l'essentiel par l'histoire naturelle et l'expérience même de l'expédition — de nouveaux noms honorant la nation française et ses grands hommes à une époque où les explorations maritimes et la découverte de terres lointaines avaient cessé d'occuper une place centrale dans la stratégie impériale napoléonienne.
+
+--- PAGE : CARTE D'ENTRECASTEAUX ---
+
+TITRE : Carte d'Entrecasteaux (1791-1793)
+DESCRIPTION : Explorez les noms de lieux donnés lors de l'expédition d'Antoine Bruny d'Entrecasteaux, qui a cartographié en grand détail les côtes de la Tasmanie à la recherche de La Pérouse. Cliquez sur un marqueur pour découvrir plus d'informations.
+
+[Contexte historique]
+Le premier objectif de l'expédition d'Entrecasteaux, la recherche de La Pérouse, disparu, s'est soldé par un échec. Aucune trace de ses deux navires ou de leur équipage ne fut trouvée sur les îles du Pacifique occidental qu'ils explorèrent. Cependant, le second volet de la mission de l'expédition, la cartographie des côtes des Terres Australes encore partiellement inconnues des Européens, fut une grande réussite. Ces découvertes redonnèrent espoir et motivation à l'équipage après une traversée difficile de l'océan Indien austral dans une mer agitée. La nomenclature laissée par d'Entrecasteaux le long des côtes de ce qui est aujourd'hui la Tasmanie et l'Australie-Occidentale rend hommage à son équipage méritant qui a rendu ces découvertes possibles, ainsi qu'au voyage en général.
+
+Les côtes est de la Terre de Van Diemen (Tasmanie) furent visitées en avril-mai 1792 et de nouveau fin janvier-février 1793, et les côtes sud-ouest de la Nouvelle-Hollande (Australie-Occidentale) fin décembre 1792 - janvier 1793.
+
+68 lieux furent nommés le long de ces côtes par d’Entrecasteaux et, après le voyage, pour quelques-uns d'entre eux, par Rossel*. Ils ont été subdivisés en deux sections : les noms sur les côtes est de la Terre de Van Diemen (Tasmanie), visitées en avril-mai 1792 et de nouveau fin janvier-février 1793, et les noms le long des côtes sud-ouest de la Nouvelle-Hollande (Australie-Occidentale) fin décembre 1792 - janvier 1793.
+
+[Vie à bord et Tensions]
+Ce ne fut pas une tâche facile pour le commandant de trouver un terrain d'entente entre les questions nautiques, le calendrier de son itinéraire, les travaux de relevé et d'hydrographie, et l'intérêt de ses savants pour l'histoire naturelle et la découverte de nouvelles espèces. Les naturalistes se plaignaient souvent que les officiers avaient la priorité (par exemple, eux, les savants, devaient attendre bien plus longtemps que les officiers pour le canotier) et les relations entre officiers et savants se détérioraient parfois suffisamment pour créer un incident (Par exemple, en janvier 1793, exaspéré par le botaniste Labillardière*, l'officier Bonvouloir jeta deux bouteilles sur le savant qui prenait son petit-déjeuner). Cette tâche fut rendue d'autant plus ardue pour d’Entrecasteaux et ses successeurs par les exigences divergentes des naturalistes et par les divisions politiques entre les savants. Labillardière, Riche* et, après quelques hésitations, Ventenat*, étaient républicains tandis que d'autres soutenaient la cause royaliste. Malgré ces diverses sensibilités politiques, d’Entrecasteaux encouragea le travail de ses naturalistes et les incita à se spécialiser dans des domaines spécifiques pour éviter les doublons et les interférences dans leurs recherches. De plus, en attirant l'attention sur la mission de découverte et d'histoire naturelle de son voyage, d’Entrecasteaux accrut le zèle de ses officiers. Dans ses mémoires, Jurien de La Gravière* rapporte que ‘les naturalistes nous inoculent la passion des collections. Chacun à bord avait la sienne. La recherche de coquillages était la dominante. Les savants s'inquiètent de rivaux potentiels qui pourraient découvrir de nouvelles espèces et leur voler la vedette. Ils adressent leurs plaintes à l'Amiral, et il nous demanda de leur soumettre le résultat de toutes nos pêches. Cet ordre, comme vous pouvez l'imaginer, n'eut pour seul effet que de nous faire cacher nos trésors plus précieusement que jamais’[1].
+
+Des officiers, comme Jurien, et des savants comme l'aumônier bénédictin Ambroise Pierson* étaient d'une disposition conciliante, et la plupart des marins ne se préoccupaient pas de politique. Ensemble, ils contribuèrent à apaiser les tensions au sein de l'équipage.
+
+[Relations avec les Aborigènes]
+Les lieux visités et nommés par l'expédition d’Entrecasteaux étaient évidemment déjà bien connus, identifiés et désignés d'une manière ou d'une autre par les communautés aborigènes locales. Pourtant, bien que l'équipage en ait rencontré certains à plusieurs reprises[2], les Français ne se sont pas enquis auprès des aborigènes de la manière dont ils nommaient leur terre et les noms des lieux relevés par les membres de l'expédition. Cette pratique de dénomination unilatérale était liée au concept européen de ‘première découverte’ et aux fantasmes des Lumières européennes qui suggéraient aux visiteurs que les natifs (du moins ceux qu'ils rencontrèrent en Tasmanie en termes amicaux) étaient des ‘bons sauvages’ vivant dans un état ‘primitif’ originel non corrompu par la civilisation et ignorant des développements scientifiques et techniques en Europe.
+
+--- PAGE : CARTE BAUDIN ---
+
+TITRE : Carte Baudin (1800-1804)
+DESCRIPTION : Explorez les noms de lieux donnés lors de l'expédition scientifique de Nicolas Baudin...
+
+--- PAGE : RESSOURCES ---
+
+TITRE : Ressources
+
+1. Glossaire des Termes
+Sous-titre : Institutions françaises, régimes politiques, guerres, anciennes appellations de pays et expéditions scientifiques
+Description : Ce glossaire explique les principaux termes historiques, politiques et scientifiques mentionnés dans le projet French Names Along the Australian Coastline.
+
+2. Acteurs clés
+Sous-titre : Les explorateurs et scientifiques des expéditions d'Entrecasteaux et Baudin
+Description : Résumés biographiques des principaux acteurs des deux grandes expéditions françaises qui ont cartographié et nommé de nombreux lieux le long des côtes australiennes.
+
+3. Cartes et illustrations
+Sous-titre : Présentation des cartes et de la documentation réalisée grâce aux expéditions d'Entrecasteaux et Baudin
+Description : Découvrez les cartes historiques, illustrations et documents issus des grandes expéditions françaises d'exploration des côtes australiennes.
+
+4. Sources
+Sous-titre : Collections d'archives primaires et ressources numériques
+Description : Liste exhaustive des sources manuscrites, bibliothèques numériques et collections muséales consultées pour ce projet de recherche.
+
+--- PAGE DÉTAILLÉE : BAIE DE LA RECHERCHE ---
+
+TITRE : Baie de la Recherche / Recherche Bay
+
+[L'arrivée tumultueuse des frégates sur les côtes sud-est de la Tasmanie]
+Les frégates atteignirent Ténériffe le 23 octobre, et le Cap de Bonne-Espérance le 16 février 1792. Initialement, l'expédition mit le cap sur les îles de l'Amirauté (au nord de la Nouvelle-Guinée) à la recherche d'informations sur l'expédition de La Pérouse, car des rumeurs au Cap suggéraient que des habitants de ces îles avaient été vus portant des uniformes et des accessoires navals français qui auraient pu provenir de l'expédition perdue. Le départ du Cap marqua le début de la mission officielle du voyage, commençant par le relevé des îles d'Amsterdam et de Saint-Paul (océan Indien). Les instructions de d'Entrecasteaux étaient de relever ensuite la côte sud-ouest de la Nouvelle-Hollande, avant d'atteindre la Nouvelle-Guinée[1]. Cependant, la force des vents d'ouest soufflant sans interruption pendant plusieurs semaines[2] et la mer extrêmement grosse mettaient 'les frégates à rude épreuve' et 'entraînaient des ruptures de chaînes' tandis que 'l'eau a pénétré dans les soutes des navires…'[3]. Dans ces circonstances et avec l'hiver imminent, le commandant, qui avait fait une mauvaise chute lors d'un violent roulis et s'était gravement blessé aux côtes (mars-début avril 1792), modifia pragmatiquement son itinéraire et se dirigea vers les côtes mieux protégées de l'est de la Tasmanie, alors connue sous le nom de Terre de Van Diemen (voir le glossaire).
+
+La côte sud-est de la Tasmanie fut aperçue pour la première fois le 20 avril 1792, et l'expédition entra le 23 avril 1792 dans une baie abritée (Baie de la Recherche*) où les frégates jetèrent l'ancre et furent réparées. Les maillons brisés entre la chaîne et le câble de l'ancre de la Recherche, qui 'avaient probablement été surchauffés par le métallurgiste qui l'avait forgée', furent réparés[4].
+
+[La dénomination du canal d’Entrecasteaux]
+Pendant leur séjour, les hydrographes et les officiers préparèrent les premières cartes des côtes bordant le Canal d'Entrecasteaux* et nommèrent de nombreux lieux. Après leur départ le 28 mai, ils contournèrent l'Australie par une route lointaine via la Nouvelle-Calédonie, les îles Salomon, la Nouvelle-Irlande, l'île de l'Amirauté, Amboine, le Cap Leeuwin et la côte sud-ouest de la Nouvelle-Hollande, avant de retourner en Terre de Van Diemen pour cinq semaines, du 21 janvier au 27 février 1793, afin de compléter leur reconnaissance.
+
+Le long des rives de la Terre de Van Diemen, le commandant nomma certaines caractéristiques géographiques d'après les membres de son equipage qui avaient le plus contribué aux résultats des levés, surtout après que les canots de l'expédition eurent été envoyés pour cartographier les côtes rocheuses du canal, leurs baies et étudier leur histoire naturelle[5]. Finalement, 50 lieux de la Terre de Van Diemen reçurent un nom. Plus de la moitié de ces noms sont liés aux deux frégates de l'expédition, la Recherche et l'Espérance (Baie de la Recherche*, Port de l’Espérance*, etc.) et aux membres de l'équipage de l'expédition (23)[6]. 16 autres noms sont basés sur des emplacements géographiques (Port du Nord Ouest*…) et sur la géographie physique des côtes (Baie de l'Isthme*…). 5 autres noms évoquent la faune et la flore locales (Port des cygnes*…), et un nom fait référence à l'explorateur français Marion Dufresne dont les navires passèrent plusieurs jours dans la baie de Marion en Terre de Van Diemen en mars 1772.
+
+Ces trois cartes ci-dessous montrent des parties des côtes de la Terre de Van Diemen visitées par l'expédition. Elles sont extraites de la première édition (1807) de l'atlas du voyage de d'Entrecasteaux et indiquent l'emplacement des lieux qu'il avait nommés[7]. Elles ont été modifiées pour indiquer et distinguer par des couleurs les tracés de 1792 (en bleu) et 1793 (en violet) des navires et de leurs équipes de relevé (en 1792, en rouge, principalement dans la partie sud, et plus tard, en 1793, en vert, surtout au nord du Canal). Les méandres des tracés sur ces cartes suggèrent les difficultés rencontrées par les arpenteurs pour approcher et explorer le littoral, ce que les noms donnés à certains lieux expriment parfois, comme le 'Cap des Contrariétés'*.

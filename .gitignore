@@ -23,3 +23,13 @@ __pycache__/
 *.tmp
 *.swp
 *~
+tmp/
+
+# Node.js
+node_modules/
+package-lock.json
+
+# Environment variables - DO NOT COMMIT (contains API keys)
+.env
+.env.local
+.env.*.local

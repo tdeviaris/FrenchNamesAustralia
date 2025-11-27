@@ -1,5 +1,7 @@
 // api/chat.js - Vercel Serverless Function
-// Cette fonction gère les appels à l'API OpenAI
+// Cette fonction gère les appels à l'API OpenAI Assistants avec RAG
+
+import OpenAI from 'openai';
 
 export default async function handler(req, res) {
   // Configuration CORS pour permettre les appels depuis GitHub Pages
@@ -20,109 +22,79 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { message, conversationHistory = [] } = req.body;
+    const { message, threadId = null } = req.body;
 
     if (!message) {
       return res.status(400).json({ error: 'Message is required' });
     }
 
-    // Récupérer la clé API depuis les variables d'environnement
+    // Vérifier les variables d'environnement
     const apiKey = process.env.OPENAI_API_KEY;
+    const assistantId = process.env.ASSISTANT_ID;
 
     if (!apiKey) {
       return res.status(500).json({ error: 'OpenAI API key not configured' });
     }
 
-    // Préparer les messages pour l'API OpenAI
-    const messages = [
-      {
-        role: 'system',
-        content: `Tu es un expert spécialisé dans les toponymes français le long de la côte australienne, particulièrement ceux issus des expéditions de d'Entrecasteaux (1791-1794) et Baudin (1800-1804).
+    if (!assistantId) {
+      return res.status(500).json({ error: 'Assistant ID not configured. Run setup-assistant.js first.' });
+    }
 
-Tu as une connaissance approfondie de :
-- L'histoire des expéditions françaises en Australie
-- Les 670 toponymes documentés dans les atlas officiels
-- Les explorateurs, scientifiques et membres d'équipage
-- Les cartes historiques et documents d'archives
-- Le contexte géopolitique de l'époque (Révolution française, Empire napoléonien)
-- Les relations avec les peuples aborigènes
+    // Initialiser le client OpenAI
+    const openai = new OpenAI({ apiKey });
 
-Réponds de manière précise, informative et pédagogique. Cite des noms de lieux spécifiques quand c'est pertinent. Si tu ne connais pas une information précise, dis-le honnêtement.`
-      },
-      ...conversationHistory,
-      {
-        role: 'user',
-        content: message
-      }
-    ];
+    // Créer ou réutiliser un thread
+    let currentThreadId = threadId;
 
-    // Appel à l'API OpenAI avec streaming
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini', // Modèle économique mais performant
-        messages: messages,
-        temperature: 0.7,
-        max_tokens: 1500,
-        stream: true
-      })
+    if (!currentThreadId) {
+      const thread = await openai.beta.threads.create();
+      currentThreadId = thread.id;
+    }
+
+    // Ajouter le message de l'utilisateur au thread
+    await openai.beta.threads.messages.create(currentThreadId, {
+      role: 'user',
+      content: message
     });
 
-    if (!response.ok) {
-      const error = await response.json();
-      console.error('OpenAI API error:', error);
-      return res.status(response.status).json({ error: error.error?.message || 'OpenAI API error' });
-    }
+    // Créer un run avec streaming
+    const run = openai.beta.threads.runs.stream(currentThreadId, {
+      assistant_id: assistantId
+    });
 
     // Configuration du streaming SSE (Server-Sent Events)
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
 
-    // Lire le stream de réponse d'OpenAI
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
+    // Envoyer le thread ID au client
+    res.write(`data: ${JSON.stringify({ threadId: currentThreadId })}\n\n`);
 
-    while (true) {
-      const { done, value } = await reader.read();
+    // Variables pour accumuler la réponse
+    let fullResponse = '';
 
-      if (done) {
-        res.write('data: [DONE]\n\n');
-        res.end();
-        break;
+    // Gérer les événements du stream
+    run.on('textDelta', (textDelta) => {
+      const content = textDelta.value;
+      if (content) {
+        fullResponse += content;
+        res.write(`data: ${JSON.stringify({ content })}\n\n`);
       }
+    });
 
-      const chunk = decoder.decode(value);
-      const lines = chunk.split('\n').filter(line => line.trim() !== '');
+    run.on('error', (error) => {
+      console.error('Stream error:', error);
+      res.write(`data: ${JSON.stringify({ error: error.message })}\n\n`);
+    });
 
-      for (const line of lines) {
-        if (line.startsWith('data: ')) {
-          const data = line.slice(6);
+    run.on('end', () => {
+      res.write('data: [DONE]\n\n');
+      res.end();
+    });
 
-          if (data === '[DONE]') {
-            res.write('data: [DONE]\n\n');
-            continue;
-          }
+    // Attendre que le stream se termine
+    await run.finalRun();
 
-          try {
-            const parsed = JSON.parse(data);
-            const content = parsed.choices[0]?.delta?.content;
-
-            if (content) {
-              // Envoyer le chunk au client
-              res.write(`data: ${JSON.stringify({ content })}\n\n`);
-            }
-          } catch (e) {
-            // Ignorer les erreurs de parsing
-            console.error('Parse error:', e);
-          }
-        }
-      }
-    }
   } catch (error) {
     console.error('Server error:', error);
 
@@ -131,6 +103,10 @@ Réponds de manière précise, informative et pédagogique. Cite des noms de lie
         error: 'Internal server error',
         message: error.message
       });
+    } else {
+      res.write(`data: ${JSON.stringify({ error: error.message })}\n\n`);
+      res.write('data: [DONE]\n\n');
+      res.end();
     }
   }
 }

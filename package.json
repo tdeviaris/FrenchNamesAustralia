@@ -2,10 +2,12 @@
   "name": "french-names-australia",
   "version": "1.0.0",
   "description": "French toponyms along the Australian coastline",
+  "type": "module",
   "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "setup-assistant": "node scripts/setup-assistant.js"
   },
   "keywords": [
     "toponyms",
@@ -14,5 +16,8 @@
     "history"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^4.73.0"
+  }
 }

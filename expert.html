@@ -377,7 +377,7 @@
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
 
-        let conversationHistory = [];
+        let threadId = null; // Pour l'API Assistants
         let isProcessing = false;
 
         // Fonction pour ajouter un message
@@ -472,7 +472,7 @@
                     },
                     body: JSON.stringify({
                         message: userMessage,
-                        conversationHistory: conversationHistory
+                        threadId: threadId
                     })
                 });
 
@@ -509,6 +509,12 @@
 
                             try {
                                 const parsed = JSON.parse(data);
+
+                                // Sauvegarder le threadId s'il est fourni
+                                if (parsed.threadId) {
+                                    threadId = parsed.threadId;
+                                }
+
                                 if (parsed.content) {
                                     fullResponse += parsed.content;
 
@@ -532,11 +538,8 @@
                     }
                 }
 
-                // Sauvegarder dans l'historique
-                conversationHistory.push(
-                    { role: 'user', content: userMessage },
-                    { role: 'assistant', content: fullResponse }
-                );
+                // L'historique est maintenant géré par le thread OpenAI
+                // Pas besoin de le sauvegarder côté client
 
             } catch (error) {
                 console.error('Error:', error);
