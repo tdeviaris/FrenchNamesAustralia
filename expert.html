@@ -206,6 +206,30 @@
             margin-bottom: 0;
         }
 
+        .message-assistant .message-content a {
+            color: var(--primary-blue);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .message-assistant .message-content a:hover {
+            color: #003f82;
+        }
+
+        .message-assistant .message-content ul,
+        .message-assistant .message-content ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .message-assistant .message-content li {
+            margin: 5px 0;
+        }
+
+        .message-assistant .message-content strong {
+            font-weight: 600;
+        }
+
         .typing-indicator {
             display: inline-block;
             padding: 12px 18px;
@@ -380,6 +404,43 @@
         let threadId = null; // Pour l'API Assistants
         let isProcessing = false;
 
+        // Fonction pour nettoyer et formater le contenu
+        function cleanAndFormatContent(content) {
+            // 1. Supprimer les citations sources 【...†...】
+            content = content.replace(/【[^】]*】/g, '');
+
+            // 2. Nettoyer les espaces multiples
+            content = content.replace(/\s+/g, ' ').trim();
+
+            return content;
+        }
+
+        // Fonction pour convertir le Markdown en HTML
+        function markdownToHtml(text) {
+            // Gras
+            text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/__(.+?)__/g, '<strong>$1</strong>');
+
+            // Italique
+            text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            text = text.replace(/_(.+?)_/g, '<em>$1</em>');
+
+            // Liens [texte](url)
+            text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+            // URLs nues (sans markdown)
+            text = text.replace(/(?<!\()(https?:\/\/[^\s<]+)(?!\))/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+
+            // Listes à puces (lignes commençant par - ou *)
+            text = text.replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>');
+            text = text.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+            // Listes numérotées
+            text = text.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+
+            return text;
+        }
+
         // Fonction pour ajouter un message
         function addMessage(content, isUser = false) {
             const messageDiv = document.createElement('div');
@@ -391,12 +452,16 @@
             if (isUser) {
                 contentDiv.textContent = content;
             } else {
+                // Nettoyer le contenu (supprimer citations)
+                content = cleanAndFormatContent(content);
+
                 // Convertir les retours à la ligne en paragraphes
                 const paragraphs = content.split('\n\n');
                 paragraphs.forEach(para => {
                     if (para.trim()) {
                         const p = document.createElement('p');
-                        p.textContent = para.trim();
+                        // Appliquer le formatage Markdown
+                        p.innerHTML = markdownToHtml(para.trim());
                         contentDiv.appendChild(p);
                     }
                 });
@@ -518,13 +583,16 @@
                                 if (parsed.content) {
                                     fullResponse += parsed.content;
 
-                                    // Mettre à jour le message progressivement
+                                    // Nettoyer et mettre à jour le message progressivement
+                                    const cleanedResponse = cleanAndFormatContent(fullResponse);
                                     assistantMessage.innerHTML = '';
-                                    const paragraphs = fullResponse.split('\n\n');
+
+                                    const paragraphs = cleanedResponse.split('\n\n');
                                     paragraphs.forEach(para => {
                                         if (para.trim()) {
                                             const p = document.createElement('p');
-                                            p.textContent = para.trim();
+                                            // Appliquer le formatage Markdown
+                                            p.innerHTML = markdownToHtml(para.trim());
                                             assistantMessage.appendChild(p);
                                         }
                                     });
