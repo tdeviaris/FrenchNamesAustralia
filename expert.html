@@ -508,6 +508,11 @@
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
 
+        // Rendu minimal : on échappe le HTML et on garde les retours à la ligne
+        function markdownToHtml(text) {
+            return escapeHtml(text).replace(/\n/g, '<br>');
+        }
+
         // Fonction pour ajouter un message
         function addMessage(content, isUser = false) {
             const messageDiv = document.createElement('div');
