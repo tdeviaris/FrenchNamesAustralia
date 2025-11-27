@@ -157,12 +157,13 @@
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 0;
             background: #fafafa;
         }
 
         .message {
-            margin-bottom: 20px;
+            margin: 0;
+            padding: 0;
             animation: fadeIn 0.3s ease-in;
         }
 
@@ -176,10 +177,10 @@
         }
 
         .message-content {
-            display: inline-block;
-            max-width: 80%;
-            padding: 12px 18px;
-            border-radius: 18px;
+            display: block;
+            width: 100%;
+            padding: 20px;
+            border-radius: 0;
             line-height: 1.6;
             white-space: pre-wrap;
         }
@@ -192,7 +193,7 @@
         .message-assistant .message-content {
             background: white;
             color: #333;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: none;
             text-align: left;
             line-height: 1.6;
         }
@@ -239,7 +240,7 @@
         .message-assistant .message-content h2,
         .message-assistant .message-content h3,
         .message-assistant .message-content h4 {
-            margin: 15px 0 10px 0;
+            margin: 0 0 10px 0;
             font-weight: 600;
             color: #333;
         }
