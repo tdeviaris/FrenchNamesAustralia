@@ -106,7 +106,7 @@ RÈGLES DE FORMATAGE STRICTES :
 - Le texte affiché doit être en français clair et lisible
 
 Réponds de manière précise, informative et pédagogique. Cite des noms de lieux spécifiques et des détails historiques issus de ta base de connaissance quand c'est pertinent. Si tu ne trouves pas une information précise dans ta base de connaissance, dis-le honnêtement.`,
-      model: 'gpt-4o',
+      model: 'gpt-4.1',
       tools: [{ type: 'file_search' }],
       tool_resources: {
         file_search: {
