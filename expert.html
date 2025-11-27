@@ -464,15 +464,12 @@
             text = text.replace(/"\s*target="_blank"\s*rel="[^"]*"/g, '');
             text = text.replace(/>\s*$/gm, '');
 
-            // Titres (avant le gras pour éviter les conflits)
-            // Accepter avec ou sans espace après le #
-            text = text.replace(/^####\s*(.+)$/gm, '<h4>$1</h4>');
-            text = text.replace(/^###\s*(.+)$/gm, '<h3>$1</h3>');
-            text = text.replace(/^##\s*(.+)$/gm, '<h2>$1</h2>');
-            text = text.replace(/^#\s+(.+)$/gm, '<h1>$1</h1>');
-
-            // Aussi gérer les cas où ### apparaît au milieu d'une ligne
-            text = text.replace(/\s###\s*(.+?)(?:\n|$)/g, '\n<h3>$1</h3>\n');
+            // Titres - traiter AVANT toute autre transformation
+            // Utiliser [^\n] pour capturer uniquement jusqu'à la fin de la ligne
+            text = text.replace(/^####\s*([^\n]+)/gm, '<h4>$1</h4>\n');
+            text = text.replace(/^###\s*([^\n]+)/gm, '<h3>$1</h3>\n');
+            text = text.replace(/^##\s*([^\n]+)/gm, '<h2>$1</h2>\n');
+            text = text.replace(/^#\s+([^\n]+)/gm, '<h1>$1</h1>\n');
 
             // Gras
             text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
@@ -511,9 +508,6 @@
                 }
                 return match;
             });
-
-            // Ajouter un retour à la ligne après les titres
-            text = text.replace(/(<\/h[1-4]>)/g, '$1<br>');
 
             // Remplacer les doubles sauts de ligne par des paragraphes
             text = text.replace(/\n\n+/g, '</p><p>');
