@@ -531,14 +531,50 @@
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
 
-        // Rendu minimal : échappement + gras/italique + liens (Wikipédia avec titre)
+        // Rendu minimal : échappement + gras/italique + liens (format personnalisé [texte]{id})
         function markdownToHtml(text) {
             const placeholders = [];
             const token = (id) => `__PLACEHOLDER_${id}__`;
+            const currentLang = localStorage.getItem('language') || 'en';
 
             let intermediate = text;
 
-            // Liens markdown [label](url)
+            // Nouveau format personnalisé [texte]{id}
+            intermediate = intermediate.replace(/\[([^\]]+)\]\{([^}]+)\}/g, (match, label, id) => {
+                let html;
+
+                // Si l'id commence par https://, c'est un lien externe
+                if (id.startsWith('https://') || id.startsWith('http://')) {
+                    const wikiMatch = id.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                    const linkText = wikiMatch
+                        ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                        : label;
+                    html = `<a href="${id}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                }
+                // Si l'id commence par "Baudin", lien vers map_baudin.html
+                else if (id.startsWith('Baudin')) {
+                    const code = id.replace('Baudin', '');
+                    html = `<a href="map_baudin.html#${code}">${escapeHtml(label)}</a>`;
+                }
+                // Si l'id commence par "Entre", lien vers map_dentrecasteaux.html
+                else if (id.startsWith('Entre')) {
+                    const code = id.replace('Entre', '');
+                    html = `<a href="map_dentrecasteaux.html#${code}">${escapeHtml(label)}</a>`;
+                }
+                // Sinon, c'est un ID Wikipedia
+                else {
+                    const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                    const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${id}`;
+                    const linkText = decodeURIComponent(id).replace(/_/g, ' ');
+                    html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                }
+
+                const placeholderId = placeholders.length;
+                placeholders.push(html);
+                return token(placeholderId);
+            });
+
+            // Anciens liens markdown [label](url) - pour compatibilité
             intermediate = intermediate.replace(/\[([^\]]+)\]\((https?:[^\s)]+)\)/g, (match, label, url) => {
                 const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
                 const linkText = wikiMatch
@@ -648,6 +684,12 @@
                 <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
             </svg>`;
 
+        const scrollChatToBottom = () => {
+            requestAnimationFrame(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        };
+
         const saveChatHistory = () => {
             const payload = {
                 timestamp: Date.now(),
@@ -696,7 +738,7 @@
                     node.innerHTML = markdownToHtml(cleaned);
                 }
             });
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            scrollChatToBottom();
         };
 
         const setButtonToSend = () => {
@@ -747,6 +789,7 @@
         if (existingHistory && existingHistory.length) {
             chatHistory = existingHistory;
             renderChatHistory(chatHistory);
+            scrollChatToBottom();
         }
 
         // Gérer la soumission du formulaire
