@@ -339,6 +339,7 @@
         .chat-input-form {
             display: flex;
             gap: 10px;
+            align-items: center;
         }
 
         .chat-input {
@@ -357,19 +358,32 @@
         }
 
         .chat-send-button {
-            padding: 12px 24px;
-            background: var(--primary-blue);
-            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
             border: none;
-            border-radius: 24px;
-            font-size: 1rem;
-            font-weight: 600;
+            background: var(--primary-blue);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: transform 0.15s ease, background-color 0.2s ease;
+            padding: 0;
         }
 
-        .chat-send-button:hover:not(:disabled) {
+        .chat-send-button svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .chat-send-button:hover {
             background: #003f82;
+            transform: translateY(-1px);
+        }
+
+        .chat-send-button:active {
+            transform: scale(0.97);
         }
 
         .chat-send-button:disabled {
@@ -377,25 +391,18 @@
             cursor: not-allowed;
         }
 
-        .chat-stop-button {
-            padding: 12px 18px;
-            background: #9e9e9e;
-            color: white;
-            border: none;
-            border-radius: 24px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
+        .chat-send-button.is-stop {
+            background: var(--primary-blue);
         }
 
-        .chat-stop-button:hover:not(:disabled) {
-            background: #7b7b7b;
+        .chat-send-button.is-pulsing {
+            animation: pulseStop 1.2s ease-in-out infinite;
         }
 
-        .chat-stop-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        @keyframes pulseStop {
+            0% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.35); }
+            50% { box-shadow: 0 0 0 10px rgba(0, 86, 179, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0); }
         }
 
         .error-message {
@@ -471,8 +478,9 @@
                             data-i18n-placeholder="expert-input-placeholder"
                             autocomplete="off"
                         >
-                        <button type="submit" class="chat-send-button" id="send-button" data-i18n="expert-send">Send</button>
-                        <button type="button" class="chat-stop-button" id="stop-button" disabled>Stop</button>
+                        <button type="submit" class="chat-send-button" id="send-button" aria-label="Send">
+                            <!-- Icones injectées via JS -->
+                        </button>
                     </form>
                 </div>
             </div>
@@ -496,7 +504,12 @@
         const chatForm = document.getElementById('chat-form');
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
-        const stopButton = document.getElementById('stop-button');
+        let slowResponseTimer = null;
+        let slowResponseNote = null;
+        let chatHistory = [];
+
+        const HISTORY_STORAGE_KEY = 'expertChatHistory';
+        const HISTORY_TTL_MS = 30 * 60 * 1000; // 30 minutes
 
         let threadId = null; // Pour l'API Assistants
         let isProcessing = false;
@@ -626,11 +639,129 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
+        const sendIcon = `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3.4 20.6 21 12 3.4 3.4 3 10.5l10.5 1.5L3 13.5z"/>
+            </svg>`;
+        const stopIcon = `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+            </svg>`;
+
+        const saveChatHistory = () => {
+            const payload = {
+                timestamp: Date.now(),
+                messages: chatHistory
+            };
+            try {
+                localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(payload));
+            } catch (err) {
+                console.warn('Unable to persist chat history', err);
+            }
+        };
+
+        const loadChatHistory = () => {
+            try {
+                const raw = localStorage.getItem(HISTORY_STORAGE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed || !Array.isArray(parsed.messages) || !parsed.timestamp) {
+                    return null;
+                }
+                const age = Date.now() - parsed.timestamp;
+                if (age > HISTORY_TTL_MS) {
+                    localStorage.removeItem(HISTORY_STORAGE_KEY);
+                    return null;
+                }
+                return parsed.messages;
+            } catch (err) {
+                console.warn('Unable to load chat history', err);
+                return null;
+            }
+        };
+
+        const renderChatHistory = (history = []) => {
+            if (!history.length) {
+                return;
+            }
+            chatMessages.innerHTML = '';
+            history.forEach((entry) => {
+                const role = entry?.role === 'user' ? 'user' : 'assistant';
+                const rawContent = entry?.content || '';
+                const cleaned = cleanAndFormatContent(rawContent);
+                if (role === 'user') {
+                    addMessage(cleaned, true);
+                } else {
+                    const node = addMessage('');
+                    node.innerHTML = markdownToHtml(cleaned);
+                }
+            });
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        };
+
+        const setButtonToSend = () => {
+            sendButton.classList.remove('is-stop');
+            sendButton.classList.remove('is-pulsing');
+            sendButton.innerHTML = sendIcon;
+            sendButton.setAttribute('aria-label', 'Send');
+        };
+
+        const setButtonToStop = () => {
+            sendButton.classList.add('is-stop');
+            sendButton.classList.add('is-pulsing');
+            sendButton.innerHTML = stopIcon;
+            sendButton.setAttribute('aria-label', 'Stop');
+        };
+
+        setButtonToSend();
+
+        const showSlowResponseNote = () => {
+            if (slowResponseNote) {
+                return;
+            }
+            const note = document.createElement('div');
+            note.className = 'message message-assistant';
+            const inner = document.createElement('div');
+            inner.className = 'message-content';
+            inner.style.fontStyle = 'italic';
+            inner.textContent = 'Toujours en cours ...';
+            note.appendChild(inner);
+            chatMessages.appendChild(note);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            slowResponseNote = note;
+        };
+
+        const clearSlowResponseNote = () => {
+            if (slowResponseTimer) {
+                clearTimeout(slowResponseTimer);
+                slowResponseTimer = null;
+            }
+            if (slowResponseNote) {
+                slowResponseNote.remove();
+                slowResponseNote = null;
+            }
+        };
+
+        // Restaurer l'historique si encore valide
+        const existingHistory = loadChatHistory();
+        if (existingHistory && existingHistory.length) {
+            chatHistory = existingHistory;
+            renderChatHistory(chatHistory);
+        }
+
         // Gérer la soumission du formulaire
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            if (isProcessing || !chatInput.value.trim()) {
+            // Si une requête est en cours, cliquer/submit agit comme "stop"
+            if (isProcessing) {
+                if (abortController) {
+                    abortController.abort();
+                }
+                return;
+            }
+
+            if (!chatInput.value.trim()) {
                 return;
             }
 
@@ -639,13 +770,16 @@
 
             // Ajouter le message de l'utilisateur
             addMessage(userMessage, true);
+            chatHistory.push({ role: 'user', content: userMessage });
+            saveChatHistory();
 
             // Désactiver l'input pendant le traitement
             isProcessing = true;
             chatInput.disabled = true;
-            sendButton.disabled = true;
-            stopButton.disabled = false;
+            setButtonToStop();
             abortController = new AbortController();
+            clearSlowResponseNote();
+            slowResponseTimer = setTimeout(showSlowResponseNote, 10000);
 
             // Afficher l'indicateur de frappe
             showTypingIndicator();
@@ -674,6 +808,7 @@
                 // Créer un message vide pour l'assistant
                 const assistantMessage = addMessage('');
                 let fullResponse = '';
+                let gotFirstChunk = false;
 
                 // Lire le stream SSE
                 const reader = response.body.getReader();
@@ -705,6 +840,10 @@
 
                                 if (parsed.content) {
                                     fullResponse += parsed.content;
+                                    if (!gotFirstChunk) {
+                                        gotFirstChunk = true;
+                                        clearSlowResponseNote();
+                                    }
 
                                     // Nettoyer et mettre à jour le message progressivement
                                     const cleanedResponse = cleanAndFormatContent(fullResponse);
@@ -724,6 +863,11 @@
                 // L'historique est maintenant géré par le thread OpenAI
                 // Pas besoin de le sauvegarder côté client
 
+                // Sauvegarder l'échange complet (assistant)
+                const cleanedFinal = cleanAndFormatContent(fullResponse);
+                chatHistory.push({ role: 'assistant', content: cleanedFinal });
+                saveChatHistory();
+
             } catch (error) {
                 console.error('Error:', error);
                 hideTypingIndicator();
@@ -731,19 +875,12 @@
                     showError('Error: Unable to reach the AI assistant. Please try again later.');
                 }
             } finally {
+                clearSlowResponseNote();
                 isProcessing = false;
                 chatInput.disabled = false;
-                sendButton.disabled = false;
-                stopButton.disabled = true;
+                setButtonToSend();
                 abortController = null;
                 chatInput.focus();
-            }
-        });
-
-        // Bouton stop : annuler la requête en cours
-        stopButton.addEventListener('click', () => {
-            if (abortController && isProcessing) {
-                abortController.abort();
             }
         });
 

@@ -2119,8 +2119,69 @@
         // Search functionality
         let allPlaces = [];
         let allMarkers = [];
+        let markersByCode = new Map();
         let searchResults = [];
         let currentSearchIndex = 0;
+        let pendingHashCode = '';
+        const clearUrlHash = () => {
+            if (!window.location.hash) {
+                return;
+            }
+            const cleanUrl = window.location.pathname + window.location.search;
+            history.replaceState(null, document.title, cleanUrl);
+        };
+        const normalizeMarkerCode = (value = '') => {
+            const trimmed = value.replace(/^#/, '').trim();
+            if (!trimmed) {
+                return '';
+            }
+            const entreMatch = trimmed.match(/^entre(\d+)$/i);
+            if (entreMatch) {
+                return `Entre${entreMatch[1].padStart(2, '0')}`;
+            }
+            if (/^\d+$/.test(trimmed)) {
+                return `Entre${trimmed.padStart(2, '0')}`;
+            }
+            return trimmed;
+        };
+        const openMarkerByCode = (rawCode) => {
+            const normalized = normalizeMarkerCode(rawCode);
+            if (!normalized) {
+                return;
+            }
+            pendingHashCode = normalized;
+            const marker = markersByCode.get(normalized.toLowerCase());
+            if (!marker) {
+                pendingHashCode = '';
+                clearUrlHash();
+                return;
+            }
+            map.closePopup();
+            marker.openPopup();
+            pendingHashCode = '';
+            clearUrlHash();
+        };
+        const handleHashNavigation = () => {
+            if (!window.location.hash) {
+                return;
+            }
+            openMarkerByCode(window.location.hash.substring(1));
+        };
+        const tryOpenPendingHash = () => {
+            if (!pendingHashCode) {
+                return;
+            }
+            const marker = markersByCode.get(pendingHashCode.toLowerCase());
+            if (marker) {
+                map.closePopup();
+                marker.openPopup();
+                pendingHashCode = '';
+                clearUrlHash();
+            } else {
+                pendingHashCode = '';
+                clearUrlHash();
+            }
+        };
 
         const searchInput = document.getElementById('search-input');
         const searchClear = document.getElementById('search-clear');
@@ -2358,6 +2419,7 @@
                 // Store places for search functionality
                 allPlaces = places;
                 allMarkers = [];
+                markersByCode = new Map();
 
                 const bounds = L.latLngBounds();
 
@@ -2373,6 +2435,10 @@
                     // Store marker for search functionality
                     marker.place = place;
                     allMarkers.push(marker);
+                    const normalizedCode = normalizeMarkerCode(place.code || '');
+                    if (normalizedCode) {
+                        markersByCode.set(normalizedCode.toLowerCase(), marker);
+                    }
 
                     bounds.extend([lat, lon]);
 
@@ -2522,9 +2588,12 @@
 
                 // Initialize search interface translations
                 updateSearchTranslations();
+                handleHashNavigation();
+                tryOpenPendingHash();
+                window.addEventListener('hashchange', handleHashNavigation);
             })
             .catch(error => {
-                console.error('Failed to load baudin data:', error);
+                console.error('Failed to load entrecasteaux data:', error);
             });
     </script>
 </body>
