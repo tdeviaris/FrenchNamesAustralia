@@ -30,38 +30,31 @@ function setActiveNavLink() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Charger la navigation commune
-    const navContainer = document.querySelector('[data-include-nav]');
-    if (navContainer) {
-        const navPath = window.location.hostname.includes('github.io')
-            ? '/FrenchNamesAustralia/partials/nav.html'
-            : '/partials/nav.html';
+// Prefetch des pages du menu pour réduire le délai perçu
+function prefetchNavLinks() {
+    const links = document.querySelectorAll('nav a[href]');
+    links.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:')) {
+            return;
+        }
+        // Éviter les doublons
+        if (document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
+            return;
+        }
+        const prefetch = document.createElement('link');
+        prefetch.rel = 'prefetch';
+        prefetch.href = href;
+        prefetch.as = 'document';
+        document.head.appendChild(prefetch);
+    });
+}
 
-        fetch(navPath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(html => {
-                navContainer.innerHTML = html;
-                // Marquer le lien actif selon la page actuelle
-                setActiveNavLink();
-                // Réinitialiser les event listeners après chargement
-                initLanguageSwitcher();
-                navContainer.classList.add('loaded');
-            })
-            .catch(error => {
-                console.error('Failed to load navigation:', error);
-                navContainer.classList.add('loaded');
-            });
-    } else {
-        // Si pas de conteneur d'inclusion, initialiser directement
-        setActiveNavLink();
-        initLanguageSwitcher();
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    // Nav déjà inline (injectée au build) : initialiser simplement
+    setActiveNavLink();
+    initLanguageSwitcher();
+    prefetchNavLinks();
 
     const footerContainer = document.querySelector('[data-include-footer]');
 

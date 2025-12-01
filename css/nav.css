@@ -4,6 +4,12 @@
     --accent: #0056b3;
 }
 
+/* Fond global */
+body {
+    background: #f4f4f4;
+    color: #333;
+}
+
 nav {
     background: #1f1f1f;
     color: #fff;
