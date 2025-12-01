@@ -1,4 +1,35 @@
 // js/main.js
+
+// Fonction pour marquer le lien de navigation actif
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    // Mapping des pages vers leurs IDs de navigation
+    const pageToNavId = {
+        'index.html': 'nav-home',
+        'map_dentrecasteaux.html': 'nav-map-dentre',
+        'map_baudin.html': 'nav-map-baudin',
+        'resources.html': 'nav-resources',
+        'glossaryF.html': 'nav-resources',
+        'glossaryE.html': 'nav-resources',
+        'acteursF.html': 'nav-resources',
+        'acteursE.html': 'nav-resources',
+        'cartesF.html': 'nav-resources',
+        'cartesE.html': 'nav-resources',
+        'SourcesF.html': 'nav-resources',
+        'SourcesE.html': 'nav-resources',
+        'expert.html': 'nav-resources'
+    };
+
+    const navId = pageToNavId[currentPage];
+    if (navId) {
+        const navLink = document.getElementById(navId);
+        if (navLink) {
+            navLink.classList.add('active');
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Charger la navigation commune
     const navContainer = document.querySelector('[data-include-nav]');
@@ -16,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(html => {
                 navContainer.innerHTML = html;
+                // Marquer le lien actif selon la page actuelle
+                setActiveNavLink();
                 // Réinitialiser les event listeners après chargement
                 initLanguageSwitcher();
             })
@@ -24,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     } else {
         // Si pas de conteneur d'inclusion, initialiser directement
+        setActiveNavLink();
         initLanguageSwitcher();
     }
 
