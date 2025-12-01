@@ -80,8 +80,22 @@
             color: #fff;
             border-radius: 999px;
             font-weight: 600;
-            cursor: default;
+            font-size: 1rem;
+            line-height: 1.2;
+            cursor: pointer;
             white-space: nowrap;
+            border: none;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .podcast-title-button:hover {
+            background-color: #003f82;
+        }
+        .podcast-title-button:active {
+            transform: scale(0.98);
+        }
+        .podcast-title-button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 3px;
         }
         .podcast-audio {
             flex: 1;
@@ -123,7 +137,7 @@
 
             <!-- Podcast Section -->
             <div class="podcast-header">
-                <span class="podcast-title-button" data-i18n="resources-podcast-title">Podcast présentant le projet</span>
+                <button type="button" class="podcast-title-button" data-i18n="resources-podcast-title" aria-pressed="false">Podcast présentant le projet</button>
                 <audio class="podcast-audio" controls preload="auto" data-i18n-src="resources-podcast-src">
                     <source src="data/podcast_fr.m4a" type="audio/mp4">
                     Votre navigateur ne supporte pas l'élément audio.
@@ -165,5 +179,32 @@
 
     <script src="js/translations.js?v=20241012"></script>
     <script src="js/main.js?v=20241012"></script>
+    <script>
+        (() => {
+            const toggleButton = document.querySelector('.podcast-title-button');
+            const audio = document.querySelector('.podcast-audio');
+            if (!toggleButton || !audio) return;
+
+            const updatePressed = (pressed) => {
+                toggleButton.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+            };
+
+            toggleButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    const playPromise = audio.play();
+                    if (playPromise && typeof playPromise.then === 'function') {
+                        playPromise.catch(() => updatePressed(false));
+                    }
+                    updatePressed(true);
+                } else {
+                    audio.pause();
+                    updatePressed(false);
+                }
+            });
+
+            audio.addEventListener('play', () => updatePressed(true));
+            audio.addEventListener('pause', () => updatePressed(false));
+        })();
+    </script>
 </body>
 </html>
