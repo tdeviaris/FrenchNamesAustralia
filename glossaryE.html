@@ -14,38 +14,7 @@
         * { box-sizing: border-box; }
         body { font-family: 'Lato', sans-serif; margin: 0; background-color: #999; color: #333; padding-top: var(--nav-height); }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        nav { background: #1f1f1f; color: #fff; position: fixed; inset: 0 0 auto 0; height: var(--nav-height); z-index: 1100; display: flex; align-items: center; justify-content: center; padding: 0 clamp(18px, 4vw, 40px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(8px, 2vw, 18px); }
-        nav ul li a { display: block; color: inherit; text-decoration: none; padding: 10px 18px; font-size: 1.05rem; border-radius: 999px; transition: background 0.2s ease, color 0.2s ease; }
-        nav ul li a.active, nav ul li a:hover { background-color: var(--accent); color: #fff; }
-        .lang-switcher { position: absolute; right: clamp(18px, 4vw, 40px); display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
-        .lang-switcher button { position: relative; background-color: transparent; border: none; color: inherit; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.2s ease; }
-        .lang-switcher button:hover { background-color: rgba(0, 86, 179, 0.4); }
-        .lang-switcher button.active { background-color: var(--accent); }
-        .lang-switcher button.active:hover { background-color: var(--accent); }
-        .lang-switcher button:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
-        .lang-switcher button img { display: block; width: 28px; height: auto; }
 
-        @media (max-width: 1040px) {
-            :root { --nav-height: 64px; }
-            body { padding-top: var(--nav-height); }
-            nav { padding: 0 18px; }
-            nav ul { gap: 10px; }
-            nav ul li a { padding: 8px 14px; font-size: 0.95rem; }
-            .lang-switcher { gap: 8px; }
-            .lang-switcher button { width: 38px; height: 38px; }
-            .lang-switcher button img { width: 22px; }
-        }
-        @media (max-width: 880px) {
-            :root { --nav-height: 60px; }
-            body { padding-top: var(--nav-height); }
-            nav { padding: 0 14px; }
-            nav ul { gap: 8px; }
-            nav ul li a { padding: 7px 12px; font-size: 0.9rem; }
-            .lang-switcher { gap: 6px; }
-            .lang-switcher button { width: 34px; height: 34px; }
-            .lang-switcher button img { width: 20px; }
-        }
         .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 16px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .content-section h1 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 18px 0; }
         .content-section h2.subtitle { font-family: 'Lato', sans-serif; font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.2rem); margin: 0 0 14px 0; color: #444; }
@@ -58,16 +27,6 @@
         .entry-title a.backtop:hover img { opacity: 1; }
         .entry p { margin: 0.6em 0; line-height: 1.55; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
-        @media (max-width: 768px) {
-            :root { --nav-height: 56px; }
-            body { padding-top: var(--nav-height); }
-            nav { height: var(--nav-height); padding: 0 10px; justify-content: space-between; gap: 6px; }
-            nav ul { display: flex; flex: 1; justify-content: center; gap: 6px; }
-            nav ul li a { padding: 5px 10px; font-size: 0.8rem; }
-            .lang-switcher { position: static; gap: 4px; }
-            .lang-switcher button { width: 30px; height: 30px; }
-            .lang-switcher button img { width: 18px; }
-        }
 
     </style>
 </head>
@@ -103,7 +62,6 @@
                 <li><a href="#the-acadmie-franaise">The Académie Française</a></li><li><a href="#american-revolutionary-war">American Revolutionary War</a></li><li><a href="#bureau-des-longitudes-board-of-longitude">Bureau des longitudes (Board of Longitude)</a></li><li><a href="#consulat-le-consulat-in-english-consulate">Consulat (Le Consulat, in English: Consulate)</a></li><li><a href="#convention-la-convention-in-english-the-national-convention">Convention (La Convention, in English: The National Convention)</a></li><li><a href="#dpt-des-cartes-et-plans-de-la-marine">Dépôt des Cartes et Plans de la Marine</a></li><li><a href="#directoire-le-directoire-in-english-the-directory">Directoire (Le Directoire, in English: The Directory)</a></li><li><a href="#cole-normale">École normale</a></li><li><a href="#encyclopdie">Encyclopédie</a></li><li><a href="#french-campaign-in-egypt-and-syria">French campaign in Egypt and Syria</a></li><li><a href="#french-revolutionary-wars">French Revolutionary Wars</a></li><li><a href="#institut-national-des-sciences-et-des-arts">Institut national des sciences et des arts</a></li><li><a href="#isle-of-france">Isle of France</a></li><li><a href="#italian-campaigns-of-the-french-revolutionary-wars-1796-1797-1799-1802">Italian campaigns of the French Revolutionary Wars (1796-1797; 1799-1802)</a></li><li><a href="#la-prouse-expedition-1785-1788">La Pérouse expedition (1785-1788)</a></li><li><a href="#lgion-dhonneur">Légion d’Honneur</a></li><li><a href="#madame-campan-and-the-institut-national-de-saint-germain">Madame Campan and the ‘Institut national de Saint-Germain’</a></li><li><a href="#muse-national-dhistoire-naturelle">Musée National d&#x27;Histoire Naturelle</a></li><li><a href="#nomenclature">Nomenclature</a></li><li><a href="#new-holland">New Holland</a></li><li><a href="#nine-years-war">Nine Years&#x27; War</a></li><li><a href="#peace-of-amiens-paix-damiens-march-23-1802---may-18-1803">Peace of Amiens / Paix d’Amiens (March 23, 1802 - May 18, 1803)</a></li><li><a href="#polytechnique">Polytechnique</a></li><li><a href="#premier-empire-first-french-empire">Premier Empire (First French Empire)</a></li><li><a href="#seven-years-war">Seven Years&#x27; War</a></li><li><a href="#socit-des-observateurs-de-lhomme">Société des Observateurs de l’Homme</a></li><li><a href="#terreur">Terreur</a></li><li><a href="#van-diemens-land">Van Diemen’s Land</a></li><li><a href="#war-of-the-austrian-succession">War of the Austrian Succession</a></li>
             </ul>
 
-            
     <section class="entry">
         <h2 id="the-acadmie-franaise" class="entry-title">
             <span>The Académie Française</span>
