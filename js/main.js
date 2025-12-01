@@ -1,7 +1,32 @@
 // js/main.js
 document.addEventListener('DOMContentLoaded', () => {
-    const langFrButton = document.getElementById('lang-fr');
-    const langEnButton = document.getElementById('lang-en');
+    // Charger la navigation commune
+    const navContainer = document.querySelector('[data-include-nav]');
+    if (navContainer) {
+        const navPath = window.location.hostname.includes('github.io')
+            ? '/FrenchNamesAustralia/partials/nav.html'
+            : '/partials/nav.html';
+
+        fetch(navPath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                navContainer.innerHTML = html;
+                // Réinitialiser les event listeners après chargement
+                initLanguageSwitcher();
+            })
+            .catch(error => {
+                console.error('Failed to load navigation:', error);
+            });
+    } else {
+        // Si pas de conteneur d'inclusion, initialiser directement
+        initLanguageSwitcher();
+    }
+
     const footerContainer = document.querySelector('[data-include-footer]');
 
     if (footerContainer) {
@@ -25,9 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    const switchLanguage = (lang) => {
-        // Sauvegarde le choix dans le navigateur
-        localStorage.setItem('language', lang);
+    function initLanguageSwitcher() {
+        const langFrButton = document.getElementById('lang-fr');
+        const langEnButton = document.getElementById('lang-en');
+
+        if (!langFrButton || !langEnButton) {
+            console.warn('Language switcher buttons not found');
+            return;
+        }
+
+        const switchLanguage = (lang) => {
+            // Sauvegarde le choix dans le navigateur
+            localStorage.setItem('language', lang);
 
         // Gestion des pages dédiées par langue (cartes, etc.)
         const pageMap = {
@@ -96,13 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Déclenche un événement personnalisé pour que d'autres scripts puissent réagir
         document.dispatchEvent(new Event('languageChanged'));
-    };
+        };
 
-    // Ajoute les écouteurs d'événements
-    langFrButton.addEventListener('click', () => switchLanguage('fr'));
-    langEnButton.addEventListener('click', () => switchLanguage('en'));
+        // Ajoute les écouteurs d'événements
+        langFrButton.addEventListener('click', () => switchLanguage('fr'));
+        langEnButton.addEventListener('click', () => switchLanguage('en'));
 
-    // Au chargement de la page, vérifie s'il y a une langue sauvegardée, sinon utilise 'en' par défaut
-    const savedLang = localStorage.getItem('language') || 'en';
-    switchLanguage(savedLang);
+        // Au chargement de la page, vérifie s'il y a une langue sauvegardée, sinon utilise 'en' par défaut
+        const savedLang = localStorage.getItem('language') || 'en';
+        switchLanguage(savedLang);
+    }
 });
