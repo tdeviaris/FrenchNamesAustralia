@@ -51,9 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 setActiveNavLink();
                 // Réinitialiser les event listeners après chargement
                 initLanguageSwitcher();
+                navContainer.classList.add('loaded');
             })
             .catch(error => {
                 console.error('Failed to load navigation:', error);
+                navContainer.classList.add('loaded');
             });
     } else {
         // Si pas de conteneur d'inclusion, initialiser directement
