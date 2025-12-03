@@ -89,7 +89,7 @@
             position: absolute;
             top: calc(var(--nav-height) + 10px);
             left: 6px;
-            z-index: 450;
+            z-index: 300; /* keep popups above */
             display: grid;
             gap: 6px;
             min-width: 150px;
@@ -118,9 +118,9 @@
             background: #fff;
             border: 1px solid rgba(0,0,0,0.25);
         }
-        .toggle-baudin { --toggle-color: #0b63d1; background: #0b63d1; border-color: #0b63d1; }
+        .toggle-baudin { --toggle-color: #0b63d1; background: #0b63d1 !important; border-color: #0b63d1 !important; }
         .toggle-baudin input { accent-color: #0b63d1; }
-        .toggle-entre { --toggle-color: #238b45; background: #238b45; border-color: #238b45; }
+        .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
         .toggle-entre input { accent-color: #238b45; }
         .layer-toggle span { flex: 1; font-weight: 400; }
 
