@@ -18,7 +18,13 @@ function setActiveNavLink() {
         'cartesE.html': 'nav-resources',
         'SourcesF.html': 'nav-resources',
         'SourcesE.html': 'nav-resources',
-        'expert.html': 'nav-resources'
+        'expert.html': 'nav-resources',
+        'presentation.html': 'nav-about',
+        'author.html': 'nav-about',
+        'supporters.html': 'nav-about',
+        'teachings.html': 'nav-about',
+        'site_map.html': 'nav-about',
+        'legal_notice.html': 'nav-about'
     };
 
     const navId = pageToNavId[currentPage];

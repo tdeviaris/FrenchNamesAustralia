@@ -3,7 +3,7 @@ const translations = {
     'fr': {
         // --- Textes généraux ---
         'hero-title': "Noms Français le&nbsp;long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
-        'nav-home': "Accueil", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Ressources",
+        'nav-home': "Accueil", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Ressources", 'nav-about': "À propos",
         'nav-actors': "Acteurs", 'nav-maps': "Cartes et illustrations", 'nav-glossary': "Glossaire", 'nav-expert': "Assistant IA",
         'skip-intro': "Passer",
 
@@ -90,6 +90,42 @@ const translations = {
         'resources-sources-subtitle': "Collections d'archives primaires et ressources numériques",
         'resources-sources-description': "Liste exhaustive des sources manuscrites, bibliothèques numériques et collections muséales consultées pour ce projet de recherche.",
 
+        // --- Page À propos (presentation.html) ---
+        'about-title': "À propos",
+        'about-dentre-expedition-title': "Présentation de l'expédition d'Entrecasteaux",
+        'about-dentre-expedition-subtitle': "Découvrez l'expédition d'Entrecasteaux (1791-1794) à travers ce dialogue audio",
+        'about-dentre-expedition-description': "Audio présentant les objectifs, le déroulement et les résultats de l'expédition d'Entrecasteaux.",
+        'about-baudin-expedition-title': "Présentation de l'expédition Baudin",
+        'about-baudin-expedition-subtitle': "Découvrez l'expédition Baudin (1800-1804) à travers ce dialogue audio",
+        'about-baudin-expedition-description': "Audio présentant les objectifs, le déroulement et les résultats de l'expédition Baudin.",
+        'about-author-entry': "<a class=\"resource-primary-link\" href=\"author.html\">Présentation de l'auteure</a>",
+        'about-author-subtitle': "Dany Bréelle, historienne et auteure de ce projet",
+        'about-author-description': "Découvrez le parcours et les motivations de l'auteure de ce projet de recherche.",
+        'about-supporters-entry': "<a class=\"resource-primary-link\" href=\"supporters.html\">Soutiens du projet</a>",
+        'about-supporters-subtitle': "Organisations et personnes ayant soutenu ce projet",
+        'about-supporters-description': "Liste des institutions, organisations et personnes ayant contribué à la réalisation de ce projet.",
+        'about-teachings-entry': "<a class=\"resource-primary-link\" href=\"teachings.html\">Enseignements</a>",
+        'about-teachings-subtitle': "Ressources pédagogiques et enseignements tirés du projet",
+        'about-teachings-description': "Matériel pédagogique et enseignements historiques issus de cette recherche.",
+        'about-sitemap-entry': "<a class=\"resource-primary-link\" href=\"site_map.html\">Structure du site</a>",
+        'about-sitemap-subtitle': "Plan et organisation du site web",
+        'about-sitemap-description': "Vue d'ensemble de la structure et de l'organisation du site.",
+        'about-legal-entry': "<a class=\"resource-primary-link\" href=\"legal_notice.html\">Mentions légales</a>",
+        'about-legal-subtitle': "Informations légales et crédits",
+        'about-legal-description': "Informations légales, droits d'auteur et crédits du projet.",
+
+        // Titres de pages individuelles
+        'about-author-page-title': "Présentation de l'auteure",
+        'about-author-content': "[Contenu à fournir par l'auteure]",
+        'about-supporters-page-title': "Soutiens du projet",
+        'about-supporters-content': "[Contenu à fournir par l'auteure]",
+        'about-teachings-page-title': "Enseignements",
+        'about-teachings-content': "[Contenu à fournir par l'auteure]",
+        'about-sitemap-page-title': "Structure du site",
+        'about-sitemap-content': "[Contenu à fournir par l'auteure]",
+        'about-legal-page-title': "Mentions légales",
+        'about-legal-content': "[Contenu à fournir par l'auteure]",
+
         // --- Page de détail Baie de la Recherche ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",
         'detail-rb-fig-caption': "Fig.1. Baie de la Recherche, section de la carte ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'île Bruny…’, Par Beautemps-Beaupré, Charles François, in Atlas du voyage de Bruny d’Entrecasteaux... 1807, Planche 4. Bibliothèque Nationale d'Australie.",
@@ -145,7 +181,7 @@ const translations = {
     'en': {
         // --- General text ---
         'hero-title': "French Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms originated by the d'Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
-        'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Resources",
+        'nav-home': "Home", 'nav-map-dentre': "d'Entrecasteaux", 'nav-map-baudin': "Baudin", 'nav-resources': "Resources", 'nav-about': "About",
         'nav-actors': "Actors", 'nav-maps': "Maps and illustrations", 'nav-glossary': "Glossary", 'nav-expert': "AI Assistant",
         'skip-intro': "Skip",
 
@@ -232,6 +268,42 @@ const translations = {
         'resources-sources-entry': "<a class=\"resource-primary-link\" href=\"SourcesE.html\">Sources</a>",
         'resources-sources-subtitle': "Primary archival collections and digital resources",
         'resources-sources-description': "Comprehensive list of manuscript sources, digital libraries, and museum collections consulted for this research project.",
+
+        // --- About Page (presentation.html) ---
+        'about-title': "About",
+        'about-dentre-expedition-title': "Presentation of the d'Entrecasteaux Expedition",
+        'about-dentre-expedition-subtitle': "Discover the d'Entrecasteaux expedition (1791-1794) through this audio dialogue",
+        'about-dentre-expedition-description': "Audio presenting the objectives, progress and results of the d'Entrecasteaux expedition.",
+        'about-baudin-expedition-title': "Presentation of the Baudin Expedition",
+        'about-baudin-expedition-subtitle': "Discover the Baudin expedition (1800-1804) through this audio dialogue",
+        'about-baudin-expedition-description': "Audio presenting the objectives, progress and results of the Baudin expedition.",
+        'about-author-entry': "<a class=\"resource-primary-link\" href=\"author.html\">About the Author</a>",
+        'about-author-subtitle': "Dany Bréelle, historian and author of this project",
+        'about-author-description': "Discover the background and motivations of the author of this research project.",
+        'about-supporters-entry': "<a class=\"resource-primary-link\" href=\"supporters.html\">Project Supporters</a>",
+        'about-supporters-subtitle': "Organizations and people who supported this project",
+        'about-supporters-description': "List of institutions, organizations and individuals who contributed to this project.",
+        'about-teachings-entry': "<a class=\"resource-primary-link\" href=\"teachings.html\">Educational Resources</a>",
+        'about-teachings-subtitle': "Educational resources and lessons from the project",
+        'about-teachings-description': "Educational materials and historical lessons from this research.",
+        'about-sitemap-entry': "<a class=\"resource-primary-link\" href=\"site_map.html\">Site Structure</a>",
+        'about-sitemap-subtitle': "Website plan and organization",
+        'about-sitemap-description': "Overview of the website structure and organization.",
+        'about-legal-entry': "<a class=\"resource-primary-link\" href=\"legal_notice.html\">Legal Notice</a>",
+        'about-legal-subtitle': "Legal information and credits",
+        'about-legal-description': "Legal information, copyright and project credits.",
+
+        // Individual page titles
+        'about-author-page-title': "About the Author",
+        'about-author-content': "[Content to be provided by the author]",
+        'about-supporters-page-title': "Project Supporters",
+        'about-supporters-content': "[Content to be provided by the author]",
+        'about-teachings-page-title': "Educational Resources",
+        'about-teachings-content': "[Content to be provided by the author]",
+        'about-sitemap-page-title': "Site Structure",
+        'about-sitemap-content': "[Content to be provided by the author]",
+        'about-legal-page-title': "Legal Notice",
+        'about-legal-content': "[Content to be provided by the author]",
 
         // --- Detail Page Recherche Bay ---
         'detail-rb-title': "Baie de la Recherche / Recherche Bay",

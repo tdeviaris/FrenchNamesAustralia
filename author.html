@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Author - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        :root {
+            --nav-height: 72px;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            background-color: #999;
+            color: #333;
+            padding-top: var(--nav-height);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+        .content-section {
+            background-color: white;
+            padding: clamp(28px, 4vw, 40px);
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-height: 50vh;
+        }
+        .content-section h2 {
+            font-family: 'Lato', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin: 0 0 18px 0;
+        }
+        .content-section h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0056b3;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+        @media (max-width: 768px) {
+            .content-section { padding: 24px; }
+            .content-section h2 { font-size: 1.5rem; }
+            .content-section h3 { font-size: 1.2rem; }
+            .content-section p { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+        <li><a href="map_dentrecasteaux.html" id="nav-map-dentre" data-i18n="nav-map-dentre">d'Entrecasteaux</a></li>
+        <li><a href="map_baudin.html" id="nav-map-baudin" data-i18n="nav-map-baudin">Baudin</a></li>
+        <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
+        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français">
+            <img src="img/fr.svg" alt="Français">
+        </button>
+        <button type="button" id="lang-en" title="Switch to English">
+            <img src="img/au.svg" alt="English">
+        </button>
+    </div>
+</nav>
+
+    <main class="container">
+        <section class="content-section">
+            <h2 data-i18n="about-author-page-title">Présentation de l'auteure</h2>
+
+            <p data-i18n-html="about-author-content">
+                [Contenu à fournir par l'auteure]
+            </p>
+        </section>
+    </main>
+
+    <div data-include-footer></div>
+
+    <script src="js/translations.js?v=20241012"></script>
+    <script src="js/main.js?v=20241012"></script>
+</body>
+</html>
