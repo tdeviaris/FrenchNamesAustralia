@@ -47,16 +47,37 @@
             margin-top: 28px;
             margin-bottom: 12px;
         }
-        .content-section p {
-            line-height: 1.6;
-            margin-bottom: 16px;
+        .content-section p { line-height: 1.6; margin-bottom: 16px; }
+        .supporter-block {
+            display: grid;
+            grid-template-columns: minmax(300px, 1.6fr) minmax(180px, 0.8fr);
+            gap: 16px;
+            align-items: start;
+            margin-top: 14px;
         }
+        .supporter-photo { justify-self: end; }
+        .supporter-photo img {
+            max-width: 220px;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+            border: 6px solid #fff;
+            object-fit: cover;
+        }
+        .supporter-text p { margin-top: 0; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             .content-section { padding: 24px; }
             .content-section h2 { font-size: 1.5rem; }
             .content-section h3 { font-size: 1.2rem; }
             .content-section p { font-size: 0.9rem; }
+            .supporter-block {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .supporter-photo {
+                justify-self: center;
+            }
+            .supporter-photo img { max-width: 260px; }
         }
     </style>
 </head>
@@ -83,36 +104,36 @@
             <h2 data-i18n="about-supporters-page-title">Soutiens du projet</h2>
 
             <h3 style="margin-top:0;font-weight:700;color:#111;" data-i18n-html="supporters-bellec-title">Le mot du contre-amiral François Bellec</h3>
-            <div style="display:grid;grid-template-columns: minmax(320px,1.5fr) minmax(200px,0.8fr);gap:18px;align-items:start;">
-                <div>
+            <div class="supporter-block">
+                <div class="supporter-text">
                     <p data-i18n-html="supporters-bellec-bio"><strong><a href="https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Bellec" target="_blank" rel="noopener">François Bellec</a></strong>, contre-amiral, écrivain, peintre et ancien directeur du Musée national de la Marine. Membre de l’Académie de Marine, il a contribué à la valorisation des grandes explorations maritimes françaises et de leur patrimoine cartographique.</p>
                     <p data-i18n-html="supporters-bellec-work">Il a réalisé douze films vidéo sur l'histoire maritime et signé une vingtaine de livres, ainsi que de nombreuses contributions à des ouvrages collectifs et encyclopédiques. Historien de la navigation, des grandes découvertes et des peintres de la mer, ses textes sont traduits en allemand, anglais et portugais. Conférencier recherché, il a présenté la mer et l’art en France et à l’étranger (États-Unis, Russie, Chine, Thaïlande, Indonésie, Australie).</p>
                     <p data-i18n-html="supporters-bellec-text">[Texte à venir]</p>
                 </div>
-                <div style="justify-self:end;">
-                    <img src="img/Bellec.jpg" alt="François Bellec" style="max-width:220px;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,0.2);border:6px solid #fff;object-fit:cover;">
+                <div class="supporter-photo">
+                    <img src="img/bellec.jpg" alt="François Bellec">
                 </div>
             </div>
 
             <h3 style="margin-top:28px;font-weight:700;color:#111;" data-i18n-html="supporters-hay-title">Le mot de Iain Hay</h3>
-            <div style="display:grid;grid-template-columns: minmax(320px,1.5fr) minmax(200px,0.8fr);gap:18px;align-items:start;">
-                <div>
+            <div class="supporter-block">
+                <div class="supporter-text">
                     <p data-i18n-html="supporters-hay-bio"><strong><a href="https://en.wikipedia.org/wiki/Iain_Hay" target="_blank" rel="noopener">Iain Hay</a></strong> est géographe et universitaire, connu pour ses travaux sur les inégalités, la justice spatiale et l’éthique de la recherche. Il a occupé des fonctions de direction académique en Australie et contribué à des initiatives internationales en géographie et en sciences humaines.</p>
                     <p data-i18n-html="supporters-hay-text">[Texte à venir]</p>
                 </div>
-                <div style="justify-self:end;">
-                    <img src="img/iain_hay.jpg" alt="Iain Hay" style="max-width:220px;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,0.2);border:6px solid #fff;object-fit:cover;">
+                <div class="supporter-photo">
+                    <img src="img/iain_hay.jpg" alt="Iain Hay">
                 </div>
             </div>
 
             <h3 style="margin-top:28px;font-weight:700;color:#111;" data-i18n-html="supporters-robinson-title">Le mot de Guy Robinson</h3>
-            <div style="display:grid;grid-template-columns: minmax(320px,1.5fr) minmax(200px,0.8fr);gap:18px;align-items:start;">
-                <div>
+            <div class="supporter-block">
+                <div class="supporter-text">
                     <p data-i18n-html="supporters-robinson-bio"><strong>Professor Guy Robinson</strong>, Vice-President du RGSSA. Membre depuis 2008, il est géographe humain (Universités de Londres et d’Oxford) avec plus de 45 ans d’expérience en recherche sur le développement rural et la gestion environnementale. Ancien professeur à l’Université d’Édimbourg (médaillé de la Royal Scottish Geographical Society), ex-président de la British Australian Studies Association, il a été chercheur invité dans plusieurs universités australasiennes (Canterbury, Melbourne, Newcastle, New South Wales, Otago). À UniSA, il a dirigé le Centre for Regional Engagement (2010-2014). Il est aujourd’hui Departmental Associate à l’Université de Cambridge (Land Economy), professeur associé à l’Université d’Adelaide (Geography, Environment and Population) et rédacteur en chef de <em>Research in Globalization</em>.</p>
                     <p data-i18n-html="supporters-robinson-text">[Texte à venir]</p>
                 </div>
-                <div style="justify-self:end;">
-                    <img src="img/guy_robinson.jpg" alt="Guy Robinson" style="max-width:220px;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,0.2);border:6px solid #fff;object-fit:cover;">
+                <div class="supporter-photo">
+                    <img src="img/guy_robinson.jpg" alt="Guy Robinson">
                 </div>
             </div>
         </section>

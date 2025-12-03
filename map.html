@@ -88,11 +88,11 @@
         .layer-toggle {
             position: absolute;
             top: calc(var(--nav-height) + 10px);
-            left: 8px;
+            left: 6px;
             z-index: 1000;
             display: grid;
             gap: 6px;
-            min-width: 140px;
+            min-width: 150px;
         }
         .layer-toggle label {
             --toggle-color: #0b63d1;
@@ -101,22 +101,22 @@
             gap: 8px;
             padding: 8px 10px;
             border-radius: 8px;
-            background: #fff;
-            border: 1px solid var(--toggle-color);
-            color: var(--toggle-color);
-            font-weight: 500;
+            background: var(--toggle-color);
+            border: 1px solid rgba(0,0,0,0.25);
+            color: #fff;
+            font-weight: 400;
             font-size: 0.9rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
             cursor: pointer;
             user-select: none;
         }
         .layer-toggle input[type="checkbox"] {
             width: 16px;
             height: 16px;
-            accent-color: var(--toggle-color);
+            accent-color: #fff;
             cursor: pointer;
             background: #fff;
-            border: 1px solid var(--toggle-color);
+            border: 1px solid rgba(0,0,0,0.25);
         }
         .toggle-baudin { --toggle-color: #0b63d1; }
         .toggle-entre { --toggle-color: #238b45; }
@@ -243,7 +243,7 @@
         @media  (max-width: 768px)  {
             .layer-toggle {
                 top: 95px;
-                left: 8px;
+                left: 6px;
                 gap: 4px;
             }
             .layer-toggle label {
@@ -254,8 +254,8 @@
                 top: 95px;
                 left: 50%;
                 transform: translateX(-50%);
-                width: calc(100% - 40px);
-                max-width: 300px;
+                width: calc(100% - 70px);
+                max-width: 360px;
             }
 
             .search-box {
