@@ -89,7 +89,7 @@
             position: absolute;
             top: calc(var(--nav-height) + 10px);
             left: 6px;
-            z-index: 600; /* visible above map tiles, under popups */
+            z-index: 400; /* below popups */
             display: grid;
             gap: 6px;
             min-width: 150px;
@@ -124,7 +124,7 @@
         .toggle-entre input { accent-color: #238b45; }
         .layer-toggle span { flex: 1; font-weight: 400; }
         /* Ensure popups sit above toggles */
-        .leaflet-popup-pane { z-index: 700; }
+        .leaflet-popup-pane { z-index: 1200 !important; }
 
         /* Search Interface */
         .search-container {
