@@ -123,6 +123,8 @@
         .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
         .toggle-entre input { accent-color: #238b45; }
         .layer-toggle span { flex: 1; font-weight: 400; }
+        /* Ensure popups sit above toggles */
+        .leaflet-popup-pane { z-index: 700; }
 
         /* Search Interface */
         .search-container {
