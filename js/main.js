@@ -7,8 +7,9 @@ function setActiveNavLink() {
     // Mapping des pages vers leurs IDs de navigation
     const pageToNavId = {
         'index.html': 'nav-home',
-        'map_dentrecasteaux.html': 'nav-map-dentre',
-        'map_baudin.html': 'nav-map-baudin',
+        'map.html': 'nav-map',
+        'map_dentrecasteaux.html': 'nav-map',
+        'map_baudin.html': 'nav-map',
         'resources.html': 'nav-resources',
         'glossaryF.html': 'nav-resources',
         'glossaryE.html': 'nav-resources',

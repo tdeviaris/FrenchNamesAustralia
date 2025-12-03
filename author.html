@@ -11,6 +11,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
         :root {
             --nav-height: 72px;
+            --accent: #0056b3;
+            --muted: #5a5a5a;
         }
         * { box-sizing: border-box; }
         body {
@@ -47,16 +49,40 @@
             margin-top: 28px;
             margin-bottom: 12px;
         }
-        .content-section p {
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
+        .content-section p { line-height: 1.65; margin-bottom: 16px; color: #3c3c3c; }
+
+        .author-hero { display: grid; grid-template-columns: minmax(360px, 1.6fr) minmax(220px, 1fr); gap: 28px; align-items: start; margin-top: 10px; }
+        .hero-card { background: linear-gradient(135deg, #e8f0fb 0%, #f7f9fc 60%, #ffffff 100%); padding: clamp(24px, 3vw, 32px); border-radius: 12px; border: 1px solid #d6e2f4; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .hero-card .lead { font-size: 1.05rem; color: #2c2c2c; margin: 10px 0 14px; }
+        .badges { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 0; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background-color: #fff; border: 1px solid #c8d8ee; color: #1f2a44; font-weight: 600; font-size: 0.95rem; }
+        .badge svg { width: 18px; height: 18px; }
+
+        .portrait { justify-self: end; align-self: start; }
+        .portrait img { width: min(320px, 100%); border-radius: 12px; box-shadow: 0 12px 24px rgba(0,0,0,0.12); border: 6px solid #fff; object-fit: cover; object-position: top; }
+
+        .pill { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; background: #e7eef9; color: #1f2a44; font-weight: 600; font-size: 0.92rem; }
+        .pill + .pill { margin-left: 8px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 6px; }
+        .card { border: 1px solid #e3e7ed; border-radius: 10px; padding: 18px; background: #fafbfd; box-shadow: 0 6px 12px rgba(0,0,0,0.04); }
+        .card h4 { margin: 0 0 10px; color: #1f2a44; font-size: 1.1rem; }
+        .card ul { margin: 0; padding-left: 18px; color: #3c3c3c; }
+        .card li { margin: 6px 0; line-height: 1.5; }
+
+        .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .inline-link { font-weight: 700; color: #0056b3; text-decoration: none; }
+        .inline-link:hover { text-decoration: underline; }
+
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             .content-section { padding: 24px; }
             .content-section h2 { font-size: 1.5rem; }
             .content-section h3 { font-size: 1.2rem; }
             .content-section p { font-size: 0.9rem; }
+            .author-hero { grid-template-columns: 1fr; }
+            .hero-card { order: 2; }
+            .portrait { order: 1; justify-self: center; }
         }
     </style>
 </head>
@@ -64,8 +90,7 @@
     <nav>
     <ul>
         <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
-        <li><a href="map_dentrecasteaux.html" id="nav-map-dentre" data-i18n="nav-map-dentre">d'Entrecasteaux</a></li>
-        <li><a href="map_baudin.html" id="nav-map-baudin" data-i18n="nav-map-baudin">Baudin</a></li>
+        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
         <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
         <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
     </ul>
@@ -80,12 +105,56 @@
 </nav>
 
     <main class="container">
-        <section class="content-section">
-            <h2 data-i18n="about-author-page-title">Présentation de l'auteure</h2>
+        <section class="content-section" aria-labelledby="author-title">
+            <h2 id="author-title" data-i18n="about-author-page-title">Présentation de l'auteure</h2>
 
-            <p data-i18n-html="about-author-content">
-                [Contenu à fournir par l'auteure]
-            </p>
+            <div class="author-hero">
+                <div class="hero-card">
+                    <p class="lead" data-i18n-html="about-author-lead">Dany Bréelle est historienne et autrice du projet <em>French Names Along the Australian Coastline</em>, spécialisée dans les récits et la nomenclature des grandes expéditions françaises en Australie.</p>
+                    <p data-i18n-html="about-author-bio">Née en France et formée à Paris, elle a enseigné l'histoire-géographie pendant 11 ans au sein de l'Éducation nationale française avant de soutenir un doctorat à Flinders University en 2003. Elle est aujourd'hui chercheuse associée à la School of Humanities.</p>
+                    <div class="badges">
+                        <span class="badge" data-i18n="about-author-role">Statut académique (Adjunct)</span>
+                        <span class="badge" data-i18n="about-author-affiliation">College of Humanities, Arts &amp; Social Sciences, Flinders University</span>
+                        <span class="badge" data-i18n="about-author-location">Adelaide, Australie</span>
+                    </div>
+                </div>
+                <div class="portrait">
+                    <img src="img/dany_breelle.jpg" alt="Portrait de Dany Bréelle">
+                </div>
+            </div>
+
+            <div class="grid" style="margin-top: 26px;">
+                <div class="card">
+                    <h4 data-i18n="about-author-expertise-title">Domaines d'expertise</h4>
+                    <ul>
+                        <li data-i18n="about-author-expertise-1">Histoire des expéditions françaises en Australie et de leur nomenclature.</li>
+                        <li data-i18n="about-author-expertise-2">Analyse des sources manuscrites, atlas et journaux de bord.</li>
+                        <li data-i18n="about-author-expertise-3">Valorisation patrimoniale des toponymes et médiation grand public.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4 data-i18n="about-author-highlights-title">Points marquants</h4>
+                    <ul>
+                        <li data-i18n="about-author-highlight-1">Direction du projet <em>French Names Along the Australian Coastline</em> et de ses cartes interactives.</li>
+                        <li data-i18n="about-author-highlight-2">Collaboration avec Flinders University en tant qu'Adjunct Academic (College of Humanities, Arts &amp; Social Sciences) et ancienne enseignante d'histoire-géographie en France.</li>
+                        <li data-i18n="about-author-highlight-3">PhD à Flinders University (2003) et chercheuse associée à la School of Humanities.</li>
+                        <li data-i18n="about-author-highlight-4">16 publications recensées, dont des articles dans <em>Journal of Historical Geography</em>, <em>The Great Circle</em> et <em>Revue de Géographie Historique</em>.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4 data-i18n="about-author-focus-title">Centres de recherche actuels</h4>
+                    <ul>
+                        <li data-i18n="about-author-focus-1">Travaux sur les géographes Charles Boullanger et Pierre Faure de l'expédition Baudin.</li>
+                        <li data-i18n="about-author-focus-2">Analyse scientifique et géographique du voyage de Matthew Flinders sur l'<em>Investigator</em> et des toponymes britanniques et français.</li>
+                        <li data-i18n="about-author-focus-3">Étude des méthodes des géographes français en Indochine et de leurs liens avec les savants vietnamiens.</li>
+                        <li data-i18n="about-author-focus-4">Rédaction d'un ouvrage sur les toponymes français issus des expéditions d'Entrecasteaux et Baudin.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <a class="pill" href="https://researchnow.flinders.edu.au/en/persons/dany-breelle-2" target="_blank" rel="noopener" data-i18n="about-author-connect-title">En savoir plus</a>
+            </div>
         </section>
     </main>
 

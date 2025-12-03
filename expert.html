@@ -356,8 +356,7 @@
     <nav>
     <ul>
         <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
-        <li><a href="map_dentrecasteaux.html" id="nav-map-dentre" data-i18n="nav-map-dentre">d'Entrecasteaux</a></li>
-        <li><a href="map_baudin.html" id="nav-map-baudin" data-i18n="nav-map-baudin">Baudin</a></li>
+        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
         <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
         <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
     </ul>
@@ -474,15 +473,13 @@
                         : label;
                     html = `<a href="${id}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
                 }
-                // Si l'id commence par "Baudin", lien vers map_baudin.html
-                else if (id.startsWith('Baudin')) {
-                    const code = id.replace('Baudin', '');
-                    html = `<a href="map_baudin.html#${code}">${escapeHtml(label)}</a>`;
+                // Si l'id commence par "Baudin", lien vers la carte fusionnée
+                else if (/^Baudin/i.test(id)) {
+                    html = `<a href="map.html#${id}">${escapeHtml(label)}</a>`;
                 }
-                // Si l'id commence par "Entre", lien vers map_dentrecasteaux.html
-                else if (id.startsWith('Entre')) {
-                    const code = id.replace('Entre', '');
-                    html = `<a href="map_dentrecasteaux.html#${code}">${escapeHtml(label)}</a>`;
+                // Si l'id commence par "Entre", lien vers la carte fusionnée
+                else if (/^Entre/i.test(id)) {
+                    html = `<a href="map.html#${id}">${escapeHtml(label)}</a>`;
                 }
                 // Sinon, c'est un ID Wikipedia
                 else {
