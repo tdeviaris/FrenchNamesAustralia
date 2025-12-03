@@ -113,15 +113,31 @@
         .layer-toggle input[type="checkbox"] {
             width: 16px;
             height: 16px;
-            accent-color: var(--toggle-color);
-            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            border-radius: 3px;
+            border: 2px solid #fff;
             background: #fff;
-            border: 1px solid rgba(0,0,0,0.25);
+            position: relative;
+            cursor: pointer;
+        }
+        .layer-toggle input[type="checkbox"]:checked {
+            background: var(--toggle-color);
+            border-color: #fff;
+        }
+        .layer-toggle input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1;
         }
         .toggle-baudin { --toggle-color: #0b63d1; background: #0b63d1 !important; border-color: #0b63d1 !important; }
-        .toggle-baudin input { accent-color: #0b63d1; }
+        .toggle-baudin input { border-color: #fff; }
         .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
-        .toggle-entre input { accent-color: #238b45; }
+        .toggle-entre input { border-color: #fff; }
         .layer-toggle span { flex: 1; font-weight: 400; }
         /* Ensure popups sit above toggles */
         .leaflet-popup-pane { z-index: 1200 !important; }
@@ -253,7 +269,7 @@
                 max-width: 320px;
             }
             .layer-toggle {
-                top: 120px;
+                top: 110px;
                 left: 6px;
                 gap: 4px;
             }
