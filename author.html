@@ -36,7 +36,7 @@
             font-family: 'Lato', sans-serif;
             font-size: 2.2rem;
             font-weight: 700;
-            color: #333;
+            color: #111;
             border-bottom: 2px solid #0056b3;
             padding-bottom: 10px;
             margin: 0 0 18px 0;
@@ -51,15 +51,15 @@
         }
         .content-section p { line-height: 1.65; margin-bottom: 16px; color: #3c3c3c; }
 
-        .author-hero { display: grid; grid-template-columns: minmax(360px, 1.6fr) minmax(220px, 1fr); gap: 28px; align-items: start; margin-top: 10px; }
-        .hero-card { background: linear-gradient(135deg, #e8f0fb 0%, #f7f9fc 60%, #ffffff 100%); padding: clamp(24px, 3vw, 32px); border-radius: 12px; border: 1px solid #d6e2f4; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .hero-card .lead { font-size: 1.05rem; color: #2c2c2c; margin: 10px 0 14px; }
-        .badges { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 0; }
+        .author-hero { display: grid; grid-template-columns: minmax(420px, 1.85fr) minmax(200px, 0.9fr); gap: 22px; align-items: start; margin-top: 10px; }
+        .hero-card { background: linear-gradient(135deg, #e8f0fb 0%, #f7f9fc 60%, #ffffff 100%); padding: clamp(22px, 3vw, 30px); border-radius: 12px; border: 1px solid #d6e2f4; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .hero-card .lead { font-size: 1.05rem; color: #2c2c2c; margin: 8px 0 12px; }
+        .badges { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0 0; }
         .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background-color: #fff; border: 1px solid #c8d8ee; color: #1f2a44; font-weight: 600; font-size: 0.95rem; }
         .badge svg { width: 18px; height: 18px; }
 
         .portrait { justify-self: end; align-self: start; }
-        .portrait img { width: min(320px, 100%); border-radius: 12px; box-shadow: 0 12px 24px rgba(0,0,0,0.12); border: 6px solid #fff; object-fit: cover; object-position: top; }
+        .portrait img { width: min(280px, 100%); border-radius: 12px; box-shadow: 0 12px 24px rgba(0,0,0,0.12); border: 6px solid #fff; object-fit: cover; object-position: top; }
 
         .pill { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; background: #e7eef9; color: #1f2a44; font-weight: 600; font-size: 0.92rem; }
         .pill + .pill { margin-left: 8px; }
@@ -110,7 +110,7 @@
 
             <div class="author-hero">
                 <div class="hero-card">
-                    <p class="lead" data-i18n-html="about-author-lead">Dany Bréelle est historienne et autrice du projet <em>French Names Along the Australian Coastline</em>, spécialisée dans les récits et la nomenclature des grandes expéditions françaises en Australie.</p>
+                    <p class="lead" data-i18n-html="about-author-lead"><strong style="color:#111;">Dany Bréelle</strong> est historienne et autrice du projet <em>French Names Along the Australian Coastline</em>, spécialisée dans les récits et la nomenclature des grandes expéditions françaises en Australie.</p>
                     <p data-i18n-html="about-author-bio">Née en France et formée à Paris, elle a enseigné l'histoire-géographie pendant 11 ans au sein de l'Éducation nationale française avant de soutenir un doctorat à Flinders University en 2003. Elle est aujourd'hui chercheuse associée à la School of Humanities.</p>
                     <div class="badges">
                         <span class="badge" data-i18n="about-author-role">Statut académique (Adjunct)</span>
