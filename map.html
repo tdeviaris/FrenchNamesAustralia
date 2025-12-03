@@ -87,34 +87,40 @@
         /* Expedition toggles */
         .layer-toggle {
             position: absolute;
-            top: calc(var(--nav-height) + 12px);
-            left: 16px;
+            top: calc(var(--nav-height) + 10px);
+            left: 8px;
             z-index: 1000;
             display: grid;
-            gap: 8px;
-            min-width: 170px;
+            gap: 6px;
+            min-width: 140px;
         }
         .layer-toggle label {
+            --toggle-color: #0b63d1;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 12px;
-            border-radius: 10px;
-            color: #fff;
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid var(--toggle-color);
+            color: var(--toggle-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
             cursor: pointer;
             user-select: none;
         }
         .layer-toggle input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #fff;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--toggle-color);
             cursor: pointer;
+            background: #fff;
+            border: 1px solid var(--toggle-color);
         }
-        .toggle-baudin { background: #0b63d1; }
-        .toggle-entre { background: #238b45; }
-        .layer-toggle span { flex: 1; }
+        .toggle-baudin { --toggle-color: #0b63d1; }
+        .toggle-entre { --toggle-color: #238b45; }
+        .layer-toggle span { flex: 1; font-weight: 400; }
 
         /* Search Interface */
         .search-container {
@@ -237,7 +243,12 @@
         @media  (max-width: 768px)  {
             .layer-toggle {
                 top: 95px;
-                left: 12px;
+                left: 8px;
+                gap: 4px;
+            }
+            .layer-toggle label {
+                padding: 6px 8px;
+                font-size: 0.8rem;
             }
             .search-container {
                 top: 95px;
