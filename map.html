@@ -89,7 +89,7 @@
             position: absolute;
             top: calc(var(--nav-height) + 10px);
             left: 6px;
-            z-index: 1000;
+            z-index: 450;
             display: grid;
             gap: 6px;
             min-width: 150px;
@@ -102,7 +102,7 @@
             padding: 8px 10px;
             border-radius: 8px;
             background: var(--toggle-color);
-            border: 1px solid rgba(0,0,0,0.25);
+            border: 1px solid var(--toggle-color);
             color: #fff;
             font-weight: 400;
             font-size: 0.9rem;
@@ -118,8 +118,10 @@
             background: #fff;
             border: 1px solid rgba(0,0,0,0.25);
         }
-        .toggle-baudin { --toggle-color: #0b63d1; }
-        .toggle-entre { --toggle-color: #238b45; }
+        .toggle-baudin { --toggle-color: #0b63d1; background: #0b63d1; border-color: #0b63d1; }
+        .toggle-baudin input { accent-color: #0b63d1; }
+        .toggle-entre { --toggle-color: #238b45; background: #238b45; border-color: #238b45; }
+        .toggle-entre input { accent-color: #238b45; }
         .layer-toggle span { flex: 1; font-weight: 400; }
 
         /* Search Interface */
@@ -249,7 +251,7 @@
                 max-width: 320px;
             }
             .layer-toggle {
-                top: 150px;
+                top: 120px;
                 left: 6px;
                 gap: 4px;
             }
