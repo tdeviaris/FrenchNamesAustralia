@@ -19,7 +19,7 @@ function setActiveNavLink() {
         'cartesE.html': 'nav-resources',
         'SourcesF.html': 'nav-resources',
         'SourcesE.html': 'nav-resources',
-        'expert.html': 'nav-resources',
+        'expert.html': 'nav-ai',
         'presentation.html': 'nav-about',
         'author.html': 'nav-about',
         'supporters.html': 'nav-about',

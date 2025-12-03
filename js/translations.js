@@ -3,7 +3,7 @@ const translations = {
     'fr': {
         // --- Textes généraux ---
         'hero-title': "Noms Français le&nbsp;long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
-        'nav-home': "Accueil", 'nav-map': "Carte", 'nav-resources': "Ressources", 'nav-about': "À propos",
+        'nav-home': "Accueil", 'nav-map': "Carte", 'nav-ai': "Q&R IA", 'nav-resources': "Ressources", 'nav-about': "À propos",
         'map-layer-baudin': "Baudin",
         'map-layer-entre': "d’Entrecasteaux",
         'nav-actors': "Acteurs", 'nav-maps': "Cartes et illustrations", 'nav-glossary': "Glossaire", 'nav-expert': "Assistant IA",
@@ -72,8 +72,6 @@ const translations = {
         'resources-podcast-title': "Podcast présentant le projet",
         'resources-podcast-src': "data/podcast_fr.m4a",
         'resources-podcast-description': "Ce podcast présente le projet <strong>Noms Français le long de la côte Australienne</strong>.<br>Les toponymes issus des voyages de Dantrecasteaux (1791-1794) et Baudin (1800-1804).",
-        'resources-assistant-button': "Assistant IA",
-        'resources-assistant-description': "Cet assistant IA spécialisé peut répondre à vos questions sur les expéditions de Baudin et d'Entrecasteaux, les toponymes français en Australie, et l'histoire de ces voyages d'exploration.",
         'resources-glossary-entry': "<a class=\"resource-primary-link\" href=\"glossaryF.html\">Glossaire des Termes</a>",
         'resources-glossary-subtitle': "Institutions françaises, régimes politiques, guerres, anciennes appellations de pays et expéditions scientifiques",
         'resources-glossary-description': "Ce glossaire explique les principaux termes historiques, politiques et scientifiques mentionnés dans le projet <em>French Names Along the Australian Coastline</em>.",
@@ -206,7 +204,7 @@ const translations = {
     'en': {
         // --- General text ---
         'hero-title': "French Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms originated by the d'Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
-        'nav-home': "Home", 'nav-map': "Map", 'nav-resources': "Resources", 'nav-about': "About",
+        'nav-home': "Home", 'nav-map': "Map", 'nav-ai': "AI Q&A", 'nav-resources': "Resources", 'nav-about': "About",
         'map-layer-baudin': "Baudin",
         'map-layer-entre': "d’Entrecasteaux",
         'nav-actors': "Actors", 'nav-maps': "Maps and illustrations", 'nav-glossary': "Glossary", 'nav-expert': "AI Assistant",
