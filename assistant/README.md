@@ -62,9 +62,46 @@ L'assistant utilise une syntaxe personnalisée pour les liens :
 ## Modèle utilisé
 
 - **Actuel** : `gpt-4.1` (le plus performant supporté par Assistants API)
+- **Température** : `0.3` (réduite pour minimiser les hallucinations)
 - **Alternatives** : `gpt-4.1-mini`, `gpt-4.1-nano` (moins chers, à tester selon les besoins)
 
-Pour changer de modèle, modifier la ligne 128 de `setup-assistant.js` puis relancer le script.
+Pour changer de modèle, modifier la ligne 153 de `setup-assistant.js` puis relancer le script.
+
+## Améliorations anti-hallucination (Déc 2024)
+
+### Problèmes identifiés
+- L'assistant inventait parfois des toponymes fictifs (ex: "Baie Péron", "Cap Plat", "Anse du Premier Janvier")
+- Les codes de lieux étaient parfois incorrects, renvoyant vers le mauvais emplacement
+- L'assistant créait des exemples au lieu de chercher dans sa base de connaissance
+
+### Solutions mises en place
+
+1. **Règle anti-hallucination absolue** :
+   - Interdiction formelle d'inventer des toponymes
+   - Obligation de vérifier chaque lieu via file_search avant de le citer
+   - Instruction claire : dire "je ne sais pas" plutôt qu'inventer
+
+2. **Vérification stricte des codes** :
+   - Obligation de vérifier chaque code dans la base avant de l'utiliser
+   - Format strict : "Entre" + numéro ou "Baudin" + numéro
+   - Préférence donnée à l'absence de lien plutôt qu'à un code incorrect
+   - Message clair : un code erroné détruit la confiance de l'utilisateur
+
+3. **Réduction de la température** :
+   - Passage de 0.7 à 0.3 pour réduire la créativité et favoriser la précision
+   - Meilleure adhérence aux faits de la base de connaissance
+
+### Tests recommandés après reconfiguration
+
+1. "Donne-moi des exemples de toponymes commémoratifs"
+   - **Attendu** : Recherche dans la base et cite des lieux réels avec codes vérifiés
+   - **À éviter** : Invention de lieux fictifs
+
+2. "Quel est le code du Cap Bruny ?"
+   - **Attendu** : Entre09 (code exact vérifié dans la base)
+
+3. "Cite-moi 5 lieux nommés d'après des personnes"
+   - **Attendu** : Cherche dans la base et cite uniquement des lieux existants avec codes corrects
 
 ## Déploiement
 
