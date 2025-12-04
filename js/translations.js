@@ -125,7 +125,7 @@ const translations = {
 
         // Titres de pages individuelles
         'about-author-page-title': "Présentation de l'auteure <a href=\"presentation.html\" title=\"Retour à À propos\"><img src=\"img/up-arrow.svg\" alt=\"Retour à À propos\" style=\"width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;\"></a>",
-        'about-author-lead': "<strong style=\"color:#111;\">Dany Bréelle</strong> est historienne et autrice du projet <em>French Names Along the Australian Coastline</em>, spécialisée dans les récits et la nomenclature des grandes expéditions françaises en Australie.",
+        'about-author-lead': "<strong style=\"color:#111;\">Dany Bréelle</strong> est historienne et auteure du projet <em>French Names Along the Australian Coastline</em>, spécialisée dans les récits et la nomenclature des grandes expéditions françaises en Australie.",
         'about-author-bio': "Née en France et formée à Paris, elle a enseigné l'histoire-géographie pendant 11 ans au sein de l'Éducation nationale française avant de soutenir un doctorat à Flinders University en 2003. Elle est aujourd'hui chercheuse associée à la School of Humanities.",
         'about-author-role': "Statut académique (Adjunct)",
         'about-author-affiliation': "College of Humanities, Arts &amp; Social Sciences, Flinders University",
