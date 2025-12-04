@@ -360,6 +360,11 @@
                 width: min(720px, calc(100vw - 60px));
                 max-width: min(720px, calc(100vw - 60px));
             }
+            /* Le texte utilise toute la largeur quand il n'y a pas d'image */
+            .leaflet-popup:not(.popup-has-image) .popup-text-container {
+                width: 100%;
+                max-width: 100%;
+            }
         }
 
         @media  (max-width: 768px)  {#map { height: calc(100vh - var(--nav-height)); }
