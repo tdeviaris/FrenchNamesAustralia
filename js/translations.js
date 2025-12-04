@@ -323,10 +323,10 @@ const translations = {
 
         // --- About Page (presentation.html) ---
         'about-title': "About",
-        'about-dentre-expedition-title': "Presentation of the d'Entrecasteaux Expedition",
+        'about-dentre-expedition-title': "d'Entrecasteaux Expedition",
         'about-dentre-expedition-subtitle': "Discover the d'Entrecasteaux expedition (1791-1794) through this dialogue presenting the objectives, progress and results of the expedition.",
         'about-dentre-expedition-audio-src': "data/dentrecasteaux_en.m4a",
-        'about-baudin-expedition-title': "Presentation of the Baudin Expedition",
+        'about-baudin-expedition-title': "Baudin Expedition",
         'about-baudin-expedition-subtitle': "Discover the Baudin expedition (1800-1804) through this dialogue presenting the objectives, progress and results of the expedition.",
         'about-baudin-expedition-audio-src': "data/baudin_en.m4a",
         'about-author-entry': "<a class=\"resource-primary-link\" href=\"author.html\">About the Author</a>",
