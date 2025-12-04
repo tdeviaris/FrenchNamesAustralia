@@ -19,9 +19,11 @@ function updateJsonFilesOnGitHub() {
   try {
     // Étape 1 : Lire la feuille et trier les données dans deux objets distincts.
     const datasets = convertSheetToTwoDatasets();
-    
+
     if (!datasets) {
-      Logger.log("Conversion annulée : feuille vide ou colonne 'Expedition' manquante.");
+      const errorMsg = "Conversion annulée : feuille vide ou colonne 'Expedition' manquante.";
+      Logger.log(errorMsg);
+      Browser.msgBox('Erreur', errorMsg, Browser.Buttons.OK);
       return;
     }
 
@@ -31,13 +33,23 @@ function updateJsonFilesOnGitHub() {
     // Étape 2 : Uploader le premier fichier JSON sur GitHub.
     const entrecasteauxJsonString = JSON.stringify(datasets.entrecasteaux, null, 2);
     uploadToGitHub(ENTRECASTEAUX_PATH, entrecasteauxJsonString, "Mise à jour automatique (d'Entrecasteaux)");
-    
+
     // Étape 3 : Uploader le second fichier JSON sur GitHub.
     const baudinJsonString = JSON.stringify(datasets.baudin, null, 2);
     uploadToGitHub(BAUDIN_PATH, baudinJsonString, "Mise à jour automatique (Baudin)");
 
+    // Message de succès
+    Browser.msgBox('Succès',
+      `Mise à jour réussie !\n\n` +
+      `- ${datasets.entrecasteaux.length} entrées d'Entrecasteaux\n` +
+      `- ${datasets.baudin.length} entrées Baudin\n\n` +
+      `Les fichiers ont été mis à jour sur GitHub.`,
+      Browser.Buttons.OK);
+
   } catch (e) {
-    Logger.log(`Erreur lors de la mise à jour GitHub : ${e.stack}`);
+    const errorMsg = `Erreur lors de la mise à jour GitHub :\n\n${e.toString()}\n\nLigne : ${e.lineNumber || 'inconnue'}`;
+    Logger.log(`Erreur complète : ${e.stack}`);
+    Browser.msgBox('Erreur', errorMsg, Browser.Buttons.OK);
   }
 }
 
@@ -76,51 +88,68 @@ function convertSheetToTwoDatasets() {
   const entrecasteaux_data = [];
   const baudin_data = [];
 
-  data.forEach(row => {
-    const expedition_value = (row[expeditionIndex] || '').trim().toLowerCase();
-    
-    // Fonction pour obtenir une valeur de manière sûre
-    const getValue = (headerName) => row[headerMap[headerName]] || '';
+  data.forEach((row, idx) => {
+    try {
+      const expedition_value = (row[expeditionIndex] || '').toString().trim().toLowerCase();
 
-    // Conversion des coordonnées en nombres (float)
-    const latStr = (getValue('latitude South') || '0').replace(',', '.');
-    const lonStr = (getValue('longitude East') || '0').replace(',', '.');
-    const lat = parseFloat(latStr) || 0.0;
-    const lon = parseFloat(lonStr) || 0.0;
+      // Fonction pour obtenir une valeur de manière sûre
+      const getValue = (headerName) => {
+        const value = row[headerMap[headerName]];
+        return value !== null && value !== undefined ? value : '';
+      };
 
-    // Crée l'objet "place" exactement comme dans le script Python
-    const place = {
-      "code": getValue('Code'),
-      "expedition": getValue('Expedition'),
-      "state": getValue('State'),
-      "frenchName": getValue('French name'),
-      "variantName": getValue('Variant and other historical name'),
-      "ausEName": getValue('Australian name'),
-      "indigenousName": getValue('Aboriginal name'),
-      "indigenousLanguage": getValue('Aboriginal language group'),
-      "lat": lat,
-      "lon": lon,
-      "characteristic_fr": getValue('Caracteristiques  (FR)'),
-      "characteristic": getValue('Characteristic  (EN)'),
-      "history_fr": getValue('Histoire (FR)'),
-      "history": getValue('Story (EN)'),
-      "wiki_fr": getValue('URL WIKI FR'),
-      "wiki_en": getValue('URL WIKi EN'),
-      "imgUrl": getValue('URL IMG'),
-      "other_link": getValue('URL DIV'),
-      "mapUrl": getValue('URL Carte'),
-      "mapTitle_fr": getValue('Titre Carte (FR)'),
-      "mapTitle_en": getValue('Map title (EN)'),
-      "origin_fr": getValue('Origine du nom version initiale'),
-      "detailsLink": getValue('fiche detaillee F'),
-      "detailsLink_en": getValue('detailed information sheet E')
-    };
+      // Conversion des coordonnées en nombres (float) avec garde-fous
+      const safeNumber = (headerName) => {
+        const raw = getValue(headerName);
+        // Assurons-nous que la valeur est une chaîne de caractères avant de la manipuler.
+        const asString = (raw || '0').toString();
+        const normalized = asString.replace(',', '.');
+        const num = parseFloat(normalized);
+        return isNaN(num) ? 0.0 : num;
+      };
 
-    // Trie l'objet dans la bonne liste
-    if (expedition_value === "d'entrecasteaux" || expedition_value === "entrecasteaux") {
-        entrecasteaux_data.push(place);
-    } else if (expedition_value === 'baudin') {
-        baudin_data.push(place);
+      const lat = safeNumber('latitude South');
+      const lon = safeNumber('longitude East');
+
+      // Crée l'objet "place" exactement comme dans le script Python
+      const place = {
+        "code": getValue('Code'),
+        "expedition": getValue('Expedition'),
+        "state": getValue('State'),
+        "frenchName": getValue('French name'),
+        "variantName": getValue('Variant and other historical name'),
+        "ausEName": getValue('Australian name'),
+        "indigenousName": getValue('Aboriginal name'),
+        "indigenousLanguage": getValue('Aboriginal language group'),
+        "lat": lat,
+        "lon": lon,
+        "characteristic_fr": getValue('Caracteristiques  (FR)'),
+        "characteristic": getValue('Characteristic  (EN)'),
+        "history_fr": getValue('Histoire (FR)'),
+        "history": getValue('Story (EN)'),
+        "wiki_fr": getValue('URL WIKI FR'),
+        "wiki_en": getValue('URL WIKi EN'),
+        "imgUrl": getValue('URL IMG'),
+        "other_link": getValue('URL DIV'),
+        "mapUrl": getValue('URL Carte'),
+        "mapTitle_fr": getValue('Titre Carte (FR)'),
+        "mapTitle_en": getValue('Map title (EN)'),
+        "origin_fr": getValue('Origine du nom version initiale'),
+        "detailsLink": getValue('fiche detaillee F'),
+        "detailsLink_en": getValue('detailed information sheet E')
+      };
+
+      // Trie l'objet dans la bonne liste
+      if (expedition_value === "d'entrecasteaux" || expedition_value === "entrecasteaux") {
+          entrecasteaux_data.push(place);
+      } else if (expedition_value === 'baudin') {
+          baudin_data.push(place);
+      }
+    } catch (err) {
+      const rowInfo = `Ligne ${idx + 2} (après en-tête)`;
+      const newErr = new Error(`Erreur à la ${rowInfo} : ${err.message}`);
+      Logger.log(`${newErr.message}\nStack: ${err.stack}`);
+      throw newErr;
     }
   });
   

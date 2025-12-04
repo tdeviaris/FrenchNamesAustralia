@@ -348,6 +348,28 @@
             border-radius: 6px;
             display: block;
         }
+
+        /* Animation pour attirer l'attention sur les images (version discrète) */
+        @keyframes attention-glow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.6);
+            }
+            70% {
+                /* Halo plus fin et discret (spread réduit de 18px à 10px) */
+                box-shadow: 0 0 8px 10px rgba(0, 86, 179, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0);
+            }
+        }
+
+        .popup-image-button.image-attention {
+            /* On s'assure que le halo prend la forme de l'image */
+            border-radius: 6px;
+            /* Fréquence plus lente (4s au lieu de 2.5s) */
+            animation: attention-glow 4s infinite;
+        }
+
         @media  (min-width: 769px)  {
             .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
             .leaflet-popup.popup-has-image .leaflet-popup-content {
@@ -1161,6 +1183,36 @@
                 return;
             }
             enforcePopupMaxHeight(activePopup, adjustPopupView);
+        });
+
+        // Animation pour attirer l'attention sur les images dans les popups
+        map.on('popupopen', function(e) {
+            const popupElement = e.popup.getElement();
+            if (!popupElement) return;
+
+            const imageButton = popupElement.querySelector('.popup-image-button');
+            if (imageButton) {
+                // Démarre l'animation après 5 secondes
+                const startAnimationTimeout = setTimeout(() => {
+                    imageButton.classList.add('image-attention');
+                }, 5000);
+
+                // Arrête l'animation au premier survol pour ne pas être gênant
+                const stopAnimation = () => {
+                    clearTimeout(startAnimationTimeout); // Annule le démarrage si on survole avant
+                    imageButton.classList.remove('image-attention');
+                };
+                
+                imageButton.addEventListener('mouseover', stopAnimation, { once: true });
+                imageButton.addEventListener('focus', stopAnimation, { once: true });
+
+
+                // Assure-toi que l'animation est enlevée si la popup est fermée
+                e.popup.on('remove', () => {
+                    clearTimeout(startAnimationTimeout);
+                    imageButton.classList.remove('image-attention');
+                });
+            }
         });
 
         const nameForTooltip = (place, lang) => {

@@ -172,8 +172,18 @@ document.addEventListener('DOMContentLoaded', () => {
         langFrButton.addEventListener('click', () => switchLanguage('fr'));
         langEnButton.addEventListener('click', () => switchLanguage('en'));
 
-        // Au chargement de la page, vérifie s'il y a une langue sauvegardée, sinon utilise 'en' par défaut
-        const savedLang = localStorage.getItem('language') || 'en';
-        switchLanguage(savedLang);
+        // Au chargement, détermine la langue initiale.
+        const getInitialLanguage = () => {
+            // Priorité 1: Langue déjà sauvegardée par l'utilisateur.
+            const savedLang = localStorage.getItem('language');
+            if (savedLang) {
+                return savedLang;
+            }
+            // Priorité 2: Détection de la langue du navigateur.
+            const browserLang = navigator.language || navigator.userLanguage;
+            return browserLang.startsWith('fr') ? 'fr' : 'en';
+        };
+
+        switchLanguage(getInitialLanguage());
     }
 });
