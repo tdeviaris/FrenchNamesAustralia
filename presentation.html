@@ -112,7 +112,26 @@
          <section class="content-section">
             <h2 data-i18n="about-title">À propos</h2>
 
-            
+            <!-- d'Entrecasteaux Expedition Audio Section -->
+            <div class="audio-header">
+                <button type="button" class="audio-title-button" id="dentre-audio-btn" data-i18n="about-dentre-expedition-title" aria-pressed="false">Présentation de l'expédition d'Entrecasteaux</button>
+                <audio class="audio-player" id="dentre-audio" controls preload="auto" data-i18n-src="about-dentre-expedition-audio-src">
+                    <source src="data/dentrecasteaux_fr.m4a" type="audio/mp4">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            </div>
+            <p data-i18n="about-dentre-expedition-subtitle">Découvrez l'expédition d'Entrecasteaux (1791-1794) à travers ce dialogue présentant les objectifs, le déroulement et les résultats de l'expédition.</p>
+
+            <!-- Baudin Expedition Audio Section -->
+            <div class="audio-header" style="margin-top: 28px;">
+                <button type="button" class="audio-title-button" id="baudin-audio-btn" data-i18n="about-baudin-expedition-title" aria-pressed="false">Présentation de l'expédition Baudin</button>
+                <audio class="audio-player" id="baudin-audio" controls preload="auto" data-i18n-src="about-baudin-expedition-audio-src">
+                    <source src="data/baudin_fr.m4a" type="audio/mp4">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            </div>
+            <p data-i18n="about-baudin-expedition-subtitle">Découvrez l'expédition Baudin (1800-1804) à travers ce dialogue présentant les objectifs, le déroulement et les résultats de l'expédition.</p>
+
             <div class="resource-item" style="margin-top: 28px;">
                 <p data-i18n-html="about-author-entry"><a class="resource-primary-link" href="author.html">Présentation de l'auteure</a></p>
                 <p data-i18n="about-author-subtitle">Dany Bréelle, historienne et auteure de ce projet.</p>
