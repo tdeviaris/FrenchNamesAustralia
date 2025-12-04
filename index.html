@@ -79,6 +79,7 @@
         h2 { font-family: 'Inter', 'Lato', sans-serif; font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 600; margin: 0 0 12px; color: #003b78; text-shadow: none; letter-spacing: normal; }
         h2.illustration-title { font-size: clamp(1.2rem, 2.2vw, 1.5rem); font-weight: 500; }
         h3 { font-family: 'Inter', sans-serif; font-size: clamp(0.9rem, 1.8vw, 1.05rem); font-weight: 400; color: #555; margin: 0 0 16px; line-height: 1.4; }
+        h3[style*="italic"] { font-size: clamp(0.95rem, 1.9vw, 1.1rem); font-weight: 500; color: #ddd; margin-top: 24px; margin-bottom: 12px; }
         .scene article p { margin: 0 0 1.1em; font-size: clamp(0.96rem, 2.4vw, 1.05rem); }
         .scene article p:last-child { margin-bottom: 0; }
         .scene article .source { font-size: 0.9rem; color: #555; }
@@ -222,9 +223,16 @@
             <div class="scene-content">
                 <article>
                     <h2 data-i18n="intro-title">Introduction</h2>
-                    <p data-i18n="intro-p1">This project explores the distinctive legacy of French place naming along Australia's coastlines, tracing how these toponyms—many still visible on modern maps—reflect the layered histories of European exploration. Set against the backdrop of First Nations peoples' deep and enduring connection to Country, the French naming practices sit alongside those of Dutch and British navigators, forming a complex palimpsest of meaning and memory.</p>
-                    <p data-i18n="intro-p2">By focusing on the over 670 sites named during the expeditions of d'Entrecasteaux and Baudin, the study brings to light a unique French perspective that enriches our understanding of Australia's coastal history and its entangled global and local contexts.</p>
-                    <p data-i18n="intro-p3-new">Based on 670 place names documented in the official atlases of the d'Entrecasteaux and Baudin expeditions, the project examines these names as historical and cultural signposts that express a French perspective and enrich our understanding of Australia's coastal history.</p>
+                    <h3 data-i18n="intro-subtitle">French names and memory of Australian coasts</h3>
+                    <p data-i18n="intro-p1">This project explores the distinctive legacy of French place naming along Australia's coastlines, tracing how these toponyms—many still visible on modern maps—reflect the layered histories of European exploration.</p>
+                    <p data-i18n="intro-p2">Set against the backdrop of First Nations peoples' deep and enduring connection to Country, the French naming practices sit alongside those of Dutch and British navigators, forming a complex palimpsest of meaning and memory.</p>
+                    <p data-i18n="intro-p3-new">By focusing on the over 670 sites named during the expeditions of d'Entrecasteaux and Baudin, the study brings to light a unique French perspective that enriches our understanding of Australia's coastal history and its entangled global and local contexts.</p>
+
+                    <h3 data-i18n="intro-explore-title" style="margin-top: 28px;">Explore the site</h3>
+                    <p data-i18n="intro-explore-p1">This website offers several ways to discover these toponyms:</p>
+                    <p data-i18n="intro-explore-map">The <strong>interactive map</strong> allows you to locate and explore the 670 place names with their stories</p>
+                    <p data-i18n="intro-explore-ai">The <strong>AI assistant</strong> answers your questions about the expeditions and place names</p>
+                    <p data-i18n="intro-explore-resources">The <strong>resources</strong> provide historical maps, biographies and contexts</p>
                 </article>
             </div>
         </section>
@@ -233,10 +241,16 @@
             <div class="scene-media media-beautemps"></div>
             <div class="scene-content">
                 <article>
-                    <h2 data-i18n="expedition-dentre-title">L'expédition d'Entrecasteaux</h2>
-                    <h3 data-i18n="map-title-beautemps">Carte de Beautemps-Beaupré, 1807</h3>
-                    <p data-i18n="expedition-dentre-p1">The first object of the d'Entrecasteaux expedition, the search for the missing Lapérouse, ended in failure. They found no trace of his two ships or their crew on any islands in the western Pacific they sighted. However, the second part of the expedition's mission, the mapping of coasts in the Southern Lands still partially unknown to Europeans, proved highly successful. These discoveries gave hope and motivation to the crew after a difficult crossing of the southern Indian Ocean in rough sea.</p>
-                    <p data-i18n="expedition-dentre-p2">The expedition visited the east coasts of Van Diemen's Land (Tasmania) in April–May 1792 and again in late January–February 1793, as well as the south-west coasts of New Holland (Western Australia) in late December 1792–January 1793, bestowing 68 new place names along these shores.</p>
+                    <h2 data-i18n="expedition-dentre-title">The d'Entrecasteaux Expedition (1791-1794)</h2>
+                    <h3 data-i18n="map-title-beautemps">Map by Beautemps-Beaupré, 1807</h3>
+
+                    <h3 data-i18n="expedition-dentre-subtitle" style="margin-top: 20px; font-style: italic;">In search of Lapérouse</h3>
+                    <p data-i18n="expedition-dentre-p1">The first object of the expedition—the search for the missing Lapérouse—ended in failure. They found no trace of his two ships or their crew on any islands in the western Pacific they sighted.</p>
+                    <p data-i18n="expedition-dentre-p2">However, the second part of the mission proved highly successful: mapping the coasts in the Southern Lands still partially unknown to Europeans. These discoveries gave hope and motivation to the crew after a difficult crossing of the southern Indian Ocean in rough sea.</p>
+
+                    <h3 data-i18n="expedition-dentre-results" style="margin-top: 20px; font-style: italic;">Cartographic achievements</h3>
+                    <p data-i18n="expedition-dentre-p3">The expedition visited the east coasts of Van Diemen's Land (Tasmania) in April–May 1792 and again in late January–February 1793. It also explored the south-west coasts of New Holland (Western Australia) in late December 1792–January 1793.</p>
+                    <p data-i18n="expedition-dentre-p4">In total, 68 new place names were bestowed along these shores, honouring mainly members of the expedition and the geographical features discovered.</p>
                 </article>
             </div>
         </section>
@@ -256,11 +270,19 @@
             <div class="scene-media media-freycinet"></div>
             <div class="scene-content">
                 <article>
-                    <h2 data-i18n="expedition-baudin-title">L'expédition Baudin</h2>
-                    <h3 data-i18n="map-title-freycinet">Carte de Freycinet, 1812</h3>
-                    <p data-i18n="expedition-baudin-p1">The place names included in the official accounts and atlas of Baudin's voyage of discovery were not assigned during the expedition itself but later, in Paris, between 1806 and 1807 — three years after Baudin's death (16 September 1803) and following the return of the corvettes. By that time, France had entered a new political era: the Napoleonic Empire had replaced the Consulate, the original sponsor of the expedition. The Consulate, in turn, had come to power through the coup of 18 Brumaire (10 November 1799), which overthrew the Directoire — the government under which many scholarly institutions had helped prepare the voyage.</p>
-                    <p data-i18n="expedition-baudin-p2">This shifting political landscape left its mark on the expedition's geographical nomenclature. The chosen place names reflect the sequence of these upheavals: some honour the young General Bonaparte, the rising military hero under the Directoire; others pay tribute to the First Consul Bonaparte, who sponsored the expedition; and many more commemorate Emperor Napoléon and members of his imperial family.</p>
-                    <p data-i18n="expedition-baudin-p3">The 602 place names selected by Péron and Freycinet vividly illustrate the evolution of the French national spirit during the Napoleonic period, which supplanted the republican ideals that had inspired Baudin and his original nomenclature. Péron and Freycinet favoured names celebrating French figures distinguished in science, literature, military service, or public administration. These individuals embodied the new national narrative — one that sought to unify the country after the deep divisions of the Revolutionary Terror. Indeed, more than eighty per cent of the names commemorate such figures, transforming the map of Australia's coasts into a reflection of France's renewed sense of unity, pride, and imperial ambition.</p>
+                    <h2 data-i18n="expedition-baudin-title">The Baudin Expedition (1800-1804)</h2>
+                    <h3 data-i18n="map-title-freycinet">Map by Freycinet, 1812</h3>
+
+                    <h3 data-i18n="expedition-baudin-subtitle" style="margin-top: 20px; font-style: italic;">A nomenclature shaped by political upheavals</h3>
+                    <p data-i18n="expedition-baudin-p1">The place names from the Baudin expedition were assigned in an unusual manner: not during the voyage itself, but in Paris between 1806 and 1807—three years after Baudin's death and following the return of the corvettes.</p>
+
+                    <h3 data-i18n="expedition-baudin-context" style="margin-top: 20px; font-style: italic;">A changing political context</h3>
+                    <p data-i18n="expedition-baudin-p2">Between the expedition's departure and the publication of results, France experienced three successive regimes: the Directoire (which prepared the voyage), the Consulate (which commissioned it), and the Napoleonic Empire (under which the maps were published).</p>
+                    <p data-i18n="expedition-baudin-p3">This political instability profoundly marked the nomenclature. The chosen place names reflect this succession of regimes: some honour General Bonaparte, others the First Consul, and many celebrate Emperor Napoléon and his imperial family.</p>
+
+                    <h3 data-i18n="expedition-baudin-legacy" style="margin-top: 20px; font-style: italic;">A renewed national spirit</h3>
+                    <p data-i18n="expedition-baudin-p4">The 602 place names selected by Péron and Freycinet vividly illustrate the evolution of the French national spirit during the Napoleonic period, supplanting the republican ideals that had inspired Baudin.</p>
+                    <p data-i18n="expedition-baudin-p5">More than eighty per cent of the names commemorate French figures distinguished in science, literature, military service, or public administration—transforming the map of Australia's coasts into a reflection of France's renewed sense of unity, pride, and imperial ambition.</p>
                 </article>
             </div>
         </section>
