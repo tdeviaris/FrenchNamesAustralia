@@ -354,6 +354,12 @@
                 width: min(720px, calc(100vw - 60px));
                 max-width: min(720px, calc(100vw - 60px));
             }
+            /* Popups sans image utilisent la même largeur pour afficher plus de texte */
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper,
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content {
+                width: min(720px, calc(100vw - 60px));
+                max-width: min(720px, calc(100vw - 60px));
+            }
         }
 
         @media  (max-width: 768px)  {#map { height: calc(100vh - var(--nav-height)); }
