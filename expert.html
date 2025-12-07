@@ -459,7 +459,83 @@
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
 
-        // Rendu minimal : échappement + gras/italique + liens (format personnalisé [texte]{id})
+        const escapeAttr = (str) => str
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;');
+
+        // Index mémoire des lieux (chargé à la demande)
+        let placeIndexPromise = null;
+
+        const normalizeName = (name) => name
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        async function loadPlaceIndex() {
+            if (placeIndexPromise) return placeIndexPromise;
+
+            placeIndexPromise = (async () => {
+                try {
+                    const [baudin, entre] = await Promise.all([
+                        fetch('data/baudin.json', { cache: 'no-cache' }).then((r) => r.json()),
+                        fetch('data/entrecasteaux.json', { cache: 'no-cache' }).then((r) => r.json())
+                    ]);
+
+                    const index = new Map();
+
+                    const addEntry = (entry) => {
+                        const names = [entry.frenchName, entry.ausEName].filter(Boolean);
+                        names.forEach((n) => {
+                            // Trim les espaces en début et fin AVANT normalisation
+                            const trimmed = (n || '').trim();
+                            if (!trimmed) return;
+
+                            const key = normalizeName(trimmed);
+                            if (!key) return;
+                            if (!index.has(key)) index.set(key, new Set());
+                            index.get(key).add(entry.code);
+                        });
+                    };
+
+                    [...baudin, ...entre].forEach(addEntry);
+                    return index;
+                } catch (err) {
+                    console.error('Failed to load place index', err);
+                    return new Map();
+                }
+            })();
+
+            return placeIndexPromise;
+        }
+
+        async function resolvePlaceToCode(name) {
+            if (!name) return null;
+            const index = await loadPlaceIndex();
+            const key = normalizeName(name);
+            const codes = index.get(key);
+            if (!codes || codes.size !== 1) return null;
+            return [...codes][0];
+        }
+
+        async function handlePlaceClick(event, placeName) {
+            event.preventDefault();
+            const code = await resolvePlaceToCode(placeName);
+            if (code) {
+                window.location.href = `map.html#${code}`;
+            }
+        }
+
+        document.addEventListener('click', (evt) => {
+            const link = evt.target.closest('a[data-place]');
+            if (!link) return;
+            const placeName = link.getAttribute('data-place');
+            handlePlaceClick(evt, placeName);
+        });
+
+        // Rendu minimal : échappement + gras/italique + liens (format personnalisé [texte]{type:valeur})
         function markdownToHtml(text) {
             const placeholders = [];
             const token = (id) => `__PLACEHOLDER_${id}__`;
@@ -467,28 +543,49 @@
 
             let intermediate = text;
 
-            // Nouveau format personnalisé [texte]{id}
+            // Nouveau format personnalisé [texte]{type:identifiant}
             intermediate = intermediate.replace(/\[([^\]]+)\]\{([^}]+)\}/g, (match, label, id) => {
                 let html;
 
-                // Si l'id commence par https://, c'est un lien externe
-                if (id.startsWith('https://') || id.startsWith('http://')) {
+                const typedMatch = id.match(/^([a-zA-Z]+):(.*)$/);
+                if (typedMatch) {
+                    const [, rawType, rawValue] = typedMatch;
+                    const type = rawType.toLowerCase();
+                    const value = rawValue.trim();
+
+                    if (type === 'url') {
+                        const url = value.startsWith('http') ? value : `https://${value}`;
+                        const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                        const linkText = wikiMatch
+                            ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                            : label;
+                        html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    } else if (type === 'person') {
+                        const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                        const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${value}`;
+                        const linkText = label || decodeURIComponent(value).replace(/_/g, ' ');
+                        html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    } else if (type === 'place') {
+                        html = `<a href="#" data-place="${escapeAttr(value)}" class="place-link">${escapeHtml(label)}</a>`;
+                    } else {
+                        // fallback type inconnu -> lien externe si ressemble à URL, sinon texte simple
+                        if (value.startsWith('http')) {
+                            html = `<a href="${value}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+                        } else {
+                            html = escapeHtml(label);
+                        }
+                    }
+                } else if (id.startsWith('https://') || id.startsWith('http://')) {
                     const wikiMatch = id.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
                     const linkText = wikiMatch
                         ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
                         : label;
                     html = `<a href="${id}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
-                }
-                // Si l'id commence par "Baudin", lien vers la carte fusionnée
-                else if (/^Baudin/i.test(id)) {
+                } else if (/^Baudin/i.test(id) || /^Entre/i.test(id)) {
+                    // Compat legacy: codes directs
                     html = `<a href="map.html#${id}">${escapeHtml(label)}</a>`;
-                }
-                // Si l'id commence par "Entre", lien vers la carte fusionnée
-                else if (/^Entre/i.test(id)) {
-                    html = `<a href="map.html#${id}">${escapeHtml(label)}</a>`;
-                }
-                // Sinon, c'est un ID Wikipedia
-                else {
+                } else {
+                    // Fallback: supposé Wikipedia EN/FR selon langue
                     const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
                     const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${id}`;
                     const linkText = decodeURIComponent(id).replace(/_/g, ' ');

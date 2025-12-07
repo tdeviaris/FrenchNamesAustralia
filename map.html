@@ -2625,13 +2625,13 @@
                     }
 
                     const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
-                    const characteristicText = (currentLang === 'fr' && place.characteristic_fr) ? place.characteristic_fr : place.characteristic;
+                    const characteristicText = (currentLang === 'fr') ? place.characteristic_fr : place.characteristic;
                     if (characteristicText && characteristicText.trim() !== "") {
                         const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
                         textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${enrichedCharacteristic}</p>`;
                     }
 
-                    const historyText = (currentLang === 'fr' && place.history_fr) ? place.history_fr : place.history;
+                    const historyText = (currentLang === 'fr') ? place.history_fr : place.history;
                     if (historyText && historyText.trim() !== "") {
                         const enrichedHistory = enhanceWikiText(historyText, wikiLang);
                         textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${enrichedHistory}</p>`;

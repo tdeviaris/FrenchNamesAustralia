@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Résolution Frontend</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        .message {
+            background: #e8f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            border-bottom: 1px solid #0066cc;
+        }
+        a:hover {
+            background: #fff3cd;
+        }
+        .place-link {
+            color: #cc0066;
+            border-bottom-color: #cc0066;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de résolution Frontend</h1>
+
+    <div class="test-section">
+        <h2>Test 1: Résolution de lieux (format {place:Nom})</h2>
+        <div class="message" id="test1"></div>
+        <div id="status1" class="status info">Cliquez sur un lien de lieu pour tester...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Liens Wikipedia (format {person:ID})</h2>
+        <div class="message" id="test2"></div>
+        <div id="status2" class="status info">Ces liens devraient ouvrir Wikipedia dans un nouvel onglet</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Liens externes (format {url:...})</h2>
+        <div class="message" id="test3"></div>
+        <div id="status3" class="status info">Ces liens devraient ouvrir dans un nouvel onglet</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Format mixte</h2>
+        <div class="message" id="test4"></div>
+        <div id="status4" class="status info">Testez les différents types de liens ensemble</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 5: Compatibilité ancien format</h2>
+        <div class="message" id="test5"></div>
+        <div id="status5" class="status info">L'ancien format {Code} devrait toujours fonctionner</div>
+    </div>
+
+    <script>
+        // ===== COPIÉ DEPUIS expert.html =====
+
+        const escapeHtml = (str) => str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+        const escapeAttr = (str) => str
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;');
+
+        // Index mémoire des lieux
+        let placeIndexPromise = null;
+
+        const normalizeName = (name) => name
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        async function loadPlaceIndex() {
+            if (placeIndexPromise) return placeIndexPromise;
+
+            placeIndexPromise = (async () => {
+                try {
+                    const [baudin, entre] = await Promise.all([
+                        fetch('data/baudin.json', { cache: 'no-cache' }).then((r) => r.json()),
+                        fetch('data/entrecasteaux.json', { cache: 'no-cache' }).then((r) => r.json())
+                    ]);
+
+                    const index = new Map();
+
+                    const addEntry = (entry) => {
+                        const names = [entry.frenchName, entry.ausEName].filter(Boolean);
+                        names.forEach((n) => {
+                            // Trim les espaces en début et fin AVANT normalisation
+                            const trimmed = (n || '').trim();
+                            if (!trimmed) return;
+
+                            const key = normalizeName(trimmed);
+                            if (!key) return;
+                            if (!index.has(key)) index.set(key, new Set());
+                            index.get(key).add(entry.code);
+                        });
+                    };
+
+                    [...baudin, ...entre].forEach(addEntry);
+                    console.log('✅ Index chargé:', index.size, 'noms indexés');
+                    return index;
+                } catch (err) {
+                    console.error('❌ Erreur chargement index:', err);
+                    return new Map();
+                }
+            })();
+
+            return placeIndexPromise;
+        }
+
+        async function resolvePlaceToCode(name) {
+            if (!name) return null;
+            const index = await loadPlaceIndex();
+            const key = normalizeName(name);
+            const codes = index.get(key);
+
+            console.log(`🔍 Recherche "${name}" → clé normalisée: "${key}"`);
+
+            if (!codes || codes.size === 0) {
+                console.log('❌ Aucun code trouvé');
+                return null;
+            }
+
+            if (codes.size > 1) {
+                console.log('⚠️  Ambiguïté: plusieurs codes trouvés:', [...codes]);
+                return null;
+            }
+
+            const code = [...codes][0];
+            console.log('✅ Code résolu:', code);
+            return code;
+        }
+
+        async function handlePlaceClick(event, placeName) {
+            event.preventDefault();
+            const statusEl = event.target.closest('.test-section').querySelector('.status');
+
+            statusEl.className = 'status info';
+            statusEl.textContent = `🔄 Résolution de "${placeName}"...`;
+
+            const code = await resolvePlaceToCode(placeName);
+
+            if (code) {
+                statusEl.className = 'status success';
+                statusEl.textContent = `✅ Résolu: "${placeName}" → ${code}`;
+                console.log(`🚀 Redirection vers: map.html#${code}`);
+
+                // Attendre 500ms pour que l'utilisateur voie le message de succès
+                setTimeout(() => {
+                    window.location.href = `map.html#${code}`;
+                }, 500);
+            } else {
+                statusEl.className = 'status error';
+                statusEl.textContent = `❌ Impossible de résoudre "${placeName}" (non trouvé ou ambigu)`;
+            }
+        }
+
+        document.addEventListener('click', (evt) => {
+            const link = evt.target.closest('a[data-place]');
+            if (!link) return;
+            const placeName = link.getAttribute('data-place');
+            handlePlaceClick(evt, placeName);
+        });
+
+        // Fonction de parsing Markdown (copié depuis expert.html)
+        function markdownToHtml(text) {
+            const placeholders = [];
+            const token = (id) => `__PLACEHOLDER_${id}__`;
+            const currentLang = localStorage.getItem('language') || 'fr';
+
+            let intermediate = text;
+
+            // Nouveau format personnalisé [texte]{type:identifiant}
+            intermediate = intermediate.replace(/\[([^\]]+)\]\{([^}]+)\}/g, (match, label, id) => {
+                let html;
+
+                const typedMatch = id.match(/^([a-zA-Z]+):(.*)$/);
+                if (typedMatch) {
+                    const [, rawType, rawValue] = typedMatch;
+                    const type = rawType.toLowerCase();
+                    const value = rawValue.trim();
+
+                    if (type === 'url') {
+                        const url = value.startsWith('http') ? value : `https://${value}`;
+                        const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                        const linkText = wikiMatch
+                            ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                            : label;
+                        html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    } else if (type === 'person') {
+                        const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                        const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${value}`;
+                        const linkText = label || decodeURIComponent(value).replace(/_/g, ' ');
+                        html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    } else if (type === 'place') {
+                        html = `<a href="#" data-place="${escapeAttr(value)}" class="place-link">${escapeHtml(label)}</a>`;
+                    } else {
+                        if (value.startsWith('http')) {
+                            html = `<a href="${value}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+                        } else {
+                            html = escapeHtml(label);
+                        }
+                    }
+                } else if (id.startsWith('https://') || id.startsWith('http://')) {
+                    const wikiMatch = id.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                    const linkText = wikiMatch
+                        ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                        : label;
+                    html = `<a href="${id}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                } else if (/^Baudin/i.test(id) || /^Entre/i.test(id)) {
+                    html = `<a href="map.html#${id}">${escapeHtml(label)}</a>`;
+                } else {
+                    const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                    const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${id}`;
+                    const linkText = decodeURIComponent(id).replace(/_/g, ' ');
+                    html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                }
+
+                const placeholder = token(placeholders.length);
+                placeholders.push(html);
+                return placeholder;
+            });
+
+            // Gras et italique
+            intermediate = intermediate.replace(/\*\*(.+?)\*\*/g, (match, content) => {
+                const placeholder = token(placeholders.length);
+                placeholders.push(`<strong>${escapeHtml(content)}</strong>`);
+                return placeholder;
+            });
+
+            intermediate = intermediate.replace(/\*(.+?)\*/g, (match, content) => {
+                const placeholder = token(placeholders.length);
+                placeholders.push(`<em>${escapeHtml(content)}</em>`);
+                return placeholder;
+            });
+
+            // Échapper le reste
+            intermediate = escapeHtml(intermediate);
+
+            // Restaurer les placeholders
+            placeholders.forEach((html, idx) => {
+                intermediate = intermediate.replace(token(idx), html);
+            });
+
+            // Convertir retours à la ligne
+            intermediate = intermediate.replace(/\n/g, '<br>');
+
+            return intermediate;
+        }
+
+        // ===== TESTS =====
+
+        // Test 1: Lieux avec nouveau format
+        const test1Text = `Voici quelques lieux importants de l'expédition Baudin :
+- [Anse Tourville]{place:Anse Tourville}
+- [Cap Bruny]{place:Cap Bruny}
+- [Riviere Huon]{place:Riviere Huon}
+- [Geographe Bay]{place:Geographe Bay}`;
+
+        document.getElementById('test1').innerHTML = markdownToHtml(test1Text);
+
+        // Test 2: Personnes Wikipedia
+        const test2Text = `Les principaux membres de l'expédition :
+- [Nicolas Baudin]{person:Nicolas_Baudin}, commandant
+- [François Péron]{person:François_Péron}, naturaliste
+- [Charles-Alexandre Lesueur]{person:Charles-Alexandre_Lesueur}, artiste`;
+
+        document.getElementById('test2').innerHTML = markdownToHtml(test2Text);
+
+        // Test 3: Liens externes
+        const test3Text = `Ressources utiles :
+- [Site officiel]{url:https://fr.wikipedia.org}
+- [Archives nationales]{url:https://www.archives-nationales.culture.gouv.fr}`;
+
+        document.getElementById('test3').innerHTML = markdownToHtml(test3Text);
+
+        // Test 4: Format mixte
+        const test4Text = `**L'expédition Baudin** a donné le nom *Anse Tourville* à [Anse Tourville]{place:Anse Tourville}, en l'honneur de [Anne Hilarion de Tourville]{person:Anne_Hilarion_de_Tourville}. Plus d'infos sur [Wikipedia]{url:https://fr.wikipedia.org/wiki/Expédition_Baudin}.`;
+
+        document.getElementById('test4').innerHTML = markdownToHtml(test4Text);
+
+        // Test 5: Ancien format (compatibilité)
+        const test5Text = `Compatibilité avec l'ancien format :
+- [Anse Tourville]{Baudin274} (code direct)
+- [Cap Bruny]{Entre09} (code direct)`;
+
+        document.getElementById('test5').innerHTML = markdownToHtml(test5Text);
+
+        // Précharger l'index au chargement de la page
+        loadPlaceIndex().then(() => {
+            console.log('✅ Page de test prête');
+        });
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.html",
   "scripts": {
-    "dev": "vercel dev",
+    "start": "echo 'Use: vercel dev'",
     "deploy": "vercel --prod",
     "setup-assistant": "node scripts/setup-assistant.js"
   },
