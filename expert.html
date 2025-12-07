@@ -852,6 +852,9 @@
 
             try {
                 // Appeler l'API
+                // Récupérer la langue actuelle de l'interface
+                const currentLanguage = localStorage.getItem('language') || 'en';
+
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
@@ -859,7 +862,8 @@
                     },
                     body: JSON.stringify({
                         message: userMessage,
-                        threadId: threadId
+                        threadId: threadId,
+                        language: currentLanguage
                     }),
                     signal: abortController.signal
                 });

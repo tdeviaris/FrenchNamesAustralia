@@ -22,11 +22,18 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { message, threadId = null } = req.body;
+    const { message, threadId = null, language = 'en' } = req.body;
 
     if (!message) {
       return res.status(400).json({ error: 'Message is required' });
     }
+
+    // Ajouter un préfixe pour forcer la langue de réponse
+    const languagePrefix = language === 'fr'
+      ? '[IMPORTANT: Réponds UNIQUEMENT en français, même si la question est en anglais] '
+      : '[IMPORTANT: Answer ONLY in English, even if the question is in French] ';
+
+    const messageWithLanguage = languagePrefix + message;
 
     // Vérifier les variables d'environnement
     const apiKey = process.env.OPENAI_API_KEY;
@@ -51,10 +58,10 @@ export default async function handler(req, res) {
       currentThreadId = thread.id;
     }
 
-    // Ajouter le message de l'utilisateur au thread
+    // Ajouter le message de l'utilisateur au thread (avec préfixe de langue)
     await openai.beta.threads.messages.create(currentThreadId, {
       role: 'user',
-      content: message
+      content: messageWithLanguage
     });
 
     // Créer un run avec streaming
