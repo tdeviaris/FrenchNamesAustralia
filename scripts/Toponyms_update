@@ -32,23 +32,36 @@ function updateJsonFilesOnGitHub() {
 
     // Étape 2 : Uploader le premier fichier JSON sur GitHub.
     const entrecasteauxJsonString = JSON.stringify(datasets.entrecasteaux, null, 2);
-    uploadToGitHub(ENTRECASTEAUX_PATH, entrecasteauxJsonString, "Mise à jour automatique (d'Entrecasteaux)");
+    const result1 = uploadToGitHub(ENTRECASTEAUX_PATH, entrecasteauxJsonString, "Mise à jour automatique (d'Entrecasteaux)");
+    
+    if (!result1.success) {
+      throw new Error(`Échec de l'upload d'Entrecasteaux: ${result1.error}`);
+    }
 
     // Étape 3 : Uploader le second fichier JSON sur GitHub.
     const baudinJsonString = JSON.stringify(datasets.baudin, null, 2);
-    uploadToGitHub(BAUDIN_PATH, baudinJsonString, "Mise à jour automatique (Baudin)");
+    const result2 = uploadToGitHub(BAUDIN_PATH, baudinJsonString, "Mise à jour automatique (Baudin)");
+    
+    if (!result2.success) {
+      throw new Error(`Échec de l'upload de Baudin: ${result2.error}`);
+    }
 
-    // Message de succès
-    Browser.msgBox('Succès',
-      `Mise à jour réussie !\n\n` +
-      `- ${datasets.entrecasteaux.length} entrées d'Entrecasteaux\n` +
-      `- ${datasets.baudin.length} entrées Baudin\n\n` +
-      `Les fichiers ont été mis à jour sur GitHub.`,
-      Browser.Buttons.OK);
+    // Message de succès dans le Logger - pas de Browser.msgBox qui bloque
+    const successMsg = `Mise à jour réussie ! ${datasets.entrecasteaux.length} entrées d'Entrecasteaux, ${datasets.baudin.length} entrées Baudin. Fichiers mis à jour sur GitHub.`;
+    Logger.log(successMsg);
+    
+    // Affichage d'un toast non-bloquant au lieu de msgBox
+    SpreadsheetApp.getActiveSpreadsheet().toast(
+      `✓ ${datasets.entrecasteaux.length} entrées d'Entrecasteaux, ${datasets.baudin.length} entrées Baudin mis à jour sur GitHub`,
+      'Mise à jour réussie',
+      10  // Durée d'affichage en secondes
+    );
 
   } catch (e) {
-    const errorMsg = `Erreur lors de la mise à jour GitHub :\n\n${e.toString()}\n\nLigne : ${e.lineNumber || 'inconnue'}`;
-    Logger.log(`Erreur complète : ${e.stack}`);
+    const errorMsg = `Erreur lors de la mise à jour GitHub : ${e.toString()}`;
+    Logger.log(`Erreur complète : ${e.stack || e.toString()}`);
+    
+    // Pour les erreurs, on peut garder Browser.msgBox car l'utilisateur doit voir l'erreur
     Browser.msgBox('Erreur', errorMsg, Browser.Buttons.OK);
   }
 }
@@ -161,48 +174,66 @@ function convertSheetToTwoDatasets() {
  * MODIFIÉ : La fonction d'upload est maintenant plus générique.
  */
 function uploadToGitHub(filePath, jsonContent, commitMessage) {
-  const token = PropertiesService.getScriptProperties().getProperty(GITHUB_TOKEN_NAME);
-  if (!token) {
-    throw new Error("Token GitHub non trouvé. Configurez-le via le menu.");
-  }
-
-  const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${filePath}`;
-  const headers = {
-    'Authorization': `token ${token}`,
-    'Accept': 'application/vnd.github.v3+json'
-  };
-
-  let currentSha = null;
   try {
-    const getResponse = UrlFetchApp.fetch(apiUrl, { method: 'get', headers: headers, muteHttpExceptions: true });
-    if (getResponse.getResponseCode() == 200) {
-      currentSha = JSON.parse(getResponse.getContentText()).sha;
+    const token = PropertiesService.getScriptProperties().getProperty(GITHUB_TOKEN_NAME);
+    if (!token) {
+      return { success: false, error: "Token GitHub non trouvé. Configurez-le via le menu." };
     }
-  } catch (e) { /* Fichier n'existe pas, c'est normal */ }
 
-  const contentBase64 = Utilities.base64Encode(jsonContent, Utilities.Charset.UTF_8);
-  const payload = {
-    message: commitMessage,
-    content: contentBase64,
-    branch: 'main'
-  };
+    const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${filePath}`;
+    const headers = {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json'
+    };
 
-  if (currentSha) {
-    payload.sha = currentSha;
-  }
+    let currentSha = null;
+    try {
+      const getResponse = UrlFetchApp.fetch(apiUrl, { 
+        method: 'get', 
+        headers: headers, 
+        muteHttpExceptions: true 
+      });
+      if (getResponse.getResponseCode() == 200) {
+        const responseData = JSON.parse(getResponse.getContentText());
+        currentSha = responseData.sha;
+      }
+    } catch (e) { 
+      Logger.log(`Fichier ${filePath} n'existe pas encore (première création)`);
+    }
 
-  const putOptions = {
-    method: 'put',
-    headers: headers,
-    contentType: 'application/json',
-    payload: JSON.stringify(payload)
-  };
+    const contentBase64 = Utilities.base64Encode(jsonContent, Utilities.Charset.UTF_8);
+    const payload = {
+      message: commitMessage,
+      content: contentBase64,
+      branch: 'main'
+    };
 
-  const putResponse = UrlFetchApp.fetch(apiUrl, putOptions);
-  if (putResponse.getResponseCode() == 200 || putResponse.getResponseCode() == 201) {
-    Logger.log(`Succès ! Fichier ${filePath} mis à jour/créé.`);
-  } else {
-    Logger.log(`Échec de l'upload pour ${filePath}. Réponse : ${putResponse.getContentText()}`);
+    if (currentSha) {
+      payload.sha = currentSha;
+    }
+
+    const putOptions = {
+      method: 'put',
+      headers: headers,
+      contentType: 'application/json',
+      payload: JSON.stringify(payload),
+      muteHttpExceptions: true
+    };
+
+    const putResponse = UrlFetchApp.fetch(apiUrl, putOptions);
+    const responseCode = putResponse.getResponseCode();
+    
+    if (responseCode == 200 || responseCode == 201) {
+      Logger.log(`Succès ! Fichier ${filePath} mis à jour/créé.`);
+      return { success: true };
+    } else {
+      const errorMsg = `Échec de l'upload pour ${filePath}. Code: ${responseCode}, Réponse: ${putResponse.getContentText()}`;
+      Logger.log(errorMsg);
+      return { success: false, error: errorMsg };
+    }
+  } catch (e) {
+    Logger.log(`Erreur dans uploadToGitHub pour ${filePath}: ${e.toString()}`);
+    return { success: false, error: e.toString() };
   }
 }
 

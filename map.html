@@ -287,6 +287,17 @@
         .popup-link-row .popup-link-separator {
             color: #888;
         }
+        .popup-other-source {
+            margin: 6px 0;
+            line-height: 1.3;
+        }
+        .popup-other-source-link {
+            display: inline-block;
+            margin-top: 2px;
+            text-decoration: underline;
+            color: #0056b3;
+            word-break: break-word;
+        }
         .leaflet-popup-content.has-scrollbar {
             overflow-y: auto;
             overflow-x: hidden;
@@ -2646,7 +2657,8 @@
                     }
 
                     if (place.other_link && place.other_link.trim() !== "") {
-                        textHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
+                        const otherSourceLabel = trans['popup-othersource-label'];
+                        textHtml += `<p class="popup-other-source"><a class="popup-other-source-link" href="${place.other_link}" target="_blank" rel="noopener"><strong>${otherSourceLabel}</strong></a></p>`;
                     }
 
                     if (place.imgUrl && place.imgUrl.trim() !== "") {
