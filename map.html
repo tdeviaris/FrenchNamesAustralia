@@ -2766,13 +2766,12 @@
                                 </div>`;
 
                         return `<div class="popup-layout">
-                                    <div class="popup-text-container">${textHtml}</div>
+                                    <div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>
                                     ${imageHtml}
-                                    ${fullWidthBlocks.length ? `<div class="popup-fullwidth">${fullWidthBlocks.join('')}</div>` : ''}
                                 </div>`;
                     }
 
-                    return `<div class="popup-text-container">${textHtml}</div>${fullWidthBlocks.length ? `<div class="popup-fullwidth">${fullWidthBlocks.join('')}</div>` : ''}`;
+                    return `<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>`;
                 }, { maxWidth: 700 });
             });
         };
