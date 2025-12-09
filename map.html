@@ -387,6 +387,11 @@
             display: block;
             border-radius: 4px;
         }
+        .popup-fullwidth {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
 
         /* Animation pour attirer l'attention sur les images (version discrète) */
         @keyframes attention-glow {
@@ -2709,17 +2714,19 @@
                         textHtml += `<p class="popup-link-row">${linkSegments.join('<span class="popup-link-separator">|</span>')}</p>`;
                     }
 
+                    const fullWidthBlocks = [];
+
                     const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
                     const characteristicText = (currentLang === 'fr') ? place.characteristic_fr : place.characteristic;
                     if (characteristicText && characteristicText.trim() !== "") {
                         const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
-                        textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${enrichedCharacteristic}</p>`;
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-characteristic-label']}</strong> ${enrichedCharacteristic}</p>`);
                     }
 
                     const historyText = (currentLang === 'fr') ? place.history_fr : place.history;
                     if (historyText && historyText.trim() !== "") {
                         const enrichedHistory = enhanceWikiText(historyText, wikiLang);
-                        textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${enrichedHistory}</p>`;
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-history-label']}</strong> ${enrichedHistory}</p>`);
                     }
 
                     const wikiLink = (currentLang === 'fr') ? place.wiki_fr : place.wiki_en;
@@ -2727,12 +2734,12 @@
                         let linkText = wikiLink.substring(wikiLink.lastIndexOf('/') + 1);
                         linkText = decodeURIComponent(linkText).replace(/_/g, ' ');
                         const wikiMarkup = createWikiLinkMarkup(wikiLink, linkText, wikiLang);
-                        textHtml += `<p><strong>${trans['popup-wiki-label']}</strong> ${wikiMarkup}</p>`;
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-wiki-label']}</strong> ${wikiMarkup}</p>`);
                     }
 
                     if (place.other_link && place.other_link.trim() !== "") {
                         const otherSourceLabel = trans['popup-othersource-label'];
-                        textHtml += `<p class="popup-other-source"><a class="popup-other-source-link" href="${place.other_link}" target="_blank" rel="noopener"><strong>${otherSourceLabel}</strong></a></p>`;
+                        fullWidthBlocks.push(`<p class="popup-other-source"><a class="popup-other-source-link" href="${place.other_link}" target="_blank" rel="noopener"><strong>${otherSourceLabel}</strong></a></p>`);
                     }
 
                     if (place.imgUrl && place.imgUrl.trim() !== "") {
@@ -2754,10 +2761,11 @@
                         return `<div class="popup-layout">
                                         <div class="popup-text-container">${textHtml}</div>
                                         ${imageHtml}
-                                    </div>`;
+                                    </div>
+                                    ${fullWidthBlocks.length ? `<div class="popup-fullwidth">${fullWidthBlocks.join('')}</div>` : ''}`;
                     }
 
-                    return `<div class="popup-text-container">${textHtml}</div>`;
+                    return `<div class="popup-text-container">${textHtml}</div>${fullWidthBlocks.length ? `<div class="popup-fullwidth">${fullWidthBlocks.join('')}</div>` : ''}`;
                 }, { maxWidth: 700 });
             });
         };
