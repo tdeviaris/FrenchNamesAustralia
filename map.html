@@ -464,8 +464,13 @@
                 top: 8px;
                 right: 8px;
                 height: 3em;
+                min-width: 3em;
+                max-width: 6.5em;
                 width: auto;
-                max-width: 6em;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2px;
                 border: 1px solid #e2e2e2;
                 border-radius: 4px;
                 overflow: hidden;
@@ -475,6 +480,12 @@
             .popup-image-thumb:focus-visible {
                 outline: 2px solid #FFD700;
                 outline-offset: 2px;
+            }
+            .popup-image-thumb img {
+                height: 100%;
+                width: auto;
+                max-width: 100%;
+                object-fit: contain;
             }
             .map-info-coordinates {
                 display: none;
