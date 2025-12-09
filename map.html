@@ -345,6 +345,7 @@
             max-width: 100%;
             flex: 1 1 auto;
             min-width: 0;
+            position: relative;
             box-sizing: border-box;
         }
         .popup-image-wrapper {
@@ -382,7 +383,7 @@
         .popup-image-thumb img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
             border-radius: 4px;
         }
@@ -411,14 +412,14 @@
         @media  (min-width: 769px)  {
             .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
             .leaflet-popup.popup-has-image .leaflet-popup-content {
-                width: min(540px, calc(100vw - 48px));
-                max-width: min(540px, calc(100vw - 48px));
+                width: min(520px, calc(100vw - 48px));
+                max-width: min(520px, calc(100vw - 48px));
             }
             /* Popups sans image utilisent la même largeur pour afficher plus de texte */
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper,
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content {
-                width: min(600px, calc(100vw - 48px));
-                max-width: min(600px, calc(100vw - 48px));
+                width: min(560px, calc(100vw - 48px));
+                max-width: min(560px, calc(100vw - 48px));
             }
             /* Le texte utilise toute la largeur quand il n'y a pas d'image */
             .leaflet-popup:not(.popup-has-image) .popup-text-container {
