@@ -276,7 +276,16 @@
             }
         }
 
-        .leaflet-popup-content-wrapper { border-radius: 5px; } .leaflet-popup-content { font-size: 0.9rem; line-height: 1.35; width: auto; overflow-x: hidden; }
+        .leaflet-popup-content-wrapper { border-radius: 5px; overflow: hidden; }
+        .leaflet-popup-content {
+            font-size: 0.9rem;
+            line-height: 1.35;
+            width: auto;
+            overflow-x: hidden;
+            padding: 12px 12px 12px 12px;
+            margin: 0;
+            box-sizing: border-box;
+        }
         .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
         .popup-link-row {
             display: flex;
@@ -303,7 +312,7 @@
             overflow-x: hidden;
             padding-right: 8px;
             scrollbar-width: thin;
-            max-height: min(420px, 60vh);
+            max-height: min(600px, 80vh);
             box-sizing: border-box;
         }
         .leaflet-popup-content.has-scrollbar::-webkit-scrollbar {
@@ -316,7 +325,7 @@
         .leaflet-popup-content.has-scrollbar::-webkit-scrollbar-track {
             background-color: rgba(0, 0, 0, 0.08);
             border-radius: 4px;
-            margin: 16px 0 12px;
+            margin: 35px 0 12px;
         }
         .leaflet-container .leaflet-popup-close-button {
             right: 14px;
@@ -338,8 +347,11 @@
         }
         .popup-image-wrapper {
             display: flex;
-            flex: 0 0 clamp(240px, 38vw, 360px);
+            flex: 0 0 clamp(210px, 32vw, 320px);
             min-width: 0;
+            position: sticky;
+            top: 12px;
+            align-self: flex-start;
         }
         .popup-image-button {
             background: none;
@@ -384,8 +396,8 @@
         @media  (min-width: 769px)  {
             .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
             .leaflet-popup.popup-has-image .leaflet-popup-content {
-                width: min(720px, calc(100vw - 60px));
-                max-width: min(720px, calc(100vw - 60px));
+                width: min(650px, calc(100vw - 60px));
+                max-width: min(650px, calc(100vw - 60px));
             }
             /* Popups sans image utilisent la même largeur pour afficher plus de texte */
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper,
