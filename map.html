@@ -335,22 +335,24 @@
         
         /* Styles pour la mise en page de la popup */
         .popup-layout {
-            display: flex;
+            display: grid;
+            grid-template-columns: minmax(220px, 1fr) minmax(180px, 320px);
             align-items: flex-start;
             gap: 15px;
             box-sizing: border-box;
         }
         .popup-text-container {
+            grid-column: 1;
             width: 100%;
             max-width: 100%;
-            flex: 1 1 auto;
             min-width: 0;
             position: relative;
             box-sizing: border-box;
         }
         .popup-image-wrapper {
+            grid-column: 2;
             display: flex;
-            flex: 0 0 clamp(210px, 32vw, 320px);
+            flex: 0 0 auto;
             min-width: 0;
             position: sticky;
             top: 12px;
@@ -391,6 +393,7 @@
             width: 100%;
             box-sizing: border-box;
             margin-top: 10px;
+            grid-column: 1 / -1;
         }
 
         /* Animation pour attirer l'attention sur les images (version discrète) */
@@ -444,6 +447,7 @@
             .popup-layout {
                 position: relative;
                 display: block;
+                grid-template-columns: none;
             }
             .popup-text-container {
                 width: 100%;
