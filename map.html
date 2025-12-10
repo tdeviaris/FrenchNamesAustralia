@@ -1347,11 +1347,6 @@
         };
         const WIKI_CARD_HEIGHT = 240;
 
-        const isTouchDevice = () => {
-            return window.matchMedia('(hover: none) and (pointer: coarse)').matches
-                || ('ontouchstart' in window);
-        };
-
         const fetchWikiSummary = (lang, title) => {
             const key = `${lang}:${title}`;
             if (wikiCardState.cache.has(key)) {
@@ -1452,6 +1447,8 @@
             card.style.left = `${left + window.scrollX}px`;
         };
 
+        const logWiki = () => {};
+
         const hideWikiCard = (immediate = false) => {
             // Cancel any pending request
             if (wikiCardState.pendingRequest) {
@@ -1517,14 +1514,12 @@
             if (!title) {
                 return;
             }
-
             // Clean up immediately (this also cancels any pending requests)
             hideWikiCard(true);
 
             // Create a request token to track this specific request
             const requestToken = { cancelled: false };
             wikiCardState.pendingRequest = requestToken;
-
             fetchWikiSummary(lang, title).then((data) => {
                 // Check if this request was cancelled
                 if (requestToken.cancelled) {
@@ -1553,7 +1548,6 @@
                 wikiCardState.pendingRequest = null;
 
                 positionWikiCard(card, link);
-
                 card.addEventListener('mouseenter', () => {
                     if (wikiCardState.hideTimeout) {
                         clearTimeout(wikiCardState.hideTimeout);
@@ -1579,36 +1573,21 @@
             if (!link || link.dataset.wikiBound === 'true') {
                 return;
             }
-            link.addEventListener('mouseenter', () => {
-                if (!isTouchDevice()) {
-                    showWikiCard(link);
-                }
-            });
-            link.addEventListener('mouseleave', () => {
-                if (!isTouchDevice()) {
-                    hideWikiCard(false);
-                }
-            });
+            const handleEnter = () => showWikiCard(link);
+            const handleLeave = () => hideWikiCard(false);
+
+            link.addEventListener('mouseenter', handleEnter);
+            link.addEventListener('pointerenter', handleEnter);
+            link.addEventListener('focus', handleEnter);
+
+            link.addEventListener('mouseleave', handleLeave);
+            link.addEventListener('pointerleave', handleLeave);
+            link.addEventListener('blur', handleLeave);
+
             link.addEventListener('click', (event) => {
                 const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
                 const title = link.dataset.title;
                 const href = getWikiUrlForLink(link, lang, title);
-
-                if (isTouchDevice()) {
-                    const sameLinkActive = wikiCardState.card && wikiCardState.link === link;
-                    if (!sameLinkActive) {
-                        event.preventDefault();
-                        showWikiCard(link);
-                        return;
-                    }
-                    hideWikiCard(true);
-                    if (!href) {
-                        event.preventDefault();
-                        openWikiPage(getWikiUrlForLink(link, lang, title));
-                    }
-                    return;
-                }
-
                 if (!href) {
                     event.preventDefault();
                     openWikiPage(getWikiUrlForLink(link, lang, title));
@@ -1621,10 +1600,19 @@
             root.querySelectorAll('.wiki-link').forEach(bindWikiLink);
         };
 
+        // Délégation en secours : si un lien échappe au binding, on capte quand même le survol
+        document.addEventListener('pointerover', (event) => {
+            const link = event.target.closest('.wiki-link');
+            if (!link) { return; }
+            showWikiCard(link);
+        });
+        document.addEventListener('pointerout', (event) => {
+            const link = event.target.closest('.wiki-link');
+            if (!link) { return; }
+            hideWikiCard(false);
+        });
+
         document.addEventListener('pointerdown', (event) => {
-            if (!isTouchDevice()) {
-                return;
-            }
             const card = wikiCardState.card;
             if (!card) {
                 return;
@@ -1878,6 +1866,7 @@
             modal.setAttribute('aria-hidden', 'true');
             modalImage.src = '';
             modalImage.alt = '';
+            document.getElementById('map')?.focus({ preventScroll: true });
         };
 
         const openImageModal = (src, alt) => {
@@ -1987,11 +1976,15 @@
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) {
                     closeImageModal();
+                    document.getElementById('map')?.focus({ preventScroll: true });
                 }
             });
         }
         if (modalCloseButton) {
-            modalCloseButton.addEventListener('click', closeImageModal);
+            modalCloseButton.addEventListener('click', () => {
+                closeImageModal();
+                document.getElementById('map')?.focus({ preventScroll: true });
+            });
         }
         if (mapModal) {
             mapModal.addEventListener('click', (event) => {
@@ -2028,6 +2021,22 @@
             }
             if (mapModal?.classList.contains('open')) {
                 closeMapModal();
+            }
+        });
+
+        // Délégation de clic pour diagnostiquer les images (fallback si le binding direct a été raté)
+        document.addEventListener('click', (event) => {
+            const button = event.target.closest('.popup-image-button');
+            if (!button) {
+                return;
+            }
+            const popupRoot = button.closest('.leaflet-popup');
+            const placeCode = popupRoot?._source?.place?.code || 'unknown';
+            const buttonImg = button.dataset.img || button.querySelector('img')?.src || '';
+            const buttonAlt = button.dataset.alt || button.querySelector('img')?.alt || '';
+            console.log('[delegate] Clic image (délégation)', { placeCode, src: buttonImg });
+            if (buttonImg) {
+                openImageModal(buttonImg, buttonAlt);
             }
         });
 
@@ -2093,9 +2102,7 @@
                 requestAnimationFrame(() => attachPopupActions(popup, attempt + 1));
                 return;
             }
-            if (!popupElement) {
-                return;
-            }
+            if (!popupElement) { return; }
             const imageButtons = popupElement.querySelectorAll('.popup-image-button');
             const mainImage = popupElement.querySelector('.popup-image-wrapper .popup-image');
             imageButtons.forEach((button) => {
