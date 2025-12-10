@@ -19,8 +19,6 @@ FILES = [
     "cartesE.html",
     "SourcesF.html",
     "SourcesE.html",
-    "map_baudin.html",
-    "map_dentrecasteaux.html",
 ]
 
 def replace_nav(filepath):

@@ -17,8 +17,6 @@ FILES = [
     "SourcesF.html",
     "SourcesE.html",
     "resources.html",
-    "map_baudin.html",
-    "map_dentrecasteaux.html",
 ]
 
 def clean_nav_styles(filepath):

@@ -2,7 +2,7 @@
 const translations = {
     'fr': {
         // --- Textes généraux ---
-        'hero-title': "Noms Français le&nbsp;long de la côte Australienne", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
+        'hero-title': "Noms Français le&nbsp;long du&nbsp;littoral Australien", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
         'hero-audio-label': "Écouter l'introduction audio", 'hero-audio-src': "data/intro_fr.mp3",
         'nav-home': "Accueil", 'nav-map': "Carte", 'nav-ai': "Q&R IA", 'nav-resources': "Ressources", 'nav-about': "À propos",
         'map-layer-baudin': "Baudin",
@@ -54,7 +54,7 @@ const translations = {
         'cap-raoul-caption': "Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Piron, Jean &amp; Schoeder &amp; Beautemps-Beaupré, C. F &amp; France.<br>In <em>Atlas du voyage de Bruny d’Entrecasteaux</em> (1807).",
         'cap-raoul-source': "Source : <a href=\"http://nla.gov.au/nla.obj-230811235\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>",
         'illustration-nouvelle-hollande-title': "Nouvelle-Hollande, côte sud-ouest",
-        'southwest-caption': "Cape Marengo et cap des Représentations renommé cap Suffren (Point Grey) — 30 mars 1802<br>Relèvements au lavis des côtes des Terres australes réalisés par Le Sueur ou son assistant Nicolas-Martin Petit.",
+        'southwest-caption': "Cape Marengo et cap des Représentations renommé cap Suffren (Point Grey) — 30 mars 1802<br>Relèvements au lavis des côtes des Terres Australes réalisés par Charles-Alexandre Lesueur ou Nicolas-Martin Petit.",
         'southwest-reference': "références : MAR/5JJ/51/1/35, MAR/5JJ/51/1 1-99. Archives numérisées <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
         'southwest-title': "Nouvelle-Hollande, côte sud-ouest",
         'southwest-source': "Source : <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
@@ -276,7 +276,7 @@ const translations = {
         'cap-raoul-caption': "Views of different parts of Van Diemen's Land<br>Piron, Jean &amp; Schoeder &amp; Beautemps-Beaupré, C. F &amp; France.<br>In <em>Atlas du voyage de Bruny d’Entrecasteaux</em> (1807).",
         'cap-raoul-source': "Source: <a href=\"http://nla.gov.au/nla.obj-230811235\" target=\"_blank\" rel=\"noopener\">National Library of Australia</a>",
         'illustration-nouvelle-hollande-title': "South-West New Holland",
-        'southwest-caption': "Cape Marengo and Cap des Représentations renamed Cap Suffren (Point Grey) — 30 March 1802<br>Ink wash surveys of the coasts of the southern lands by Le Sueur or his assistant Nicolas-Martin Petit.",
+        'southwest-caption': "Cape Marengo and Cap des Représentations renamed Cap Suffren (Point Grey) — 30 March 1802<br>Ink wash surveys of the coasts of the southern lands by Charles-Alexandre Lesueur or Nicolas-Martin Petit.",
         'southwest-reference': "References: MAR/5JJ/51/1/35, MAR/5JJ/51/1 1-99. Digitised archives, <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",
         'southwest-title': "South-West New Holland",
         'southwest-source': "Source: <a href=\"https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c2vb0ou1jo98--clf15o88p7oi/FRAN_0044_02228_L\" target=\"_blank\" rel=\"noopener\">Archives nationales de France</a>",

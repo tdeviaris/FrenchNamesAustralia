@@ -9,8 +9,6 @@ import os
 # Liste des fichiers à modifier (excluant les backups)
 files = [
     'index.html',
-    'map_dentrecasteaux.html',
-    'map_baudin.html',
     'resources.html',
     'expert.html',
     'glossaryF.html',

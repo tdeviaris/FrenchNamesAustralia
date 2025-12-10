@@ -9,8 +9,6 @@ from pathlib import Path
 # Liste des fichiers à traiter
 files = [
     'index.html',
-    'map_dentrecasteaux.html',
-    'map_baudin.html',
     'resources.html',
     'expert.html',
     'glossaryF.html',

@@ -52,8 +52,8 @@ L'assistant utilise une syntaxe personnalisée pour les liens :
 - **Lecture dans les JSON** : champs `code`, `frenchName`, `ausEName`
 - **Écriture par l'assistant** : `[Cap Bruny]{Entre09}` ou `[Riviere Huon]{Entre17}`
 - **Rendu dans expert.html** :
-  - `[Cap Bruny]{Entre09}` → lien vers `map_dentrecasteaux.html#09`
-  - `[Riviere Huon]{Entre17}` → lien vers `map_dentrecasteaux.html#17`
+  - `[Cap Bruny]{Entre09}` → lien vers `map.html#09`
+  - `[Riviere Huon]{Entre17}` → lien vers `map.html#17`
 
 ### Liens externes
 - **Format** : `[texte]{https://url-complete.com}`

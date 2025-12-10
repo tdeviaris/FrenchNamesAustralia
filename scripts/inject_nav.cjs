@@ -19,9 +19,7 @@ const FILES = [
   'cartesF.html',
   'cartesE.html',
   'SourcesF.html',
-  'SourcesE.html',
-  'map_baudin.html',
-  'map_dentrecasteaux.html'
+  'SourcesE.html'
 ];
 
 const NAV_PARTIAL = path.join(__dirname, '..', 'partials', 'nav.html');

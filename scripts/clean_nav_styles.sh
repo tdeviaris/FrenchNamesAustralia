@@ -12,8 +12,6 @@ FILES=(
     "glossaryE.html"
     "glossaryF.html"
     "resources.html"
-    "map_baudin.html"
-    "map_dentrecasteaux.html"
 )
 
 echo "🧹 Nettoyage des styles de navigation inline..."

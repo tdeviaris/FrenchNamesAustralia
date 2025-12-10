@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>d'Entrecasteaux Map - French Names Along the Australian Coastline</title>
+    <title>Baudin Map - French Names Along the Australian Coastline</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
     <link rel="stylesheet" href="css/nav.css">
@@ -83,6 +84,48 @@
             height: 14px;
             margin: 0;
         }
+
+        /* Expedition toggles */
+        .layer-toggle {
+            position: absolute;
+            top: calc(var(--nav-height) + 10px);
+            left: 6px;
+            z-index: 400; /* below popups */
+            display: grid;
+            gap: 6px;
+            min-width: 150px;
+        }
+        .layer-toggle label {
+            --toggle-color: #0b63d1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: var(--toggle-color);
+            border: 1px solid var(--toggle-color);
+            color: #fff;
+            font-weight: 400;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            cursor: pointer;
+            user-select: none;
+        }
+        .layer-toggle input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--toggle-color);
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.25);
+        }
+        .toggle-baudin { --toggle-color: #0b63d1; background: #0b63d1 !important; border-color: #0b63d1 !important; }
+        .toggle-baudin input { accent-color: #0b63d1 !important; }
+        .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
+        .toggle-entre input { accent-color: #238b45 !important; }
+        .layer-toggle span { flex: 1; font-weight: 400; }
+        /* Ensure popups sit above toggles */
+        .leaflet-popup-pane { z-index: 1200 !important; }
 
         /* Search Interface */
         .search-container {
@@ -208,7 +251,16 @@
                 left: 50%;
                 transform: translateX(-50%);
                 width: calc(100% - 40px);
-                max-width: 300px;
+                max-width: 320px;
+            }
+            .layer-toggle {
+                top: 120px;
+                left: 6px;
+                gap: 4px;
+            }
+            .layer-toggle label {
+                padding: 6px 8px;
+                font-size: 0.8rem;
             }
 
             .search-box {
@@ -235,6 +287,17 @@
         }
         .popup-link-row .popup-link-separator {
             color: #888;
+        }
+        .popup-other-source {
+            margin: 6px 0;
+            line-height: 1.3;
+        }
+        .popup-other-source-link {
+            display: inline-block;
+            margin-top: 2px;
+            text-decoration: underline;
+            color: #0056b3;
+            word-break: break-word;
         }
         .leaflet-popup-content.has-scrollbar {
             overflow-y: auto;
@@ -297,11 +360,44 @@
             border-radius: 6px;
             display: block;
         }
+
+        /* Animation pour attirer l'attention sur les images (version discrète) */
+        @keyframes attention-glow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.6);
+            }
+            70% {
+                /* Halo plus fin et discret (spread réduit de 18px à 10px) */
+                box-shadow: 0 0 8px 10px rgba(0, 86, 179, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0);
+            }
+        }
+
+        .popup-image-button.image-attention {
+            /* On s'assure que le halo prend la forme de l'image */
+            border-radius: 6px;
+            /* Fréquence plus lente (4s au lieu de 2.5s) */
+            animation: attention-glow 4s infinite;
+        }
+
         @media  (min-width: 769px)  {
             .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
             .leaflet-popup.popup-has-image .leaflet-popup-content {
                 width: min(720px, calc(100vw - 60px));
                 max-width: min(720px, calc(100vw - 60px));
+            }
+            /* Popups sans image utilisent la même largeur pour afficher plus de texte */
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper,
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content {
+                width: min(720px, calc(100vw - 60px));
+                max-width: min(720px, calc(100vw - 60px));
+            }
+            /* Le texte utilise toute la largeur quand il n'y a pas d'image */
+            .leaflet-popup:not(.popup-has-image) .popup-text-container {
+                width: 100%;
+                max-width: 100%;
             }
         }
 
@@ -756,6 +852,17 @@
 
     <div id="map"></div>
 
+    <div class="layer-toggle" aria-label="Filtres d'expédition">
+        <label class="toggle-baudin">
+            <input type="checkbox" id="toggle-baudin" checked>
+            <span data-i18n="map-layer-baudin">Baudin</span>
+        </label>
+        <label class="toggle-entre">
+            <input type="checkbox" id="toggle-entre" checked>
+            <span data-i18n="map-layer-entre">d’Entrecasteaux</span>
+        </label>
+    </div>
+
     <!-- Search Interface -->
     <div class="search-container">
         <div class="search-box">
@@ -829,7 +936,6 @@
                 zoom = 4.5;
             }
 
-            console.log(`Screen: ${width}x${height}, Portrait: ${isPortrait}, Zoom: ${zoom}`);
             return zoom;
         };
         const defaultZoom = getDefaultZoom();
@@ -1089,6 +1195,36 @@
                 return;
             }
             enforcePopupMaxHeight(activePopup, adjustPopupView);
+        });
+
+        // Animation pour attirer l'attention sur les images dans les popups
+        map.on('popupopen', function(e) {
+            const popupElement = e.popup.getElement();
+            if (!popupElement) return;
+
+            const imageButton = popupElement.querySelector('.popup-image-button');
+            if (imageButton) {
+                // Démarre l'animation après 5 secondes
+                const startAnimationTimeout = setTimeout(() => {
+                    imageButton.classList.add('image-attention');
+                }, 5000);
+
+                // Arrête l'animation au premier survol pour ne pas être gênant
+                const stopAnimation = () => {
+                    clearTimeout(startAnimationTimeout); // Annule le démarrage si on survole avant
+                    imageButton.classList.remove('image-attention');
+                };
+                
+                imageButton.addEventListener('mouseover', stopAnimation, { once: true });
+                imageButton.addEventListener('focus', stopAnimation, { once: true });
+
+
+                // Assure-toi que l'animation est enlevée si la popup est fermée
+                e.popup.on('remove', () => {
+                    clearTimeout(startAnimationTimeout);
+                    imageButton.classList.remove('image-attention');
+                });
+            }
         });
 
         const nameForTooltip = (place, lang) => {
@@ -2027,12 +2163,16 @@
             if (!trimmed) {
                 return '';
             }
+            const baudinMatch = trimmed.match(/^baudin(\d+)$/i);
+            if (baudinMatch) {
+                return `Baudin${baudinMatch[1].padStart(3, '0')}`;
+            }
             const entreMatch = trimmed.match(/^entre(\d+)$/i);
             if (entreMatch) {
                 return `Entre${entreMatch[1].padStart(2, '0')}`;
             }
             if (/^\d+$/.test(trimmed)) {
-                return `Entre${trimmed.padStart(2, '0')}`;
+                return trimmed;
             }
             return trimmed;
         };
@@ -2041,13 +2181,14 @@
             if (!normalized) {
                 return;
             }
-            pendingHashCode = normalized;
+            pendingHashCode = normalized; // keep latest requested code
             const marker = markersByCode.get(normalized.toLowerCase());
             if (!marker) {
                 pendingHashCode = '';
                 clearUrlHash();
                 return;
             }
+            ensureExpeditionEnabled(marker.expeditionKey);
             map.closePopup();
             marker.openPopup();
             pendingHashCode = '';
@@ -2114,6 +2255,27 @@
             return place.lat !== 0 || place.lon !== 0;
         };
 
+        const isPlaceActive = (place) => {
+            const expKey = place.expeditionKey || normalizeExpeditionKey(place.expedition || '');
+            return expKey ? selectedExpeditions.has(expKey) : true;
+        };
+
+        const createPinIcon = (color) => {
+            const fill = color || '#0b63d1';
+            return L.divIcon({
+                className: '',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                html: `
+                    <svg width="25" height="41" viewBox="0 0 25 41" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12.5 0C5.6 0 0 5.6 0 12.5 0 23 12.5 41 12.5 41S25 23 25 12.5C25 5.6 19.4 0 12.5 0z" fill="${fill}" stroke="rgba(0,0,0,0.35)" stroke-width="2"/>
+                        <circle cx="12.5" cy="12.5" r="5" fill="#fff" stroke="rgba(0,0,0,0.35)" stroke-width="2"/>
+                    </svg>
+                `
+            });
+        };
+
         // Perform search in specified fields
         const performSearch = (query) => {
             if (!query.trim()) {
@@ -2127,11 +2289,14 @@
                 if (!hasValidCoordinates(place)) {
                     return false;
                 }
+                if (!isPlaceActive(place)) {
+                    return false;
+                }
 
-                const searchFields = [
-                    place.frenchName,
-                    place.variantName,
-                    place.ausEName,
+            const searchFields = [
+                place.frenchName,
+                place.variantName,
+                place.ausEName,
                     place.characteristic_fr,
                     place.characteristic,
                     place.history_fr,
@@ -2211,6 +2376,7 @@
                 });
 
                 if (targetMarker) {
+                    ensureExpeditionEnabled(targetMarker.expeditionKey);
                     // Close any open popup first
                     map.closePopup();
 
@@ -2281,7 +2447,6 @@
         const refreshOpenPopup = () => {
             // Use the tracked marker reference
             if (currentOpenMarker) {
-                console.log('Refreshing popup for language change');
                 // Save reference before closing (close event will set currentOpenMarker to null)
                 const markerToRefresh = currentOpenMarker;
                 // Close and reopen the popup to refresh with new language
@@ -2289,203 +2454,284 @@
                 setTimeout(() => {
                     markerToRefresh.openPopup();
                 }, 100);
-            } else {
-                console.log('No open marker to refresh');
             }
         };
 
         // Listen for the languageChanged event dispatched by main.js
         document.addEventListener('languageChanged', () => {
-            console.log('Language changed event received');
             updateSearchTranslations();
             refreshOpenPopup();
         });
 
-        const dataVersion = '20250209';
-        const dataUrl = `data/entrecasteaux.json?v=${dataVersion}`;
+        const expeditionConfigs = {
+            baudin: {
+                key: 'baudin',
+                label: 'Baudin',
+                color: '#0b63d1',
+                dataUrl: `data/baudin.json`
+            },
+            entre: {
+                key: 'entre',
+                label: "d'Entrecasteaux",
+                color: '#238b45',
+                dataUrl: `data/entrecasteaux.json`
+            }
+        };
 
-        fetch(dataUrl, { cache: 'no-cache' })
-            .then(response => response.json())
-            .then(places => {
-                // Store places for search functionality
-                allPlaces = places;
-                allMarkers = [];
-                markersByCode = new Map();
+        const expeditionLayers = {
+            baudin: L.layerGroup().addTo(map),
+            entre: L.layerGroup().addTo(map)
+        };
+        let selectedExpeditions = new Set(['baudin', 'entre']);
 
-                const bounds = L.latLngBounds();
+        const toggleBaudin = document.getElementById('toggle-baudin');
+        const toggleEntre = document.getElementById('toggle-entre');
 
-                places.forEach(place => {
-                    const coordinates = extractCoordinates(place);
-                    if (!coordinates) {
-                        return;
-                    }
+        const normalizeExpeditionKey = (value = '') => {
+            const lower = value.toLowerCase();
+            if (lower.includes('baudin')) return 'baudin';
+            if (lower.includes('entre') || lower.includes("d'entrecasteaux")) return 'entre';
+            return '';
+        };
 
-                    const [lat, lon] = coordinates;
-                    const marker = L.marker([lat, lon]).addTo(map);
+        const ensureExpeditionEnabled = (key) => {
+            if (!key) return;
+            if (!selectedExpeditions.has(key)) {
+                selectedExpeditions.add(key);
+                if (key === 'baudin') {
+                    toggleBaudin.checked = true;
+                    map.addLayer(expeditionLayers.baudin);
+                } else if (key === 'entre') {
+                    toggleEntre.checked = true;
+                    map.addLayer(expeditionLayers.entre);
+                }
+            }
+        };
 
-                    // Store marker for search functionality
-                    marker.place = place;
-                    allMarkers.push(marker);
-                    const normalizedCode = normalizeMarkerCode(place.code || '');
-                    if (normalizedCode) {
-                        markersByCode.set(normalizedCode.toLowerCase(), marker);
-                    }
+        const setExpeditionVisibility = (key, visible) => {
+            const layer = expeditionLayers[key];
+            if (!layer) return;
+            if (visible) {
+                map.addLayer(layer);
+                selectedExpeditions.add(key);
+            } else {
+                map.removeLayer(layer);
+                selectedExpeditions.delete(key);
+            }
+            if (searchInput.value.trim()) {
+                performSearch(searchInput.value);
+            } else {
+                searchResults = [];
+                updateSearchUI();
+            }
+        };
 
-                    bounds.extend([lat, lon]);
+        toggleBaudin.addEventListener('change', () => setExpeditionVisibility('baudin', toggleBaudin.checked));
+        toggleEntre.addEventListener('change', () => setExpeditionVisibility('entre', toggleEntre.checked));
 
-                    if (!disableMarkerTooltips) {
-                        marker.bindTooltip('', {
-                            direction: 'top',
-                            offset: [0, -10],
-                            opacity: 0.95,
-                            sticky: true
-                        });
+        const addPlacesToMap = (places) => {
+            const bounds = L.latLngBounds();
 
-                        const refreshTooltip = () => {
-                            const currentLang = localStorage.getItem('language') || 'en';
-                            const tooltipName = nameForTooltip(place, currentLang);
-                            if (!tooltipName) {
-                                marker.closeTooltip();
-                                return;
-                            }
-                            marker.setTooltipContent(tooltipName);
-                        };
+            places.forEach(place => {
+                const coordinates = extractCoordinates(place);
+                if (!coordinates) {
+                    return;
+                }
 
-                        marker.on('mouseover', () => {
-                            refreshTooltip();
-                            if (marker.getTooltip()) {
-                                marker.openTooltip();
-                            }
-                        });
-                        marker.on('mouseout', () => marker.closeTooltip());
-                    }
+                const [lat, lon] = coordinates;
+                const expKey = place.expeditionKey || normalizeExpeditionKey(place.expedition) || 'baudin';
+                const cfg = expeditionConfigs[expKey];
+                const layer = expeditionLayers[expKey] || map;
+                const markerColor = cfg?.color || '#0056b3';
 
-                    // Preload image if available to get dimensions before opening popup
-                    const popupImageCache = {};
-                    if (place.imgUrl && place.imgUrl.trim() !== "") {
-                        const img = new Image();
-                        img.src = place.imgUrl;
-                        popupImageCache[place.code] = img;
-                    }
+                // Custom pin icon matching previous style (teardrop with inner white dot)
+                const marker = L.marker([lat, lon], { icon: createPinIcon(markerColor) }).addTo(layer);
 
-                    marker.bindPopup(() => {
+                marker.place = place;
+                marker.expeditionKey = expKey;
+                allMarkers.push(marker);
+                const normalizedCode = normalizeMarkerCode(place.code || '');
+                if (normalizedCode) {
+                    markersByCode.set(normalizedCode.toLowerCase(), marker);
+                }
+
+                bounds.extend([lat, lon]);
+
+                if (!disableMarkerTooltips) {
+                    marker.bindTooltip('', {
+                        direction: 'top',
+                        offset: [0, -10],
+                        opacity: 0.95,
+                        sticky: true
+                    });
+
+                    const refreshTooltip = () => {
                         const currentLang = localStorage.getItem('language') || 'en';
-                        const trans = translations[currentLang];
-                        const safeAlt = escapeHtml(place.frenchName || '');
+                        const tooltipName = nameForTooltip(place, currentLang);
+                        if (!tooltipName) {
+                            marker.closeTooltip();
+                            return;
+                        }
+                        marker.setTooltipContent(tooltipName);
+                    };
 
-                        let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
+                    marker.on('mouseover', () => {
+                        refreshTooltip();
+                        if (marker.getTooltip()) {
+                            marker.openTooltip();
+                        }
+                    });
+                    marker.on('mouseout', () => marker.closeTooltip());
+                }
+
+                if (place.imgUrl && place.imgUrl.trim() !== "") {
+                    const img = new Image();
+                    img.src = place.imgUrl;
+                }
+
+                marker.bindPopup(() => {
+                    const currentLang = localStorage.getItem('language') || 'en';
+                    const trans = translations[currentLang];
+                    const safeAlt = escapeHtml(place.frenchName || '');
+
+                    let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
 <p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p>`;
 
-                        if (place.indigenousName && place.indigenousName.trim() !== "") {
-                            textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
-                        }
+                    if (place.indigenousName && place.indigenousName.trim() !== "") {
+                        textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
+                    }
 
-                        const coordinatesText = formatCoordinates(lat, lon, place.code, trans);
-                        textHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${coordinatesText}</p>`;
+                    const coordinatesText = formatCoordinates(lat, lon, place.code, trans);
+                    textHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${coordinatesText}</p>`;
 
-                        const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
-                        const linkSegments = [];
+                    const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
+                    const linkSegments = [];
 
-                        if (place.mapUrl && place.mapUrl.trim() !== "") {
-                            const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
-                            const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
-                            const safeMapUrl = escapeHtml(place.mapUrl);
-                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
-                        }
+                    if (place.mapUrl && place.mapUrl.trim() !== "") {
+                        const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
+                        const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
+                        const safeMapUrl = escapeHtml(place.mapUrl);
+                        linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                    }
 
-                        if (detailsUrl && detailsUrl.trim() !== '' && detailsUrl.trim() !== '#') {
-                            const resolvedDetailsHref = resolveDetailsUrl(detailsUrl);
-                            if (resolvedDetailsHref) {
-                                const frLabelRaw = (place.frenchName || '').trim();
-                                const enLabelRaw = (place.ausEName || '').trim();
-                                if (!placeNamesByUrl[resolvedDetailsHref]) {
-                                    placeNamesByUrl[resolvedDetailsHref] = {
-                                        fr: frLabelRaw,
-                                        en: enLabelRaw
-                                    };
-                                }
-                                const detailsTitle = currentLang === 'fr'
-                                    ? (frLabelRaw || enLabelRaw)
-                                    : (enLabelRaw || frLabelRaw);
-                                linkSegments.push(`<a href="${escapeHtml(resolvedDetailsHref)}" class="popup-details-link" data-details-url="${escapeHtml(resolvedDetailsHref)}" data-details-title="${escapeHtml(detailsTitle)}">${trans['popup-details-link']}</a>`);
+                    if (detailsUrl && detailsUrl.trim() !== '' && detailsUrl.trim() !== '#') {
+                        const resolvedDetailsHref = resolveDetailsUrl(detailsUrl);
+                        if (resolvedDetailsHref) {
+                            const frLabelRaw = (place.frenchName || '').trim();
+                            const enLabelRaw = (place.ausEName || '').trim();
+                            if (!placeNamesByUrl[resolvedDetailsHref]) {
+                                placeNamesByUrl[resolvedDetailsHref] = {
+                                    fr: frLabelRaw,
+                                    en: enLabelRaw
+                                };
                             }
+                            const detailsTitle = currentLang === 'fr'
+                                ? (frLabelRaw || enLabelRaw)
+                                : (enLabelRaw || frLabelRaw);
+                            linkSegments.push(`<a href="${escapeHtml(resolvedDetailsHref)}" class="popup-details-link" data-details-url="${escapeHtml(resolvedDetailsHref)}" data-details-title="${escapeHtml(detailsTitle)}">${trans['popup-details-link']}</a>`);
                         }
+                    }
 
-                        if (linkSegments.length) {
-                            textHtml += `<p class="popup-link-row">${linkSegments.join('<span class="popup-link-separator">|</span>')}</p>`;
-                        }
+                    if (linkSegments.length) {
+                        textHtml += `<p class="popup-link-row">${linkSegments.join('<span class="popup-link-separator">|</span>')}</p>`;
+                    }
 
-                        const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                    const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                    const characteristicText = (currentLang === 'fr') ? place.characteristic_fr : place.characteristic;
+                    if (characteristicText && characteristicText.trim() !== "") {
+                        const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
+                        textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${enrichedCharacteristic}</p>`;
+                    }
 
-                        // Characteristic
-                        const characteristicText = (currentLang === 'fr' && place.characteristic_fr) ? place.characteristic_fr : place.characteristic;
-                        if (characteristicText && characteristicText.trim() !== "") {
-                            const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
-                            textHtml += `<p><strong>${trans['popup-characteristic-label']}</strong> ${enrichedCharacteristic}</p>`;
-                        }
+                    const historyText = (currentLang === 'fr') ? place.history_fr : place.history;
+                    if (historyText && historyText.trim() !== "") {
+                        const enrichedHistory = enhanceWikiText(historyText, wikiLang);
+                        textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${enrichedHistory}</p>`;
+                    }
 
-                        // Narrative path / origin of the name
-                        const historyText = (currentLang === 'fr' && place.history_fr) ? place.history_fr : place.history;
-                        if (historyText && historyText.trim() !== "") {
-                            const enrichedHistory = enhanceWikiText(historyText, wikiLang);
-                            textHtml += `<p><strong>${trans['popup-history-label']}</strong> ${enrichedHistory}</p>`;
-                        }
+                    const wikiLink = (currentLang === 'fr') ? place.wiki_fr : place.wiki_en;
+                    if (wikiLink && wikiLink.trim() !== "") {
+                        let linkText = wikiLink.substring(wikiLink.lastIndexOf('/') + 1);
+                        linkText = decodeURIComponent(linkText).replace(/_/g, ' ');
+                        const wikiMarkup = createWikiLinkMarkup(wikiLink, linkText, wikiLang);
+                        textHtml += `<p><strong>${trans['popup-wiki-label']}</strong> ${wikiMarkup}</p>`;
+                    }
 
-                        // Wikipedia link
-                        const wikiLink = (currentLang === 'fr') ? place.wiki_fr : place.wiki_en;
-                        if (wikiLink && wikiLink.trim() !== "") {
-                            let linkText = wikiLink.substring(wikiLink.lastIndexOf('/') + 1);
-                            linkText = decodeURIComponent(linkText).replace(/_/g, ' ');
-                            const wikiMarkup = createWikiLinkMarkup(wikiLink, linkText, wikiLang);
-                            textHtml += `<p><strong>${trans['popup-wiki-label']}</strong> ${wikiMarkup}</p>`;
-                        }
+                    if (place.other_link && place.other_link.trim() !== "") {
+                        const otherSourceLabel = trans['popup-othersource-label'];
+                        textHtml += `<p class="popup-other-source"><a class="popup-other-source-link" href="${place.other_link}" target="_blank" rel="noopener"><strong>${otherSourceLabel}</strong></a></p>`;
+                    }
 
-                        // Other source link
-                        if (place.other_link && place.other_link.trim() !== "") {
-                            textHtml += `<p><strong>${trans['popup-othersource-label']}</strong> <a href="${place.other_link}" target="_blank">${place.other_link}</a></p>`;
-                        }
-
-                        // Si une image est disponible, créer une mise en page à deux colonnes.
-                        if (place.imgUrl && place.imgUrl.trim() !== "") {
-                            const imageHtml = `
+                    if (place.imgUrl && place.imgUrl.trim() !== "") {
+                        const imageHtml = `
                                 <div class="popup-image-wrapper">
                                     <button type="button" class="popup-image-button" aria-label="${trans['popup-image-expand-label']}">
                                         <img src="${place.imgUrl}" alt="${safeAlt}" class="popup-image">
                                     </button>
                                 </div>`;
 
-                            return `<div class="popup-layout">
+                        return `<div class="popup-layout">
                                         <div class="popup-text-container">${textHtml}</div>
                                         ${imageHtml}
                                     </div>`;
-                        }
+                    }
 
-                        // Sinon, retourner uniquement le texte dans un conteneur de largeur fixe.
-                        return `<div class="popup-text-container">${textHtml}</div>`;
-                    }, { maxWidth: 700 });
-                });
+                    return `<div class="popup-text-container">${textHtml}</div>`;
+                }, { maxWidth: 700 });
+            });
+        };
 
-                // Toujours cadrer sur toute l'Australie au lieu des marqueurs
+        const loadExpedition = async (cfg) => {
+            const normalize = (places) => places.map(p => ({
+                ...p,
+                expeditionKey: normalizeExpeditionKey(p.expedition || cfg.label) || cfg.key
+            }));
+
+            // Try standard fetch (works when served via http/https)
+            try {
+                const response = await fetch(cfg.dataUrl, { cache: 'no-cache' });
+                if (response.ok) {
+                    const places = await response.json();
+                    return normalize(places);
+                }
+            } catch (err) {
+                // silent
+            }
+
+            // Fallback for file:// access using dynamic import of JSON
+            try {
+                const module = await import(`${cfg.dataUrl}`, { assert: { type: 'json' } });
+                const data = module.default || module;
+                return normalize(data);
+            } catch (err) {
+                return [];
+            }
+        };
+
+        (async () => {
+            try {
+                const baudinPlaces = await loadExpedition(expeditionConfigs.baudin);
+                const entrePlaces = await loadExpedition(expeditionConfigs.entre);
+                allPlaces = [...baudinPlaces, ...entrePlaces];
+                allMarkers = [];
+                markersByCode = new Map();
+                addPlacesToMap(allPlaces);
                 map.setView(defaultCenter, defaultZoom);
-
-                // Gérer le changement d'orientation sur mobile
                 window.addEventListener('resize', () => {
                     const newZoom = getDefaultZoom();
                     if (Math.abs(map.getZoom() - defaultZoom) < 0.5) {
-                        // Uniquement si l'utilisateur n'a pas zoomy/dézoomy manuellement
                         map.setView(defaultCenter, newZoom, { animate: false });
                     }
                 });
 
-                // Initialize search interface translations
                 updateSearchTranslations();
                 handleHashNavigation();
                 tryOpenPendingHash();
                 window.addEventListener('hashchange', handleHashNavigation);
-            })
-            .catch(error => {
-                console.error('Failed to load entrecasteaux data:', error);
-            });
+            } catch (error) {
+                console.error('Failed to load expedition data:', error);
+            }
+        })();
     </script>
 </body>
 </html>

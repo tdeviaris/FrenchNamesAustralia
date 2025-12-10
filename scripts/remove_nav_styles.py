@@ -70,8 +70,6 @@ if __name__ == '__main__':
         'cartesE.html',
         'SourcesF.html',
         'SourcesE.html',
-        'map_baudin.html',
-        'map_dentrecasteaux.html',
     ]
 
     modified_count = 0

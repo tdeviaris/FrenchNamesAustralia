@@ -1273,6 +1273,9 @@
             if (!activePopup) {
                 return;
             }
+            if (typeof activePopup.update === 'function') {
+                activePopup.update();
+            }
             enforcePopupMaxHeight(activePopup, adjustPopupView);
         });
 
@@ -2150,6 +2153,9 @@
             const ensureVisible = () => {
                 if (!map._popup || map._popup !== popup) {
                     return;
+                }
+                if (typeof popup.update === 'function') {
+                    popup.update();
                 }
                 enforcePopupMaxHeight(popup, adjustPopupView);
             };
