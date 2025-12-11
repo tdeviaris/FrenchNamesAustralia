@@ -331,6 +331,30 @@
         .leaflet-container .leaflet-popup-close-button {
             right: 14px;
             top: 10px;
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            line-height: 22px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            opacity: 1;
+        }
+        .leaflet-container .leaflet-popup-close-button:hover {
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+        }
+        .leaflet-container .leaflet-popup-close-button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
         }
         
         /* Styles pour la mise en page de la popup */
@@ -908,6 +932,16 @@
         .wiki-card-source a:hover {
             text-decoration: underline;
         }
+        .search-match {
+            font-weight: 700;
+            color: inherit;
+        }
+        .leaflet-popup-content .search-match {
+            color: inherit !important;
+        }
+        .leaflet-popup-content strong.search-match {
+            color: inherit !important;
+        }
     </style>
 </head>
 <body>
@@ -1324,6 +1358,39 @@
             const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
             return chars[char] || char;
         });
+        const escapeRegExp = (value = '') => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        let activeSearchWordsRaw = [];
+        const highlightMatches = (text) => {
+            if (!text) return '';
+            if (!activeSearchWordsRaw.length) {
+                return escapeHtml(text);
+            }
+            let safe = escapeHtml(text);
+            activeSearchWordsRaw.forEach(word => {
+                if (!word) return;
+                const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi');
+                safe = safe.replace(regex, '<strong class="search-match">$1</strong>');
+            });
+            return safe;
+        };
+        const highlightHtml = (html) => {
+            if (!html || !activeSearchWordsRaw.length) {
+                return html || '';
+            }
+            const parts = html.split(/(<[^>]+>)/g);
+            return parts.map(part => {
+                if (part.startsWith('<') && part.endsWith('>')) {
+                    return part;
+                }
+                let updated = part;
+                activeSearchWordsRaw.forEach(word => {
+                    if (!word) return;
+                    const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi');
+                    updated = updated.replace(regex, '<strong class="search-match">$1</strong>');
+                });
+                return updated;
+            }).join('');
+        };
         const resolveDetailsUrl = (rawValue = '') => {
             const value = (rawValue || '').trim();
             if (!value) {
@@ -2331,22 +2398,131 @@
                 .replace(/[\u0300-\u036f]/g, ''); // Remove accents
         };
 
-        // Check if all query words match at word beginnings (AND search)
-        const matchesWordStart = (text, query) => {
-            if (!text || !query) return false;
-            const normalizedText = normalizeText(text);
-            const normalizedQuery = normalizeText(query);
+        const synonymLookup = new Map([
+            ['baie', 'bay'],
+            ['bay', 'bay'],
+            ['cap', 'cape'],
+            ['cape', 'cape'],
+            ['ile', 'island'],
+            ['iles', 'island'],
+            ['island', 'island'],
+            ['islands', 'island'],
+            ['mont', 'mount'],
+            ['montagne', 'mountain'],
+            ['mountain', 'mountain'],
+            ['pointe', 'point'],
+            ['point', 'point'],
+            ['golfe', 'gulf'],
+            ['gulf', 'gulf'],
+            ['havre', 'harbour'],
+            ['harbour', 'harbour'],
+            ['harbor', 'harbour'],
+            ['lac', 'lake'],
+            ['lake', 'lake'],
+            ['riviere', 'river'],
+            ['rivieres', 'river'],
+            ['river', 'river']
+        ]);
 
-            // Split query into individual words
-            const queryWords = normalizedQuery.split(/\s+/).filter(word => word.length > 0);
+        const normalizeForSearch = (text) => {
+            const normalized = normalizeText(text);
+            if (!normalized) return '';
+            return normalized.replace(/\b([a-z']+)\b/g, (word) => synonymLookup.get(word) || word);
+        };
 
-            // Split text into words
-            const textWords = normalizedText.split(/[\s\-,.'()]+/);
+        const splitQueryWords = (value) => normalizeForSearch(value).split(/\s+/).filter(Boolean);
 
-            // All query words must have a matching word start in the text (AND logic)
-            return queryWords.every(queryWord =>
-                textWords.some(textWord => textWord.startsWith(queryWord))
+        const matchWeights = {
+            primary: { exact: 120, prefix: 80, substring: 1 },
+            alias: { exact: 70, prefix: 35, substring: 1 },
+            text: { exact: 30, prefix: 20, substring: 1 }
+        };
+
+        const getMatchCategoryScore = (text, queryWords, weights) => {
+            if (!text || queryWords.length === 0) return 0;
+            const normalizedText = normalizeForSearch(text);
+            if (!normalizedText) return 0;
+
+            const normalizedQuery = queryWords.join(' ');
+            if (normalizedText === normalizedQuery) {
+                return weights.exact;
+            }
+
+            const textWords = normalizedText.split(/[\s\-,.'()]+/).filter(Boolean);
+            let best = 0;
+
+            const allPrefix = queryWords.every(qw => textWords.some(tw => tw.startsWith(qw)));
+            if (allPrefix) {
+                best = Math.max(best, weights.prefix);
+            }
+
+            if (weights.substring > 0) {
+                const allSubstring = queryWords.every(qw => normalizedText.includes(qw));
+                if (allSubstring) {
+                    best = Math.max(best, weights.substring);
+                }
+            }
+
+            return best;
+        };
+
+        const computeMatchScore = (place, queryWords) => {
+            const primaryScore = Math.max(
+                getMatchCategoryScore(place.frenchName, queryWords, matchWeights.primary),
+                getMatchCategoryScore(place.ausEName, queryWords, matchWeights.primary)
             );
+
+            const aliasScore = getMatchCategoryScore(place.variantName, queryWords, matchWeights.alias);
+            const nameScore = Math.max(primaryScore, aliasScore);
+
+            const characteristicScore = Math.max(
+                getMatchCategoryScore(place.characteristic_fr, queryWords, matchWeights.text),
+                getMatchCategoryScore(place.characteristic, queryWords, matchWeights.text)
+            );
+
+            const historyScore = Math.max(
+                getMatchCategoryScore(place.history_fr, queryWords, matchWeights.text),
+                getMatchCategoryScore(place.history, queryWords, matchWeights.text)
+            );
+
+            return nameScore + characteristicScore + historyScore;
+        };
+
+        const computeTextLength = (place) => {
+            const characteristicLen = (place.characteristic_fr || '').length + (place.characteristic || '').length;
+            const historyLen = (place.history_fr || '').length + (place.history || '').length;
+            return characteristicLen + historyLen;
+        };
+
+        const computeRichness = (place) => {
+            const hasImage = !!(place.imgUrl && place.imgUrl.trim() !== '');
+            const hasMap = !!(place.mapUrl && place.mapUrl.trim() !== '');
+            const hasDetails = !!(
+                (place.detailsLink && place.detailsLink.trim() !== '') ||
+                (place.detailsLink_en && place.detailsLink_en.trim() !== '')
+            );
+
+            const textLength = computeTextLength(place);
+            let textBonus = 0;
+            if (textLength > 1800) {
+                textBonus = 10;
+            } else if (textLength > 1200) {
+                textBonus = 8;
+            } else if (textLength > 800) {
+                textBonus = 6;
+            } else if (textLength > 400) {
+                textBonus = 4;
+            } else if (textLength > 0) {
+                textBonus = 2;
+            }
+
+            const baseRichness = (hasImage ? 25 : 0) + (hasMap ? 12 : 0) + (hasDetails ? 12 : 0) + textBonus;
+            const richnessPenalty = baseRichness === 0 ? -40 : 0; // stronger de-prioritization for empty fiches
+            const richnessScore = baseRichness + richnessPenalty;
+
+            place.richnessScore = richnessScore;
+            place.richnessTextLength = textLength;
+            place.richnessHasImage = hasImage;
         };
 
         // Check if place has valid GPS coordinates
@@ -2377,43 +2553,72 @@
 
         // Perform search in specified fields
         const performSearch = (query) => {
-            if (!query.trim()) {
+            activeSearchWordsRaw = query.trim().split(/\s+/).filter(Boolean);
+            const normalizedQuery = normalizeText(query).trim();
+            if (!normalizedQuery) {
+                activeSearchWordsRaw = [];
                 searchResults = [];
                 updateSearchUI();
                 return;
             }
 
-            const matchingPlaces = allPlaces.filter(place => {
-                // First, exclude places without valid GPS coordinates
-                if (!hasValidCoordinates(place)) {
-                    return false;
-                }
-                if (!isPlaceActive(place)) {
-                    return false;
-                }
+            const queryWords = splitQueryWords(normalizedQuery);
+            const resultsWithScores = [];
 
-            const searchFields = [
-                place.frenchName,
-                place.variantName,
-                place.ausEName,
-                    place.characteristic_fr,
-                    place.characteristic,
-                    place.history_fr,
-                    place.history
-                ];
+            allPlaces.forEach(place => {
+                if (!hasValidCoordinates(place)) return;
+                if (!isPlaceActive(place)) return;
 
-                return searchFields.some(field => matchesWordStart(field, query));
+                const matchScore = computeMatchScore(place, queryWords);
+                if (matchScore <= 0) return;
+
+                const richnessScore = place.richnessScore || 0;
+                resultsWithScores.push({ place, matchScore, richnessScore });
             });
 
-            // Simple deduplication by unique code (codes are unique)
-            const uniquePlaces = new Map();
-            matchingPlaces.forEach(place => {
-                if (!uniquePlaces.has(place.code)) {
-                    uniquePlaces.set(place.code, place);
+            // Deduplicate by code; keep the highest total score per code
+            const uniqueResults = new Map();
+            resultsWithScores.forEach(entry => {
+                const code = entry.place.code;
+                const existing = uniqueResults.get(code);
+                const entryScore = entry.matchScore + entry.richnessScore;
+                const existingScore = existing ? (existing.matchScore + existing.richnessScore) : -Infinity;
+                if (!existing || entryScore > existingScore) {
+                    uniqueResults.set(code, entry);
                 }
             });
 
-            searchResults = Array.from(uniquePlaces.values());
+            const sorted = Array.from(uniqueResults.values()).sort((a, b) => {
+                const totalA = a.matchScore + a.richnessScore;
+                const totalB = b.matchScore + b.richnessScore;
+                if (totalA !== totalB) {
+                    return totalB - totalA;
+                }
+
+                const imgA = a.place.richnessHasImage ? 1 : 0;
+                const imgB = b.place.richnessHasImage ? 1 : 0;
+                if (imgA !== imgB) {
+                    return imgB - imgA;
+                }
+
+                const textLenA = a.place.richnessTextLength || 0;
+                const textLenB = b.place.richnessTextLength || 0;
+                if (textLenA !== textLenB) {
+                    return textLenB - textLenA;
+                }
+
+                const frA = (a.place.frenchName || '').toLowerCase();
+                const frB = (b.place.frenchName || '').toLowerCase();
+                if (frA !== frB) {
+                    return frA.localeCompare(frB);
+                }
+
+                const enA = (a.place.ausEName || '').toLowerCase();
+                const enB = (b.place.ausEName || '').toLowerCase();
+                return enA.localeCompare(enB);
+            });
+
+            searchResults = sorted.map(entry => entry.place);
             currentSearchIndex = 0;
             updateSearchUI();
 
@@ -2506,6 +2711,7 @@
             // Clear search results immediately if input is empty
             if (value.trim().length === 0) {
                 searchResults = [];
+                activeSearchWordsRaw = [];
                 updateSearchUI();
             }
             // No automatic search - user must click magnifier
@@ -2525,6 +2731,7 @@
             searchInput.value = '';
             searchClear.classList.remove('visible');
             searchResults = [];
+            activeSearchWordsRaw = [];
             updateSearchUI();
             searchInput.focus();
         });
@@ -2692,9 +2899,13 @@
                     const currentLang = localStorage.getItem('language') || 'en';
                     const trans = translations[currentLang];
                     const safeAlt = escapeHtml(place.frenchName || '');
+                    const aliasLabel = trans['popup-alias-name'] || 'Alias :';
 
-                    let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${place.frenchName}</p>
-<p><strong>${trans['popup-ause-name']}</strong> ${place.ausEName}</p>`;
+                    let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${highlightMatches(place.frenchName || '')}</p>`;
+                    if (place.variantName && place.variantName.trim() !== "") {
+                        textHtml += `<p><strong>${aliasLabel}</strong> ${highlightMatches(place.variantName)}</p>`;
+                    }
+                    textHtml += `<p><strong>${trans['popup-ause-name']}</strong> ${highlightMatches(place.ausEName || '')}</p>`;
 
                     if (place.indigenousName && place.indigenousName.trim() !== "") {
                         textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
@@ -2741,13 +2952,15 @@
                     const characteristicText = (currentLang === 'fr') ? place.characteristic_fr : place.characteristic;
                     if (characteristicText && characteristicText.trim() !== "") {
                         const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
-                        fullWidthBlocks.push(`<p><strong>${trans['popup-characteristic-label']}</strong> ${enrichedCharacteristic}</p>`);
+                        const highlightedCharacteristic = highlightHtml(enrichedCharacteristic);
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-characteristic-label']}</strong> ${highlightedCharacteristic}</p>`);
                     }
 
                     const historyText = (currentLang === 'fr') ? place.history_fr : place.history;
                     if (historyText && historyText.trim() !== "") {
                         const enrichedHistory = enhanceWikiText(historyText, wikiLang);
-                        fullWidthBlocks.push(`<p><strong>${trans['popup-history-label']}</strong> ${enrichedHistory}</p>`);
+                        const highlightedHistory = highlightHtml(enrichedHistory);
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-history-label']}</strong> ${highlightedHistory}</p>`);
                     }
 
                     const wikiLink = (currentLang === 'fr') ? place.wiki_fr : place.wiki_en;
@@ -2822,6 +3035,7 @@
                 const baudinPlaces = await loadExpedition(expeditionConfigs.baudin);
                 const entrePlaces = await loadExpedition(expeditionConfigs.entre);
                 allPlaces = [...baudinPlaces, ...entrePlaces];
+                allPlaces.forEach(place => computeRichness(place));
                 allMarkers = [];
                 markersByCode = new Map();
                 addPlacesToMap(allPlaces);
