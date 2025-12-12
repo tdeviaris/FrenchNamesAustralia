@@ -1362,21 +1362,25 @@
         });
         const escapeRegExp = (value = '') => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         let activeSearchWordsRaw = [];
+        let highlightRegex = null;
+        const rebuildHighlightRegex = () => {
+            if (!activeSearchWordsRaw.length) {
+                highlightRegex = null;
+                return;
+            }
+            const uniqueWords = Array.from(new Set(activeSearchWordsRaw.filter(Boolean).map(w => escapeRegExp(w))));
+            highlightRegex = uniqueWords.length ? new RegExp(`(${uniqueWords.join('|')})`, 'gi') : null;
+        };
         const highlightMatches = (text) => {
             if (!text) return '';
-            if (!activeSearchWordsRaw.length) {
-                return escapeHtml(text);
+            const escaped = escapeHtml(text);
+            if (!highlightRegex) {
+                return escaped;
             }
-            let safe = escapeHtml(text);
-            activeSearchWordsRaw.forEach(word => {
-                if (!word) return;
-                const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi');
-                safe = safe.replace(regex, '<strong class="search-match">$1</strong>');
-            });
-            return safe;
+            return escaped.replace(highlightRegex, '<strong class="search-match">$1</strong>');
         };
         const highlightHtml = (html) => {
-            if (!html || !activeSearchWordsRaw.length) {
+            if (!html || !highlightRegex) {
                 return html || '';
             }
             const parts = html.split(/(<[^>]+>)/g);
@@ -1384,13 +1388,7 @@
                 if (part.startsWith('<') && part.endsWith('>')) {
                     return part;
                 }
-                let updated = part;
-                activeSearchWordsRaw.forEach(word => {
-                    if (!word) return;
-                    const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi');
-                    updated = updated.replace(regex, '<strong class="search-match">$1</strong>');
-                });
-                return updated;
+                return part.replace(highlightRegex, '<strong class="search-match">$1</strong>');
             }).join('');
         };
         const resolveDetailsUrl = (rawValue = '') => {
@@ -2556,9 +2554,11 @@
         // Perform search in specified fields
         const performSearch = (query) => {
             activeSearchWordsRaw = query.trim().split(/\s+/).filter(Boolean);
+            rebuildHighlightRegex();
             const normalizedQuery = normalizeText(query).trim();
             if (!normalizedQuery) {
                 activeSearchWordsRaw = [];
+                rebuildHighlightRegex();
                 searchResults = [];
                 updateSearchUI();
                 return;
@@ -2714,6 +2714,7 @@
             if (value.trim().length === 0) {
                 searchResults = [];
                 activeSearchWordsRaw = [];
+                rebuildHighlightRegex();
                 updateSearchUI();
             }
             // No automatic search - user must click magnifier
@@ -2734,6 +2735,7 @@
             searchClear.classList.remove('visible');
             searchResults = [];
             activeSearchWordsRaw = [];
+            rebuildHighlightRegex();
             updateSearchUI();
             searchInput.focus();
         });
