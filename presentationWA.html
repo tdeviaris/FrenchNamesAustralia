@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        :root {
+            --nav-height: 72px;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            background-color: #999;
+            color: #333;
+            padding-top: var(--nav-height);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+        .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); min-height: 50vh;}
+        .content-section h2 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; color: #333; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 18px 0; }
+        .resource-primary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .resource-primary-link:hover { background-color: #003f82; }
+        .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .resource-item { margin-top: 28px; }
+
+        /* Audio Section */
+        .audio-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+        .audio-title-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.2;
+            cursor: pointer;
+            white-space: nowrap;
+            border: none;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .audio-title-button:hover {
+            background-color: #003f82;
+        }
+        .audio-title-button:active {
+            transform: scale(0.98);
+        }
+        .audio-title-button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 3px;
+        }
+        .audio-player {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+        @media  (max-width: 768px)  {.content-section { padding: 24px; }
+            .content-section h2 { font-size: 1.5rem; }
+            .content-section p { font-size: 0.9rem; }
+
+            /* Audio responsive */
+            .audio-header { flex-direction: column; align-items: flex-start; }
+            .audio-player { width: 100%; min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="mapWA.html" id="nav-map-wa">Map Western Australia</a></li>
+        <li><a href="presentationWA.html" id="nav-about-wa" aria-current="page">About</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français">
+            <img src="img/fr.svg" alt="Français">
+        </button>
+        <button type="button" id="lang-en" title="Switch to English">
+            <img src="img/au.svg" alt="English">
+        </button>
+    </div>
+</nav>
+
+    <main class="container">
+         <section class="content-section">
+            <h2 data-i18n="about-title">À propos</h2>
+
+            <!-- d'Entrecasteaux Expedition Audio Section -->
+            <div class="audio-header">
+            <button type="button" class="audio-title-button" id="dentre-audio-btn" data-i18n="about-dentre-expedition-title" aria-pressed="false">L'expédition d'Entrecasteaux</button>
+                <audio class="audio-player" id="dentre-audio" controls preload="auto" data-i18n-src="about-dentre-expedition-audio-src">
+                    <source src="data/dentrecasteaux_fr.m4a" type="audio/mp4">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            </div>
+            <p data-i18n="about-dentre-expedition-subtitle">Découvrez l'expédition d'Entrecasteaux (1791-1794) à travers ce dialogue présentant les objectifs, le déroulement et les résultats de l'expédition.</p>
+
+            <!-- Baudin Expedition Audio Section -->
+            <div class="audio-header" style="margin-top: 28px;">
+            <button type="button" class="audio-title-button" id="baudin-audio-btn" data-i18n="about-baudin-expedition-title" aria-pressed="false">L'expédition Baudin</button>
+                <audio class="audio-player" id="baudin-audio" controls preload="auto" data-i18n-src="about-baudin-expedition-audio-src">
+                    <source src="data/baudin_fr.m4a" type="audio/mp4">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            </div>
+            <p data-i18n="about-baudin-expedition-subtitle">Découvrez l'expédition Baudin (1800-1804) à travers ce dialogue présentant les objectifs, le déroulement et les résultats de l'expédition.</p>
+
+            <div class="resource-item" style="margin-top: 28px;">
+                <p data-i18n-html="about-author-entry"><a class="resource-primary-link" href="author.html">Présentation de l'auteure</a></p>
+                <p data-i18n="about-author-subtitle">Dany Bréelle, agrégée et docteur en géographie, auteure du projet.</p>
+            </div>
+
+            <div class="resource-item" style="margin-top: 28px;">
+                <p data-i18n-html="about-supporters-entry"><a class="resource-primary-link" href="supporters.html">Soutiens du projet</a></p>
+                <p data-i18n="about-supporters-subtitle">Organisations et personnes ayant soutenu ce projet.</p>
+            </div>
+
+            <div class="resource-item" style="margin-top: 28px;">
+                <p data-i18n-html="about-sitemap-entry"><a class="resource-primary-link" href="site_map.html">Structure du site</a></p>
+                <p data-i18n="about-sitemap-subtitle">Vue d'ensemble de la structure et de l'organisation du site.</p>
+            </div>
+
+            <div class="resource-item" style="margin-top: 28px;">
+                <p data-i18n-html="about-legal-entry"><a class="resource-primary-link" href="legal_notice.html">Mentions légales</a></p>
+                <p data-i18n="about-legal-subtitle">Informations légales, droits d'auteur et crédits du projet.</p>
+            </div>
+        </section>
+    </main>
+
+    <div data-include-footer></div>
+
+    <script src="js/translations.js?v=20241012"></script>
+    <script src="js/main.js?v=20241012"></script>
+    <script>
+        // Audio button controls for d'Entrecasteaux
+        (() => {
+            const toggleButton = document.getElementById('dentre-audio-btn');
+            const audio = document.getElementById('dentre-audio');
+            if (!toggleButton || !audio) return;
+
+            const updatePressed = (pressed) => {
+                toggleButton.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+            };
+
+            toggleButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    const playPromise = audio.play();
+                    if (playPromise && typeof playPromise.then === 'function') {
+                        playPromise.catch(() => updatePressed(false));
+                    }
+                    updatePressed(true);
+                } else {
+                    audio.pause();
+                    updatePressed(false);
+                }
+            });
+
+            audio.addEventListener('play', () => updatePressed(true));
+            audio.addEventListener('pause', () => updatePressed(false));
+        })();
+
+        // Audio button controls for Baudin
+        (() => {
+            const toggleButton = document.getElementById('baudin-audio-btn');
+            const audio = document.getElementById('baudin-audio');
+            if (!toggleButton || !audio) return;
+
+            const updatePressed = (pressed) => {
+                toggleButton.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+            };
+
+            toggleButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    const playPromise = audio.play();
+                    if (playPromise && typeof playPromise.then === 'function') {
+                        playPromise.catch(() => updatePressed(false));
+                    }
+                    updatePressed(true);
+                } else {
+                    audio.pause();
+                    updatePressed(false);
+                }
+            });
+
+            audio.addEventListener('play', () => updatePressed(true));
+            audio.addEventListener('pause', () => updatePressed(false));
+        })();
+    </script>
+</body>
+</html>

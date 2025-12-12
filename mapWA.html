@@ -1,0 +1,3065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baudin Map (WA) - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        :root {
+            --nav-height: 72px;
+        }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Lato', sans-serif; 
+            background-color: #f4f4f4; 
+            color: #333; 
+            padding-top: var(--nav-height); 
+        }
+#map {
+            width: 100%;
+            height: calc(100vh - var(--nav-height));
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .map-info-control {
+            background: #fff;
+            padding: 4px 10px;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            color: #333;
+            font-family: 'Lato', sans-serif;
+            pointer-events: auto;
+            user-select: none;
+        }
+        .leaflet-bottom.leaflet-left .leaflet-control.map-info-control {
+            margin: 0;
+        }
+        .map-info-coordinates { white-space: nowrap; }
+        .map-info-scale-wrapper { display: flex; align-items: baseline; }
+        .map-info-scale-wrapper .leaflet-control-scale {
+            margin: 0;
+            background: transparent;
+        }
+        .map-info-scale-wrapper .leaflet-control-scale-line {
+            background: transparent;
+            color: #333;
+            border: 1px solid #555;
+            border-top: none;
+            padding: 0 6px 2px;
+            border-radius: 0;
+            box-shadow: none;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            margin-top: 3px;
+        }
+        .map-info-satellite {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            color: #333;
+            font-family: 'Lato', sans-serif;
+        }
+        .map-info-satellite input {
+            width: 14px;
+            height: 14px;
+            margin: 0;
+        }
+
+        /* Expedition toggles */
+        .layer-toggle {
+            position: absolute;
+            top: calc(var(--nav-height) + 10px);
+            left: 6px;
+            z-index: 400; /* below popups */
+            display: grid;
+            gap: 6px;
+            min-width: 150px;
+        }
+        .layer-toggle label {
+            --toggle-color: #0b63d1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: var(--toggle-color);
+            border: 1px solid var(--toggle-color);
+            color: #fff;
+            font-weight: 400;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            cursor: pointer;
+            user-select: none;
+        }
+        .layer-toggle input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--toggle-color);
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.25);
+        }
+        .toggle-baudin { --toggle-color: #0b63d1; background: #0b63d1 !important; border-color: #0b63d1 !important; }
+        .toggle-baudin input { accent-color: #0b63d1 !important; }
+        .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
+        .toggle-entre input { accent-color: #238b45 !important; }
+        .layer-toggle span { flex: 1; font-weight: 400; }
+        /* Ensure popups sit above toggles */
+        .leaflet-popup-pane { z-index: 1200 !important; }
+
+        /* Search Interface */
+        .search-container {
+            position: absolute;
+            top: calc(var(--nav-height) + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 4px 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            min-width: 320px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            padding: 2px 4px;
+            color: #333;
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        .search-clear {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            color: #666;
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+            display: none;
+        }
+
+        .search-clear:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .search-clear.visible {
+            display: block;
+        }
+
+        .search-button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: #0056b3;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+            margin-left: 4px;
+        }
+
+        .search-button:hover {
+            background-color: rgba(0, 86, 179, 0.1);
+        }
+
+        .search-results {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 4px 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            color: #555;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-results.visible {
+            display: flex;
+        }
+
+        .search-nav-button {
+            background: rgba(0, 86, 179, 0.8);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        .search-nav-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media  (max-width: 768px)  {
+            .search-container {
+                top: 95px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 40px);
+                max-width: 320px;
+            }
+            .layer-toggle {
+                top: 120px;
+                left: 6px;
+                gap: 4px;
+            }
+            .layer-toggle label {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+
+            .search-box {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .search-input {
+                font-size: 16px; /* Prevents iOS auto-zoom */
+            }
+
+            .search-results {
+                font-size: 0.8rem;
+            }
+        }
+
+        .leaflet-popup-content-wrapper { border-radius: 5px; overflow: hidden; }
+        .leaflet-popup-content {
+            font-size: 0.9rem;
+            line-height: 1.35;
+            width: auto;
+            overflow-x: hidden;
+            padding: 12px 12px 12px 12px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
+        .popup-link-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 12px;
+        }
+        .popup-link-row .popup-link-separator {
+            color: #888;
+        }
+        .popup-other-source {
+            margin: 6px 0;
+            line-height: 1.3;
+        }
+        .popup-other-source-link {
+            display: inline-block;
+            margin-top: 2px;
+            text-decoration: underline;
+            color: #0056b3;
+            word-break: break-word;
+        }
+        .leaflet-popup-content.has-scrollbar {
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 10px;
+            padding-top: 12px;
+            scrollbar-width: thin;
+            max-height: min(500px, 70vh);
+            box-sizing: border-box;
+        }
+        .leaflet-popup-content.has-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .leaflet-popup-content.has-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.35);
+            border-radius: 4px;
+        }
+        .leaflet-popup-content.has-scrollbar::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            margin: 28px 0 12px;
+        }
+        .leaflet-container .leaflet-popup-close-button {
+            right: 10px;
+            top: 8px;
+            width: 26px;
+            height: 26px;
+            line-height: 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.9) !important;
+            color: #fff !important;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            opacity: 1;
+            text-indent: 0;
+            text-decoration: none;
+            background-image: none !important;
+        }
+        .leaflet-container .leaflet-popup-close-button:hover {
+            background: rgba(255, 255, 255, 0.95) !important;
+            color: #000 !important;
+        }
+        .leaflet-container .leaflet-popup-close-button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+        
+        /* Styles pour la mise en page de la popup */
+        .popup-layout {
+            display: grid;
+            grid-template-columns: minmax(220px, 1fr) minmax(180px, 320px);
+            align-items: flex-start;
+            gap: 15px;
+            box-sizing: border-box;
+        }
+        .popup-text-container {
+            grid-column: 1;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .popup-image-wrapper {
+            grid-column: 2;
+            display: flex;
+            flex: 0 0 auto;
+            min-width: 0;
+            position: sticky;
+            top: 12px;
+            align-self: flex-start;
+            max-height: 70vh;
+        }
+        .popup-image-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+        }
+        .popup-image-button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+        .popup-image-wrapper .popup-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            border-radius: 6px;
+            display: block;
+            object-fit: contain;
+        }
+        .popup-image-thumb {
+            display: none;
+        }
+        .popup-image-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+        }
+        .popup-fullwidth {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+            grid-column: 1;
+        }
+
+        /* Animation pour attirer l'attention sur les images (version discrète) */
+        @keyframes attention-glow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.6);
+            }
+            70% {
+                /* Halo plus fin et discret (spread réduit de 18px à 10px) */
+                box-shadow: 0 0 8px 10px rgba(0, 86, 179, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0);
+            }
+        }
+
+        .popup-image-button.image-attention {
+            /* On s'assure que le halo prend la forme de l'image */
+            border-radius: 6px;
+            /* Fréquence plus lente (4s au lieu de 2.5s) */
+            animation: attention-glow 4s infinite;
+        }
+
+        @media  (min-width: 769px)  {
+            .leaflet-popup.popup-has-image .leaflet-popup-content-wrapper,
+            .leaflet-popup.popup-has-image .leaflet-popup-content {
+                width: min(650px, calc(100vw - 60px));
+                max-width: min(650px, calc(100vw - 60px));
+            }
+            /* Popups sans image utilisent la même largeur pour afficher plus de texte */
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper,
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content {
+                width: min(720px, calc(100vw - 60px));
+                max-width: min(720px, calc(100vw - 60px));
+            }
+            /* Le texte utilise toute la largeur quand il n'y a pas d'image */
+            .leaflet-popup:not(.popup-has-image) .popup-text-container {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media  (max-width: 768px)  {#map { height: calc(100vh - var(--nav-height)); }
+            .search-container { top: calc(var(--nav-height) + 8px); }
+            .leaflet-popup {
+                width: 85vw;
+                max-width: 380px;
+            }
+            .leaflet-popup-content-wrapper { width: 100%; }
+            .leaflet-popup-content { font-size: 0.8rem; line-height: 1.3; max-height: min(420px, 65vh); overflow-y: auto; }
+            .popup-layout {
+                position: relative;
+                display: block;
+                grid-template-columns: none;
+            }
+            .popup-text-container {
+                width: 100%;
+                padding-right: 0;
+                padding-top: 0;
+            }
+            .popup-image-wrapper {
+                position: static;
+                width: 100%;
+                height: auto;
+                flex-basis: auto;
+                margin-top: 10px;
+                max-height: 60vh;
+            }
+            .popup-image-wrapper .popup-image {
+                max-width: 100%;
+                height: auto;
+                max-height: 60vh;
+                object-fit: contain;
+                border: 1px solid #eee;
+                border-radius: 4px;
+            }
+            .popup-image-thumb {
+                display: block;
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                height: 6em;
+                min-width: 6em;
+                max-width: 13em;
+                width: auto;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                border: none;
+                border-radius: 0;
+                overflow: hidden;
+                background: transparent;
+                box-shadow: none;
+            }
+            .popup-image-thumb:focus-visible {
+                outline: 2px solid #FFD700;
+                outline-offset: 2px;
+            }
+            .popup-image-thumb img {
+                height: 100%;
+                width: auto;
+                max-width: 100%;
+                object-fit: contain;
+            }
+            .popup-fullwidth {
+                grid-column: 1 / -1;
+            }
+            .map-info-coordinates {
+                display: none;
+            }
+
+            /* === Mobile UI Fixes (Attempt 4) === */
+
+            /* 1. Reduce size of map zoom buttons */
+            .leaflet-control-zoom a {
+                width: 28px;
+                height: 28px;
+                line-height: 28px;
+                font-size: 1.4rem;
+            }
+
+            /* 2. Move Satellite control into the bottom bar */
+            .leaflet-bottom.leaflet-left {
+                display: flex;
+                align-items: stretch;
+            }
+
+            .map-info-control {
+                flex: 1;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: none;
+                gap: 8px;
+            }
+
+            .map-info-satellite {
+                font-size: 0.7rem;
+            }
+        }
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-modal.open { display: flex; }
+        .image-modal-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-modal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            background: #fff;
+            display: block;
+        }
+        .image-modal button {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            border: 2px solid #fff;
+            font-size: 1.5rem;
+            line-height: 1;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+        .image-modal button:hover {
+            background: rgba(255,255,255,0.95);
+            color: #000;
+            transform: scale(1.1);
+        }
+        .image-modal button:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+        .map-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .map-modal.open { display: flex; }
+        .map-modal-content {
+            background: #fff;
+            width: 96vw;
+            max-width: 1150px;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .map-modal-header {
+            padding: 12px 16px;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .map-modal-title {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin: 0;
+            color: #333;
+        }
+        .map-modal-close {
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            border: 2px solid #fff;
+            font-size: 1.5rem;
+            line-height: 1;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+        .map-modal-close:hover {
+            background: rgba(255,255,255,0.95);
+            color: #000;
+            transform: scale(1.1);
+        }
+        .map-modal-close:focus-visible {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+        .map-modal-body {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background: #000;
+            overflow-y: auto;
+            position: relative;
+        }
+        .map-modal-content {
+            position: relative;
+        }
+        .map-modal-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.78);
+            color: #f5f5f5;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            z-index: 20;
+            text-align: center;
+            padding: 24px;
+            transition: opacity 0.2s ease;
+        }
+        .map-modal-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .map-modal-overlay .map-modal-spinner-icon {
+            width: 56px;
+            height: 56px;
+            border: 5px solid rgba(255,255,255,0.35);
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        .map-modal-overlay.error .map-modal-spinner-icon {
+            border-color: rgba(255,255,255,0.35);
+            border-top-color: #f67280;
+            animation: none;
+        }
+        .map-modal-overlay-message {
+            margin-top: 4px;
+        }
+        .map-modal-content-wrapper {
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-modal-content-wrapper.visible {
+            display: flex;
+        }
+        .map-modal-body iframe,
+        .map-modal-body embed,
+        .map-modal-body object {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+        .map-modal-body img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .details-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3200;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .details-modal.open { display: flex; }
+        .details-modal-dialog {
+            background: #fff;
+            width: 90vw;
+            max-width: 830px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .details-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            gap: 16px;
+            padding: 8px 18px;
+            background: #f7f7f7;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        .details-modal-title {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0;
+            color: #222;
+            text-align: center;
+        }
+        .details-modal-close {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #333;
+            padding: 4px;
+        }
+        .details-modal-close:focus-visible {
+            outline: 2px solid #0056b3;
+            outline-offset: 2px;
+        }
+        .details-modal-body {
+            position: relative;
+            flex: 1;
+            background: #fff;
+        }
+        .details-modal-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.92);
+            color: #333;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            z-index: 10;
+            transition: opacity 0.2s ease;
+        }
+        .details-modal-loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .details-modal-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #cfd8dc;
+            border-top-color: #0056b3;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        .details-modal-frame {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: block;
+            border: none;
+        }
+    .leaflet-tile-pane .leaflet-layer:last-child {
+            font-size: 14px !important;
+        }
+        .wiki-link {
+            color: #0645ad;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .wiki-link:hover {
+            text-decoration: underline;
+        }
+        .wiki-card {
+            position: absolute;
+            z-index: 9999;
+            background: #fff;
+            border-radius: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            display: flex;
+            overflow: hidden;
+            max-width: 520px;
+            height: 240px;
+            font-size: 12px;
+        }
+        .wiki-card:not(.has-image) {
+            height: auto;
+            max-height: 240px;
+            display: block;
+        }
+        .wiki-card:not(.has-image) .wiki-card-content {
+            padding-bottom: 10px;
+        }
+        .wiki-card * {
+            box-sizing: border-box;
+        }
+        .wiki-card-image {
+            flex: 0 0 210px;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+            background: #000;
+        }
+        .wiki-card-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: top;
+        }
+        .wiki-card-content {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 14px 6px 14px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .wiki-card-title {
+            font-weight: 600;
+            margin: 0 0 6px 0;
+            font-size: 13px;
+        }
+        .wiki-card-text {
+            flex: 1 1 auto;
+            overflow: hidden;
+            line-height: 1.25;
+        }
+        .wiki-card-text p {
+            margin: 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 10;
+            overflow: hidden;
+        }
+        .wiki-card-source {
+            flex: 0 0 auto;
+            margin-top: 4px;
+            font-size: 11px;
+            color: #777;
+            text-align: right;
+            border-top: 1px solid #eee;
+            padding-top: 3px;
+        }
+        .wiki-card-source a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        .wiki-card-source a:hover {
+            text-decoration: underline;
+        }
+        .search-match {
+            font-weight: 700;
+            color: inherit;
+        }
+        .leaflet-popup-content .search-match {
+            color: inherit !important;
+        }
+        .leaflet-popup-content strong.search-match {
+            color: inherit !important;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="mapWA.html" id="nav-map-wa" aria-current="page">Map Western Australia</a></li>
+        <li><a href="presentationWA.html" id="nav-about-wa">About</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français">
+            <img src="img/fr.svg" alt="Français">
+        </button>
+        <button type="button" id="lang-en" title="Switch to English">
+            <img src="img/au.svg" alt="English">
+        </button>
+    </div>
+</nav>
+
+    <div id="map"></div>
+
+    <div class="layer-toggle" aria-label="Filtres d'expédition">
+        <label class="toggle-baudin">
+            <input type="checkbox" id="toggle-baudin" checked>
+            <span data-i18n="map-layer-baudin">Baudin</span>
+        </label>
+        <label class="toggle-entre">
+            <input type="checkbox" id="toggle-entre" checked>
+            <span data-i18n="map-layer-entre">d’Entrecasteaux</span>
+        </label>
+    </div>
+
+    <!-- Search Interface -->
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" class="search-input" id="search-input" placeholder="Rechercher un lieu...">
+            <button type="button" class="search-clear" id="search-clear" title="Effacer">&times;</button>
+            <button type="button" class="search-button" id="search-button" title="Rechercher">🔍</button>
+        </div>
+        <div class="search-results" id="search-results">
+            <button type="button" class="search-nav-button" id="search-prev" title="Précédent">‹</button>
+            <span id="search-count">0 occurrence(s)</span>
+            <button type="button" class="search-nav-button" id="search-next" title="Suivant">›</button>
+        </div>
+    </div>
+
+    <div id="image-modal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="image-modal-container">
+            <img src="" alt="" id="image-modal-image">
+            <button type="button" id="image-modal-close" aria-label="Fermer l'image">&times;</button>
+        </div>
+    </div>
+
+    <div id="map-modal" class="map-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="map-modal-content">
+            <div class="map-modal-header">
+                <h3 class="map-modal-title" id="map-modal-title"></h3>
+                <button type="button" class="map-modal-close" id="map-modal-close" aria-label="Close map">&times;</button>
+            </div>
+            <div class="map-modal-body" id="map-modal-body"></div>
+        </div>
+    </div>
+
+    <div id="details-modal" class="details-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="details-modal-dialog" tabindex="-1">
+            <div class="details-modal-header">
+                <h3 class="details-modal-title" id="details-modal-title"></h3>
+                <button type="button" class="details-modal-close" id="details-modal-close" aria-label="Close details">&times;</button>
+            </div>
+            <div class="details-modal-body">
+                <div class="details-modal-loading" id="details-modal-loading">
+                    <div class="details-modal-spinner" aria-hidden="true"></div>
+                    <span id="details-loading-message">Loading…</span>
+                </div>
+                <iframe id="details-modal-frame" class="details-modal-frame" title="Details" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js?v=20241012"></script>
+    <script src="js/main.js?v=20241012"></script>
+    <script>
+        const defaultCenter = [-27, 135];
+        // Ajuster le zoom en fonction de la taille de l'écran
+        // Sur mobile portrait, réduire le zoom pour voir toute l'Australie
+        const getDefaultZoom = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const isPortrait = height > width;
+
+            let zoom;
+            if (isPortrait && width < 768) {
+                // Mobile portrait : zoom beaucoup plus petit pour la largeur
+                zoom = 3.5;
+            } else if (width < 768) {
+                // Mobile paysage
+                zoom = 4.0;
+            } else if (width < 1024) {
+                // Tablette
+                zoom = 4.3;
+            } else {
+                // Desktop
+                zoom = 4.5;
+            }
+
+            return zoom;
+        };
+        const defaultZoom = getDefaultZoom();
+        const focusZoomLevel = 8;
+        const popupTopMargin = 180;
+        const popupBottomMargin = 50;
+        const popupHeightRatio = 0.65;
+
+        const getPopupOverlayMargins = () => {
+            const mapContainer = map.getContainer();
+            if (!mapContainer) {
+                return { top: popupTopMargin, bottom: popupBottomMargin };
+            }
+
+            const mapRect = mapContainer.getBoundingClientRect();
+            let topMargin = popupTopMargin;
+            let bottomMargin = popupBottomMargin;
+
+            const searchOverlay = document.querySelector('.search-container');
+            if (searchOverlay) {
+                const searchRect = searchOverlay.getBoundingClientRect();
+                const overlap = Math.max(0, searchRect.bottom - mapRect.top);
+                if (overlap > 0) {
+                    // Ajouter 50px supplémentaires pour éviter le chevauchement avec le compteur d'occurrences
+                    topMargin = Math.max(topMargin, overlap + 50);
+                }
+            }
+
+            const bottomOverlay = document.querySelector('.leaflet-bottom.leaflet-left');
+            if (bottomOverlay) {
+                const bottomRect = bottomOverlay.getBoundingClientRect();
+                const overlap = Math.max(0, mapRect.bottom - bottomRect.top);
+                if (overlap > 0) {
+                    bottomMargin = Math.max(bottomMargin, overlap + 8);
+                }
+            }
+
+            return { top: topMargin, bottom: bottomMargin };
+        };
+
+        const getCurrentLanguage = () => localStorage.getItem('language') || 'en';
+        const translate = (key) => translations[getCurrentLanguage()]?.[key] || '';
+
+        const disableMarkerTooltips = (() => {
+            const touchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0;
+            if (touchPoints > 0) {
+                return true;
+            }
+            if ('ontouchstart' in window) {
+                return true;
+            }
+            if (window.matchMedia) {
+                if (window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches) {
+                    return true;
+                }
+            }
+            return false;
+        })();
+
+        const map = L.map('map', {
+            zoomControl: false, // We will add it back in a different position
+            zoomSnap: 0,        // Allow any fractional zoom level for maximum fluidity.
+            zoomDelta: 0.5,     // Zoom in/out by 0.5 levels with buttons for less abrupt changes.
+            wheelPxPerZoomLevel: 4 // Dramatically increase sensitivity of wheel/trackpad zoom (lower is more sensitive).
+        }).setView(defaultCenter, defaultZoom);
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        // --- Layer Control ---
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        });
+        const esriImagery = L.esri.basemapLayer('Imagery', { zIndex: 10 });
+        const esriLabels  = L.esri.basemapLayer('ImageryLabels', { zIndex: 30 });
+        const imageryWithLabels = L.layerGroup([esriImagery, esriLabels]);
+
+        // Charger la vue par défaut depuis localStorage (par défaut: satellite)
+        // Réinitialisation forcée - supprimer cette ligne après le premier chargement si nécessaire
+        if (!localStorage.getItem('satelliteViewInitialized')) {
+            localStorage.setItem('satelliteView', 'true');
+            localStorage.setItem('satelliteViewInitialized', 'true');
+        }
+        let savedViewState = localStorage.getItem('satelliteView');
+        // Si aucune valeur n'existe, initialiser à 'true' (première visite)
+        if (savedViewState === null) {
+            savedViewState = 'true';
+            localStorage.setItem('satelliteView', 'true');
+        }
+        const useSatellite = savedViewState === 'true';
+        if (useSatellite) {
+            imageryWithLabels.addTo(map);
+        } else {
+            osm.addTo(map);
+        }
+
+        const scaleControl = L.control.scale({ position: 'bottomleft', metric: true, imperial: false });
+        scaleControl.addTo(map);
+
+        let coordinatesElement;
+        let satelliteLabelElement;
+        let satelliteCheckbox;
+        const updateSatelliteLabel = () => {
+            if (satelliteLabelElement) {
+                satelliteLabelElement.textContent = translate('satellite-view-label');
+            }
+        };
+        const mapInfoControl = L.control({ position: 'bottomleft' });
+        mapInfoControl.onAdd = () => {
+            const container = L.DomUtil.create('div', 'map-info-control');
+            coordinatesElement = L.DomUtil.create('div', 'map-info-coordinates', container);
+            coordinatesElement.textContent = 'Lat: --°  Long: --°';
+
+            const satelliteWrapper = L.DomUtil.create('label', 'map-info-satellite', container);
+            satelliteCheckbox = L.DomUtil.create('input', '', satelliteWrapper);
+            satelliteCheckbox.type = 'checkbox';
+            satelliteLabelElement = L.DomUtil.create('span', '', satelliteWrapper);
+            satelliteLabelElement.id = 'satellite-label';
+
+            // Restaurer l'état depuis localStorage (par défaut: true)
+            const savedState = localStorage.getItem('satelliteView');
+            const isSatellite = savedState === null ? true : savedState === 'true';
+            satelliteCheckbox.checked = isSatellite;
+
+            L.DomEvent.disableClickPropagation(satelliteWrapper);
+            L.DomEvent.disableScrollPropagation(satelliteWrapper);
+
+            satelliteCheckbox.addEventListener('change', function() {
+                // Sauvegarder l'état dans localStorage
+                localStorage.setItem('satelliteView', this.checked);
+
+                if (this.checked) {
+                    map.removeLayer(osm);
+                    map.addLayer(imageryWithLabels);
+                } else {
+                    map.removeLayer(imageryWithLabels);
+                    map.addLayer(osm);
+                }
+            });
+
+            updateSatelliteLabel();
+            document.addEventListener('languageChanged', updateSatelliteLabel);
+
+            const scaleWrapper = L.DomUtil.create('div', 'map-info-scale-wrapper', container);
+            const scaleContainer = scaleControl._container;
+            if (scaleContainer) {
+                scaleContainer.classList.remove('leaflet-control');
+                scaleWrapper.appendChild(scaleContainer);
+            }
+
+            return container;
+        };
+        mapInfoControl.onRemove = () => {
+            document.removeEventListener('languageChanged', updateSatelliteLabel);
+            coordinatesElement = undefined;
+            satelliteLabelElement = undefined;
+            satelliteCheckbox = undefined;
+        };
+        mapInfoControl.addTo(map);
+
+        const syncSatelliteToggleWithLayers = () => {
+            if (!satelliteCheckbox) {
+                return;
+            }
+            const isImageryActive = map.hasLayer(imageryWithLabels);
+            if (satelliteCheckbox.checked !== isImageryActive) {
+                satelliteCheckbox.checked = isImageryActive;
+            }
+        };
+        syncSatelliteToggleWithLayers();
+
+        const updateCoordinates = (event) => {
+            if (!coordinatesElement) {
+                return;
+            }
+            const { lat, lng } = event.latlng;
+            coordinatesElement.textContent = `Lat: ${lat.toFixed(4)}°  Long: ${lng.toFixed(4)}°`;
+        };
+
+        map.on('mousemove', updateCoordinates);
+        map.on('mouseout', () => {
+            if (coordinatesElement) {
+                coordinatesElement.textContent = 'Lat: --°  Long: --°';
+            }
+        });
+        map.on('layeradd', syncSatelliteToggleWithLayers);
+        map.on('layerremove', syncSatelliteToggleWithLayers);
+
+        const enforcePopupMaxHeight = (popup, callback) => {
+            const scheduleCallback = () => {
+                if (callback) {
+                    requestAnimationFrame(() => callback(popup));
+                }
+            };
+
+            if (!popup) {
+                scheduleCallback();
+                return;
+            }
+
+            const mapContainer = map.getContainer();
+            if (!mapContainer) {
+                scheduleCallback();
+                return;
+            }
+
+            const popupElement = popup.getElement();
+            if (!popupElement) {
+                scheduleCallback();
+                return;
+            }
+
+            const contentElement = popupElement.querySelector('.leaflet-popup-content');
+            if (!contentElement) {
+                scheduleCallback();
+                return;
+            }
+
+            contentElement.classList.remove('has-scrollbar');
+            contentElement.style.maxHeight = '';
+            contentElement.style.overflowY = '';
+
+            requestAnimationFrame(() => {
+                const refreshedPopup = popup.getElement();
+                const refreshedContent = refreshedPopup?.querySelector('.leaflet-popup-content');
+                const currentMapHeight = mapContainer.clientHeight;
+
+                if (!refreshedPopup || !refreshedContent || !currentMapHeight) {
+                    scheduleCallback();
+                    return;
+                }
+
+                const { top: dynamicTopMargin, bottom: dynamicBottomMargin } = getPopupOverlayMargins();
+                const availableHeight = Math.max(120, currentMapHeight - dynamicTopMargin - dynamicBottomMargin);
+                const ratioHeight = Math.floor(currentMapHeight * popupHeightRatio);
+                const maxPopupHeight = Math.max(120, Math.min(ratioHeight || availableHeight, availableHeight));
+                if (!maxPopupHeight) {
+                    scheduleCallback();
+                    return;
+                }
+
+                const nonContentHeight = refreshedPopup.offsetHeight - refreshedContent.offsetHeight;
+                const allowedContentHeight = Math.max(120, maxPopupHeight - nonContentHeight);
+
+                if (refreshedPopup.offsetHeight > maxPopupHeight && allowedContentHeight > 0) {
+                    refreshedContent.style.maxHeight = `${allowedContentHeight}px`;
+                    refreshedContent.style.overflowY = 'auto';
+                    refreshedContent.classList.add('has-scrollbar');
+                }
+
+                scheduleCallback();
+            });
+        };
+
+        map.on('resize', () => {
+            const activePopup = map._popup;
+            if (!activePopup) {
+                return;
+            }
+            if (typeof activePopup.update === 'function') {
+                activePopup.update();
+            }
+            enforcePopupMaxHeight(activePopup, adjustPopupView);
+        });
+
+        // Animation pour attirer l'attention sur les images dans les popups
+        map.on('popupopen', function(e) {
+            const popupElement = e.popup.getElement();
+            if (!popupElement) return;
+
+            const imageButtons = popupElement.querySelectorAll('.popup-image-button');
+            imageButtons.forEach((imageButton) => {
+                // Démarre l'animation après 5 secondes
+                const startAnimationTimeout = setTimeout(() => {
+                    imageButton.classList.add('image-attention');
+                }, 5000);
+
+                // Arrête l'animation au premier survol pour ne pas être gênant
+                const stopAnimation = () => {
+                    clearTimeout(startAnimationTimeout); // Annule le démarrage si on survole avant
+                    imageButton.classList.remove('image-attention');
+                };
+                
+                imageButton.addEventListener('mouseover', stopAnimation, { once: true });
+                imageButton.addEventListener('focus', stopAnimation, { once: true });
+
+
+                // Assure-toi que l'animation est enlevée si la popup est fermée
+                e.popup.on('remove', () => {
+                    clearTimeout(startAnimationTimeout);
+                    imageButton.classList.remove('image-attention');
+                });
+            });
+        });
+
+        const nameForTooltip = (place, lang) => {
+            if (!place) {
+                return '';
+            }
+            if (lang === 'fr') {
+                return (place.frenchName || place.ausEName || '').trim();
+            }
+            return (place.ausEName || place.frenchName || '').trim();
+        };
+
+        const isFiniteNumber = (value) => (Number.isFinite ? Number.isFinite(value) : isFinite(value));
+        const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => {
+            const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+            return chars[char] || char;
+        });
+        const escapeRegExp = (value = '') => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        let activeSearchWordsRaw = [];
+        let highlightRegex = null;
+        const rebuildHighlightRegex = () => {
+            if (!activeSearchWordsRaw.length) {
+                highlightRegex = null;
+                return;
+            }
+            const uniqueWords = Array.from(new Set(activeSearchWordsRaw.filter(Boolean).map(w => escapeRegExp(w))));
+            // Highlight only at word boundaries (prefix logic); no pure substrings
+            highlightRegex = uniqueWords.length ? new RegExp(`\\b(${uniqueWords.join('|')})`, 'gi') : null;
+        };
+        const highlightMatches = (text) => {
+            if (!text) return '';
+            const escaped = escapeHtml(text);
+            if (!highlightRegex) {
+                return escaped;
+            }
+            return escaped.replace(highlightRegex, '<strong class="search-match">$1</strong>');
+        };
+        const highlightHtml = (html) => {
+            if (!html || !highlightRegex) {
+                return html || '';
+            }
+            const parts = html.split(/(<[^>]+>)/g);
+            return parts.map(part => {
+                if (part.startsWith('<') && part.endsWith('>')) {
+                    return part;
+                }
+                return part.replace(highlightRegex, '<strong class="search-match">$1</strong>');
+            }).join('');
+        };
+        const resolveDetailsUrl = (rawValue = '') => {
+            const value = (rawValue || '').trim();
+            if (!value) {
+                return '';
+            }
+            if (/^(?:https?:|data:|mailto:|#)/i.test(value)) {
+                return value;
+            }
+            if (value.startsWith('details/')) {
+                return value;
+            }
+            return `details/${value}`;
+        };
+
+        const wikiCardState = {
+            card: null,
+            link: null,
+            hideTimeout: null,
+            cache: new Map(),
+            pendingRequest: null  // Track pending fetch requests
+        };
+        const WIKI_CARD_HEIGHT = 240;
+
+        const fetchWikiSummary = (lang, title) => {
+            const key = `${lang}:${title}`;
+            if (wikiCardState.cache.has(key)) {
+                return Promise.resolve(wikiCardState.cache.get(key));
+            }
+            const url = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+            return fetch(url)
+                .then((response) => response.ok ? response.json() : null)
+                .then((data) => {
+                    if (data) {
+                        wikiCardState.cache.set(key, data);
+                    }
+                    return data;
+                })
+                .catch(() => null);
+        };
+
+        const createWikiCard = (data, lang) => {
+            if (!data) {
+                return null;
+            }
+            const card = document.createElement('div');
+            card.className = 'wiki-card';
+
+            // Only add the image if it exists in the data
+            if (data.thumbnail && data.thumbnail.source) {
+                const imageWrapper = document.createElement('div');
+                imageWrapper.className = 'wiki-card-image';
+                const img = document.createElement('img');
+                img.src = data.thumbnail.source;
+                img.alt = data.title || '';
+                imageWrapper.appendChild(img);
+                card.appendChild(imageWrapper);
+                card.classList.add('has-image');
+            }
+
+            const content = document.createElement('div');
+            content.className = 'wiki-card-content';
+
+            const title = document.createElement('div');
+            title.className = 'wiki-card-title';
+            title.textContent = data.title || '';
+
+            const text = document.createElement('div');
+            text.className = 'wiki-card-text';
+            const paragraph = document.createElement('p');
+            paragraph.textContent = data.extract || '';
+            text.appendChild(paragraph);
+
+            const source = document.createElement('div');
+            source.className = 'wiki-card-source';
+            const link = document.createElement('a');
+            link.textContent = 'Wikipedia';
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.href = (data.content_urls && data.content_urls.desktop && data.content_urls.desktop.page)
+                || `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(data.title || '')}`;
+            const label = lang === 'fr' ? 'Source\xa0: ' : 'Source: ';
+            source.append(label);
+            source.appendChild(link);
+
+            content.appendChild(title);
+            content.appendChild(text);
+            content.appendChild(source);
+
+            card.appendChild(content);
+            document.body.appendChild(card);
+            return card;
+        };
+
+        const positionWikiCard = (card, link) => {
+            const rect = link.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
+            const margin = 12;
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            let top;
+            let left;
+
+            if (vh - rect.bottom >= WIKI_CARD_HEIGHT + margin) {
+                top = rect.bottom + margin;
+            } else if (rect.top >= WIKI_CARD_HEIGHT + margin) {
+                top = rect.top - WIKI_CARD_HEIGHT - margin;
+            } else {
+                top = Math.max(margin, Math.min(rect.bottom + margin, vh - WIKI_CARD_HEIGHT - margin));
+            }
+
+            if (vw - rect.left >= cardRect.width + margin) {
+                left = rect.left;
+            } else {
+                left = rect.right - cardRect.width;
+                if (left < margin) {
+                    left = margin;
+                }
+            }
+
+            card.style.top = `${top + window.scrollY}px`;
+            card.style.left = `${left + window.scrollX}px`;
+        };
+
+        const logWiki = () => {};
+
+        const hideWikiCard = (immediate = false) => {
+            // Cancel any pending request
+            if (wikiCardState.pendingRequest) {
+                wikiCardState.pendingRequest.cancelled = true;
+                wikiCardState.pendingRequest = null;
+            }
+
+            if (wikiCardState.hideTimeout) {
+                clearTimeout(wikiCardState.hideTimeout);
+                wikiCardState.hideTimeout = null;
+            }
+
+            const cleanup = () => {
+                // Remove the tracked card
+                if (wikiCardState.card) {
+                    wikiCardState.card.remove();
+                    wikiCardState.card = null;
+                }
+                // Also remove any orphaned wiki cards that might exist
+                document.querySelectorAll('.wiki-card').forEach(card => card.remove());
+                wikiCardState.link = null;
+            };
+
+            if (immediate) {
+                cleanup();
+                return;
+            }
+            wikiCardState.hideTimeout = setTimeout(cleanup, 200);
+        };
+
+        const getWikiUrlForLink = (link, lang, title) => {
+            if (!link) {
+                return '';
+            }
+            const href = link.getAttribute('href');
+            if (href && href !== '#') {
+                return href;
+            }
+            if (title) {
+                const wikiLang = lang === 'fr' ? 'fr' : 'en';
+                return `https://${wikiLang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+            }
+            return '';
+        };
+
+        const openWikiPage = (url) => {
+            if (!url) {
+                return;
+            }
+            const tempLink = document.createElement('a');
+            tempLink.href = url;
+            tempLink.target = '_blank';
+            tempLink.rel = 'noopener noreferrer';
+            tempLink.style.display = 'none';
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            tempLink.remove();
+        };
+
+        const showWikiCard = (link) => {
+            const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
+            const title = link.dataset.title;
+            if (!title) {
+                return;
+            }
+            // Clean up immediately (this also cancels any pending requests)
+            hideWikiCard(true);
+
+            // Create a request token to track this specific request
+            const requestToken = { cancelled: false };
+            wikiCardState.pendingRequest = requestToken;
+            fetchWikiSummary(lang, title).then((data) => {
+                // Check if this request was cancelled
+                if (requestToken.cancelled) {
+                    return;
+                }
+
+                // Check if we're still the active request
+                if (wikiCardState.pendingRequest !== requestToken) {
+                    return;
+                }
+
+                const card = createWikiCard(data, lang);
+                if (!card) {
+                    wikiCardState.pendingRequest = null;
+                    return;
+                }
+
+                // One final check before showing the card
+                if (requestToken.cancelled) {
+                    card.remove();
+                    return;
+                }
+
+                wikiCardState.card = card;
+                wikiCardState.link = link;
+                wikiCardState.pendingRequest = null;
+
+                positionWikiCard(card, link);
+                card.addEventListener('mouseenter', () => {
+                    if (wikiCardState.hideTimeout) {
+                        clearTimeout(wikiCardState.hideTimeout);
+                        wikiCardState.hideTimeout = null;
+                    }
+                });
+                card.addEventListener('mouseleave', () => hideWikiCard(false));
+                card.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const url = getWikiUrlForLink(wikiCardState.link, lang, title);
+                    hideWikiCard(true);
+                    openWikiPage(url);
+                });
+            }).catch(() => {
+                // Clean up on error
+                if (wikiCardState.pendingRequest === requestToken) {
+                    wikiCardState.pendingRequest = null;
+                }
+            });
+        };
+
+        const bindWikiLink = (link) => {
+            if (!link || link.dataset.wikiBound === 'true') {
+                return;
+            }
+            const handleEnter = () => showWikiCard(link);
+            const handleLeave = () => hideWikiCard(false);
+
+            link.addEventListener('mouseenter', handleEnter);
+            link.addEventListener('pointerenter', handleEnter);
+            link.addEventListener('focus', handleEnter);
+
+            link.addEventListener('mouseleave', handleLeave);
+            link.addEventListener('pointerleave', handleLeave);
+            link.addEventListener('blur', handleLeave);
+
+            link.addEventListener('click', (event) => {
+                const lang = (link.dataset.lang === 'fr') ? 'fr' : 'en';
+                const title = link.dataset.title;
+                const href = getWikiUrlForLink(link, lang, title);
+                if (!href) {
+                    event.preventDefault();
+                    openWikiPage(getWikiUrlForLink(link, lang, title));
+                }
+            });
+            link.dataset.wikiBound = 'true';
+        };
+
+        const initializeWikiLinks = (root = document) => {
+            root.querySelectorAll('.wiki-link').forEach(bindWikiLink);
+        };
+
+        // Délégation en secours : si un lien échappe au binding, on capte quand même le survol
+        document.addEventListener('pointerover', (event) => {
+            const link = event.target.closest('.wiki-link');
+            if (!link) { return; }
+            showWikiCard(link);
+        });
+        document.addEventListener('pointerout', (event) => {
+            const link = event.target.closest('.wiki-link');
+            if (!link) { return; }
+            hideWikiCard(false);
+        });
+
+        document.addEventListener('pointerdown', (event) => {
+            const card = wikiCardState.card;
+            if (!card) {
+                return;
+            }
+            if (card.contains(event.target)) {
+                return;
+            }
+            if (wikiCardState.link && wikiCardState.link.contains(event.target)) {
+                return;
+            }
+            hideWikiCard(true);
+        });
+
+        const extractWikiIdentifier = (url = '') => {
+            if (!url) {
+                return '';
+            }
+            const match = url.match(/\/wiki\/([^#?]+)/i);
+            if (match && match[1]) {
+                return decodeURIComponent(match[1]);
+            }
+            return '';
+        };
+
+        const createWikiLinkMarkup = (url, label, lang) => {
+            if (!url || !label) {
+                return '';
+            }
+            const safeLabel = escapeHtml(label);
+            const safeUrl = escapeHtml(url);
+            const identifier = extractWikiIdentifier(url);
+            const wikiLang = lang === 'fr' ? 'fr' : 'en';
+
+            if (identifier) {
+                const safeIdentifier = escapeHtml(identifier);
+                return `<a href="${safeUrl}" class="wiki-link" data-lang="${wikiLang}" data-title="${safeIdentifier}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+            }
+
+            return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+        };
+
+        const enhanceWikiText = (text, lang) => {
+            if (!text || typeof text !== 'string') {
+                return '';
+            }
+            const defaultDomain = lang === 'fr' ? 'fr' : 'en';
+            const pattern = /\$([^$]+)\$([^$]+)\$/g;
+            
+            const replacer = (match, label, identifier) => {
+                let currentDomain = defaultDomain;
+                let finalIdentifier = (identifier || '').trim();
+                const trimmedLabel = (label || '').trim();
+
+                if (finalIdentifier.startsWith('FR')) {
+                    currentDomain = 'fr';
+                    finalIdentifier = finalIdentifier.substring(2).trim();
+                } else if (finalIdentifier.startsWith('EN')) {
+                    currentDomain = 'en';
+                    finalIdentifier = finalIdentifier.substring(2).trim();
+                }
+
+                if (trimmedLabel && finalIdentifier) {
+                    const safeLabel = escapeHtml(trimmedLabel);
+                    const safeIdentifier = escapeHtml(finalIdentifier);
+                    const wikiUrl = `https://${currentDomain}.wikipedia.org/wiki/${encodeURIComponent(safeIdentifier)}`;
+                    return `<a href="${wikiUrl}" class="wiki-link" data-lang="${currentDomain}" data-title="${safeIdentifier}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+                }
+                return match; // Return original if invalid
+            };
+
+            const processedText = text.replace(pattern, replacer);
+            
+            return processedText
+                .replace(/\r\n/g, '\n')
+                .replace(/\n/g, '<br>');
+        };
+
+        const extractCoordinates = (place) => {
+            const lat = Number(place.lat);
+            const lon = Number(place.lon);
+
+            if (!isFiniteNumber(lat) || !isFiniteNumber(lon) || lat === 0 || lon === 0) {
+                return null;
+            }
+
+            return [lat, lon];
+        };
+        const formatCoordinates = (lat, lon, code, trans) => {
+            const latValue = Math.abs(lat).toFixed(3);
+            const lonValue = Math.abs(lon).toFixed(3);
+            const latDir = lat > 0 ? trans['direction-north'] : trans['direction-south'];
+            const lonDir = lon > 0 ? trans['direction-east'] : trans['direction-west'];
+
+            // Extract marker number from code (Entre01 -> 01, Baudin001 -> 001)
+            const markerNumber = code.replace(/^[A-Za-z]+/, '');
+
+            return `${latValue}° ${latDir} ${lonValue}° ${lonDir} #${markerNumber}`;
+        };
+
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('image-modal-image');
+        const modalCloseButton = document.getElementById('image-modal-close');
+
+        const mapModal = document.getElementById('map-modal');
+        const mapModalBody = document.getElementById('map-modal-body');
+        const mapModalTitle = document.getElementById('map-modal-title');
+        const mapModalCloseButton = document.getElementById('map-modal-close');
+        const mapModalContent = mapModal?.querySelector('.map-modal-content');
+        let mapModalOverlay;
+        let mapModalOverlaySpinner;
+        let mapModalOverlayMessage;
+        let mapModalOverlayOpenedAt = 0;
+        const placeNamesByUrl = Object.create(null);
+
+        const detailsModal = document.getElementById('details-modal');
+        const detailsModalDialog = detailsModal?.querySelector('.details-modal-dialog');
+        const detailsModalFrame = document.getElementById('details-modal-frame');
+        const detailsModalLoading = document.getElementById('details-modal-loading');
+        const detailsModalLoadingMessage = document.getElementById('details-loading-message');
+        const detailsModalTitle = document.getElementById('details-modal-title');
+        const detailsModalCloseButton = document.getElementById('details-modal-close');
+
+        const ensureMapModalOverlay = () => {
+            if (!mapModalContent) { return null; }
+            if (!mapModalOverlay) {
+                mapModalOverlay = document.createElement('div');
+                mapModalOverlay.className = 'map-modal-overlay hidden';
+                mapModalOverlaySpinner = document.createElement('div');
+                mapModalOverlaySpinner.className = 'map-modal-spinner-icon';
+                mapModalOverlayMessage = document.createElement('span');
+                mapModalOverlayMessage.className = 'map-modal-overlay-message';
+                mapModalOverlay.append(mapModalOverlaySpinner, mapModalOverlayMessage);
+                mapModalContent.appendChild(mapModalOverlay);
+            }
+            return mapModalOverlay;
+        };
+
+        const showMapModalOverlay = (messageKey) => {
+            const overlay = ensureMapModalOverlay();
+            if (!overlay) { return; }
+            const message = translate(messageKey) || translate('map-loading-message') || 'Loading map...';
+            mapModalOverlayOpenedAt = performance.now();
+            overlay.classList.remove('hidden', 'error');
+            if (mapModalOverlayMessage) {
+                mapModalOverlayMessage.textContent = message;
+            }
+        };
+
+        const hideMapModalOverlay = (callback) => {
+            const overlay = ensureMapModalOverlay();
+            if (!overlay) {
+                callback?.();
+                return;
+            }
+            overlay.classList.remove('error');
+            const elapsed = performance.now() - mapModalOverlayOpenedAt;
+            const minimum = 350;
+            const finalize = () => {
+                overlay.classList.add('hidden');
+                callback?.();
+            };
+            if (elapsed >= minimum) {
+                finalize();
+            } else {
+                setTimeout(finalize, minimum - elapsed);
+            }
+        };
+
+        const showMapModalOverlayError = () => {
+            const overlay = ensureMapModalOverlay();
+            if (!overlay) { return; }
+            const message = translate('map-loading-error') || 'Unable to load the map. Please try again.';
+            mapModalOverlayOpenedAt = performance.now();
+            overlay.classList.remove('hidden');
+            overlay.classList.add('error');
+            if (mapModalOverlayMessage) {
+                mapModalOverlayMessage.textContent = message;
+            }
+        };
+
+        const closeDetailsModal = () => {
+            if (!detailsModal) {
+                return;
+            }
+            detailsModal.classList.remove('open');
+            detailsModal.setAttribute('aria-hidden', 'true');
+            if (detailsModalFrame) {
+                detailsModalFrame.src = 'about:blank';
+            }
+            if (detailsModalLoading) {
+                detailsModalLoading.classList.remove('hidden');
+            }
+        };
+
+        const openDetailsModal = (rawUrl, title) => {
+            const resolvedUrl = resolveDetailsUrl(rawUrl);
+            if (!resolvedUrl) {
+                return;
+            }
+            if (!detailsModal || !detailsModalFrame || !detailsModalLoading) {
+                window.location.href = resolvedUrl;
+                return;
+            }
+
+            if (detailsModalTitle) {
+                const currentLang = getCurrentLanguage();
+                const labels = placeNamesByUrl[resolvedUrl] || {};
+                const frLabel = (labels.fr || '').trim();
+                const enLabel = (labels.en || '').trim();
+                const fallback = (title || '').trim();
+                let headerText = '';
+                if (frLabel && enLabel) {
+                    headerText = currentLang === 'fr'
+                        ? `${frLabel} - ${enLabel}`
+                        : `${enLabel} - ${frLabel}`;
+                } else if (currentLang === 'fr') {
+                    headerText = frLabel || enLabel || fallback;
+                } else {
+                    headerText = enLabel || frLabel || fallback;
+                }
+                detailsModalTitle.textContent = headerText;
+            }
+            if (detailsModalCloseButton) {
+                detailsModalCloseButton.setAttribute('aria-label', translate('details-close-label') || 'Close');
+            }
+            if (detailsModalLoadingMessage) {
+                detailsModalLoadingMessage.textContent = translate('details-loading-message') || 'Loading page...';
+            }
+
+            detailsModalLoading.classList.remove('hidden');
+            detailsModal.classList.add('open');
+            detailsModal.setAttribute('aria-hidden', 'false');
+
+            if (detailsModalDialog) {
+                detailsModalDialog.focus({ preventScroll: true });
+            }
+
+            const handleFrameLoad = () => {
+                detailsModalLoading.classList.add('hidden');
+                detailsModalFrame.removeEventListener('load', handleFrameLoad);
+            };
+
+            detailsModalFrame.addEventListener('load', handleFrameLoad);
+            detailsModalFrame.setAttribute('title', title || translate('details-frame-title') || 'Details');
+            detailsModalFrame.src = resolvedUrl;
+        };
+
+        const closeImageModal = () => {
+            if (!modal) { return; }
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            modalImage.src = '';
+            modalImage.alt = '';
+            document.getElementById('map')?.focus({ preventScroll: true });
+        };
+
+        const openImageModal = (src, alt) => {
+            if (!modal || !modalImage) { return; }
+            modalImage.src = src;
+            modalImage.alt = alt;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            if (modalCloseButton) {
+                modalCloseButton.focus({ preventScroll: true });
+            }
+        };
+
+        const closeMapModal = () => {
+            if (!mapModal) { return; }
+            mapModal.classList.remove('open');
+            mapModal.setAttribute('aria-hidden', 'true');
+            if (mapModalBody) {
+                mapModalBody.innerHTML = '';
+            }
+            if (mapModalTitle) {
+                mapModalTitle.textContent = '';
+            }
+            hideMapModalOverlay();
+        };
+
+        const openMapModal = (url, title) => {
+            if (!mapModal || !mapModalBody) { return; }
+            const normalizedUrl = (() => {
+                if (!url) { return ''; }
+                const hasRepresentativeImage = /representativeimage/i.test(url);
+                if (!hasRepresentativeImage) {
+                    return url;
+                }
+                const hasQuery = url.includes('?');
+                const widParam = hasQuery ? '&wid=2000' : '?wid=2000';
+                if (/wid=\d+/i.test(url)) {
+                    return url;
+                }
+                return url + widParam;
+            })();
+            showMapModalOverlay('map-loading-message');
+
+            mapModalBody.innerHTML = '';
+            const contentWrapper = document.createElement('div');
+            contentWrapper.className = 'map-modal-content-wrapper';
+            mapModalBody.appendChild(contentWrapper);
+
+            let settled = false;
+            const revealContent = () => {
+                if (settled) { return; }
+                settled = true;
+                hideMapModalOverlay(() => {
+                    contentWrapper.classList.add('visible');
+                });
+            };
+            const handleError = () => {
+                if (settled) { return; }
+                settled = true;
+                showMapModalOverlayError();
+            };
+
+            const isImage = /\.(jpg|jpeg|png|gif|webp)(\?|$)/i.test(normalizedUrl) || /representativeimage/i.test(normalizedUrl);
+            if (isImage) {
+                const image = new Image();
+                image.alt = title || '';
+                const attachImage = () => {
+                    if (!contentWrapper.contains(image)) {
+                        contentWrapper.appendChild(image);
+                    }
+                    revealContent();
+                };
+                image.addEventListener('load', () => {
+                    if (typeof image.decode === 'function') {
+                        image.decode().then(attachImage).catch(attachImage);
+                    } else {
+                        attachImage();
+                    }
+                }, { once: true });
+                image.addEventListener('error', handleError, { once: true });
+                image.src = normalizedUrl;
+            } else {
+                const frame = document.createElement('iframe');
+                frame.src = normalizedUrl;
+                frame.title = title || 'Map viewer';
+                frame.setAttribute('loading', 'lazy');
+                frame.style.visibility = 'hidden';
+                contentWrapper.appendChild(frame);
+                frame.addEventListener('load', () => {
+                    frame.style.visibility = 'visible';
+                    revealContent();
+                }, { once: true });
+                frame.addEventListener('error', handleError, { once: true });
+            }
+
+            if (mapModalTitle) {
+                mapModalTitle.textContent = title || '';
+            }
+            mapModal.classList.add('open');
+            mapModal.setAttribute('aria-hidden', 'false');
+            if (mapModalCloseButton) {
+                mapModalCloseButton.focus({ preventScroll: true });
+            }
+        };
+
+        if (modal) {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeImageModal();
+                    document.getElementById('map')?.focus({ preventScroll: true });
+                }
+            });
+        }
+        if (modalCloseButton) {
+            modalCloseButton.addEventListener('click', () => {
+                closeImageModal();
+                document.getElementById('map')?.focus({ preventScroll: true });
+            });
+        }
+        if (mapModal) {
+            mapModal.addEventListener('click', (event) => {
+                if (event.target === mapModal) {
+                    closeMapModal();
+                }
+            });
+        }
+        if (mapModalCloseButton) {
+            mapModalCloseButton.addEventListener('click', closeMapModal);
+        }
+        if (detailsModal) {
+            detailsModal.addEventListener('click', (event) => {
+                if (event.target === detailsModal) {
+                    closeDetailsModal();
+                }
+            });
+        }
+        if (detailsModalCloseButton) {
+            detailsModalCloseButton.addEventListener('click', closeDetailsModal);
+        }
+        document.addEventListener('keydown', (event) => {
+            const escapePressed = event.key === 'Escape';
+            if (!escapePressed) {
+                return;
+            }
+            if (modal?.classList.contains('open')) {
+                closeImageModal();
+                return;
+            }
+            if (detailsModal?.classList.contains('open')) {
+                closeDetailsModal();
+                return;
+            }
+            if (mapModal?.classList.contains('open')) {
+                closeMapModal();
+            }
+        });
+
+        // Délégation de clic pour diagnostiquer les images (fallback si le binding direct a été raté)
+        document.addEventListener('click', (event) => {
+            const button = event.target.closest('.popup-image-button');
+            if (!button) {
+                return;
+            }
+            const popupRoot = button.closest('.leaflet-popup');
+            const placeCode = popupRoot?._source?.place?.code || 'unknown';
+            const buttonImg = button.dataset.img || button.querySelector('img')?.src || '';
+            const buttonAlt = button.dataset.alt || button.querySelector('img')?.alt || '';
+            console.log('[delegate] Clic image (délégation)', { placeCode, src: buttonImg });
+            if (buttonImg) {
+                openImageModal(buttonImg, buttonAlt);
+            }
+        });
+
+        const adjustPopupView = (popup, attempt = 0) => {
+            const marker = popup._source;
+            if (!marker) {
+                return;
+            }
+
+            const targetLatLng = marker.getLatLng();
+            const targetZoom = Math.max(map.getZoom(), focusZoomLevel);
+            const popupElement = popup.getElement();
+
+            if (!popupElement && attempt < 5) {
+                requestAnimationFrame(() => adjustPopupView(popup, attempt + 1));
+                return;
+            }
+
+            const mapSize = map.getSize();
+            const markerPixel = map.project(targetLatLng, targetZoom);
+            let centerLatLng = targetLatLng;
+
+            if (popupElement && mapSize) {
+                const popupHeight = popupElement.offsetHeight;
+                const anchorHeight = popupElement.querySelector('.leaflet-popup-tip')?.offsetHeight || 0;
+
+                if (popupHeight && mapSize.y) {
+                    const { top: dynamicTopMargin, bottom: dynamicBottomMargin } = getPopupOverlayMargins();
+                    const usableHeight = Math.max(0, mapSize.y - dynamicTopMargin - dynamicBottomMargin);
+                    const centerLine = dynamicTopMargin + (usableHeight / 2);
+
+                    const baseMarkerY = centerLine + (popupHeight / 2) - anchorHeight;
+                    const minMarkerY = popupHeight - anchorHeight + dynamicTopMargin;
+                    const maxMarkerY = mapSize.y - dynamicBottomMargin - anchorHeight;
+
+                    let desiredMarkerY = baseMarkerY;
+                    if (Number.isFinite(minMarkerY) && Number.isFinite(maxMarkerY) && minMarkerY <= maxMarkerY) {
+                        desiredMarkerY = Math.min(Math.max(desiredMarkerY, minMarkerY), maxMarkerY);
+                    }
+
+                    const centerPixel = [
+                        markerPixel.x,
+                        markerPixel.y + (mapSize.y / 2) - desiredMarkerY
+                    ];
+                    centerLatLng = map.unproject(centerPixel, targetZoom);
+                }
+            }
+
+            const currentCenter = map.getCenter();
+            const isSameCenter = currentCenter.distanceTo(centerLatLng) < 1e-6;
+            const currentZoom = map.getZoom();
+
+            if (isSameCenter && currentZoom === targetZoom) {
+                return;
+            }
+
+            map.flyTo(centerLatLng, targetZoom, { duration: 0.45, easeLinearity: 0.2 });
+        };
+
+        const attachPopupActions = (popup, attempt = 0) => {
+            const popupElement = popup.getElement();
+            if (!popupElement && attempt < 5) {
+                requestAnimationFrame(() => attachPopupActions(popup, attempt + 1));
+                return;
+            }
+            if (!popupElement) { return; }
+            const imageButtons = popupElement.querySelectorAll('.popup-image-button');
+            const mainImage = popupElement.querySelector('.popup-image-wrapper .popup-image');
+            imageButtons.forEach((button) => {
+                if (button.dataset.modalBound === 'true') {
+                    return;
+                }
+                const buttonImg = button.dataset.img || button.querySelector('img')?.src || mainImage?.src;
+                const buttonAlt = button.dataset.alt || button.querySelector('img')?.alt || mainImage?.alt || '';
+                if (buttonImg) {
+                    button.addEventListener('click', () => openImageModal(buttonImg, buttonAlt));
+                    button.dataset.modalBound = 'true';
+                }
+            });
+
+            const mapLink = popupElement.querySelector('.popup-map-link');
+            if (mapLink && !mapLink.dataset.modalBound) {
+                mapLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const url = mapLink.dataset.mapUrl;
+                    const title = mapLink.dataset.mapTitle || '';
+                    if (url && url.trim() !== '') {
+                        openMapModal(url, title);
+                    }
+                });
+                mapLink.dataset.modalBound = 'true';
+            }
+
+            const detailsLinks = popupElement.querySelectorAll('.popup-details-link');
+            detailsLinks.forEach((detailsLink) => {
+                if (detailsLink.dataset.detailsBound === 'true') {
+                    return;
+                }
+                detailsLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const url = detailsLink.dataset.detailsUrl || detailsLink.getAttribute('href') || '';
+                    const title = detailsLink.dataset.detailsTitle || detailsLink.textContent || '';
+                    openDetailsModal(url, title);
+                });
+                detailsLink.dataset.detailsBound = 'true';
+            });
+
+            initializeWikiLinks(popupElement);
+
+            const popupRoot = popupElement.closest('.leaflet-popup');
+            if (popupRoot) {
+                popupRoot.classList.toggle('popup-has-image', !!popupElement.querySelector('.popup-image-wrapper'));
+            }
+        };
+
+        const centerPopupOnceReady = (popup, attempt = 0) => {
+            if (!popup) {
+                return;
+            }
+
+            const ensureVisible = () => {
+                if (!map._popup || map._popup !== popup) {
+                    return;
+                }
+                if (typeof popup.update === 'function') {
+                    popup.update();
+                }
+                enforcePopupMaxHeight(popup, adjustPopupView);
+            };
+
+            const popupElement = popup.getElement();
+            if (!popupElement) {
+                if (attempt < 10) {
+                    requestAnimationFrame(() => centerPopupOnceReady(popup, attempt + 1));
+                }
+                return;
+            }
+
+            const pendingImages = Array.from(popupElement.querySelectorAll('img')).filter((img) => !img.complete);
+            if (pendingImages.length === 0) {
+                // No pending images, position immediately
+                ensureVisible();
+                return;
+            }
+
+            // Images still loading - wait for them before positioning
+            let remaining = pendingImages.length;
+            let settled = false;
+            let timeoutId = window.setTimeout(() => {
+                timeoutId = undefined;
+                if (!settled) {
+                    settled = true;
+                    ensureVisible();
+                }
+            }, 900);
+
+            const settle = () => {
+                if (settled) {
+                    return;
+                }
+                remaining -= 1;
+                if (remaining <= 0) {
+                    if (timeoutId) {
+                        window.clearTimeout(timeoutId);
+                        timeoutId = undefined;
+                    }
+                    settled = true;
+                    ensureVisible();
+                }
+            };
+
+            pendingImages.forEach((img) => {
+                img.addEventListener('load', settle, { once: true });
+                img.addEventListener('error', settle, { once: true });
+            });
+        };
+
+        // Track currently open marker for language refresh
+        let currentOpenMarker = null;
+
+        map.on('popupopen', (event) => {
+            // Store reference to the marker that owns this popup
+            map.eachLayer((layer) => {
+                if (layer.getPopup && layer.getPopup() === event.popup) {
+                    currentOpenMarker = layer;
+                }
+            });
+            centerPopupOnceReady(event.popup);
+            attachPopupActions(event.popup);
+        });
+        map.on('popupclose', () => {
+            hideWikiCard(true);
+            currentOpenMarker = null;
+        });
+
+        window.addEventListener('scroll', () => {
+            if (wikiCardState.card && wikiCardState.link) {
+                positionWikiCard(wikiCardState.card, wikiCardState.link);
+            }
+        });
+        window.addEventListener('resize', () => {
+            if (wikiCardState.card && wikiCardState.link) {
+                positionWikiCard(wikiCardState.card, wikiCardState.link);
+            }
+        });
+
+        // Search functionality
+        let allPlaces = [];
+        let allMarkers = [];
+        let markersByCode = new Map();
+        let searchResults = [];
+        let currentSearchIndex = 0;
+        let pendingHashCode = '';
+        const clearUrlHash = () => {
+            if (!window.location.hash) {
+                return;
+            }
+            const cleanUrl = window.location.pathname + window.location.search;
+            history.replaceState(null, document.title, cleanUrl);
+        };
+        const normalizeMarkerCode = (value = '') => {
+            const trimmed = value.replace(/^#/, '').trim();
+            if (!trimmed) {
+                return '';
+            }
+            const baudinMatch = trimmed.match(/^baudin(\d+)$/i);
+            if (baudinMatch) {
+                return `Baudin${baudinMatch[1].padStart(3, '0')}`;
+            }
+            const entreMatch = trimmed.match(/^entre(\d+)$/i);
+            if (entreMatch) {
+                return `Entre${entreMatch[1].padStart(2, '0')}`;
+            }
+            if (/^\d+$/.test(trimmed)) {
+                return trimmed;
+            }
+            return trimmed;
+        };
+        const openMarkerByCode = (rawCode) => {
+            const normalized = normalizeMarkerCode(rawCode);
+            if (!normalized) {
+                return;
+            }
+            pendingHashCode = normalized; // keep latest requested code
+            const marker = markersByCode.get(normalized.toLowerCase());
+            if (!marker) {
+                pendingHashCode = '';
+                clearUrlHash();
+                return;
+            }
+            ensureExpeditionEnabled(marker.expeditionKey);
+            map.closePopup();
+            marker.openPopup();
+            pendingHashCode = '';
+            clearUrlHash();
+        };
+        const handleHashNavigation = () => {
+            if (!window.location.hash) {
+                return;
+            }
+            openMarkerByCode(window.location.hash.substring(1));
+        };
+        const tryOpenPendingHash = () => {
+            if (!pendingHashCode) {
+                return;
+            }
+            const marker = markersByCode.get(pendingHashCode.toLowerCase());
+            if (marker) {
+                map.closePopup();
+                marker.openPopup();
+                pendingHashCode = '';
+                clearUrlHash();
+            } else {
+                pendingHashCode = '';
+                clearUrlHash();
+            }
+        };
+
+        const searchInput = document.getElementById('search-input');
+        const searchClear = document.getElementById('search-clear');
+        const searchButton = document.getElementById('search-button');
+        const searchResultsDiv = document.getElementById('search-results');
+        const searchCount = document.getElementById('search-count');
+        const searchPrev = document.getElementById('search-prev');
+        const searchNext = document.getElementById('search-next');
+
+        // Normalize text for search (remove accents, lowercase)
+        const normalizeText = (text) => {
+            if (!text) return '';
+            return text.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, ''); // Remove accents
+        };
+
+        const synonymLookup = new Map([
+            ['baie', 'bay'],
+            ['bay', 'bay'],
+            ['cap', 'cape'],
+            ['cape', 'cape'],
+            ['ile', 'island'],
+            ['iles', 'island'],
+            ['island', 'island'],
+            ['islands', 'island'],
+            ['mont', 'mount'],
+            ['montagne', 'mountain'],
+            ['mountain', 'mountain'],
+            ['pointe', 'point'],
+            ['point', 'point'],
+            ['golfe', 'gulf'],
+            ['gulf', 'gulf'],
+            ['havre', 'harbour'],
+            ['harbour', 'harbour'],
+            ['harbor', 'harbour'],
+            ['lac', 'lake'],
+            ['lake', 'lake'],
+            ['riviere', 'river'],
+            ['rivieres', 'river'],
+            ['river', 'river']
+        ]);
+
+        const normalizeForSearch = (text) => {
+            const normalized = normalizeText(text);
+            if (!normalized) return '';
+            return normalized.replace(/\b([a-z']+)\b/g, (word) => synonymLookup.get(word) || word);
+        };
+
+        const splitQueryWords = (value) => normalizeForSearch(value).split(/\s+/).filter(Boolean);
+
+        const matchWeights = {
+            primary: { exact: 120, prefix: 80, substring: 0 },
+            alias: { exact: 70, prefix: 35, substring: 0 },
+            text: { exact: 30, prefix: 20, substring: 0 }
+        };
+
+        const getMatchCategoryScore = (text, queryWords, weights) => {
+            if (!text || queryWords.length === 0) return 0;
+            const normalizedText = normalizeForSearch(text);
+            if (!normalizedText) return 0;
+
+            const normalizedQuery = queryWords.join(' ');
+            if (normalizedText === normalizedQuery) {
+                return weights.exact;
+            }
+
+            const textWords = normalizedText.split(/[\s\-,.'()]+/).filter(Boolean);
+            let best = 0;
+
+            const allPrefix = queryWords.every(qw => textWords.some(tw => tw.startsWith(qw)));
+            if (allPrefix) {
+                best = Math.max(best, weights.prefix);
+            }
+
+            if (weights.substring > 0) {
+                const allSubstring = queryWords.every(qw => normalizedText.includes(qw));
+                if (allSubstring) {
+                    best = Math.max(best, weights.substring);
+                }
+            }
+
+            return best;
+        };
+
+        const computeMatchScore = (place, queryWords) => {
+            const primaryScore = Math.max(
+                getMatchCategoryScore(place.frenchName, queryWords, matchWeights.primary),
+                getMatchCategoryScore(place.ausEName, queryWords, matchWeights.primary)
+            );
+
+            const aliasScore = getMatchCategoryScore(place.variantName, queryWords, matchWeights.alias);
+            const nameScore = Math.max(primaryScore, aliasScore);
+
+            const characteristicScore = Math.max(
+                getMatchCategoryScore(place.characteristic_fr, queryWords, matchWeights.text),
+                getMatchCategoryScore(place.characteristic, queryWords, matchWeights.text)
+            );
+
+            const historyScore = Math.max(
+                getMatchCategoryScore(place.history_fr, queryWords, matchWeights.text),
+                getMatchCategoryScore(place.history, queryWords, matchWeights.text)
+            );
+
+            return nameScore + characteristicScore + historyScore;
+        };
+
+        const computeTextLength = (place) => {
+            const characteristicLen = (place.characteristic_fr || '').length + (place.characteristic || '').length;
+            const historyLen = (place.history_fr || '').length + (place.history || '').length;
+            return characteristicLen + historyLen;
+        };
+
+        const computeRichness = (place) => {
+            const hasImage = !!(place.imgUrl && place.imgUrl.trim() !== '');
+            const hasMap = !!(place.mapUrl && place.mapUrl.trim() !== '');
+            const hasDetails = !!(
+                (place.detailsLink && place.detailsLink.trim() !== '') ||
+                (place.detailsLink_en && place.detailsLink_en.trim() !== '')
+            );
+
+            const textLength = computeTextLength(place);
+            let textBonus = 0;
+            if (textLength > 1800) {
+                textBonus = 10;
+            } else if (textLength > 1200) {
+                textBonus = 8;
+            } else if (textLength > 800) {
+                textBonus = 6;
+            } else if (textLength > 400) {
+                textBonus = 4;
+            } else if (textLength > 0) {
+                textBonus = 2;
+            }
+
+            const baseRichness = (hasImage ? 25 : 0) + (hasMap ? 12 : 0) + (hasDetails ? 12 : 0) + textBonus;
+            const richnessPenalty = baseRichness === 0 ? -40 : 0; // stronger de-prioritization for empty fiches
+            const richnessScore = baseRichness + richnessPenalty;
+
+            place.richnessScore = richnessScore;
+            place.richnessTextLength = textLength;
+            place.richnessHasImage = hasImage;
+        };
+
+        // Check if place has valid GPS coordinates
+        const hasValidCoordinates = (place) => {
+            return place.lat !== 0 || place.lon !== 0;
+        };
+
+        const isPlaceActive = (place) => {
+            const expKey = place.expeditionKey || normalizeExpeditionKey(place.expedition || '');
+            return expKey ? selectedExpeditions.has(expKey) : true;
+        };
+
+        const createPinIcon = (color) => {
+            const fill = color || '#0b63d1';
+            return L.divIcon({
+                className: '',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                html: `
+                    <svg width="25" height="41" viewBox="0 0 25 41" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12.5 0C5.6 0 0 5.6 0 12.5 0 23 12.5 41 12.5 41S25 23 25 12.5C25 5.6 19.4 0 12.5 0z" fill="${fill}" stroke="rgba(0,0,0,0.35)" stroke-width="2"/>
+                        <circle cx="12.5" cy="12.5" r="5" fill="#fff" stroke="rgba(0,0,0,0.35)" stroke-width="2"/>
+                    </svg>
+                `
+            });
+        };
+
+        // Perform search in specified fields
+        const performSearch = (query) => {
+            activeSearchWordsRaw = query.trim().split(/\s+/).filter(Boolean);
+            rebuildHighlightRegex();
+            const normalizedQuery = normalizeText(query).trim();
+            if (!normalizedQuery) {
+                activeSearchWordsRaw = [];
+                rebuildHighlightRegex();
+                searchResults = [];
+                updateSearchUI();
+                return;
+            }
+
+            const queryWords = splitQueryWords(normalizedQuery);
+            const resultsWithScores = [];
+
+            allPlaces.forEach(place => {
+                if (!hasValidCoordinates(place)) return;
+                if (!isPlaceActive(place)) return;
+
+                const matchScore = computeMatchScore(place, queryWords);
+                if (matchScore <= 0) return;
+
+                const richnessScore = place.richnessScore || 0;
+                resultsWithScores.push({ place, matchScore, richnessScore });
+            });
+
+            // Deduplicate by code; keep the highest total score per code
+            const uniqueResults = new Map();
+            resultsWithScores.forEach(entry => {
+                const code = entry.place.code;
+                const existing = uniqueResults.get(code);
+                const entryScore = entry.matchScore + entry.richnessScore;
+                const existingScore = existing ? (existing.matchScore + existing.richnessScore) : -Infinity;
+                if (!existing || entryScore > existingScore) {
+                    uniqueResults.set(code, entry);
+                }
+            });
+
+            const sorted = Array.from(uniqueResults.values()).sort((a, b) => {
+                const totalA = a.matchScore + a.richnessScore;
+                const totalB = b.matchScore + b.richnessScore;
+                if (totalA !== totalB) {
+                    return totalB - totalA;
+                }
+
+                const imgA = a.place.richnessHasImage ? 1 : 0;
+                const imgB = b.place.richnessHasImage ? 1 : 0;
+                if (imgA !== imgB) {
+                    return imgB - imgA;
+                }
+
+                const textLenA = a.place.richnessTextLength || 0;
+                const textLenB = b.place.richnessTextLength || 0;
+                if (textLenA !== textLenB) {
+                    return textLenB - textLenA;
+                }
+
+                const frA = (a.place.frenchName || '').toLowerCase();
+                const frB = (b.place.frenchName || '').toLowerCase();
+                if (frA !== frB) {
+                    return frA.localeCompare(frB);
+                }
+
+                const enA = (a.place.ausEName || '').toLowerCase();
+                const enB = (b.place.ausEName || '').toLowerCase();
+                return enA.localeCompare(enB);
+            });
+
+            searchResults = sorted.map(entry => entry.place);
+            currentSearchIndex = 0;
+            updateSearchUI();
+
+            if (searchResults.length > 0) {
+                focusOnResult(0);
+            } else {
+                // Afficher "Pas d'occurrences" pendant 1 seconde puis effacer
+                const trans = translations[getCurrentLanguage()] || {};
+                const noResultsText = trans['search-no-results'] || 'No occurrences';
+                searchCount.textContent = noResultsText;
+                searchResultsDiv.classList.add('visible');
+
+                setTimeout(() => {
+                    searchResultsDiv.classList.remove('visible');
+                    searchInput.value = '';
+                    searchInput.focus();
+                    updateSearchUI();
+                }, 1000);
+            }
+        };
+
+        // Update search UI
+        const updateSearchUI = () => {
+            const count = searchResults.length;
+            const trans = translations[getCurrentLanguage()] || {};
+            const occurrenceText = count === 1
+                ? trans['search-count-singular'] || 'occurrence'
+                : trans['search-count-plural'] || 'occurrences';
+
+            let displayText = `${count} ${occurrenceText}`;
+            if (count > 0) {
+                const currentNum = currentSearchIndex + 1;
+                const totalNum = count.toString().padStart(3, ' ');
+                displayText = `${currentNum}/${totalNum.trim()} ${occurrenceText}`;
+            }
+
+            searchCount.textContent = displayText;
+            searchResultsDiv.classList.toggle('visible', count > 0);
+
+            searchPrev.disabled = count === 0 || currentSearchIndex === 0;
+            searchNext.disabled = count === 0 || currentSearchIndex === count - 1;
+        };
+
+        // Focus on search result
+        const focusOnResult = (index) => {
+            if (index < 0 || index >= searchResults.length) return;
+
+            currentSearchIndex = index;
+            const place = searchResults[index];
+            const coordinates = extractCoordinates(place);
+
+            if (coordinates) {
+                const [lat, lon] = coordinates;
+
+                // Find the corresponding marker first
+                const targetMarker = allMarkers.find(marker => {
+                    const markerPlace = marker.place;
+                    return markerPlace && markerPlace.code === place.code;
+                });
+
+                if (targetMarker) {
+                    ensureExpeditionEnabled(targetMarker.expeditionKey);
+                    // Close any open popup first
+                    map.closePopup();
+
+                    // Simply open the popup and let Leaflet + adjustPopupView handle positioning
+                    // This mimics exactly what happens with manual marker clicks
+                    targetMarker.openPopup();
+                }
+            }
+
+            updateSearchUI();
+        };
+
+        // Update translations for search interface
+        const updateSearchTranslations = () => {
+            const trans = translations[getCurrentLanguage()] || {};
+            searchInput.placeholder = trans['search-placeholder'] || 'Search for a place...';
+            searchClear.title = trans['search-clear-title'] || 'Clear';
+            searchButton.title = trans['search-button-title'] || 'Search';
+            searchPrev.title = trans['search-prev-title'] || 'Previous';
+            searchNext.title = trans['search-next-title'] || 'Next';
+        };
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value;
+            searchClear.classList.toggle('visible', value.length > 0);
+
+            // Clear search results immediately if input is empty
+            if (value.trim().length === 0) {
+                searchResults = [];
+                activeSearchWordsRaw = [];
+                rebuildHighlightRegex();
+                updateSearchUI();
+            }
+            // No automatic search - user must click magnifier
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch(searchInput.value);
+            }
+        });
+
+        searchButton.addEventListener('click', () => {
+            performSearch(searchInput.value);
+        });
+
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchClear.classList.remove('visible');
+            searchResults = [];
+            activeSearchWordsRaw = [];
+            rebuildHighlightRegex();
+            updateSearchUI();
+            searchInput.focus();
+        });
+
+        searchPrev.addEventListener('click', () => {
+            if (currentSearchIndex > 0) {
+                focusOnResult(currentSearchIndex - 1);
+            }
+        });
+
+        searchNext.addEventListener('click', () => {
+            if (currentSearchIndex < searchResults.length - 1) {
+                focusOnResult(currentSearchIndex + 1);
+            }
+        });
+
+        // Update search interface translations when language changes
+        document.addEventListener('DOMContentLoaded', updateSearchTranslations);
+        const refreshOpenPopup = () => {
+            // Use the tracked marker reference
+            if (currentOpenMarker) {
+                // Save reference before closing (close event will set currentOpenMarker to null)
+                const markerToRefresh = currentOpenMarker;
+                // Close and reopen the popup to refresh with new language
+                markerToRefresh.closePopup();
+                setTimeout(() => {
+                    markerToRefresh.openPopup();
+                }, 100);
+            }
+        };
+
+        // Listen for the languageChanged event dispatched by main.js
+        document.addEventListener('languageChanged', () => {
+            updateSearchTranslations();
+            refreshOpenPopup();
+        });
+
+        const expeditionConfigs = {
+            baudin: {
+                key: 'baudin',
+                label: 'Baudin',
+                color: '#0b63d1',
+                dataUrl: `data/baudin.json`
+            },
+            entre: {
+                key: 'entre',
+                label: "d'Entrecasteaux",
+                color: '#238b45',
+                dataUrl: `data/entrecasteaux.json`
+            }
+        };
+
+        const expeditionLayers = {
+            baudin: L.layerGroup().addTo(map),
+            entre: L.layerGroup().addTo(map)
+        };
+        let selectedExpeditions = new Set(['baudin', 'entre']);
+
+        const toggleBaudin = document.getElementById('toggle-baudin');
+        const toggleEntre = document.getElementById('toggle-entre');
+
+        const normalizeExpeditionKey = (value = '') => {
+            const lower = value.toLowerCase();
+            if (lower.includes('baudin')) return 'baudin';
+            if (lower.includes('entre') || lower.includes("d'entrecasteaux")) return 'entre';
+            return '';
+        };
+
+        const ensureExpeditionEnabled = (key) => {
+            if (!key) return;
+            if (!selectedExpeditions.has(key)) {
+                selectedExpeditions.add(key);
+                if (key === 'baudin') {
+                    toggleBaudin.checked = true;
+                    map.addLayer(expeditionLayers.baudin);
+                } else if (key === 'entre') {
+                    toggleEntre.checked = true;
+                    map.addLayer(expeditionLayers.entre);
+                }
+            }
+        };
+
+        const setExpeditionVisibility = (key, visible) => {
+            const layer = expeditionLayers[key];
+            if (!layer) return;
+            if (visible) {
+                map.addLayer(layer);
+                selectedExpeditions.add(key);
+            } else {
+                map.removeLayer(layer);
+                selectedExpeditions.delete(key);
+            }
+            if (searchInput.value.trim()) {
+                performSearch(searchInput.value);
+            } else {
+                searchResults = [];
+                updateSearchUI();
+            }
+        };
+
+        toggleBaudin.addEventListener('change', () => setExpeditionVisibility('baudin', toggleBaudin.checked));
+        toggleEntre.addEventListener('change', () => setExpeditionVisibility('entre', toggleEntre.checked));
+
+        const addPlacesToMap = (places) => {
+            const bounds = L.latLngBounds();
+
+            places.forEach(place => {
+                const coordinates = extractCoordinates(place);
+                if (!coordinates) {
+                    return;
+                }
+
+                const [lat, lon] = coordinates;
+                const expKey = place.expeditionKey || normalizeExpeditionKey(place.expedition) || 'baudin';
+                const cfg = expeditionConfigs[expKey];
+                const layer = expeditionLayers[expKey] || map;
+                const markerColor = cfg?.color || '#0056b3';
+
+                // Custom pin icon matching previous style (teardrop with inner white dot)
+                const marker = L.marker([lat, lon], { icon: createPinIcon(markerColor) }).addTo(layer);
+
+                marker.place = place;
+                marker.expeditionKey = expKey;
+                allMarkers.push(marker);
+                const normalizedCode = normalizeMarkerCode(place.code || '');
+                if (normalizedCode) {
+                    markersByCode.set(normalizedCode.toLowerCase(), marker);
+                }
+
+                bounds.extend([lat, lon]);
+
+                if (!disableMarkerTooltips) {
+                    marker.bindTooltip('', {
+                        direction: 'top',
+                        offset: [0, -10],
+                        opacity: 0.95,
+                        sticky: true
+                    });
+
+                    const refreshTooltip = () => {
+                        const currentLang = localStorage.getItem('language') || 'en';
+                        const tooltipName = nameForTooltip(place, currentLang);
+                        if (!tooltipName) {
+                            marker.closeTooltip();
+                            return;
+                        }
+                        marker.setTooltipContent(tooltipName);
+                    };
+
+                    marker.on('mouseover', () => {
+                        refreshTooltip();
+                        if (marker.getTooltip()) {
+                            marker.openTooltip();
+                        }
+                    });
+                    marker.on('mouseout', () => marker.closeTooltip());
+                }
+
+                if (place.imgUrl && place.imgUrl.trim() !== "") {
+                    const img = new Image();
+                    img.src = place.imgUrl;
+                }
+
+                marker.bindPopup(() => {
+                    const currentLang = localStorage.getItem('language') || 'en';
+                    const trans = translations[currentLang];
+                    const safeAlt = escapeHtml(place.frenchName || '');
+                    const aliasLabel = trans['popup-alias-name'] || 'Alias :';
+
+                    let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${highlightMatches(place.frenchName || '')}</p>`;
+                    if (place.variantName && place.variantName.trim() !== "") {
+                        textHtml += `<p><strong>${aliasLabel}</strong> ${highlightMatches(place.variantName)}</p>`;
+                    }
+                    textHtml += `<p><strong>${trans['popup-ause-name']}</strong> ${highlightMatches(place.ausEName || '')}</p>`;
+
+                    if (place.indigenousName && place.indigenousName.trim() !== "") {
+                        textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
+                    }
+
+                    const coordinatesText = formatCoordinates(lat, lon, place.code, trans);
+                    textHtml += `<p><strong>${trans['popup-coordinates']}</strong> ${coordinatesText}</p>`;
+
+                    const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
+                    const linkSegments = [];
+
+                    if (place.mapUrl && place.mapUrl.trim() !== "") {
+                        const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
+                        const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
+                        const safeMapUrl = escapeHtml(place.mapUrl);
+                        linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                    }
+
+                    if (detailsUrl && detailsUrl.trim() !== '' && detailsUrl.trim() !== '#') {
+                        const resolvedDetailsHref = resolveDetailsUrl(detailsUrl);
+                        if (resolvedDetailsHref) {
+                            const frLabelRaw = (place.frenchName || '').trim();
+                            const enLabelRaw = (place.ausEName || '').trim();
+                            if (!placeNamesByUrl[resolvedDetailsHref]) {
+                                placeNamesByUrl[resolvedDetailsHref] = {
+                                    fr: frLabelRaw,
+                                    en: enLabelRaw
+                                };
+                            }
+                            const detailsTitle = currentLang === 'fr'
+                                ? (frLabelRaw || enLabelRaw)
+                                : (enLabelRaw || frLabelRaw);
+                            linkSegments.push(`<a href="${escapeHtml(resolvedDetailsHref)}" class="popup-details-link" data-details-url="${escapeHtml(resolvedDetailsHref)}" data-details-title="${escapeHtml(detailsTitle)}">${trans['popup-details-link']}</a>`);
+                        }
+                    }
+
+                    if (linkSegments.length) {
+                        textHtml += `<p class="popup-link-row">${linkSegments.join('<span class="popup-link-separator">|</span>')}</p>`;
+                    }
+
+                    const fullWidthBlocks = [];
+
+                    const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                    const characteristicText = (currentLang === 'fr') ? place.characteristic_fr : place.characteristic;
+                    if (characteristicText && characteristicText.trim() !== "") {
+                        const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
+                        const highlightedCharacteristic = highlightHtml(enrichedCharacteristic);
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-characteristic-label']}</strong> ${highlightedCharacteristic}</p>`);
+                    }
+
+                    const historyText = (currentLang === 'fr') ? place.history_fr : place.history;
+                    if (historyText && historyText.trim() !== "") {
+                        const enrichedHistory = enhanceWikiText(historyText, wikiLang);
+                        const highlightedHistory = highlightHtml(enrichedHistory);
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-history-label']}</strong> ${highlightedHistory}</p>`);
+                    }
+
+                    const wikiLink = (currentLang === 'fr') ? place.wiki_fr : place.wiki_en;
+                    if (wikiLink && wikiLink.trim() !== "") {
+                        let linkText = wikiLink.substring(wikiLink.lastIndexOf('/') + 1);
+                        linkText = decodeURIComponent(linkText).replace(/_/g, ' ');
+                        const wikiMarkup = createWikiLinkMarkup(wikiLink, linkText, wikiLang);
+                        fullWidthBlocks.push(`<p><strong>${trans['popup-wiki-label']}</strong> ${wikiMarkup}</p>`);
+                    }
+
+                    if (place.other_link && place.other_link.trim() !== "") {
+                        const otherSourceLabel = trans['popup-othersource-label'];
+                        fullWidthBlocks.push(`<p class="popup-other-source"><a class="popup-other-source-link" href="${place.other_link}" target="_blank" rel="noopener"><strong>${otherSourceLabel}</strong></a></p>`);
+                    }
+
+                    if (place.imgUrl && place.imgUrl.trim() !== "") {
+                        const escapedImg = escapeHtml(place.imgUrl);
+                        const mobileThumbHtml = `
+                                <button type="button" class="popup-image-button popup-image-thumb" data-img="${escapedImg}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
+                                    <img src="${escapedImg}" alt="${safeAlt}">
+                                </button>`;
+
+                        textHtml = `${mobileThumbHtml}${textHtml}`;
+
+                        const imageHtml = `
+                                <div class="popup-image-wrapper">
+                                    <button type="button" class="popup-image-button" data-img="${escapedImg}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
+                                        <img src="${place.imgUrl}" alt="${safeAlt}" class="popup-image">
+                                    </button>
+                                </div>`;
+
+                        return `<div class="popup-layout">
+                                    <div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>
+                                    ${imageHtml}
+                                </div>`;
+                    }
+
+                    return `<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>`;
+                }, { maxWidth: 700 });
+            });
+        };
+
+        const loadExpedition = async (cfg) => {
+            const normalize = (places) => places.map(p => ({
+                ...p,
+                expeditionKey: normalizeExpeditionKey(p.expedition || cfg.label) || cfg.key
+            }));
+
+            // Try standard fetch (works when served via http/https)
+            try {
+                const response = await fetch(cfg.dataUrl, { cache: 'no-cache' });
+                if (response.ok) {
+                    const places = await response.json();
+                    return normalize(places);
+                }
+            } catch (err) {
+                // silent
+            }
+
+            // Fallback for file:// access using dynamic import of JSON
+            try {
+                const module = await import(`${cfg.dataUrl}`, { assert: { type: 'json' } });
+                const data = module.default || module;
+                return normalize(data);
+            } catch (err) {
+                return [];
+            }
+        };
+
+        (async () => {
+            try {
+                const baudinPlaces = await loadExpedition(expeditionConfigs.baudin);
+                const entrePlaces = await loadExpedition(expeditionConfigs.entre);
+                const STATE_FILTER = 'WA';
+                const filteredBaudin = baudinPlaces.filter(p => (p.state || '').toUpperCase() === STATE_FILTER);
+                const filteredEntre = entrePlaces.filter(p => (p.state || '').toUpperCase() === STATE_FILTER);
+                allPlaces = [...filteredBaudin, ...filteredEntre];
+                allPlaces.forEach(place => computeRichness(place));
+                allMarkers = [];
+                markersByCode = new Map();
+                addPlacesToMap(allPlaces);
+                map.setView(defaultCenter, defaultZoom);
+                window.addEventListener('resize', () => {
+                    const newZoom = getDefaultZoom();
+                    if (Math.abs(map.getZoom() - defaultZoom) < 0.5) {
+                        map.setView(defaultCenter, newZoom, { animate: false });
+                    }
+                });
+
+                updateSearchTranslations();
+                handleHashNavigation();
+                tryOpenPendingHash();
+                window.addEventListener('hashchange', handleHashNavigation);
+            } catch (error) {
+                console.error('Failed to load expedition data:', error);
+            }
+        })();
+    </script>
+</body>
+</html>
