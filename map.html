@@ -2433,9 +2433,9 @@
         const splitQueryWords = (value) => normalizeForSearch(value).split(/\s+/).filter(Boolean);
 
         const matchWeights = {
-            primary: { exact: 120, prefix: 80, substring: 1 },
-            alias: { exact: 70, prefix: 35, substring: 1 },
-            text: { exact: 30, prefix: 20, substring: 1 }
+            primary: { exact: 120, prefix: 80, substring: 0 },
+            alias: { exact: 70, prefix: 35, substring: 0 },
+            text: { exact: 30, prefix: 20, substring: 0 }
         };
 
         const getMatchCategoryScore = (text, queryWords, weights) => {
