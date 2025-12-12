@@ -1369,7 +1369,8 @@
                 return;
             }
             const uniqueWords = Array.from(new Set(activeSearchWordsRaw.filter(Boolean).map(w => escapeRegExp(w))));
-            highlightRegex = uniqueWords.length ? new RegExp(`(${uniqueWords.join('|')})`, 'gi') : null;
+            // Highlight only at word boundaries (prefix logic); no pure substrings
+            highlightRegex = uniqueWords.length ? new RegExp(`\\b(${uniqueWords.join('|')})`, 'gi') : null;
         };
         const highlightMatches = (text) => {
             if (!text) return '';
