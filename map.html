@@ -642,8 +642,46 @@
             padding: 12px 16px;
             background: #f7f7f7;
             display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 30;
+        }
+        .map-modal-header-row {
+            display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
+        }
+        .map-modal-loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            color: #333;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+        }
+        .map-modal-loader.hidden {
+            display: none;
+        }
+        .map-modal-loader-spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.2);
+            border-top-color: #0b63d1;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            flex: 0 0 auto;
+        }
+        .map-modal-loader.error .map-modal-loader-spinner {
+            border-top-color: #f67280;
+            animation: none;
+        }
+        .map-modal-loader-message {
+            line-height: 1.2;
+            text-align: center;
         }
         .map-modal-title {
             font-family: 'Lato', sans-serif;
@@ -763,7 +801,7 @@
         .details-modal-dialog {
             background: #fff;
             width: 90vw;
-            max-width: 830px;
+            max-width: 920px;
             height: 90vh;
             display: flex;
             flex-direction: column;
@@ -1002,8 +1040,14 @@
     <div id="map-modal" class="map-modal" aria-hidden="true" role="dialog" aria-modal="true">
         <div class="map-modal-content">
             <div class="map-modal-header">
-                <h3 class="map-modal-title" id="map-modal-title"></h3>
-                <button type="button" class="map-modal-close" id="map-modal-close" aria-label="Close map">&times;</button>
+                <div class="map-modal-header-row">
+                    <h3 class="map-modal-title" id="map-modal-title"></h3>
+                    <button type="button" class="map-modal-close" id="map-modal-close" aria-label="Close map">&times;</button>
+                </div>
+                <div class="map-modal-loader hidden" id="map-modal-loader">
+                    <div class="map-modal-loader-spinner" aria-hidden="true"></div>
+                    <span class="map-modal-loader-message" id="map-modal-loader-message"></span>
+                </div>
             </div>
             <div class="map-modal-body" id="map-modal-body"></div>
         </div>
@@ -1788,10 +1832,8 @@
         const mapModalBody = document.getElementById('map-modal-body');
         const mapModalTitle = document.getElementById('map-modal-title');
         const mapModalCloseButton = document.getElementById('map-modal-close');
-        const mapModalContent = mapModal?.querySelector('.map-modal-content');
-        let mapModalOverlay;
-        let mapModalOverlaySpinner;
-        let mapModalOverlayMessage;
+        const mapModalLoader = document.getElementById('map-modal-loader');
+        const mapModalLoaderMessage = document.getElementById('map-modal-loader-message');
         let mapModalOverlayOpenedAt = 0;
         const placeNamesByUrl = Object.create(null);
 
@@ -1803,61 +1845,51 @@
         const detailsModalTitle = document.getElementById('details-modal-title');
         const detailsModalCloseButton = document.getElementById('details-modal-close');
 
-        const ensureMapModalOverlay = () => {
-            if (!mapModalContent) { return null; }
-            if (!mapModalOverlay) {
-                mapModalOverlay = document.createElement('div');
-                mapModalOverlay.className = 'map-modal-overlay hidden';
-                mapModalOverlaySpinner = document.createElement('div');
-                mapModalOverlaySpinner.className = 'map-modal-spinner-icon';
-                mapModalOverlayMessage = document.createElement('span');
-                mapModalOverlayMessage.className = 'map-modal-overlay-message';
-                mapModalOverlay.append(mapModalOverlaySpinner, mapModalOverlayMessage);
-                mapModalContent.appendChild(mapModalOverlay);
+        const nowMs = () => {
+            if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+                return performance.now();
             }
-            return mapModalOverlay;
+            return Date.now();
         };
 
         const showMapModalOverlay = (messageKey) => {
-            const overlay = ensureMapModalOverlay();
-            if (!overlay) { return; }
             const message = translate(messageKey) || translate('map-loading-message') || 'Loading map...';
-            mapModalOverlayOpenedAt = performance.now();
-            overlay.classList.remove('hidden', 'error');
-            if (mapModalOverlayMessage) {
-                mapModalOverlayMessage.textContent = message;
+            mapModalOverlayOpenedAt = nowMs();
+            if (mapModalLoaderMessage) {
+                mapModalLoaderMessage.textContent = message;
+            }
+            if (mapModalLoader) {
+                mapModalLoader.classList.remove('hidden', 'error');
             }
         };
 
         const hideMapModalOverlay = (callback) => {
-            const overlay = ensureMapModalOverlay();
-            if (!overlay) {
-                callback?.();
-                return;
-            }
-            overlay.classList.remove('error');
-            const elapsed = performance.now() - mapModalOverlayOpenedAt;
-            const minimum = 350;
+            const elapsed = nowMs() - mapModalOverlayOpenedAt;
+            const minimum = 650;
             const finalize = () => {
-                overlay.classList.add('hidden');
+                if (mapModalLoader) {
+                    mapModalLoader.classList.add('hidden');
+                    mapModalLoader.classList.remove('error');
+                }
                 callback?.();
             };
-            if (elapsed >= minimum) {
+            if (Number.isFinite(elapsed) && elapsed >= minimum) {
                 finalize();
             } else {
-                setTimeout(finalize, minimum - elapsed);
+                const delay = Number.isFinite(elapsed) ? Math.max(0, minimum - elapsed) : minimum;
+                setTimeout(finalize, delay);
             }
         };
 
         const showMapModalOverlayError = () => {
-            const overlay = ensureMapModalOverlay();
-            if (!overlay) { return; }
             const message = translate('map-loading-error') || 'Unable to load the map. Please try again.';
-            mapModalOverlayOpenedAt = performance.now();
-            overlay.classList.remove('hidden');
-            overlay.classList.add('error');
-            if (mapModalOverlayMessage) {
-                mapModalOverlayMessage.textContent = message;
+            mapModalOverlayOpenedAt = nowMs();
+            if (mapModalLoaderMessage) {
+                mapModalLoaderMessage.textContent = message;
+            }
+            if (mapModalLoader) {
+                mapModalLoader.classList.remove('hidden');
+                mapModalLoader.classList.add('error');
             }
         };
 
@@ -1958,6 +1990,9 @@
             if (mapModalTitle) {
                 mapModalTitle.textContent = '';
             }
+            if (mapModalLoaderMessage) {
+                mapModalLoaderMessage.textContent = '';
+            }
             hideMapModalOverlay();
         };
 
@@ -1976,8 +2011,6 @@
                 }
                 return url + widParam;
             })();
-            showMapModalOverlay('map-loading-message');
-
             mapModalBody.innerHTML = '';
             const contentWrapper = document.createElement('div');
             contentWrapper.className = 'map-modal-content-wrapper';
@@ -1997,26 +2030,39 @@
                 showMapModalOverlayError();
             };
 
-            const isImage = /\.(jpg|jpeg|png|gif|webp)(\?|$)/i.test(normalizedUrl) || /representativeimage/i.test(normalizedUrl);
-            if (isImage) {
-                const image = new Image();
-                image.alt = title || '';
-                const attachImage = () => {
-                    if (!contentWrapper.contains(image)) {
-                        contentWrapper.appendChild(image);
-                    }
-                    revealContent();
-                };
-                image.addEventListener('load', () => {
-                    if (typeof image.decode === 'function') {
-                        image.decode().then(attachImage).catch(attachImage);
-                    } else {
-                        attachImage();
-                    }
-                }, { once: true });
-                image.addEventListener('error', handleError, { once: true });
-                image.src = normalizedUrl;
-            } else {
+            if (mapModalTitle) {
+                mapModalTitle.textContent = title || '';
+            }
+            showMapModalOverlay('map-loading-message');
+            mapModal.classList.add('open');
+            mapModal.setAttribute('aria-hidden', 'false');
+            if (mapModalCloseButton) {
+                mapModalCloseButton.focus({ preventScroll: true });
+            }
+
+            requestAnimationFrame(() => {
+                const isImage = /\.(jpg|jpeg|png|gif|webp)(\?|$)/i.test(normalizedUrl) || /representativeimage/i.test(normalizedUrl);
+                if (isImage) {
+                    const image = new Image();
+                    image.alt = title || '';
+                    const attachImage = () => {
+                        if (!contentWrapper.contains(image)) {
+                            contentWrapper.appendChild(image);
+                        }
+                        revealContent();
+                    };
+                    image.addEventListener('load', () => {
+                        if (typeof image.decode === 'function') {
+                            image.decode().then(attachImage).catch(attachImage);
+                        } else {
+                            attachImage();
+                        }
+                    }, { once: true });
+                    image.addEventListener('error', handleError, { once: true });
+                    image.src = normalizedUrl;
+                    return;
+                }
+
                 const frame = document.createElement('iframe');
                 frame.src = normalizedUrl;
                 frame.title = title || 'Map viewer';
@@ -2028,16 +2074,7 @@
                     revealContent();
                 }, { once: true });
                 frame.addEventListener('error', handleError, { once: true });
-            }
-
-            if (mapModalTitle) {
-                mapModalTitle.textContent = title || '';
-            }
-            mapModal.classList.add('open');
-            mapModal.setAttribute('aria-hidden', 'false');
-            if (mapModalCloseButton) {
-                mapModalCloseButton.focus({ preventScroll: true });
-            }
+            });
         };
 
         if (modal) {
@@ -2092,17 +2129,49 @@
             }
         });
 
-        // Délégation de clic pour diagnostiquer les images (fallback si le binding direct a été raté)
+        // Fallback global: ensure popup "Original map / Carte originale" always opens the modal
+        document.addEventListener('click', (event) => {
+            if (event.defaultPrevented) {
+                return;
+            }
+            const mapLink = event.target.closest('.popup-map-link');
+            if (!mapLink) {
+                return;
+            }
+            const url = mapLink.dataset.mapUrl || '';
+            const title = mapLink.dataset.mapTitle || '';
+            if (url && url.trim() !== '') {
+                event.preventDefault();
+                openMapModal(url, title);
+            }
+        });
+
+        // Fallback global: ensure popup "Detailed page / Page détaillée" always opens the modal
+        document.addEventListener('click', (event) => {
+            if (event.defaultPrevented) {
+                return;
+            }
+            const detailsLink = event.target.closest('.popup-details-link');
+            if (!detailsLink) {
+                return;
+            }
+            const url = detailsLink.dataset.detailsUrl || detailsLink.getAttribute('href') || '';
+            const title = detailsLink.dataset.detailsTitle || detailsLink.textContent || '';
+            if (url && url.trim() !== '' && url.trim() !== '#') {
+                event.preventDefault();
+                openDetailsModal(url, title);
+            }
+        });
+
+        // Fallback global: ensure popup image buttons always open the modal
         document.addEventListener('click', (event) => {
             const button = event.target.closest('.popup-image-button');
             if (!button) {
                 return;
             }
             const popupRoot = button.closest('.leaflet-popup');
-            const placeCode = popupRoot?._source?.place?.code || 'unknown';
             const buttonImg = button.dataset.img || button.querySelector('img')?.src || '';
             const buttonAlt = button.dataset.alt || button.querySelector('img')?.alt || '';
-            console.log('[delegate] Clic image (délégation)', { placeCode, src: buttonImg });
             if (buttonImg) {
                 openImageModal(buttonImg, buttonAlt);
             }
@@ -2185,18 +2254,21 @@
                 }
             });
 
-            const mapLink = popupElement.querySelector('.popup-map-link');
-            if (mapLink && !mapLink.dataset.modalBound) {
+            const mapLinks = popupElement.querySelectorAll('.popup-map-link');
+            mapLinks.forEach((mapLink) => {
+                if (mapLink.dataset.modalBound === 'true') {
+                    return;
+                }
                 mapLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const url = mapLink.dataset.mapUrl;
+                    const url = mapLink.dataset.mapUrl || mapLink.getAttribute('href') || '';
                     const title = mapLink.dataset.mapTitle || '';
                     if (url && url.trim() !== '') {
+                        event.preventDefault();
                         openMapModal(url, title);
                     }
                 });
                 mapLink.dataset.modalBound = 'true';
-            }
+            });
 
             const detailsLinks = popupElement.querySelectorAll('.popup-details-link');
             detailsLinks.forEach((detailsLink) => {
