@@ -224,7 +224,7 @@ const translations = {
     },
     'en': {
         // --- General text ---
-        'hero-title': "French Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms originated by the d'Entrecasteaux (1791-1794) and Baudin (1800-1804) voyages",
+        'hero-title': "French Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms bestowed by the d'Entrecasteaux (1791–1794) and Baudin (1800–1804) voyages",
         'hero-audio-label': "Listen to the audio introduction", 'hero-audio-src': "data/intro_en.mp3",
         'nav-home': "Home", 'nav-map': "Map", 'nav-ai': "AI Q&A", 'nav-resources': "Resources", 'nav-about': "About",
         'map-layer-baudin': "Baudin",
