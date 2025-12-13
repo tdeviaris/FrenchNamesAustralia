@@ -8,14 +8,10 @@ import re
 from pathlib import Path
 
 FILES = [
-    "glossaryF.html",
-    "glossaryE.html",
-    "acteursF.html",
-    "acteursE.html",
-    "cartesF.html",
-    "cartesE.html",
-    "SourcesF.html",
-    "SourcesE.html",
+    "glossary.html",
+    "actors.html",
+    "maps.html",
+    "sources.html",
     "resources.html",
 ]
 

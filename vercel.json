@@ -22,5 +22,15 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    { "source": "/glossaryE.html", "destination": "/glossary.html", "permanent": true },
+    { "source": "/glossaryF.html", "destination": "/glossary.html", "permanent": true },
+    { "source": "/acteursE.html", "destination": "/actors.html", "permanent": true },
+    { "source": "/acteursF.html", "destination": "/actors.html", "permanent": true },
+    { "source": "/cartesE.html", "destination": "/maps.html", "permanent": true },
+    { "source": "/cartesF.html", "destination": "/maps.html", "permanent": true },
+    { "source": "/SourcesE.html", "destination": "/sources.html", "permanent": true },
+    { "source": "/SourcesF.html", "destination": "/sources.html", "permanent": true }
   ]
 }

@@ -12,14 +12,10 @@ const FILES = [
   'index.html',
   'expert.html',
   'resources.html',
-  'glossaryF.html',
-  'glossaryE.html',
-  'acteursF.html',
-  'acteursE.html',
-  'cartesF.html',
-  'cartesE.html',
-  'SourcesF.html',
-  'SourcesE.html'
+  'glossary.html',
+  'actors.html',
+  'maps.html',
+  'sources.html'
 ];
 
 const NAV_PARTIAL = path.join(__dirname, '..', 'partials', 'nav.html');

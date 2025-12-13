@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """
-Script pour fusionner les pages FR/EN des ressources en pages uniques avec traductions
+Vérifie les pages ressources bilingues (sans suffixe E/F).
+
+Depuis le nettoyage du repo, les pages ressources (glossaire, acteurs, cartes, sources)
+sont des pages uniques contenant deux blocs :
+- data-lang="en"
+- data-lang="fr"
+Le switch de langue s'appuie sur l'attribut <html lang="..."> (piloté par js/main.js).
 """
 
 import re
@@ -27,67 +33,41 @@ def extract_main_content(content):
     match = re.search(r'<main[^>]*>(.*?)</main>', content, re.DOTALL)
     return match.group(1).strip() if match else ""
 
-def merge_pages(fr_file, en_file, output_file, page_key):
-    """
-    Fusionne deux pages FR/EN en une page unique
+def extract_lang_block(content, lang):
+    match = re.search(rf'<div\\s+data-lang=\"{lang}\">(.*?)</div>', content, re.DOTALL)
+    return match.group(1).strip() if match else ""
 
-    Args:
-        fr_file: Chemin vers le fichier français
-        en_file: Chemin vers le fichier anglais
-        output_file: Chemin du fichier de sortie
-        page_key: Clé de base pour les traductions (ex: 'glossary')
-    """
-    print(f"📄 Fusion de {fr_file.name} et {en_file.name} → {output_file}")
 
-    # Lire les deux fichiers
-    fr_content = read_file(fr_file)
-    en_content = read_file(en_file)
+def inspect_bilingual_page(filepath):
+    content = read_file(filepath)
+    title = extract_title(content)
+    fr_block = extract_lang_block(content, "fr")
+    en_block = extract_lang_block(content, "en")
 
-    # Extraire les titres
-    fr_title = extract_title(fr_content)
-    en_title = extract_title(en_content)
-
-    print(f"  Titre FR: {fr_title}")
-    print(f"  Titre EN: {en_title}")
-
-    # Extraire le contenu principal
-    fr_main = extract_main_content(fr_content)
-    en_main = extract_main_content(en_content)
-
-    print(f"  ✅ Contenus extraits")
-
-    # Pour l'instant, on génère juste un rapport
-    # La fusion réelle nécessite une analyse plus fine du contenu HTML
-
+    ok = bool(fr_block) and bool(en_block)
     return {
-        'fr_title': fr_title,
-        'en_title': en_title,
-        'fr_main_length': len(fr_main),
-        'en_main_length': len(en_main)
+        "title": title,
+        "ok": ok,
+        "fr_chars": len(fr_block),
+        "en_chars": len(en_block),
     }
 
 
 if __name__ == "__main__":
-    # Configuration des paires de fichiers à fusionner
-    pairs = [
-        ('glossaryF.html', 'glossaryE.html', 'glossary.html', 'glossary'),
-        ('acteursF.html', 'acteursE.html', 'actors.html', 'actors'),
-        ('cartesF.html', 'cartesE.html', 'maps.html', 'maps'),
-        ('SourcesF.html', 'SourcesE.html', 'sources.html', 'sources'),
+    pages = [
+        Path("glossary.html"),
+        Path("actors.html"),
+        Path("maps.html"),
+        Path("sources.html"),
     ]
 
-    base_dir = Path('/Users/tdeviaris/Desktop/Toponymes/FrenchNamesAustralia')
-
-    for fr_name, en_name, out_name, key in pairs:
-        fr_file = base_dir / fr_name
-        en_file = base_dir / en_name
-        out_file = base_dir / out_name
-
-        if not fr_file.exists() or not en_file.exists():
-            print(f"❌ Fichiers manquants pour {key}")
+    for page in pages:
+        if not page.exists():
+            print(f"❌ Fichier manquant: {page}")
             continue
-
-        result = merge_pages(fr_file, en_file, out_file, key)
-        print(f"   FR main: {result['fr_main_length']} chars")
-        print(f"   EN main: {result['en_main_length']} chars")
+        result = inspect_bilingual_page(page)
+        status = "✅" if result["ok"] else "❌"
+        print(f"{status} {page} — {result['title']}")
+        print(f"   EN block: {result['en_chars']} chars")
+        print(f"   FR block: {result['fr_chars']} chars")
         print()

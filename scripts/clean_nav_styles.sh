@@ -3,14 +3,10 @@
 # Ces styles sont maintenant centralisés dans css/nav.css
 
 FILES=(
-    "SourcesE.html"
-    "SourcesF.html"
-    "acteursE.html"
-    "acteursF.html"
-    "cartesE.html"
-    "cartesF.html"
-    "glossaryE.html"
-    "glossaryF.html"
+    "sources.html"
+    "actors.html"
+    "maps.html"
+    "glossary.html"
     "resources.html"
 )
 

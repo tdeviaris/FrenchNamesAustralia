@@ -1,28 +1,424 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Key Figures</title>
-    <script>
-        (function () {
-            let lang = 'en';
-            try {
-                lang = localStorage.getItem('language') || 'en';
-            } catch (e) { /* ignore */ }
-            const target = (lang === 'fr') ? 'acteursF.html' : 'acteursE.html';
-            window.location.replace(target);
-        })();
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Actors - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        :root { --nav-height: 72px; --accent: #0056b3; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; margin: 0; background-color: #999; color: #333; padding-top: var(--nav-height); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 16px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .content-section h1 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 18px 0; }
+        .content-section h2.subtitle { font-family: 'Lato', sans-serif; font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.2rem); margin: 0 0 14px 0; color: #444; }
+        .content-section p.intro { margin: 0 0 18px 0; }
+        .toc { margin: 0 0 20px 0; padding-left: 18px; }
+        .toc li { margin: 6px 0; }
+        .entry-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin-top: 30px; scroll-margin-top: calc(var(--nav-height) + 16px); }
+        .entry-title a.backtop { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; }
+        .entry-title a.backtop img { width: 24px; height: 24px; opacity: 0.8; transition: opacity 0.2s ease; }
+        .entry-title a.backtop:hover img { opacity: 1; }
+        .entry { margin-bottom: 40px; }
+        .entry-content { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+        .entry-image { flex-shrink: 0; width: 200px; }
+        .entry-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .entry-text { flex: 1; min-width: 300px; }
+        .entry-text p { margin: 0.6em 0; line-height: 1.55; }
+        .entry-image img { cursor: pointer; transition: opacity 0.2s ease; }
+        .entry-image img:hover { opacity: 0.85; }
+
+        /* Lightbox for fullscreen portrait display */
+        .portrait-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .portrait-lightbox.active {
+            display: flex;
+        }
+        .portrait-lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+        }
+        .portrait-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            font-size: 28px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background 0.2s ease;
+        }
+        .portrait-lightbox-close:hover {
+            background: #f2f2f2;
+        }
+        .portrait-lightbox-close:focus-visible {
+            outline: 3px solid #FFD700;
+        }
+
+        footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+        @media  (max-width: 768px)  {.entry-content { flex-direction: column; }
+            .entry-image { width: 100%; max-width: 300px; margin: 0 auto; }
+        }
+
+    
+
+        /* Language-specific content blocks */
+        [data-lang] { display: none; }
+        html[lang^="en"] [data-lang="en"],
+        html[lang^="fr"] [data-lang="fr"] { display: block; }
+</style>
 </head>
-<body>
-    <noscript>
-        <p>
-            Choose a language:
-            <a href="acteursE.html">English</a> |
-            <a href="acteursF.html">Français</a>
-        </p>
-    </noscript>
+<body id="top">
+    <nav>
+    <ul>
+        <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
+        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
+        <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
+        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français">
+            <img src="img/fr.svg" alt="Français">
+        </button>
+        <button type="button" id="lang-en" title="Switch to English">
+            <img src="img/au.svg" alt="English">
+        </button>
+    </div>
+</nav>
+
+    <main class="container">
+        <div data-lang="en">
+        <section class="content-section">
+            <h1>Key Actors <a href="resources.html"><img src="img/up-arrow.svg" alt="Back to Resources page" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h1>
+            <h2 class="subtitle">The explorers and scientists of the d'Entrecasteaux and Baudin expeditions</h2>
+
+            <p class="intro">
+                These pages present the main actors of the two great French expeditions that mapped and named many places along the Australian coasts.
+            </p>
+
+            <ul class="toc">
+                <li><a href="#baudin">Nicolas Baudin</a></li>
+                <li><a href="#beautemps-beaupre">Charles-François Beautemps-Beaupré</a></li>
+                <li><a href="#entrecasteaux">Antoine Bruni d'Entrecasteaux</a></li>
+                <li><a href="#freycinet">Louis de Freycinet</a></li>
+                <li><a href="#lesueur">Charles-Alexandre Lesueur</a></li>
+                <li><a href="#peron">François Péron</a></li>
+            </ul>
+
+            <section class="entry">
+                <h2 id="baudin" class="entry-title">
+                    <span>Nicolas Baudin</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/baudin.png" alt="Portrait of Nicolas Baudin">
+                    </div>
+                    <div class="entry-text">
+                        <p>Nicolas Baudin, born in 1754 in Saint-Martin-de-Ré, was a distinguished French mariner and explorer. After several expeditions to the Indian Ocean and, notably, to the West Indies - the latter voyage aboard La Belle Angélique proving decisive in his selection - he was appointed by Bonaparte, in agreement with the scholars of the Institut national des sciences et des arts, to lead a major voyage of discovery to the Southern Lands. The expedition departed from Le Havre in October 1800 aboard two corvettes: Le Géographe, commanded by Baudin himself, and Le Naturaliste, under the command of Hamelin.</p>
+                        <p>Between 1801 and 1803, the expedition collected over 100,000 specimens of natural history, produced more than 1,500 sketches and paintings, and mapped extensive portions of the southern and western coasts of New Holland (Australia), as well as parts of the eastern and northern coasts of Van Diemen's Land (Tasmania). During the voyage, Baudin met the British navigator Matthew Flinders in southern Australia, as both were exploring the continent's southern coastline.</p>
+                        <p>Baudin died of tuberculosis in September 1803 on the island of Mauritius, on his return journey. His expedition left a significant scientific legacy, and many places in Australia still bear the names assigned at the conclusion of the voyage.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="beautemps-beaupre" class="entry-title">
+                    <span>Charles-François Beautemps-Beaupré</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/beautemps-beaupre.jpg" alt="Portrait of Charles-François Beautemps-Beaupré">
+                    </div>
+                    <div class="entry-text">
+                        <p>Charles-François Beautemps-Beaupré, born on 6 August 1766 in La Neuville-au-Pont in Champagne and died on 16 March 1854 in Paris, is considered the father of modern hydrography. He was first employed as an unpaid student under his cousin Jean-Nicolas Buache, chief hydrographic engineer of the Marine Depot in 1783.</p>
+                        <p>In 1791, he embarked on La Recherche under d'Entrecasteaux's command as the first hydrographic engineer to search for La Pérouse, who had been missing since 1788. From 1791 to 1796, he took advantage of the expedition to conduct surveys of the coasts of the countries visited, experimenting with new methods, particularly Jean-Charles de Borda's reflecting circle.</p>
+                        <p>He established the foundations that made hydrography a true science, soon adopted by all navies. The Appendix to d'Entrecasteaux's voyage, containing all of Beautemps-Beaupré's work from this period and published in 1808, had considerable impact as it "revolutionized the hydrographic methods" used previously.</p>
+                        <p>After returning to France in 1796, he was appointed deputy curator of the Depot of Marine Maps and Plans in 1799. He then proceeded to survey the French Empire's coastline, work that earned him entry into the Academy of Sciences in 1810. His contributions revolutionized marine cartography and precision navigation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="entrecasteaux" class="entry-title">
+                    <span>Antoine Bruni d'Entrecasteaux</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/entrecasteaux.png" alt="Portrait of Antoine Bruni d'Entrecasteaux">
+                    </div>
+                    <div class="entry-text">
+                        <p>Antoine Raymond Joseph de Bruni, Chevalier d'Entrecasteaux (8 November 1737 – 21 July 1793) was a French naval officer, explorer and colonial administrator. Educated at a Jesuit school, he was enrolled in the French Navy in 1754 by his father who opposed his religious vocation.</p>
+                        <p>He is best known for leading the 1791-1794 expedition in search of La Pérouse, who had been missing for three years. Promoted to rear-admiral upon departure from Brest on 28 September 1791, he commanded two ships, La Recherche and L'Espérance.</p>
+                        <p>D'Entrecasteaux was fortunate to have excellent officers and scientists, notably the hydrographic engineer Charles-François Beautemps-Beaupré, now regarded as the father of modern French hydrography. The expedition mapped in detail the coasts of Tasmania and Western Australia in 1792-1793.</p>
+                        <p>D'Entrecasteaux died of scurvy on 21 July 1793. Although he did not find La Pérouse, his voyage produced important surveys of several Pacific islands, as well as reports on their vegetation, weather patterns, languages and cultures.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="freycinet" class="entry-title">
+                    <span>Louis de Freycinet</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/freycinet.png" alt="Portrait of Louis de Freycinet">
+                    </div>
+                    <div class="entry-text">
+                        <p>Louis Claude de Saulces de Freycinet, born in 1779 in Montélimar, was a French geographer and explorer of the 19th century. He participated in the scientific expedition to the Southern Lands (1800-1803) led by Nicolas Baudin, first as second officer to Captain Hamelin on Le Naturaliste, then commander of the schooner Casuarina.</p>
+                        <p>During this expedition, he contributed to mapping the Australian coasts, producing "the first published map of the coasts of New Holland (Australia)". After Baudin's death, he worked with François Péron on writing the expedition narrative and publishing maps and atlases.</p>
+                        <p>In 1817-1820, he led a circumnavigation expedition aboard the Uranie, accompanied by his wife Rose, disguised as a man. His scientific work was remarkable, collecting geographical, ethnographic and botanical data in different regions of the world.</p>
+                        <p>Elected to the Academy of Sciences in 1825, he participated in the creation of the Geographical Society and published several important works on his voyages, thus contributing to the influence of French science and knowledge of the southern lands.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="lesueur" class="entry-title">
+                    <span>Charles-Alexandre Lesueur</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/lesueur.png" alt="Portrait of Charles-Alexandre Lesueur">
+                    </div>
+                    <div class="entry-text">
+                        <p>Charles-Alexandre Lesueur (1778–1846) was a French naturalist, artist, and explorer born in Le Havre on January 1, 1778. Upon learning of preparations for the great expedition to the Southern Lands, he enlisted in 1800 as an assistant gunner, though Baudin quickly employed him to illustrate his logbook. Lesueur proved to be an exceptional draftsman.</p>
+                        <p>After the desertion of artists due to difficult conditions at sea, he became one of the official draftsmen of the campaign, specializing in animal representation under the direction of zoologist François Péron, who taught him the fundamentals of his discipline. He executed some 960 drawings, not counting numerous sketches and color notes. A prolific natural-history collector, he gathered many type specimens in Australia, Southeast Asia, and North America.</p>
+                        <p>After the expedition, Lesueur spent 22 years in the United States (1816-1837), where he contributed significantly to the scientific exploration of the American frontier and participated in Robert Owen's utopian community at New Harmony. He brought back a vast quantity of writings, drawings, and paintings.</p>
+                        <p>Returning to France in 1837, he was appointed curator of the Natural History Museum of Le Havre in March 1846, but died suddenly nine months later on December 12, 1846, leaving a considerable artistic and scientific legacy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="peron" class="entry-title">
+                    <span>François Péron</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/peron.png" alt="Portrait of François Péron">
+                    </div>
+                    <div class="entry-text">
+                        <p>François Péron (1775–1810) was a French naturalist and explorer born in Cérilly. After an initial military career cut short by injury, he turned to the study of medicine and natural history in Paris. In 1800, he joined the Baudin expedition to the Southern Lands, embarking aboard the vessels Le Géographe and Le Naturaliste. Initially appointed as assistant zoologist on Le Géographe, Péron became the expedition's principal zoologist and anthropologist following the departure of several naturalists at Île de France (Mauritius) in 1801. He worked closely with the expedition's artist, Charles-Alexandre Lesueur (1778–1846), who produced drawings and watercolors of the specimens collected by Péron.</p>
+                        <p>Following the death of Nicolas Baudin, Péron was entrusted by the Ministry of the Interior with preparing the official account of the expedition. Elected a corresponding member of the Institut in 1805, he published several scientific memoirs based on the collections brought back from the Southern Lands, contributing significantly to the development of foundational concepts in biology.</p>
+                        <p>Péron died prematurely of tuberculosis in 1810, at the age of thirty-five. His work and research left a substantial scientific legacy, greatly enriching European knowledge of Australia and its natural environment.</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    
+        </div>
+        <div data-lang="fr">
+        <section class="content-section">
+            <h1>Les acteurs clés <a href="resources.html"><img src="img/up-arrow.svg" alt="Retour à la page Ressources" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h1>
+            <h2 class="subtitle">Les explorateurs et scientifiques des expéditions d'Entrecasteaux et Baudin</h2>
+
+            <p class="intro">
+                Ces pages présentent les principaux acteurs des deux grandes expéditions françaises qui ont cartographié et nommé de nombreux lieux le long des côtes australiennes.
+            </p>
+
+            <ul class="toc">
+                <li><a href="#baudin">Nicolas Baudin</a></li>
+                <li><a href="#beautemps-beaupre">Charles-François Beautemps-Beaupré</a></li>
+                <li><a href="#entrecasteaux">Antoine Bruny d'Entrecasteaux</a></li>
+                <li><a href="#freycinet">Louis de Freycinet</a></li>
+                <li><a href="#lesueur">Charles-Alexandre Lesueur</a></li>
+                <li><a href="#peron">François Péron</a></li>
+            </ul>
+
+            <section class="entry">
+                <h2 id="baudin" class="entry-title">
+                    <span>Nicolas Baudin</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/baudin.png" alt="Portrait de Nicolas Baudin">
+                    </div>
+                    <div class="entry-text">
+                        <p>Nicolas Baudin, né en 1754 à Saint-Martin-de-Ré, fut un marin et explorateur français de premier plan. Après plusieurs expéditions dans l'océan Indien et, notablement, aux Antilles - ce dernier voyage à bord de La Belle Angélique s'étant révélé décisif dans le choix de sa personne - il fut nommé par Bonaparte, en accord avec les savants de l'Institut national des sciences et des arts, pour diriger un grand voyage de découvertes vers les Terres australes. L'expédition quitta le Havre en octobre 1800 à bord de deux corvettes : Le Géographe, commandé par Baudin lui-même, et Le Naturaliste, placé sous le commandement de Hamelin.</p>
+                        <p>Entre 1801 et 1803, l'expédition recueillit plus de 100 000 spécimens d'histoire naturelle, réalisa plus de 1 500 esquisses et peintures, et cartographia une large partie des côtes sud et ouest de la Nouvelle-Hollande (Australie), ainsi qu'une portion des côtes est et nord de la Terre de Diemen (Tasmanie). Au cours de ce voyage, Baudin rencontra le navigateur britannique Matthew Flinders en Australie méridionale, alors que ce dernier explorait également la côte sud du continent.</p>
+                        <p>Baudin mourut de la tuberculose en septembre 1803 à l'île Maurice, sur le chemin du retour. Son expédition laissa un héritage scientifique considérable, et de nombreux lieux en Australie portent encore aujourd'hui les noms attribués à l'issue du voyage.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="beautemps-beaupre" class="entry-title">
+                    <span>Charles-François Beautemps-Beaupré</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/beautemps-beaupre.jpg" alt="Portrait de Charles-François Beautemps-Beaupré">
+                    </div>
+                    <div class="entry-text">
+                        <p>Charles-François Beautemps-Beaupré, né le 6 août 1766 à La Neuville-au-Pont en Champagne et mort le 16 mars 1854 à Paris, est considéré comme le père de l'hydrographie moderne. Il fut d'abord employé comme élève non rémunéré auprès de son cousin Jean-Nicolas Buache, ingénieur hydrographe en chef du Dépôt de la Marine en 1783.</p>
+                        <p>En 1791, il embarqua sur La Recherche sous le commandement de d'Entrecasteaux en tant que premier ingénieur hydrographe pour partir à la recherche de La Pérouse, disparu depuis 1788. De 1791 à 1796, il profita de l'expédition pour effectuer des relevés des côtes des pays visités, expérimentant de nouvelles méthodes, notamment le cercle à réflexion de Jean-Charles de Borda.</p>
+                        <p>Il établit les bases qui firent de l'hydrographie une véritable science, rapidement adoptée par toutes les marines. L'Appendice au voyage de d'Entrecasteaux, contenant tous les travaux de Beautemps-Beaupré de cette période et publié en 1808, eut un impact considérable car il "révolutionna les méthodes hydrographiques" utilisées jusqu'alors.</p>
+                        <p>De retour en France en 1796, il fut nommé sous-conservateur du Dépôt des cartes et plans de la Marine en 1799. Il procéda dès lors au relevé des côtes de l'Empire français, travail qui lui valut son entrée à l'Académie des sciences en 1810. Ses contributions révolutionnèrent la cartographie marine et la navigation de précision.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="entrecasteaux" class="entry-title">
+                    <span>Antoine Bruny d'Entrecasteaux</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/entrecasteaux.png" alt="Portrait d'Antoine Bruny d'Entrecasteaux">
+                    </div>
+                    <div class="entry-text">
+                        <p>Antoine Raymond Joseph de Bruni, chevalier d'Entrecasteaux (8 novembre 1737 – 21 juillet 1793) était un officier de marine, explorateur et administrateur colonial français. Formé dans une école jésuite, il fut enrôlé dans la Marine française en 1754 par son père qui s'opposa à sa vocation religieuse.</p>
+                        <p>Il est surtout connu pour avoir dirigé l'expédition de 1791-1794 à la recherche de La Pérouse, dont on était sans nouvelles depuis trois ans. Promu contre-amiral au départ de Brest le 28 septembre 1791, il commandait deux navires, La Recherche et L'Espérance.</p>
+                        <p>D'Entrecasteaux eut la chance d'avoir d'excellents officiers et scientifiques, notamment l'ingénieur hydrographe Charles-François Beautemps-Beaupré, aujourd'hui considéré comme le père de l'hydrographie française moderne. L'expédition cartographia en détail les côtes de la Tasmanie et de l'Australie-Occidentale en 1792-1793.</p>
+                        <p>D'Entrecasteaux mourut du scorbut le 21 juillet 1793. Bien qu'il n'ait pas retrouvé La Pérouse, son voyage produisit d'importants relevés de plusieurs îles du Pacifique, ainsi que des rapports sur leur végétation, leurs conditions météorologiques, leurs langues et leurs cultures.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="freycinet" class="entry-title">
+                    <span>Louis de Freycinet</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/freycinet.png" alt="Portrait de Louis de Freycinet">
+                    </div>
+                    <div class="entry-text">
+                        <p>Louis Claude de Saulces de Freycinet, né en 1779 à Montélimar, était un géographe et explorateur français du XIXe siècle. Il participa à l'expédition scientifique aux Terres Australes (1800-1803) dirigée par Nicolas Baudin, d'abord comme second du capitaine Hamelin sur Le Naturaliste, puis commandant de la goélette Casuarina.</p>
+                        <p>Pendant cette expédition, il contribua à cartographier les côtes australiennes, réalisant "la première carte publiée des côtes de la Nouvelle-Hollande (Australie)". Après le décès de Baudin, il travailla avec François Péron à la rédaction du récit de l'expédition et à la publication des cartes et atlas.</p>
+                        <p>En 1817-1820, il mena une expédition de circumnavigation à bord de l'Uranie, accompagné de son épouse Rose, déguisée en homme. Ses travaux scientifiques furent remarquables, collectant des données géographiques, ethnographiques et botaniques dans différentes régions du monde.</p>
+                        <p>Élu à l'Académie des sciences en 1825, il participa à la création de la Société de géographie et publia plusieurs ouvrages importants sur ses voyages, contribuant ainsi au rayonnement de la science française et à la connaissance des terres australes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="lesueur" class="entry-title">
+                    <span>Charles-Alexandre Lesueur</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/lesueur.png" alt="Portrait de Charles-Alexandre Lesueur">
+                    </div>
+                    <div class="entry-text">
+                        <p>Charles-Alexandre Lesueur (1778–1846) fut un naturaliste, artiste et explorateur français né au Havre le 1er janvier 1778. Apprenant les préparatifs de la grande expédition vers les Terres australes, il s'engage en 1800 comme aide-canonnier, bien que Baudin l'emploie rapidement pour illustrer son journal de bord. Lesueur se révèle être un dessinateur exceptionnel.</p>
+                        <p>Après la désertion d'artistes en raison des conditions difficiles en mer, il devient l'un des dessinateurs officiels de cette campagne, se spécialisant dans la représentation animale sous la direction du zoologiste François Péron, qui lui enseigne les rudiments de sa discipline. Il réalise quelque 960 dessins, sans compter de nombreuses esquisses et notes de couleur. Collecteur prolifique d'histoire naturelle, il rassemble de nombreux spécimens types en Australie, en Asie du Sud-Est et en Amérique du Nord.</p>
+                        <p>Après l'expédition, Lesueur séjourne 22 ans aux États-Unis (1816-1837), où il contribue de manière significative à l'exploration scientifique de la frontière américaine et participe à l'utopie de Robert Owen à New Harmony. Il rapporte une très grande quantité d'écrits, de dessins et de peintures.</p>
+                        <p>De retour en France en 1837, il est nommé conservateur du Musée d'histoire naturelle du Havre en mars 1846, mais décède subitement neuf mois plus tard, le 12 décembre 1846, laissant un héritage artistique et scientifique considérable.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="entry">
+                <h2 id="peron" class="entry-title">
+                    <span>François Péron</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/peron.png" alt="Portrait de François Péron">
+                    </div>
+                    <div class="entry-text">
+                        <p>François Péron (1775–1810) fut un naturaliste et explorateur français né à Cérilly. Après une première carrière militaire interrompue par une blessure, il se consacre à l'étude de la médecine et de l'histoire naturelle à Paris. En 1800, il rejoint l'expédition Baudin vers les Terres australes, embarquant à bord des navires Le Géographe et Le Naturaliste. Péron y est d'abord recruté comme assistant zoologiste sur Le Géographe, avant de devenir le principal zoologiste et l'anthropologue de l'expédition, à la suite du départ de plusieurs naturalistes à l'île de France (Maurice) en 1801. Il collabore étroitement avec l'artiste de l'expédition, Charles-Alexandre Lesueur (1778–1846), qui réalise dessins et aquarelles des spécimens recueillis par son ami Péron.</p>
+                        <p>Suite à la mort de Nicolas Baudin, le ministère de l'Intérieur confie à Péron la rédaction du récit officiel de l'expédition. Élu membre correspondant de l'Institut en 1805, il publie plusieurs mémoires scientifiques fondés sur les collections rapportées des Terres australes, contribuant ainsi à l'émergence de concepts majeurs de la biologie naissante.</p>
+                        <p>Péron meurt prématurément de la tuberculose en 1810, à l'âge de trente-cinq ans. Son œuvre et ses travaux laissent un héritage scientifique considérable, qui enrichit durablement les connaissances européennes sur l'Australie et son environnement naturel.</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Dany Bréelle - "French Names Along the Australian Coastline" Project</p>
+    </footer>
+
+    <!-- Lightbox for fullscreen portrait display -->
+    <div class="portrait-lightbox" id="portraitLightbox">
+        <button type="button" class="portrait-lightbox-close" aria-label="Close">&times;</button>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        // Lightbox management for portraits
+        const lightbox = document.getElementById('portraitLightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxClose = lightbox.querySelector('.portrait-lightbox-close');
+        const portraitImages = document.querySelectorAll('.entry-image img');
+
+        // Open lightbox on image click
+        portraitImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close on background click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    </script>
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
-

@@ -11,14 +11,10 @@ files = [
     'index.html',
     'resources.html',
     'expert.html',
-    'glossaryF.html',
-    'glossaryE.html',
-    'acteursF.html',
-    'acteursE.html',
-    'cartesF.html',
-    'cartesE.html',
-    'SourcesF.html',
-    'SourcesE.html'
+    'glossary.html',
+    'actors.html',
+    'maps.html',
+    'sources.html'
 ]
 
 for filename in files:

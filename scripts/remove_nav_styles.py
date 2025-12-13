@@ -62,14 +62,10 @@ if __name__ == '__main__':
         'index.html',
         'expert.html',
         'resources.html',
-        'glossaryF.html',
-        'glossaryE.html',
-        'acteursF.html',
-        'acteursE.html',
-        'cartesF.html',
-        'cartesE.html',
-        'SourcesF.html',
-        'SourcesE.html',
+        'glossary.html',
+        'actors.html',
+        'maps.html',
+        'sources.html',
     ]
 
     modified_count = 0
