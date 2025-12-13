@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Key Figures</title>
+    <script>
+        (function () {
+            let lang = 'en';
+            try {
+                lang = localStorage.getItem('language') || 'en';
+            } catch (e) { /* ignore */ }
+            const target = (lang === 'fr') ? 'acteursF.html' : 'acteursE.html';
+            window.location.replace(target);
+        })();
+    </script>
+</head>
+<body>
+    <noscript>
+        <p>
+            Choose a language:
+            <a href="acteursE.html">English</a> |
+            <a href="acteursF.html">Français</a>
+        </p>
+    </noscript>
+</body>
+</html>
+

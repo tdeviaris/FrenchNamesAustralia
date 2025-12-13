@@ -4,7 +4,7 @@ Ce répertoire contient tous les fichiers nécessaires à la configuration et au
 
 ## Contenu du répertoire
 
-- `setup-assistant.js` : Script de configuration de l'assistant OpenAI
+- `scripts/setup-assistant.js` : Script de configuration de l'assistant OpenAI
 - `Descriptif_fr.txt` : Description du projet en français
 - `expedition_baudin.pdf` : Documentation sur l'expédition Baudin
 - `expedition_dentrecasteaux.pdf` : Documentation sur l'expédition d'Entrecasteaux
@@ -22,11 +22,11 @@ Ce répertoire contient tous les fichiers nécessaires à la configuration et au
 
 Lancer le script de configuration :
 ```bash
-node assistant/setup-assistant.js
+node scripts/setup-assistant.js
 ```
 
 Ce script va :
-1. Uploader les fichiers de la base de connaissance vers OpenAI (5 fichiers)
+1. Uploader les fichiers de la base de connaissance vers OpenAI (6 fichiers)
 2. Créer un assistant avec file_search activé
 3. Sauvegarder l'ID de l'assistant dans `.env`
 
@@ -65,7 +65,7 @@ L'assistant utilise une syntaxe personnalisée pour les liens :
 - **Température** : `0.3` (réduite pour minimiser les hallucinations)
 - **Alternatives** : `gpt-4.1-mini`, `gpt-4.1-nano` (moins chers, à tester selon les besoins)
 
-Pour changer de modèle, modifier la ligne 153 de `setup-assistant.js` puis relancer le script.
+Pour changer de modèle, modifier la ligne 153 de `scripts/setup-assistant.js` puis relancer le script.
 
 ## Améliorations anti-hallucination (Déc 2024)
 
@@ -119,7 +119,7 @@ api/chat.js (serverless function Vercel)
     ↓ (Assistants API)
 OpenAI Assistant
     ↓ (file_search RAG)
-Base de connaissance (5 fichiers)
+Base de connaissance (6 fichiers)
 ```
 
 ## Fonctionnalités

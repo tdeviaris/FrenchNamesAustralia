@@ -9,10 +9,13 @@ function setActiveNavLink() {
         'index.html': 'nav-home',
         'map.html': 'nav-map',
         'resources.html': 'nav-resources',
+        'glossary.html': 'nav-resources',
         'glossaryF.html': 'nav-resources',
         'glossaryE.html': 'nav-resources',
+        'actors.html': 'nav-resources',
         'acteursF.html': 'nav-resources',
         'acteursE.html': 'nav-resources',
+        'maps.html': 'nav-resources',
         'cartesF.html': 'nav-resources',
         'cartesE.html': 'nav-resources',
         'findings.html': 'nav-resources',
@@ -22,6 +25,7 @@ function setActiveNavLink() {
         'findings-4.html': 'nav-resources',
         'findings-5.html': 'nav-resources',
         'findings-6.html': 'nav-resources',
+        'sources.html': 'nav-resources',
         'SourcesF.html': 'nav-resources',
         'SourcesE.html': 'nav-resources',
         'expert.html': 'nav-ai',
@@ -107,7 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gestion des pages dédiées par langue (cartes, etc.)
         const pageMap = {
             'cartesF.html': { 'en': 'cartesE.html' },
-            'cartesE.html': { 'fr': 'cartesF.html' }
+            'cartesE.html': { 'fr': 'cartesF.html' },
+            'glossaryF.html': { 'en': 'glossaryE.html' },
+            'glossaryE.html': { 'fr': 'glossaryF.html' },
+            'acteursF.html': { 'en': 'acteursE.html' },
+            'acteursE.html': { 'fr': 'acteursF.html' },
+            'SourcesF.html': { 'en': 'SourcesE.html' },
+            'SourcesE.html': { 'fr': 'SourcesF.html' },
+            'glossary.html': { 'fr': 'glossaryF.html', 'en': 'glossaryE.html' },
+            'actors.html': { 'fr': 'acteursF.html', 'en': 'acteursE.html' },
+            'maps.html': { 'fr': 'cartesF.html', 'en': 'cartesE.html' },
+            'sources.html': { 'fr': 'SourcesF.html', 'en': 'SourcesE.html' }
         };
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         const redirectTarget = pageMap[currentPage]?.[lang];

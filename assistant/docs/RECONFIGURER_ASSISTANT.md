@@ -2,7 +2,7 @@
 
 ## ⚠️ Important à savoir
 
-Les modifications du prompt de l'assistant ont été faites dans le fichier `assistant/setup-assistant.js` et committées sur GitHub.
+Les modifications du prompt de l'assistant ont été faites dans le fichier `scripts/setup-assistant.js` et committées sur GitHub.
 
 **MAIS** : Ces modifications ne sont **PAS encore actives** sur le site en ligne !
 
@@ -28,11 +28,11 @@ export OPENAI_API_KEY=votre_clé_api_openai
 ### 3. Exécuter le script de reconfiguration
 
 ```bash
-node assistant/setup-assistant.js
+node scripts/setup-assistant.js
 ```
 
 Le script va :
-- ✅ Uploader les 5 fichiers de la base de connaissance vers OpenAI
+- ✅ Uploader les 6 fichiers de la base de connaissance vers OpenAI
 - ✅ Créer un **nouvel** assistant avec les nouvelles instructions anti-hallucination
 - ✅ Sauvegarder automatiquement le nouvel ID dans `.env`
 

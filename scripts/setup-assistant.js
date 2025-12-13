@@ -40,10 +40,10 @@ async function main() {
     const filesToUpload = [
       { path: path.join(__dirname, '../data/baudin.json'), name: 'baudin.json' },
       { path: path.join(__dirname, '../data/entrecasteaux.json'), name: 'entrecasteaux.json' },
-      { path: path.join(__dirname, 'Descriptif_fr.txt'), name: 'Descriptif_fr.txt' },
-      { path: path.join(__dirname, 'Findings.txt'), name: 'Findings.txt' },
-      { path: path.join(__dirname, 'expedition_baudin.pdf'), name: 'expedition_baudin.pdf' },
-      { path: path.join(__dirname, 'expedition_dentrecasteaux.pdf'), name: 'expedition_dentrecasteaux.pdf' }
+      { path: path.join(__dirname, '../assistant/Descriptif_fr.txt'), name: 'Descriptif_fr.txt' },
+      { path: path.join(__dirname, '../assistant/Findings.txt'), name: 'Findings.txt' },
+      { path: path.join(__dirname, '../assistant/expedition_baudin.pdf'), name: 'expedition_baudin.pdf' },
+      { path: path.join(__dirname, '../assistant/expedition_dentrecasteaux.pdf'), name: 'expedition_dentrecasteaux.pdf' }
     ];
 
     const uploadedFiles = [];
