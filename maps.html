@@ -100,12 +100,12 @@
                 <p class="entry-description">The French and British publications of these maps, appearing close in time and based on surveys carried out during contemporary expeditions, gave rise to debates about the chronology and recognition of each navigator's work.</p>
 
                 <h3 class="entry-title" style="margin-top: 40px;">Illustrations</h3>
-                <p><button id="resources-video-link" class="entry-link" type="button" data-video-src="img/Topo1.mp4">Example of coastal profile sketches</button></p>
+                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Example of coastal profile sketches</button></p>
                 <p class="entry-description">Views of different parts of Anthony Van Diemen's Land<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministry of the Navy and Colonies. (1807).<br>Source: <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener">National Library of Australia</a></p>
             </div>
 
             <div class="entry">
-                <p><button id="voyage-link" class="entry-link">Voyage of Discovery to the Southern Lands</button></p>
+                <p><button class="entry-link js-voyage-link" type="button">Voyage of Discovery to the Southern Lands</button></p>
                 <p class="entry-description">Voyage of Discovery to the Southern Lands: executed by order of His Majesty the Emperor and King, on the corvettes the Géographe, the Naturaliste, and the schooner the Casuarina, during the years 1800, 1801, 1802, 1803 and 1804; [Historical account] published by imperial decree, under the ministry of M. de Champagny and written by M. F. Péron.<br>Source: <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener">National Library of France</a></p>
             </div>
         </section>
@@ -130,12 +130,12 @@
                 <p class="entry-description">Les publications françaises et britanniques de ces cartes, proches dans le temps et fondées sur des relevés réalisés au cours d'expéditions contemporaines, ont donné lieu à des débats sur la chronologie et la reconnaissance des travaux de chacun.</p>
 
                 <h3 class="entry-title" style="margin-top: 40px;">Illustrations</h3>
-                <p><button id="resources-video-link" class="entry-link" type="button" data-video-src="img/Topo1.mp4">Exemple de croquis de profils des côtes</button></p>
+                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Exemple de croquis de profils des côtes</button></p>
                 <p class="entry-description">Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source : <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener">National Library of Australia</a></p>
             </div>
 
             <div class="entry">
-                <p><button id="voyage-link" class="entry-link">Voyage de découvertes aux terres australes</button></p>
+                <p><button class="entry-link js-voyage-link" type="button">Voyage de découvertes aux terres australes</button></p>
                 <p class="entry-description">Voyage de découvertes aux terres australes : exécuté par ordre de Sa Majesté l'empereur et roi, sur les corvettes le Géographe, le Naturaliste, et la goëlette le Casuarina, pendent les années 1800, 1801, 1802, 1803 et 1804; [Historique] publié par decret impérial, sous le ministère de M. de Champagny et rédigé par M. F. Péron.<br>Source : <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener">Bibliothèque nationale de France</a></p>
             </div>
         </section>
@@ -167,13 +167,13 @@
     <script src="js/translations.js?v=20241012"></script>
     <script src="js/main.js?v=20241012"></script>
     <script>
-        // IIIF Viewer modal
-        (() => {
-            const voyageLink = document.getElementById('voyage-link');
-            const iiifOverlay = document.querySelector('.iiif-overlay');
-            const iiifViewer = document.getElementById('iiif-viewer');
-            const iiifCloseBtn = document.querySelector('.iiif-close');
-            let lastFocusedElement = null;
+	        // IIIF Viewer modal
+	        (() => {
+	            const voyageLinks = document.querySelectorAll('.js-voyage-link');
+	            const iiifOverlay = document.querySelector('.iiif-overlay');
+	            const iiifViewer = document.getElementById('iiif-viewer');
+	            const iiifCloseBtn = document.querySelector('.iiif-close');
+	            let lastFocusedElement = null;
 
             const openIIIFOverlay = () => {
                 if (!iiifOverlay || !iiifViewer) return;
@@ -202,14 +202,16 @@
                 }
             };
 
-            voyageLink?.addEventListener('click', openIIIFOverlay);
-            iiifCloseBtn?.addEventListener('click', closeIIIFOverlay);
-            iiifOverlay?.addEventListener('click', (event) => {
-                if (event.target === iiifOverlay) {
-                    closeIIIFOverlay();
-                }
-            });
-        })();
+	            voyageLinks.forEach((voyageLink) => {
+	                voyageLink.addEventListener('click', openIIIFOverlay);
+	            });
+	            iiifCloseBtn?.addEventListener('click', closeIIIFOverlay);
+	            iiifOverlay?.addEventListener('click', (event) => {
+	                if (event.target === iiifOverlay) {
+	                    closeIIIFOverlay();
+	                }
+	            });
+	        })();
 
         // Image modals for maps
         (() => {
@@ -263,25 +265,25 @@
             });
         })();
 
-        // Video modal
-        (() => {
-            const trigger = document.getElementById('resources-video-link');
-            const overlay = document.querySelector('.video-overlay');
-            const video = document.getElementById('resource-video');
-            const closeBtn = document.querySelector('.video-close');
-            let lastFocusedElement = null;
+	        // Video modal
+	        (() => {
+	            const triggers = document.querySelectorAll('.js-resource-video[data-video-src]');
+	            const overlay = document.querySelector('.video-overlay');
+	            const video = document.getElementById('resource-video');
+	            const closeBtn = document.querySelector('.video-close');
+	            let lastFocusedElement = null;
 
-            const openOverlay = () => {
-                if (!overlay || !video || !trigger) return;
-                const videoSrc = trigger.getAttribute('data-video-src');
-                if (!videoSrc) return;
-                video.src = videoSrc;
-                overlay.classList.add('is-visible');
-                lastFocusedElement = document.activeElement;
-                video.play().catch(() => {});
-                document.addEventListener('keydown', handleKeydown);
-                closeBtn?.focus();
-            };
+	            const openOverlay = (trigger) => {
+	                if (!overlay || !video || !trigger) return;
+	                const videoSrc = trigger.getAttribute('data-video-src');
+	                if (!videoSrc) return;
+	                video.src = videoSrc;
+	                overlay.classList.add('is-visible');
+	                lastFocusedElement = document.activeElement;
+	                video.play().catch(() => {});
+	                document.addEventListener('keydown', handleKeydown);
+	                closeBtn?.focus();
+	            };
 
             const closeOverlay = () => {
                 if (!overlay || !video) return;
@@ -318,14 +320,16 @@
                 }
             };
 
-            trigger?.addEventListener('click', openOverlay);
-            closeBtn?.addEventListener('click', closeOverlay);
-            overlay?.addEventListener('click', (event) => {
-                if (event.target === overlay) {
-                    closeOverlay();
-                }
-            });
-        })();
-    </script>
+	            triggers.forEach((trigger) => {
+	                trigger.addEventListener('click', () => openOverlay(trigger));
+	            });
+	            closeBtn?.addEventListener('click', closeOverlay);
+	            overlay?.addEventListener('click', (event) => {
+	                if (event.target === overlay) {
+	                    closeOverlay();
+	                }
+	            });
+	        })();
+	    </script>
 </body>
 </html>
