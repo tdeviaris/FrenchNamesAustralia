@@ -13,6 +13,8 @@ Ce répertoire regroupe les scripts utilisés pour générer / nettoyer des cont
 - `convert_docs_to_html.sh` : convertit les documents de `Source_documents/` en pages HTML dans `details/` (LibreOffice requis) + post-traitement.
 - `postprocess_html.py` : post-traitement des HTML générés (nettoyage, favicon, etc.).
 - `format_html.py` : utilitaire de formatage / normalisation HTML.
+- `encode_pngs_to_jpg_mozjpeg.sh` : encode des PNG en JPEG progressif avec MozJPEG (nécessite `brew install mozjpeg` + `ffmpeg`), sans supprimer les PNG.
+- `generate_avif_previews.sh` : génère des previews AVIF très légers (`.avif`) à côté des JPEG (`.jpg/.jpeg`) (nécessite `brew install libavif` + `ffmpeg`).
 
 ## Navigation / pages
 
@@ -30,4 +32,3 @@ Ce répertoire regroupe les scripts utilisés pour générer / nettoyer des cont
 - `build_map_wa.sh` : build spécifique pour `mapWA.html`.
 - `map_old.html` : ancien fichier de carte (référence).
 - `Toponyms_update` : notes/outillage divers sur les mises à jour de toponymes.
-

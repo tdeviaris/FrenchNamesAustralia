@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Toponymes - Assistant IA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+
+        :root {
+            --nav-height: 72px;
+            --primary-blue: #0056b3;
+            --light-blue: #e3f2fd;
+            --dark-bg: #1f1f1f;
+            --gray-bg: #f5f5f5;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #999;
+            padding-top: var(--nav-height);
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .expert-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: clamp(28px, 4vw, 40px);
+            min-height: calc(100vh - var(--nav-height) - 80px);
+            display: flex;
+            flex-direction: column;
+            margin-top: 16px;
+        }
+
+        .expert-header {
+            margin-bottom: 16px;
+        }
+
+        .expert-title {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            font-family: 'Lato', sans-serif;
+            font-size: clamp(2rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: #333;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin: 0 0 18px 0;
+        }
+
+        .subtitle {
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1.05rem, 2vw, 1.2rem);
+            margin: 0 0 14px 0;
+            color: #444;
+        }
+
+        .info-banner { display: none; }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            min-height: 500px;
+            margin-top: 0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #fafafa;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            padding: 0;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-user {
+            text-align: right;
+        }
+
+        .message-content {
+            display: inline-block;
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .message-user .message-content {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .message-assistant .message-content {
+            background: white;
+            color: #333;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .message-user .message-content {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: none;
+        }
+
+        .message-assistant .message-content p {
+            margin: 0;
+        }
+
+        .message-assistant .message-content p + p {
+            margin-top: 8px;
+        }
+
+        /* Message d'introduction pleine largeur */
+        .message-intro {
+            margin: -20px -20px 0 -20px;
+        }
+
+        .message-intro .message-content {
+            max-width: 100%;
+            width: 100%;
+            border-radius: 0;
+            padding: 16px 20px;
+        }
+
+        .message-intro .message-content p {
+            margin: 0;
+        }
+
+        .message-assistant .message-content a {
+            color: var(--primary-blue);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .message-assistant .message-content a:hover {
+            color: #003f82;
+        }
+
+        .message-assistant .message-content ul,
+        .message-assistant .message-content ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .message-assistant .message-content li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .message-assistant .message-content p + ul,
+        .message-assistant .message-content p + ol {
+            margin-top: 10px;
+        }
+
+        .message-assistant .message-content strong {
+            font-weight: 600;
+        }
+
+        .message-assistant .message-content h1,
+        .message-assistant .message-content h2,
+        .message-assistant .message-content h3,
+        .message-assistant .message-content h4 {
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .message-assistant .message-content h1 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .message-assistant .message-content h2 {
+            font-size: 1.3em;
+        }
+
+        .message-assistant .message-content h3 {
+            font-size: 1.15em;
+            color: var(--primary-blue);
+        }
+
+        .message-assistant .message-content h4 {
+            font-size: 1.05em;
+        }
+
+        .resource-back-button img {
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .resource-back-button:hover img { opacity: 1; }
+        .resource-back-button:focus-visible img { outline: 2px solid #FFD700; outline-offset: 2px; }
+
+        footer {
+            background: #1f1f1f;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .message-assistant .message-content br {
+            display: block;
+            content: "";
+            margin: 5px 0;
+        }
+
+        .typing-indicator {
+            display: inline-block;
+            padding: 12px 18px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            margin: 0 2px;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #ddd;
+            border-radius: 24px;
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .chat-send-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-blue);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s ease, background-color 0.2s ease;
+            padding: 0;
+        }
+
+        .chat-send-button svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .chat-send-button:hover {
+            background: #003f82;
+            transform: translateY(-1px);
+        }
+
+        .chat-send-button:active {
+            transform: scale(0.97);
+        }
+
+        .chat-send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .chat-send-button.is-stop {
+            background: var(--primary-blue);
+        }
+
+        .chat-send-button.is-pulsing {
+            animation: pulseStop 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulseStop {
+            0% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.35); }
+            50% { box-shadow: 0 0 0 10px rgba(0, 86, 179, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0); }
+        }
+
+        .error-message {
+            background: #ffebee;
+            border-left: 4px solid #d32f2f;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 4px;
+            color: #c62828;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .expert-container { padding: 20px; }
+            .expert-header h1 { font-size: 1.5rem; }
+            .expert-header p { font-size: 0.95rem; }
+            .message-content { max-width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
+        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
+        <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
+        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français">
+            <img src="img/fr.svg" alt="Français">
+        </button>
+        <button type="button" id="lang-en" title="Switch to English">
+            <img src="img/au.svg" alt="English">
+        </button>
+    </div>
+</nav>
+
+    <main class="container" id="top">
+        <div class="expert-container content-section">
+            <div class="expert-header">
+                <h1 class="expert-title">
+                    <span data-i18n="expert-title">AI Assistant</span>
+                </h1>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message message-assistant message-intro">
+                        <div class="message-content">
+                            <p data-i18n="expert-welcome">Hello! I'm the expert on French toponyms in Australia. Ask me anything about the expeditions of d'Entrecasteaux (1791-1794) and Baudin (1800-1804), the 670 documented place names, or the explorers and scientists who participated in these voyages.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <form class="chat-input-form" id="chat-form">
+                        <input
+                            type="text"
+                            class="chat-input"
+                            id="chat-input"
+                            placeholder="Ask your question..."
+                            data-i18n-placeholder="expert-input-placeholder"
+                            autocomplete="off"
+                        >
+                        <button type="submit" class="chat-send-button" id="send-button" aria-label="Send">
+                            <!-- Icones injectées via JS -->
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div data-include-footer></div>
+
+    <script src="js/translations.js?v=20241012"></script>
+    <script src="js/main.js?v=20241012"></script>
+    <script>
+        // Configuration de l'URL de l'API
+        // API Assistants : localhost en dev, vercel en prod (y compris si page servie depuis github.io)
+        const API_URL = window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/api/chat'
+            : (window.location.hostname.includes('vercel.app')
+                ? `${window.location.origin}/api/chat`
+                : 'https://french-names-australia.vercel.app/api/chat');
+
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+        let slowResponseTimer = null;
+        let slowResponseNote = null;
+        let chatHistory = [];
+
+        const HISTORY_STORAGE_KEY = 'expertChatHistory';
+        const HISTORY_TTL_MS = 30 * 60 * 1000; // 30 minutes
+
+        let threadId = null; // Pour l'API Assistants
+        let isProcessing = false;
+        let abortController = null;
+
+        // Fonction pour nettoyer et formater le contenu
+        function cleanAndFormatContent(content) {
+            // Supprimer les citations sources 【...†...】
+            content = content.replace(/【[^】]*】/g, '');
+            // Normaliser les retours à la ligne, conserver la mise en forme d'origine
+            return content.replace(/\r\n?/g, '\n').trim();
+        }
+
+        // Mode sans Markdown : rendu brut sécurisé
+        const escapeHtml = (str) => str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+        const escapeAttr = (str) => str
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;');
+
+        // Index mémoire des lieux (chargé à la demande)
+        let placeIndexPromise = null;
+
+        const normalizeName = (name) => name
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        async function loadPlaceIndex() {
+            if (placeIndexPromise) return placeIndexPromise;
+
+            placeIndexPromise = (async () => {
+                try {
+                    const [baudin, entre] = await Promise.all([
+                        fetch('data/baudin.json', { cache: 'no-cache' }).then((r) => r.json()),
+                        fetch('data/entrecasteaux.json', { cache: 'no-cache' }).then((r) => r.json())
+                    ]);
+
+                    const index = new Map();
+
+                    const addEntry = (entry) => {
+                        const names = [entry.frenchName, entry.ausEName].filter(Boolean);
+                        names.forEach((n) => {
+                            // Trim les espaces en début et fin AVANT normalisation
+                            const trimmed = (n || '').trim();
+                            if (!trimmed) return;
+
+                            const key = normalizeName(trimmed);
+                            if (!key) return;
+                            if (!index.has(key)) index.set(key, new Set());
+                            index.get(key).add(entry.code);
+                        });
+                    };
+
+                    [...baudin, ...entre].forEach(addEntry);
+                    return index;
+                } catch (err) {
+                    console.error('Failed to load place index', err);
+                    return new Map();
+                }
+            })();
+
+            return placeIndexPromise;
+        }
+
+        async function resolvePlaceToCode(name) {
+            if (!name) return null;
+            const index = await loadPlaceIndex();
+            const key = normalizeName(name);
+            const codes = index.get(key);
+            if (!codes || codes.size !== 1) return null;
+            return [...codes][0];
+        }
+
+        async function handlePlaceClick(event, placeName) {
+            event.preventDefault();
+            const code = await resolvePlaceToCode(placeName);
+            if (code) {
+                window.location.href = `map.html#${code}`;
+            }
+        }
+
+        document.addEventListener('click', (evt) => {
+            const link = evt.target.closest('a[data-place]');
+            if (!link) return;
+            const placeName = link.getAttribute('data-place');
+            handlePlaceClick(evt, placeName);
+        });
+
+        // Rendu minimal : échappement + gras/italique + liens (format personnalisé [texte]{type:valeur})
+        function markdownToHtml(text) {
+            const placeholders = [];
+            const token = (id) => `__PLACEHOLDER_${id}__`;
+            const currentLang = localStorage.getItem('language') || 'en';
+
+            let intermediate = text;
+
+            // Nouveau format personnalisé [texte]{type:identifiant}
+            intermediate = intermediate.replace(/\[([^\]]+)\]\{([^}]+)\}/g, (match, label, id) => {
+                let html;
+
+                const typedMatch = id.match(/^([a-zA-Z]+):(.*)$/);
+                if (typedMatch) {
+                    const [, rawType, rawValue] = typedMatch;
+                    const type = rawType.toLowerCase();
+                    const value = rawValue.trim();
+
+                    if (type === 'url') {
+                        const url = value.startsWith('http') ? value : `https://${value}`;
+                        const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                        const linkText = wikiMatch
+                            ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                            : label;
+                        html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    } else if (type === 'person') {
+                        const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                        const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${value}`;
+                        const linkText = label || decodeURIComponent(value).replace(/_/g, ' ');
+                        html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    } else if (type === 'place') {
+                        html = `<a href="#" data-place="${escapeAttr(value)}" class="place-link">${escapeHtml(label)}</a>`;
+                    } else {
+                        // fallback type inconnu -> lien externe si ressemble à URL, sinon texte simple
+                        if (value.startsWith('http')) {
+                            html = `<a href="${value}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+                        } else {
+                            html = escapeHtml(label);
+                        }
+                    }
+                } else if (id.startsWith('https://') || id.startsWith('http://')) {
+                    const wikiMatch = id.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                    const linkText = wikiMatch
+                        ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                        : label;
+                    html = `<a href="${id}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                } else if (/^Baudin/i.test(id) || /^Entre/i.test(id)) {
+                    // Compat legacy: codes directs
+                    html = `<a href="map.html#${id}">${escapeHtml(label)}</a>`;
+                } else {
+                    // Fallback: supposé Wikipedia EN/FR selon langue
+                    const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
+                    const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${id}`;
+                    const linkText = decodeURIComponent(id).replace(/_/g, ' ');
+                    html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                }
+
+                const placeholderId = placeholders.length;
+                placeholders.push(html);
+                return token(placeholderId);
+            });
+
+            // Anciens liens markdown [label](url) - pour compatibilité
+            intermediate = intermediate.replace(/\[([^\]]+)\]\((https?:[^\s)]+)\)/g, (match, label, url) => {
+                const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                const linkText = wikiMatch
+                    ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                    : label;
+                const html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                const id = placeholders.length;
+                placeholders.push(html);
+                return token(id);
+            });
+
+            // URLs nues -> liens cliquables
+            intermediate = intermediate.replace(/https?:\/\/[^\s<>"']+/g, (url) => {
+                const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                const linkText = wikiMatch
+                    ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                    : url.replace(/^https?:\/\//, '');
+                const html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                const id = placeholders.length;
+                placeholders.push(html);
+                return token(id);
+            });
+
+            // Échapper le reste
+            let safe = escapeHtml(intermediate);
+
+            // Gras **texte**
+            safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            // Italique *texte*
+            safe = safe.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            // Titres ### => bleu + gras
+            safe = safe.replace(/^###\s*(.+)$/gm, '<strong style="color: var(--primary-blue);">$1</strong>');
+
+            // Retours à la ligne
+            safe = safe.replace(/\n/g, '<br>');
+
+            // Restaurer les liens
+            placeholders.forEach((html, idx) => {
+                safe = safe.replace(token(idx), html);
+            });
+
+            return safe;
+        }
+
+        // Fonction pour ajouter un message
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'message-user' : 'message-assistant'}`;
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+
+            if (isUser) {
+                contentDiv.textContent = content;
+            } else {
+                // Nettoyer le contenu (supprimer citations)
+                content = cleanAndFormatContent(content);
+                // Afficher le texte brut avec retours à la ligne
+                contentDiv.innerHTML = escapeHtml(content).replace(/\n/g, '<br>');
+            }
+
+            messageDiv.appendChild(contentDiv);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            return contentDiv;
+        }
+
+        // Fonction pour afficher l'indicateur de frappe
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message message-assistant';
+            typingDiv.id = 'typing-indicator';
+
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+
+            typingDiv.appendChild(indicator);
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Fonction pour masquer l'indicateur de frappe
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        // Fonction pour afficher une erreur
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            chatMessages.appendChild(errorDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        const sendIcon = `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3.4 20.6 21 12 3.4 3.4 3 10.5l10.5 1.5L3 13.5z"/>
+            </svg>`;
+        const stopIcon = `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+            </svg>`;
+
+        const scrollChatToBottom = () => {
+            requestAnimationFrame(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        };
+
+        const saveChatHistory = () => {
+            const payload = {
+                timestamp: Date.now(),
+                messages: chatHistory
+            };
+            try {
+                localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(payload));
+            } catch (err) {
+                console.warn('Unable to persist chat history', err);
+            }
+        };
+
+        const loadChatHistory = () => {
+            try {
+                const raw = localStorage.getItem(HISTORY_STORAGE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed || !Array.isArray(parsed.messages) || !parsed.timestamp) {
+                    return null;
+                }
+                const age = Date.now() - parsed.timestamp;
+                if (age > HISTORY_TTL_MS) {
+                    localStorage.removeItem(HISTORY_STORAGE_KEY);
+                    return null;
+                }
+                return parsed.messages;
+            } catch (err) {
+                console.warn('Unable to load chat history', err);
+                return null;
+            }
+        };
+
+        const renderChatHistory = (history = []) => {
+            if (!history.length) {
+                return;
+            }
+            chatMessages.innerHTML = '';
+            history.forEach((entry) => {
+                const role = entry?.role === 'user' ? 'user' : 'assistant';
+                const rawContent = entry?.content || '';
+                const cleaned = cleanAndFormatContent(rawContent);
+                if (role === 'user') {
+                    addMessage(cleaned, true);
+                } else {
+                    const node = addMessage('');
+                    node.innerHTML = markdownToHtml(cleaned);
+                }
+            });
+            scrollChatToBottom();
+        };
+
+        const setButtonToSend = () => {
+            sendButton.classList.remove('is-stop');
+            sendButton.classList.remove('is-pulsing');
+            sendButton.innerHTML = sendIcon;
+            sendButton.setAttribute('aria-label', 'Send');
+        };
+
+        const setButtonToStop = () => {
+            sendButton.classList.add('is-stop');
+            sendButton.classList.add('is-pulsing');
+            sendButton.innerHTML = stopIcon;
+            sendButton.setAttribute('aria-label', 'Stop');
+        };
+
+        setButtonToSend();
+
+        const showSlowResponseNote = () => {
+            if (slowResponseNote) {
+                return;
+            }
+            const note = document.createElement('div');
+            note.className = 'message message-assistant';
+            const inner = document.createElement('div');
+            inner.className = 'message-content';
+            inner.style.fontStyle = 'italic';
+            inner.textContent = 'Toujours en cours ...';
+            note.appendChild(inner);
+            chatMessages.appendChild(note);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            slowResponseNote = note;
+        };
+
+        const clearSlowResponseNote = () => {
+            if (slowResponseTimer) {
+                clearTimeout(slowResponseTimer);
+                slowResponseTimer = null;
+            }
+            if (slowResponseNote) {
+                slowResponseNote.remove();
+                slowResponseNote = null;
+            }
+        };
+
+        // Restaurer l'historique si encore valide
+        const existingHistory = loadChatHistory();
+        if (existingHistory && existingHistory.length) {
+            chatHistory = existingHistory;
+            renderChatHistory(chatHistory);
+            scrollChatToBottom();
+        }
+
+        // Gérer la soumission du formulaire
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Si une requête est en cours, cliquer/submit agit comme "stop"
+            if (isProcessing) {
+                if (abortController) {
+                    abortController.abort();
+                }
+                return;
+            }
+
+            if (!chatInput.value.trim()) {
+                return;
+            }
+
+            const userMessage = chatInput.value.trim();
+            chatInput.value = '';
+
+            // Ajouter le message de l'utilisateur
+            addMessage(userMessage, true);
+            chatHistory.push({ role: 'user', content: userMessage });
+            saveChatHistory();
+
+            // Désactiver l'input pendant le traitement
+            isProcessing = true;
+            chatInput.disabled = true;
+            setButtonToStop();
+            abortController = new AbortController();
+            clearSlowResponseNote();
+            slowResponseTimer = setTimeout(showSlowResponseNote, 10000);
+
+            // Afficher l'indicateur de frappe
+            showTypingIndicator();
+
+            try {
+                // Appeler l'API
+                // Récupérer la langue actuelle de l'interface
+                const currentLanguage = localStorage.getItem('language') || 'en';
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: userMessage,
+                        threadId: threadId,
+                        language: currentLanguage
+                    }),
+                    signal: abortController.signal
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Masquer l'indicateur de frappe
+                hideTypingIndicator();
+
+                // Créer un message vide pour l'assistant
+                const assistantMessage = addMessage('');
+                let fullResponse = '';
+                let gotFirstChunk = false;
+
+                // Lire le stream SSE
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const { done, value } = await reader.read();
+
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6);
+
+                            if (data === '[DONE]') {
+                                break;
+                            }
+
+                            try {
+                                const parsed = JSON.parse(data);
+
+                                // Sauvegarder le threadId s'il est fourni
+                                if (parsed.threadId) {
+                                    threadId = parsed.threadId;
+                                }
+
+                                if (parsed.content) {
+                                    fullResponse += parsed.content;
+                                    if (!gotFirstChunk) {
+                                        gotFirstChunk = true;
+                                        clearSlowResponseNote();
+                                    }
+
+                                    // Nettoyer et mettre à jour le message progressivement
+                                    const cleanedResponse = cleanAndFormatContent(fullResponse);
+
+                                    // Appliquer le formatage Markdown directement
+                                    assistantMessage.innerHTML = markdownToHtml(cleanedResponse);
+
+                                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                                }
+                            } catch (e) {
+                                // Ignorer les erreurs de parsing
+                            }
+                        }
+                    }
+                }
+
+                // L'historique est maintenant géré par le thread OpenAI
+                // Pas besoin de le sauvegarder côté client
+
+                // Sauvegarder l'échange complet (assistant)
+                const cleanedFinal = cleanAndFormatContent(fullResponse);
+                chatHistory.push({ role: 'assistant', content: cleanedFinal });
+                saveChatHistory();
+
+            } catch (error) {
+                console.error('Error:', error);
+                hideTypingIndicator();
+                if (error.name !== 'AbortError') {
+                    showError('Error: Unable to reach the AI assistant. Please try again later.');
+                }
+            } finally {
+                clearSlowResponseNote();
+                isProcessing = false;
+                chatInput.disabled = false;
+                setButtonToSend();
+                abortController = null;
+                chatInput.focus();
+            }
+        });
+
+        // Gérer les traductions pour le placeholder
+        document.addEventListener('languageChanged', () => {
+            const currentLang = localStorage.getItem('language') || 'en';
+            const placeholderKey = chatInput.getAttribute('data-i18n-placeholder');
+
+            if (placeholderKey && translations[currentLang][placeholderKey]) {
+                chatInput.placeholder = translations[currentLang][placeholderKey];
+            }
+        });
+    </script>
+</body>
+</html>

@@ -58,11 +58,102 @@ function prefetchNavLinks() {
     });
 }
 
+function enhanceImagesAvifPreviewThenJpeg() {
+    if (!document.getElementById('avif-enhancer-style')) {
+        const style = document.createElement('style');
+        style.id = 'avif-enhancer-style';
+        style.textContent = 'picture[data-avif-enhancer=\"1\"]{display:contents;}';
+        document.head.appendChild(style);
+    }
+
+    const images = Array.from(document.querySelectorAll('img[src]'));
+
+    images.forEach((img) => {
+        if (img.dataset.avifEnhancer === '1') {
+            return;
+        }
+
+        const srcAttr = img.getAttribute('src');
+        if (!srcAttr || !/\.jpe?g(\?.*)?$/i.test(srcAttr)) {
+            return;
+        }
+
+        // Ne pas toucher aux <img> déjà gérés via <picture> ou <source>
+        if (img.closest('picture')) {
+            return;
+        }
+
+        // Éviter les URLs externes (pas de fichier .avif correspondant garanti)
+        if (/^(https?:)?\/\//i.test(srcAttr)) {
+            return;
+        }
+
+        const avifSrc = srcAttr.replace(/\.jpe?g(\?.*)?$/i, '.avif$1');
+        const picture = document.createElement('picture');
+        const source = document.createElement('source');
+
+        picture.dataset.avifEnhancer = '1';
+        source.type = 'image/avif';
+        source.srcset = avifSrc;
+
+        picture.appendChild(source);
+
+        const parent = img.parentNode;
+        if (!parent) {
+            return;
+        }
+
+        parent.insertBefore(picture, img);
+        picture.appendChild(img);
+
+        img.dataset.avifEnhancer = '1';
+        img.dataset.finalSrc = srcAttr;
+
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+        }
+        if (!img.hasAttribute('decoding')) {
+            img.setAttribute('decoding', 'async');
+        }
+
+        const shouldUpgradeFromAvif = () => {
+            try {
+                const current = img.currentSrc || '';
+                const url = new URL(current, window.location.href);
+                return url.pathname.toLowerCase().endsWith('.avif');
+            } catch (e) {
+                return (img.currentSrc || '').toLowerCase().includes('.avif');
+            }
+        };
+
+        const upgradeToJpeg = () => {
+            if (!picture.contains(source)) {
+                return;
+            }
+            picture.removeChild(source);
+            img.setAttribute('src', img.dataset.finalSrc || srcAttr);
+        };
+
+        img.addEventListener('load', () => {
+            if (shouldUpgradeFromAvif()) {
+                // Laisse le temps d'afficher le preview avant de lancer le chargement du JPEG.
+                requestAnimationFrame(() => upgradeToJpeg());
+            }
+        }, { once: false });
+
+        img.addEventListener('error', () => {
+            // Si le .avif n'existe pas/échoue, fallback immédiat vers le JPEG.
+            upgradeToJpeg();
+        }, { once: true });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Nav déjà inline (injectée au build) : initialiser simplement
     setActiveNavLink();
     initLanguageSwitcher();
     prefetchNavLinks();
+    enhanceImagesAvifPreviewThenJpeg();
 
     const footerContainer = document.querySelector('[data-include-footer]');
 
