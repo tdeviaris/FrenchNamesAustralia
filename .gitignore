@@ -35,3 +35,6 @@ package-lock.json
 .env.*.local
 .vercel
 .env*.local
+
+# Local illustration workspace (do not commit)
+illustrations/
