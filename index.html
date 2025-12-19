@@ -121,6 +121,12 @@
             box-shadow: 0 20px 46px rgba(0,0,0,0.5);
             width: 100%;
             text-align: center;
+            transform: translateY(0);
+            transition: transform 3.6s ease-out;
+            will-change: transform;
+        }
+        .intro-card.is-raised {
+            transform: translateY(var(--intro-card-raise, 0px));
         }
         .intro-card h1 { margin-bottom: 12px; color: #fff; }
         .intro-card p { font-size: clamp(1.05rem, 2.4vw, 1.3rem); margin: 0; color: #f9f9f9; }
@@ -142,6 +148,9 @@
         @media (max-width: 768px) {
             .scene article { padding: 24px 22px; }
             .intro-card { padding: 28px 22px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .intro-card { transition: none; }
         }
 
         /* Scroll indicator */
@@ -541,6 +550,50 @@
                     mainContent.style.transition = 'opacity 1.5s ease-in';
                     mainContent.style.opacity = '1';
                 }
+
+                // Slowly raise the first card to the center of the viewport
+                setTimeout(() => {
+                    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                    if (window.scrollY > 0) return;
+                    const card = document.querySelector('.scene--hero .intro-card');
+                    if (!card) return;
+
+                    const marginTop = 16;
+                    const navHeight = () =>
+                        parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 0;
+                    const rect = card.getBoundingClientRect();
+                    const visibleHeight = window.innerHeight - navHeight();
+                    const desiredCenterY = navHeight() + visibleHeight / 2;
+                    const currentCenterY = rect.top + rect.height / 2;
+                    const deltaY = currentCenterY - desiredCenterY;
+
+                    if (deltaY <= 1) return;
+
+                    const maxMoveUp = Math.max(0, rect.top - (navHeight() + marginTop));
+                    const raisePx = -Math.min(deltaY, maxMoveUp);
+                    card.style.setProperty('--intro-card-raise', `${raisePx}px`);
+                    card.classList.add('is-raised');
+
+                    const updateRaise = () => {
+                        if (!card.classList.contains('is-raised')) return;
+                        const currentRaise = parseFloat(card.style.getPropertyValue('--intro-card-raise')) || 0;
+                        const currentRect = card.getBoundingClientRect();
+                        const currentVisibleHeight = window.innerHeight - navHeight();
+                        const currentDesiredCenterY = navHeight() + currentVisibleHeight / 2;
+                        const currentCenter = currentRect.top + currentRect.height / 2;
+                        const correction = currentCenter - currentDesiredCenterY;
+
+                        if (Math.abs(correction) <= 1) return;
+
+                        const baselineTop = currentRect.top - currentRaise;
+                        const maxUpFromBaseline = Math.max(0, baselineTop - (navHeight() + marginTop));
+                        const nextRaise = Math.min(0, Math.max(-maxUpFromBaseline, currentRaise - correction));
+                        card.style.setProperty('--intro-card-raise', `${nextRaise}px`);
+                    };
+
+                    window.addEventListener('resize', updateRaise, { passive: true });
+                }, 120);
+
                 // Remove the video overlay from DOM after content fade
                 setTimeout(() => {
                     videoIntro.remove();
