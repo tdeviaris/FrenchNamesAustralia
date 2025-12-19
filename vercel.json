@@ -30,7 +30,7 @@
     { "source": "/acteursF.html", "destination": "/actors.html", "permanent": true },
     { "source": "/cartesE.html", "destination": "/maps.html", "permanent": true },
     { "source": "/cartesF.html", "destination": "/maps.html", "permanent": true },
-    { "source": "/SourcesE.html", "destination": "/sources.html", "permanent": true },
-    { "source": "/SourcesF.html", "destination": "/sources.html", "permanent": true }
+    { "source": "/SourcesE.html", "destination": "/methodology.html", "permanent": true },
+    { "source": "/SourcesF.html", "destination": "/methodology.html", "permanent": true }
   ]
 }

@@ -40,6 +40,24 @@
         .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
         .resource-item { margin-top: 28px; }
 
+        /* Title (button) above, then thumbnail + description side-by-side */
+        .resource-row { margin-top: 14px; display: flex; gap: 18px; align-items: flex-start; }
+        .resource-thumb { width: 250px; flex: 0 0 250px; }
+        .resource-thumb a { display: block; text-decoration: none; }
+        .resource-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
+        .resource-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; }
+        .resource-text { flex: 1; min-width: 0; }
+        .resource-text p { margin: 0 0 10px 0; }
+        .resource-text p:last-child { margin-bottom: 0; }
+
+        /* Add a line break before descriptions (items without thumbnail) */
+        .resource-item > p + p { margin-top: 12px; }
+
+        @media (max-width: 768px) {
+            .resource-row { flex-direction: column; }
+            .resource-thumb { width: min(320px, 100%); flex-basis: auto; }
+        }
+
         /* Assistant AI block */
         .assistant-block {
             margin-top: 18px;
@@ -94,41 +112,77 @@
             <h2 data-i18n="resources-title">Resources</h2>
 
             <div class="resource-item">
+                <p data-i18n-html="resources-methodology-entry"><a class="resource-primary-link" href="methodology.html">Objectifs et Méthodologie</a></p>
+                <p data-i18n="resources-methodology-description">Objectif de ce site web, méthodologie utilisée et sources du contenu.</p>
+            </div>
+
+            <div class="resource-item">
+                <p data-i18n-html="resources-actors-entry"><a class="resource-primary-link" href="actors.html">Key Figures</a></p>
+                <div class="resource-row">
+                    <div class="resource-thumb">
+                        <a href="actors.html" aria-label="Open Key Figures">
+                            <img src="img/Baudin_miniature.jpg" alt="" loading="lazy" decoding="async">
+                        </a>
+                    </div>
+                    <div class="resource-text">
+                        <p data-i18n="resources-actors-subtitle">Explorers and scientists from the d'Entrecasteaux and Baudin expeditions</p>
+                        <p data-i18n="resources-actors-description">Biographical summaries of the main figures from the two major French expeditions that charted and named numerous locations along the Australian coastline.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-item">
+                <p data-i18n-html="resources-charts-entry"><a class="resource-primary-link" href="maps.html">Nautical charts</a></p>
+                <div class="resource-row">
+                    <div class="resource-thumb">
+                        <a href="maps.html" aria-label="Open Nautical charts">
+                            <img src="img/carte-de-freycinet-1812.jpg" alt="" loading="lazy" decoding="async">
+                        </a>
+                    </div>
+                    <div class="resource-text">
+                        <p data-i18n="resources-charts-description">Presentation of charts produced by the d'Entrecasteaux and Baudin expeditions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-item">
+                <p data-i18n-html="resources-reports-entry"><a class="resource-primary-link" href="rapport.html">Illustrated mission reports</a></p>
+                <div class="resource-row">
+                    <div class="resource-thumb">
+                        <a href="rapport.html" aria-label="Open Illustrated mission reports">
+                            <img src="details/rapport1_html_dcce71fe.jpg" alt="" loading="lazy" decoding="async">
+                        </a>
+                    </div>
+                    <div class="resource-text">
+                        <p data-i18n="resources-reports-description">Exploration mission reports: authentic texts, illustrated.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-item">
+                <p data-i18n-html="resources-illustrations-entry"><a class="resource-primary-link" href="illustrations.html">Illustrations</a></p>
+                <div class="resource-row">
+                    <div class="resource-thumb">
+                        <a href="illustrations.html" aria-label="Open Illustrations">
+                            <img src="img/illus0.jpg" alt="" loading="lazy" decoding="async">
+                        </a>
+                    </div>
+                    <div class="resource-text">
+                        <p data-i18n="resources-illustrations-description">Discover the illustrations and documents from the major French expeditions exploring the Australian coastline.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-item">
                 <p data-i18n-html="resources-findings-entry"><a class="resource-primary-link" href="findings.html">Enseignements</a></p>
                 <p data-i18n="resources-findings-subtitle">Synthèse des analyses issues des 670 toponymes des expéditions d’Entrecasteaux et Baudin.</p>
                 <p data-i18n="resources-findings-description">Six axes clés : contexte révolutionnaire, héritage des voyages français, bascule vers les sciences exactes, écho des arts et des lettres, rôle des administrations et des armées, empreinte napoléonienne et postérité des nomenclatures.</p>
             </div>
+
             <div class="resource-item">
                 <p data-i18n-html="resources-glossary-entry"><a class="resource-primary-link" href="glossary.html">Glossary of Terms</a></p>
                 <p data-i18n="resources-glossary-subtitle">French institutions, political regimes, wars, former country appellations and former scientific expeditions</p>
                 <p data-i18n-html="resources-glossary-description">This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.</p>
-            </div>
-
-            <div class="resource-item" style="margin-top: 28px;">
-                <p data-i18n-html="resources-actors-entry"><a class="resource-primary-link" href="actors.html">Key Figures</a></p>
-                <p data-i18n="resources-actors-subtitle">Explorers and scientists from the d'Entrecasteaux and Baudin expeditions</p>
-                <p data-i18n="resources-actors-description">Biographical summaries of the main figures from the two major French expeditions that charted and named numerous locations along the Australian coastline.</p>
-            </div>
-
-            <div class="resource-item" style="margin-top: 28px;">
-                <p data-i18n-html="resources-charts-entry"><a class="resource-primary-link" href="maps.html">Nautical charts</a></p>
-                <p data-i18n="resources-charts-description">Presentation of charts produced by the d'Entrecasteaux and Baudin expeditions.</p>
-            </div>
-
-            <div class="resource-item" style="margin-top: 28px;">
-                <p data-i18n-html="resources-illustrations-entry"><a class="resource-primary-link" href="illustrations.html">Illustrations</a></p>
-                <p data-i18n="resources-illustrations-description">Discover the illustrations and documents from the major French expeditions exploring the Australian coastline.</p>
-            </div>
-
-            <div class="resource-item" style="margin-top: 28px;">
-                <p data-i18n-html="resources-reports-entry"><a class="resource-primary-link" href="rapport.html">Illustrated mission reports</a></p>
-                <p data-i18n="resources-reports-description">Exploration mission reports: authentic texts, illustrated.</p>
-            </div>
-
-            <div class="resource-item" style="margin-top: 28px;">
-                <p data-i18n-html="resources-sources-entry"><a class="resource-primary-link" href="sources.html">Sources</a></p>
-                <p data-i18n="resources-sources-subtitle">Primary archival collections and digital resources</p>
-                <p data-i18n="resources-sources-description">Comprehensive list of manuscript sources, digital libraries, and museum collections consulted for this research project.</p>
             </div>
         </section>
     </main>

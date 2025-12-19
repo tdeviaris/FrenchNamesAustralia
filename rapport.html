@@ -19,10 +19,23 @@
         .content-section h1 img { width: 24px; vertical-align: middle; margin-left: 8px; opacity: 0.8; }
         .intro { margin: 0; line-height: 1.6; color: #555; }
 
-        .entry { margin-top: 26px; }
-        .entry-link { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; background-color: #0056b3; color: #fff; border-radius: 999px; border: none; text-decoration: none; font-weight: 600; transition: background-color 0.2s ease; cursor: pointer; font-size: 1rem; }
-        .entry-link:hover { background-color: #003f82; }
-        .entry-description { margin-top: 10px; line-height: 1.6; color: #555; }
+	        .entry { margin-top: 26px; }
+	        .entry-link { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; background-color: #0056b3; color: #fff; border-radius: 999px; border: none; text-decoration: none; font-weight: 600; transition: background-color 0.2s ease; cursor: pointer; font-size: 1rem; }
+	        .entry-link:hover { background-color: #003f82; }
+	        .entry-description { margin-top: 10px; line-height: 1.6; color: #555; }
+
+            .entry-row { margin-top: 12px; display: flex; gap: 18px; align-items: flex-start; }
+            .entry-thumb { width: 250px; flex: 0 0 250px; }
+            .entry-thumb button { border: none; padding: 0; background: transparent; cursor: pointer; display: block; width: 100%; }
+            .entry-thumb button:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
+            .entry-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; }
+            .entry-text { flex: 1; min-width: 0; }
+            .entry-text .entry-description { margin-top: 0; }
+
+            @media (max-width: 768px) {
+                .entry-row { flex-direction: column; }
+                .entry-thumb { width: min(320px, 100%); flex-basis: auto; }
+            }
 
         /* Report modal */
         .report-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; padding: 14px; z-index: 2000; }
@@ -66,10 +79,19 @@
             <h1>Illustrated mission reports <a href="resources.html"><img src="img/up-arrow.svg" alt="Back to Resources page"></a></h1>
             <p class="intro">Exploration mission reports: authentic texts, illustrated.</p>
 
-            <div class="entry">
-                <p><button class="entry-link js-report-link" type="button" data-report-fr="details/rapport1F.html" data-report-en="details/rapport1E.html">Port Western</button></p>
-                <p class="entry-description">Report by frigate captain Pierre Milius on his mission in Port Western.</p>
-            </div>
+	            <div class="entry">
+	                <p><button class="entry-link js-report-link" type="button" data-report-fr="details/rapport1F.html" data-report-en="details/rapport1E.html">Port Western</button></p>
+                    <div class="entry-row">
+                        <div class="entry-thumb">
+                            <button type="button" class="js-report-link" data-report-fr="details/rapport1F.html" data-report-en="details/rapport1E.html" aria-label="Open Port Western report">
+                                <img src="details/rapport1_html_86122540.jpg" alt="Port Western mission report (thumbnail)" loading="lazy" decoding="async">
+                            </button>
+                        </div>
+                        <div class="entry-text">
+                            <p class="entry-description">Report by frigate captain Pierre Milius on his mission in Port Western.</p>
+                        </div>
+                    </div>
+	            </div>
         </section>
         </div>
 
@@ -78,10 +100,19 @@
             <h1>Les rapports de mission illustrés <a href="resources.html"><img src="img/up-arrow.svg" alt="Retour à la page Ressources"></a></h1>
             <p class="intro">Les rapports de mission des explorations, textes authentiques, illustrés.</p>
 
-            <div class="entry">
-                <p><button class="entry-link js-report-link" type="button" data-report-fr="details/rapport1F.html" data-report-en="details/rapport1E.html">Port Western</button></p>
-                <p class="entry-description">Rapport du capitaine de frégate Pierre Milius sur sa mission dans le Port Western.</p>
-            </div>
+	            <div class="entry">
+	                <p><button class="entry-link js-report-link" type="button" data-report-fr="details/rapport1F.html" data-report-en="details/rapport1E.html">Port Western</button></p>
+                    <div class="entry-row">
+                        <div class="entry-thumb">
+                            <button type="button" class="js-report-link" data-report-fr="details/rapport1F.html" data-report-en="details/rapport1E.html" aria-label="Ouvrir le rapport Port Western">
+                                <img src="details/rapport1_html_86122540.jpg" alt="Rapport de mission Port Western (miniature)" loading="lazy" decoding="async">
+                            </button>
+                        </div>
+                        <div class="entry-text">
+                            <p class="entry-description">Rapport du capitaine de frégate Pierre Milius sur sa mission dans le Port Western.</p>
+                        </div>
+                    </div>
+	            </div>
         </section>
         </div>
     </main>
