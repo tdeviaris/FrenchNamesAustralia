@@ -253,13 +253,7 @@
                 max-width: 320px;
             }
             .layer-toggle {
-                top: 120px;
-                left: 6px;
-                gap: 4px;
-            }
-            .layer-toggle label {
-                padding: 6px 8px;
-                font-size: 0.8rem;
+                display: none;
             }
 
             .search-box {
@@ -1006,13 +1000,13 @@
     <div id="map"></div>
 
     <div class="layer-toggle" aria-label="Filtres d'expédition">
+        <label class="toggle-entre">
+            <input type="checkbox" id="toggle-entre" checked>
+            <span data-i18n="map-layer-entre">d'Entrecasteaux</span>
+        </label>
         <label class="toggle-baudin">
             <input type="checkbox" id="toggle-baudin" checked>
             <span data-i18n="map-layer-baudin">Baudin</span>
-        </label>
-        <label class="toggle-entre">
-            <input type="checkbox" id="toggle-entre" checked>
-            <span data-i18n="map-layer-entre">d’Entrecasteaux</span>
         </label>
     </div>
 

@@ -27,6 +27,8 @@ function setActiveNavLink() {
         'presentation.html': 'nav-about',
         'author.html': 'nav-about',
         'supporters.html': 'nav-about',
+        'francois_bellecE.html': 'nav-about',
+        'francois_bellecF.html': 'nav-about',
         'teachings.html': 'nav-about',
         'site_map.html': 'nav-about',
         'legal_notice.html': 'nav-about'

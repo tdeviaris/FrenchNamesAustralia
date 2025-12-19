@@ -144,6 +144,64 @@
             .intro-card { padding: 28px 22px; }
         }
 
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 20;
+        }
+        .scroll-indicator-text {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            letter-spacing: 0.5px;
+        }
+        .scroll-indicator-arrow {
+            width: 24px;
+            height: 24px;
+            border-left: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: rotate(-45deg);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        .scroll-indicator.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-out;
+        }
+        @media (max-width: 768px) {
+            .scroll-indicator {
+                bottom: 30px;
+            }
+            .scroll-indicator-text {
+                font-size: 0.85rem;
+            }
+            .scroll-indicator-arrow {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
         /* Video Introduction Overlay */
         .video-intro-overlay {
             position: fixed;
@@ -239,6 +297,10 @@
 	                            Your browser does not support the audio element.
 	                        </audio>
                     </div>
+                </div>
+                <div class="scroll-indicator" id="scroll-indicator">
+                    <span class="scroll-indicator-text" data-i18n="scroll-indicator-text">Scroll down</span>
+                    <div class="scroll-indicator-arrow"></div>
                 </div>
             </div>
         </section>
@@ -422,6 +484,28 @@
         window.addEventListener('load', updateBackground);
         window.addEventListener('scroll', updateBackground, { passive: true });
         window.addEventListener('resize', updateBackground);
+
+        // Scroll indicator logic
+        const scrollIndicator = document.getElementById('scroll-indicator');
+        if (scrollIndicator) {
+            // Hide indicator on scroll
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    scrollIndicator.classList.add('hidden');
+                } else {
+                    scrollIndicator.classList.remove('hidden');
+                }
+            }, { passive: true });
+
+            // Scroll to next section on click
+            scrollIndicator.addEventListener('click', () => {
+                const firstScene = document.querySelectorAll('.scene')[1]; // Get second scene (after hero)
+                if (firstScene) {
+                    firstScene.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
     </script>
 
     <script>

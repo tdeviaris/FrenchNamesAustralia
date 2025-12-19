@@ -48,6 +48,30 @@
             margin-bottom: 12px;
         }
         .content-section p { line-height: 1.6; margin-bottom: 16px; }
+        .supporter-title-button,
+        .supporter-title-static {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            font-weight: 400;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+        .supporter-title-button {
+            border: none;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        .supporter-title-button:hover { background-color: #003f82; }
+        .supporter-title-button:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+
         .supporter-block {
             display: grid;
             grid-template-columns: minmax(300px, 1.6fr) minmax(180px, 0.8fr);
@@ -56,6 +80,13 @@
             margin-top: 14px;
         }
         .supporter-photo { justify-self: end; }
+        .supporter-photo button {
+            border: none;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+        .supporter-photo button:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
         .supporter-photo img {
             display: block;
             width: 100%;
@@ -65,7 +96,17 @@
             border: 6px solid #fff;
             object-fit: cover;
         }
-        .supporter-text p { margin-top: 0; }
+	        .supporter-text p { margin-top: 0; }
+	        .supporter-item { margin-top: 28px; }
+
+        /* Bellec modal */
+        .bellec-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; padding: 14px; z-index: 2000; }
+        .bellec-overlay.is-visible { display: flex; }
+        .bellec-container { position: relative; width: 96vw; height: 96vh; max-width: 1400px; }
+        .bellec-container iframe { width: 100%; height: 100%; border: none; border-radius: 10px; background: #fff; box-shadow: 0 12px 48px rgba(0,0,0,0.5); }
+        .bellec-close { position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,0.95); color: #333; cursor: pointer; font-size: 1.7rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2100; }
+        .bellec-close:hover { background: #f2f2f2; }
+        .bellec-close:focus-visible { outline: 3px solid #FFD700; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             .content-section { padding: 24px; }
@@ -107,45 +148,116 @@
         <section class="content-section">
             <h2 data-i18n="about-supporters-page-title">Soutiens du projet</h2>
 
-            <h3 style="margin-top:0;font-weight:700;color:#111;" data-i18n-html="supporters-bellec-title">Le mot du contre-amiral François Bellec</h3>
-            <div class="supporter-block">
-                <div class="supporter-text">
-                    <p data-i18n-html="supporters-bellec-bio"><strong><a href="https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Bellec" target="_blank" rel="noopener">François Bellec</a></strong>, contre-amiral, écrivain, peintre et ancien directeur du Musée national de la Marine. Membre de l’Académie de Marine, il a contribué à la valorisation des grandes explorations maritimes françaises et de leur patrimoine cartographique.</p>
-                    <p data-i18n-html="supporters-bellec-work">Il a réalisé douze films vidéo sur l'histoire maritime et signé une vingtaine de livres, ainsi que de nombreuses contributions à des ouvrages collectifs et encyclopédiques. Historien de la navigation, des grandes découvertes et des peintres de la mer, ses textes sont traduits en allemand, anglais et portugais. Conférencier recherché, il a présenté la mer et l’art en France et à l’étranger (États-Unis, Russie, Chine, Thaïlande, Indonésie, Australie).</p>
-                    <p data-i18n-html="supporters-bellec-text">[Texte à venir]</p>
-                </div>
-                <div class="supporter-photo">
-                    <img src="img/bellec.jpg" alt="François Bellec">
-                </div>
+            <div class="supporter-item">
+                <p style="margin-top:0;">
+                    <button class="supporter-title-button js-bellec-link" type="button" data-bellec-fr="francois_bellecF.html" data-bellec-en="francois_bellecE.html" data-i18n="supporters-bellec-title">Le mot du contre-amiral François Bellec</button>
+                </p>
+	            <div class="supporter-block">
+	                <div class="supporter-text">
+	                    <p data-i18n-html="supporters-bellec-bio"><strong><a href="https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Bellec" target="_blank" rel="noopener">François Bellec</a></strong>, contre-amiral, écrivain, peintre et ancien directeur du Musée national de la Marine. Membre de l'Académie de Marine, il a contribué à la valorisation des grandes explorations maritimes françaises et de leur patrimoine cartographique.</p>
+	                    <p data-i18n-html="supporters-bellec-work">Il a réalisé douze films vidéo sur l'histoire maritime et signé une vingtaine de livres, ainsi que de nombreuses contributions à des ouvrages collectifs et encyclopédiques. Historien de la navigation, des grandes découvertes et des peintres de la mer, ses textes sont traduits en allemand, anglais et portugais. Conférencier recherché, il a présenté la mer et l'art en France et à l'étranger (États-Unis, Russie, Chine, Thaïlande, Indonésie, Australie).</p>
+	                </div>
+	                <div class="supporter-photo">
+	                    <button class="js-bellec-link" type="button" data-bellec-fr="francois_bellecF.html" data-bellec-en="francois_bellecE.html" aria-label="Ouvrir le texte de François Bellec">
+	                        <img src="img/bellec.jpg" alt="François Bellec" title="Le Télégramme/David Cormier, 25/04/2024">
+	                    </button>
+	                </div>
+	            </div>
             </div>
 
-            <h3 style="margin-top:28px;font-weight:700;color:#111;" data-i18n-html="supporters-hay-title">Le mot de Iain Hay</h3>
-            <div class="supporter-block">
-                <div class="supporter-text">
-                    <p data-i18n-html="supporters-hay-bio"><strong><a href="https://en.wikipedia.org/wiki/Iain_Hay" target="_blank" rel="noopener">Iain Hay</a></strong> est géographe et universitaire, connu pour ses travaux sur les inégalités, la justice spatiale et l’éthique de la recherche. Il a occupé des fonctions de direction académique en Australie et contribué à des initiatives internationales en géographie et en sciences humaines.</p>
-                    <p data-i18n-html="supporters-hay-text">[Texte à venir]</p>
-                </div>
-                <div class="supporter-photo">
-                    <img src="img/iain_hay.jpg" alt="Iain Hay">
-                </div>
+            <div class="supporter-item">
+                <p><span class="supporter-title-static" data-i18n="supporters-hay-title">Le mot de Iain Hay</span></p>
+	            <div class="supporter-block">
+	                <div class="supporter-text">
+	                    <p data-i18n-html="supporters-hay-bio"><strong><a href="https://en.wikipedia.org/wiki/Iain_Hay" target="_blank" rel="noopener">Iain Hay</a></strong> est géographe et universitaire, connu pour ses travaux sur les inégalités, la justice spatiale et l'éthique de la recherche. Il a occupé des fonctions de direction académique en Australie et contribué à des initiatives internationales en géographie et en sciences humaines.</p>
+	                    <p data-i18n-html="supporters-hay-text">[Texte à venir]</p>
+	                </div>
+	                <div class="supporter-photo">
+	                    <img src="img/iain_hay.jpg" alt="Iain Hay">
+	                </div>
+	            </div>
             </div>
 
-            <h3 style="margin-top:28px;font-weight:700;color:#111;" data-i18n-html="supporters-robinson-title">Le mot de Guy Robinson</h3>
-            <div class="supporter-block">
-                <div class="supporter-text">
-                    <p data-i18n-html="supporters-robinson-bio"><strong>Professor Guy Robinson</strong>, Vice-President du RGSSA. Membre depuis 2008, il est géographe humain (Universités de Londres et d’Oxford) avec plus de 45 ans d’expérience en recherche sur le développement rural et la gestion environnementale. Ancien professeur à l’Université d’Édimbourg (médaillé de la Royal Scottish Geographical Society), ex-président de la British Australian Studies Association, il a été chercheur invité dans plusieurs universités australasiennes (Canterbury, Melbourne, Newcastle, New South Wales, Otago). À UniSA, il a dirigé le Centre for Regional Engagement (2010-2014). Il est aujourd’hui Departmental Associate à l’Université de Cambridge (Land Economy), professeur associé à l’Université d’Adelaide (Geography, Environment and Population) et rédacteur en chef de <em>Research in Globalization</em>.</p>
-                    <p data-i18n-html="supporters-robinson-text">[Texte à venir]</p>
-                </div>
-                <div class="supporter-photo">
-                    <img src="img/guy_robinson.jpg" alt="Guy Robinson">
-                </div>
+            <div class="supporter-item">
+                <p><span class="supporter-title-static" data-i18n="supporters-robinson-title">Le mot de Guy Robinson</span></p>
+	            <div class="supporter-block">
+	                <div class="supporter-text">
+	                    <p data-i18n-html="supporters-robinson-bio"><strong>Professor Guy Robinson</strong>, Vice-President du RGSSA. Membre depuis 2008, il est géographe humain (Universités de Londres et d'Oxford) avec plus de 45 ans d'expérience en recherche sur le développement rural et la gestion environnementale. Ancien professeur à l'Université d'Édimbourg (médaillé de la Royal Scottish Geographical Society), ex-président de la British Australian Studies Association, il a été chercheur invité dans plusieurs universités australasiennes (Canterbury, Melbourne, Newcastle, New South Wales, Otago). À UniSA, il a dirigé le Centre for Regional Engagement (2010-2014). Il est aujourd'hui Departmental Associate à l'Université de Cambridge (Land Economy), professeur associé à l'Université d'Adelaide (Geography, Environment and Population) et rédacteur en chef de <em>Research in Globalization</em>.</p>
+	                    <p data-i18n-html="supporters-robinson-text">[Texte à venir]</p>
+	                </div>
+	                <div class="supporter-photo">
+	                    <img src="img/guy_robinson.jpg" alt="Guy Robinson">
+	                </div>
+	            </div>
             </div>
         </section>
     </main>
+
+    <div class="bellec-overlay" role="dialog" aria-modal="true" aria-label="François Bellec">
+        <div class="bellec-container">
+            <button type="button" class="bellec-close" aria-label="Close">&times;</button>
+            <iframe id="bellec-frame" title="François Bellec" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        </div>
+    </div>
 
     <div data-include-footer></div>
 
     <script src="js/translations.js?v=20241012"></script>
     <script src="js/main.js?v=20241012"></script>
+    <script>
+        (() => {
+            const triggers = document.querySelectorAll('.js-bellec-link[data-bellec-fr][data-bellec-en]');
+            const overlay = document.querySelector('.bellec-overlay');
+            const frame = document.getElementById('bellec-frame');
+            const closeBtn = document.querySelector('.bellec-close');
+            let lastFocusedElement = null;
+
+            const getCurrentLang = () => (document.documentElement.lang || 'en').toLowerCase();
+
+            const openOverlay = (trigger) => {
+                if (!overlay || !frame || !trigger) return;
+                const lang = getCurrentLang();
+                const src = lang.startsWith('fr')
+                    ? trigger.getAttribute('data-bellec-fr')
+                    : trigger.getAttribute('data-bellec-en');
+                if (!src) return;
+
+                frame.src = src;
+                overlay.classList.add('is-visible');
+                lastFocusedElement = document.activeElement;
+                document.body.style.overflow = 'hidden';
+                document.addEventListener('keydown', handleKeydown);
+                closeBtn?.focus();
+            };
+
+            const closeOverlay = () => {
+                if (!overlay || !frame) return;
+                frame.src = '';
+                overlay.classList.remove('is-visible');
+                document.body.style.overflow = '';
+                document.removeEventListener('keydown', handleKeydown);
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            };
+
+            const handleKeydown = (event) => {
+                if (event.key === 'Escape') {
+                    closeOverlay();
+                }
+            };
+
+            triggers.forEach((trigger) => {
+                trigger.addEventListener('click', () => openOverlay(trigger));
+            });
+
+            closeBtn?.addEventListener('click', closeOverlay);
+            overlay?.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    closeOverlay();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
