@@ -40,6 +40,15 @@
         .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
         .resource-item { margin-top: 28px; }
 
+        /* Resource items with thumbnails (title above, then thumbnail + text) */
+        .resource-row { margin-top: 12px; display: flex; gap: 18px; align-items: flex-start; }
+        .resource-thumb { width: 175px; flex: 0 0 175px; }
+        .resource-thumb a { display: block; text-decoration: none; }
+        .resource-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
+        .resource-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; }
+        .resource-text { flex: 1; min-width: 0; }
+        .resource-text p { margin: 0; }
+
         /* Audio Section */
         .audio-header {
             display: flex;
@@ -86,6 +95,9 @@
             /* Audio responsive */
             .audio-header { flex-direction: column; align-items: flex-start; }
             .audio-player { width: 100%; min-width: auto; }
+
+            .resource-row { flex-direction: column; }
+            .resource-thumb { width: min(320px, 100%); flex-basis: auto; }
         }
     </style>
 </head>
@@ -134,7 +146,16 @@
 
             <div class="resource-item" style="margin-top: 28px;">
                 <p data-i18n-html="about-author-entry"><a class="resource-primary-link" href="author.html">Présentation de l'auteure</a></p>
-                <p data-i18n="about-author-subtitle">Dany Bréelle, agrégée et docteur en géographie, auteure du projet.</p>
+                <div class="resource-row">
+                    <div class="resource-thumb">
+                        <a href="author.html" aria-label="Open author page">
+                            <img src="img/dany_breelle.jpg" alt="" loading="lazy" decoding="async">
+                        </a>
+                    </div>
+                    <div class="resource-text">
+                        <p data-i18n="about-author-subtitle">Dany Bréelle, agrégée et docteur en géographie, auteure du projet.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="resource-item" style="margin-top: 28px;">
