@@ -93,6 +93,58 @@ nav ul li a:hover {
     height: auto;
 }
 
+/* Footer */
+footer.site-footer {
+    background: #000;
+    color: #fff;
+    margin-top: 40px;
+    padding: 12px clamp(18px, 4vw, 40px);
+}
+
+.site-footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.site-footer__side {
+    flex: 0 0 min(260px, 28vw);
+    display: flex;
+    align-items: center;
+}
+
+.site-footer__side--left { justify-content: flex-start; }
+.site-footer__side--right { justify-content: flex-end; }
+
+.site-footer__logo {
+    display: block;
+    width: auto;
+    max-height: 56px;
+    object-fit: contain;
+}
+
+.site-footer__copy {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+@media (max-width: 720px) {
+    .site-footer__inner {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .site-footer__side {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* Tablettes */
 @media (max-width: 1040px) {
     :root { --nav-height: 64px; }
