@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maps and Illustrations - French Names Along the Australian Coastline</title>
+    <title>Nautical charts - French Names Along the Australian Coastline</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
     <link rel="stylesheet" href="css/nav.css">
@@ -15,22 +15,36 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
         .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 16px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .content-section h1 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 18px 0; }
+        .content-section h1 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 10px 0; }
         .content-section h1 img { width: 24px; vertical-align: middle; margin-left: 8px; opacity: 0.8; }
-        .content-section h2.subtitle { font-family: 'Lato', sans-serif; font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.2rem); margin: 0 0 14px 0; color: #444; }
-        .entry { margin-bottom: 40px; margin-top: 30px; }
-        .entry-title { font-family: 'Lato', sans-serif; font-size: 1.6rem; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+        .content-section h2.subtitle { font-family: 'Lato', sans-serif; font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.2rem); margin: 0 0 16px 0; color: #444; }
+
+        .entry { margin-top: 30px; }
         .entry-link { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; background-color: #0056b3; color: #fff; border-radius: 999px; border: none; text-decoration: none; font-weight: 600; transition: background-color 0.2s ease; cursor: pointer; font-size: 1rem; }
         .entry-link:hover { background-color: #003f82; }
         .entry-description { margin-top: 10px; line-height: 1.6; color: #555; }
 
-        /* Modale IIIF */
-        .iiif-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
-        .iiif-overlay.is-visible { display: flex; }
-        .iiif-container { position: relative; width: 95vw; height: 95vh; }
-        .iiif-close { position: fixed; top: 20px; right: 20px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fff; background: rgba(0,0,0,0.8); color: #fff; cursor: pointer; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.4); z-index: 2100; transition: all 0.2s ease; }
-        .iiif-close:hover { background: rgba(255,255,255,0.95); color: #000; transform: scale(1.1); }
-        .iiif-close:focus-visible { outline: 3px solid #FFD700; }
+        .map-block { margin-top: 24px; }
+        .map-block:first-child { margin-top: 0; }
+        .map-block::after { content: ""; display: block; clear: both; }
+        .map-thumb {
+            margin-top: 12px;
+            float: left;
+            width: 250px; /* ~ 1/3 de l'ancienne taille (760px) */
+            margin-right: 18px;
+            margin-bottom: 12px;
+        }
+        .map-thumb button { border: none; padding: 0; background: transparent; cursor: pointer; display: block; width: 100%; }
+        .map-thumb button:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
+        .map-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+
+        @media (max-width: 768px) {
+            .map-thumb {
+                float: none;
+                width: min(320px, 100%);
+                margin-right: 0;
+            }
+        }
 
         /* Modale d'images */
         .image-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
@@ -40,49 +54,13 @@
         .image-close:hover { background: rgba(0,0,0,0.85); }
         .image-close:focus-visible { outline: 3px solid #FFD700; }
 
-        /* Modale vidéo */
-        .video-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.86); display: none; align-items: center; justify-content: center; padding: 10px; z-index: 2000; }
-        .video-overlay.is-visible { display: flex; }
-        .video-container { position: relative; width: min(96vw, 96vh); }
-        .video-container video { width: 100%; height: auto; max-height: 96vh; border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,0.35); background: #000; }
-        .video-close { position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,0.95); color: #333; cursor: pointer; font-size: 1.7rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2100; }
-        .video-close:hover { background: #f2f2f2; }
-        .video-close:focus-visible { outline: 3px solid #FFD700; }
-
-        .illustrations-preview {
-            margin-top: 32px;
-            display: flex;
-            justify-content: center;
-        }
-        .illustrations-preview-button {
-            border: none;
-            padding: 0;
-            background: transparent;
-            cursor: pointer;
-        }
-        .illustrations-preview-button:focus-visible {
-            outline: 3px solid #FFD700;
-            outline-offset: 6px;
-            border-radius: 12px;
-        }
-        .illustrations-preview img {
-            width: min(640px, 100%);
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-        }
-
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
-        @media  (max-width: 768px)  {.content-section { padding: 24px; }
-            .page-header h1 { font-size: 1.5rem; }
-        }
-    
 
         /* Language-specific content blocks */
         [data-lang] { display: none; }
         html[lang^="en"] [data-lang="en"],
         html[lang^="fr"] [data-lang="fr"] { display: block; }
-</style>
+    </style>
 </head>
 <body>
     <nav>
@@ -106,111 +84,96 @@
     <main class="container">
         <div data-lang="en">
         <section class="content-section">
-            <h1>Maps and Illustrations <a href="resources.html"><img src="img/up-arrow.svg" alt="Back to Resources page" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h1>
+            <h1>Nautical charts <a href="resources.html"><img src="img/up-arrow.svg" alt="Back to Resources page"></a></h1>
 
             <div class="entry">
-                <h3 class="entry-title">Charts and atlas historique</h3>
-                <p><button id="baudin-link" class="entry-link" data-image="img/carte-de-baudin.jpg">Baudin's Map</button></p>
-                <p class="entry-description">Map from the Baudin expedition (1800-1804), which produced the first complete map of Australia. The published atlas included 40 plates and an atlas of 14 charts and plans documenting the southern and western coasts of Australia.</p>
-                <p class="entry-description">This chart was produced during the voyage under the supervision of the expedition commander, Nicolas Baudin.<br>Section of the nautical chart "Fourteenth sheet. End of the Gulf of Melomanie at the extremity of which is located Port of Confidence, which according to verbal reports made to me... the entire outline of the port being surrounded by high wooded mountains... offers safe shelter.... by Boullanger, geographical engineer" 26 April 1802, 28-29 January 1803. <a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_438" target="_blank" rel="noopener">ANF/MAR/6JJ//B, Piece 88</a></p>
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-image="img/carte-de-baudin.jpg">Baudin's Map</button></p>
+                    <div class="map-thumb">
+                        <button type="button" data-image="img/carte-de-baudin.jpg" aria-label="Open Baudin's map">
+                            <img src="img/carte-de-baudin.jpg" alt="Baudin's map (thumbnail)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description">Chart (fair copy) of the Gulf of Mélomanie (southern part) – 1802–1803</p>
+                    <p class="entry-description">This synthesis nautical chart, described as a minute (fair copy), washed with colour and accompanied by coastal profiles—an excerpt of which is presented here—was produced under the direction of the expedition commander, Nicolas Baudin. Entitled “Fourteenth sheet. End of the Gulf of Mélomanie, at the extremity of which is located Port of Confidence, which, according to verbal reports made to me… the entire outline of the port being surrounded by high wooded mountains… offers safe shelter…”, it was drawn up by Charles-Pierre Boullanger, geographical engineer, between 26 April 1802 and 28–29 January 1803 (<a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_438" target="_blank" rel="noopener">ANF, MAR, 6JJ//B, item 88</a>).</p>
+                    <p class="entry-description">The numerous erasures and corrections visible on the chart testify to the major toponymic revision undertaken upon the expedition’s return, with successive hesitations and adjustments that accompanied its official publication.</p>
+                </div>
 
-                <p><button id="beautemps-link" class="entry-link" data-image="img/carte-de-beautemps-beaupre-1807.jpg">Beautemps-Beaupré's Map</button></p>
-                <p class="entry-description">General map of New Holland and the archipelagos of the Great Ocean, drawn in 1807 by Charles-François Beautemps-Beaupré, hydrographer of the d'Entrecasteaux expedition (1791-1793). Considered the father of modern hydrography, Beautemps-Beaupré charted the Australian coasts with remarkable precision.</p>
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-image="img/carte-de-beautemps-beaupre-1807.jpg">Beautemps-Beaupré's Map</button></p>
+                    <div class="map-thumb">
+                        <button type="button" data-image="img/carte-de-beautemps-beaupre-1807.jpg" aria-label="Open Beautemps-Beaupré's map">
+                            <img src="img/carte-de-beautemps-beaupre-1807.jpg" alt="Beautemps-Beaupré's map (thumbnail)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description">This general map of New Holland and the archipelagos of the Great Ocean, drawn in 1807 by Charles-François Beautemps-Beaupré, hydrographer of the d’Entrecasteaux expedition (1791–1793), is the first plate of the voyage’s official atlas. It shows not only some toponyms assigned at the expedition commander’s initiative, but also those inherited from earlier voyages, notably Dutch and English ones.</p>
+                    <p class="entry-description">Beautemps-Beaupré’s approach is part of the development, during the 18th century, of an increasingly transnational maritime cartography, in which charts were regularly revised, expanded or corrected by European navigators on the basis of existing documents. This cumulative practice reflects the wider circulation of hydrographic knowledge across Europe.</p>
+                    <p class="entry-description">Considered the father of modern hydrography, Beautemps-Beaupré contributed to the mapping of the Australian coasts with an unprecedented precision for the time, based on observational and surveying methods that became lasting reference standards.</p>
+                    <p class="entry-description">The atlas’s late publication is explained in part by the seizure in 1794, by the British authorities, as prizes of war, of the sixty-five copies of the fair charts produced by Beautemps-Beaupré during the d’Entrecasteaux expedition; they were returned only with the Peace of Amiens in 1802.</p>
+                </div>
 
-                <p><button id="freycinet-link" class="entry-link" data-image="img/carte-de-freycinet-1812.jpg">Freycinet's Map</button></p>
-                <p class="entry-description">The "General Chart of New Holland, drawn by Mr. L. Freycinet, commander of the schooner Le Casuarina, in April 1808" was the first published map to represent, in its entirety, what is now known as Australia. It appeared in the first part of the Historical Atlas of the Voyage of Discovery to the Southern Lands, written by François Péron and completed by Louis de Freycinet, and published in 1811.</p>
-                <p class="entry-description">This map forms part of a Franco-British discussion regarding the priority of the first complete representation of the continent. During his detention on the Isle de France (today Mauritius), the British navigator Matthew Flinders had completed, in 1804, a similar map entitled Australia or Terra Australis. He had sent copies to Joseph Banks and to the British Admiralty, but his map was not published until 1814, after his return to London in 1810.</p>
-                <p class="entry-description">The French and British publications of these maps, appearing close in time and based on surveys carried out during contemporary expeditions, gave rise to debates about the chronology and recognition of each navigator's work.</p>
-
-                <h3 class="entry-title" style="margin-top: 40px;">Illustrations</h3>
-                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Example of coastal profile sketches</button></p>
-                <p class="entry-description">Views of different parts of Anthony Van Diemen's Land<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministry of the Navy and Colonies. (1807).<br>Source: <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener">National Library of Australia</a></p>
-                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/illustrations.mp4">Examples of illustrations</button></p>
-                <p class="entry-description">Slideshow of selected project illustrations.</p>
-            </div>
-
-            <div class="entry">
-                <p><button class="entry-link js-voyage-link" type="button">Voyage of Discovery to the Southern Lands</button></p>
-                <p class="entry-description">Voyage of Discovery to the Southern Lands: executed by order of His Majesty the Emperor and King, on the corvettes the Géographe, the Naturaliste, and the schooner the Casuarina, during the years 1800, 1801, 1802, 1803 and 1804; [Historical account] published by imperial decree, under the ministry of M. de Champagny and written by M. F. Péron.<br>Source: <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener">National Library of France</a></p>
-            </div>
-
-            <div class="illustrations-preview">
-                <button class="illustrations-preview-button js-resource-video" type="button" data-video-src="img/illustrations.mp4">
-                    <img src="img/illus00.jpg" alt="Illustration illus00" loading="lazy" decoding="async">
-                </button>
-            </div>
-
-            <div class="entry">
-                <h3 class="entry-title" style="margin-top: 40px;">Mission report</h3>
-                <p><a class="entry-link" href="details/rapport1.html">Mission report</a></p>
-                <p class="entry-description">Report by frigate captain Pierre Milius on his mission to Port Western.</p>
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-image="img/carte-de-freycinet-1812.jpg">Freycinet's Map</button></p>
+                    <div class="map-thumb">
+                        <button type="button" data-image="img/carte-de-freycinet-1812.jpg" aria-label="Open Freycinet's map">
+                            <img src="img/carte-de-freycinet-1812.jpg" alt="Freycinet's map (thumbnail)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description">This chart belongs to the context of a Franco–British controversy over the priority of a complete cartographic representation of the continent. While he was detained on the Isle de France (today Mauritius), the British navigator Matthew Flinders had in fact completed, as early as 1804, a comparable fair chart entitled <em>Australia or Terra Australis</em>. Copies were sent to Joseph Banks and to the British Admiralty; however, publication was delayed until 1814, after Flinders’s return to London in 1810.</p>
+                    <p class="entry-description">The near-contemporaneous publication, in France and Great Britain, of these charts—based on surveys from contemporary expeditions—fuelled lasting debates about chronology, circulation, and the respective recognition of the hydrographic and geographical work of the two nations.</p>
+                </div>
             </div>
         </section>
-    
         </div>
+
         <div data-lang="fr">
         <section class="content-section">
-            <h1>Cartes et illustrations <a href="resources.html"><img src="img/up-arrow.svg" alt="Retour à la page Ressources" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h1>
+            <h1>Cartes marines <a href="resources.html"><img src="img/up-arrow.svg" alt="Retour à la page Ressources"></a></h1>
 
             <div class="entry">
-                <h3 class="entry-title">Cartes marines et atlas historique</h3>
-                <p><button id="baudin-link" class="entry-link" data-image="img/carte-de-baudin.jpg">Carte de Baudin</button></p>
-                <p class="entry-description">Carte issue de l'expédition Baudin (1800-1804), à l'origine de la première carte complète de l'Australie. L'atlas publié comprenait 40 planches ainsi qu'un atlas de 14 cartes et plans documentant les côtes sud et ouest de l'Australie.</p>
-                <p class="entry-description">Cette carte a été réalisée pendant le voyage sous la direction du commandant de l'expédition, Nicolas Baudin.<br>Section de la carte marine « Quatorzième feuille. Fin du Golfe de la Mélomanie à l'Extrémité duquel se trouve le Port de la Confiance, qui d'après les rapports verbals qui m'ont été faits ... tout le contour du port étant entouré de hautes montagnes boisées... offre un abri assuré.... par Boullanger, ingénieur géographe" 26 avril 1802, 28-29 janvier 1803. <a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_438" target="_blank" rel="noopener">ANF/MAR/6JJ//B, Pièce 88</a></p>
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-image="img/carte-de-baudin.jpg">Carte de Baudin</button></p>
+                    <div class="map-thumb">
+                        <button type="button" data-image="img/carte-de-baudin.jpg" aria-label="Ouvrir la carte de Baudin">
+                            <img src="img/carte-de-baudin.jpg" alt="Carte de Baudin (miniature)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description">Carte (minute) du golfe de la Mélomanie (partie méridionale) - 1802-1803</p>
+                    <p class="entry-description">Cette carte marine de synthèse, qualifiée de minute ou de carte au net, mise en couleur au lavis et accompagnée de profils de côtes — dont un extrait est présenté ici — fut réalisée sous la direction du commandant de l’expédition, Nicolas Baudin. Intitulée « Quatorzième feuille. Fin du golfe de la Mélomanie, à l’extrémité duquel se trouve le port de la Confiance, qui, d’après les rapports verbaux qui m’ont été faits… tout le contour du port étant entouré de hautes montagnes boisées… offre un abri assuré… », elle fut dressée par Charles-Pierre Boullanger, ingénieur géographe, entre le 26 avril 1802 et les 28–29 janvier 1803 (<a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_438" target="_blank" rel="noopener">ANF, MAR, 6JJ//B, pièce 88</a>).</p>
+                    <p class="entry-description">Les nombreuses ratures et corrections visibles sur la carte témoignent du très important travail de révision toponymique dont la carte fut l’objet au retour de l’expédition, avec les hésitations et ajustements successifs qui ont accompagné son édition officielle.</p>
+                </div>
 
-                <p><button id="beautemps-link" class="entry-link" data-image="img/carte-de-beautemps-beaupre-1807.jpg">Carte de Beautemps-Beaupré</button></p>
-                <p class="entry-description">Carte générale de la Nouvelle-Hollande et des archipels du Grand Océan, dressée en 1807 par Charles-François Beautemps-Beaupré, hydrographe de l'expédition d'Entrecasteaux (1791-1793). Considéré comme le père de l'hydrographie moderne, Beautemps-Beaupré a cartographié les côtes australiennes avec une précision remarquable.</p>
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-image="img/carte-de-beautemps-beaupre-1807.jpg">Carte de Beautemps-Beaupré</button></p>
+                    <div class="map-thumb">
+                        <button type="button" data-image="img/carte-de-beautemps-beaupre-1807.jpg" aria-label="Ouvrir la carte de Beautemps-Beaupré">
+                            <img src="img/carte-de-beautemps-beaupre-1807.jpg" alt="Carte de Beautemps-Beaupré (miniature)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description">Cette carte générale de la Nouvelle-Hollande et des archipels du Grand Océan, dressée en 1807 par Charles-François Beautemps-Beaupré, hydrographe de l’expédition d’Entrecasteaux (1791–1793), constitue la première planche de l’atlas officiel du voyage. Elle fait apparaître non seulement certains toponymes attribués à l’initiative du commandant de l’expédition, mais aussi ceux hérités de voyages antérieurs, notamment hollandais et anglais.</p>
+                    <p class="entry-description">La démarche de Beautemps-Beaupré s’inscrit dans le développement, au cours du XVIIIᵉ siècle, d’une cartographie maritime de plus en plus transnationale, au sein de laquelle les cartes étaient régulièrement révisées, complétées ou corrigées par les navigateurs européens à partir des documents existants. Cette pratique cumulative témoigne d’une circulation élargie des savoirs hydrographiques à l’échelle européenne.</p>
+                    <p class="entry-description">Considéré comme le père de l’hydrographie moderne, Beautemps-Beaupré contribua à la cartographie des côtes australiennes avec une précision alors inégalée, fondée sur des méthodes d’observation et de levé qui firent durablement référence.</p>
+                    <p class="entry-description">La publication tardive de l’atlas s’explique en partie par la confiscation en 1794, par les autorités britanniques, à titre de prises de guerre, des soixante-cinq copies des minutes dressées par Beautemps-Beaupré lors de l’expédition d’Entrecasteaux ; celles-ci ne furent restituées qu’à l’occasion de la paix d’Amiens en 1802.</p>
+                </div>
 
-                <p><button id="freycinet-link" class="entry-link" data-image="img/carte-de-freycinet-1812.jpg">Carte de Freycinet</button></p>
-                <p class="entry-description">La « Carte générale de la Nouvelle-Hollande, dressée par M. L. Freycinet, commandant la goélette Le Casuarina, en avril 1808 » fut la première carte publiée représentant dans son ensemble ce qui est aujourd'hui l'Australie. Elle figure dans la première partie de l'Atlas historique du Voyage de découvertes aux terres australes, rédigé par François Péron et poursuivi par Louis de Freycinet, publié en 1811.</p>
-                <p class="entry-description">Cette carte s'inscrit dans le contexte d'une controverse franco-britannique concernant la priorité de la représentation complète du continent. Durant sa détention à l'île de France (aujourd'hui l'île Maurice), le navigateur britannique Matthew Flinders avait achevé, en 1804, une carte similaire intitulée Australia or Terra Australis. Il en avait transmis des copies à Joseph Banks et à l'Amirauté britannique, mais sa publication n'intervint qu'en 1814, après son retour à Londres en 1810.</p>
-                <p class="entry-description">Les publications françaises et britanniques de ces cartes, proches dans le temps et fondées sur des relevés réalisés au cours d'expéditions contemporaines, ont donné lieu à des débats sur la chronologie et la reconnaissance des travaux de chacun.</p>
-
-                <h3 class="entry-title" style="margin-top: 40px;">Illustrations</h3>
-                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Exemple de croquis de profils des côtes</button></p>
-                <p class="entry-description">Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source : <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener">National Library of Australia</a></p>
-                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/illustrations.mp4">Exemples d'illustrations</button></p>
-                <p class="entry-description">Diaporama vidéo d'une sélection d'illustrations du projet.</p>
-            </div>
-
-            <div class="entry">
-                <p><button class="entry-link js-voyage-link" type="button">Voyage de découvertes aux terres australes</button></p>
-                <p class="entry-description">Voyage de découvertes aux terres australes : exécuté par ordre de Sa Majesté l'empereur et roi, sur les corvettes le Géographe, le Naturaliste, et la goëlette le Casuarina, pendent les années 1800, 1801, 1802, 1803 et 1804; [Historique] publié par decret impérial, sous le ministère de M. de Champagny et rédigé par M. F. Péron.<br>Source : <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener">Bibliothèque nationale de France</a></p>
-            </div>
-
-            <div class="illustrations-preview">
-                <button class="illustrations-preview-button js-resource-video" type="button" data-video-src="img/illustrations.mp4">
-                    <img src="img/illus00.jpg" alt="Illustration illus00" loading="lazy" decoding="async">
-                </button>
-            </div>
-
-            <div class="entry">
-                <h3 class="entry-title" style="margin-top: 40px;">Rapport de mission</h3>
-                <p><a class="entry-link" href="details/rapport1.html">Rapport de mission</a></p>
-                <p class="entry-description">Rapport du capitaine de frégate Pierre Milius sur sa mission dans le Port Western.</p>
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-image="img/carte-de-freycinet-1812.jpg">Carte de Freycinet</button></p>
+                    <div class="map-thumb">
+                        <button type="button" data-image="img/carte-de-freycinet-1812.jpg" aria-label="Ouvrir la carte de Freycinet">
+                            <img src="img/carte-de-freycinet-1812.jpg" alt="Carte de Freycinet (miniature)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description">Cette carte s’inscrit dans le contexte d’une controverse franco-britannique relative à la priorité de la représentation cartographique complète du continent. Alors qu’il était détenu à l’île de France (aujourd’hui l’île Maurice), le navigateur britannique Matthew Flinders avait en effet achevé, dès 1804, une carte au net comparable, intitulée <em>Australia or Terra Australis</em>. Des copies en avaient été transmises à Joseph Banks et à l’Amirauté britannique ; toutefois, sa publication fut retardée et n’eut lieu qu’en 1814, après le retour de Flinders à Londres en 1810.</p>
+                    <p class="entry-description">La publication rapprochée, en France et en Grande-Bretagne, de ces cartes fondées sur des relevés issus d’expéditions contemporaines alimenta des débats durables portant sur la chronologie, la diffusion et la reconnaissance respective des travaux hydrographiques et géographiques des deux nations.</p>
+                </div>
             </div>
         </section>
-    
         </div>
     </main>
-
-    <div class="iiif-overlay" role="dialog" aria-modal="true" aria-label="IIIF Viewer">
-        <div class="iiif-container">
-            <button type="button" class="iiif-close" aria-label="Close">&times;</button>
-            <iframe id="iiif-viewer" style="width: 100%; height: 100%; border: none;" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-        </div>
-    </div>
 
     <div class="image-overlay" role="dialog" aria-modal="true" aria-label="Image Viewer">
         <button type="button" class="image-close" aria-label="Close">&times;</button>
         <img id="modal-image" src="" alt="">
-    </div>
-
-    <div class="video-overlay" role="dialog" aria-modal="true" aria-label="Video player">
-        <div class="video-container">
-            <button type="button" class="video-close" aria-label="Close">&times;</button>
-            <video id="resource-video" controls preload="metadata"></video>
-        </div>
     </div>
 
     <div data-include-footer></div>
@@ -218,53 +181,7 @@
     <script src="js/translations.js?v=20241012"></script>
     <script src="js/main.js?v=20241012"></script>
     <script>
-	        // IIIF Viewer modal
-	        (() => {
-	            const voyageLinks = document.querySelectorAll('.js-voyage-link');
-	            const iiifOverlay = document.querySelector('.iiif-overlay');
-	            const iiifViewer = document.getElementById('iiif-viewer');
-	            const iiifCloseBtn = document.querySelector('.iiif-close');
-	            let lastFocusedElement = null;
-
-            const openIIIFOverlay = () => {
-                if (!iiifOverlay || !iiifViewer) return;
-                iiifViewer.src = 'Viewer.html';
-                iiifOverlay.classList.add('is-visible');
-                lastFocusedElement = document.activeElement;
-                document.body.style.overflow = 'hidden';
-                document.addEventListener('keydown', handleIIIFKeydown);
-                iiifCloseBtn?.focus();
-            };
-
-            const closeIIIFOverlay = () => {
-                if (!iiifOverlay || !iiifViewer) return;
-                iiifViewer.src = '';
-                iiifOverlay.classList.remove('is-visible');
-                document.body.style.overflow = '';
-                document.removeEventListener('keydown', handleIIIFKeydown);
-                if (lastFocusedElement) {
-                    lastFocusedElement.focus();
-                }
-            };
-
-            const handleIIIFKeydown = (event) => {
-                if (event.key === 'Escape') {
-                    closeIIIFOverlay();
-                }
-            };
-
-	            voyageLinks.forEach((voyageLink) => {
-	                voyageLink.addEventListener('click', openIIIFOverlay);
-	            });
-	            iiifCloseBtn?.addEventListener('click', closeIIIFOverlay);
-	            iiifOverlay?.addEventListener('click', (event) => {
-	                if (event.target === iiifOverlay) {
-	                    closeIIIFOverlay();
-	                }
-	            });
-	        })();
-
-        // Image modals for maps
+        // Image modals
         (() => {
             const imageOverlay = document.querySelector('.image-overlay');
             const modalImage = document.getElementById('modal-image');
@@ -315,72 +232,6 @@
                 }
             });
         })();
-
-	        // Video modal
-	        (() => {
-	            const triggers = document.querySelectorAll('.js-resource-video[data-video-src]');
-	            const overlay = document.querySelector('.video-overlay');
-	            const video = document.getElementById('resource-video');
-	            const closeBtn = document.querySelector('.video-close');
-	            let lastFocusedElement = null;
-
-	            const openOverlay = (trigger) => {
-	                if (!overlay || !video || !trigger) return;
-	                const videoSrc = trigger.getAttribute('data-video-src');
-	                if (!videoSrc) return;
-	                video.src = videoSrc;
-	                overlay.classList.add('is-visible');
-	                lastFocusedElement = document.activeElement;
-	                video.play().catch(() => {});
-	                document.addEventListener('keydown', handleKeydown);
-	                closeBtn?.focus();
-	            };
-
-            const closeOverlay = () => {
-                if (!overlay || !video) return;
-                video.pause();
-                video.currentTime = 0;
-                video.removeAttribute('src');
-                video.load();
-                overlay.classList.remove('is-visible');
-                document.removeEventListener('keydown', handleKeydown);
-                if (lastFocusedElement) {
-                    lastFocusedElement.focus();
-                }
-            };
-
-            const handleKeydown = (event) => {
-                if (event.key === 'Escape') {
-                    closeOverlay();
-                } else if (event.key === 'Tab' && overlay?.classList.contains('is-visible')) {
-                    trapFocus(event);
-                }
-            };
-
-            const trapFocus = (event) => {
-                const focusable = overlay.querySelectorAll('button, video');
-                if (!focusable.length) return;
-                const first = focusable[0];
-                const last = focusable[focusable.length - 1];
-                if (event.shiftKey && document.activeElement === first) {
-                    event.preventDefault();
-                    last.focus();
-                } else if (!event.shiftKey && document.activeElement === last) {
-                    event.preventDefault();
-                    first.focus();
-                }
-            };
-
-	            triggers.forEach((trigger) => {
-	                trigger.addEventListener('click', () => openOverlay(trigger));
-	            });
-	            closeBtn?.addEventListener('click', closeOverlay);
-	            overlay?.addEventListener('click', (event) => {
-	                if (event.target === overlay) {
-	                    closeOverlay();
-	                }
-	            });
-	        })();
-	    </script>
+    </script>
 </body>
 </html>

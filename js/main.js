@@ -20,6 +20,8 @@ function setActiveNavLink() {
         'findings-5.html': 'nav-resources',
         'findings-6.html': 'nav-resources',
         'sources.html': 'nav-resources',
+        'illustrations.html': 'nav-resources',
+        'rapport.html': 'nav-resources',
         'expert.html': 'nav-ai',
         'presentation.html': 'nav-about',
         'author.html': 'nav-about',
