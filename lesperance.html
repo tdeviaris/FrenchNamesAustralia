@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L’Espérance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #111;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+            align-items: start;
+        }
+        .text p { margin: 0 0 12px 0; line-height: 1.65; color: #222; }
+        .text p:last-child { margin-bottom: 0; }
+
+        .figure { margin: 16px 0 0 0; }
+        .figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+        }
+        .figure figcaption {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+            text-align: center;
+        }
+        .full-width { margin-top: 22px; }
+        .source {
+            margin: 16px 0 0 0;
+            font-size: 0.95rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .specs {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .specs th,
+        .specs td {
+            padding: 10px 12px;
+            vertical-align: top;
+            border-bottom: 1px solid #ededed;
+        }
+        .specs tr:last-child th,
+        .specs tr:last-child td { border-bottom: 0; }
+        .specs th {
+            width: 42%;
+            text-align: left;
+            font-weight: 800;
+            background: #f6f7f9;
+        }
+        .specs .section th {
+            width: auto;
+            background: #1f1f1f;
+            color: #fff;
+            border-bottom: 0;
+            font-weight: 800;
+        }
+
+        @media (max-width: 860px) {
+            .columns { grid-template-columns: 1fr; }
+        }
+
+        [data-lang] { display: none; }
+        html[lang^="en"] [data-lang="en"],
+        html[lang^="fr"] [data-lang="fr"] { display: block; }
+    </style>
+</head>
+	<body>
+	    <main class="container">
+	    <div data-lang="fr">
+	        <h1 class="sr-only">L’Espérance</h1>
+
+	        <div class="columns">
+	            <div class="text">
+	                <p>L'Espérance&nbsp;était une&nbsp;gabare&nbsp;de&nbsp;classe Rhône&nbsp;de la&nbsp;Marine royale&nbsp;française, plus tard reconvertie en&nbsp;frégate.&nbsp;L'Espérance&nbsp;a donné son nom à la&nbsp;baie de l'Espérance&nbsp;et à la ville&nbsp;australienne&nbsp;d'Esperance&nbsp;en&nbsp;Australie-Occidentale.</p>
+	                <p>Le navire est construit à&nbsp;Toulon&nbsp;et baptisé sous le nom de&nbsp;Durance. Il sert dans l'escadre du&nbsp;vice-amiral&nbsp;de Grasse&nbsp;en tant que navire transporteur de troupes.</p>
+	                <p>Avec&nbsp;La Recherche, la&nbsp;frégate&nbsp;quitte le&nbsp;port de Brest&nbsp;le&nbsp;29 septembre 1791, pour une mission d'exploration chargée par le&nbsp;roi&nbsp;Louis XVI&nbsp;de retrouver&nbsp;Jean-François de La Pérouse, en&nbsp;Nouvelle-Calédonie&nbsp;et dans le&nbsp;Pacifique sud. Le navire est commandé par le&nbsp;capitaine&nbsp;Huon de Kermadec,&nbsp;commandant en second&nbsp;de l'expédition.</p>
+
+	                <figure class="figure">
+	                    <img src="img/recherche_and_esperance.jpg" alt="La Recherche et L’Espérance" loading="lazy" decoding="async">
+	                    <figcaption>La Recherche et l'Espérance, peinture de François Joseph Frédéric Roux</figcaption>
+	                </figure>
+	            </div>
+
+	            <div>
+	                <table class="specs" aria-label="Caractéristiques de L’Espérance">
+	                    <tbody>
+	                        <tr><th>Nom</th><td>Espérance</td></tr>
+	                        <tr><th>Éponyme</th><td>Espoir</td></tr>
+	                        <tr><th>Constructeur</th><td>Toulon</td></tr>
+	                        <tr><th>Mise sur cale</th><td>Juin 1780</td></tr>
+	                        <tr><th>Lancé</th><td>14 août 1781</td></tr>
+	                        <tr><th>Baptisé</th><td>Durance</td></tr>
+	                        <tr><th>Mis en service</th><td>30 octobre 1781</td></tr>
+	                        <tr><th>Retiré du service</th><td>28 octobre 1794</td></tr>
+	                        <tr><th>Reclassé</th><td>Frégate en 1791</td></tr>
+	                        <tr><th>Sort</th><td>Vendu pour démolition</td></tr>
+
+	                        <tr class="section"><th colspan="2">Caractéristiques générales</th></tr>
+	                        <tr><th>Classe et type</th><td>Classe Rhône</td></tr>
+	                        <tr><th>Type</th><td>Gabare</td></tr>
+	                        <tr><th>Déplacement</th><td>env. 350 tonnes</td></tr>
+	                        <tr><th>Longueur</th><td>37&nbsp;mètres</td></tr>
+	                        <tr><th>Largeur</th><td>8,3&nbsp;m</td></tr>
+	                        <tr><th>Tirant d’eau</th><td>4,2&nbsp;m</td></tr>
+	                        <tr><th>Propulsion</th><td>Voiles</td></tr>
+	                        <tr><th>Gréement</th><td>Trois-mâts carré</td></tr>
+	                        <tr><th>Équipage</th><td>200</td></tr>
+	                        <tr><th>Armement</th><td>6 canons de 8 livres et deux caronades</td></tr>
+	                        <tr><th>Protection</th><td>Bois</td></tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+
+        <figure class="figure full-width">
+            <img src="img/lesperance1.jpg" alt="Illustration de L’Espérance" loading="lazy" decoding="async">
+        </figure>
+
+        <p class="source">source : <a href="https://fr.wikipedia.org/wiki/Esp%C3%A9rance_(1781)" target="_blank" rel="noopener">wikipédia</a></p>
+    </div>
+
+	    <div data-lang="en">
+	        <h1 class="sr-only">L'Espérance</h1>
+
+	        <div class="columns">
+	            <div class="text">
+	                <p><em>L'Espérance</em> was a Rhône‑class <em>gabare</em> of the French Royal Navy, later converted into a frigate. The ship gave its name to Esperance Bay and to the Australian town of Esperance in Western Australia.</p>
+	                <p>The vessel was built at Toulon and christened <em>Durance</em>. She served in the squadron of Vice‑Admiral de Grasse as a troop transport.</p>
+	                <p>Along with <em>La Recherche</em>, the frigate left the port of Brest on 29 September 1791 on an exploration mission ordered by King Louis XVI to search for Jean‑François de La Pérouse in New Caledonia and the South Pacific. The ship was commanded by Captain Huon de Kermadec, second‑in‑command of the expedition.</p>
+
+	                <figure class="figure">
+	                    <img src="img/recherche_and_esperance.jpg" alt="La Recherche and L'Espérance" loading="lazy" decoding="async">
+	                    <figcaption>La Recherche and L'Espérance, painting by François Joseph Frédéric Roux</figcaption>
+                </figure>
+            </div>
+
+	            <div>
+	                <table class="specs" aria-label="L'Espérance specifications">
+	                    <tbody>
+	                        <tr><th>Name</th><td>Espérance</td></tr>
+	                        <tr><th>Namesake</th><td>Hope</td></tr>
+	                        <tr><th>Builder</th><td>Toulon</td></tr>
+	                        <tr><th>Laid down</th><td>June 1780</td></tr>
+	                        <tr><th>Launched</th><td>14 August 1781</td></tr>
+	                        <tr><th>Christened</th><td>Durance</td></tr>
+	                        <tr><th>Commissioned</th><td>30 October 1781</td></tr>
+	                        <tr><th>Out of service</th><td>28 October 1794</td></tr>
+	                        <tr><th>Reclassified</th><td>Frigate in 1791</td></tr>
+	                        <tr><th>Fate</th><td>Sold for scrap</td></tr>
+
+	                        <tr class="section"><th colspan="2">General characteristics</th></tr>
+	                        <tr><th>Class &amp; type</th><td>Rhône class</td></tr>
+	                        <tr><th>Type</th><td>scow</td></tr>
+	                        <tr><th>Displacement</th><td>c. 350 tonnes</td></tr>
+	                        <tr><th>Length</th><td>37 metres</td></tr>
+	                        <tr><th>Beam</th><td>8.3 m</td></tr>
+	                        <tr><th>Draught</th><td>4.2 m</td></tr>
+	                        <tr><th>Propulsion</th><td>Sail</td></tr>
+	                        <tr><th>Sail plan</th><td>Full rigged ship</td></tr>
+	                        <tr><th>Complement</th><td>200</td></tr>
+	                        <tr><th>Armament</th><td>6 8-pounders and two carronades</td></tr>
+	                        <tr><th>Armour</th><td>Timber</td></tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+
+        <figure class="figure full-width">
+            <img src="img/lesperance1.jpg" alt="L'Espérance" loading="lazy" decoding="async">
+        </figure>
+
+        <p class="source">source : <a href="https://en.wikipedia.org/wiki/French_fl%C3%BBte_Esp%C3%A9rance_(1781)" target="_blank" rel="noopener">wikipedia</a></p>
+    </div>
+    </main>
+
+    <script>
+        (function () {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'fr' || savedLang === 'en') {
+                document.documentElement.lang = savedLang;
+            }
+        })();
+    </script>
+</body>
+</html>

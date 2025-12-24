@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Naturaliste</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #111;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+            align-items: start;
+        }
+        .text p { margin: 0 0 12px 0; line-height: 1.65; color: #222; }
+        .text p:last-child { margin-bottom: 0; }
+        .figure { margin: 16px 0 0 0; }
+        .figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+        }
+        .figure figcaption {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+            text-align: center;
+        }
+        .full-width { margin-top: 22px; }
+        .source {
+            margin: 16px 0 0 0;
+            font-size: 0.95rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .specs {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .specs th,
+        .specs td {
+            padding: 10px 12px;
+            vertical-align: top;
+            border-bottom: 1px solid #ededed;
+        }
+        .specs tr:last-child th,
+        .specs tr:last-child td { border-bottom: 0; }
+        .specs th {
+            width: 42%;
+            text-align: left;
+            font-weight: 800;
+            background: #f6f7f9;
+        }
+        .specs .section th {
+            width: auto;
+            background: #1f1f1f;
+            color: #fff;
+            border-bottom: 0;
+            font-weight: 800;
+        }
+        .specs ul { margin: 0; padding-left: 18px; }
+        .specs li { margin: 4px 0; }
+
+        @media (max-width: 860px) {
+            .columns { grid-template-columns: 1fr; }
+        }
+
+        [data-lang] { display: none; }
+        html[lang^="en"] [data-lang="en"],
+        html[lang^="fr"] [data-lang="fr"] { display: block; }
+    </style>
+</head>
+<body>
+    <main class="container">
+    <div data-lang="fr">
+        <h1 class="sr-only">Le Naturaliste</h1>
+        <div class="columns">
+            <div class="text">
+                <p>Le&nbsp;Naturaliste&nbsp;est une&nbsp;gabare&nbsp;française&nbsp;de la classe&nbsp;Salamandre&nbsp;lancée en 1795 sous le nom de la&nbsp;Menaçante. Elle est baptisée le&nbsp;Naturaliste&nbsp;en 1800 et commandée par&nbsp;Emmanuel Hamelin, alors capitaine de frégate. Elle partit du&nbsp;Havre&nbsp;le&nbsp;19 octobre 1800. Elle fut de retour au Havre en&nbsp;juin 1803.</p>
+                <figure class="figure">
+                    <img src="img/legeographe_and_lenaturaliste.jpg" alt="Le Géographe et Le Naturaliste" loading="lazy" decoding="async">
+                    <figcaption>Le Naturaliste et Le Géographe</figcaption>
+                </figure>
+            </div>
+
+            <div>
+                <table class="specs" aria-label="Caractéristiques du Naturaliste">
+                    <tbody>
+                        <tr><th>Nom</th><td>La Menaçante</td></tr>
+                        <tr><th>Constructeur</th><td>Le Havre</td></tr>
+                        <tr><th>Mise sur cale</th><td>Août 1793</td></tr>
+                        <tr><th>Lancé</th><td>12 septembre 1795</td></tr>
+                        <tr><th>En service</th><td>Février 1796</td></tr>
+                        <tr><th>Renommé</th><td>Le Naturaliste</td></tr>
+                        <tr><th>Sort</th><td>Vendu le 25 janvier 1811</td></tr>
+
+                        <tr class="section"><th colspan="2">Caractéristiques générales</th></tr>
+                        <tr><th>Classe et type</th><td>Classe Salamandre</td></tr>
+                        <tr><th>Déplacement</th><td>650–687 tonnes</td></tr>
+                        <tr><th>Longueur</th><td>39,0&nbsp;m (128,0&nbsp;ft)</td></tr>
+                        <tr><th>Largeur</th><td>8,8&nbsp;m (29&nbsp;ft)</td></tr>
+                        <tr><th>Tirant d’eau</th><td>3,7&nbsp;m (12&nbsp;ft)</td></tr>
+                        <tr><th>Propulsion</th><td>Voiles</td></tr>
+                        <tr>
+                            <th>Équipage</th>
+                            <td>
+                                <ul>
+                                    <li>La Menaçante : 86–150</li>
+                                    <li>Le Naturaliste : 114</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Armement</th>
+                            <td>
+                                <ul>
+                                    <li>10 × canons de 8 livres + 2 × mortiers de 12 pouces</li>
+                                    <li>En 1796, les mortiers sont retirés et elle porte 22 × canons de 8 livres</li>
+                                    <li>Pour la campagne de 1800, l’armement est réduit à 10 × canons de 6 livres</li>
+                                    <li>Les 22 × canons de 8 livres sont rétablis en juillet 1803</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr><th>Protection</th><td>Bois</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="source">Source : <a href="https://fr.wikipedia.org/wiki/Naturaliste_(navire)" target="_blank" rel="noopener">Wikipédia</a></p>
+    </div>
+
+    <div data-lang="en">
+        <h1 class="sr-only">Le Naturaliste</h1>
+        <div class="columns">
+            <div class="text">
+                <p><em>Le&nbsp;Naturaliste</em> was a French Salamandre‑class <em>gabare</em> launched in 1795 under the name <em>La Menaçante</em>. She was renamed <em>Le Naturaliste</em> in 1800 and commanded by Emmanuel Hamelin, then a frigate captain. She departed Le Havre on 19 October 1800 and returned to Le Havre in June 1803.</p>
+                <figure class="figure">
+                    <img src="img/legeographe_and_lenaturaliste.jpg" alt="Le Géographe and Le Naturaliste" loading="lazy" decoding="async">
+                    <figcaption>Le Naturaliste et Le Géographe</figcaption>
+                </figure>
+            </div>
+
+            <div>
+                <table class="specs" aria-label="Le Naturaliste specifications">
+                    <tbody>
+                        <tr><th>Name</th><td>La Menaçante</td></tr>
+                        <tr><th>Builder</th><td>Le Havre</td></tr>
+                        <tr><th>Laid down</th><td>August 1793</td></tr>
+                        <tr><th>Launched</th><td>12 September 1795</td></tr>
+                        <tr><th>In service</th><td>February 1796</td></tr>
+                        <tr><th>Renamed</th><td>Le Naturaliste</td></tr>
+                        <tr><th>Fate</th><td>Sold 25 January 1811</td></tr>
+
+                        <tr class="section"><th colspan="2">General characteristics</th></tr>
+                        <tr><th>Class &amp; type</th><td>Salamandre class</td></tr>
+                        <tr><th>Displacement</th><td>650–687 tons</td></tr>
+                        <tr><th>Length</th><td>39.0&nbsp;m (128.0&nbsp;ft)</td></tr>
+                        <tr><th>Beam</th><td>8.8&nbsp;m (29&nbsp;ft)</td></tr>
+                        <tr><th>Draught</th><td>3.7&nbsp;m (12&nbsp;ft)</td></tr>
+                        <tr><th>Propulsion</th><td>Sail</td></tr>
+                        <tr>
+                            <th>Complement</th>
+                            <td>
+                                <ul>
+                                    <li>La Menaçante: 86–150</li>
+                                    <li>Le Naturaliste: 114</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Armament</th>
+                            <td>
+                                <ul>
+                                    <li>10 × 8‑pounder guns + 2 × 12‑inch mortars</li>
+                                    <li>By 1796 the mortars were removed and she carried 22 × 8‑pounder guns</li>
+                                    <li>For her 1800 commission, the armament was reduced to 10 × 6‑pounder guns</li>
+                                    <li>The 22 × 8‑pounder guns were restored in July 1803</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr><th>Armour</th><td>Timber</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="source">Source: <a href="https://en.wikipedia.org/wiki/French_corvette_Naturaliste" target="_blank" rel="noopener">Wikipedia</a></p>
+    </div>
+    </main>
+
+    <script>
+        (function () {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'fr' || savedLang === 'en') {
+                document.documentElement.lang = savedLang;
+            }
+        })();
+    </script>
+</body>
+</html>

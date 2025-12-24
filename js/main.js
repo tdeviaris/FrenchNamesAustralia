@@ -23,6 +23,7 @@ function setActiveNavLink() {
         'findings-6.html': 'nav-resources',
         'illustrations.html': 'nav-resources',
         'rapport.html': 'nav-resources',
+        'ships.html': 'nav-resources',
         'expert.html': 'nav-ai',
         'presentation.html': 'nav-about',
         'author.html': 'nav-about',

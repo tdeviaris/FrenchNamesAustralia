@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Recherche</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #111;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+            align-items: start;
+        }
+        .text p { margin: 0 0 12px 0; line-height: 1.65; color: #222; }
+        .text p:last-child { margin-bottom: 0; }
+        .figure { margin: 16px 0 0 0; }
+        .figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+        }
+        .figure figcaption {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+            text-align: center;
+        }
+        .full-width { margin-top: 22px; }
+        .source {
+            margin: 16px 0 0 0;
+            font-size: 0.95rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .specs {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .specs th,
+        .specs td {
+            padding: 10px 12px;
+            vertical-align: top;
+            border-bottom: 1px solid #ededed;
+        }
+        .specs tr:last-child th,
+        .specs tr:last-child td { border-bottom: 0; }
+        .specs th {
+            width: 42%;
+            text-align: left;
+            font-weight: 800;
+            background: #f6f7f9;
+        }
+        .specs .section th {
+            width: auto;
+            background: #1f1f1f;
+            color: #fff;
+            border-bottom: 0;
+            font-weight: 800;
+        }
+        .specs ul { margin: 0; padding-left: 18px; }
+        .specs li { margin: 4px 0; }
+
+        @media (max-width: 860px) {
+            .columns { grid-template-columns: 1fr; }
+        }
+
+        [data-lang] { display: none; }
+        html[lang^="en"] [data-lang="en"],
+        html[lang^="fr"] [data-lang="fr"] { display: block; }
+    </style>
+</head>
+<body>
+    <main class="container">
+    <div data-lang="fr">
+        <h1 class="sr-only">La Recherche</h1>
+        <div class="columns">
+            <div class="text">
+                <p>La&nbsp;Recherche&nbsp;était une&nbsp;gabare&nbsp;de 20 canons de&nbsp;classe&nbsp;Marsouin&nbsp;de la&nbsp;Marine royale&nbsp;française, plus tard reclassée en&nbsp;frégate&nbsp;armée de&nbsp;12 canons. La&nbsp;baie de la Recherche&nbsp;fut nommée en référence à cette frégate.</p>
+                <p>Le navire est construit et baptisé sous le nom de la&nbsp;Truite, il sert sous ce nom jusqu'au mois de&nbsp;juillet 1791, lorsqu'il est renommé&nbsp;La Recherche&nbsp;et reconverti en&nbsp;frégate armée de 12 canons.</p>
+                <p>La Recherche&nbsp;quitte&nbsp;Brest&nbsp;le&nbsp;29 septembre 1791&nbsp;pour une mission d'exploration chargée par le&nbsp;roi&nbsp;Louis XVI&nbsp;de retrouver&nbsp;Jean-François de La Pérouse, en&nbsp;Nouvelle-Calédonie&nbsp;et dans le&nbsp;Pacifique sud. Antoine Bruny d'Entrecasteaux meurt à son bord le&nbsp;21 juillet 1793.</p>
+                <p>Le&nbsp;28 octobre 1793, le navire est capturé par les Hollandais à&nbsp;Surabaya, pour n'être restitué à la France qu'en&nbsp;février 1794. En septembre, il est vendu à la Hollande, et deux mois plus tard démantelé.</p>
+                <figure class="figure">
+                    <img src="img/recherche_and_esperance.jpg" alt="La Recherche et L’Espérance" loading="lazy" decoding="async">
+                    <figcaption>La Recherche et l'Espérance, peinture de François Joseph Frédéric Roux</figcaption>
+                </figure>
+            </div>
+
+            <div>
+                <table class="specs" aria-label="Caractéristiques de La Recherche">
+                    <tbody>
+                        <tr><th>Nom</th><td>La Recherche</td></tr>
+                        <tr><th>Éponyme</th><td>Recherche</td></tr>
+                        <tr><th>Constructeur</th><td>Bayonne</td></tr>
+                        <tr><th>Mise sur cale</th><td>Mars 1787</td></tr>
+                        <tr><th>Lancé</th><td>Octobre 1787</td></tr>
+                        <tr><th>Baptisé</th><td>Truite</td></tr>
+                        <tr><th>Mis en service</th><td>Novembre 1787</td></tr>
+                        <tr><th>Retiré du service</th><td>Septembre 1794</td></tr>
+                        <tr><th>Reclassé</th><td>Frégate en 1791</td></tr>
+                        <tr><th>Sort</th><td>Vendu pour démolition</td></tr>
+
+                        <tr class="section"><th colspan="2">Caractéristiques générales</th></tr>
+                        <tr><th>Classe et type</th><td>Gabare de classe Marsouin</td></tr>
+                        <tr><th>Déplacement</th><td>env. 400 tonnes</td></tr>
+                        <tr><th>Longueur</th><td>36,4&nbsp;m (119&nbsp;ft&nbsp;5&nbsp;in)</td></tr>
+                        <tr><th>Largeur</th><td>9,1&nbsp;m (29&nbsp;ft&nbsp;10&nbsp;in)</td></tr>
+                        <tr><th>Tirant d’eau</th><td>3,9&nbsp;m (12&nbsp;ft&nbsp;10&nbsp;in)</td></tr>
+                        <tr><th>Propulsion</th><td>Voiles</td></tr>
+                        <tr><th>Gréement</th><td>Trois-mâts carré</td></tr>
+                        <tr><th>Équipage</th><td>200</td></tr>
+                        <tr><th>Armement</th><td>12 × canons de 6 livres</td></tr>
+                        <tr><th>Protection</th><td>Bois</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <figure class="figure full-width">
+            <img src="img/larecherche1.jpg" alt="Illustration de La Recherche" loading="lazy" decoding="async">
+        </figure>
+
+        <p class="source">source : <a href="https://fr.wikipedia.org/wiki/Recherche_(1787)" target="_blank" rel="noopener">wikipédia</a></p>
+    </div>
+
+    <div data-lang="en">
+        <h1 class="sr-only">La Recherche</h1>
+        <div class="columns">
+            <div class="text">
+                <p><em>La&nbsp;Recherche</em> was a 20‑gun Marsouin‑class French Royal Navy <em>gabare</em>, later reclassified as an armed frigate with 12 guns. Recherche Bay was named after this frigate.</p>
+                <p>The ship was built and christened under the name <em>Truite</em>, and served under that name until July 1791, when she was renamed <em>La&nbsp;Recherche</em> and converted into a 12‑gun armed frigate.</p>
+                <p><em>La&nbsp;Recherche</em> departed Brest on 29 September 1791 on an exploration mission ordered by King Louis XVI to search for Jean‑François de La Pérouse, in New Caledonia and the South Pacific. Antoine Bruny d'Entrecasteaux died on board on 21 July 1793.</p>
+                <p>On 28 October 1793, the ship was captured by the Dutch at Surabaya, and was not returned to France until February 1794. In September, she was sold to the Netherlands, and two months later dismantled.</p>
+                <figure class="figure">
+                    <img src="img/recherche_and_esperance.jpg" alt="La Recherche and L'Espérance" loading="lazy" decoding="async">
+                    <figcaption>La Recherche and L'Espérance, painting by François Joseph Frédéric Roux</figcaption>
+                </figure>
+            </div>
+
+            <div>
+                <table class="specs" aria-label="La Recherche specifications">
+                    <tbody>
+                        <tr><th>Name</th><td>La Recherche</td></tr>
+                        <tr><th>Namesake</th><td>Research</td></tr>
+                        <tr><th>Builder</th><td>Bayonne</td></tr>
+                        <tr><th>Laid down</th><td>March 1787</td></tr>
+                        <tr><th>Launched</th><td>October 1787</td></tr>
+                        <tr><th>Christened</th><td>Truite</td></tr>
+                        <tr><th>Commissioned</th><td>November 1787</td></tr>
+                        <tr><th>Out of service</th><td>September 1794</td></tr>
+                        <tr><th>Reclassified</th><td>Frigate in 1791</td></tr>
+                        <tr><th>Fate</th><td>Sold for scrap</td></tr>
+
+                        <tr class="section"><th colspan="2">General characteristics</th></tr>
+                        <tr><th>Class &amp; type</th><td>Marsouin-class scow</td></tr>
+                        <tr><th>Displacement</th><td>c. 400 tonnes</td></tr>
+                        <tr><th>Length</th><td>36.4&nbsp;m (119&nbsp;ft&nbsp;5&nbsp;in)</td></tr>
+                        <tr><th>Beam</th><td>9.1&nbsp;m (29&nbsp;ft&nbsp;10&nbsp;in)</td></tr>
+                        <tr><th>Draught</th><td>3.9&nbsp;m (12&nbsp;ft&nbsp;10&nbsp;in)</td></tr>
+                        <tr><th>Propulsion</th><td>Sail</td></tr>
+                        <tr><th>Sail plan</th><td>Full‑rigged ship</td></tr>
+                        <tr><th>Complement</th><td>200</td></tr>
+                        <tr><th>Armament</th><td>12 × 6‑pounders</td></tr>
+                        <tr><th>Armour</th><td>Timber</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <figure class="figure full-width">
+            <img src="img/larecherche1.jpg" alt="La Recherche" loading="lazy" decoding="async">
+        </figure>
+
+        <p class="source">source : <a href="https://en.wikipedia.org/wiki/French_ship_Recherche_(1787)" target="_blank" rel="noopener">wikipedia</a></p>
+    </div>
+    </main>
+
+    <script>
+        (function () {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'fr' || savedLang === 'en') {
+                document.documentElement.lang = savedLang;
+            }
+        })();
+    </script>
+</body>
+</html>

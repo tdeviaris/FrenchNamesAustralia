@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ships - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+        :root { --nav-height: 72px; }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            background-color: #999;
+            color: #333;
+            padding-top: var(--nav-height);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+        .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); min-height: 50vh;}
+        h1 { margin: 0 0 10px 0; font-size: clamp(1.6rem, 2.5vw, 2.2rem); }
+        .subtitle { margin: 0 0 18px 0; font-weight: 600; color: #333; }
+        .intro { margin: 0 0 22px 0; line-height: 1.55; color: #333; }
+
+        .ship-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 14px;
+        }
+        .ship-card {
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+        }
+        .ship-card-media { width: 100%; height: 160px; background: #f3f3f3; overflow: hidden; }
+        .ship-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ship-card-body { padding: 16px; flex: 1; }
+        .ship-card-title { margin: 0 0 6px 0; font-size: 1.2rem; }
+        .ship-card-meta { margin: 0; color: #555; line-height: 1.45; }
+        .ship-card-actions { padding: 0 16px 16px 16px; }
+        .ship-open {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.2s ease;
+        }
+        .ship-open:hover { background-color: #003f82; }
+        .ship-open:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+
+        /* Two-column rubric (used for d'Entrecasteaux ships in French) */
+        .ship-duo {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 14px;
+        }
+        .ship-rubric {
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+        }
+        .ship-rubric-header {
+            padding: 16px 16px 0 16px;
+        }
+        .ship-rubric-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 999px;
+            transition: background-color 0.2s ease;
+        }
+        .ship-rubric-link:hover { background-color: #003f82; }
+        .ship-rubric-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .ship-rubric-body {
+            padding: 14px 16px 16px 16px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+        .ship-thumb-link { display: block; text-decoration: none; }
+        .ship-thumb-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
+        .ship-rubric-thumb {
+            width: 250px;
+            height: 250px;
+            flex: 0 0 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 10px 22px rgba(0,0,0,0.14);
+            display: block;
+        }
+        .ship-rubric-desc {
+            margin: 0;
+            line-height: 1.55;
+            color: #333;
+        }
+
+        /* Modal */
+        .ship-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.6);
+            padding: 16px;
+            z-index: 9999;
+        }
+        .ship-modal.open { display: flex; }
+	        .ship-modal-dialog {
+	            width: min(980px, 100%);
+	            height: min(82vh, 760px);
+	            background: #fff;
+	            border-radius: 14px;
+	            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+	            overflow: hidden;
+	            display: flex;
+	            flex-direction: column;
+	        }
+	        .ship-modal-dialog.ship-modal-dialog--large {
+	            width: min(1200px, 100%);
+	            height: min(90vh, 900px);
+	        }
+        .ship-modal-header {
+            display: grid;
+            grid-template-columns: 44px 1fr 44px;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            background: #1f1f1f;
+            color: #fff;
+        }
+        .ship-modal-title {
+            grid-column: 2;
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .ship-modal-close {
+            grid-column: 3;
+            justify-self: end;
+            width: 44px;
+            appearance: none;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 10px;
+        }
+        .ship-modal-close:hover { background: rgba(255,255,255,0.12); }
+        .ship-modal-close:focus-visible { outline: 3px solid #FFD700; outline-offset: 2px; }
+        .ship-modal-body { flex: 1; background: #fff; }
+        .ship-modal-frame { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+
+        @media (max-width: 900px) {
+            .ship-duo { grid-template-columns: 1fr; }
+            .ship-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .ship-rubric-body { flex-direction: column; }
+            .ship-rubric-thumb { width: min(320px, 100%); height: auto; aspect-ratio: 1 / 1; }
+        }
+
+        /* Language-specific content blocks */
+        [data-lang] { display: none; }
+        html[lang^="en"] [data-lang="en"],
+        html[lang^="fr"] [data-lang="fr"] { display: block; }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+            <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
+            <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
+            <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
+            <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+        </ul>
+        <div class="lang-switcher">
+            <button type="button" id="lang-fr" title="Passer en Français">
+                <img src="img/fr.svg" alt="Français">
+            </button>
+            <button type="button" id="lang-en" title="Switch to English">
+                <img src="img/au.svg" alt="English">
+            </button>
+        </div>
+    </nav>
+
+	    <main class="container">
+	        <div data-lang="en">
+	            <section class="content-section">
+	                <h1>Ships <a href="resources.html"><img src="img/up-arrow.svg" alt="Back to Resources page" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h1>
+	                <h2 class="subtitle">Ships of the d'Entrecasteaux and Baudin expeditions</h2>
+
+	                <div class="ship-duo">
+	                    <div class="ship-rubric">
+	                        <div class="ship-rubric-header">
+	                            <a class="ship-rubric-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="La Recherche, vessel of the d'Entrecasteaux expedition (1791–1794)">La Recherche</a>
+	                        </div>
+	                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="La Recherche, vessel of the d'Entrecasteaux expedition (1791–1794)" aria-label="Open La Recherche">
+	                                <img class="ship-rubric-thumb" src="img/larecherche.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+	                            <p class="ship-rubric-desc">d'Entrecasteaux expedition: Marsouin-class <em>gabare</em> of the French Royal Navy</p>
+	                        </div>
+	                    </div>
+
+	                    <div class="ship-rubric">
+	                        <div class="ship-rubric-header">
+	                            <a class="ship-rubric-link" href="lesperance.html" data-ship-modal="lesperance.html" data-ship-title="L'Espérance, vessel of the d'Entrecasteaux expedition (1791–1794)">L'Espérance</a>
+	                        </div>
+	                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="lesperance.html" data-ship-modal="lesperance.html" data-ship-title="L'Espérance, vessel of the d'Entrecasteaux expedition (1791–1794)" aria-label="Open L'Espérance">
+	                                <img class="ship-rubric-thumb" src="img/lesperance.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+	                            <p class="ship-rubric-desc">d'Entrecasteaux expedition: Rhône-class <em>gabare</em> of the French Royal Navy</p>
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="ship-duo" style="margin-top: 22px;">
+	                    <div class="ship-rubric">
+	                        <div class="ship-rubric-header">
+	                            <a class="ship-rubric-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="Le Géographe, vessel of the Baudin expedition (1800–1804)">Le Géographe</a>
+	                        </div>
+	                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="Le Géographe, vessel of the Baudin expedition (1800–1804)" aria-label="Open Le Géographe">
+	                                <img class="ship-rubric-thumb" src="img/legeographe_mini.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+	                            <p class="ship-rubric-desc">Baudin expedition:<br>corvette from the 1793 revolutionary program</p>
+	                        </div>
+	                    </div>
+
+	                    <div class="ship-rubric">
+	                        <div class="ship-rubric-header">
+	                            <a class="ship-rubric-link" href="lenaturaliste.html" data-ship-modal="lenaturaliste.html" data-ship-title="Le Naturaliste, vessel of the Baudin expedition (1800–1804)">Le Naturaliste</a>
+	                        </div>
+	                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="lenaturaliste.html" data-ship-modal="lenaturaliste.html" data-ship-title="Le Naturaliste, vessel of the Baudin expedition (1800–1804)" aria-label="Open Le Naturaliste">
+	                                <img class="ship-rubric-thumb" src="img/lenaturaliste_mini.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+	                            <p class="ship-rubric-desc">Baudin expedition:<br>Salamandre-class <em>gabare</em></p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </section>
+	        </div>
+
+	        <div data-lang="fr">
+	            <section class="content-section">
+	                <h1>Les navires <a href="resources.html"><img src="img/up-arrow.svg" alt="Retour à la page Ressources" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h1>
+	                <h2 class="subtitle">Les navires des expéditions d’Entrecasteaux et de Baudin</h2>
+
+	                <div class="ship-duo">
+	                    <div class="ship-rubric">
+	                        <div class="ship-rubric-header">
+	                            <a class="ship-rubric-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="La Recherche, navire de l'expédition d'Entrecasteaux (1791–1794)">La Recherche</a>
+	                        </div>
+	                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="La Recherche, navire de l'expédition d'Entrecasteaux (1791–1794)" aria-label="Ouvrir La Recherche">
+	                                <img class="ship-rubric-thumb" src="img/larecherche.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+	                            <p class="ship-rubric-desc">Expédition d'Entrecasteaux : gabare de classe Marsouin de la Marine Royale Française</p>
+	                        </div>
+	                    </div>
+
+	                    <div class="ship-rubric">
+	                        <div class="ship-rubric-header">
+	                            <a class="ship-rubric-link" href="lesperance.html" data-ship-modal="lesperance.html" data-ship-title="L'Espérance, navire de l'expédition d'Entrecasteaux (1791–1794)">L'Espérance</a>
+	                        </div>
+	                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="lesperance.html" data-ship-modal="lesperance.html" data-ship-title="L'Espérance, navire de l'expédition d'Entrecasteaux (1791–1794)" aria-label="Ouvrir L'Espérance">
+	                                <img class="ship-rubric-thumb" src="img/lesperance.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+	                            <p class="ship-rubric-desc">Expédition d'Entrecasteaux : gabare de classe Rhône de la Marine Royale Française</p>
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="ship-duo" style="margin-top: 22px;">
+		                    <div class="ship-rubric">
+		                        <div class="ship-rubric-header">
+		                            <a class="ship-rubric-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="Le Géographe, navire de l’expédition de Baudin (1800–1804)">Le Géographe</a>
+		                        </div>
+		                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="Le Géographe, navire de l’expédition de Baudin (1800–1804)" aria-label="Ouvrir Le Géographe">
+	                                <img class="ship-rubric-thumb" src="img/legeographe_mini.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+		                            <p class="ship-rubric-desc">Expédition Baudin :<br>corvette du programme révolutionnaire de 1793</p>
+		                        </div>
+		                    </div>
+
+		                    <div class="ship-rubric">
+		                        <div class="ship-rubric-header">
+		                            <a class="ship-rubric-link" href="lenaturaliste.html" data-ship-modal="lenaturaliste.html" data-ship-title="Le Naturaliste, navire de l’expédition de Baudin (1800–1804)">Le Naturaliste</a>
+		                        </div>
+		                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="lenaturaliste.html" data-ship-modal="lenaturaliste.html" data-ship-title="Le Naturaliste, navire de l’expédition de Baudin (1800–1804)" aria-label="Ouvrir Le Naturaliste">
+	                                <img class="ship-rubric-thumb" src="img/lenaturaliste_mini.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+		                            <p class="ship-rubric-desc">Expédition Baudin :<br>gabare de classe Salamandre lancée en 1795</p>
+		                        </div>
+		                    </div>
+		                </div>
+	            </section>
+	        </div>
+	    </main>
+
+    <div id="ship-modal" class="ship-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Ship details">
+        <div class="ship-modal-dialog" role="document">
+            <div class="ship-modal-header">
+                <h3 class="ship-modal-title" id="ship-modal-title"></h3>
+                <button type="button" class="ship-modal-close" id="ship-modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="ship-modal-body">
+                <iframe class="ship-modal-frame" id="ship-modal-frame" title="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div data-include-footer></div>
+
+    <script src="js/translations.js?v=20241012"></script>
+    <script src="js/main.js?v=20241012"></script>
+    <script>
+	        (function () {
+	            const modal = document.getElementById('ship-modal');
+	            const modalDialog = modal?.querySelector('.ship-modal-dialog');
+	            const modalTitle = document.getElementById('ship-modal-title');
+	            const modalFrame = document.getElementById('ship-modal-frame');
+	            const modalClose = document.getElementById('ship-modal-close');
+
+            let lastFocusedElement = null;
+
+	            const openShipModal = (src, title) => {
+	                if (!modal || !modalFrame || !modalTitle) return;
+	                lastFocusedElement = document.activeElement;
+	                if (modalDialog) {
+	                    const srcValue = src || '';
+	                    const shouldUseLargeDialog = ['legeographe.html', 'larecherche.html', 'lesperance.html', 'lenaturaliste.html'].some((page) => srcValue.includes(page));
+	                    modalDialog.classList.toggle('ship-modal-dialog--large', shouldUseLargeDialog);
+	                }
+	                modalTitle.textContent = title || '';
+	                modalFrame.title = title || 'Ship details';
+	                modalFrame.src = encodeURI(src || '');
+	                modal.classList.add('open');
+	                modal.setAttribute('aria-hidden', 'false');
+	                if (modalClose) {
+	                    modalClose.focus({ preventScroll: true });
+	                }
+	            };
+
+	            const closeShipModal = () => {
+	                if (!modal || !modalFrame) return;
+	                modal.classList.remove('open');
+	                modal.setAttribute('aria-hidden', 'true');
+	                modalFrame.src = '';
+	                modalFrame.title = '';
+	                if (modalDialog) {
+	                    modalDialog.classList.remove('ship-modal-dialog--large');
+	                }
+	                if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+	                    lastFocusedElement.focus({ preventScroll: true });
+	                }
+	                lastFocusedElement = null;
+	            };
+
+            document.querySelectorAll('[data-ship-modal]').forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    openShipModal(link.getAttribute('data-ship-modal'), link.getAttribute('data-ship-title') || link.textContent.trim());
+                });
+            });
+
+            if (modalClose) {
+                modalClose.addEventListener('click', closeShipModal);
+            }
+
+            if (modal) {
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        closeShipModal();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal && modal.classList.contains('open')) {
+                    closeShipModal();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
