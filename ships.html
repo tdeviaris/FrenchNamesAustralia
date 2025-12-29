@@ -266,6 +266,18 @@
 	                            <p class="ship-rubric-desc">Baudin expedition:<br>Salamandre-class <em>gabare</em></p>
 	                        </div>
 	                    </div>
+
+	                    <div class="ship-rubric">
+	                        <div class="ship-rubric-header">
+	                            <a class="ship-rubric-link" href="casuarina.html" data-ship-modal="casuarina.html" data-ship-title="La Casuarina, vessel of the Baudin expedition (1800–1804)">La Casuarina</a>
+	                        </div>
+	                        <div class="ship-rubric-body">
+	                            <a class="ship-thumb-link" href="casuarina.html" data-ship-modal="casuarina.html" data-ship-title="La Casuarina, vessel of the Baudin expedition (1800–1804)" aria-label="Open La Casuarina">
+	                                <img class="ship-rubric-thumb" src="img/Casuarina_croquis.jpg" alt="" loading="lazy" decoding="async">
+	                            </a>
+	                            <p class="ship-rubric-desc">Baudin expedition:<br>small schooner acquired at Port Jackson (Sydney) in 1802</p>
+	                        </div>
+	                    </div>
 	                </div>
 	            </section>
 	        </div>
@@ -301,7 +313,7 @@
 	                    </div>
 	                </div>
 
-	                <div class="ship-duo" style="margin-top: 22px;">
+		                <div class="ship-duo" style="margin-top: 22px;">
 		                    <div class="ship-rubric">
 		                        <div class="ship-rubric-header">
 		                            <a class="ship-rubric-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="Le Géographe, navire de l’expédition de Baudin (1800–1804)">Le Géographe</a>
@@ -323,6 +335,18 @@
 	                                <img class="ship-rubric-thumb" src="img/lenaturaliste_mini.jpg" alt="" loading="lazy" decoding="async">
 	                            </a>
 		                            <p class="ship-rubric-desc">Expédition Baudin :<br>gabare de classe Salamandre lancée en 1795</p>
+		                        </div>
+		                    </div>
+
+		                    <div class="ship-rubric">
+		                        <div class="ship-rubric-header">
+		                            <a class="ship-rubric-link" href="casuarina.html" data-ship-modal="casuarina.html" data-ship-title="La Casuarina, navire de l’expédition de Baudin (1800–1804)">La Casuarina</a>
+		                        </div>
+		                        <div class="ship-rubric-body">
+		                            <a class="ship-thumb-link" href="casuarina.html" data-ship-modal="casuarina.html" data-ship-title="La Casuarina, navire de l’expédition de Baudin (1800–1804)" aria-label="Ouvrir La Casuarina">
+		                                <img class="ship-rubric-thumb" src="img/Casuarina_croquis.jpg" alt="" loading="lazy" decoding="async">
+		                            </a>
+		                            <p class="ship-rubric-desc">Expédition Baudin :<br>petite goélette acquise à Port Jackson (Sydney) en 1802</p>
 		                        </div>
 		                    </div>
 		                </div>
@@ -361,7 +385,7 @@
 	                lastFocusedElement = document.activeElement;
 	                if (modalDialog) {
 	                    const srcValue = src || '';
-	                    const shouldUseLargeDialog = ['legeographe.html', 'larecherche.html', 'lesperance.html', 'lenaturaliste.html'].some((page) => srcValue.includes(page));
+	                    const shouldUseLargeDialog = ['legeographe.html', 'larecherche.html', 'lesperance.html', 'lenaturaliste.html', 'casuarina.html'].some((page) => srcValue.includes(page));
 	                    modalDialog.classList.toggle('ship-modal-dialog--large', shouldUseLargeDialog);
 	                }
 	                modalTitle.textContent = title || '';

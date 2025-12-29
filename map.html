@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/esri-leaflet"></script>
+    <script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
         :root {
@@ -123,6 +124,10 @@
         .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
         .toggle-entre input { accent-color: #238b45 !important; }
         .layer-toggle span { flex: 1; font-weight: 400; }
+        .layer-toggle-row { display: flex; gap: 6px; }
+        .layer-toggle-row > label { flex: 1; }
+        .layer-toggle-row > label.route-toggle { flex: 0 0 auto; padding: 8px 10px; }
+        .layer-toggle-row > label.route-toggle span { flex: 0; font-weight: 600; }
         /* Ensure popups sit above toggles */
         .leaflet-popup-pane { z-index: 1200 !important; }
 
@@ -1000,14 +1005,26 @@
     <div id="map"></div>
 
     <div class="layer-toggle" aria-label="Filtres d'expédition">
-        <label class="toggle-entre">
-            <input type="checkbox" id="toggle-entre" checked>
-            <span data-i18n="map-layer-entre">d'Entrecasteaux</span>
-        </label>
-        <label class="toggle-baudin">
-            <input type="checkbox" id="toggle-baudin" checked>
-            <span data-i18n="map-layer-baudin">Baudin</span>
-        </label>
+        <div class="layer-toggle-row">
+            <label class="toggle-entre">
+                <input type="checkbox" id="toggle-entre" checked>
+                <span data-i18n="map-layer-entre">d'Entrecasteaux</span>
+            </label>
+            <label class="toggle-entre route-toggle" aria-label="Afficher la route d'Entrecasteaux">
+                <input type="checkbox" id="toggle-entre-route">
+                <span>route</span>
+            </label>
+        </div>
+        <div class="layer-toggle-row">
+            <label class="toggle-baudin">
+                <input type="checkbox" id="toggle-baudin" checked>
+                <span data-i18n="map-layer-baudin">Baudin</span>
+            </label>
+            <label class="toggle-baudin route-toggle" aria-label="Afficher la route de Baudin">
+                <input type="checkbox" id="toggle-baudin-route">
+                <span>route</span>
+            </label>
+        </div>
     </div>
 
     <!-- Search Interface -->
@@ -2861,8 +2878,244 @@
         };
         let selectedExpeditions = new Set(['baudin', 'entre']);
 
+        const ensureRoutesPane = () => {
+            const paneName = 'routesPane';
+            if (map.getPane(paneName)) {
+                return paneName;
+            }
+            map.createPane(paneName);
+            const pane = map.getPane(paneName);
+            if (pane && pane.style) {
+                pane.style.zIndex = '700';
+            }
+            return paneName;
+        };
+
+        const routeLayers = {
+            baudin: L.layerGroup(),
+            entre: L.layerGroup()
+        };
+
+        const routeWanted = {
+            baudin: false,
+            entre: false
+        };
+
+        const updateRouteVisibility = (key) => {
+            const layer = routeLayers[key];
+            if (!layer) return;
+            const shouldShow = Boolean(routeWanted[key]) && selectedExpeditions.has(key);
+            if (shouldShow) {
+                map.addLayer(layer);
+            } else {
+                map.removeLayer(layer);
+            }
+        };
+
+        const loadJsonFile = async (url) => {
+            // Try standard fetch (works when served via http/https)
+            try {
+                const response = await fetch(url, { cache: 'no-cache' });
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (err) {
+                // silent
+            }
+
+            // Fallback for file:// access using dynamic import of JSON
+            try {
+                const module = await import(`${url}`, { assert: { type: 'json' } });
+                return module.default || module;
+            } catch (err) {
+                return null;
+            }
+        };
+
+        const addEntrecasteauxRoutes = async () => {
+            const routeData = await loadJsonFile('data/entrecasteaux_routes.json');
+            if (!routeData || !Array.isArray(routeData.features) || !routeLayers.entre) {
+                return;
+            }
+
+            const paneName = ensureRoutesPane();
+            const minTurnAngleDeg = 18;
+            const routeOverlays = [];
+
+            const toLineArrays = (latLngs) => {
+                // Leaflet can return:
+                // - Polyline: [LatLng, LatLng, ...]
+                // - MultiPolyline: [[LatLng, ...], [LatLng, ...], ...]
+                if (!Array.isArray(latLngs) || latLngs.length === 0) {
+                    return [];
+                }
+                return Array.isArray(latLngs[0]) ? latLngs : [latLngs];
+            };
+
+            const angleBetweenDeg = (v1, v2) => {
+                const dot = (v1[0] * v2[0]) + (v1[1] * v2[1]);
+                const n1 = Math.hypot(v1[0], v1[1]);
+                const n2 = Math.hypot(v2[0], v2[1]);
+                if (!n1 || !n2) return 0;
+                const cos = Math.min(1, Math.max(-1, dot / (n1 * n2)));
+                return Math.acos(cos) * 180 / Math.PI;
+            };
+
+            const turningPointIndices = (points) => {
+                const indices = new Set();
+                if (!Array.isArray(points) || points.length < 2) {
+                    return [];
+                }
+                indices.add(0);
+                indices.add(points.length - 1);
+                for (let i = 1; i < points.length - 1; i += 1) {
+                    const prev = points[i - 1];
+                    const curr = points[i];
+                    const next = points[i + 1];
+                    if (!prev || !curr || !next) continue;
+                    const v1 = [curr.lng - prev.lng, curr.lat - prev.lat];
+                    const v2 = [next.lng - curr.lng, next.lat - curr.lat];
+                    const deflection = angleBetweenDeg(v1, v2);
+                    if (deflection >= minTurnAngleDeg) {
+                        indices.add(i);
+                    }
+                }
+                return Array.from(indices).sort((a, b) => a - b);
+            };
+
+            const nonEmptyFeatures = routeData.features.filter((feature) => {
+                const coords = feature?.geometry?.coordinates;
+                if (!coords) return false;
+                if (Array.isArray(coords) && coords.length === 0) return false;
+                const s = JSON.stringify(coords);
+                return !(s === '[]' || s === '[[]]' || s === '[[[]]]');
+            });
+
+            if (!nonEmptyFeatures.length) {
+                return;
+            }
+
+            const sanitized = { ...routeData, features: nonEmptyFeatures };
+            const expeditionColor = expeditionConfigs.entre?.color || '#238b45';
+
+            const styleForFeature = (feature) => {
+                const ship = String(feature?.properties?.Ship || '').toLowerCase();
+                const isEsperance = ship.includes('esp');
+                return {
+                    color: isEsperance ? '#1b6f39' : expeditionColor,
+                    weight: 6,
+                    opacity: 0.95,
+                    dashArray: isEsperance ? '2 8' : '8 8',
+                    lineCap: 'round',
+                    lineJoin: 'round',
+                    pane: paneName
+                };
+            };
+
+            const layer = L.geoJSON(sanitized, {
+                interactive: false,
+                style: styleForFeature,
+                pointToLayer: (feature, latlng) => {
+                    // Optional: allow route GeoJSON to include Point "events" with date/journal excerpts.
+                    return L.circleMarker(latlng, {
+                        pane: paneName,
+                        radius: 5,
+                        color: expeditionColor,
+                        weight: 2,
+                        opacity: 0.95,
+                        fill: true,
+                        fillColor: '#ffffff',
+                        fillOpacity: 0.95
+                    });
+                },
+                onEachFeature: (feature, lineLayer) => {
+                    // Optional: attach popup content to Point features if present.
+                    if (feature?.geometry?.type === 'Point' && lineLayer && typeof lineLayer.bindPopup === 'function') {
+                        const date = feature?.properties?.Date || feature?.properties?.date || '';
+                        const ship = feature?.properties?.Ship || '';
+                        const journal = feature?.properties?.Journal || feature?.properties?.journal || '';
+                        const titleParts = [];
+                        if (ship) titleParts.push(String(ship));
+                        if (date) titleParts.push(String(date));
+                        const title = titleParts.join(' — ');
+
+                        const parts = [];
+                        if (title) parts.push(`<p><strong>${escapeHtml(title)}</strong></p>`);
+                        if (journal) parts.push(`<p>${escapeHtml(String(journal))}</p>`);
+                        if (parts.length) {
+                            lineLayer.bindPopup(parts.join(''), { maxWidth: 420 });
+                        }
+                    }
+
+                    if (typeof L.polylineDecorator !== 'function') {
+                        return;
+                    }
+                    if (!lineLayer || typeof lineLayer.getLatLngs !== 'function') {
+                        return;
+                    }
+
+                    const style = styleForFeature(feature);
+                    const arrowColor = style.color || expeditionColor;
+
+                    const decorator = L.polylineDecorator(lineLayer, {
+                        patterns: [
+                            {
+                                offset: 20,
+                                repeat: 100,
+                                symbol: L.Symbol.arrowHead({
+                                    pixelSize: 16,
+                                    polygon: true,
+                                    pathOptions: {
+                                        pane: paneName,
+                                        stroke: true,
+                                        color: '#ffffff',
+                                        weight: 1,
+                                        fill: true,
+                                        fillColor: arrowColor,
+                                        fillOpacity: 0.95
+                                    }
+                                })
+                            }
+                        ]
+                    });
+
+                    routeOverlays.push(decorator);
+
+                    // Turning points (inflexion points) along the route.
+                    const allLines = toLineArrays(lineLayer.getLatLngs());
+                    allLines.forEach((line) => {
+                        const indices = turningPointIndices(line);
+                        indices.forEach((idx) => {
+                            const point = line[idx];
+                            if (!point) return;
+                            const isEndpoint = idx === 0 || idx === line.length - 1;
+                            const marker = L.circleMarker(point, {
+                                pane: paneName,
+                                interactive: false,
+                                radius: isEndpoint ? 6 : 4,
+                                color: '#ffffff',
+                                weight: 2.5,
+                                opacity: 0.95,
+                                fill: true,
+                                fillColor: arrowColor,
+                                fillOpacity: 0.95
+                            });
+                            routeOverlays.push(marker);
+                        });
+                    });
+                },
+            });
+
+            routeLayers.entre.addLayer(layer);
+            // Add overlays after the line so they stay visible on top.
+            routeOverlays.forEach((overlay) => routeLayers.entre.addLayer(overlay));
+            updateRouteVisibility('entre');
+        };
+
         const toggleBaudin = document.getElementById('toggle-baudin');
         const toggleEntre = document.getElementById('toggle-entre');
+        const toggleBaudinRoute = document.getElementById('toggle-baudin-route');
+        const toggleEntreRoute = document.getElementById('toggle-entre-route');
 
         const normalizeExpeditionKey = (value = '') => {
             const lower = value.toLowerCase();
@@ -2882,6 +3135,7 @@
                     toggleEntre.checked = true;
                     map.addLayer(expeditionLayers.entre);
                 }
+                updateRouteVisibility(key);
             }
         };
 
@@ -2894,7 +3148,16 @@
             } else {
                 map.removeLayer(layer);
                 selectedExpeditions.delete(key);
+                // If an expedition is hidden, hide (and uncheck) its route as well.
+                routeWanted[key] = false;
+                if (key === 'baudin' && toggleBaudinRoute) {
+                    toggleBaudinRoute.checked = false;
+                }
+                if (key === 'entre' && toggleEntreRoute) {
+                    toggleEntreRoute.checked = false;
+                }
             }
+            updateRouteVisibility(key);
             if (searchInput.value.trim()) {
                 performSearch(searchInput.value);
             } else {
@@ -2905,6 +3168,34 @@
 
         toggleBaudin.addEventListener('change', () => setExpeditionVisibility('baudin', toggleBaudin.checked));
         toggleEntre.addEventListener('change', () => setExpeditionVisibility('entre', toggleEntre.checked));
+        if (toggleBaudinRoute) {
+            toggleBaudinRoute.addEventListener('change', () => {
+                const want = toggleBaudinRoute.checked;
+                if (want) {
+                    // Focus on Baudin: enable Baudin, disable d'Entrecasteaux.
+                    toggleBaudin.checked = true;
+                    toggleEntre.checked = false;
+                    setExpeditionVisibility('entre', false);
+                    setExpeditionVisibility('baudin', true);
+                }
+                routeWanted.baudin = want;
+                updateRouteVisibility('baudin');
+            });
+        }
+        if (toggleEntreRoute) {
+            toggleEntreRoute.addEventListener('change', () => {
+                const want = toggleEntreRoute.checked;
+                if (want) {
+                    // Focus on d'Entrecasteaux: enable d'Entrecasteaux, disable Baudin.
+                    toggleEntre.checked = true;
+                    toggleBaudin.checked = false;
+                    setExpeditionVisibility('baudin', false);
+                    setExpeditionVisibility('entre', true);
+                }
+                routeWanted.entre = want;
+                updateRouteVisibility('entre');
+            });
+        }
 
         const addPlacesToMap = (places) => {
             const bounds = L.latLngBounds();
@@ -3110,6 +3401,7 @@
                 allMarkers = [];
                 markersByCode = new Map();
                 addPlacesToMap(allPlaces);
+                await addEntrecasteauxRoutes();
                 map.setView(defaultCenter, defaultZoom);
                 window.addEventListener('resize', () => {
                     const newZoom = getDefaultZoom();

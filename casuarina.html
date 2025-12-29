@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casuarina</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #111;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+            align-items: start;
+        }
+        .text p { margin: 0 0 12px 0; line-height: 1.65; color: #222; }
+        .text p:last-child { margin-bottom: 0; }
+        .figure { margin: 16px 0 0 0; }
+        .figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+        }
+        .figure figcaption {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+            text-align: center;
+        }
+        .full-width { margin-top: 22px; }
+
+        .specs {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .specs th,
+        .specs td {
+            padding: 10px 12px;
+            vertical-align: top;
+            border-bottom: 1px solid #ededed;
+        }
+        .specs tr:last-child th,
+        .specs tr:last-child td { border-bottom: 0; }
+        .specs th {
+            width: 42%;
+            text-align: left;
+            font-weight: 800;
+            background: #f6f7f9;
+        }
+        .specs .section th {
+            width: auto;
+            background: #1f1f1f;
+            color: #fff;
+            border-bottom: 0;
+            font-weight: 800;
+        }
+
+        @media (max-width: 860px) {
+            .columns { grid-template-columns: 1fr; }
+        }
+
+        [data-lang] { display: none; }
+        html[lang^="en"] [data-lang="en"],
+        html[lang^="fr"] [data-lang="fr"] { display: block; }
+    </style>
+</head>
+<body>
+    <main class="container">
+    <div data-lang="fr">
+        <h1 class="sr-only">La Casuarina, navire de l’expédition de Baudin (1800–1804)</h1>
+        <div class="columns">
+            <div class="text">
+                <p>Après plus de deux ans de voyage autour des côtes de la «&nbsp;Nouvelle-Hollande&nbsp;» (l’actuelle Australie) et de la Tasmanie, Baudin décide en 1802 d’alléger l’expédition en renvoyant le <em>Naturaliste</em> en France avec les collections scientifiques déjà accumulées. Pour le remplacer et poursuivre les relevés cartographiques côtiers de près, il se met en quête d’un petit navire léger capable de naviguer en eaux peu profondes.</p>
+                <p>C’est ainsi qu’il fait l’acquisition de la goélette <em>Casuarina</em> à Port Jackson (Sydney), en Nouvelle-Galles du Sud, durant l’escale de juin–novembre 1802.</p>
+
+                <p><strong>Acquisition et construction</strong> — Baudin achète le navire en septembre 1802 auprès des entrepreneurs locaux James Underwood et Henry Kable, qui la construisaient à Sydney. Le gouverneur colonial Philip Gidley King autorise cette transaction, estimant qu’elle servira «&nbsp;l’avancement des sciences et de la navigation&nbsp;» dans le contexte de l’expédition.</p>
+                <p>La <em>Casuarina</em> est mise en service le 23 septembre 1802 à Port Jackson. Construite en bois de casuarina (un arbre australien connu en anglais sous le nom de <em>sheoak</em>), elle en tire son nom. D’après les témoignages du lieutenant Louis-Claude de Saulces de Freycinet, qui en prit le commandement, la goélette était cependant de fabrication assez sommaire («&nbsp;très mal construite, et encore plus mal agencée&nbsp;»), ce qui la rendait peu maniable et sujette aux voies d’eau par gros temps.</p>
+
+                <p><strong>Commandement et mission</strong> — Le lieutenant Louis-Claude de Freycinet (21 ans) est nommé par Baudin commandant de la <em>Casuarina</em>, secondé par le géographe Charles-Pierre Boullanger, chargé des relevés côtiers. L’objectif principal de ce petit navire est de conduire des levés hydrographiques rapprochés du littoral, tâche difficile voire impossible pour la grande corvette <em>Géographe</em>.</p>
+                <p>Grâce à son faible tirant d’eau, la <em>Casuarina</em> peut s’aventurer dans les baies, estuaires et hauts-fonds côtiers pour cartographier au plus près les rivages australiens. En janvier 1803, elle contribue notamment aux reconnaissances des golfes Saint‑Vincent et Spencer, pendant que le <em>Géographe</em> mouille à la baie Nepean.</p>
+
+                <p><strong>Destin du navire</strong> — Les navires atteignent l’Île‑de‑France (Maurice) en août 1803. Conformément aux instructions de Baudin, la <em>Casuarina</em> est alors abandonnée sur place et mise à disposition des autorités coloniales locales. Son service au sein de l’expédition s’achève dans les eaux mauriciennes en 1803.</p>
+
+            </div>
+
+            <div>
+                <table class="specs" aria-label="Caractéristiques de la Casuarina">
+                    <tbody>
+                        <tr><th>Nom</th><td>La Casuarina</td></tr>
+                        <tr><th>Type</th><td>Petite goélette</td></tr>
+                        <tr><th>Jauge</th><td>30 tonneaux (jauge brute)</td></tr>
+                        <tr><th>Longueur</th><td>≈&nbsp;29 pieds (≈&nbsp;8,9&nbsp;m)</td></tr>
+                        <tr><th>Équipage</th><td>14 hommes</td></tr>
+                        <tr><th>Construction</th><td>Chantier Kable &amp; Underwood, Port Jackson (Sydney)</td></tr>
+                        <tr><th>Matériau</th><td>Charpente en bois de casuarina (<em>sheoak</em>)</td></tr>
+                        <tr><th>Tirant d’eau</th><td>Faible, adapté aux eaux côtières (fonds peu profonds)</td></tr>
+                        <tr><th>Acquisition</th><td>Septembre 1802 (Port Jackson)</td></tr>
+                        <tr><th>Mise en service</th><td>23 septembre 1802</td></tr>
+                        <tr><th>Commandant</th><td>Lt Louis‑Claude de Saulces de Freycinet</td></tr>
+                        <tr><th>Mission</th><td>Levés hydrographiques et cartographie côtière rapprochée</td></tr>
+                        <tr><th>Sort</th><td>Abandonné à l’Île‑de‑France (Maurice) en 1803</td></tr>
+	                        <tr>
+	                            <th>Acquisition (coût)</th>
+	                            <td>Échange approuvé par le gouverneur King (marchandises coloniales&nbsp;: alcool, toile, cordage, fer, poudre) + 50&nbsp;£</td>
+	                        </tr>
+	                        <tr>
+	                            <th>Citation de Baudin (lettre adressée à Jussieu)</th>
+	                            <td><em>« En remplacement du Naturaliste, je me suis décidé à faire l’achat d’un petit bâtiment de trente tonneaux, que j’ai nommé le Casuarina, parce qu’il est construit en grande partie du bois qui porte ce nom. Cette petite embarcation va désormais m’accompagner, et me sera de la plus grande utilité. Si je l’avois eue plus tôt, quelques lieux où je n’ai pu pénétrer ne seroient pas restés sans examen. Son peu de tirant d’eau me mettra à même d’aborder par-tout. »</em></td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+            </div>
+        </div>
+
+        <figure class="figure full-width">
+            <img src="img/Casuarina_freycinet.jpg" alt="La Casuarina" loading="lazy" decoding="async">
+            <figcaption>La Casuarina accompagne le Géographe et le Naturaliste, détail du cartouche de la carte de Freycinet</figcaption>
+        </figure>
+
+        <figure class="figure full-width">
+            <img src="img/Casuarina.jpg" alt="La Casuarina" loading="lazy" decoding="async">
+        </figure>
+    </div>
+
+    <div data-lang="en">
+        <h1 class="sr-only">La Casuarina, vessel of the Baudin expedition (1800–1804)</h1>
+        <div class="columns">
+            <div class="text">
+                <p>After more than two years of surveying the coasts of “New Holland” (present‑day Australia) and Tasmania, Baudin decided in 1802 to lighten the expedition by sending the <em>Naturaliste</em> back to France with the scientific collections already gathered. To continue coastal surveys at close range, he sought a small, light vessel able to work in shallow waters.</p>
+                <p>He therefore acquired the schooner <em>Casuarina</em> at Port Jackson (Sydney), New South Wales, during the June–November 1802 stopover.</p>
+
+                <p><strong>Acquisition and construction</strong> — Baudin purchased the vessel in September 1802 from local entrepreneurs James Underwood and Henry Kable, who were building her in Sydney. Governor Philip Gidley King authorised the transaction, considering it beneficial to “the advancement of science and navigation”.</p>
+                <p><em>Casuarina</em> entered service on 23 September 1802 at Port Jackson. Built largely from casuarina wood (known in English as <em>sheoak</em>), she took her name from that timber. Lieutenant Louis‑Claude de Saulces de Freycinet, who commanded her, later described the schooner as poorly built and prone to heavy leaks in rough weather.</p>
+
+                <p><strong>Command and mission</strong> — Freycinet was appointed commander, assisted by the geographer Charles‑Pierre Boullanger for coastal surveying. Thanks to her shallow draught, <em>Casuarina</em> could enter bays, estuaries and shoals to chart the shoreline more closely than the larger corvette <em>Géographe</em>.</p>
+
+                <p><strong>Fate</strong> — The expedition reached Île‑de‑France (Mauritius) in 1803. Following Baudin’s instructions, <em>Casuarina</em> was left there and made available to the local colonial authorities. Her service with the expedition ended in 1803.</p>
+
+            </div>
+
+            <div>
+                <table class="specs" aria-label="Casuarina specifications">
+                    <tbody>
+                        <tr><th>Name</th><td>La Casuarina</td></tr>
+                        <tr><th>Type</th><td>Small schooner</td></tr>
+                        <tr><th>Tonnage</th><td>30 tons (gross register)</td></tr>
+                        <tr><th>Length</th><td>≈&nbsp;29&nbsp;ft (≈&nbsp;8.9&nbsp;m)</td></tr>
+                        <tr><th>Crew</th><td>14</td></tr>
+                        <tr><th>Builder</th><td>Kable &amp; Underwood, Port Jackson (Sydney)</td></tr>
+                        <tr><th>Material</th><td>Casuarina wood (<em>sheoak</em>)</td></tr>
+                        <tr><th>Draught</th><td>Shallow, suited to near‑shore surveying</td></tr>
+                        <tr><th>Acquired</th><td>September 1802 (Port Jackson)</td></tr>
+                        <tr><th>In service</th><td>23 September 1802</td></tr>
+                        <tr><th>Commander</th><td>Lt Louis‑Claude de Saulces de Freycinet</td></tr>
+                        <tr><th>Role</th><td>Close‑coast hydrographic surveying and charting</td></tr>
+                        <tr><th>Fate</th><td>Left at Île‑de‑France (Mauritius) in 1803</td></tr>
+	                        <tr>
+	                            <th>Purchase (cost)</th>
+	                            <td>Governor King approved a barter (colonial goods) plus £50 in cash</td>
+	                        </tr>
+	                        <tr>
+	                            <th>Baudin quotation (letter to Jussieu)</th>
+	                            <td><em>“As a replacement for the <em>Naturaliste</em>, I decided to purchase a small vessel of thirty tons, which I named <em>Casuarina</em> because it is built largely of the wood that bears that name. This small craft will now accompany me and will be of the greatest use. Had I had her earlier, some places I could not enter would not have remained unexamined. Her shallow draught will enable me to put in everywhere.”</em></td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+            </div>
+        </div>
+
+        <figure class="figure full-width">
+            <img src="img/Casuarina_freycinet.jpg" alt="La Casuarina" loading="lazy" decoding="async">
+            <figcaption>La Casuarina accompanies <em>Le Géographe</em> and <em>Le Naturaliste</em>, detail from the cartouche of Freycinet’s map</figcaption>
+        </figure>
+
+        <figure class="figure full-width">
+            <img src="img/Casuarina.jpg" alt="Casuarina" loading="lazy" decoding="async">
+        </figure>
+    </div>
+    </main>
+
+    <script>
+        (function () {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'fr' || savedLang === 'en') {
+                document.documentElement.lang = savedLang;
+            }
+        })();
+    </script>
+</body>
+</html>
