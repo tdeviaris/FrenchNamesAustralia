@@ -130,6 +130,12 @@
         }
         .intro-card h1 { margin-bottom: 12px; color: #fff; }
         .intro-card p { font-size: clamp(1.05rem, 2.4vw, 1.3rem); margin: 0; color: #f9f9f9; }
+        .intro-dev-status {
+            margin-top: 8px !important;
+            font-size: clamp(0.9rem, 2vw, 1.05rem) !important;
+            font-style: italic;
+            opacity: 0.9;
+        }
         .intro-audio { margin-top: 16px; }
         .intro-audio audio {
             width: 100%;
@@ -300,6 +306,7 @@
 	                <div class="intro-card">
 	                    <h1 data-i18n="hero-title">French Names Along the Australian Coastline</h1>
 	                    <p data-i18n="hero-subtitle">The toponyms bestowed by the d'Entrecasteaux (1791–1794) and Baudin (1800–1804) voyages</p>
+                        <p id="hero-dev-status" class="intro-dev-status" data-i18n="hero-dev-status">Version under development</p>
 	                    <div class="intro-audio">
 	                        <audio id="hero-audio" controls preload="none" data-i18n-src="hero-audio-src" data-i18n-aria-label="hero-audio-label" aria-label="Listen to the audio introduction">
 	                            <source src="data/intro_en.mp3" type="audio/mpeg">
@@ -405,8 +412,8 @@
         </section>
     </main>
 
-    <script src="js/translations.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/translations.js?v=20260213"></script>
+    <script src="js/main.js?v=20260213"></script>
     <script>
         // Gestion du changement d'image de fond lors du scroll avec fondu enchaîné
         const scenes = document.querySelectorAll('.scene');

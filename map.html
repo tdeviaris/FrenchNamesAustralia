@@ -128,6 +128,13 @@
         .layer-toggle-row > label { flex: 1; }
         .layer-toggle-row > label.route-toggle { flex: 0 0 auto; padding: 8px 10px; }
         .layer-toggle-row > label.route-toggle span { flex: 0; font-weight: 600; }
+        .layer-toggle-row > label.route-toggle.is-disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+        .layer-toggle-row > label.route-toggle.is-disabled input {
+            cursor: not-allowed;
+        }
         /* Ensure popups sit above toggles */
         .leaflet-popup-pane { z-index: 1200 !important; }
 
@@ -2896,6 +2903,8 @@
             entre: L.layerGroup()
         };
 
+        let baudinRouteEditorAttached = false;
+
         const routeWanted = {
             baudin: false,
             entre: false
@@ -2930,6 +2939,596 @@
             } catch (err) {
                 return null;
             }
+        };
+
+        const addBaudinRoutes = async () => {
+            const timeline = await loadJsonFile('data/timeline_baudin.json');
+            if (!timeline || !Array.isArray(timeline) || !routeLayers.baudin) {
+                return;
+            }
+
+            const baudinPathGeojson =
+                (await loadJsonFile('data/baudin_path.geojson'))
+                || (await loadJsonFile('../Baudin_path.geojson'));
+
+            const paneName = ensureRoutesPane();
+            const routeColor = expeditionConfigs.baudin?.color || '#0b63d1';
+            const sessionStorageSafe = (() => {
+                try {
+                    return window.sessionStorage;
+                } catch (err) {
+                    return null;
+                }
+            })();
+            const baudinRouteEditsStorageKey = 'baudin-route-edits-v1';
+            const baudinRouteRestoreWantedKey = 'baudin-route-restore-wanted';
+            const baudinMapViewRestoreKey = 'map-view-restore';
+
+            const loadBaudinRouteState = () => {
+                if (!sessionStorageSafe) return {};
+                try {
+                    const raw = sessionStorageSafe.getItem(baudinRouteEditsStorageKey);
+                    if (!raw) return {};
+                    const parsed = JSON.parse(raw);
+                    if (!parsed || typeof parsed !== 'object') {
+                        return {};
+                    }
+                    // Backward compatibility: previous format was { [pointKey]: {lat, lon}, ... }
+                    if (!Object.prototype.hasOwnProperty.call(parsed, 'points') && !Object.prototype.hasOwnProperty.call(parsed, 'insertions')) {
+                        return { points: parsed, insertions: {} };
+                    }
+                    const points = (parsed.points && typeof parsed.points === 'object') ? parsed.points : {};
+                    const insertions = (parsed.insertions && typeof parsed.insertions === 'object') ? parsed.insertions : {};
+                    return { points, insertions };
+                } catch (err) {
+                    return {};
+                }
+            };
+
+            const saveBaudinRouteState = (state) => {
+                if (!sessionStorageSafe) return;
+                try {
+                    sessionStorageSafe.setItem(baudinRouteEditsStorageKey, JSON.stringify(state));
+                } catch (err) {
+                    // ignore
+                }
+            };
+
+            const baudinRouteState = loadBaudinRouteState();
+            const baudinRoutePoints = (baudinRouteState.points && typeof baudinRouteState.points === 'object') ? baudinRouteState.points : {};
+            const baudinRouteInsertions = (baudinRouteState.insertions && typeof baudinRouteState.insertions === 'object') ? baudinRouteState.insertions : {};
+            const timelinePointKey = (entry) => `timeline-${entry?.id ?? ''}`;
+            const pathPointKey = (idx) => `path-${idx}`;
+
+            const resolveLatLon = (pointKey, defaultLat, defaultLon) => {
+                const override = baudinRoutePoints?.[pointKey];
+                const lat = override?.lat;
+                const lon = override?.lon;
+                if (isFiniteNumber(lat) && isFiniteNumber(lon)) {
+                    return { lat, lon };
+                }
+                return { lat: defaultLat, lon: defaultLon };
+            };
+
+            const setEditedLatLon = (pointKey, lat, lon) => {
+                baudinRoutePoints[pointKey] = { lat, lon };
+                saveBaudinRouteState({ points: baudinRoutePoints, insertions: baudinRouteInsertions });
+            };
+
+            const formatDateFr = (iso) => {
+                const parts = String(iso || '').split('-');
+                if (parts.length !== 3) return '';
+                const [yyyy, mm, dd] = parts;
+                if (!yyyy || !mm || !dd) return '';
+                return `${dd}/${mm}/${yyyy}`;
+            };
+
+            const findEntryByDateIso = (dateISO) => timeline.find((entry) => entry?.dateISO === dateISO);
+
+            const vesselsFor = (entry) => {
+                const vessels = [];
+                if (entry?.geographe) vessels.push('Le Géographe');
+                if (entry?.naturaliste) vessels.push('Le Naturaliste');
+                if (entry?.casuarina) vessels.push('Le Casuarina');
+                return vessels;
+            };
+
+            const extractBaudinPathLonLat = (geojson) => {
+                if (!geojson) return [];
+                const features = Array.isArray(geojson?.features) ? geojson.features : [];
+                for (const feature of features) {
+                    const geom = feature?.geometry;
+                    const type = geom?.type;
+                    const coords = geom?.coordinates;
+                    if (!coords) continue;
+                    if (type === 'LineString' && Array.isArray(coords) && coords.length) {
+                        return coords;
+                    }
+                    if (type === 'MultiLineString' && Array.isArray(coords) && coords.length) {
+                        return coords.flat().filter((pt) => Array.isArray(pt) && pt.length >= 2);
+                    }
+                }
+                return [];
+            };
+
+            const closestIndexLonLat = (coordsLonLat, targetLonLat) => {
+                const [targetLon, targetLat] = targetLonLat;
+                let bestIdx = -1;
+                let bestDist = Infinity;
+                coordsLonLat.forEach((pt, idx) => {
+                    if (!Array.isArray(pt) || pt.length < 2) return;
+                    const lon = pt[0];
+                    const lat = pt[1];
+                    if (!isFiniteNumber(lon) || !isFiniteNumber(lat)) return;
+                    const dLon = lon - targetLon;
+                    const dLat = lat - targetLat;
+                    const dist = (dLon * dLon) + (dLat * dLat);
+                    if (dist < bestDist) {
+                        bestDist = dist;
+                        bestIdx = idx;
+                    }
+                });
+                return bestIdx;
+            };
+
+            const buildEarlyRoutePoints = () => {
+                const pathLonLatRaw = extractBaudinPathLonLat(baudinPathGeojson);
+                if (!Array.isArray(pathLonLatRaw) || pathLonLatRaw.length < 2) {
+                    return null;
+                }
+
+                const havre = findEntryByDateIso('1800-10-19');
+                const tenerife = findEntryByDateIso('1800-11-02');
+                const equator = findEntryByDateIso('1800-12-12');
+                const capeHope = findEntryByDateIso('1801-02-03');
+                const leeuwin = findEntryByDateIso('1801-05-27');
+
+                const anchors = [
+                    { key: 'havre', entry: havre },
+                    { key: 'tenerife', entry: tenerife },
+                    { key: 'equator', entry: equator },
+                    { key: 'capeHope', entry: capeHope },
+                    { key: 'leeuwin', entry: leeuwin }
+                ];
+
+                const missing = anchors.some((a) => !a.entry || !isFiniteNumber(a.entry?.lat) || !isFiniteNumber(a.entry?.lon));
+                if (missing) {
+                    return null;
+                }
+
+                const anchorLonLat = anchors.map((a) => {
+                    const key = timelinePointKey(a.entry);
+                    const coords = resolveLatLon(key, a.entry.lat, a.entry.lon);
+                    return [coords.lon, coords.lat];
+                });
+
+                const indices = anchorLonLat.map((pt) => closestIndexLonLat(pathLonLatRaw, pt));
+                if (indices.some((idx) => idx < 0)) {
+                    return null;
+                }
+
+                const isIncreasing = indices.every((idx, i) => i === 0 || idx >= indices[i - 1]);
+                const isDecreasing = indices.every((idx, i) => i === 0 || idx <= indices[i - 1]);
+                let pathLonLat = pathLonLatRaw;
+                let fixedIndices = indices;
+
+                if (!isIncreasing && isDecreasing) {
+                    pathLonLat = [...pathLonLatRaw].reverse();
+                    fixedIndices = anchorLonLat.map((pt) => closestIndexLonLat(pathLonLat, pt));
+                }
+
+                if (!fixedIndices.every((idx, i) => i === 0 || idx >= fixedIndices[i - 1])) {
+                    return null;
+                }
+
+                const pathPoints = pathLonLatRaw.map((lonLat, idx) => ({
+                    key: pathPointKey(idx),
+                    kind: 'path',
+                    lat: lonLat?.[1],
+                    lon: lonLat?.[0],
+                }));
+
+                const merged = [];
+
+                const startKey = timelinePointKey(anchors[0].entry);
+                merged.push({ key: startKey, kind: 'timeline', lat: anchors[0].entry.lat, lon: anchors[0].entry.lon, entry: anchors[0].entry });
+                for (let i = 0; i < anchors.length - 1; i += 1) {
+                    const startIdx = fixedIndices[i];
+                    const endIdx = fixedIndices[i + 1];
+                    const segment = pathPoints.slice(startIdx + 1, endIdx);
+                    segment.forEach((pt) => {
+                        if (!pt) return;
+                        if (!isFiniteNumber(pt.lon) || !isFiniteNumber(pt.lat)) return;
+                        merged.push(pt);
+                    });
+
+                    const nextAnchor = anchors[i + 1].entry;
+                    const nextKey = timelinePointKey(nextAnchor);
+                    merged.push({ key: nextKey, kind: 'timeline', lat: nextAnchor.lat, lon: nextAnchor.lon, entry: nextAnchor });
+                }
+                return merged;
+            };
+
+            const expandPointDescriptorsWithInsertions = (baseDescriptors) => {
+                if (!Array.isArray(baseDescriptors) || !baseDescriptors.length) {
+                    return [];
+                }
+                const out = [];
+                const activeStack = new Set();
+
+                const appendKey = (descriptor) => {
+                    if (!descriptor?.key) return;
+                    out.push(descriptor);
+                    const insertionKeys = baudinRouteInsertions?.[descriptor.key];
+                    if (!Array.isArray(insertionKeys) || !insertionKeys.length) {
+                        return;
+                    }
+                    insertionKeys.forEach((key) => {
+                        if (!key) return;
+                        if (activeStack.has(key)) return;
+                        activeStack.add(key);
+                        appendKey({ key, defaultLat: undefined, defaultLon: undefined });
+                        activeStack.delete(key);
+                    });
+                };
+
+                baseDescriptors.forEach(appendKey);
+                return out;
+            };
+
+            const descriptorsForShipTimeline = (shipKey, predicate = () => true) => {
+                const base = [];
+                for (const entry of timeline) {
+                    if (!entry?.[shipKey]) continue;
+                    if (!predicate(entry)) continue;
+                    const key = timelinePointKey(entry);
+                    const coords = resolveLatLon(key, entry?.lat, entry?.lon);
+                    if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) continue;
+                    base.push({ key, defaultLat: entry?.lat, defaultLon: entry?.lon });
+                }
+                return base;
+            };
+
+            const coordsFromDescriptors = (descriptors) => {
+                return descriptors
+                    .map((descriptor) => {
+                        const coords = resolveLatLon(descriptor.key, descriptor.defaultLat, descriptor.defaultLon);
+                        return [coords.lat, coords.lon];
+                    })
+                    .filter((latLng) => isFiniteNumber(latLng[0]) && isFiniteNumber(latLng[1]));
+            };
+
+            const coordsFor = (shipKey) => {
+                const base = descriptorsForShipTimeline(shipKey);
+                const expanded = expandPointDescriptorsWithInsertions(base);
+                return coordsFromDescriptors(expanded);
+            };
+
+            const expandPointsWithInsertions = (points) => {
+                if (!Array.isArray(points) || !points.length) {
+                    return [];
+                }
+                const out = [];
+                const activeStack = new Set();
+
+                const appendPoint = (pt) => {
+                    if (!pt?.key) return;
+                    out.push(pt);
+                    const insertionKeys = baudinRouteInsertions?.[pt.key];
+                    if (!Array.isArray(insertionKeys) || !insertionKeys.length) {
+                        return;
+                    }
+                    insertionKeys.forEach((key) => {
+                        if (!key) return;
+                        if (activeStack.has(key)) return;
+                        const coords = resolveLatLon(key, undefined, undefined);
+                        if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) return;
+                        activeStack.add(key);
+                        appendPoint({ key, kind: 'inserted', lat: coords.lat, lon: coords.lon });
+                        activeStack.delete(key);
+                    });
+                };
+
+                points.forEach(appendPoint);
+                return out;
+            };
+
+            const earlyRouteBasePoints = buildEarlyRoutePoints();
+            const earlyRoutePoints = expandPointsWithInsertions(earlyRouteBasePoints);
+            const earlyRouteEndDateIso = '1801-05-27';
+
+            const coordsForShipRoute = (shipKey) => {
+                if (!earlyRoutePoints || (shipKey !== 'geographe' && shipKey !== 'naturaliste')) {
+                    return coordsFor(shipKey);
+                }
+
+                const afterBase = descriptorsForShipTimeline(shipKey, (entry) => String(entry?.dateISO || '') > String(earlyRouteEndDateIso));
+                const afterExpanded = expandPointDescriptorsWithInsertions(afterBase);
+                const after = coordsFromDescriptors(afterExpanded);
+
+                const early = earlyRoutePoints
+                    .map((pt) => {
+                        const coords = resolveLatLon(pt.key, pt.lat, pt.lon);
+                        return [coords.lat, coords.lon];
+                    })
+                    .filter((latLng) => isFiniteNumber(latLng[0]) && isFiniteNumber(latLng[1]));
+
+                return [...early, ...after];
+            };
+
+            const addShipPolyline = (shipKey, style) => {
+                const coords = coordsForShipRoute(shipKey);
+                if (coords.length < 2) {
+                    return;
+                }
+                const line = L.polyline(coords, {
+                    pane: paneName,
+                    interactive: false,
+                    color: routeColor,
+                    weight: 5,
+                    opacity: 0.95,
+                    lineCap: 'round',
+                    lineJoin: 'round',
+                    ...style
+                });
+                routeLayers.baudin.addLayer(line);
+            };
+
+            addShipPolyline('geographe', {});
+            addShipPolyline('naturaliste', { dashArray: '12 10' });
+            addShipPolyline('casuarina', { dashArray: '1 10' });
+
+            let selectedPointKey = null;
+            let selectedMarker = null;
+            let addPointAfterKey = null;
+            let addModeSelectedMarker = null;
+
+            const clearSelection = () => {
+                if (selectedMarker && selectedMarker.__baseStyle && typeof selectedMarker.setStyle === 'function') {
+                    selectedMarker.setStyle(selectedMarker.__baseStyle);
+                }
+                if (selectedMarker && isFiniteNumber(selectedMarker.__baseRadius) && typeof selectedMarker.setRadius === 'function') {
+                    selectedMarker.setRadius(selectedMarker.__baseRadius);
+                }
+                selectedMarker = null;
+                selectedPointKey = null;
+                if (addModeSelectedMarker && addModeSelectedMarker.__addModeBaseStyle && typeof addModeSelectedMarker.setStyle === 'function') {
+                    addModeSelectedMarker.setStyle(addModeSelectedMarker.__addModeBaseStyle);
+                }
+                addModeSelectedMarker = null;
+                addPointAfterKey = null;
+            };
+
+            const selectMarker = (marker, pointKey) => {
+                if (!marker || !pointKey) return;
+                if (selectedMarker && selectedMarker !== marker) {
+                    clearSelection();
+                }
+                selectedPointKey = pointKey;
+                selectedMarker = marker;
+                // Selection change cancels add mode.
+                if (addModeSelectedMarker && addModeSelectedMarker.__addModeBaseStyle && typeof addModeSelectedMarker.setStyle === 'function') {
+                    addModeSelectedMarker.setStyle(addModeSelectedMarker.__addModeBaseStyle);
+                }
+                addModeSelectedMarker = null;
+                addPointAfterKey = null;
+                marker.__baseStyle = marker.__baseStyle || { color: marker.options.color, weight: marker.options.weight };
+                marker.__baseRadius = marker.__baseRadius ?? marker.options.radius;
+                marker.setStyle({ color: '#ffcc00', weight: 4 });
+                marker.setRadius((marker.__baseRadius || marker.options.radius || 6) + 2);
+            };
+
+            const persistReloadState = () => {
+                if (!sessionStorageSafe) return;
+                try {
+                    const want = Boolean(toggleBaudinRoute?.checked || routeWanted.baudin);
+                    sessionStorageSafe.setItem(baudinRouteRestoreWantedKey, want ? '1' : '0');
+                    const center = map.getCenter?.();
+                    const zoom = map.getZoom?.();
+                    if (center && isFiniteNumber(center.lat) && isFiniteNumber(center.lng) && isFiniteNumber(zoom)) {
+                        sessionStorageSafe.setItem(baudinMapViewRestoreKey, JSON.stringify({ lat: center.lat, lng: center.lng, zoom }));
+                    }
+                } catch (err) {
+                    // ignore
+                }
+            };
+
+            const addInsertedPointAfter = (afterKey, latLng) => {
+                if (!afterKey || !latLng) return;
+                const makeKey = () => `inserted-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+                let newKey = makeKey();
+                while (baudinRoutePoints[newKey]) {
+                    newKey = makeKey();
+                }
+                if (!Array.isArray(baudinRouteInsertions[afterKey])) {
+                    baudinRouteInsertions[afterKey] = [];
+                }
+                baudinRouteInsertions[afterKey].push(newKey);
+                baudinRoutePoints[newKey] = { lat: latLng.lat, lon: latLng.lng };
+                saveBaudinRouteState({ points: baudinRoutePoints, insertions: baudinRouteInsertions });
+                persistReloadState();
+                window.location.reload();
+            };
+
+            const applySelectedPointMove = (latLng) => {
+                if (!selectedPointKey || !latLng) return;
+                setEditedLatLon(selectedPointKey, latLng.lat, latLng.lng);
+                persistReloadState();
+                window.location.reload();
+            };
+
+            const toggleAddModeForSelected = () => {
+                if (!selectedPointKey || !selectedMarker) return;
+                if (addPointAfterKey === selectedPointKey) {
+                    // turn off
+                    if (addModeSelectedMarker && addModeSelectedMarker.__addModeBaseStyle && typeof addModeSelectedMarker.setStyle === 'function') {
+                        addModeSelectedMarker.setStyle(addModeSelectedMarker.__addModeBaseStyle);
+                    }
+                    addModeSelectedMarker = null;
+                    addPointAfterKey = null;
+                    // restore selection highlight
+                    selectedMarker.setStyle({ color: '#ffcc00', weight: 4 });
+                    return;
+                }
+                addPointAfterKey = selectedPointKey;
+                addModeSelectedMarker = selectedMarker;
+                addModeSelectedMarker.__addModeBaseStyle = addModeSelectedMarker.__addModeBaseStyle || { color: addModeSelectedMarker.options.color, weight: addModeSelectedMarker.options.weight };
+                // indicate "add" mode in green
+                addModeSelectedMarker.setStyle({ color: '#00c853', weight: 4 });
+            };
+
+            const applySelectedPointContextAction = (latLng) => {
+                if (!latLng) return;
+                if (addPointAfterKey) {
+                    addInsertedPointAfter(addPointAfterKey, latLng);
+                    return;
+                }
+                applySelectedPointMove(latLng);
+            };
+
+            const attachEditorHandlers = (marker, pointKey) => {
+                if (!marker || !pointKey) return;
+                marker.on('click', (event) => {
+                    if (event?.originalEvent) {
+                        L.DomEvent.stopPropagation(event.originalEvent);
+                    }
+                    selectMarker(marker, pointKey);
+                });
+                marker.on('contextmenu', (event) => {
+                    if (event?.originalEvent) {
+                        L.DomEvent.preventDefault(event.originalEvent);
+                        L.DomEvent.stopPropagation(event.originalEvent);
+                    }
+                    applySelectedPointContextAction(event?.latlng);
+                });
+            };
+
+            if (!baudinRouteEditorAttached) {
+                baudinRouteEditorAttached = true;
+                map.on('click', () => {
+                    // Click on empty map clears selection.
+                    clearSelection();
+                });
+                map.on('contextmenu', (event) => {
+                    if (event?.originalEvent) {
+                        L.DomEvent.preventDefault(event.originalEvent);
+                    }
+                    applySelectedPointContextAction(event?.latlng);
+                });
+
+                window.addEventListener('keydown', (event) => {
+                    const key = event?.key;
+                    if (!key) return;
+                    const active = document.activeElement;
+                    const tag = active?.tagName ? String(active.tagName).toUpperCase() : '';
+                    if (tag === 'INPUT' || tag === 'TEXTAREA' || active?.isContentEditable) {
+                        return;
+                    }
+                    if (key === 'a' || key === 'A') {
+                        toggleAddModeForSelected();
+                    }
+                    if (key === 'Escape') {
+                        clearSelection();
+                    }
+                });
+            }
+
+            const renderedPointKeys = new Set();
+
+            if (earlyRoutePoints) {
+                earlyRoutePoints
+                    .filter((pt) => pt?.kind === 'path')
+                    .forEach((pt) => {
+                        if (renderedPointKeys.has(pt.key)) return;
+                        const coords = resolveLatLon(pt.key, pt.lat, pt.lon);
+                        if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) return;
+                        const marker = L.circleMarker([coords.lat, coords.lon], {
+                            pane: paneName,
+                            radius: 4,
+                            color: '#ffffff',
+                            weight: 1.8,
+                            opacity: 0.9,
+                            fill: true,
+                            fillColor: routeColor,
+                            fillOpacity: 0.55
+                        });
+                        attachEditorHandlers(marker, pt.key);
+                        // Optional lightweight popup with coordinates.
+                        marker.bindPopup(
+                            `<div class="popup-text-container"><p><strong>lat</strong> ${escapeHtml(String(coords.lat))} <strong>lon</strong> ${escapeHtml(String(coords.lon))}</p></div>`,
+                            { maxWidth: 360 }
+                        );
+                        routeLayers.baudin.addLayer(marker);
+                        renderedPointKeys.add(pt.key);
+                    });
+            }
+
+            // Render inserted points anywhere in the route (including those inserted after timeline points).
+            Object.entries(baudinRouteInsertions).forEach(([, insertionKeys]) => {
+                if (!Array.isArray(insertionKeys) || !insertionKeys.length) return;
+                insertionKeys.forEach((key) => {
+                    if (renderedPointKeys.has(key)) return;
+                    const coords = resolveLatLon(key, undefined, undefined);
+                    if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) return;
+                    const marker = L.circleMarker([coords.lat, coords.lon], {
+                        pane: paneName,
+                        radius: 5,
+                        color: '#ffffff',
+                        weight: 2.0,
+                        opacity: 0.95,
+                        fill: true,
+                        fillColor: routeColor,
+                        fillOpacity: 0.75
+                    });
+                    attachEditorHandlers(marker, key);
+                    marker.bindPopup(
+                        `<div class="popup-text-container"><p><strong>lat</strong> ${escapeHtml(String(coords.lat))} <strong>lon</strong> ${escapeHtml(String(coords.lon))}</p></div>`,
+                        { maxWidth: 360 }
+                    );
+                    routeLayers.baudin.addLayer(marker);
+                    renderedPointKeys.add(key);
+                });
+            });
+
+            timeline.forEach((entry) => {
+                const pointKey = timelinePointKey(entry);
+                const coords = resolveLatLon(pointKey, entry?.lat, entry?.lon);
+                const lat = coords.lat;
+                const lon = coords.lon;
+                if (!isFiniteNumber(lat) || !isFiniteNumber(lon)) {
+                    return;
+                }
+
+                const dateFr = formatDateFr(entry?.dateISO);
+                const currentLang = getCurrentLanguage();
+                const vessels = vesselsFor(entry);
+                const historyText = currentLang === 'fr' ? (entry?.histoire || '') : (entry?.story || '');
+
+                const shipsLabel = currentLang === 'fr' ? 'Navires' : 'Ships';
+                const dateLine = dateFr ? `<p><strong>Date</strong> ${escapeHtml(dateFr)}</p>` : '';
+                const vesselsLine = vessels.length ? `<p><strong>${shipsLabel}</strong> ${escapeHtml(vessels.join(' / '))}</p>` : '';
+                const historyLine = historyText ? `<p><strong>${currentLang === 'fr' ? 'Histoire' : 'Story'}</strong> ${escapeHtml(historyText)}</p>` : '';
+
+                const marker = L.circleMarker([lat, lon], {
+                    pane: paneName,
+                    radius: 6,
+                    color: '#ffffff',
+                    weight: 2.5,
+                    opacity: 0.95,
+                    fill: true,
+                    fillColor: routeColor,
+                    fillOpacity: 0.95
+                });
+                marker.bindPopup(
+                    `<div class="popup-text-container">${dateLine}${vesselsLine}${historyLine}</div>`,
+                    { maxWidth: 520 }
+                );
+                attachEditorHandlers(marker, pointKey);
+                routeLayers.baudin.addLayer(marker);
+                renderedPointKeys.add(pointKey);
+            });
+
+            updateRouteVisibility('baudin');
         };
 
         const addEntrecasteauxRoutes = async () => {
@@ -3116,6 +3715,9 @@
         const toggleEntre = document.getElementById('toggle-entre');
         const toggleBaudinRoute = document.getElementById('toggle-baudin-route');
         const toggleEntreRoute = document.getElementById('toggle-entre-route');
+        // Temporary switch to disable the "Route" checkboxes.
+        // Set to true to re-enable normal route toggle behavior.
+        const ENABLE_ROUTE_TOGGLES = false;
 
         const normalizeExpeditionKey = (value = '') => {
             const lower = value.toLowerCase();
@@ -3166,9 +3768,31 @@
             }
         };
 
+        const applyRouteToggleAvailability = () => {
+            const controls = [toggleBaudinRoute, toggleEntreRoute];
+            controls.forEach((input) => {
+                if (!input) return;
+                input.checked = false;
+                input.disabled = !ENABLE_ROUTE_TOGGLES;
+                const label = input.closest('label.route-toggle');
+                if (label) {
+                    label.classList.toggle('is-disabled', !ENABLE_ROUTE_TOGGLES);
+                    label.setAttribute('aria-disabled', String(!ENABLE_ROUTE_TOGGLES));
+                }
+            });
+            if (!ENABLE_ROUTE_TOGGLES) {
+                routeWanted.baudin = false;
+                routeWanted.entre = false;
+                updateRouteVisibility('baudin');
+                updateRouteVisibility('entre');
+            }
+        };
+
+        applyRouteToggleAvailability();
+
         toggleBaudin.addEventListener('change', () => setExpeditionVisibility('baudin', toggleBaudin.checked));
         toggleEntre.addEventListener('change', () => setExpeditionVisibility('entre', toggleEntre.checked));
-        if (toggleBaudinRoute) {
+        if (ENABLE_ROUTE_TOGGLES && toggleBaudinRoute) {
             toggleBaudinRoute.addEventListener('change', () => {
                 const want = toggleBaudinRoute.checked;
                 if (want) {
@@ -3182,7 +3806,7 @@
                 updateRouteVisibility('baudin');
             });
         }
-        if (toggleEntreRoute) {
+        if (ENABLE_ROUTE_TOGGLES && toggleEntreRoute) {
             toggleEntreRoute.addEventListener('change', () => {
                 const want = toggleEntreRoute.checked;
                 if (want) {
@@ -3196,6 +3820,40 @@
                 updateRouteVisibility('entre');
             });
         }
+
+        const sessionStorageSafe = (() => {
+            try {
+                return window.sessionStorage;
+            } catch (err) {
+                return null;
+            }
+        })();
+
+        const restoreBaudinRouteIfNeeded = () => {
+            if (!ENABLE_ROUTE_TOGGLES || !sessionStorageSafe || !toggleBaudinRoute) {
+                return;
+            }
+            const want = sessionStorageSafe.getItem('baudin-route-restore-wanted') === '1';
+            if (!want) {
+                return;
+            }
+            try {
+                sessionStorageSafe.removeItem('baudin-route-restore-wanted');
+            } catch (err) {
+                // ignore
+            }
+
+            toggleBaudinRoute.checked = true;
+            // Same behavior as the checkbox handler.
+            toggleBaudin.checked = true;
+            toggleEntre.checked = false;
+            setExpeditionVisibility('entre', false);
+            setExpeditionVisibility('baudin', true);
+            routeWanted.baudin = true;
+            updateRouteVisibility('baudin');
+        };
+
+        restoreBaudinRouteIfNeeded();
 
         const addPlacesToMap = (places) => {
             const bounds = L.latLngBounds();
@@ -3401,8 +4059,33 @@
                 allMarkers = [];
                 markersByCode = new Map();
                 addPlacesToMap(allPlaces);
+                await addBaudinRoutes();
                 await addEntrecasteauxRoutes();
-                map.setView(defaultCenter, defaultZoom);
+                (() => {
+                    if (!sessionStorageSafe) {
+                        map.setView(defaultCenter, defaultZoom);
+                        return;
+                    }
+                    try {
+                        const raw = sessionStorageSafe.getItem('map-view-restore');
+                        if (!raw) {
+                            map.setView(defaultCenter, defaultZoom);
+                            return;
+                        }
+                        sessionStorageSafe.removeItem('map-view-restore');
+                        const parsed = JSON.parse(raw);
+                        const lat = parsed?.lat;
+                        const lng = parsed?.lng;
+                        const zoom = parsed?.zoom;
+                        if (isFiniteNumber(lat) && isFiniteNumber(lng) && isFiniteNumber(zoom)) {
+                            map.setView([lat, lng], zoom);
+                        } else {
+                            map.setView(defaultCenter, defaultZoom);
+                        }
+                    } catch (err) {
+                        map.setView(defaultCenter, defaultZoom);
+                    }
+                })();
                 window.addEventListener('resize', () => {
                     const newZoom = getDefaultZoom();
                     if (Math.abs(map.getZoom() - defaultZoom) < 0.5) {
