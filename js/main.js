@@ -72,9 +72,23 @@ function enhanceImagesAvifPreviewThenJpeg() {
         document.head.appendChild(style);
     }
 
+    const avifAvailabilityCache = new Map();
+    const hasAvifVariant = async (avifSrc) => {
+        if (avifAvailabilityCache.has(avifSrc)) {
+            return avifAvailabilityCache.get(avifSrc);
+        }
+
+        const existsPromise = fetch(avifSrc, { method: 'HEAD' })
+            .then((response) => response.ok)
+            .catch(() => false);
+
+        avifAvailabilityCache.set(avifSrc, existsPromise);
+        return existsPromise;
+    };
+
     const images = Array.from(document.querySelectorAll('img[src]'));
 
-    images.forEach((img) => {
+    images.forEach(async (img) => {
         if (img.dataset.avifEnhancer === '1') {
             return;
         }
@@ -95,6 +109,10 @@ function enhanceImagesAvifPreviewThenJpeg() {
         }
 
         const avifSrc = srcAttr.replace(/\.jpe?g(\?.*)?$/i, '.avif$1');
+        if (!(await hasAvifVariant(avifSrc))) {
+            return;
+        }
+
         const picture = document.createElement('picture');
         const source = document.createElement('source');
 
@@ -164,10 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerContainer = document.querySelector('[data-include-footer]');
 
     if (footerContainer) {
-        // Chemin footer compatible GitHub Pages (sous-répertoire) et Vercel (racine)
-        const footerPath = window.location.hostname.includes('github.io')
-            ? '/FrenchNamesAustralia/partials/footer.html'
-            : '/partials/footer.html';
+        // Chemin relatif: compatible racine et sous-répertoire.
+        const footerPath = 'partials/footer.html';
 
         fetch(footerPath)
             .then(response => {
