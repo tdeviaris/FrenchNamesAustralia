@@ -874,6 +874,9 @@
             opacity: 0;
             pointer-events: none;
         }
+        .details-modal-loading.error .details-modal-spinner {
+            display: none;
+        }
         .details-modal-spinner {
             width: 48px;
             height: 48px;
@@ -1862,6 +1865,9 @@
         const detailsModalLoadingMessage = document.getElementById('details-loading-message');
         const detailsModalTitle = document.getElementById('details-modal-title');
         const detailsModalCloseButton = document.getElementById('details-modal-close');
+        const detailsUrlAvailabilityCache = new Map();
+        let detailsModalRequestToken = 0;
+        let detailsModalFrameLoadHandler = null;
 
         const nowMs = () => {
             if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
@@ -1912,20 +1918,116 @@
         };
 
         const closeDetailsModal = () => {
+            detailsModalRequestToken += 1;
             if (!detailsModal) {
                 return;
             }
             detailsModal.classList.remove('open');
             detailsModal.setAttribute('aria-hidden', 'true');
+            if (detailsModalFrame && detailsModalFrameLoadHandler) {
+                detailsModalFrame.removeEventListener('load', detailsModalFrameLoadHandler);
+                detailsModalFrameLoadHandler = null;
+            }
             if (detailsModalFrame) {
                 detailsModalFrame.src = 'about:blank';
             }
             if (detailsModalLoading) {
+                detailsModalLoading.classList.remove('error');
                 detailsModalLoading.classList.remove('hidden');
             }
         };
 
-        const openDetailsModal = (rawUrl, title) => {
+        const buildDetailsUrlCandidates = (resolvedUrl) => {
+            const candidates = [];
+            const pushCandidate = (value) => {
+                const normalized = (value || '').trim();
+                if (!normalized || candidates.includes(normalized)) {
+                    return;
+                }
+                candidates.push(normalized);
+            };
+
+            pushCandidate(resolvedUrl);
+
+            // Common typo in data files.
+            if (/\.htlm(\?|#|$)/i.test(resolvedUrl)) {
+                pushCandidate(resolvedUrl.replace(/\.htlm(\?|#|$)/i, '.html$1'));
+            }
+
+            // Another typo seen in data (Baufin -> Baudin).
+            if (/Baufin/i.test(resolvedUrl)) {
+                pushCandidate(resolvedUrl.replace(/Baufin/gi, 'Baudin'));
+            }
+
+            return candidates;
+        };
+
+        const canProbeDetailsUrl = (url) => {
+            try {
+                const parsed = new URL(url, window.location.href);
+                if (!/^https?:$/i.test(parsed.protocol)) {
+                    return false;
+                }
+                return parsed.origin === window.location.origin;
+            } catch {
+                return false;
+            }
+        };
+
+        const probeDetailsUrl = async (url) => {
+            if (!canProbeDetailsUrl(url)) {
+                return true;
+            }
+            if (detailsUrlAvailabilityCache.has(url)) {
+                return detailsUrlAvailabilityCache.get(url);
+            }
+
+            let ok = false;
+            try {
+                const headResponse = await fetch(url, {
+                    method: 'HEAD',
+                    cache: 'no-store'
+                });
+                if (headResponse.ok) {
+                    ok = true;
+                } else if (headResponse.status === 405 || headResponse.status === 501) {
+                    const getResponse = await fetch(url, { cache: 'no-store' });
+                    ok = getResponse.ok;
+                } else {
+                    ok = false;
+                }
+            } catch {
+                ok = false;
+            }
+
+            detailsUrlAvailabilityCache.set(url, ok);
+            return ok;
+        };
+
+        const resolveExistingDetailsUrl = async (resolvedUrl) => {
+            const candidates = buildDetailsUrlCandidates(resolvedUrl);
+            for (const candidate of candidates) {
+                if (await probeDetailsUrl(candidate)) {
+                    return candidate;
+                }
+            }
+            return '';
+        };
+
+        const showDetailsModalError = () => {
+            if (detailsModalLoadingMessage) {
+                detailsModalLoadingMessage.textContent = translate('details-loading-error') || 'Unable to display this page.';
+            }
+            if (detailsModalLoading) {
+                detailsModalLoading.classList.remove('hidden');
+                detailsModalLoading.classList.add('error');
+            }
+            if (detailsModalFrame) {
+                detailsModalFrame.src = 'about:blank';
+            }
+        };
+
+        const openDetailsModal = async (rawUrl, title) => {
             const resolvedUrl = resolveDetailsUrl(rawUrl);
             if (!resolvedUrl) {
                 return;
@@ -1960,6 +2062,7 @@
                 detailsModalLoadingMessage.textContent = translate('details-loading-message') || 'Loading page...';
             }
 
+            detailsModalLoading.classList.remove('error');
             detailsModalLoading.classList.remove('hidden');
             detailsModal.classList.add('open');
             detailsModal.setAttribute('aria-hidden', 'false');
@@ -1968,14 +2071,33 @@
                 detailsModalDialog.focus({ preventScroll: true });
             }
 
-            const handleFrameLoad = () => {
+            const requestToken = ++detailsModalRequestToken;
+            const finalUrl = await resolveExistingDetailsUrl(resolvedUrl);
+            if (requestToken !== detailsModalRequestToken) {
+                return;
+            }
+            if (!finalUrl) {
+                showDetailsModalError();
+                return;
+            }
+
+            if (detailsModalFrameLoadHandler) {
+                detailsModalFrame.removeEventListener('load', detailsModalFrameLoadHandler);
+            }
+
+            detailsModalFrameLoadHandler = () => {
+                if (requestToken !== detailsModalRequestToken) {
+                    return;
+                }
                 detailsModalLoading.classList.add('hidden');
-                detailsModalFrame.removeEventListener('load', handleFrameLoad);
+                detailsModalLoading.classList.remove('error');
+                detailsModalFrame.removeEventListener('load', detailsModalFrameLoadHandler);
+                detailsModalFrameLoadHandler = null;
             };
 
-            detailsModalFrame.addEventListener('load', handleFrameLoad);
+            detailsModalFrame.addEventListener('load', detailsModalFrameLoadHandler);
             detailsModalFrame.setAttribute('title', title || translate('details-frame-title') || 'Details');
-            detailsModalFrame.src = resolvedUrl;
+            detailsModalFrame.src = finalUrl;
         };
 
         const closeImageModal = () => {

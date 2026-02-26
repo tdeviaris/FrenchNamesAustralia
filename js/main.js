@@ -2,7 +2,9 @@
 
 // Fonction pour marquer le lien de navigation actif
 function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    const lastSegment = pathSegments[pathSegments.length - 1] || '';
+    const currentPage = lastSegment || 'index.html';
 
     // Mapping des pages vers leurs IDs de navigation
     const pageToNavId = {
@@ -36,8 +38,35 @@ function setActiveNavLink() {
     };
 
     const navId = pageToNavId[currentPage];
-    if (navId) {
-        const navLink = document.getElementById(navId);
+    const extensionlessPageToNavId = {
+        'methodology': 'nav-resources',
+        'rapport': 'nav-resources',
+        'resources': 'nav-resources',
+        'actors': 'nav-resources',
+        'maps': 'nav-resources',
+        'illustrations': 'nav-resources',
+        'ships': 'nav-resources',
+        'glossary': 'nav-resources',
+        'findings': 'nav-resources',
+        'findings-1': 'nav-resources',
+        'findings-2': 'nav-resources',
+        'findings-3': 'nav-resources',
+        'findings-4': 'nav-resources',
+        'findings-5': 'nav-resources',
+        'findings-6': 'nav-resources',
+        'sources': 'nav-resources',
+        'expert': 'nav-ai',
+        'presentation': 'nav-about',
+        'author': 'nav-about',
+        'supporters': 'nav-about',
+        'legal_notice': 'nav-about',
+        'site_map': 'nav-about',
+        'map': 'nav-map'
+    };
+
+    const resolvedNavId = navId || extensionlessPageToNavId[currentPage];
+    if (resolvedNavId) {
+        const navLink = document.getElementById(resolvedNavId);
         if (navLink) {
             navLink.classList.add('active');
         }

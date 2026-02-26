@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <title>Findings - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        :root {
+            --nav-height: 72px;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            background-color: #999;
+            color: #333;
+            padding-top: var(--nav-height);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+        .content-section {
+            background-color: white;
+            padding: clamp(28px, 4vw, 40px);
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-height: 50vh;
+        }
+        .content-section h2 {
+            font-family: 'Lato', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin: 0 0 18px 0;
+        }
+        .content-section h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0056b3;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .resource-primary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .resource-primary-link:hover { background-color: #003f82; }
+        .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .findings-section { margin: 22px 0; }
+        footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+        @media (max-width: 768px) {
+            .content-section { padding: 24px; }
+            .content-section h2 { font-size: 1.5rem; }
+            .content-section h3 { font-size: 1.2rem; }
+            .content-section p { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
+        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
+        <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
+        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français">
+            <img src="img/fr.svg" alt="Français">
+        </button>
+        <button type="button" id="lang-en" title="Switch to English">
+            <img src="img/au.svg" alt="English">
+        </button>
+    </div>
+</nav>
+
+    <main class="container">
+        <section class="content-section">
+            <h2 data-i18n-html="findings-page-title">Enseignements</h2>
+
+            <div data-i18n-html="findings-content">
+                <p>Cette page présente les enseignements structurés en six volets, issus des 670 toponymes laissés par les expéditions d’Entrecasteaux et Baudin. Chaque bouton mène vers une page détaillée.</p>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-1.html">1. Les voyages d’Entrecasteaux et de Baudin</a></p>
+                    <p>Deux expéditions (1792-1793 et 1800-1804) menées en contexte révolutionnaire et napoléonien : recherche de La Pérouse, relevés hydrographiques, collecte scientifique et mission politique.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-2.html">2. Les voyages français antérieurs</a></p>
+                    <p>Ces voyages s’inscrivent dans un siècle d’explorations françaises vers la Terra Australis, avec instructions officielles, savants embarqués et collecte naturaliste.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-3.html">3. Objectifs du site</a></p>
+                    <p>Le site documente les 670 toponymes, leurs contextes historiques, la fabrication des cartes et l’évolution des noms, pour éclairer l’empreinte française.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-4.html">4. Nomenclature prudente de d’Entrecasteaux</a></p>
+                    <p>Noms internes au voyage (navires, équipage, repères) pour rester consensuels et utiles à la navigation, avec les levés précis de Beautemps-Beaupré.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-5.html">5. Nomenclature de Péron et Freycinet</a></p>
+                    <p>Liste recomposée sous l’Empire, marquée par savants, militaires, arts et lettres, et forte empreinte napoléonienne.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-6.html">6. Pertinence des nomenclatures</a></p>
+                    <p>Deux logiques (voyage vs. récit national) largement remaniées après 1815 ; environ la moitié des noms subsiste aujourd’hui.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div data-include-footer></div>
+
+    <script src="js/translations.js?v=20241012"></script>
+    <script src="js/main.js?v=20241012"></script>
+</body>
+</html>
