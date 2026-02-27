@@ -11,6 +11,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
         :root {
             --nav-height: 72px;
+            --resource-section-gap: 22px;
+            --resource-grid-gap: 24px;
         }
         * { box-sizing: border-box; }
         body {
@@ -38,10 +40,16 @@
         }
         .resource-primary-link:hover { background-color: #003f82; }
         .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
-        .resource-item { margin-top: 28px; }
+        .resource-item {
+            margin-top: 0;
+            padding: 14px 16px;
+            border: 1px solid #e5edf6;
+            border-radius: 12px;
+            background: #fbfdff;
+        }
 
 	        /* Title (button) above, then thumbnail + description side-by-side */
-	        .resource-row { margin-top: 14px; display: flex; gap: 18px; align-items: flex-start; }
+	        .resource-row { margin-top: 12px; display: flex; gap: 18px; align-items: flex-start; }
 	        .resource-thumb { width: 250px; flex: 0 0 250px; }
 	        .resource-thumb a { display: block; text-decoration: none; }
 	        .resource-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
@@ -52,18 +60,27 @@
 
 	        /* Two-column layout (like ships.html) */
 	        .resource-grid {
-	            margin-top: 28px;
+	            margin-top: var(--resource-section-gap);
 	            display: grid;
 	            grid-template-columns: repeat(2, minmax(0, 1fr));
-	            gap: 28px;
+	            gap: var(--resource-grid-gap);
+                align-items: start;
 	        }
 	        .resource-grid .resource-item { margin-top: 0; }
+
+            /* Intro entries are stacked to avoid large vertical white gaps */
+            .resource-grid-intro {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-top: 18px;
+            }
 
 	        /* Add a line break before descriptions (items without thumbnail) */
 	        .resource-item > p + p { margin-top: 12px; }
 
 	        @media (max-width: 768px) {
 	            .resource-grid { grid-template-columns: 1fr; gap: 18px; }
+                .resource-grid-intro { gap: 14px; }
 	            .resource-row { flex-direction: column; }
 	            .resource-thumb { width: min(320px, 100%); flex-basis: auto; }
 	        }
@@ -121,7 +138,7 @@
 	         <section class="content-section">
 	            <h2 data-i18n="resources-title">Resources</h2>
 
-		            <div class="resource-grid">
+		            <div class="resource-grid resource-grid-intro">
 		                <div class="resource-item">
 		                    <p data-i18n-html="resources-methodology-entry"><a class="resource-primary-link" href="/methodology.html">Objectifs et Méthodologie</a></p>
 		                    <p data-i18n="resources-methodology-description">Objectif de ce site web, méthodologie utilisée et sources du contenu.</p>
@@ -206,7 +223,7 @@
 		                        </div>
 		                        <div class="resource-text">
 		                            <p data-i18n="resources-ships-subtitle">The ships of the d'Entrecasteaux and Baudin expeditions</p>
-		                            <p data-i18n="resources-ships-description">La Recherche and L’Espérance (d’Entrecasteaux), Le Géographe, Le Naturaliste and La Casuarina (Baudin).</p>
+		                            <p data-i18n="resources-ships-description">La Recherche and L’Espérance (d’Entrecasteaux), Le Géographe, Le Naturaliste and Le Casuarina (Baudin).</p>
 		                        </div>
 		                    </div>
 		                </div>
