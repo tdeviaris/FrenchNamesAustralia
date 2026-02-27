@@ -66,6 +66,9 @@
         .resource-primary-link:hover { background-color: #003f82; }
         .resource-primary-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
         .findings-section { margin: 22px 0; }
+        [data-lang] { display: none; }
+        html[lang^="en"] [data-lang="en"],
+        html[lang^="fr"] [data-lang="fr"] { display: block; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             .content-section { padding: 24px; }
@@ -78,15 +81,15 @@
 <body>
     <nav>
     <ul>
-        <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
-        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
-        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
-        <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
-        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+        <li><a href="index.html" id="nav-home">Accueil</a></li>
+        <li><a href="map.html" id="nav-map">Carte</a></li>
+        <li><a href="expert.html" id="nav-ai">Q&amp;R IA</a></li>
+        <li><a href="resources.html" id="nav-resources">Ressources</a></li>
+        <li><a href="presentation.html" id="nav-about">&Agrave; propos</a></li>
     </ul>
     <div class="lang-switcher">
-        <button type="button" id="lang-fr" title="Passer en Français">
-            <img src="img/fr.svg" alt="Français">
+        <button type="button" id="lang-fr" title="Passer en Fran&ccedil;ais">
+            <img src="img/fr.svg" alt="Fran&ccedil;ais">
         </button>
         <button type="button" id="lang-en" title="Switch to English">
             <img src="img/au.svg" alt="English">
@@ -96,39 +99,73 @@
 
     <main class="container">
         <section class="content-section">
-            <h2 data-i18n-html="findings-page-title">Enseignements</h2>
-
-            <div data-i18n-html="findings-content">
-                <p>Cette page présente les enseignements structurés en six volets, issus des 671 toponymes laissés par les expéditions d’Entrecasteaux et Baudin. Chaque bouton mène vers une page détaillée.</p>
+            <div data-lang="en">
+                <h2>Findings</h2>
+                <p>This page presents six findings derived from the 671 toponyms left by the d&rsquo;Entrecasteaux and Baudin expeditions. Each button opens a detailed page.</p>
 
                 <div class="findings-section">
-                    <p><a class="resource-primary-link" href="findings-1.html">1. Les voyages d’Entrecasteaux et de Baudin</a></p>
-                    <p>Deux expéditions (1792-1793 et 1800-1804) menées en contexte révolutionnaire et napoléonien : recherche de La Pérouse, relevés hydrographiques, collecte scientifique et mission politique.</p>
+                    <p><a class="resource-primary-link" href="findings-1.html">1. The d&rsquo;Entrecasteaux and Baudin voyages</a></p>
+                    <p>Two expeditions (1792-1793 and 1800-1804) conducted in the Revolutionary and Napoleonic context: search for La P&eacute;rouse, hydrographic surveying, scientific collection, and political mission.</p>
                 </div>
 
                 <div class="findings-section">
-                    <p><a class="resource-primary-link" href="findings-2.html">2. Les voyages français antérieurs</a></p>
-                    <p>Ces voyages s’inscrivent dans un siècle d’explorations françaises vers la Terra Australis, avec instructions officielles, savants embarqués et collecte naturaliste.</p>
+                    <p><a class="resource-primary-link" href="findings-2.html">2. Earlier French voyages</a></p>
+                    <p>The d&rsquo;Entrecasteaux and Baudin voyages extended a French exploratory tradition whose structuring principle was the cartography of the southern lands of the Southern Hemisphere.</p>
                 </div>
 
                 <div class="findings-section">
-                    <p><a class="resource-primary-link" href="findings-3.html">3. Objectifs du site</a></p>
-                    <p>Le site documente les 671 toponymes, leurs contextes historiques, la fabrication des cartes et l’évolution des noms, pour éclairer l’empreinte française.</p>
+                    <p><a class="resource-primary-link" href="findings-3.html">3. The right of first discovery</a></p>
+                    <p>The right of first discovery underpins European naming practices and the historical, political, and memorial issues attached to French toponyms in Australia.</p>
                 </div>
 
                 <div class="findings-section">
-                    <p><a class="resource-primary-link" href="findings-4.html">4. Nomenclature prudente de d’Entrecasteaux</a></p>
-                    <p>Noms internes au voyage (navires, équipage, repères) pour rester consensuels et utiles à la navigation, avec les levés précis de Beautemps-Beaupré.</p>
+                    <p><a class="resource-primary-link" href="findings-4.html">4. d&rsquo;Entrecasteaux&rsquo;s nomenclature</a></p>
+                    <p>Names rooted in expedition logic (ships, crew, and navigational markers), chosen to remain consensual and useful for navigation, alongside Beautemps-Beaupr&eacute;&rsquo;s precise surveys.</p>
                 </div>
 
                 <div class="findings-section">
-                    <p><a class="resource-primary-link" href="findings-5.html">5. Nomenclature de Péron et Freycinet</a></p>
-                    <p>Liste recomposée sous l’Empire, marquée par savants, militaires, arts et lettres, et forte empreinte napoléonienne.</p>
+                    <p><a class="resource-primary-link" href="findings-5.html">5. P&eacute;ron and Freycinet&rsquo;s nomenclature</a></p>
+                    <p>A list reshaped under the Empire, marked by scientists, military officers, arts and letters, and a strong Napoleonic imprint.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-6.html">6. Relevance of the nomenclatures</a></p>
+                    <p>Two naming logics (expedition vs. national narrative), widely revised after 1815; more than half of the names are still in use today.</p>
+                </div>
+            </div>
+
+            <div data-lang="fr">
+                <h2>Enseignements</h2>
+                <p>Cette page pr&eacute;sente les enseignements structur&eacute;s en six volets, issus des 671 toponymes laiss&eacute;s par les exp&eacute;ditions d&rsquo;Entrecasteaux et Baudin. Chaque bouton m&egrave;ne vers une page d&eacute;taill&eacute;e.</p>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-1.html">1. Les voyages d&rsquo;Entrecasteaux et de Baudin</a></p>
+                    <p>Deux exp&eacute;ditions (1792-1793 et 1800-1804) men&eacute;es en contexte r&eacute;volutionnaire et napol&eacute;onien : recherche de La P&eacute;rouse, relev&eacute;s hydrographiques, collecte scientifique et mission politique.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-2.html">2. Les voyages fran&ccedil;ais ant&eacute;rieurs</a></p>
+                    <p>Les voyages de d&rsquo;Entrecasteaux et de Baudin prolongent une tradition d&rsquo;explorations fran&ccedil;aises dont le principe structurant fut la cartographie des terres australes de l&rsquo;h&eacute;misph&egrave;re Sud.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-3.html">3. Le droit de la premi&egrave;re d&eacute;couverte</a></p>
+                    <p>Le droit de premi&egrave;re d&eacute;couverte sous-tend les pratiques europ&eacute;ennes de nomination et les enjeux historiques, politiques et m&eacute;moriels attach&eacute;s aux toponymes fran&ccedil;ais en Australie.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-4.html">4. La nomenclature de d&rsquo;Entrecasteaux</a></p>
+                    <p>Noms internes au voyage (navires, &eacute;quipage, rep&egrave;res) pour rester consensuels et utiles &agrave; la navigation, avec les lev&eacute;s pr&eacute;cis de Beautemps-Beaupr&eacute;.</p>
+                </div>
+
+                <div class="findings-section">
+                    <p><a class="resource-primary-link" href="findings-5.html">5. Nomenclature de P&eacute;ron et Freycinet</a></p>
+                    <p>Liste recompos&eacute;e sous l&rsquo;Empire, marqu&eacute;e par savants, militaires, arts et lettres, et forte empreinte napol&eacute;onienne.</p>
                 </div>
 
                 <div class="findings-section">
                     <p><a class="resource-primary-link" href="findings-6.html">6. Pertinence des nomenclatures</a></p>
-                    <p>Deux logiques (voyage vs. récit national) largement remaniées après 1815 ; environ la moitié des noms subsiste aujourd’hui.</p>
+                    <p>Deux logiques (voyage vs. r&eacute;cit national) largement remani&eacute;es apr&egrave;s 1815 ; plus de la moiti&eacute; des noms sont toujours en usage aujourd&rsquo;hui.</p>
                 </div>
             </div>
         </section>
@@ -136,7 +173,8 @@
 
     <div data-include-footer></div>
 
-    <script src="js/translations.js?v=20241012"></script>
-    <script src="js/main.js?v=20241012"></script>
+    <script src="js/translations.js?v=20260227c"></script>
+    <script src="js/main.js?v=20260227c"></script>
 </body>
 </html>
+
