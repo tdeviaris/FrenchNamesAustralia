@@ -420,14 +420,8 @@
     <script src="js/translations.js?v=20241012"></script>
     <script src="js/main.js?v=20241012"></script>
     <script>
-        // Configuration de l'URL de l'API
-        // API Responses : en dev (vercel dev) on utilise le même origin/port que la page.
-        // Si la page est servie depuis GitHub Pages, on pointe vers Vercel en prod.
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const isVercel = window.location.hostname.includes('vercel.app');
-        const API_URL = (isLocal || isVercel)
-            ? `${window.location.origin}/api/responses-chat`
-            : 'https://french-names-australia.vercel.app/api/responses-chat';
+        // Configuration de l'URL de l'API — toujours same-origin
+        const API_URL = `${window.location.origin}/api/responses-chat`;
 
         const chatMessages = document.getElementById('chat-messages');
         const chatForm = document.getElementById('chat-form');
@@ -943,7 +937,7 @@
                 console.error('Error:', error);
                 hideTypingIndicator();
                 if (error.name !== 'AbortError') {
-                    showError('Error: Unable to reach the AI assistant. [' + (error.message || error.name || String(error)) + ']');
+                    showError('Error: Unable to reach the AI assistant. Please try again later.');
                 }
             } finally {
                 clearSlowResponseNote();

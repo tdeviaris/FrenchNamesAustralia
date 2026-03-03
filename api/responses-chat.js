@@ -4,8 +4,16 @@
 import OpenAI from 'openai';
 import { TOPONYMES_INSTRUCTIONS } from '../responses/instructions.js';
 
+const ALLOWED_ORIGINS = [
+  'https://french-names-australia.vercel.app',
+  'https://www.frenchplacenames.au',
+  'https://frenchplacenames.au',
+];
+
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://french-names-australia.vercel.app');
+  const origin = req.headers.origin;
+  const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
