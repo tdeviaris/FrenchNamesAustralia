@@ -51,6 +51,7 @@
 	        /* Title (button) above, then thumbnail + description side-by-side */
 	        .resource-row { margin-top: 12px; display: flex; gap: 18px; align-items: flex-start; }
 	        .resource-thumb { width: 250px; flex: 0 0 250px; }
+            .resource-thumb.resource-thumb-lg { width: 375px; flex: 0 0 375px; }
 	        .resource-thumb a { display: block; text-decoration: none; }
 	        .resource-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
 	        .resource-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; }
@@ -171,7 +172,7 @@
 	                <div class="resource-item">
 	                    <p data-i18n-html="resources-charts-entry"><a class="resource-primary-link" href="maps.html">Nautical charts</a></p>
 	                    <div class="resource-row">
-	                        <div class="resource-thumb">
+	                        <div class="resource-thumb resource-thumb-lg">
 	                            <a href="maps.html" aria-label="Open Nautical charts">
 	                                <img src="img/carte-de-freycinet-1812.jpg" alt="" loading="lazy" decoding="async">
 	                            </a>
@@ -187,7 +188,7 @@
 	                <div class="resource-item">
 	                    <p data-i18n-html="resources-reports-entry"><a class="resource-primary-link" href="rapport.html">Illustrated mission reports</a></p>
 	                    <div class="resource-row">
-	                        <div class="resource-thumb">
+	                        <div class="resource-thumb resource-thumb-lg">
 	                            <a href="rapport.html" aria-label="Open Illustrated mission reports">
 	                                <img src="rapports/rapport1_html_dcce71fe.jpg" alt="" loading="lazy" decoding="async">
 	                            </a>
