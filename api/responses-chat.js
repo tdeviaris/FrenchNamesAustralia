@@ -8,6 +8,8 @@ const ALLOWED_ORIGINS = [
   'https://french-names-australia.vercel.app',
   'https://www.frenchplacenames.au',
   'https://frenchplacenames.au',
+  'https://www.frenchplacenames.com',
+  'https://frenchplacenames.com',
 ];
 
 export default async function handler(req, res) {
