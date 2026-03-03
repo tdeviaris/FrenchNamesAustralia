@@ -943,7 +943,7 @@
                 console.error('Error:', error);
                 hideTypingIndicator();
                 if (error.name !== 'AbortError') {
-                    showError('Error: Unable to reach the AI assistant. Please try again later.');
+                    showError('Error: Unable to reach the AI assistant. [' + (error.message || error.name || String(error)) + ']');
                 }
             } finally {
                 clearSlowResponseNote();
