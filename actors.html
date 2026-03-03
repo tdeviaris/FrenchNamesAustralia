@@ -19,15 +19,15 @@
         .content-section h1 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 18px 0; }
         .content-section h2.subtitle { font-family: 'Lato', sans-serif; font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.2rem); margin: 0 0 14px 0; color: #444; }
         .content-section p.intro { margin: 0 0 18px 0; }
-        .toc { margin: 0 0 20px 0; padding-left: 18px; }
-        .toc li { margin: 6px 0; }
+        .toc { margin: 0 0 20px 0; padding-left: 18px; column-count: 2; column-gap: 32px; }
+        .toc li { margin: 6px 0; break-inside: avoid; }
         .entry-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin-top: 30px; scroll-margin-top: calc(var(--nav-height) + 16px); }
         .entry-title a.backtop { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; }
         .entry-title a.backtop img { width: 24px; height: 24px; opacity: 0.8; transition: opacity 0.2s ease; }
         .entry-title a.backtop:hover img { opacity: 1; }
         .entry { margin-bottom: 40px; }
         .entry-content { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
-        .entry-image { flex-shrink: 0; width: 200px; }
+        .entry-image { flex-shrink: 0; width: 300px; }
         .entry-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
         .entry-text { flex: 1; min-width: 300px; }
         .entry-text p { margin: 0.6em 0; line-height: 1.55; }
@@ -82,7 +82,8 @@
 
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media  (max-width: 768px)  {.entry-content { flex-direction: column; }
-            .entry-image { width: 100%; max-width: 300px; margin: 0 auto; }
+            .entry-image { width: 100%; max-width: 450px; margin: 0 auto; }
+            .toc { column-count: 1; }
         }
 
     
@@ -436,4 +437,3 @@
     <script src="js/main.js"></script>
 </body>
 </html>
-
