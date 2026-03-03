@@ -233,21 +233,10 @@
             const iiifCloseBtn = document.querySelector('.iiif-close');
             const viewerUrl = 'Viewer.html';
             const archiveFallbackUrl = 'https://archive.org/details/voyagededcouve03pr/mode/2up';
-            const isLikelyMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent)
-                || window.matchMedia('(max-width: 900px)').matches;
-            const forceStandaloneViewer = window.location.hostname.endsWith('frenchplacenames.com');
             let lastFocusedElement = null;
-
-            const openViewerInNewTab = (url) => {
-                window.open(url, '_blank', 'noopener,noreferrer');
-            };
 
             const openIIIFOverlay = () => {
                 if (!iiifOverlay || !iiifViewer) return;
-                if (isLikelyMobile || forceStandaloneViewer) {
-                    openViewerInNewTab(viewerUrl);
-                    return;
-                }
                 iiifViewer.src = viewerUrl;
                 iiifOverlay.classList.add('is-visible');
                 lastFocusedElement = document.activeElement;
@@ -276,8 +265,9 @@
             const handleIIIFMessage = (event) => {
                 if (event.origin !== window.location.origin) return;
                 if (!event.data || event.data.type !== 'iiif-viewer-error') return;
-                closeIIIFOverlay();
-                openViewerInNewTab(event.data.fallbackUrl || archiveFallbackUrl);
+                if (!iiifOverlay || !iiifViewer) return;
+                iiifViewer.src = event.data.fallbackUrl || archiveFallbackUrl;
+                iiifOverlay.classList.add('is-visible');
             };
 
             voyageLinks.forEach((voyageLink) => {
