@@ -213,6 +213,26 @@ function enhanceImagesAvifPreviewThenJpeg() {
     });
 }
 
+// Centre le titre principal des pages de sections Ressources / À propos
+// lorsque la feuille locale n'est pas encore alignée.
+function centerSectionPageTitleFallback() {
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    const lastSegment = pathSegments[pathSegments.length - 1] || '';
+    const currentPage = (lastSegment || 'index.html').toLowerCase();
+    const normalizedPage = currentPage.endsWith('.html') ? currentPage : `${currentPage}.html`;
+    const pagesNeedingFallback = new Set(['actors.html']);
+    if (!pagesNeedingFallback.has(normalizedPage)) {
+        return;
+    }
+
+    document.querySelectorAll('.content-section').forEach((section) => {
+        const heading = section.querySelector(':scope > h1, :scope > h2');
+        if (heading) {
+            heading.style.textAlign = 'center';
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Nav déjà inline (injectée au build) : initialiser simplement
     setActiveNavLink();
@@ -220,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     prefetchNavLinks();
     enhanceUpArrowLinks();
     enhanceImagesAvifPreviewThenJpeg();
+    centerSectionPageTitleFallback();
 
     const footerContainer = document.querySelector('[data-include-footer]');
 
