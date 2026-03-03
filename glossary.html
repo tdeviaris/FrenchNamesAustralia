@@ -28,7 +28,9 @@
         .entry p { margin: 0.6em 0; line-height: 1.55; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
 
-    
+        /* Two-column TOC */
+        .toc { column-count: 2; column-gap: 32px; }
+        @media (max-width: 768px) { .toc { column-count: 1; } }
 
         /* Language-specific content blocks */
         [data-lang] { display: none; }
@@ -369,7 +371,7 @@
 
             <p class="intro">
                 Ce glossaire explique les principaux termes historiques, politiques et scientifiques mentionnés dans le projet
-                <em>French Names Along the Australian Coastline</em>.
+                <em>Noms Français le long du littoral Australien</em>.
             </p>
 
             <ul class="toc">

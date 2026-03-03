@@ -31,6 +31,39 @@
         .quote-block p { margin: 0 0 10px 0; }
         .quote-block p:last-child { margin-bottom: 0; }
         [data-lang] { display: none; }
+        .findings-bottom-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .findings-next-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .findings-next-link:hover { background-color: #003f82; }
+        .findings-next-link:focus-visible,
+        .findings-top-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .findings-top-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid rgba(0, 86, 179, 0.35);
+        }
+        .findings-top-link img { width: 24px; height: 24px; }
         html[lang^="en"] [data-lang="en"],
         html[lang^="fr"] [data-lang="fr"] { display: block; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
@@ -79,6 +112,11 @@
             <p>Before publishing the nautical part of the voyage myself and to continue P&eacute;ron&rsquo;s account, I would have liked to change a nomenclature that today the political and moral situation of France and Europe repels; but the first volume had already been on sale for several years, the second was impatiently awaited by a large number of subscribers and it was probably more important to satisfy the public than to suppress the rest of a book whose nomenclature, in the final analysis, cannot harm the nature or the importance of the facts.</p>
             <p>More controversially, the nomenclature failed to respect, in large sections, the European sacrosanct &lsquo;right of first discovery&rsquo; claimed by the British navigator Matthew Flinders, which granted him naming rights along parts of the southern coast of Australia. The disregard of this practice infuriated the British Admiralty. Consequently, more than half of P&eacute;ron and Freycinet&rsquo;s place names were removed from the nomenclature and replaced by British names during the colonisation of Australia. This prompted Charles de Fleurieu&rsquo;s great-nephew, Alphonse de Fleurieu, in the late nineteenth century, to lobby the British Government for the restitution of some names that related to features left unnamed by Flinders or by previous navigators. Of the 32 names Alphonse de Fleurieu sought to claim back in South Australia, eight were restored, among them Fleurieu Peninsula.</p>
             <p>Today, about half of the place names (360) from the d&rsquo;Entrecasteaux and Baudin expeditions are registered in an Australian English translation in the database of the Composite Gazetteer of Australia. They represent mostly the names of French scientists and of the ships&rsquo; crews. Other place names that have been retained generally have &lsquo;historical&rsquo; connotations. The following chapters provide an insight into the meanings and the significance of the initial 671 names given to places in Australia by the French. The choice of most of these names was determined by the authors&rsquo; commitment to laud the national esteem that the Napoleonic empire had restored. That their scheme backfired following the emperor&rsquo;s demise provides us with an example of the twists and turns of human history.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-top-link" href="findings.html" title="Back to Findings">
+                    <img src="img/up-arrow.svg" alt="Back to Findings">
+                </a>
+            </div>
         </section>
         </div>
 
@@ -103,6 +141,11 @@
             <p>Avant de publier moi-m&ecirc;me la partie nautique du voyage et de continuer le r&eacute;cit de P&eacute;ron, j&rsquo;aurais voulu changer une nomenclature que repoussent aujourd&rsquo;hui la situation politique et morale de la France et de l&rsquo;Europe; mais le premier volume &eacute;tait en vente depuis plusieurs ann&eacute;es, le second &eacute;tait impatiemment attendu par un grand nombre de souscripteurs, et il importait sans doute davantage de satisfaire le public que de supprimer le reste d&rsquo;un livre dont la nomenclature, en d&eacute;finitive, ne saurait nuire &agrave; la nature ni &agrave; l&rsquo;importance des faits.</p>
             <p>Plus controvers&eacute;e encore fut l&rsquo;atteinte, sur de larges portions, au sacro-saint droit europ&eacute;en de la &lsquo;premi&egrave;re d&eacute;couverte&rsquo; revendiqu&eacute; par le navigateur britannique Matthew Flinders, qui lui conf&eacute;rait des droits de d&eacute;nomination sur certaines parties de la c&ocirc;te m&eacute;ridionale de l&rsquo;Australie. Le non-respect de cette pratique irrita l&rsquo;Amiraut&eacute; britannique. En cons&eacute;quence, plus de la moiti&eacute; des noms de lieux de P&eacute;ron et Freycinet furent supprim&eacute;s de la nomenclature et remplac&eacute;s par des noms britanniques lors de la colonisation de l&rsquo;Australie. Cela conduisit le petit-neveu de Charles de Fleurieu, Alphonse de Fleurieu, &agrave; intervenir aupr&egrave;s du gouvernement britannique, &agrave; la fin du XIXe si&egrave;cle, afin d&rsquo;obtenir la restitution de certains noms relatifs &agrave; des lieux laiss&eacute;s sans nom par Flinders ou par des navigateurs ant&eacute;rieurs. Sur les 32 noms qu&rsquo;Alphonse de Fleurieu revendiquait en Australie-M&eacute;ridionale, huit furent r&eacute;tablis, dont celui de la p&eacute;ninsule Fleurieu.</p>
             <p>Aujourd&rsquo;hui, environ la moiti&eacute; des noms de lieux (360) issus des exp&eacute;ditions de d&rsquo;Entrecasteaux et de Baudin sont enregistr&eacute;s, sous une traduction en anglais australien, dans la base du Composite Gazetteer of Australia. Ils correspondent principalement &agrave; des noms de savants fran&ccedil;ais et de membres des &eacute;quipages. Les autres noms conserv&eacute;s ont g&eacute;n&eacute;ralement une connotation &lsquo;historique&rsquo;. Les chapitres suivants donnent un aper&ccedil;u du sens et de la port&eacute;e des 671 noms initiaux donn&eacute;s par les Fran&ccedil;ais &agrave; des lieux en Australie. Le choix de la plupart de ces noms fut d&eacute;termin&eacute; par la volont&eacute; de leurs auteurs de magnifier le prestige national que l&rsquo;Empire napol&eacute;onien avait restaur&eacute;. Le fait que ce projet se soit retourn&eacute; contre eux apr&egrave;s la chute de l&rsquo;empereur offre un exemple des d&eacute;tours et retournements de l&rsquo;histoire humaine.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-top-link" href="findings.html" title="Retour aux enseignements">
+                    <img src="img/up-arrow.svg" alt="Retour aux enseignements">
+                </a>
+            </div>
         </section>
         </div>
     </main>

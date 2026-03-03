@@ -27,6 +27,39 @@
             color: #153a66;
         }
         [data-lang] { display: none; }
+        .findings-bottom-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .findings-next-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .findings-next-link:hover { background-color: #003f82; }
+        .findings-next-link:focus-visible,
+        .findings-top-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .findings-top-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid rgba(0, 86, 179, 0.35);
+        }
+        .findings-top-link img { width: 24px; height: 24px; }
         html[lang^="en"] [data-lang="en"],
         html[lang^="fr"] [data-lang="fr"] { display: block; }
         @media (max-width: 768px) {
@@ -67,6 +100,12 @@
             <p class="section-subtitle">Saint-Alo&uuml;arn on the western coast of New Holland (1772)</p>
             <p>In the same year, the expedition of Kerguelen and Saint-Alo&uuml;arn produced the most substantial French reconnaissance on the western seaboard before d&rsquo;Entrecasteaux. After separation at sea, Saint-Alo&uuml;arn continued eastward and reached the coast near Cape Leeuwin in March 1772, then proceeded northward to Dirk Hartog Island. There he organized a ceremony to claim possession of the land and another to bury one of his crew members who had likely died of scurvy.</p>
             <p>These operations did not lead to durable political occupation; nor did all proposed names survive in published atlases. Their significance lies elsewhere: they provided route knowledge, coastal bearings, and procedural precedents later revisited by French hydrographers. For d&rsquo;Entrecasteaux and Baudin, earlier French traces along the Australian coast became points of comparison in a cumulative cartographic method aimed at improving chart reliability through successive observations.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-next-link" href="findings-3.html">3. The right of first discovery</a>
+                <a class="findings-top-link" href="findings.html" title="Back to Findings">
+                    <img src="img/up-arrow.svg" alt="Back to Findings">
+                </a>
+            </div>
         </section>
         </div>
         <div data-lang="fr">
@@ -88,6 +127,12 @@
             <p>Remontant la c&ocirc;te vers le nord, Saint-Alo&uuml;arn mouilla &agrave; l&rsquo;&icirc;le Dirk Hartog, o&ugrave; il donna le nom de pointe des Hauts-Fonds &agrave; l&rsquo;extr&eacute;mit&eacute; septentrionale de la presqu&rsquo;&icirc;le. Il y organisa une c&eacute;r&eacute;monie de prise de possession au nom du roi de France, ainsi qu&rsquo;une s&eacute;pulture pour l&rsquo;un de ses matelots, Massicot, vraisemblablement mort du scorbut.</p>
             <p>Aucune mesure ne fut prise par la monarchie fran&ccedil;aise pour transformer ces gestes symboliques en occupation effective du territoire.</p>
             <p>Ces op&eacute;rations ne d&eacute;bouch&egrave;rent ni sur une occupation politique effective ni sur la conservation de tous les noms propos&eacute;s dans les atlas publi&eacute;s ult&eacute;rieurement. Leur port&eacute;e est d&rsquo;un autre ordre : elles fournissent des rep&egrave;res de route, des alignements c&ocirc;tiers et des pr&eacute;c&eacute;dents op&eacute;ratoires repris ensuite par les hydrographes fran&ccedil;ais. Pour d&rsquo;Entrecasteaux puis Baudin, les traces fran&ccedil;aises ant&eacute;rieures sur le littoral australien deviennent des points de comparaison dans une m&eacute;thode cumulative de correction cartographique fond&eacute;e sur la r&eacute;p&eacute;tition des observations.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-next-link" href="findings-3.html">3. Le droit de la premi&egrave;re d&eacute;couverte</a>
+                <a class="findings-top-link" href="findings.html" title="Retour aux enseignements">
+                    <img src="img/up-arrow.svg" alt="Retour aux enseignements">
+                </a>
+            </div>
         </section>
         </div>    </main>
 

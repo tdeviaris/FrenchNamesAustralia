@@ -6,11 +6,36 @@
   },
   "headers": [
     {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src 'self'; connect-src 'self' https:; media-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+        }
+      ]
+    },
+    {
       "source": "/api/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "value": "https://french-names-australia.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Methods",
@@ -22,15 +47,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    { "source": "/glossaryE.html", "destination": "/glossary.html", "permanent": true },
-    { "source": "/glossaryF.html", "destination": "/glossary.html", "permanent": true },
-    { "source": "/acteursE.html", "destination": "/actors.html", "permanent": true },
-    { "source": "/acteursF.html", "destination": "/actors.html", "permanent": true },
-    { "source": "/cartesE.html", "destination": "/maps.html", "permanent": true },
-    { "source": "/cartesF.html", "destination": "/maps.html", "permanent": true },
-    { "source": "/SourcesE.html", "destination": "/methodology.html", "permanent": true },
-    { "source": "/SourcesF.html", "destination": "/methodology.html", "permanent": true }
   ]
 }

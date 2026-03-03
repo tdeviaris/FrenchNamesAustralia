@@ -32,6 +32,39 @@
         .illustration img { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.12); }
         .illustration figcaption { font-size: 0.95rem; color: #444; margin-top: 8px; }
         [data-lang] { display: none; }
+        .findings-bottom-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .findings-next-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .findings-next-link:hover { background-color: #003f82; }
+        .findings-next-link:focus-visible,
+        .findings-top-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .findings-top-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid rgba(0, 86, 179, 0.35);
+        }
+        .findings-top-link img { width: 24px; height: 24px; }
         html[lang^="en"] [data-lang="en"],
         html[lang^="fr"] [data-lang="fr"] { display: block; }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
@@ -87,7 +120,7 @@
             <p>Fig.1 : From Beautemps-Beaupré, C.-F.(Ed), 1807. Atlas du voyage de Bruny-Dentrecasteaux, plate1 ‘Carte générale de la Nouvelle Hollande et des archipels du Grand Océan, qui sont au nord et à l&#x27;est de cette terre’. Focus on New Holland. The route of the vessels has been added in aqua-blue (cyan) for the year 1792 and in purple for the year 1793</p>
             <figure class="illustration">
                 <img src="img/map_beautemps_path.jpg" alt="Map by Beautemps-Beaupré showing voyage tracks">
-                <figcaption><a href="http://nla.gov.au/nla.obj-230810237" target="_blank" rel="noopener">Source: National Library of Australia</a></figcaption>
+                <figcaption><a href="http://nla.gov.au/nla.obj-230810237" target="_blank" rel="noopener noreferrer">Source: National Library of Australia</a></figcaption>
             </figure>
             <p>The return of the expedition to France was accompanied by tragedy and many unexpected challenges. Scurvy and dysentery had claimed the lives of many officers and sailors, including those of the commander d’Entrecasteaux, off Hermit Island, part of Papua New Guinea, in July 1793, and of his successor, Alexandre d’Auribeau, in Java, in February 1794. Aboard L’Espérance, Huon de Kermadec, had died earlier, in May 1793, in New Caledonia, following a two-month illness that led to etic fever (‘fièvre étique’).</p>
             <p>In late October 1793, when the ships reached Java, governed at that time by the Dutch, the news that Louis XVI had been executed and that Revolutionary France was at war with several European nations, including Great Britain and Holland, widened the split between the expedition’s republican and royalist camps. Those amongst the crew who sympathised with the republican cause were made prisoners by the Dutch colonisers. In addition, the French commander was unable to pay the Dutch administration for accommodation, food and hospital bills, and for the repair of the two ships, which were in poor condition. Hence, the vessels were transferred to the Dutch East India Company at Batavia, on condition that the Dutch would repatriate crew members who wished to return to France, including the prisoners.</p>
@@ -99,12 +132,12 @@
             <p>Fig.2: Le Géographe, detail of the watercolor on the opening page of Baudin’s personal journal</p>
             <figure class="illustration">
                 <img src="img/geographe.jpg" alt="Le Géographe, watercolor from Baudin’s journal">
-                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener">Source: Archives Nationale de France, MAR/5JJ/35</a></figcaption>
+                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener noreferrer">Source: Archives Nationale de France, MAR/5JJ/35</a></figcaption>
             </figure>
             <p>Fig.3: Le Naturaliste, detail of the watercolor on the opening page of Baudin’s personal journal</p>
             <figure class="illustration">
                 <img src="img/naturaliste.jpg" alt="Le Naturaliste, watercolor from Baudin’s journal">
-                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener">Source: Archives Nationale de France, MAR/5JJ/35</a></figcaption>
+                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener noreferrer">Source: Archives Nationale de France, MAR/5JJ/35</a></figcaption>
             </figure>
             <p>The corvettes left Le Havre on the 19th of October 1800 with much more pomp and fanfare than that accompanying the departure of the d’Entrecasteaux expedition, almost ten years earlier. Hamelin, the captain of le Naturaliste described their departure:</p>
             <p class="quote">At 9am, we went out the Vieux Bassin of Le Havre with a fresh breeze from ESE, with our topsails and topgallants, left the jetty, passed under the tower of Francois 1er, greeted by cries of Vive la République. The préfet for maritime affairs, Bertin, was there, and a bourgeois orchestra played patriotic anthems, especially the Chant du départ.</p>
@@ -114,6 +147,12 @@
             <p>The &#x27;materials&#x27; (rough charts and geographical data) that Baudin mentioned were brought back to France on board the Naturaliste, arriving at Le Havre on the 7th of June 1803. That was shortly after the breakdown of the Treaty of Amiens (25 March 1802-18 May 1803) and the resumption of colonial and European hostilities with Great Britain.</p>
             <p>In the meantime, le Géographe had carried out further surveying work in Australia before Baudin decided in July 1803 to head back to France. Le Géographe arrived at the port of Lorient in Brittany on 24 March 1804 without the expedition commander, because Baudin had died from tuberculosis on the Isle de France (now Mauritius) in September 1803.</p>
             <p>Less than two months after le Géographe’s return, in May 1804, Bonaparte, Consul for life by plebiscite since 1802, became Emperor of the French as Napoléon the first (his coronation took place on the 2 December 1804).  Le Consulat and the &#x27;République française&#x27; were abolished together with the revolutionary calendar, and the Gregorian calendar was restored. However, administrative reforms continued to be pursued. It was during this new imperial period that the forms of the monarchy and its etiquettes were progressively re-established. It was also then that the atlases and narratives of the d’Entrecasteaux and the Baudin expeditions, in which the place names were registered, were edited and published.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-next-link" href="findings-2.html">2. Earlier French voyages</a>
+                <a class="findings-top-link" href="findings.html" title="Back to Findings">
+                    <img src="img/up-arrow.svg" alt="Back to Findings">
+                </a>
+            </div>
         </section>
         </div>
 
@@ -144,7 +183,7 @@
             <p>Fig. 1 : D’après Beautemps-Beaupré, C.-F. (éd.), 1807. <em>Atlas du voyage de Bruny-Dentrecasteaux</em>, planche 1, « Carte générale de la Nouvelle Hollande et des archipels du Grand Océan, qui sont au nord et à l’est de cette terre ». Détail sur la Nouvelle-Hollande. La route des navires a été ajoutée en bleu cyan pour l’année 1792 et en violet pour l’année 1793.</p>
             <figure class="illustration">
                 <img src="img/map_beautemps_path.jpg" alt="Carte de Beautemps-Beaupré montrant les routes du voyage">
-                <figcaption><a href="http://nla.gov.au/nla.obj-230810237" target="_blank" rel="noopener">Source : National Library of Australia</a></figcaption>
+                <figcaption><a href="http://nla.gov.au/nla.obj-230810237" target="_blank" rel="noopener noreferrer">Source : National Library of Australia</a></figcaption>
             </figure>
             <p>Le retour de l’expédition en France fut marqué par la tragédie et de nombreux aléas. Le scorbut et la dysenterie avaient coûté la vie à de nombreux officiers et marins, notamment au commandant d’Entrecasteaux, au large de l’île Hermit (Papouasie–Nouvelle-Guinée), en juillet 1793, ainsi qu’à son successeur Alexandre d’Auribeau, à Java, en février 1794. À bord de l’Espérance, Huon de Kermadec était mort plus tôt, en mai 1793, en Nouvelle-Calédonie, à la suite d’une maladie de deux mois qui provoqua une fièvre éthique (« fièvre étique »).</p>
             <p>Fin octobre 1793, lorsque les navires arrivèrent à Java, alors gouvernée par les Hollandais, la nouvelle de l’exécution de Louis XVI et de l’état de guerre entre la France révolutionnaire et plusieurs nations européennes, dont la Grande-Bretagne et la Hollande, accentua la fracture entre les camps républicain et royaliste de l’expédition. Les membres d’équipage favorables à la cause républicaine furent faits prisonniers par les colonisateurs hollandais. De plus, le commandement français ne put régler à l’administration hollandaise les frais d’hébergement, de nourriture, d’hôpital et de réparation des deux navires, alors en mauvais état. Les bâtiments furent donc cédés à la Compagnie hollandaise des Indes orientales à Batavia, à condition que les Hollandais rapatrient les membres de l’équipage souhaitant rentrer en France, y compris les prisonniers.</p>
@@ -156,12 +195,12 @@
             <p>Fig. 2 : Le Géographe, détail de l’aquarelle en page d’ouverture du journal personnel de Baudin</p>
             <figure class="illustration">
                 <img src="img/geographe.jpg" alt="Le Géographe, aquarelle du journal de Baudin">
-                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener">Source : Archives nationales de France, MAR/5JJ/35</a></figcaption>
+                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener noreferrer">Source : Archives nationales de France, MAR/5JJ/35</a></figcaption>
             </figure>
             <p>Fig. 3 : Le Naturaliste, détail de l’aquarelle en page d’ouverture du journal personnel de Baudin</p>
             <figure class="illustration">
                 <img src="img/naturaliste.jpg" alt="Le Naturaliste, aquarelle du journal de Baudin">
-                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener">Source : Archives nationales de France, MAR/5JJ/35</a></figcaption>
+                <figcaption><a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/media/FRAN_IR_054071/c-6twcawec--h1gpwgt9wjzp/FRAN_0044_00044_L" target="_blank" rel="noopener noreferrer">Source : Archives nationales de France, MAR/5JJ/35</a></figcaption>
             </figure>
             <p>Les corvettes quittèrent Le Havre le 19 octobre 1800 avec un apparat et un cérémonial bien plus marqués que ceux qui avaient entouré le départ de l’expédition d’Entrecasteaux près de dix ans plus tôt. Hamelin, capitaine du Naturaliste, décrivit leur départ :</p>
             <p class="quote">À 9 heures, nous sortîmes du Vieux-Bassin du Havre avec une jolie brise d’ESE, sous huniers et perroquets ; nous laissâmes la jetée, passâmes sous la tour François 1er, salués par des cris de Vive la République. Le préfet maritime, Bertin, était là, et un orchestre de bourgeois jouait des airs patriotiques, notamment le Chant du départ.</p>
@@ -171,6 +210,12 @@
             <p>Les « matériaux » (cartes de travail et données géographiques) mentionnés par Baudin furent rapportés en France à bord du Naturaliste, arrivé au Havre le 7 juin 1803. C’était peu après la rupture du traité d’Amiens (25 mars 1802–18 mai 1803) et la reprise des hostilités coloniales et européennes avec la Grande-Bretagne.</p>
             <p>Entre-temps, le Géographe avait poursuivi les relevés en Australie avant que Baudin ne décide, en juillet 1803, de rentrer en France. Le Géographe arriva au port de Lorient, en Bretagne, le 24 mars 1804, sans le commandant de l’expédition, Baudin étant mort de tuberculose à l’Isle de France (aujourd’hui Maurice) en septembre 1803.</p>
             <p>Moins de deux mois après le retour du Géographe, en mai 1804, Bonaparte, consul à vie par plébiscite depuis 1802, devint Empereur des Français sous le nom de Napoléon Ier (son sacre eut lieu le 2 décembre 1804). Le Consulat et la « République française » furent abolis en même temps que le calendrier révolutionnaire, et le calendrier grégorien fut rétabli. Les réformes administratives continuèrent toutefois. C’est au cours de cette nouvelle période impériale que les formes de la monarchie et son étiquette furent progressivement réintroduites. C’est aussi à ce moment-là que les atlas et récits des expéditions de d’Entrecasteaux et de Baudin, dans lesquels les noms de lieux étaient consignés, furent édités et publiés.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-next-link" href="findings-2.html">2. Les voyages fran&ccedil;ais ant&eacute;rieurs</a>
+                <a class="findings-top-link" href="findings.html" title="Retour aux enseignements">
+                    <img src="img/up-arrow.svg" alt="Retour aux enseignements">
+                </a>
+            </div>
         </section>
         </div>
     </main>

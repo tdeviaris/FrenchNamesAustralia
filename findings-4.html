@@ -30,6 +30,39 @@
         .illustration img { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.12); }
         .illustration figcaption { font-size: 0.95rem; color: #444; margin-top: 8px; }
         [data-lang] { display: none; }
+        .findings-bottom-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .findings-next-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .findings-next-link:hover { background-color: #003f82; }
+        .findings-next-link:focus-visible,
+        .findings-top-link:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+        .findings-top-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid rgba(0, 86, 179, 0.35);
+        }
+        .findings-top-link img { width: 24px; height: 24px; }
         html[lang^="en"] [data-lang="en"],
         html[lang^="fr"] [data-lang="fr"] { display: block; }
         @media (max-width: 768px) {
@@ -61,7 +94,7 @@
     <main class="container">
         <div data-lang="en">
         <section class="content-section">
-            <h2>d&rsquo;Entrecasteaux&rsquo;s Nomenclature: Political Neutrality and the Logic of the Expedition <a href="findings.html" title="Back to Findings"><img src="img/up-arrow.svg" alt="Back to Findings" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
+            <h2>4. d&rsquo;Entrecasteaux&rsquo;s Nomenclature: Political Neutrality and the Logic of the Expedition <a href="findings.html" title="Back to Findings"><img src="img/up-arrow.svg" alt="Back to Findings" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
             <p>D&rsquo;Entrecasteaux&rsquo;s naming practice rested on a maritime workflow grounded in hydrographic observation. Coastal forms were first surveyed, sketched and positioned by the expedition&rsquo;s engineer-geographers; only then were names assigned by the commander and entered in the log. In operational terms, nomenclature followed navigation: it translated measured space into a stable language of route, landmark and memory.</p>
             <p class="section-subtitle">Editing the journal and atlas after the voyage</p>
             <p>After the Peace of Amiens (1802), the expedition&rsquo;s journals and charts, previously seized, returned to France. Rossel, final commander after the deaths of d&rsquo;Entrecasteaux and his successors, was authorized to edit the commander&rsquo;s journal, while Beautemps-Beaupre supervised hydrographic publication at the Depot des cartes et plans de la Marine. Their combined work led to the atlas published in 1808, which integrated both coastal geometry and place naming in a coherent documentary framework.</p>
@@ -69,18 +102,24 @@
             <p class="section-subtitle">Atlas of the d'Entrecasteaux voyage</p>
             <figure class="illustration">
                 <img src="img/atlas-dentrecasteaux-cover.jpg" alt="First page of the Atlas du voyage de Bruny d&rsquo;Entrecasteaux">
-                <figcaption>First page of the <em>Atlas du voyage de Bruny d&rsquo;Entrecasteaux, contre-amiral de France, commandant les fr&eacute;gates La Recherche et L&rsquo;Esp&eacute;rance, fait par ordre du gouvernement en 1791, 1792 et 1793, publi&eacute; par ordre de Sa Majest&eacute; l&rsquo;Empereur et Roi, sous le minist&egrave;re de Son Excellence le vice-amiral Decr&egrave;s</em> (1807), by C.-F. Beautemps-Beaupr&eacute; and A. R. J. Bruny d&rsquo;Entrecasteaux. Source: National Library of Australia, <a href="http://nla.gov.au/nla.obj-230810006" target="_blank" rel="noopener">http://nla.gov.au/nla.obj-230810006</a></figcaption>
+                <figcaption>First page of the <em>Atlas du voyage de Bruny d&rsquo;Entrecasteaux, contre-amiral de France, commandant les fr&eacute;gates La Recherche et L&rsquo;Esp&eacute;rance, fait par ordre du gouvernement en 1791, 1792 et 1793, publi&eacute; par ordre de Sa Majest&eacute; l&rsquo;Empereur et Roi, sous le minist&egrave;re de Son Excellence le vice-amiral Decr&egrave;s</em> (1807), by C.-F. Beautemps-Beaupr&eacute; and A. R. J. Bruny d&rsquo;Entrecasteaux. Source: National Library of Australia, <a href="http://nla.gov.au/nla.obj-230810006" target="_blank" rel="noopener noreferrer">http://nla.gov.au/nla.obj-230810006</a></figcaption>
             </figure>
             <p class="section-subtitle">The Politics of Neutral Naming in Revolutionary-Era Cartography</p>
             <p>The 68 names attached to Australian coastal sectors in the atlas reflect a deliberate politics of moderation. In a revolutionary context marked by civil conflict, d&rsquo;Entrecasteaux avoided overtly royalist, aristocratic or doctrinal labels that could intensify divisions aboard. His nomenclature privileged references to officers, crew, ships, and coastal characteristics observed during the voyage.</p>
             <p>This choice had clear maritime implications: names functioned as operational markers, linked to routeing, anchorage, hazards, and recognition of surveyed features. At the same time, the commander acknowledged earlier navigators when useful for historical continuity and cartographic comparison, including French predecessors on the Australian margin.</p>
             <p>From a historical-geographical perspective, this was a cautious nomenclature: internally cohesive, diplomatically calibrated, and closely aligned with hydrographic purpose. Its contrast with the later imperial and commemorative program of Peron and Freycinet helps explain the different political trajectories of the two naming systems after 1815.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-next-link" href="findings-5.html">5. P&eacute;ron and Freycinet&rsquo;s nomenclature</a>
+                <a class="findings-top-link" href="findings.html" title="Back to Findings">
+                    <img src="img/up-arrow.svg" alt="Back to Findings">
+                </a>
+            </div>
         </section>
         </div>
 
         <div data-lang="fr">
         <section class="content-section">
-            <h2>La nomenclature de d&rsquo;Entrecasteaux : neutralit&eacute; politique et logique d&rsquo;exp&eacute;dition <a href="findings.html" title="Retour aux enseignements"><img src="img/up-arrow.svg" alt="Retour aux enseignements" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
+            <h2>4. La nomenclature de d&rsquo;Entrecasteaux : neutralit&eacute; politique et logique d&rsquo;exp&eacute;dition <a href="findings.html" title="Retour aux enseignements"><img src="img/up-arrow.svg" alt="Retour aux enseignements" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
             <p>La pratique toponymique de d&rsquo;Entrecasteaux repose sur une cha&icirc;ne op&eacute;ratoire propre &agrave; la navigation hydrographique. Les formes du littoral sont d&rsquo;abord relev&eacute;es, esquiss&eacute;es et positionn&eacute;es par les ing&eacute;nieurs-g&eacute;ographes de l&rsquo;exp&eacute;dition ; les noms ne sont attribu&eacute;s qu&rsquo;ensuite par le commandant, puis inscrits dans le journal de bord. Autrement dit, la nomenclature prolonge le relev&eacute; : elle convertit un espace mesur&eacute; en un langage stable de route, de rep&egrave;res et de m&eacute;moire maritime.</p>
             <p class="section-subtitle">L'&eacute;dition du journal et de l'atlas apr&egrave;s le voyage</p>
             <p>Apr&egrave;s la paix d&rsquo;Amiens (1802), les journaux et les cartes de l&rsquo;exp&eacute;dition, auparavant saisis, reviennent en France. Rossel, dernier commandant apr&egrave;s la mort de d&rsquo;Entrecasteaux et de ses successeurs, est autoris&eacute; &agrave; &eacute;diter le journal du chef d&rsquo;exp&eacute;dition, tandis que Beautemps-Beaupr&eacute; supervise la publication hydrographique au D&eacute;p&ocirc;t des cartes et plans de la Marine. Leur travail conjoint aboutit &agrave; l&rsquo;atlas publi&eacute; en 1808, qui articule en un m&ecirc;me dispositif g&eacute;om&eacute;trie c&ocirc;ti&egrave;re et d&eacute;nomination des lieux.</p>
@@ -88,12 +127,18 @@
             <p class="section-subtitle">Atlas du voyage de d'Entrecasteaux</p>
             <figure class="illustration">
                 <img src="img/atlas-dentrecasteaux-cover.jpg" alt="Premi&egrave;re page de l&rsquo;Atlas du voyage de Bruny d&rsquo;Entrecasteaux">
-                <figcaption>Premi&egrave;re page de l&rsquo;<em>Atlas du voyage de Bruny d&rsquo;Entrecasteaux, contre-amiral de France, commandant les fr&eacute;gates La Recherche et L&rsquo;Esp&eacute;rance, fait par ordre du gouvernement en 1791, 1792 et 1793, publi&eacute; par ordre de Sa Majest&eacute; l&rsquo;Empereur et Roi, sous le minist&egrave;re de Son Excellence le vice-amiral Decr&egrave;s</em> (1807), par C.-F. Beautemps-Beaupr&eacute; et A. R. J. Bruny d&rsquo;Entrecasteaux. Source : National Library of Australia, <a href="http://nla.gov.au/nla.obj-230810006" target="_blank" rel="noopener">http://nla.gov.au/nla.obj-230810006</a></figcaption>
+                <figcaption>Premi&egrave;re page de l&rsquo;<em>Atlas du voyage de Bruny d&rsquo;Entrecasteaux, contre-amiral de France, commandant les fr&eacute;gates La Recherche et L&rsquo;Esp&eacute;rance, fait par ordre du gouvernement en 1791, 1792 et 1793, publi&eacute; par ordre de Sa Majest&eacute; l&rsquo;Empereur et Roi, sous le minist&egrave;re de Son Excellence le vice-amiral Decr&egrave;s</em> (1807), par C.-F. Beautemps-Beaupr&eacute; et A. R. J. Bruny d&rsquo;Entrecasteaux. Source : National Library of Australia, <a href="http://nla.gov.au/nla.obj-230810006" target="_blank" rel="noopener noreferrer">http://nla.gov.au/nla.obj-230810006</a></figcaption>
             </figure>
             <p class="section-subtitle">La neutralit&eacute; comme strat&eacute;gie de nomination en p&eacute;riode r&eacute;volutionnaire.</p>
             <p>Les 68 noms port&eacute;s sur les secteurs c&ocirc;tiers australiens dans l&rsquo;atlas traduisent une politique de mod&eacute;ration. Dans un contexte r&eacute;volutionnaire travers&eacute; par des conflits civils, d&rsquo;Entrecasteaux &eacute;vite les appellations trop ouvertement royalistes, nobiliaires ou doctrinales, susceptibles d&rsquo;accentuer les tensions &agrave; bord. Sa nomenclature privil&eacute;gie des r&eacute;f&eacute;rences &agrave; l&rsquo;&eacute;quipage, aux navires, aux officiers et aux caract&egrave;res du littoral observ&eacute;s pendant la campagne.</p>
             <p>Ce choix a une port&eacute;e maritime concr&egrave;te : les noms servent de marqueurs op&eacute;ratoires reli&eacute;s aux routes, aux mouillages, aux dangers et &agrave; l&rsquo;identification des formes relev&eacute;es. En parall&egrave;le, le commandant prend en compte, lorsque cela est utile, les navigations ant&eacute;rieures afin d&rsquo;assurer une continuit&eacute; historique et comparative du savoir cartographique, y compris en r&eacute;f&eacute;rence &agrave; des pr&eacute;c&eacute;dents fran&ccedil;ais sur la marge australienne.</p>
             <p>Du point de vue de la g&eacute;ographie historique, cette nomenclature est prudente parce qu&rsquo;elle est &agrave; la fois coh&eacute;rente &agrave; l&rsquo;&eacute;chelle du voyage, diplomatiquement calibr&eacute;e et &eacute;troitement adoss&eacute;e &agrave; l&rsquo;utilit&eacute; hydrographique. Le contraste avec le programme ult&eacute;rieur, plus imp&eacute;rial et comm&eacute;moratif, de Peron et Freycinet &eacute;claire la divergence de trajectoire politique des deux syst&egrave;mes de d&eacute;nomination apr&egrave;s 1815.</p>
+            <div class="findings-bottom-nav">
+                <a class="findings-next-link" href="findings-5.html">5. Nomenclature de P&eacute;ron et Freycinet</a>
+                <a class="findings-top-link" href="findings.html" title="Retour aux enseignements">
+                    <img src="img/up-arrow.svg" alt="Retour aux enseignements">
+                </a>
+            </div>
         </section>
         </div>
     </main>

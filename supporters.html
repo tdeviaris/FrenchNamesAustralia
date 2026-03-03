@@ -150,15 +150,15 @@
 
             <div class="supporter-item">
                 <p style="margin-top:0;">
-                    <button class="supporter-title-button js-bellec-link" type="button" data-bellec-fr="francois_bellecF.html" data-bellec-en="francois_bellecE.html" data-i18n="supporters-bellec-title">Le mot du contre-amiral François Bellec</button>
+                    <button class="supporter-title-button js-bellec-link" type="button" data-bellec="francois_bellec.html" data-i18n="supporters-bellec-title">Le mot du contre-amiral François Bellec</button>
                 </p>
 	            <div class="supporter-block">
 	                <div class="supporter-text">
-	                    <p data-i18n-html="supporters-bellec-bio"><strong><a href="https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Bellec" target="_blank" rel="noopener">François Bellec</a></strong>, contre-amiral, écrivain, peintre et ancien directeur du Musée national de la Marine. Membre de l'Académie de Marine, il a contribué à la valorisation des grandes explorations maritimes françaises et de leur patrimoine cartographique.</p>
+	                    <p data-i18n-html="supporters-bellec-bio"><strong><a href="https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Bellec" target="_blank" rel="noopener noreferrer">François Bellec</a></strong>, contre-amiral, écrivain, peintre et ancien directeur du Musée national de la Marine. Membre de l'Académie de Marine, il a contribué à la valorisation des grandes explorations maritimes françaises et de leur patrimoine cartographique.</p>
 	                    <p data-i18n-html="supporters-bellec-work">Il a réalisé douze films vidéo sur l'histoire maritime et signé une vingtaine de livres, ainsi que de nombreuses contributions à des ouvrages collectifs et encyclopédiques. Historien de la navigation, des grandes découvertes et des peintres de la mer, ses textes sont traduits en allemand, anglais et portugais. Conférencier recherché, il a présenté la mer et l'art en France et à l'étranger (États-Unis, Russie, Chine, Thaïlande, Indonésie, Australie).</p>
 	                </div>
 	                <div class="supporter-photo">
-	                    <button class="js-bellec-link" type="button" data-bellec-fr="francois_bellecF.html" data-bellec-en="francois_bellecE.html" aria-label="Ouvrir le texte de François Bellec">
+	                    <button class="js-bellec-link" type="button" data-bellec="francois_bellec.html" aria-label="Ouvrir le texte de François Bellec">
 	                        <img src="img/bellec.jpg" alt="François Bellec" title="Le Télégramme/David Cormier, 25/04/2024">
 	                    </button>
 	                </div>
@@ -169,7 +169,7 @@
                 <p><span class="supporter-title-static" data-i18n="supporters-hay-title">Le mot de Iain Hay</span></p>
 	            <div class="supporter-block">
 	                <div class="supporter-text">
-	                    <p data-i18n-html="supporters-hay-bio"><strong><a href="https://en.wikipedia.org/wiki/Iain_Hay" target="_blank" rel="noopener">Iain Hay</a></strong> est géographe et universitaire, connu pour ses travaux sur les inégalités, la justice spatiale et l'éthique de la recherche. Il a occupé des fonctions de direction académique en Australie et contribué à des initiatives internationales en géographie et en sciences humaines.</p>
+	                    <p data-i18n-html="supporters-hay-bio"><strong><a href="https://en.wikipedia.org/wiki/Iain_Hay" target="_blank" rel="noopener noreferrer">Iain Hay</a></strong> est géographe et universitaire, connu pour ses travaux sur les inégalités, la justice spatiale et l'éthique de la recherche. Il a occupé des fonctions de direction académique en Australie et contribué à des initiatives internationales en géographie et en sciences humaines.</p>
 	                    <p data-i18n-html="supporters-hay-text">[Texte à venir]</p>
 	                </div>
 	                <div class="supporter-photo">
@@ -196,7 +196,7 @@
     <div class="bellec-overlay" role="dialog" aria-modal="true" aria-label="François Bellec">
         <div class="bellec-container">
             <button type="button" class="bellec-close" aria-label="Close">&times;</button>
-            <iframe id="bellec-frame" title="François Bellec" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+            <iframe id="bellec-frame" title="François Bellec" sandbox="allow-scripts allow-popups allow-forms"></iframe>
         </div>
     </div>
 
@@ -206,23 +206,19 @@
     <script src="js/main.js?v=20241012"></script>
     <script>
         (() => {
-            const triggers = document.querySelectorAll('.js-bellec-link[data-bellec-fr][data-bellec-en]');
+            const triggers = document.querySelectorAll('.js-bellec-link[data-bellec]');
             const overlay = document.querySelector('.bellec-overlay');
             const frame = document.getElementById('bellec-frame');
             const closeBtn = document.querySelector('.bellec-close');
             let lastFocusedElement = null;
 
-            const getCurrentLang = () => (document.documentElement.lang || 'en').toLowerCase();
-
             const openOverlay = (trigger) => {
                 if (!overlay || !frame || !trigger) return;
-                const lang = getCurrentLang();
-                const src = lang.startsWith('fr')
-                    ? trigger.getAttribute('data-bellec-fr')
-                    : trigger.getAttribute('data-bellec-en');
+                const src = trigger.getAttribute('data-bellec');
                 if (!src) return;
 
-                frame.src = src;
+                const lang = (document.documentElement.lang || 'en').startsWith('fr') ? 'fr' : 'en';
+                frame.src = src + '?lang=' + lang;
                 overlay.classList.add('is-visible');
                 lastFocusedElement = document.activeElement;
                 document.body.style.overflow = 'hidden';

@@ -93,6 +93,18 @@ function prefetchNavLinks() {
     });
 }
 
+// Uniformise le style des liens contenant la flèche de retour.
+function enhanceUpArrowLinks() {
+    const arrowImages = document.querySelectorAll('a > img[src*="up-arrow.svg"]');
+    arrowImages.forEach((node) => {
+        const link = node.closest('a');
+        if (!link) {
+            return;
+        }
+        link.classList.add('up-arrow-link');
+    });
+}
+
 function enhanceImagesAvifPreviewThenJpeg() {
     if (!document.getElementById('avif-enhancer-style')) {
         const style = document.createElement('style');
@@ -206,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setActiveNavLink();
     initLanguageSwitcher();
     prefetchNavLinks();
+    enhanceUpArrowLinks();
     enhanceImagesAvifPreviewThenJpeg();
 
     const footerContainer = document.querySelector('[data-include-footer]');
@@ -222,7 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.text();
             })
             .then(html => {
-                footerContainer.innerHTML = html;
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                while (doc.body.firstChild) {
+                    footerContainer.appendChild(doc.body.firstChild);
+                }
             })
             .catch(error => {
                 console.error('Failed to load footer:', error);
@@ -297,6 +313,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Déclenche un événement personnalisé pour que d'autres scripts puissent réagir
         document.dispatchEvent(new Event('languageChanged'));
+
+        // Certains liens sont recréés lors de la traduction (innerHTML).
+        enhanceUpArrowLinks();
         };
 
         // Ajoute les écouteurs d'événements
