@@ -25,7 +25,7 @@
           "value": "strict-origin-when-cross-origin"
         },
         {
-          "key": "Content-Security-Policy",
+          "key": "Content-Security-Policy-Report-Only",
           "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src 'self'; connect-src 'self' https:; media-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
         }
       ]
