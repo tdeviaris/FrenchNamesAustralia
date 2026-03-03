@@ -231,11 +231,24 @@
             const iiifOverlay = document.querySelector('.iiif-overlay');
             const iiifViewer = document.getElementById('iiif-viewer');
             const iiifCloseBtn = document.querySelector('.iiif-close');
+            const viewerUrl = 'Viewer.html';
+            const archiveFallbackUrl = 'https://archive.org/details/voyagededcouve03pr/mode/2up';
+            const isLikelyMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent)
+                || window.matchMedia('(max-width: 900px)').matches;
+            const forceStandaloneViewer = window.location.hostname.endsWith('frenchplacenames.com');
             let lastFocusedElement = null;
+
+            const openViewerInNewTab = (url) => {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            };
 
             const openIIIFOverlay = () => {
                 if (!iiifOverlay || !iiifViewer) return;
-                iiifViewer.src = 'Viewer.html';
+                if (isLikelyMobile || forceStandaloneViewer) {
+                    openViewerInNewTab(viewerUrl);
+                    return;
+                }
+                iiifViewer.src = viewerUrl;
                 iiifOverlay.classList.add('is-visible');
                 lastFocusedElement = document.activeElement;
                 document.body.style.overflow = 'hidden';
@@ -260,6 +273,13 @@
                 }
             };
 
+            const handleIIIFMessage = (event) => {
+                if (event.origin !== window.location.origin) return;
+                if (!event.data || event.data.type !== 'iiif-viewer-error') return;
+                closeIIIFOverlay();
+                openViewerInNewTab(event.data.fallbackUrl || archiveFallbackUrl);
+            };
+
             voyageLinks.forEach((voyageLink) => {
                 voyageLink.addEventListener('click', openIIIFOverlay);
             });
@@ -269,6 +289,7 @@
                     closeIIIFOverlay();
                 }
             });
+            window.addEventListener('message', handleIIIFMessage);
         })();
 
         // Video modal

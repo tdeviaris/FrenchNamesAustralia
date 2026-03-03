@@ -56,8 +56,26 @@
   <script src="https://unpkg.com/mirador@3/dist/mirador.min.js"></script>
   <script>
     const manifest = 'https://iiif.archive.org/iiif/voyagededcouve03pr/manifest.json';
-    const canvasId = 'https://iiif.archive.org/iiif/voyagededcouve03pr/canvas/p1';
-    const windowId = 'vda-p1';
+    const fallbackUrl = 'https://archive.org/details/voyagededcouve03pr/mode/2up';
+    const manifestTimeoutMs = 12000;
+
+    const handleViewerFailure = (reason) => {
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage(
+            { type: 'iiif-viewer-error', fallbackUrl, reason: String(reason || '') },
+            window.location.origin
+          );
+          return;
+        }
+      } catch (_) {}
+      window.location.href = fallbackUrl;
+    };
+
+    if (typeof window.Mirador === 'undefined') {
+      handleViewerFailure('mirador-unavailable');
+      throw new Error('Mirador is not available');
+    }
 
     const viewer = Mirador.viewer({
       id: 'mirador',
@@ -115,6 +133,13 @@
 
     // S'abonner aux changements d'état pour détecter le chargement du manifest
     let hasNavigated = false;
+    let hasFailed = false;
+    const manifestLoadTimeout = setTimeout(() => {
+      if (!hasNavigated && !hasFailed) {
+        hasFailed = true;
+        handleViewerFailure('manifest-timeout');
+      }
+    }, manifestTimeoutMs);
     const tweakChrome = () => {
       const hideSelectors = [
         '.mirador-add-window-button',
@@ -193,13 +218,20 @@ const tweakInterval = setInterval(() => {
     window.addEventListener('resize', tweakChrome);
 
     viewer.store.subscribe(() => {
-      if (hasNavigated) return;
+      if (hasNavigated || hasFailed) return;
 
       const state = viewer.store.getState();
       const manifestData = state.manifests && state.manifests[manifest];
+      if (manifestData && manifestData.error) {
+        hasFailed = true;
+        clearTimeout(manifestLoadTimeout);
+        handleViewerFailure(manifestData.error);
+        return;
+      }
 
       // Vérifier que le manifest est chargé (IIIF v3 utilise "items" au lieu de "sequences")
       if (manifestData && manifestData.json && manifestData.json.items) {
+        clearTimeout(manifestLoadTimeout);
         const windowIds = Object.keys(state.windows);
 
         if (windowIds.length > 0) {
