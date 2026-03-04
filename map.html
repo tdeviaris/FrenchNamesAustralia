@@ -2507,6 +2507,53 @@
             });
         };
 
+        // Preview AVIF → JPEG pour les images locales des popups
+        const enhancePopupImagesWithAvif = (() => {
+            const avifCache = new Map(); // avifSrc → Promise<boolean>
+            const hasAvif = (avifSrc) => {
+                if (!avifCache.has(avifSrc)) {
+                    avifCache.set(avifSrc, fetch(avifSrc, { method: 'HEAD' })
+                        .then(r => r.ok).catch(() => false));
+                }
+                return avifCache.get(avifSrc);
+            };
+
+            return async (popupEl) => {
+                if (!popupEl) return;
+                for (const img of popupEl.querySelectorAll('img[src]')) {
+                    const src = img.getAttribute('src');
+                    if (!src || !/^img_telecharg\/.+\.jpg$/i.test(src)) continue;
+                    if (img.dataset.avifDone) continue;
+                    img.dataset.avifDone = '1';
+
+                    const avifSrc = src.replace(/\.jpg$/i, '.avif');
+                    if (!(await hasAvif(avifSrc))) continue;
+
+                    const parent = img.parentNode;
+                    if (!parent) continue;
+
+                    const picture = document.createElement('picture');
+                    const source = document.createElement('source');
+                    source.type = 'image/avif';
+                    source.srcset = avifSrc;
+                    picture.appendChild(source);
+                    parent.insertBefore(picture, img);
+                    picture.appendChild(img);
+
+                    // Une fois l'AVIF affiché, charge le JPEG complet
+                    const jpgSrc = src;
+                    img.addEventListener('load', () => {
+                        if (/\.avif$/i.test(img.currentSrc || img.src || '')) {
+                            requestAnimationFrame(() => {
+                                source.srcset = '';
+                                img.src = jpgSrc;
+                            });
+                        }
+                    }, { once: true });
+                }
+            };
+        })();
+
         // Track currently open marker for language refresh
         let currentOpenMarker = null;
 
@@ -2519,6 +2566,7 @@
             });
             centerPopupOnceReady(event.popup);
             attachPopupActions(event.popup);
+            enhancePopupImagesWithAvif(event.popup.getElement());
         });
         map.on('popupclose', () => {
             hideWikiCard(true);
@@ -4047,7 +4095,9 @@
 
                 if (place.imgUrl && place.imgUrl.trim() !== "") {
                     const img = new Image();
-                    img.src = place.imgUrl;
+                    const localImgPreload = place.code ? `img_telecharg/${place.code}_Img.jpg` : '';
+                    img.src = localImgPreload || place.imgUrl;
+                    if (localImgPreload) { img.onerror = () => { img.src = place.imgUrl; }; }
                 }
 
                 marker.bindPopup(() => {
@@ -4071,12 +4121,20 @@
 
                     const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
                     const linkSegments = [];
+                    let mapProbeHtml = '';
 
                     if (place.mapUrl && place.mapUrl.trim() !== "") {
                         const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
                         const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
-                        const safeMapUrl = escapeHtml(place.mapUrl);
-                        linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                        const localCartePath = place.code ? `img_telecharg/${place.code}_Carte.jpg` : null;
+                        if (localCartePath) {
+                            const safeRemoteMapUrl = escapeHtml(place.mapUrl);
+                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${localCartePath}" data-map-url-remote="${safeRemoteMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                            mapProbeHtml = `<img src="${localCartePath}" style="display:none" alt="" aria-hidden="true" onerror="this.onerror=null;var c=this.closest('.popup-text-container');var l=c&&c.querySelector('.popup-map-link[data-map-url-remote]');if(l)l.dataset.mapUrl=l.dataset.mapUrlRemote;this.remove();">`;
+                        } else {
+                            const safeMapUrl = escapeHtml(place.mapUrl);
+                            linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
+                        }
                     }
 
                     if (detailsUrl && detailsUrl.trim() !== '' && detailsUrl.trim() !== '#') {
@@ -4133,27 +4191,32 @@
 
                     if (place.imgUrl && place.imgUrl.trim() !== "") {
                         const escapedImg = escapeHtml(place.imgUrl);
+                        const localImgPath = place.code ? `img_telecharg/${place.code}_Img.jpg` : null;
+                        const imgSrc = localImgPath || escapedImg;
+                        const imgOnerror = localImgPath
+                            ? ` data-remote="${escapedImg}" onerror="this.onerror=null;this.src=this.dataset.remote;var b=this.closest('button');if(b)b.dataset.img=this.dataset.remote;"`
+                            : '';
                         const mobileThumbHtml = `
-                                <button type="button" class="popup-image-button popup-image-thumb" data-img="${escapedImg}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
-                                    <img src="${escapedImg}" alt="${safeAlt}">
+                                <button type="button" class="popup-image-button popup-image-thumb" data-img="${imgSrc}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
+                                    <img src="${imgSrc}" alt="${safeAlt}"${imgOnerror}>
                                 </button>`;
 
                         textHtml = `${mobileThumbHtml}${textHtml}`;
 
                         const imageHtml = `
                                 <div class="popup-image-wrapper">
-                                    <button type="button" class="popup-image-button" data-img="${escapedImg}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
-                                        <img src="${place.imgUrl}" alt="${safeAlt}" class="popup-image">
+                                    <button type="button" class="popup-image-button" data-img="${imgSrc}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
+                                        <img src="${imgSrc}" alt="${safeAlt}" class="popup-image"${imgOnerror}>
                                     </button>
                                 </div>`;
 
                         return `<div class="popup-layout">
-                                    <div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>
+                                    <div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}${mapProbeHtml}</div>
                                     ${imageHtml}
                                 </div>`;
                     }
 
-                    return `<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>`;
+                    return `<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}${mapProbeHtml}</div>`;
                 }, { maxWidth: 700 });
             });
         };

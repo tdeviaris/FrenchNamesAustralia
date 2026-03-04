@@ -119,4 +119,12 @@ find "${roots[@]}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) -not -path "*
       --ignore-exif --ignore-xmp --ignore-icc \
       "$tmp_png" "$out_avif" >/dev/null
   fi
+
+  # Supprime le fichier AVIF s'il fait moins de 20 Ko (image trop dégradée)
+  if [[ -f "$out_avif" ]]; then
+    avif_size=$(stat -f%z "$out_avif" 2>/dev/null || stat -c%s "$out_avif" 2>/dev/null)
+    if [[ "$avif_size" -lt 20480 ]]; then
+      rm -f "$out_avif"
+    fi
+  fi
 done
