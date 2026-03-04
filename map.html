@@ -502,6 +502,9 @@
                 border: 1px solid #eee;
                 border-radius: 4px;
             }
+            .popup-ause-name-p {
+                padding-right: calc(6em + 16px);
+            }
             .popup-image-thumb {
                 display: block;
                 position: absolute;
@@ -2431,61 +2434,29 @@
                 popupRoot.classList.toggle('popup-has-image', !!popupElement.querySelector('.popup-image-wrapper'));
             }
 
-            // Mobile thumbnail overlap adjustments
+            // Mobile: add gap before Caractéristique when thumbnail may overlap it
             if (window.matchMedia('(max-width: 768px)').matches) {
                 const thumb = popupElement.querySelector('.popup-image-thumb');
                 if (thumb) {
-                    const doAdjust = () => {
-                        const thumbRect = thumb.getBoundingClientRect();
-                        const ausNameP = popupElement.querySelector('.popup-ause-name-p');
-                        let ausWrapped = false;
-
-                        // Check 1: does the Nom Australien text extend past the thumbnail's left edge?
-                        if (ausNameP) {
-                            const range = document.createRange();
-                            range.selectNodeContents(ausNameP);
-                            const contentBounds = range.getBoundingClientRect();
-                            if (contentBounds.right > thumbRect.left) {
-                                const pRect = ausNameP.getBoundingClientRect();
-                                ausNameP.style.paddingRight = (pRect.right - thumbRect.left + 4) + 'px';
-                                ausWrapped = true;
-                            }
-                        }
-
-                        // Check 2: if no wrap on Nom Australien and no links, add gap before Caractéristique
-                        // when the thumbnail's visual image height exceeds 4 lines
-                        if (!ausWrapped) {
-                            const hasLinks = !!popupElement.querySelector('.popup-link-row');
-                            if (!hasLinks) {
-                                const thumbImg = thumb.querySelector('img');
-                                const textContainer = popupElement.querySelector('.popup-text-container');
-                                const lineHeight = textContainer
-                                    ? parseFloat(getComputedStyle(textContainer).lineHeight)
-                                    : 16;
-                                let visualHeight = thumbRect.height;
-                                if (thumbImg && thumbImg.naturalWidth && thumbImg.naturalHeight) {
-                                    const ratio = thumbImg.naturalWidth / thumbImg.naturalHeight;
-                                    const boxW = thumbImg.getBoundingClientRect().width;
-                                    const boxH = thumbImg.getBoundingClientRect().height;
-                                    visualHeight = ratio > boxW / boxH ? boxW / ratio : boxH;
-                                }
-                                if (visualHeight > 4 * lineHeight) {
-                                    const charP = popupElement.querySelector('.popup-characteristic-p');
-                                    if (charP) {
-                                        charP.style.marginTop = lineHeight + 'px';
-                                    }
+                    requestAnimationFrame(() => {
+                        const hasLinks = !!popupElement.querySelector('.popup-link-row');
+                        if (!hasLinks) {
+                            const textContainer = popupElement.querySelector('.popup-text-container');
+                            const lineHeight = textContainer
+                                ? parseFloat(getComputedStyle(textContainer).lineHeight)
+                                : 16;
+                            const ausNameP = popupElement.querySelector('.popup-ause-name-p');
+                            const ausWrapped = ausNameP
+                                ? ausNameP.offsetHeight > lineHeight * 1.5
+                                : false;
+                            if (!ausWrapped) {
+                                const charP = popupElement.querySelector('.popup-characteristic-p');
+                                if (charP) {
+                                    charP.style.marginTop = lineHeight + 'px';
                                 }
                             }
                         }
-                    };
-
-                    const thumbImg = thumb.querySelector('img');
-                    if (thumbImg && !thumbImg.complete) {
-                        thumbImg.addEventListener('load', doAdjust, { once: true });
-                        thumbImg.addEventListener('error', doAdjust, { once: true });
-                    } else {
-                        requestAnimationFrame(doAdjust);
-                    }
+                    });
                 }
             }
         };
