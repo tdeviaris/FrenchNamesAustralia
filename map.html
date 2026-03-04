@@ -502,6 +502,7 @@
                 border: 1px solid #eee;
                 border-radius: 4px;
             }
+            .popup-alias-p,
             .popup-ause-name-p {
                 padding-right: calc(6em + 16px);
             }
@@ -2443,7 +2444,7 @@
                         if (!hasLinks) {
                             const textContainer = popupElement.querySelector('.popup-text-container');
                             const lineHeight = textContainer
-                                ? parseFloat(getComputedStyle(textContainer).lineHeight)
+                                ? (parseFloat(getComputedStyle(textContainer).lineHeight) || parseFloat(getComputedStyle(textContainer).fontSize) * 1.3 || 16)
                                 : 16;
                             const ausNameP = popupElement.querySelector('.popup-ause-name-p');
                             const ausWrapped = ausNameP
@@ -4074,7 +4075,7 @@
 
                     let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${highlightMatches(place.frenchName || '')}</p>`;
                     if (place.variantName && place.variantName.trim() !== "") {
-                        textHtml += `<p><strong>${aliasLabel}</strong> ${highlightMatches(place.variantName)}</p>`;
+                        textHtml += `<p class="popup-alias-p"><strong>${aliasLabel}</strong> ${highlightMatches(place.variantName)}</p>`;
                     }
                     textHtml += `<p class="popup-ause-name-p"><strong>${trans['popup-ause-name']}</strong> ${highlightMatches(place.ausEName || '')}</p>`;
 
