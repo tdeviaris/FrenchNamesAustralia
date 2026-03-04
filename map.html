@@ -505,7 +505,7 @@
             .popup-image-thumb {
                 display: block;
                 position: absolute;
-                top: 8px;
+                top: 0;
                 right: 8px;
                 height: 6em;
                 min-width: 6em;
@@ -2430,6 +2430,64 @@
             if (popupRoot) {
                 popupRoot.classList.toggle('popup-has-image', !!popupElement.querySelector('.popup-image-wrapper'));
             }
+
+            // Mobile thumbnail overlap adjustments
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                const thumb = popupElement.querySelector('.popup-image-thumb');
+                if (thumb) {
+                    const doAdjust = () => {
+                        const thumbRect = thumb.getBoundingClientRect();
+                        const ausNameP = popupElement.querySelector('.popup-ause-name-p');
+                        let ausWrapped = false;
+
+                        // Check 1: does the Nom Australien text extend past the thumbnail's left edge?
+                        if (ausNameP) {
+                            const range = document.createRange();
+                            range.selectNodeContents(ausNameP);
+                            const contentBounds = range.getBoundingClientRect();
+                            if (contentBounds.right > thumbRect.left) {
+                                const pRect = ausNameP.getBoundingClientRect();
+                                ausNameP.style.paddingRight = (pRect.right - thumbRect.left + 4) + 'px';
+                                ausWrapped = true;
+                            }
+                        }
+
+                        // Check 2: if no wrap on Nom Australien and no links, add gap before Caractéristique
+                        // when the thumbnail's visual image height exceeds 4 lines
+                        if (!ausWrapped) {
+                            const hasLinks = !!popupElement.querySelector('.popup-link-row');
+                            if (!hasLinks) {
+                                const thumbImg = thumb.querySelector('img');
+                                const textContainer = popupElement.querySelector('.popup-text-container');
+                                const lineHeight = textContainer
+                                    ? parseFloat(getComputedStyle(textContainer).lineHeight)
+                                    : 16;
+                                let visualHeight = thumbRect.height;
+                                if (thumbImg && thumbImg.naturalWidth && thumbImg.naturalHeight) {
+                                    const ratio = thumbImg.naturalWidth / thumbImg.naturalHeight;
+                                    const boxW = thumbImg.getBoundingClientRect().width;
+                                    const boxH = thumbImg.getBoundingClientRect().height;
+                                    visualHeight = ratio > boxW / boxH ? boxW / ratio : boxH;
+                                }
+                                if (visualHeight > 4 * lineHeight) {
+                                    const charP = popupElement.querySelector('.popup-characteristic-p');
+                                    if (charP) {
+                                        charP.style.marginTop = lineHeight + 'px';
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    const thumbImg = thumb.querySelector('img');
+                    if (thumbImg && !thumbImg.complete) {
+                        thumbImg.addEventListener('load', doAdjust, { once: true });
+                        thumbImg.addEventListener('error', doAdjust, { once: true });
+                    } else {
+                        requestAnimationFrame(doAdjust);
+                    }
+                }
+            }
         };
 
         const centerPopupOnceReady = (popup, attempt = 0) => {
@@ -4047,7 +4105,7 @@
                     if (place.variantName && place.variantName.trim() !== "") {
                         textHtml += `<p><strong>${aliasLabel}</strong> ${highlightMatches(place.variantName)}</p>`;
                     }
-                    textHtml += `<p><strong>${trans['popup-ause-name']}</strong> ${highlightMatches(place.ausEName || '')}</p>`;
+                    textHtml += `<p class="popup-ause-name-p"><strong>${trans['popup-ause-name']}</strong> ${highlightMatches(place.ausEName || '')}</p>`;
 
                     if (place.indigenousName && place.indigenousName.trim() !== "") {
                         textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
@@ -4095,7 +4153,7 @@
                     if (characteristicText && characteristicText.trim() !== "") {
                         const enrichedCharacteristic = enhanceWikiText(characteristicText, wikiLang);
                         const highlightedCharacteristic = highlightHtml(enrichedCharacteristic);
-                        fullWidthBlocks.push(`<p><strong>${trans['popup-characteristic-label']}</strong> ${highlightedCharacteristic}</p>`);
+                        fullWidthBlocks.push(`<p class="popup-characteristic-p"><strong>${trans['popup-characteristic-label']}</strong> ${highlightedCharacteristic}</p>`);
                     }
 
                     const historyText = (currentLang === 'fr') ? place.history_fr : place.history;
