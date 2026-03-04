@@ -506,7 +506,12 @@
             .popup-ause-name-p {
                 padding-right: calc(6em + 16px);
             }
-            .popup-layout .popup-text-container:not(:has(.popup-link-row)) .popup-characteristic-p {
+            /* 3 lignes seulement (NF + NA + LatLong) → 2em pour passer sous la vignette */
+            .popup-layout .popup-text-container:not(:has(.popup-link-row)):not(:has(.popup-alias-p)):not(:has(.popup-indigenous-p)) .popup-characteristic-p {
+                margin-top: 2em;
+            }
+            /* 4+ lignes (alias ou nom indigène présent) → 1em suffit */
+            .popup-layout .popup-text-container:not(:has(.popup-link-row)):is(:has(.popup-alias-p), :has(.popup-indigenous-p)) .popup-characteristic-p {
                 margin-top: 1em;
             }
             .popup-image-thumb {
@@ -4058,7 +4063,7 @@
                     textHtml += `<p class="popup-ause-name-p"><strong>${trans['popup-ause-name']}</strong> ${highlightMatches(place.ausEName || '')}</p>`;
 
                     if (place.indigenousName && place.indigenousName.trim() !== "") {
-                        textHtml += `<p><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
+                        textHtml += `<p class="popup-indigenous-p"><strong>${trans['popup-indigenous-name']} ${place.indigenousLanguage} :</strong> ${place.indigenousName}</p>`;
                     }
 
                     const coordinatesText = formatCoordinates(lat, lon, place.code, trans);
