@@ -506,6 +506,9 @@
             .popup-ause-name-p {
                 padding-right: calc(6em + 16px);
             }
+            .popup-layout .popup-text-container:not(:has(.popup-link-row)) .popup-characteristic-p {
+                margin-top: 1em;
+            }
             .popup-image-thumb {
                 display: block;
                 position: absolute;
@@ -2435,31 +2438,6 @@
                 popupRoot.classList.toggle('popup-has-image', !!popupElement.querySelector('.popup-image-wrapper'));
             }
 
-            // Mobile: add gap before Caractéristique when thumbnail may overlap it
-            if (window.matchMedia('(max-width: 768px)').matches) {
-                const thumb = popupElement.querySelector('.popup-image-thumb');
-                if (thumb) {
-                    requestAnimationFrame(() => {
-                        const hasLinks = !!popupElement.querySelector('.popup-link-row');
-                        if (!hasLinks) {
-                            const textContainer = popupElement.querySelector('.popup-text-container');
-                            const lineHeight = textContainer
-                                ? (parseFloat(getComputedStyle(textContainer).lineHeight) || parseFloat(getComputedStyle(textContainer).fontSize) * 1.3 || 16)
-                                : 16;
-                            const ausNameP = popupElement.querySelector('.popup-ause-name-p');
-                            const ausWrapped = ausNameP
-                                ? ausNameP.offsetHeight > lineHeight * 1.5
-                                : false;
-                            if (!ausWrapped) {
-                                const charP = popupElement.querySelector('.popup-characteristic-p');
-                                if (charP) {
-                                    charP.style.marginTop = lineHeight + 'px';
-                                }
-                            }
-                        }
-                    });
-                }
-            }
         };
 
         const centerPopupOnceReady = (popup, attempt = 0) => {
