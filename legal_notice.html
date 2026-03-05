@@ -52,6 +52,18 @@
             line-height: 1.6;
             margin-bottom: 16px;
         }
+        .legal-copy {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        .legal-copy p {
+            line-height: 1.72;
+            margin: 0 0 14px 0;
+            text-align: left;
+        }
+        .legal-copy p:first-child {
+            font-weight: 600;
+        }
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
         @media (max-width: 768px) {
             .content-section { padding: 24px; }
@@ -84,9 +96,9 @@
         <section class="content-section">
             <h2 data-i18n="about-legal-page-title">Mentions légales</h2>
 
-            <p data-i18n-html="about-legal-content">
+            <div class="legal-copy" data-i18n-html="about-legal-content">
                 [Contenu à fournir par l'auteure]
-            </p>
+            </div>
         </section>
     </main>
 
