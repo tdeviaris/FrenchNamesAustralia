@@ -292,6 +292,7 @@
             margin: 0;
             box-sizing: border-box;
             user-select: none;
+            text-align: justify;
         }
         .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
         .popup-link-row {
@@ -2517,6 +2518,14 @@
             if (bg && bg !== 'none') e.preventDefault();
         }, true);
 
+        // Remplace les espaces autour des guillemets et parenthèses par des insécables
+        // Opère sur la chaîne HTML : uniquement dans le contenu texte (entre > et <)
+        function fixTypoInHtml(html) {
+            return html.replace(/>([^<]+)</g, (_, text) =>
+                '>' + text.replace(/([«(]) /g, '$1\u00A0').replace(/ ([»)])/g, '\u00A0$1') + '<'
+            );
+        }
+
         // Preview AVIF → JPEG pour les images locales des popups
         const enhancePopupImagesWithAvif = (() => {
             const avifCache = new Map(); // avifSrc → Promise<boolean>
@@ -4220,13 +4229,13 @@
                                     </button>
                                 </div>`;
 
-                        return `<div class="popup-layout">
+                        return fixTypoInHtml(`<div class="popup-layout">
                                     <div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}${mapProbeHtml}</div>
                                     ${imageHtml}
-                                </div>`;
+                                </div>`);
                     }
 
-                    return `<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}${mapProbeHtml}</div>`;
+                    return fixTypoInHtml(`<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}${mapProbeHtml}</div>`);
                 }, { maxWidth: 700 });
             });
         };
