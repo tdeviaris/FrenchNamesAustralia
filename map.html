@@ -291,6 +291,7 @@
             padding: 12px 12px 12px 12px;
             margin: 0;
             box-sizing: border-box;
+            user-select: none;
         }
         .leaflet-popup-content p { margin: 3px 0; } .leaflet-popup-content strong { color: #0056b3; }
         .popup-link-row {
@@ -2506,6 +2507,11 @@
                 img.addEventListener('error', settle, { once: true });
             });
         };
+
+        // Désactive le clic droit sur toutes les images (protection "Enregistrer sous")
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
 
         // Preview AVIF → JPEG pour les images locales des popups
         const enhancePopupImagesWithAvif = (() => {

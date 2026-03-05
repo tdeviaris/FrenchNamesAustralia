@@ -233,6 +233,11 @@ function centerSectionPageTitleFallback() {
     });
 }
 
+// Désactive le clic droit sur toutes les images (protection "Enregistrer sous")
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Nav déjà inline (injectée au build) : initialiser simplement
     setActiveNavLink();
