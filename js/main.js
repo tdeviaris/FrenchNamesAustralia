@@ -233,10 +233,8 @@ function centerSectionPageTitleFallback() {
     });
 }
 
-// Désactive le clic droit sur toutes les images (protection "Enregistrer sous")
-document.addEventListener('contextmenu', (e) => {
-    if (e.target.tagName === 'IMG') e.preventDefault();
-});
+// Désactive le clic droit sur toute la page (protection "Enregistrer sous")
+document.addEventListener('contextmenu', (e) => e.preventDefault(), true);
 
 document.addEventListener('DOMContentLoaded', () => {
     // Nav déjà inline (injectée au build) : initialiser simplement

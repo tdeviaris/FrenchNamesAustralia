@@ -2508,10 +2508,14 @@
             });
         };
 
-        // Désactive le clic droit sur toutes les images (protection "Enregistrer sous")
+        // Désactive le clic droit sur les images et les fonds d'écran CSS (protection "Enregistrer sous")
+        // Phase capture (true) pour intercepter avant le stopPropagation de Leaflet
         document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'IMG') e.preventDefault();
-        });
+            const t = e.target;
+            if (t.tagName === 'IMG') { e.preventDefault(); return; }
+            const bg = window.getComputedStyle(t).backgroundImage;
+            if (bg && bg !== 'none') e.preventDefault();
+        }, true);
 
         // Preview AVIF → JPEG pour les images locales des popups
         const enhancePopupImagesWithAvif = (() => {
