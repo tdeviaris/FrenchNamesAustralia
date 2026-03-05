@@ -38,3 +38,4 @@ package-lock.json
 
 # Local illustration workspace (do not commit)
 illustrations/
+.claude/\nassistant/docs/
