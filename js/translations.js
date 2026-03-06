@@ -156,6 +156,8 @@ const translations = {
         'contact-message-placeholder': "Décrivez votre demande...",
         'contact-privacy': "Les informations transmises via ce formulaire sont utilisées uniquement pour répondre à votre message. Elles ne sont pas partagées.",
         'contact-required-note': "* Champ obligatoire",
+        'contact-email-invalid': "Veuillez saisir une adresse e-mail valide.",
+        'contact-send-error': "L'envoi a échoué. Veuillez réessayer ou nous écrire directement à dmbreelle@gmail.com.",
         'contact-submit': "Envoyer",
         'contact-success': "Votre message a été transmis. Merci pour votre retour !",
 
@@ -413,6 +415,8 @@ const translations = {
         'contact-message-placeholder': "Describe your request...",
         'contact-privacy': "The information submitted via this form is used solely to respond to your message. It is not shared with third parties.",
         'contact-required-note': "* Required field",
+        'contact-email-invalid': "Please enter a valid email address.",
+        'contact-send-error': "Sending failed. Please try again or write to us directly at dmbreelle@gmail.com.",
         'contact-submit': "Send",
         'contact-success': "Your message has been sent. Thank you for your feedback!",
 

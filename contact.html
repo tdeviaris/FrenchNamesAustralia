@@ -211,6 +211,7 @@
                     <input type="email" id="contact-email" name="email" required autocomplete="email"
                         data-i18n-placeholder="contact-email-placeholder"
                         placeholder="votre@email.com">
+                    <span id="email-hint" role="alert" style="display:none; font-size:0.85rem; color:#c0392b; margin-top:4px;"></span>
                 </div>
 
                 <!-- Objet -->
@@ -270,24 +271,55 @@
     <script src="js/main.js?v=20241012"></script>
     <script>
         (() => {
-            const form = document.getElementById('contactForm');
-            const successMsg = document.getElementById('successMessage');
-            const submitBtn = form.querySelector('.btn-submit');
+            const form        = document.getElementById('contactForm');
+            const successMsg  = document.getElementById('successMessage');
+            const submitBtn   = form.querySelector('.btn-submit');
             const submitLabel = submitBtn.querySelector('[data-i18n="contact-submit"]');
-            const errorBox = document.getElementById('errorMessage');
+            const errorBox    = document.getElementById('errorMessage');
+            const emailInput  = document.getElementById('contact-email');
+            const emailHint   = document.getElementById('email-hint');
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Retourne la traduction courante d'une clé
+            function t(key) {
+                const lang = document.documentElement.lang || 'fr';
+                return (window.translations && window.translations[lang] && window.translations[lang][key]) || '';
+            }
+
+            // Validation email en temps réel : efface le message si l'adresse devient valide
+            emailInput.addEventListener('input', () => {
+                if (emailRegex.test(emailInput.value.trim())) {
+                    emailHint.textContent = '';
+                    emailHint.style.display = 'none';
+                    emailInput.style.borderColor = '';
+                }
+            });
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const type    = document.getElementById('contact-type').value;
                 const name    = document.getElementById('contact-name').value.trim();
-                const email   = document.getElementById('contact-email').value.trim();
+                const email   = emailInput.value.trim();
                 const subject = document.getElementById('contact-subject').value.trim();
                 const message = document.getElementById('contact-message').value.trim();
 
-                // Validation côté client
+                // Validation type
                 if (!type) { document.getElementById('contact-type').focus(); return; }
-                if (!email) { document.getElementById('contact-email').focus(); return; }
+
+                // Validation email : format
+                if (!email || !emailRegex.test(email)) {
+                    emailHint.textContent = t('contact-email-invalid') || 'Adresse e-mail invalide.';
+                    emailHint.style.display = 'block';
+                    emailInput.style.borderColor = '#c0392b';
+                    emailInput.focus();
+                    return;
+                }
+                // Email valide : efface le message
+                emailHint.textContent = '';
+                emailHint.style.display = 'none';
+                emailInput.style.borderColor = '';
 
                 // Indicateur de chargement
                 submitBtn.disabled = true;
@@ -305,21 +337,15 @@
                         form.style.display = 'none';
                         successMsg.classList.add('visible');
                     } else {
-                        const data = await res.json().catch(() => ({}));
-                        throw new Error(data.error || `Erreur ${res.status}`);
+                        throw new Error(`${res.status}`);
                     }
                 } catch (err) {
                     if (errorBox) {
-                        errorBox.textContent = `Une erreur est survenue : ${err.message}. Veuillez réessayer ou nous écrire directement à dmbreelle@gmail.com.`;
+                        errorBox.textContent = t('contact-send-error') || "L'envoi a échoué. Veuillez réessayer.";
                         errorBox.style.display = 'block';
                     }
                     submitBtn.disabled = false;
-                    if (submitLabel) submitLabel.setAttribute('data-i18n', 'contact-submit');
-                    // Restaure le label traduit courant
-                    const lang = document.documentElement.lang || 'fr';
-                    if (submitLabel && window.translations && window.translations[lang]) {
-                        submitLabel.textContent = window.translations[lang]['contact-submit'] || 'Envoyer';
-                    }
+                    if (submitLabel) submitLabel.textContent = t('contact-submit') || 'Envoyer';
                 }
             });
         })();
