@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nous contacter - French Names Along the Australian Coastline</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
+        :root {
+            --nav-height: 72px;
+            --accent: #0056b3;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            background-color: #999;
+            color: #333;
+            padding-top: var(--nav-height);
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+
+        .content-section {
+            background-color: white;
+            padding: clamp(28px, 4vw, 40px);
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .content-section h2 {
+            font-family: 'Lato', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin: 0 0 18px 0;
+            text-align: center;
+        }
+        .contact-intro {
+            color: #4a4a4a;
+            line-height: 1.65;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        /* Formulaire */
+        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+        .form-field { display: flex; flex-direction: column; gap: 6px; }
+        .form-field label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1f2a44;
+        }
+        .form-field label .required {
+            color: #c0392b;
+            margin-left: 3px;
+        }
+        .form-field select,
+        .form-field input[type="text"],
+        .form-field input[type="email"],
+        .form-field textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #c8d8ee;
+            border-radius: 8px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            color: #333;
+            background: #fafbff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-field select:focus,
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: #0056b3;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.15);
+        }
+        .form-field select:invalid,
+        .form-field input:invalid:not(:placeholder-shown),
+        .form-field input[type="email"]:invalid:not(:placeholder-shown) {
+            border-color: #c0392b;
+        }
+        .form-field textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        /* Note de confidentialité */
+        .privacy-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #f0f5ff;
+            border: 1px solid #c8d8ee;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
+        .privacy-note svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: #0056b3;
+        }
+
+        /* Bouton submit */
+        .form-actions { display: flex; justify-content: flex-end; }
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .btn-submit:hover { background-color: #003f82; }
+        .btn-submit:active { transform: scale(0.98); }
+        .btn-submit:focus-visible { outline: 3px solid #FFD700; outline-offset: 3px; }
+
+        /* Message de succès */
+        .success-message {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            background: #e8f8ee;
+            border: 1px solid #a8d8b8;
+            border-radius: 8px;
+            padding: 16px 20px;
+            color: #1a6636;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+        .success-message.visible { display: flex; }
+        .success-message svg { flex-shrink: 0; }
+
+        @media (max-width: 768px) {
+            .content-section { padding: 24px; }
+            .content-section h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
+        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
+        <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
+        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français">
+            <img src="img/fr.svg" alt="Français">
+        </button>
+        <button type="button" id="lang-en" title="Switch to English">
+            <img src="img/au.svg" alt="English">
+        </button>
+    </div>
+</nav>
+
+    <main class="container">
+        <section class="content-section" aria-labelledby="contact-title">
+            <h2 id="contact-title" data-i18n-html="contact-page-title">Nous contacter</h2>
+
+            <p class="contact-intro" data-i18n="contact-intro">Merci pour vos retours, demandes d'améliorations ou de corrections. Ce formulaire vous permet de nous contacter facilement.</p>
+
+            <form class="contact-form" id="contactForm" novalidate>
+
+                <!-- Type de demande -->
+                <div class="form-field">
+                    <label for="contact-type">
+                        <span data-i18n="contact-type-label">Type de demande</span>
+                        <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <select id="contact-type" name="type" required>
+                        <option value="" disabled selected data-i18n="contact-type-placeholder">— Sélectionnez un type —</option>
+                        <option value="contact" data-i18n="contact-type-contact">Prise de contact</option>
+                        <option value="improvement" data-i18n="contact-type-improvement">Demande d'amélioration</option>
+                        <option value="correction" data-i18n="contact-type-correction">Demande de correction</option>
+                    </select>
+                </div>
+
+                <!-- Nom (facultatif) -->
+                <div class="form-field">
+                    <label for="contact-name" data-i18n="contact-name-label">Nom (facultatif)</label>
+                    <input type="text" id="contact-name" name="name" autocomplete="name"
+                        data-i18n-placeholder="contact-name-placeholder"
+                        placeholder="Votre nom">
+                </div>
+
+                <!-- Email (obligatoire) -->
+                <div class="form-field">
+                    <label for="contact-email">
+                        <span data-i18n="contact-email-label">Adresse e-mail</span>
+                        <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <input type="email" id="contact-email" name="email" required autocomplete="email"
+                        data-i18n-placeholder="contact-email-placeholder"
+                        placeholder="votre@email.com">
+                </div>
+
+                <!-- Objet (facultatif) -->
+                <div class="form-field">
+                    <label for="contact-subject" data-i18n="contact-subject-label">Objet (facultatif)</label>
+                    <input type="text" id="contact-subject" name="subject"
+                        data-i18n-placeholder="contact-subject-placeholder"
+                        placeholder="Objet de votre message">
+                </div>
+
+                <!-- Message (facultatif) -->
+                <div class="form-field">
+                    <label for="contact-message" data-i18n="contact-message-label">Message (facultatif)</label>
+                    <textarea id="contact-message" name="message" rows="6"
+                        data-i18n-placeholder="contact-message-placeholder"
+                        placeholder="Décrivez votre demande..."></textarea>
+                </div>
+
+                <!-- Note de confidentialité -->
+                <div class="privacy-note" role="note">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span data-i18n="contact-privacy">Les informations transmises via ce formulaire sont utilisées uniquement pour répondre à votre message. Elles ne sont pas partagées.</span>
+                </div>
+
+                <!-- Bouton d'envoi -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                        <span data-i18n="contact-submit">Envoyer</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Message d'erreur -->
+            <div id="errorMessage" role="alert" style="display:none; margin-top:16px; padding:14px 18px; background:#fff0f0; border:1px solid #f5c0c0; border-radius:8px; color:#a00; font-size:0.95rem; line-height:1.5;"></div>
+
+            <!-- Message de confirmation -->
+            <div class="success-message" id="successMessage" role="alert" aria-live="polite">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span data-i18n="contact-success">Votre message a été transmis. Merci pour votre retour !</span>
+            </div>
+        </section>
+    </main>
+
+    <div data-include-footer></div>
+
+    <script src="js/translations.js?v=20241012"></script>
+    <script src="js/main.js?v=20241012"></script>
+    <script>
+        (() => {
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('successMessage');
+            const submitBtn = form.querySelector('.btn-submit');
+            const submitLabel = submitBtn.querySelector('[data-i18n="contact-submit"]');
+            const errorBox = document.getElementById('errorMessage');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const type    = document.getElementById('contact-type').value;
+                const name    = document.getElementById('contact-name').value.trim();
+                const email   = document.getElementById('contact-email').value.trim();
+                const subject = document.getElementById('contact-subject').value.trim();
+                const message = document.getElementById('contact-message').value.trim();
+
+                // Validation côté client
+                if (!type) { document.getElementById('contact-type').focus(); return; }
+                if (!email) { document.getElementById('contact-email').focus(); return; }
+
+                // Indicateur de chargement
+                submitBtn.disabled = true;
+                if (submitLabel) submitLabel.textContent = '…';
+                if (errorBox) errorBox.style.display = 'none';
+
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ type, name, email, subject, message }),
+                    });
+
+                    if (res.ok) {
+                        form.style.display = 'none';
+                        successMsg.classList.add('visible');
+                    } else {
+                        const data = await res.json().catch(() => ({}));
+                        throw new Error(data.error || `Erreur ${res.status}`);
+                    }
+                } catch (err) {
+                    if (errorBox) {
+                        errorBox.textContent = `Une erreur est survenue : ${err.message}. Veuillez réessayer ou nous écrire directement à dmbreelle@gmail.com.`;
+                        errorBox.style.display = 'block';
+                    }
+                    submitBtn.disabled = false;
+                    if (submitLabel) submitLabel.setAttribute('data-i18n', 'contact-submit');
+                    // Restaure le label traduit courant
+                    const lang = document.documentElement.lang || 'fr';
+                    if (submitLabel && window.translations && window.translations[lang]) {
+                        submitLabel.textContent = window.translations[lang]['contact-submit'] || 'Envoyer';
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
