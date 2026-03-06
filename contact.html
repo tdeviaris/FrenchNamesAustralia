@@ -242,7 +242,7 @@
                 <p style="margin: 0; font-size: 0.85rem; color: #666;" data-i18n="contact-required-note">* Champ obligatoire</p>
 
                 <!-- Bouton d'envoi -->
-                <div class="form-actions">
+                <div id="form-actions" class="form-actions">
                     <button type="submit" class="btn-submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -250,18 +250,23 @@
                         <span data-i18n="contact-submit">Envoyer</span>
                     </button>
                 </div>
+
+                <!-- Message d'erreur -->
+                <div id="errorMessage" role="alert" style="display:none; padding:14px 18px; background:#fff0f0; border:1px solid #f5c0c0; border-radius:8px; color:#a00; font-size:0.95rem; line-height:1.5;"></div>
+
+                <!-- Message de confirmation (remplace le bouton) -->
+                <div class="success-message" id="successMessage" role="alert" aria-live="polite" style="justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        <span data-i18n="contact-success">Votre message a été transmis. Merci pour votre retour !</span>
+                    </div>
+                    <a href="presentation.html" class="up-arrow-link backtop" aria-label="Retour à À propos" style="margin-left:16px; flex-shrink:0;">
+                        <img src="img/up-arrow.svg" alt="" width="24" height="24">
+                    </a>
+                </div>
             </form>
-
-            <!-- Message d'erreur -->
-            <div id="errorMessage" role="alert" style="display:none; margin-top:16px; padding:14px 18px; background:#fff0f0; border:1px solid #f5c0c0; border-radius:8px; color:#a00; font-size:0.95rem; line-height:1.5;"></div>
-
-            <!-- Message de confirmation -->
-            <div class="success-message" id="successMessage" role="alert" aria-live="polite">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                <span data-i18n="contact-success">Votre message a été transmis. Merci pour votre retour !</span>
-            </div>
         </section>
     </main>
 
@@ -273,6 +278,7 @@
         (() => {
             const form        = document.getElementById('contactForm');
             const successMsg  = document.getElementById('successMessage');
+            const formActions = document.getElementById('form-actions');
             const submitBtn   = form.querySelector('.btn-submit');
             const submitLabel = submitBtn.querySelector('[data-i18n="contact-submit"]');
             const errorBox    = document.getElementById('errorMessage');
@@ -334,7 +340,7 @@
                     });
 
                     if (res.ok) {
-                        form.style.display = 'none';
+                        formActions.style.display = 'none';
                         successMsg.classList.add('visible');
                     } else {
                         throw new Error(`${res.status}`);
