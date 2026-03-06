@@ -178,7 +178,7 @@
 
             <p class="contact-intro" data-i18n="contact-intro">Merci pour vos retours, demandes d'améliorations ou de corrections. Ce formulaire vous permet de nous contacter facilement.</p>
 
-            <form class="contact-form" id="contactForm" novalidate>
+            <form class="contact-form" id="contactForm" method="post" action="/api/contact" novalidate>
 
                 <!-- Type de demande -->
                 <div class="form-field">
@@ -194,9 +194,9 @@
                     </select>
                 </div>
 
-                <!-- Nom (facultatif) -->
+                <!-- Nom -->
                 <div class="form-field">
-                    <label for="contact-name" data-i18n="contact-name-label">Nom (facultatif)</label>
+                    <label for="contact-name" data-i18n="contact-name-label">Nom</label>
                     <input type="text" id="contact-name" name="name" autocomplete="name"
                         data-i18n-placeholder="contact-name-placeholder"
                         placeholder="Votre nom">
@@ -236,6 +236,9 @@
                     </svg>
                     <span data-i18n="contact-privacy">Les informations transmises via ce formulaire sont utilisées uniquement pour répondre à votre message. Elles ne sont pas partagées.</span>
                 </div>
+
+                <!-- Légende champs obligatoires -->
+                <p style="margin: 0; font-size: 0.85rem; color: #666;" data-i18n="contact-required-note">* Champ obligatoire</p>
 
                 <!-- Bouton d'envoi -->
                 <div class="form-actions">
