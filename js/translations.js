@@ -158,6 +158,8 @@ const translations = {
         'contact-required-note': "* Champ obligatoire",
         'contact-email-invalid': "Veuillez saisir une adresse e-mail valide.",
         'contact-send-error': "L'envoi a échoué. Veuillez réessayer ou nous écrire directement à dmbreelle@gmail.com.",
+        'contact-human-label': "Je ne suis pas un robot",
+        'contact-sending': "Envoi en cours…",
         'contact-submit': "Envoyer",
         'contact-success': "Votre message a été transmis. Merci pour votre retour !",
 
@@ -417,6 +419,8 @@ const translations = {
         'contact-required-note': "* Required field",
         'contact-email-invalid': "Please enter a valid email address.",
         'contact-send-error': "Sending failed. Please try again or write to us directly at dmbreelle@gmail.com.",
+        'contact-human-label': "I am not a robot",
+        'contact-sending': "Sending…",
         'contact-submit': "Send",
         'contact-success': "Your message has been sent. Thank you for your feedback!",
 
