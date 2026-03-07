@@ -74,6 +74,7 @@ export default async function handler(req, res) {
       </table>`;
 
     try {
+      console.log('[contact] Tentative envoi Resend →', { from: fromEmail, to: toEmail, subject: emailSubject });
       const emailRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -88,11 +89,15 @@ export default async function handler(req, res) {
           html: htmlBody,
         }),
       });
+      const resendBody = await emailRes.text();
       if (!emailRes.ok) {
-        const detail = await emailRes.text();
-        errors.push(`Email Resend : ${emailRes.status} — ${detail}`);
+        console.error('[contact] Resend erreur :', emailRes.status, resendBody);
+        errors.push(`Email Resend : ${emailRes.status} — ${resendBody}`);
+      } else {
+        console.log('[contact] Resend succès :', emailRes.status, resendBody);
       }
     } catch (err) {
+      console.error('[contact] Resend exception :', err.message);
       errors.push(`Email Resend (réseau) : ${err.message}`);
     }
   }
