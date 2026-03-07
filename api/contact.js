@@ -23,7 +23,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { type, name, email, subject, message } = req.body || {};
+  const { type, name, email, subject, message, website } = req.body || {};
+
+  // Anti-spam : honeypot (un bot aura rempli ce champ)
+  if (website) {
+    return res.status(200).json({ success: true }); // faux succès pour ne pas alerter le bot
+  }
 
   // Validation
   if (!type || !email) {
