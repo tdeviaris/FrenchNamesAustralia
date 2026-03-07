@@ -154,7 +154,7 @@ const translations = {
         'contact-subject-placeholder': "Objet de votre message",
         'contact-message-label': "Message",
         'contact-message-placeholder': "Décrivez votre demande...",
-        'contact-privacy': "Les informations transmises via ce formulaire sont utilisées uniquement pour répondre à votre message. Elles ne sont pas partagées.",
+        'contact-privacy': "Les informations transmises via ce formulaire ne sont pas partagées.",
         'contact-required-note': "* Champ obligatoire",
         'contact-email-invalid': "Veuillez saisir une adresse e-mail valide.",
         'contact-send-error': "L'envoi a échoué. Veuillez réessayer ou nous écrire directement à dmbreelle@gmail.com.",
