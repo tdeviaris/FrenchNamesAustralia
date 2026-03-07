@@ -5,7 +5,7 @@
 // Variables d'environnement requises (Vercel Dashboard > Settings > Environment Variables) :
 //   RESEND_API_KEY         — clé API Resend (https://resend.com)
 //   CONTACT_FROM_EMAIL     — adresse expéditrice vérifiée sur Resend (ex: contact@frenchnamesaustralia.com)
-//   CONTACT_TO_EMAIL       — destinataire (dmbreelle@gmail.com)
+//   CONTACT_TO_EMAIL       — destinataire
 //   GOOGLE_SHEET_WEBHOOK   — URL du Google Apps Script Web App déployé sur la feuille
 
 export default async function handler(req, res) {
@@ -47,10 +47,10 @@ export default async function handler(req, res) {
   // ─── 1. Envoi email via Resend ────────────────────────────────────────────
   const resendKey  = process.env.RESEND_API_KEY;
   const fromEmail  = process.env.CONTACT_FROM_EMAIL;
-  const toEmail    = process.env.CONTACT_TO_EMAIL || 'dmbreelle@gmail.com';
+  const toEmail    = process.env.CONTACT_TO_EMAIL;
 
-  if (!resendKey || !fromEmail) {
-    errors.push('Email : RESEND_API_KEY ou CONTACT_FROM_EMAIL non configurés.');
+  if (!resendKey || !fromEmail || !toEmail) {
+    errors.push('Email : RESEND_API_KEY, CONTACT_FROM_EMAIL ou CONTACT_TO_EMAIL non configurés.');
   } else {
     const emailSubject = subject
       ? `[FrenchNamesAustralia] ${subject}`
@@ -67,10 +67,7 @@ export default async function handler(req, res) {
         <tr style="background:#f4f8ff"><td style="padding:10px 18px;font-weight:bold">Email</td><td style="padding:10px 18px"><a href="mailto:${email}">${email}</a></td></tr>
         <tr><td style="padding:10px 18px;font-weight:bold">Objet</td><td style="padding:10px 18px">${subject || '—'}</td></tr>
         <tr style="background:#f4f8ff;vertical-align:top"><td style="padding:10px 18px;font-weight:bold">Message</td>
-          <td style="padding:10px 18px;white-space:pre-wrap">${message ? message.replace(/</g,'&lt;').replace(/>/g,'&gt;') : '—'}</td></tr>
-        <tr><td colspan="2" style="padding:14px 18px;font-size:12px;color:#888;border-top:1px solid #e0e0e0">
-          Soumis via le formulaire de contact du site frenchnamesaustralia.com
-        </td></tr>
+          <td style="padding:10px 18px">${message ? message.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n+/g,' ') : '—'}</td></tr>
       </table>`;
 
     try {

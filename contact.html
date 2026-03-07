@@ -147,6 +147,19 @@
         .success-message.visible { display: flex; }
         .success-message svg { flex-shrink: 0; }
 
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .btn-submit .btn-spinner {
+            width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+            flex-shrink: 0;
+        }
+        .btn-submit.loading .btn-spinner { display: block; }
+        .btn-submit.loading .btn-send-icon { display: none; }
+
         @media (max-width: 768px) {
             .content-section { padding: 24px; }
             .content-section h2 { font-size: 1.5rem; }
@@ -244,9 +257,10 @@
                 <!-- Bouton d'envoi -->
                 <div id="form-actions" class="form-actions">
                     <button type="submit" class="btn-submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg class="btn-send-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
                         </svg>
+                        <div class="btn-spinner" aria-hidden="true"></div>
                         <span data-i18n="contact-submit">Envoyer</span>
                     </button>
                 </div>
@@ -329,7 +343,8 @@
 
                 // Indicateur de chargement
                 submitBtn.disabled = true;
-                if (submitLabel) submitLabel.textContent = '…';
+                submitBtn.classList.add('loading');
+                if (submitLabel) submitLabel.textContent = t('contact-sending') || 'Envoi en cours…';
                 if (errorBox) errorBox.style.display = 'none';
 
                 try {
@@ -351,6 +366,7 @@
                         errorBox.style.display = 'block';
                     }
                     submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
                     if (submitLabel) submitLabel.textContent = t('contact-submit') || 'Envoyer';
                 }
             });
