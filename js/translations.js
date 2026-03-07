@@ -140,7 +140,7 @@ const translations = {
 
         // --- Page Contact (contact.html) ---
         'contact-page-title': "Nous contacter <a href=\"presentation.html\" title=\"Retour à À propos\"><img src=\"img/up-arrow.svg\" alt=\"Retour à À propos\" style=\"width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;\"></a>",
-        'contact-intro': "Merci pour vos retours, demandes d'améliorations ou de corrections. Ce formulaire vous permet de nous contacter facilement.",
+        'contact-intro': "Merci pour vos retours, demandes d'améliorations ou de corrections.",
         'contact-type-label': "Type de demande",
         'contact-type-placeholder': "— Sélectionnez un type —",
         'contact-type-contact': "Prise de contact",
@@ -399,7 +399,7 @@ const translations = {
 
         // --- Contact Page (contact.html) ---
         'contact-page-title': "Contact us <a href=\"presentation.html\" title=\"Back to About\"><img src=\"img/up-arrow.svg\" alt=\"Back to About\" style=\"width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;\"></a>",
-        'contact-intro': "Thank you for your feedback, improvement requests or corrections. Use this form to get in touch with us.",
+        'contact-intro': "Thank you for your feedback, improvement requests or corrections.",
         'contact-type-label': "Type of request",
         'contact-type-placeholder': "— Select a type —",
         'contact-type-contact': "General enquiry",
@@ -413,7 +413,7 @@ const translations = {
         'contact-subject-placeholder': "Subject of your message",
         'contact-message-label': "Message",
         'contact-message-placeholder': "Describe your request...",
-        'contact-privacy': "The information submitted via this form is used solely to respond to your message. It is not shared with third parties.",
+        'contact-privacy': "The information submitted via this form is not shared with third parties.",
         'contact-required-note': "* Required field",
         'contact-email-invalid': "Please enter a valid email address.",
         'contact-send-error': "Sending failed. Please try again or write to us directly at dmbreelle@gmail.com.",
