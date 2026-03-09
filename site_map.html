@@ -70,12 +70,15 @@
             .content-section h3 { font-size: 1.2rem; }
             .content-section p { font-size: 0.9rem; }
         }
-
-        /* Language-specific content blocks */
-        [data-lang] { display: none; }
-        html[lang^="en"] [data-lang="en"],
-        html[lang^="fr"] [data-lang="fr"] { display: block; }
     </style>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWV2EVPVQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LCWV2EVPVQ');
+    </script>
 </head>
 <body>
     <nav>
@@ -100,116 +103,8 @@
         <section class="content-section">
             <h2 data-i18n-html="about-sitemap-page-title">Structure du site</h2>
 
-            <div data-lang="fr">
-                <p>Ce site propose une exploration complète des toponymes français le long des côtes australiennes, issus des expéditions d'Entrecasteaux (1791-1794) et Baudin (1800-1804).</p>
-
-                <h3>Navigation principale</h3>
-                <ul>
-                    <li><strong><a href="index.html">Accueil</a></strong> — Histoire narrative des deux expéditions avec illustrations et cartes historiques</li>
-                    <li><strong><a href="map.html">Carte interactive</a></strong> — Exploration géographique des 670 toponymes avec recherche et filtres</li>
-                    <li><strong><a href="expert.html">Assistant IA</a></strong> — Questions-réponses sur les expéditions et les toponymes</li>
-                    <li><strong><a href="resources.html">Ressources</a></strong> — Documentation, cartes, biographies et contextes historiques</li>
-                    <li><strong><a href="presentation.html">À propos</a></strong> — Présentation du projet, de l'auteure et des soutiens</li>
-                </ul>
-
-                <h3>Ressources documentaires</h3>
-                <ul>
-                    <li><strong><a href="methodology.html">Objectifs et méthodologie</a></strong> — Approche scientifique et sources utilisées</li>
-                    <li><strong><a href="actors.html">Acteurs clés</a></strong> — Biographies des explorateurs, savants et officiers des deux expéditions</li>
-                    <li><strong><a href="maps.html">Cartes marines</a></strong> — Atlas et cartes hydrographiques de Beautemps-Beaupré et Freycinet</li>
-                    <li><strong><a href="illustrations.html">Illustrations</a></strong> — Dessins, gravures et documents d'époque</li>
-                    <li><strong><a href="rapport.html">Rapports de mission</a></strong> — Extraits des récits officiels des expéditions</li>
-                    <li><strong><a href="findings.html">Enseignements</a></strong> — Analyses thématiques des 670 toponymes</li>
-                    <li><strong><a href="glossary.html">Glossaire</a></strong> — Termes historiques, politiques et scientifiques</li>
-                    <li><strong><a href="sources.html">Sources</a></strong> — Archives, bibliothèques numériques et collections consultées</li>
-                </ul>
-
-                <h3>À propos du projet</h3>
-                <ul>
-                    <li><strong><a href="author.html">Présentation de l'auteure</a></strong> — Dany Bréelle, agrégée et docteur en géographie</li>
-                    <li><strong><a href="supporters.html">Soutiens du projet</a></strong> — Contributions de François Bellec, Iain Hay et Guy Robinson</li>
-                    <li><strong><a href="site_map.html">Structure du site</a></strong> — Organisation et navigation (cette page)</li>
-                    <li><strong><a href="legal_notice.html">Mentions légales</a></strong> — Informations légales et crédits</li>
-                </ul>
-
-                <h3>Fonctionnalités interactives</h3>
-                <ul>
-                    <li><strong>Carte interactive</strong> — 670 marqueurs géolocalisés avec fiches détaillées pour chaque toponyme</li>
-                    <li><strong>Filtres par expédition</strong> — Affichage sélectif des toponymes de d'Entrecasteaux ou Baudin</li>
-                    <li><strong>Recherche</strong> — Recherche textuelle dans les noms de lieux et les descriptions</li>
-                    <li><strong>Bilingue</strong> — Contenu disponible en français et en anglais</li>
-                    <li><strong>Visionneuse IIIF</strong> — Consultation des ouvrages historiques en haute résolution</li>
-                    <li><strong>Assistant IA</strong> — Réponses contextuelles sur les expéditions basées sur la documentation du projet</li>
-                </ul>
-
-                <h3>Contenus par expédition</h3>
-                <p><strong>Expédition d'Entrecasteaux (1791-1794)</strong> — 68 toponymes</p>
-                <ul>
-                    <li>Côtes orientales de la Terre de Van Diemen (Tasmanie)</li>
-                    <li>Côtes sud-ouest de la Nouvelle-Hollande (Australie-Occidentale)</li>
-                </ul>
-
-                <p><strong>Expédition Baudin (1800-1804)</strong> — 602 toponymes</p>
-                <ul>
-                    <li>Côtes sud et ouest de l'Australie</li>
-                    <li>Nomenclature reflétant les évolutions politiques de la France napoléonienne</li>
-                </ul>
-            </div>
-
-            <div data-lang="en">
-                <p>This website offers a comprehensive exploration of French place names along the Australian coastline, stemming from the d'Entrecasteaux (1791-1794) and Baudin (1800-1804) expeditions.</p>
-
-                <h3>Main Navigation</h3>
-                <ul>
-                    <li><strong><a href="index.html">Home</a></strong> — Narrative history of both expeditions with illustrations and historical maps</li>
-                    <li><strong><a href="map.html">Interactive Map</a></strong> — Geographic exploration of 670 toponyms with search and filters</li>
-                    <li><strong><a href="expert.html">AI Assistant</a></strong> — Q&A about expeditions and place names</li>
-                    <li><strong><a href="resources.html">Resources</a></strong> — Documentation, maps, biographies and historical contexts</li>
-                    <li><strong><a href="presentation.html">About</a></strong> — Project presentation, author and supporters</li>
-                </ul>
-
-                <h3>Documentary Resources</h3>
-                <ul>
-                    <li><strong><a href="methodology.html">Objectives and Methodology</a></strong> — Scientific approach and sources used</li>
-                    <li><strong><a href="actors.html">Key Actors</a></strong> — Biographies of explorers, scientists and officers from both expeditions</li>
-                    <li><strong><a href="maps.html">Nautical Charts</a></strong> — Atlases and hydrographic maps by Beautemps-Beaupré and Freycinet</li>
-                    <li><strong><a href="illustrations.html">Illustrations</a></strong> — Drawings, engravings and period documents</li>
-                    <li><strong><a href="rapport.html">Mission Reports</a></strong> — Excerpts from official expedition narratives</li>
-                    <li><strong><a href="findings.html">Insights</a></strong> — Thematic analyses of the 670 toponyms</li>
-                    <li><strong><a href="glossary.html">Glossary</a></strong> — Historical, political and scientific terms</li>
-                    <li><strong><a href="sources.html">Sources</a></strong> — Archives, digital libraries and consulted collections</li>
-                </ul>
-
-                <h3>About the Project</h3>
-                <ul>
-                    <li><strong><a href="author.html">About the Author</a></strong> — Dany Bréelle, PhD in Geography</li>
-                    <li><strong><a href="supporters.html">Project Supporters</a></strong> — Contributions from François Bellec, Iain Hay and Guy Robinson</li>
-                    <li><strong><a href="site_map.html">Site Structure</a></strong> — Organization and navigation (this page)</li>
-                    <li><strong><a href="legal_notice.html">Legal Notice</a></strong> — Legal information and credits</li>
-                </ul>
-
-                <h3>Interactive Features</h3>
-                <ul>
-                    <li><strong>Interactive Map</strong> — 670 geolocated markers with detailed information sheets for each toponym</li>
-                    <li><strong>Expedition Filters</strong> — Selective display of d'Entrecasteaux or Baudin toponyms</li>
-                    <li><strong>Search</strong> — Text search across place names and descriptions</li>
-                    <li><strong>Bilingual</strong> — Content available in French and English</li>
-                    <li><strong>IIIF Viewer</strong> — Consultation of historical works in high resolution</li>
-                    <li><strong>AI Assistant</strong> — Contextual answers about expeditions based on project documentation</li>
-                </ul>
-
-                <h3>Content by Expedition</h3>
-                <p><strong>D'Entrecasteaux Expedition (1791-1794)</strong> — 68 place names</p>
-                <ul>
-                    <li>Eastern coasts of Van Diemen's Land (Tasmania)</li>
-                    <li>South-western coasts of New Holland (Western Australia)</li>
-                </ul>
-
-                <p><strong>Baudin Expedition (1800-1804)</strong> — 602 place names</p>
-                <ul>
-                    <li>Southern and western coasts of Australia</li>
-                    <li>Nomenclature reflecting the political evolution of Napoleonic France</li>
-                </ul>
+            <div data-i18n-html="about-sitemap-content">
+                [Contenu à fournir par l'auteure]
             </div>
         </section>
     </main>

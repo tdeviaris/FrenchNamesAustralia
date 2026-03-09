@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baudin Map - French Names Along the Australian Coastline</title>
+    <title>Carte des toponymies françaises — Littoral australien | French Place Names Australia</title>
+    <meta name="description" content="Carte interactive des 671 noms français attribués au littoral australien par les expéditions Baudin et d'Entrecasteaux. Marqueurs différenciés, routes tracées, vue satellite.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.frenchplacenames.au/map.html">
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="French Place Names Australia">
+    <meta property="og:title" content="Carte des toponymies françaises — Littoral australien">
+    <meta property="og:description" content="Explorez la carte interactive des 671 noms français donnés par Baudin et d'Entrecasteaux. Filtres par expédition, routes historiques, vue satellite.">
+    <meta property="og:url" content="https://www.frenchplacenames.au/map.html">
+    <meta property="og:image" content="https://www.frenchplacenames.au/img/carte-de-baudin.jpg">
+    <meta property="og:locale" content="fr_AU">
+    <meta property="og:locale:alternate" content="en_AU">
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Carte des toponymies françaises — Littoral australien">
+    <meta name="twitter:description" content="Carte interactive des 671 noms français donnés par Baudin et d'Entrecasteaux.">
+    <meta name="twitter:image" content="https://www.frenchplacenames.au/img/carte-de-baudin.jpg">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/esri-leaflet"></script>
-    <script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
+    <link rel="stylesheet" href="lib/leaflet/leaflet.css"/>
+    <script src="lib/leaflet/leaflet.js"></script>
+    <script src="lib/esri-leaflet/esri-leaflet.js"></script>
+    <script src="lib/leaflet-polylinedecorator/leaflet.polylineDecorator.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&family=Lato:wght@300;400&display=swap');
         :root {
@@ -23,6 +40,13 @@
             background-color: #f4f4f4; 
             color: #333; 
             padding-top: var(--nav-height); 
+        }
+.visually-hidden {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0);
+            white-space: nowrap; border: 0;
         }
 #map {
             width: 100%;
@@ -1006,6 +1030,14 @@
             color: inherit !important;
         }
     </style>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWV2EVPVQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LCWV2EVPVQ');
+    </script>
 </head>
 <body>
     <nav>
@@ -1026,6 +1058,7 @@
     </div>
 </nav>
 
+    <h1 class="visually-hidden">Carte des toponymies françaises sur le littoral australien</h1>
     <div id="map"></div>
 
     <div class="layer-toggle" aria-label="Filtres d'expédition">
@@ -1104,8 +1137,8 @@
         </div>
     </div>
 
-    <script src="js/translations.js?v=20241012"></script>
-    <script src="js/main.js?v=20241012"></script>
+    <script src="js/translations.js?v=20260309"></script>
+    <script src="js/main.js?v=20260309"></script>
     <script>
         const defaultCenter = [-27, 135];
         // Ajuster le zoom en fonction de la taille de l'écran
