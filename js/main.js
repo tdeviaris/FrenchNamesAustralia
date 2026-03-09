@@ -291,8 +291,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Puis par data-i18n (nouveau système)
+        // Puis par data-i18n (nouveau système) — exclut <title> géré séparément
         document.querySelectorAll('[data-i18n]').forEach((element) => {
+            if (element.tagName === 'TITLE') return;
             const key = element.getAttribute('data-i18n');
             if (key && translations[lang][key]) {
                 element.innerHTML = translations[lang][key];
