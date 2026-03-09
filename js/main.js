@@ -333,6 +333,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Met à jour le titre de l'onglet navigateur
+        const titleEl = document.querySelector('title[data-i18n]');
+        if (titleEl) {
+            const key = titleEl.getAttribute('data-i18n');
+            if (key && translations[lang] && translations[lang][key]) {
+                document.title = translations[lang][key];
+            }
+        }
+
         // Met à jour la langue de la balise <html>
         document.documentElement.lang = lang;
 
