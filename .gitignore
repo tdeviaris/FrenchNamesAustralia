@@ -38,4 +38,12 @@ package-lock.json
 
 # Local illustration workspace (do not commit)
 illustrations/
-.claude/\nassistant/docs/
+
+# Claude Code internals
+.claude/
+
+# Assistant docs
+assistant/docs/
+
+# Playwright CLI
+.playwright-cli/
