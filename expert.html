@@ -161,19 +161,19 @@
             margin-top: 8px;
         }
 
-        /* Message d'introduction pleine largeur */
-        .message-intro {
-            margin: -20px -20px 0 -20px;
+        /* Bandeau d'introduction hors du flux de messages */
+        #chat-intro {
+            background: white;
+            border-bottom: 1px solid #eee;
         }
 
-        .message-intro .message-content {
-            max-width: 100%;
-            width: 100%;
-            border-radius: 0;
-            padding: 16px 20px;
+        .chat-intro-message {
+            padding: 10px 20px;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .message-intro .message-content p {
+        .chat-intro-message p {
             margin: 0;
         }
 
@@ -369,6 +369,32 @@
             color: #c62828;
         }
 
+        .suggested-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px 20px 12px;
+            background: white;
+        }
+
+        .question-chip {
+            padding: 7px 14px;
+            border: 1px solid #0056b3;
+            border-radius: 20px;
+            background: white;
+            color: #0056b3;
+            font-size: 0.88rem;
+            font-family: 'Lato', sans-serif;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            text-align: left;
+        }
+
+        .question-chip:hover {
+            background: #0056b3;
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .container { padding: 10px; }
             .expert-container { padding: 20px; }
@@ -414,13 +440,16 @@
             </div>
 
             <div class="chat-container">
-                <div class="chat-messages" id="chat-messages">
-                    <div class="message message-assistant message-intro">
-                        <div class="message-content">
-                            <p data-i18n="expert-welcome">Hello! I'm the expert on French toponyms in Australia. Ask me anything about the expeditions of d'Entrecasteaux (1791-1794) and Baudin (1800-1804), the 670 documented place names, or the explorers and scientists who participated in these voyages.</p>
-                        </div>
+                <div id="chat-intro">
+                    <div class="chat-intro-message">
+                        <p data-i18n="expert-welcome">Hello! I'm the expert on French toponyms in Australia. Ask me anything about the expeditions of d'Entrecasteaux (1791-1794) and Baudin (1800-1804), the 670 documented place names, or the explorers and scientists who participated in these voyages.</p>
+                    </div>
+                    <div class="suggested-questions">
+                        <button class="question-chip" data-i18n="expert-q1" data-question-fr="Quels sont les principaux enseignements de l'expédition Baudin ?" data-question-en="What are the main findings of the Baudin expedition?">Quels sont les principaux enseignements de l'expédition Baudin ?</button>
+                        <button class="question-chip" data-i18n="expert-q2" data-question-fr="Quelle est l'originalité de l'expédition d'Entrecasteaux ?" data-question-en="What makes the d'Entrecasteaux expedition unique?">Quelle est l'originalité de l'expédition d'Entrecasteaux ?</button>
                     </div>
                 </div>
+                <div class="chat-messages" id="chat-messages"></div>
 
                 <div class="chat-input-container">
                     <form class="chat-input-form" id="chat-form">
@@ -801,6 +830,25 @@
 
         setButtonToSend();
 
+        // Chips de questions suggérées
+        const chatIntroDiv = document.getElementById('chat-intro');
+        const hideSuggestedQuestions = () => {
+            if (chatIntroDiv) chatIntroDiv.style.display = 'none';
+        };
+        if (chatIntroDiv) {
+            chatIntroDiv.querySelectorAll('.question-chip').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = localStorage.getItem('language') || 'en';
+                    const question = lang === 'fr'
+                        ? btn.getAttribute('data-question-fr')
+                        : btn.getAttribute('data-question-en');
+                    chatInput.value = question;
+                    hideSuggestedQuestions();
+                    chatForm.dispatchEvent(new Event('submit'));
+                });
+            });
+        }
+
         const showSlowResponseNote = () => {
             if (slowResponseNote) {
                 return;
@@ -833,6 +881,7 @@
         if (existingHistory && existingHistory.length) {
             chatHistory = existingHistory;
             renderChatHistory(chatHistory);
+            hideSuggestedQuestions();
             scrollChatToBottom();
         }
 
@@ -854,6 +903,7 @@
 
             const userMessage = chatInput.value.trim();
             chatInput.value = '';
+            hideSuggestedQuestions();
 
             // Ajouter le message de l'utilisateur
             addMessage(userMessage, true);
