@@ -574,6 +574,8 @@
             event.preventDefault();
             const code = await resolvePlaceToCode(placeName);
             if (code) {
+                sessionStorage.setItem('expertScrollY', window.scrollY);
+                sessionStorage.setItem('expertChatScrollTop', chatMessages.scrollTop);
                 window.location.href = `map.html#${code}`;
             }
         }
@@ -882,7 +884,22 @@
             chatHistory = existingHistory;
             renderChatHistory(chatHistory);
             hideSuggestedQuestions();
-            scrollChatToBottom();
+
+            // Restaurer la position de scroll si on revient depuis la carte
+            const savedScrollY = sessionStorage.getItem('expertScrollY');
+            const savedChatScrollTop = sessionStorage.getItem('expertChatScrollTop');
+            if (savedScrollY !== null) {
+                requestAnimationFrame(() => {
+                    window.scrollTo(0, parseInt(savedScrollY, 10));
+                    if (savedChatScrollTop !== null) {
+                        chatMessages.scrollTop = parseInt(savedChatScrollTop, 10);
+                    }
+                    sessionStorage.removeItem('expertScrollY');
+                    sessionStorage.removeItem('expertChatScrollTop');
+                });
+            } else {
+                scrollChatToBottom();
+            }
         }
 
         // Gérer la soumission du formulaire
