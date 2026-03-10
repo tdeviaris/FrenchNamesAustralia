@@ -290,7 +290,7 @@ const translations = {
         // --- General text ---
         'hero-title': "French Place Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms bestowed by the d'Entrecasteaux (1791–1794) and Baudin (1800–1804) voyages",
         'hero-dev-status': "Version under development",
-        'hero-audio-label': "Listen to the audio introduction", 'hero-audio-src': "data/intro_en.mp3",
+        'hero-audio-label': "Listen to the audio introduction", 'hero-audio-src': "data/intro_en_v3.wav",
         'scroll-indicator-text': "Scroll down",
         'nav-home': "Home", 'nav-map': "Map", 'nav-ai': "AI Q&A", 'nav-resources': "Resources", 'nav-about': "About",
         'map-layer-baudin': "Baudin",
