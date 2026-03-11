@@ -2611,11 +2611,14 @@
 
         map.on('popupopen', (event) => {
             // Store reference to the marker that owns this popup
-            map.eachLayer((layer) => {
-                if (layer.getPopup && layer.getPopup() === event.popup) {
-                    currentOpenMarker = layer;
-                }
-            });
+            currentOpenMarker = event.popup?._source || null;
+            if (!currentOpenMarker) {
+                map.eachLayer((layer) => {
+                    if (layer.getPopup && layer.getPopup() === event.popup) {
+                        currentOpenMarker = layer;
+                    }
+                });
+            }
             centerPopupOnceReady(event.popup);
             attachPopupActions(event.popup);
             enhancePopupImagesWithAvif(event.popup.getElement());
@@ -2668,6 +2671,29 @@
             }
             return trimmed;
         };
+        function trackPopupPageView(marker) {
+            if (!marker?.place || typeof window.gtag !== 'function') {
+                return;
+            }
+
+            const place = marker.place;
+            const currentLang = localStorage.getItem('language') || 'en';
+            const preferredName = currentLang === 'fr'
+                ? (place.frenchName || place.ausEName || place.code || 'Unknown place')
+                : (place.ausEName || place.frenchName || place.code || 'Unknown place');
+            const popupCode = normalizeMarkerCode(place.code || '') || 'unknown';
+            const popupPath = `${window.location.pathname}?popup=${encodeURIComponent(popupCode)}`;
+            const popupLocation = `${window.location.origin}${popupPath}`;
+
+            window.gtag('event', 'page_view', {
+                page_title: `Carte | ${popupCode} | ${preferredName}`,
+                page_path: popupPath,
+                page_location: popupLocation,
+                popup_code: popupCode,
+                popup_name: preferredName,
+                expedition: marker.expeditionKey || place.expeditionKey || ''
+            });
+        }
         const openMarkerByCode = (rawCode) => {
             const normalized = normalizeMarkerCode(rawCode);
             if (!normalized) {
@@ -2682,6 +2708,7 @@
             }
             ensureExpeditionEnabled(marker.expeditionKey);
             map.closePopup();
+            trackPopupPageView(marker);
             marker.openPopup();
             pendingHashCode = '';
             clearUrlHash();
@@ -2699,6 +2726,7 @@
             const marker = markersByCode.get(pendingHashCode.toLowerCase());
             if (marker) {
                 map.closePopup();
+                trackPopupPageView(marker);
                 marker.openPopup();
                 pendingHashCode = '';
                 clearUrlHash();
@@ -3014,6 +3042,7 @@
 
                     // Simply open the popup and let Leaflet + adjustPopupView handle positioning
                     // This mimics exactly what happens with manual marker clicks
+                    trackPopupPageView(targetMarker);
                     targetMarker.openPopup();
                 }
             }
@@ -4111,6 +4140,7 @@
                 marker.place = place;
                 marker.expeditionKey = expKey;
                 allMarkers.push(marker);
+                marker.on('click', () => trackPopupPageView(marker));
                 const normalizedCode = normalizeMarkerCode(place.code || '');
                 if (normalizedCode) {
                     markersByCode.set(normalizedCode.toLowerCase(), marker);
