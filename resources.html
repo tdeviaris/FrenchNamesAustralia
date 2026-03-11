@@ -72,6 +72,30 @@
 	        .resource-thumb a { display: block; text-decoration: none; }
 	        .resource-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
 	        .resource-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; }
+            .resource-thumb-media {
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+                background: #000;
+            }
+            .resource-thumb-media img {
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .resource-thumb-hover-video {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.25s ease;
+            }
+            .resource-thumb-media.is-video-visible .resource-thumb-hover-video {
+                opacity: 1;
+            }
 	        .resource-text { flex: 1; min-width: 0; }
 	        .resource-text p { margin: 0 0 10px 0; }
 	        .resource-text p:last-child { margin-bottom: 0; }
@@ -180,11 +204,22 @@
 
 		            <div class="resource-grid">
 		                <div class="resource-item">
-		                    <p data-i18n-html="resources-actors-entry"><a class="resource-primary-link" href="actors.html">Key Figures</a></p>
-		                    <div class="resource-row">
+	                    <p data-i18n-html="resources-actors-entry"><a class="resource-primary-link" href="actors.html">Key Figures</a></p>
+	                    <div class="resource-row">
 	                        <div class="resource-thumb">
-	                            <a href="actors.html" aria-label="Open Key Figures">
-	                                <img src="img/Baudin_miniature.jpg" alt="" loading="lazy" decoding="async">
+	                            <a href="actors.html" aria-label="Open Key Figures" data-hover-video-container data-hover-video-flag="enableBaudinHoverVideo">
+                                    <span class="resource-thumb-media">
+	                                    <img src="img/Baudin_miniature.jpg" alt="" loading="lazy" decoding="async">
+                                        <video
+                                            class="resource-thumb-hover-video"
+                                            muted
+                                            loop
+                                            playsinline
+                                            preload="metadata"
+                                            data-hover-video="img/Baudin.mp4?v=20260311-650"
+                                            aria-hidden="true"
+                                        ></video>
+                                    </span>
 	                            </a>
 	                        </div>
 	                        <div class="resource-text">
@@ -276,6 +311,11 @@
     <div data-include-footer></div>
 
     <script src="js/translations.js?v=20260309"></script>
-    <script src="js/main.js?v=20260309"></script>
+    <script>
+        window.resourcePageFlags = {
+            enableBaudinHoverVideo: false
+        };
+    </script>
+    <script src="js/main.js?v=20260311b"></script>
 </body>
 </html>
