@@ -114,6 +114,47 @@
             color: #4d4d4d;
         }
 
+        .om-illustration {
+            max-width: 48%;
+            margin-bottom: 12px;
+        }
+        .om-illustration img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            display: block;
+        }
+        .om-illustration figcaption {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 6px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        .om-illustration--left {
+            float: left;
+            margin-right: 22px;
+            margin-bottom: 12px;
+        }
+        .om-illustration--right {
+            float: right;
+            margin-left: 22px;
+            margin-bottom: 12px;
+        }
+        .om-clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        @media (max-width: 600px) {
+            .om-illustration {
+                max-width: 100%;
+                float: none !important;
+                margin: 0 0 16px 0 !important;
+            }
+        }
+
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
 
         /* Language-specific content blocks */
@@ -159,14 +200,22 @@
                 <p>The website pursues three interrelated aims: documentary, interpretive, and educational.</p>
             </div>
 
-            <div class="om-section-block">
+            <div class="om-section-block om-clearfix">
+                <figure class="om-illustration om-illustration--left">
+                    <img src="img/croquis_nouvelle_hollande_1799.jpg" alt="Sketch of New Holland (Australia), 1799">
+                    <figcaption>Sketch of New Holland (Australia) — 1799? Unknown author. Natural History Museum, Le Havre.</figcaption>
+                </figure>
                 <h4>1. Documentary: Establishing an Evidence-Based Record</h4>
                 <p>The site serves as a scholarly reference resource for researchers, educators, students, and institutions concerned with maritime history, cartography, and cultural heritage.</p>
                 <p>It presents, in systematic and consolidated form, the corpus of coastal localities named by the d&rsquo;Entrecasteaux and Baudin expeditions in Australian waters. Each toponym is identified, geographically located, and situated within the precise chronology of coastal surveys and hydrographic operations.</p>
                 <p>The research is grounded in primary sources &mdash; ships&rsquo; logs, manuscript journals, official instructions, correspondence, and original charts &mdash; preserved in the French National Archives and in the national libraries of France and Australia. By returning to contemporaneous documentation, the project ensures transparency, traceability, and historical accuracy.</p>
             </div>
 
-            <div class="om-section-block">
+            <div class="om-section-block om-clearfix">
+                <figure class="om-illustration om-illustration--right">
+                    <img src="img/terre_de_diemen.jpg" alt="Voyage of discovery to the Austral Lands">
+                    <figcaption>Voyage of discovery to the Austral Lands. <a href="https://gallica.bnf.fr/ark:/12148/bpt6k1912399d/f39.item" target="_blank" rel="noopener noreferrer">Gallica, BnF</a>.</figcaption>
+                </figure>
                 <h4>2. Interpretive: Recognising Layered Histories of Naming</h4>
                 <p>Each French place name is treated as a historical document reflecting the intellectual, political, and scientific contexts of its attribution.</p>
                 <p>Entries examine:</p>
@@ -179,7 +228,11 @@
                 <p>Although the site focuses specifically on the French toponymic layer, it situates these names within a broader historical framework that recognises Australia&rsquo;s past as composed of multiple, coexisting narrative strata. The places to which French explorers assigned names were already embedded within territories long known and named by the First Peoples of Australia, and later became part of a complex landscape of British, Dutch, and subsequent Australian designations.</p>
             </div>
 
-            <div class="om-section-block om-section-block--accent">
+            <div class="om-section-block om-section-block--accent om-clearfix">
+                <figure class="om-illustration om-illustration--left">
+                    <img src="img/fabrique_des_toponymes.jpg" alt="The making of place names">
+                    <figcaption>The making of place names. The place names assigned during the expeditions result from a process combining geographical observation, scientific and political contexts, cartography, and historiographical transmission.</figcaption>
+                </figure>
                 <div class="om-method-banner">Methodology</div>
                 <h4>3. Educational: Promoting Transparency, Context, and Critical Engagement</h4>
                 <p>A central objective of the project is to encourage informed and critical engagement with historical sources.</p>
@@ -187,7 +240,11 @@
                 <p>The project does not seek to redefine Australia&rsquo;s coastal geography. Rather, it documents and contextualises one significant historical layer within the shared and multi-layered heritage of Australia&rsquo;s shores, thereby contributing to a deeper understanding of the country&rsquo;s complex historical narratives.</p>
             </div>
 
-            <div class="om-section-block">
+            <div class="om-section-block om-clearfix">
+                <figure class="om-illustration om-illustration--right">
+                    <img src="img/montre_marine_31.jpg" alt="Marine chronometer no. 31, c. 1793, by Louis Berthout">
+                    <figcaption>Marine chronometer no. 31, c. 1793, by Louis Berthout. Used by Nicolas Baudin, this instrument was considered official Navy property and was returned to the French Navy at the end of the expedition. MnM 13NA 3 D — Musée de la Marine.</figcaption>
+                </figure>
                 <h4>4. Geographical coordinates and historical cartography</h4>
                 <p>The geographical coordinates associated with the place names recorded during the Baudin expedition must be understood within the broader context of early nineteenth-century cartography. The charts produced during the expedition were based on astronomical observations and coastal surveys carried out with the instruments and methods available at the time. Although remarkably precise for their period, these measurements do not always correspond exactly to modern geographical coordinates.</p>
                 <p>Additional discrepancies sometimes arise from differences between the charts published by Louis-Claude de Freycinet and those produced by Matthew Flinders. Variations in the recorded latitude of important reference points could result in slight shifts in the positioning of coastal features and place names on French and British charts. For example, Flinders placed Cape Leeuwin at 34&deg;30&prime; S <a href="https://nla.gov.au/nla.obj-232588708/representativeImage" target="_blank" rel="noopener noreferrer">atlas</a>, while Freycinet positioned it at 34&deg;28&prime; S <a href="http://nla.gov.au/nla.obj-230975935" target="_blank" rel="noopener noreferrer">atlas</a>. The modern latitude of the cape is approximately 34&deg;37&prime; S <a href="https://placenames.fsdf.org.au" target="_blank" rel="noopener noreferrer">gazetteer</a>.</p>
@@ -239,7 +296,11 @@
                 <p>Le site poursuit trois objectifs &eacute;troitement li&eacute;s : documentaire, interpr&eacute;tatif et p&eacute;dagogique.</p>
             </div>
 
-            <div class="om-section-block">
+            <div class="om-section-block om-clearfix">
+                <figure class="om-illustration om-illustration--left">
+                    <img src="img/croquis_nouvelle_hollande_1799.jpg" alt="Croquis de la Nouvelle Hollande (Australie), 1799">
+                    <figcaption>Croquis de la Nouvelle Hollande (Australie) — 1799 ? Auteur inconnu. Muséum d'histoire naturelle, Le Havre.</figcaption>
+                </figure>
                 <h4>1. &Eacute;tablir une r&eacute;f&eacute;rence fond&eacute;e sur les sources primaires</h4>
                 <p>Le site a &eacute;t&eacute; con&ccedil;u comme un instrument de recherche et de consultation destin&eacute; &agrave; la communaut&eacute; scientifique, aux institutions patrimoniales, aux enseignants et aux &eacute;tudiants, ainsi qu&rsquo;&agrave; tout lecteur int&eacute;ress&eacute; par l&rsquo;histoire des explorations maritimes, de la cartographie et de l&rsquo;Australie.</p>
                 <p>Il rassemble, pour la premi&egrave;re fois de mani&egrave;re syst&eacute;matique et exhaustive, l&rsquo;ensemble des localit&eacute;s nomm&eacute;es par les exp&eacute;ditions de d&rsquo;Entrecasteaux et de Baudin le long du littoral australien. Chaque toponyme est identifi&eacute;, localis&eacute; avec pr&eacute;cision et replac&eacute; dans la chronologie des op&eacute;rations hydrographiques et des reconnaissances c&ocirc;ti&egrave;res.</p>
@@ -247,7 +308,11 @@
                 <p>L&rsquo;approche privil&eacute;gie l&rsquo;analyse critique des documents contemporains des exp&eacute;ditions afin de restituer, au plus pr&egrave;s, la mat&eacute;rialit&eacute; et la temporalit&eacute; des actes de nomination.</p>
             </div>
 
-            <div class="om-section-block">
+            <div class="om-section-block om-clearfix">
+                <figure class="om-illustration om-illustration--right">
+                    <img src="img/terre_de_diemen.jpg" alt="Voyage de découvertes aux terres australes">
+                    <figcaption>Voyage de découvertes aux terres australes. <a href="https://gallica.bnf.fr/ark:/12148/bpt6k1912399d/f39.item" target="_blank" rel="noopener noreferrer">Gallica, BnF</a>.</figcaption>
+                </figure>
                 <h4>2. Restituer le contexte historique, scientifique et culturel des d&eacute;nominations</h4>
                 <p>Chaque toponyme est envisag&eacute; comme un objet d&rsquo;histoire &agrave; part enti&egrave;re.</p>
                 <p>Les notices associ&eacute;es &agrave; chaque nom pr&eacute;cisent :</p>
@@ -260,7 +325,11 @@
                 <p>Tout en se consacrant &agrave; l&rsquo;analyse de la strate toponymique fran&ccedil;aise, le site s&rsquo;inscrit dans les approches historiographiques contemporaines qui envisagent l&rsquo;histoire de l&rsquo;Australie comme la coexistence de multiples strates narratives &mdash; britanniques, hollandaises, autochtones ou autres &mdash; o&ugrave; les lieux d&eacute;sign&eacute;s par les navigateurs europ&eacute;ens &eacute;taient d&eacute;j&agrave; inscrits dans des territoires connus et nomm&eacute;s depuis des mill&eacute;naires par les Premiers Peuples d&rsquo;Australie.</p>
             </div>
 
-            <div class="om-section-block om-section-block--accent">
+            <div class="om-section-block om-section-block--accent om-clearfix">
+                <figure class="om-illustration om-illustration--left">
+                    <img src="img/fabrique_des_toponymes.jpg" alt="La fabrique des toponymes">
+                    <figcaption>La fabrique des toponymes. Les noms de lieux attribués lors des expéditions résultent d'un processus associant observation géographique, contextes scientifiques et politiques, cartographie et transmission historiographique.</figcaption>
+                </figure>
                 <div class="om-method-banner">M&eacute;thodologie</div>
                 <h4>3. Favoriser l&rsquo;acc&egrave;s aux sources et encourager l&rsquo;esprit critique</h4>
                 <p>Le site rev&ecirc;t &eacute;galement une dimension p&eacute;dagogique et m&eacute;thodologique.</p>
@@ -269,7 +338,11 @@
                 <p>Il ne s&rsquo;agit pas seulement de restituer un corpus de noms, mais de montrer comment ces noms ont &eacute;t&eacute; &eacute;labor&eacute;s, consign&eacute;s, cartographi&eacute;s et transmis, et comment ils s&rsquo;inscrivent dans une histoire plurielle des c&ocirc;tes australiennes, o&ugrave; se croisent traditions autochtones, explorations europ&eacute;ennes et constructions m&eacute;morielles successives.</p>
             </div>
 
-            <div class="om-section-block">
+            <div class="om-section-block om-clearfix">
+                <figure class="om-illustration om-illustration--right">
+                    <img src="img/montre_marine_31.jpg" alt="Montre marine 31, vers 1793, par Louis Berthout">
+                    <figcaption>Montre marine 31, vers 1793, par Louis Berthout. Utilisé par Nicolas Baudin, cet instrument était considéré comme un bien officiel de la Marine et fut restitué à la Marine française à l'issue de l'expédition. MnM 13NA 3 D — Musée de la Marine.</figcaption>
+                </figure>
                 <h4>4. Coordonn&eacute;es g&eacute;ographiques et cartographie historique</h4>
                 <p>Les coordonn&eacute;es g&eacute;ographiques associ&eacute;es aux toponymes relev&eacute;s lors de l&rsquo;exp&eacute;dition Baudin doivent &ecirc;tre comprises dans le contexte plus large de la cartographie du d&eacute;but du XIXe si&egrave;cle. Les cartes produites pendant l&rsquo;exp&eacute;dition reposaient sur des observations astronomiques et des lev&eacute;s c&ocirc;tiers r&eacute;alis&eacute;s avec les instruments et les m&eacute;thodes disponibles &agrave; l&rsquo;&eacute;poque. Bien que remarquablement pr&eacute;cises pour leur temps, ces mesures ne correspondent pas toujours exactement aux coordonn&eacute;es g&eacute;ographiques modernes.</p>
                 <p>Des &eacute;carts suppl&eacute;mentaires apparaissent parfois entre les cartes publi&eacute;es par Louis-Claude de Freycinet et celles r&eacute;alis&eacute;es par Matthew Flinders. Des variations dans la latitude attribu&eacute;e &agrave; certains points de r&eacute;f&eacute;rence importants pouvaient entra&icirc;ner de l&eacute;gers d&eacute;calages dans la position des &eacute;l&eacute;ments c&ocirc;tiers et des toponymes sur les cartes fran&ccedil;aises et britanniques. Par exemple, Flinders situait le cap Leeuwin &agrave; 34&deg;30&prime; S <a href="https://nla.gov.au/nla.obj-232588708/representativeImage" target="_blank" rel="noopener noreferrer">atlas</a>, tandis que Freycinet le pla&ccedil;ait &agrave; 34&deg;28&prime; S <a href="http://nla.gov.au/nla.obj-230975935" target="_blank" rel="noopener noreferrer">atlas</a>. La latitude moderne du cap est d&rsquo;environ 34&deg;37&prime; S <a href="https://placenames.fsdf.org.au" target="_blank" rel="noopener noreferrer">gazetteer</a>.</p>
