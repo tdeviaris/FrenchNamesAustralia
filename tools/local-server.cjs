@@ -22,31 +22,73 @@ const mime = {
   ".wav": "audio/wav",
 };
 
-const server = http.createServer((req, res) => {
-  const urlPath = decodeURIComponent((req.url || "/").split("?")[0]);
-  let relativePath = urlPath === "/" ? "/index.html" : urlPath;
-  let fullPath = path.join(base, relativePath);
+function resolveRequest(urlPathWithQuery) {
+  const [rawPath, rawQuery] = decodeURIComponent(urlPathWithQuery || "/").split("?");
+  const cleanUrlPath = rawPath || "/";
+  const querySuffix = rawQuery ? `?${rawQuery}` : "";
+  const initialPath = cleanUrlPath === "/" ? "/index.html" : cleanUrlPath;
+  const normalized = path.normalize(initialPath).replace(/^[/\\]+/, "");
+  const requestedPath = path.join(base, normalized);
 
-  fs.stat(fullPath, (statErr, stats) => {
-    if (!statErr && stats.isDirectory()) {
-      fullPath = path.join(fullPath, "index.html");
+  if (fs.existsSync(requestedPath) && fs.statSync(requestedPath).isFile()) {
+    return { type: "file", path: requestedPath };
+  }
+
+  if (fs.existsSync(requestedPath) && fs.statSync(requestedPath).isDirectory()) {
+    const indexPath = path.join(requestedPath, "index.html");
+    if (fs.existsSync(indexPath) && fs.statSync(indexPath).isFile()) {
+      return { type: "file", path: indexPath };
+    }
+  }
+
+  // Redirect extensionless routes to explicit .html so relative assets resolve correctly.
+  const noTrailingSlash = normalized.replace(/[\\/]+$/, "");
+  if (noTrailingSlash && path.extname(noTrailingSlash) === "") {
+    const htmlPath = path.join(base, `${noTrailingSlash}.html`);
+    if (fs.existsSync(htmlPath) && fs.statSync(htmlPath).isFile()) {
+      return {
+        type: "redirect",
+        location: `/${noTrailingSlash.replace(/\\/g, "/")}.html${querySuffix}`,
+      };
+    }
+  }
+
+  return { type: "not_found" };
+}
+
+const server = http.createServer((req, res) => {
+  const resolved = resolveRequest(req.url || "/");
+
+  if (resolved.type === "redirect") {
+    res.statusCode = 302;
+    res.setHeader("Location", resolved.location);
+    res.end();
+    return;
+  }
+
+  if (resolved.type !== "file") {
+    res.statusCode = 404;
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.end(
+      "Error response\nError code: 404\n\nMessage: File not found.\n\nError code explanation: 404 - Nothing matches the given URI.\n"
+    );
+    return;
+  }
+
+  fs.readFile(resolved.path, (readErr, data) => {
+    if (readErr) {
+      res.statusCode = 404;
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.end(
+        "Error response\nError code: 404\n\nMessage: File not found.\n\nError code explanation: 404 - Nothing matches the given URI.\n"
+      );
+      return;
     }
 
-    fs.readFile(fullPath, (readErr, data) => {
-      if (readErr) {
-        res.statusCode = 404;
-        res.setHeader("Content-Type", "text/plain; charset=utf-8");
-        res.end(
-          "Error response\nError code: 404\n\nMessage: File not found.\n\nError code explanation: 404 - Nothing matches the given URI.\n"
-        );
-        return;
-      }
-
-      const ext = path.extname(fullPath).toLowerCase();
-      res.statusCode = 200;
-      res.setHeader("Content-Type", mime[ext] || "application/octet-stream");
-      res.end(data);
-    });
+    const ext = path.extname(resolved.path).toLowerCase();
+    res.statusCode = 200;
+    res.setHeader("Content-Type", mime[ext] || "application/octet-stream");
+    res.end(data);
   });
 });
 
