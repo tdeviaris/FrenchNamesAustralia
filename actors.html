@@ -31,7 +31,7 @@
         .entry-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
         .entry-text { flex: 1; min-width: 300px; }
         .entry-text p { margin: 0.6em 0; line-height: 1.55; }
-        .entry-image img { cursor: pointer; transition: opacity 0.2s ease; }
+        .entry-image img { cursor: zoom-in; transition: opacity 0.2s ease; }
         .entry-image img:hover { opacity: 0.85; }
 
         /* Lightbox for fullscreen portrait display */
@@ -49,8 +49,8 @@
             display: flex;
         }
         .portrait-lightbox img {
-            max-width: 90vw;
-            max-height: 90vh;
+            width: 90vw;
+            height: 90vh;
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);

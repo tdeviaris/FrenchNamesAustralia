@@ -124,7 +124,50 @@
             border-radius: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.18);
             display: block;
+            cursor: zoom-in;
         }
+
+        /* Lightbox */
+        .portrait-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .portrait-lightbox.active {
+            display: flex;
+        }
+        .portrait-lightbox img {
+            width: 90vw;
+            height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+        }
+        .portrait-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            font-size: 28px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background 0.2s ease;
+        }
+        .portrait-lightbox-close:hover { background: #f2f2f2; }
+        .portrait-lightbox-close:focus-visible { outline: 3px solid #FFD700; }
         .om-illustration figcaption {
             font-size: 0.8rem;
             color: #777;
@@ -389,6 +432,41 @@
     </main>
 
     <div data-include-footer></div>
+
+    <!-- Lightbox -->
+    <div class="portrait-lightbox" id="portraitLightbox">
+        <button type="button" class="portrait-lightbox-close" aria-label="Close">&times;</button>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('portraitLightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxClose = lightbox.querySelector('.portrait-lightbox-close');
+        const illustrationImages = document.querySelectorAll('.om-illustration img');
+
+        illustrationImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+        });
+    </script>
 
     <script src="js/translations.js?v=20241012"></script>
     <script src="js/main.js?v=20260309"></script>

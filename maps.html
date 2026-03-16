@@ -34,7 +34,7 @@
             margin-right: 18px;
             margin-bottom: 12px;
         }
-        .map-thumb button { border: none; padding: 0; background: transparent; cursor: pointer; display: block; width: 100%; }
+        .map-thumb button { border: none; padding: 0; background: transparent; cursor: zoom-in; display: block; width: 100%; }
         .map-thumb button:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
         .map-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
 
@@ -49,7 +49,7 @@
         /* Modale d'images */
         .image-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
         .image-overlay.is-visible { display: flex; }
-        .image-overlay img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 12px 48px rgba(0,0,0,0.6); }
+        .image-overlay img { width: 90vw; height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 12px 48px rgba(0,0,0,0.6); }
         .image-close { position: fixed; top: 20px; right: 20px; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(0,0,0,0.72); color: #fff; cursor: pointer; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.4); z-index: 2100; }
         .image-close:hover { background: rgba(0,0,0,0.85); }
         .image-close:focus-visible { outline: 3px solid #FFD700; }
