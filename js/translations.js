@@ -4,6 +4,7 @@ const translations = {
         // --- Textes généraux ---
         'hero-title': "Noms Français le&nbsp;long du&nbsp;littoral Australien", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
         'hero-dev-status': "Version en cours de développement",
+        'hero-audio-intro': "Introduction audio",
         'hero-audio-label': "Écouter l'introduction audio", 'hero-audio-src': "data/intro_fr.mp3",
         'scroll-indicator-text': "Faites défiler",
         'nav-home': "Accueil", 'nav-map': "Carte", 'nav-ai': "Q&R IA", 'nav-resources': "Ressources", 'nav-about': "À propos",
@@ -295,6 +296,7 @@ const translations = {
         // --- General text ---
         'hero-title': "French Place Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms bestowed by the d'Entrecasteaux (1791–1794) and Baudin (1800–1804) voyages",
         'hero-dev-status': "Version under development",
+        'hero-audio-intro': "Audio introduction",
         'hero-audio-label': "Listen to the audio introduction", 'hero-audio-src': "data/intro_en.mp3",
         'scroll-indicator-text': "Scroll down",
         'nav-home': "Home", 'nav-map': "Map", 'nav-ai': "AI Q&A", 'nav-resources': "Resources", 'nav-about': "About",

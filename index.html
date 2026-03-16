@@ -154,6 +154,14 @@
             opacity: 0.9;
         }
         .intro-audio { margin-top: 16px; }
+        .intro-audio-intro {
+            margin: 0 0 10px !important;
+            font-size: clamp(0.82rem, 1.8vw, 0.95rem) !important;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.9;
+        }
         .intro-audio audio {
             width: 100%;
             max-width: 560px;
@@ -386,6 +394,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 	                    <p data-i18n="hero-subtitle">The toponyms bestowed by the d'Entrecasteaux (1791–1794) and Baudin (1800–1804) voyages</p>
                         <p id="hero-dev-status" class="intro-dev-status" data-i18n="hero-dev-status">Version under development</p>
 	                    <div class="intro-audio">
+                            <p class="intro-audio-intro" data-i18n="hero-audio-intro">Audio introduction</p>
 	                        <audio id="hero-audio" controls preload="none" data-i18n-src="hero-audio-src" data-i18n-aria-label="hero-audio-label" aria-label="Listen to the audio introduction">
 	                            <source src="data/intro_en.mp3">
 	                            Your browser does not support the audio element.
