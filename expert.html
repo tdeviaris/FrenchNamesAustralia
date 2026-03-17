@@ -572,8 +572,45 @@ gtag('config', 'G-LCWV2EVPVQ');
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
             .toLowerCase()
+            .replace(/[.'’-]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
+
+        const stripFrenchArticles = (value) => value
+            .replace(/\b(l|le|la|les|d|de|des|du|au|aux)\b/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        const buildPlaceNameVariants = (rawName) => {
+            const variants = new Set();
+            const addVariant = (value) => {
+                const normalized = normalizeName(value);
+                if (normalized) {
+                    variants.add(normalized);
+                }
+            };
+
+            addVariant(rawName);
+            const base = normalizeName(rawName);
+            if (!base) {
+                return variants;
+            }
+
+            const saintExpanded = base
+                .replace(/\bst\b/g, 'saint')
+                .replace(/\bste\b/g, 'sainte');
+
+            const saintAbbreviated = base
+                .replace(/\bsaint\b/g, 'st')
+                .replace(/\bsainte\b/g, 'ste');
+
+            [base, saintExpanded, saintAbbreviated].forEach((value) => {
+                addVariant(value);
+                addVariant(stripFrenchArticles(value));
+            });
+
+            return variants;
+        };
 
         async function loadPlaceIndex() {
             if (placeIndexPromise) return placeIndexPromise;
@@ -588,16 +625,16 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const index = new Map();
 
                     const addEntry = (entry) => {
-                        const names = [entry.frenchName, entry.ausEName].filter(Boolean);
+                        const names = [entry.frenchName, entry.variantName, entry.ausEName].filter(Boolean);
                         names.forEach((n) => {
                             // Trim les espaces en début et fin AVANT normalisation
                             const trimmed = (n || '').trim();
                             if (!trimmed) return;
 
-                            const key = normalizeName(trimmed);
-                            if (!key) return;
-                            if (!index.has(key)) index.set(key, new Set());
-                            index.get(key).add(entry.code);
+                            buildPlaceNameVariants(trimmed).forEach((key) => {
+                                if (!index.has(key)) index.set(key, new Set());
+                                index.get(key).add(entry.code);
+                            });
                         });
                     };
 
