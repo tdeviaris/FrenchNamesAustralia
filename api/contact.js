@@ -8,13 +8,86 @@
 //   CONTACT_TO_EMAIL       — destinataire
 //   GOOGLE_SHEET_WEBHOOK   — URL du Google Apps Script Web App déployé sur la feuille
 
+const ALLOWED_ORIGINS = new Set([
+  'https://french-names-australia.vercel.app',
+  'https://www.frenchplacenames.au',
+  'https://frenchplacenames.au',
+  'https://www.frenchplacenames.com',
+  'https://frenchplacenames.com',
+]);
+
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX_SUBMISSIONS = 5;
+const rateLimitStore = new Map();
+
+function normalizeOrigin(value) {
+  if (!value) return null;
+  try {
+    return new URL(value).origin;
+  } catch {
+    return null;
+  }
+}
+
+function getAllowedRequestOrigin(req) {
+  const origin = normalizeOrigin(req.headers.origin);
+  if (origin && ALLOWED_ORIGINS.has(origin)) {
+    return origin;
+  }
+
+  const refererOrigin = normalizeOrigin(req.headers.referer);
+  if (refererOrigin && ALLOWED_ORIGINS.has(refererOrigin)) {
+    return refererOrigin;
+  }
+
+  return null;
+}
+
+function getClientIp(req) {
+  const forwardedFor = req.headers['x-forwarded-for'];
+  if (typeof forwardedFor === 'string' && forwardedFor.trim()) {
+    return forwardedFor.split(',')[0].trim();
+  }
+  return req.socket?.remoteAddress || 'unknown';
+}
+
+function consumeRateLimit(ip) {
+  const now = Date.now();
+
+  for (const [key, timestamps] of rateLimitStore.entries()) {
+    const recent = timestamps.filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
+    if (recent.length > 0) {
+      rateLimitStore.set(key, recent);
+    } else {
+      rateLimitStore.delete(key);
+    }
+  }
+
+  const timestamps = rateLimitStore.get(ip) || [];
+  if (timestamps.length >= RATE_LIMIT_MAX_SUBMISSIONS) {
+    return false;
+  }
+
+  timestamps.push(now);
+  rateLimitStore.set(ip, timestamps);
+  return true;
+}
+
 export default async function handler(req, res) {
+  const allowedOrigin = getAllowedRequestOrigin(req);
+
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  if (allowedOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+    res.setHeader('Vary', 'Origin');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
+    if (!allowedOrigin) {
+      return res.status(403).json({ error: 'Forbidden origin' });
+    }
     res.status(200).end();
     return;
   }
@@ -23,7 +96,23 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { type, name, email, subject, message, website } = req.body || {};
+  if (!allowedOrigin) {
+    return res.status(403).json({ error: 'Forbidden origin' });
+  }
+
+  const fetchSite = req.headers['sec-fetch-site'];
+  if (fetchSite && !['same-origin', 'same-site', 'none'].includes(fetchSite)) {
+    return res.status(403).json({ error: 'Cross-site requests are not allowed' });
+  }
+
+  const clientIp = getClientIp(req);
+  if (!consumeRateLimit(clientIp)) {
+    return res.status(429).json({
+      error: 'Trop de demandes envoyées. Merci de réessayer plus tard.',
+    });
+  }
+
+  const { type, name, email, subject, message, website, human } = req.body || {};
 
   // Anti-spam : honeypot (un bot aura rempli ce champ)
   if (website) {
@@ -37,6 +126,15 @@ export default async function handler(req, res) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ error: 'Adresse email invalide.' });
+  }
+  if (human !== true) {
+    return res.status(400).json({ error: 'Confirmation humaine manquante.' });
+  }
+  if (typeof subject === 'string' && subject.length > 200) {
+    return res.status(400).json({ error: 'Objet trop long.' });
+  }
+  if (typeof message === 'string' && message.length > 5000) {
+    return res.status(400).json({ error: 'Message trop long.' });
   }
 
   const typeLabels = {

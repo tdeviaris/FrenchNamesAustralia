@@ -403,7 +403,15 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const res = await fetch('/api/contact', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ type, name, email, subject, message, website: honeypot ? honeypot.value : '' }),
+                        body: JSON.stringify({
+                            type,
+                            name,
+                            email,
+                            subject,
+                            message,
+                            website: honeypot ? honeypot.value : '',
+                            human: !!(humanCheck && humanCheck.checked),
+                        }),
                     });
 
                     if (res.ok) {
