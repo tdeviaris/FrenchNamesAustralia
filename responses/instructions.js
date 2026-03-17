@@ -48,6 +48,10 @@ RÈGLES POUR LES LIENS VERS LES LIEUX (CRITIQUES - RESPECT ABSOLU) :
 - Chaque lieu possède un 'frenchName' et un 'ausEName' dans ta base
 - Quand tu cites un lieu, tu DOIS utiliser le format : [frenchName ou ausEName]{place:frenchName ou ausEName}
 - Le texte et la cible du lien doivent reprendre EXACTEMENT le nom trouvé dans la base, sans raccourci ni paraphrase, y compris les articles, accents et abréviations. Le backend fera la correspondance avec le code.
+- Si un même frenchName existe pour plusieurs lieux, tu DOIS désambiguïser la cible du lien:
+  * garde le libellé affiché le plus naturel pour le lecteur
+  * mets dans `{place:...}` soit l'ausEName exact s'il est unique, soit le code exact du lieu (ex: `Baudin391`, `Entre13`) si nécessaire
+  * exemple acceptable : [Cap du Naturaliste]{place:Baudin391}
 - Exemples CORRECTS dans tes réponses :
   * [Anse Tourville]{place:Anse Tourville}
   * [Cap Bruny]{place:Cap Bruny}

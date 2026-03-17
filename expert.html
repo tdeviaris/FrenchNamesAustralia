@@ -565,6 +565,25 @@ gtag('config', 'G-LCWV2EVPVQ');
             return `map.html#${encodeURIComponent(code)}`;
         };
 
+        const normalizePlaceCode = (rawValue = '') => {
+            const trimmed = rawValue.trim();
+            if (!trimmed) {
+                return '';
+            }
+
+            const baudinMatch = trimmed.match(/^baudin(\d+)$/i);
+            if (baudinMatch) {
+                return `Baudin${baudinMatch[1].padStart(3, '0')}`;
+            }
+
+            const entreMatch = trimmed.match(/^entre(\d+)$/i);
+            if (entreMatch) {
+                return `Entre${entreMatch[1].padStart(2, '0')}`;
+            }
+
+            return '';
+        };
+
         // Index mémoire des lieux (chargé à la demande)
         let placeIndexPromise = null;
 
@@ -663,8 +682,14 @@ gtag('config', 'G-LCWV2EVPVQ');
 
                     const index = new Map();
                     const searchableKeys = [];
+                    const knownCodes = new Set();
 
                     const addEntry = (entry) => {
+                        const normalizedCode = normalizePlaceCode(entry.code || '');
+                        if (normalizedCode) {
+                            knownCodes.add(normalizedCode);
+                        }
+
                         const names = [entry.frenchName, entry.variantName, entry.ausEName].filter(Boolean);
                         names.forEach((n) => {
                             // Trim les espaces en début et fin AVANT normalisation
@@ -680,10 +705,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                     };
 
                     [...baudin, ...entre].forEach(addEntry);
-                    return { index, searchableKeys };
+                    return { index, searchableKeys, knownCodes };
                 } catch (err) {
                     console.error('Failed to load place index', err);
-                    return { index: new Map(), searchableKeys: [] };
+                    return { index: new Map(), searchableKeys: [], knownCodes: new Set() };
                 }
             })();
 
@@ -692,16 +717,21 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         async function resolvePlaceToCode(name) {
             if (!name) return null;
-            const { index, searchableKeys } = await loadPlaceIndex();
+            const { index, searchableKeys, knownCodes } = await loadPlaceIndex();
+            const directCode = normalizePlaceCode(name);
+            if (directCode && knownCodes.has(directCode)) {
+                return directCode;
+            }
+
             const inputVariants = [...buildPlaceNameVariants(name)];
 
-            const directCode = resolveUniqueCodeFromMatches(
+            const directMatchCode = resolveUniqueCodeFromMatches(
                 inputVariants
                     .map((key) => index.get(key))
                     .filter(Boolean)
             );
-            if (directCode) {
-                return directCode;
+            if (directMatchCode) {
+                return directMatchCode;
             }
 
             let bestDistance = Infinity;
