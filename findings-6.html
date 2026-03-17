@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="findings-6-meta-title">6. The relevance of the nomenclatures of d&rsquo;Entrecasteaux&rsquo;s and Baudin&rsquo;s voyages - French Names Along the Australian Coastline</title>
+    <title data-i18n="findings-6-meta-title">6. The reception of the nomenclatures of d&rsquo;Entrecasteaux&rsquo;s and Baudin&rsquo;s voyages - French Names Along the Australian Coastline</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
     <link rel="stylesheet" href="css/nav.css">
@@ -30,6 +30,47 @@
         .quote-block { margin: 18px 0; padding: 14px 16px; border-left: 4px solid #0056b3; background: #f4f8ff; border-radius: 6px; font-style: italic; color: #1f2f45; }
         .quote-block p { margin: 0 0 10px 0; }
         .quote-block p:last-child { margin-bottom: 0; }
+        .paired-figures {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 18px 0 10px 0;
+        }
+        .doc-figure {
+            margin: 0;
+            background: #fff;
+            border: 1px solid #d8e3f5;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(26, 48, 84, 0.12);
+        }
+        .doc-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .single-figure {
+            max-width: 760px;
+            margin: 22px auto 10px auto;
+        }
+        .single-figure.wide {
+            max-width: 980px;
+        }
+        .figure-caption {
+            font-size: 0.95rem;
+            color: #3c4a5f;
+            margin: 10px 0 14px 0;
+        }
+        .figure-source {
+            font-size: 0.9rem;
+            color: #4a5872;
+            margin: 0 0 16px 0;
+        }
+        .reference-note {
+            margin: 6px 0 18px 0;
+            font-size: 0.93rem;
+            color: #3f4e67;
+        }
         [data-lang] { display: none; }
         .findings-bottom-nav {
             display: flex;
@@ -99,27 +140,67 @@
 </nav>
 
     <main class="container">
-        <div data-lang="en">
+                <div data-lang="en">
         <section class="content-section">
-            <h2>6. The relevance of the nomenclatures of d&rsquo;Entrecasteaux&rsquo;s and Baudin&rsquo;s voyages <a href="findings.html" title="Back to Findings"><img src="img/up-arrow.svg" alt="Back to Findings" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
-            <p>The nomenclatures of d&rsquo;Entrecasteaux&rsquo;s and of P&eacute;ron and Freycinet represent two differing intentions in their choices of place names. The former follows on from that of La P&eacute;rouse&rsquo;s voyage, where La P&eacute;rouse gave the places discovered by his expedition names relating mainly to the geography of the coast, to his officers and savants, and the course of the voyage. Similarly, d&rsquo;Entrecasteaux&rsquo;s names gave credit to the work and achievements of his crew and his two vessels, while, at the same time, in the midst of the revolutionary period, the commander did his best to avoid any controversial names with political connotations and outside the scope of the expedition itself. By contrast, P&eacute;ron and Freycinet created their nomenclature in honour of the French nation, its main actors, heroes and personalities of past centuries who were elevated to the rank of French national icons, and its new imperial dynasty. More generally, their nomenclature reflects the Napoleonic imperial dream, based chiefly on the development of a technocratic and scientific elite, and a national narrative filled with heroes and great men and women, victories and epic battles. Whilst d&rsquo;Entrecasteaux&rsquo;s nomenclature had not been challenged by the authorities of the time, that of P&eacute;ron and Freycinet was soon contested at various levels. For its part, the Ministry of the Interior was frustrated in as much as some influential public servants of the ministry were not included, while &lsquo;very obscure men were immortalised&rsquo; (probably a reference to relatively anonymous public servants such as Forestier, a human resources officer in the Ministry for the Navy and Colonies, who had been helpful to P&eacute;ron). Moreover, Freycinet had to justify why the high-ranking naval officer Gantheaume* had only been honoured with the name of a cape on the large island whose name was devoted to Decr&egrave;s* (today&rsquo;s Kangaroo Island). Freycinet explained his choice of that name in a letter written in June 1812 to Decr&egrave;s.</p>
+            <h2>6. The reception of the nomenclatures of the d&rsquo;Entrecasteaux and Baudin voyages <a href="findings.html" title="Back to Findings"><img src="img/up-arrow.svg" alt="Back to Findings" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
+
+            <figure class="doc-figure single-figure">
+                <img src="img/findings6/reception-map-detail-1.png" alt="Detail showing the d&rsquo;Entrecasteaux Channel and Bruny Island in Tasmania">
+            </figure>
+            <figure class="doc-figure single-figure">
+                <img src="img/findings6/reception-map-detail-2.png" alt="Detail showing the Bonaparte Archipelago in Western Australia">
+            </figure>
+            <p class="figure-caption">Enlarged details from a contemporary map of Australia, showing the d&rsquo;Entrecasteaux Channel and Bruny Island in Tasmania, and the Bonaparte Archipelago in Western Australia. <a href="https://placenames.fsdf.org.au/" target="_blank" rel="noopener">https://placenames.fsdf.org.au/</a></p>
+
+            <p>Whereas the nomenclature established during the d&rsquo;Entrecasteaux expedition remained largely uncontested by contemporary authorities, that introduced by Fran&ccedil;ois P&eacute;ron and Louis de Freycinet was rapidly subject to criticism on several fronts. The Ministry of the Interior, in particular, expressed dissatisfaction, as certain influential officials were omitted, while &ldquo;very obscure individuals were immortalised&rdquo; &mdash; likely referring to relatively anonymous figures such as Forestier, a personnel officer in the Ministry of the Navy and Colonies who had assisted P&eacute;ron.</p>
+
+            <p>Freycinet was also required to justify why the senior naval officer Gantheaume* had been honoured only by the naming of a cape on the large island whose name had been dedicated to Decr&egrave;s* (now Kangaroo Island). He explained this decision in a letter addressed to Decr&egrave;s in June 1812.</p>
+
+            <figure class="doc-figure single-figure">
+                <img src="img/findings6/reception-freycinet-letter.jpg" alt="Letter by Louis de Freycinet concerning the naming of Cape Gantheaume">
+            </figure>
+            <p class="figure-caption">Letter reproduced on microfilm at the State Library of South Australia (ARG, Series 1, Reel 29).<br>Original held in the Archives of the Service historique de la Marine (SHM), Vincennes, Series CC7, individual files of naval officers and associated personnel: Louis Claude de Freycinet.</p>
+
             <blockquote class="quote-block">
-                <p>&hellip;The name of Gantheaume has moreover been chosen as the name of the most illustrious general officer after that of the Minister who directs all the branches of this part of the public service. I think it is necessary to notify Your Excellence that the name of the Admiral has been applied, moreover, to an island of ten leagues circumference, which is situated on the north coast of New Holland at 120&deg; of longitude. However, Monseigneur, if it seems proper to you to omit from the nomenclature of &Icirc;le Decr&egrave;s the name of Cape Gantheaume, it will be straightforward to substitute another for it, because Monsieur P&eacute;ron in the first volume of the history of the voyage did not mention it. I could substitute that of Cape Jean Barth&hellip;</p>
+                <p>&ldquo;&hellip;The name of Gantheaume appeared to deserve a place there as that of the most distinguished general officer after that of the Minister who directs all branches of this part of the public service. I consider it necessary to observe to Your Excellency that the admiral&rsquo;s name has also been applied to an island of ten leagues in circumference situated on the northern coast of New Holland, at 120&deg; longitude.</p>
+                <p>Now, Monseigneur, if it seems appropriate to you to remove from the nomenclature of Decr&egrave;s Island the name of Cape Gantheaume, it would be all the easier to substitute another, since Monsieur P&eacute;ron made no mention of it in the first volume of the voyage narrative. I could replace it with the name Cape Jean Bart&hellip;&rdquo;</p>
             </blockquote>
-            <p class="section-subtitle">Decr&egrave;s commented on the issue in a short note in the margin of the letter, with some humour:</p>
+
+            <p class="section-subtitle">Decr&egrave;s responded in a brief marginal note, with a touch of humour:</p>
             <blockquote class="quote-block">
-                <p>Even so Gantheaume has [like me] an island [named after him], I&rsquo;m glad to keep him [to keep also his name] in mine.</p>
+                <p>&ldquo;As soon as Gantheaume has [like myself] an island [bearing his name], I am quite content to retain him [to keep his name] in mine.&rdquo;</p>
             </blockquote>
-            <p>Other obstacles postponed further publication of the volumes and atlas of the voyage: on the one hand, foreign scientists were not pleased, as eminent scientists such as Humboldt were not part of the nomenclature. On the other hand, publication was delayed following Napol&eacute;on&rsquo;s divorce from Jos&eacute;phine in 1810 to marry the Archduchess Marie Louise, the eldest daughter of the emperor of Austria, who became the new empress of the French (as, similarly, Marie Antoinette, Archduchess of Austria, had married Louis XVI). Consequently, in 1806, when working on the historical narrative of the voyage, P&eacute;ron selected the names of Jos&eacute;phine and her children as representatives of the imperial family, but, by 1810, when Freycinet was completing the account and the geographical atlas of the voyage for publication, it was Marie Louise who was the Empress of the French. From then on, and until 1814, Marie Louise was the representative, together with the child she had with Napol&eacute;on, of the imperial family. This added complication to the publication of Freycinet&rsquo;s atlas, which now included names that were no longer relevant.</p>
-            <p class="section-subtitle">As Madame de Chastenay forthrightly explains in her memoirs about these various mishaps concerning the voyage&rsquo;s place names:</p>
+
+            <p>Further obstacles delayed the publication of the volumes and atlas of the voyage. On the one hand, foreign scholars expressed dissatisfaction, as eminent scientists such as Humboldt were absent from the nomenclature. On the other hand, publication was delayed by the divorce of Napoleon and Jos&eacute;phine in 1810, followed by his marriage to Archduchess Marie-Louise, daughter of the Emperor of Austria, who became the new Empress of the French.</p>
+
+            <p>As a result, when P&eacute;ron was preparing the historical narrative of the voyage in 1806, he had selected the names of Jos&eacute;phine and her children as representatives of the imperial family. By 1810, however, when Freycinet was completing the narrative and geographical atlas for publication, Marie-Louise had assumed that role. Until 1814, she, together with Napoleon&rsquo;s heir, became the central figure of the imperial family. This development introduced an additional difficulty in the publication of Freycinet&rsquo;s atlas, which now contained names that had become politically inapposite.</p>
+
+            <p class="section-subtitle">As Madame de Chastenay noted in her memoirs:</p>
             <blockquote class="quote-block">
-                <p>The ministry refused to complete the publication of the expedition to Terra Australis, but did nothing, stood still and hampered any action. Several reasons contributed to that: the nomenclature of all the islands, capes, points and rocks was borrowed, no more, like before, from the almanac and the navigators, but from the imperial calendar and the Institut; foreign scientists were not happy about that. The name of M. de Humboldt did not receive a place in a work where the names of very obscure men were immortalised and, in a very bad form, the author refused to mention the names of public servants very influential in the Ministry of the Interior, which viewed them as being extremely central.</p>
-                <p>But the biggest obstacle, during the reign of Marie-Louise, lay in the name of the living Josephine, and we know how insurmountable obstacles become when they are not altogether considered.</p>
+                <p>&ldquo;The Ministry refused to complete the publication of the Expedition to the Southern Lands, without issuing any formal refusal, and contented itself with obstructing all progress. Several factors contributed to this: the nomenclature of islands, capes, points and rocks had been drawn, no longer from the calendar or from navigators, but from the imperial almanac of the Court and the Institute; foreign scholars were dissatisfied. The name of M. de Humboldt found no place in a work in which very obscure individuals were immortalised, and, through a somewhat unjustifiable caprice, the editor refused even to mention certain officials of the Ministry of the Interior who were then highly influential and attached great importance to it.</p>
+                <p>But the principal obstacle, under the reign of Marie-Louise, lay in the name of the still-living Jos&eacute;phine, and one knows how insurmountable obstacles can become when they are not openly acknowledged&hellip;&rdquo;</p>
             </blockquote>
-            <p>P&eacute;ron and Freycinet&rsquo;s imperial nomenclature became even more inappropriate when Freycinet&rsquo;s nautical and geographical narrative that describes places and the atlas that positioned them were finally published, in 1815, after the Napoleonic regime had come to an end and the emperor had been sent into exile at St Helena. Freycinet, fully aware of the political inappropriateness of the place names following the restoration of the monarchy, attempted to justify the publication when he wrote:</p>
-            <p>Before publishing the nautical part of the voyage myself and to continue P&eacute;ron&rsquo;s account, I would have liked to change a nomenclature that today the political and moral situation of France and Europe repels; but the first volume had already been on sale for several years, the second was impatiently awaited by a large number of subscribers and it was probably more important to satisfy the public than to suppress the rest of a book whose nomenclature, in the final analysis, cannot harm the nature or the importance of the facts.</p>
-            <p>More controversially, the nomenclature failed to respect, in large sections, the European sacrosanct &lsquo;right of first discovery&rsquo; claimed by the British navigator Matthew Flinders, which granted him naming rights along parts of the southern coast of Australia. The disregard of this practice infuriated the British Admiralty. Consequently, more than half of P&eacute;ron and Freycinet&rsquo;s place names were removed from the nomenclature and replaced by British names during the colonisation of Australia. This prompted Charles de Fleurieu&rsquo;s great-nephew, Alphonse de Fleurieu, in the late nineteenth century, to lobby the British Government for the restitution of some names that related to features left unnamed by Flinders or by previous navigators. Of the 32 names Alphonse de Fleurieu sought to claim back in South Australia, eight were restored, among them Fleurieu Peninsula.</p>
-            <p>Today, about half of the place names (360) from the d&rsquo;Entrecasteaux and Baudin expeditions are registered in an Australian English translation in the database of the Composite Gazetteer of Australia. They represent mostly the names of French scientists and of the ships&rsquo; crews. Other place names that have been retained generally have &lsquo;historical&rsquo; connotations. The following chapters provide an insight into the meanings and the significance of the initial 671 names given to places in Australia by the French. The choice of most of these names was determined by the authors&rsquo; commitment to laud the national esteem that the Napoleonic empire had restored. That their scheme backfired following the emperor&rsquo;s demise provides us with an example of the twists and turns of human history.</p>
+            <p class="reference-note">Roserot, A. (ed.), <em>M&eacute;moires de Mme de Chastenay, 1771&ndash;1815</em>, vol. 2, 1896&ndash;1897, pp. 143&ndash;144. Source: Biblioth&egrave;que nationale de France<br><a href="http://catalogue.bnf.fr/ark:/12148/cb340194321" target="_blank" rel="noopener">http://catalogue.bnf.fr/ark:/12148/cb340194321</a></p>
+
+            <p>The imperial nomenclature introduced by P&eacute;ron and Freycinet became even more problematic when Freycinet&rsquo;s nautical and geographical account, together with the atlas, was finally published in 1815, after the fall of the Napoleonic regime and the exile of the emperor to Saint Helena. Fully aware of the political inappropriateness of these names in the context of the Bourbon Restoration, Freycinet sought to justify their publication:</p>
+
+            <blockquote class="quote-block">
+                <p>&ldquo;Before publishing myself the nautical part of the voyage and continuing P&eacute;ron&rsquo;s account, I would have wished to alter a nomenclature now rejected by the political and moral situation of France and Europe; but the first volume had already been in circulation for several years, the second was eagerly awaited by a great number of subscribers; and it was no doubt rightly considered more important to satisfy the public than to suppress the continuation of a work whose nomenclature, in the final analysis, cannot affect the nature or importance of the facts.&rdquo;</p>
+            </blockquote>
+            <p class="reference-note">P&eacute;ron, F., continued by Freycinet, L., <em>Voyage de d&eacute;couvertes aux Terres australes</em>, 1816 edition, vol. 2, p. VIII.</p>
+
+            <p>Even more controversial was the infringement, over extensive stretches of coastline, of the European principle of the &ldquo;right of first discovery&rdquo;, claimed by the British navigator Matthew Flinders, which granted him naming rights over parts of the southern coast of Australia. The disregard of this convention provoked irritation within the British Admiralty. As a consequence, more than half of the place names assigned by P&eacute;ron and Freycinet were removed and replaced by British names during the process of colonisation.</p>
+
+            <p>This situation prompted Alphonse de Fleurieu, grand-nephew of Charles de Fleurieu, to intervene with the British government in the late nineteenth century in an effort to secure the restoration of certain names relating to places left unnamed by Flinders or by earlier navigators. Of the 32 names he claimed in South Australia, eight were reinstated, including that of the Fleurieu Peninsula.</p>
+
+            <figure class="doc-figure single-figure wide">
+                <img src="img/findings6/reception-fleurieu-map-detail.png" alt="Detail map of South Australia showing French names in red sought for restoration by Alphonse de Fleurieu">
+            </figure>
+            <p class="figure-caption">Australie (c&ocirc;te sud) - Detail<br>The French names shown in red are those which Alphonse de Fleurieu sought to have reinstated, whether successfully or not.</p>
+            <p class="figure-source">Source: Archives nationales de France, Golfe de Spencer : Australie (c&ocirc;te sud), feuille n&deg; 5.<br>Cote : GE BB-3 (3582-1912).<br>Biblioth&egrave;que nationale de France (Paris-Tolbiac).</p>
+
+            <p>Today, approximately half of the place names assigned during the d&rsquo;Entrecasteaux and Baudin expeditions &mdash; around 360 in total &mdash; still appear, in anglicised form, in the <em>Composite Gazetteer of Australia</em>.</p>
+
             <div class="findings-bottom-nav">
                 <a class="findings-top-link" href="findings.html" title="Back to Findings">
                     <img src="img/up-arrow.svg" alt="Back to Findings">
@@ -127,28 +208,67 @@
             </div>
         </section>
         </div>
-
         <div data-lang="fr">
         <section class="content-section">
-            <h2>6. La pertinence des nomenclatures des voyages de d&rsquo;Entrecasteaux et de Baudin <a href="findings.html" title="Retour aux enseignements"><img src="img/up-arrow.svg" alt="Retour aux enseignements" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
-            <p>Les nomenclatures de d&rsquo;Entrecasteaux, d&rsquo;une part, et de P&eacute;ron et Freycinet, d&rsquo;autre part, traduisent deux intentions diff&eacute;rentes dans le choix des noms de lieux. La premi&egrave;re prolonge celle du voyage de La P&eacute;rouse, o&ugrave; La P&eacute;rouse attribuait aux lieux reconnus par son exp&eacute;dition des noms se rapportant principalement &agrave; la g&eacute;ographie des c&ocirc;tes, &agrave; ses officiers et savants, ainsi qu&rsquo;au d&eacute;roulement du voyage. De m&ecirc;me, les noms donn&eacute;s par d&rsquo;Entrecasteaux rendent hommage au travail et aux r&eacute;alisations de son &eacute;quipage et de ses deux navires, tandis que, dans le contexte de la p&eacute;riode r&eacute;volutionnaire, le commandant s&rsquo;effor&ccedil;ait d&rsquo;&eacute;viter tout nom controvers&eacute; &agrave; connotation politique et hors du cadre propre de l&rsquo;exp&eacute;dition. &Agrave; l&rsquo;inverse, P&eacute;ron et Freycinet ont construit leur nomenclature en l&rsquo;honneur de la nation fran&ccedil;aise, de ses principaux acteurs, de ses h&eacute;ros et personnalit&eacute;s des si&egrave;cles pass&eacute;s &eacute;rig&eacute;s au rang d&rsquo;ic&ocirc;nes nationales fran&ccedil;aises, ainsi que de sa nouvelle dynastie imp&eacute;riale. Plus g&eacute;n&eacute;ralement, leur nomenclature refl&egrave;te le r&ecirc;ve imp&eacute;rial napol&eacute;onien, fond&eacute; principalement sur le d&eacute;veloppement d&rsquo;une &eacute;lite technocratique et scientifique et sur un r&eacute;cit national peupl&eacute; de h&eacute;ros, de grands hommes et femmes, de victoires et de batailles &eacute;piques. Alors que la nomenclature de d&rsquo;Entrecasteaux n&rsquo;avait pas &eacute;t&eacute; contest&eacute;e par les autorit&eacute;s de l&rsquo;&eacute;poque, celle de P&eacute;ron et Freycinet fut rapidement contest&eacute;e &agrave; plusieurs niveaux. De son c&ocirc;t&eacute;, le minist&egrave;re de l&rsquo;Int&eacute;rieur s&rsquo;en trouva contrari&eacute;, dans la mesure o&ugrave; certains hauts fonctionnaires influents n&rsquo;y figuraient pas, tandis que des &lsquo;hommes tr&egrave;s obscurs &eacute;taient immortalis&eacute;s&rsquo; (sans doute en r&eacute;f&eacute;rence &agrave; des agents relativement anonymes comme Forestier, responsable du personnel au minist&egrave;re de la Marine et des Colonies, qui avait aid&eacute; P&eacute;ron). En outre, Freycinet dut justifier pourquoi le haut officier de marine Gantheaume* n&rsquo;avait &eacute;t&eacute; honor&eacute; que par le nom d&rsquo;un cap sur la grande &icirc;le dont le nom &eacute;tait consacr&eacute; &agrave; Decr&egrave;s* (aujourd&rsquo;hui Kangaroo Island). Freycinet expliqua ce choix dans une lettre adress&eacute;e en juin 1812 &agrave; Decr&egrave;s.</p>
+            <h2>6. La r&eacute;ception des nomenclatures des voyages de d&rsquo;Entrecasteaux et de Baudin <a href="findings.html" title="Retour aux enseignements"><img src="img/up-arrow.svg" alt="Retour aux enseignements" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
+
+            <figure class="doc-figure single-figure">
+                <img src="img/findings6/reception-map-detail-1.png" alt="D&eacute;tail du canal d&rsquo;Entrecasteaux et de l&rsquo;&icirc;le Bruny en Tasmanie">
+            </figure>
+            <figure class="doc-figure single-figure">
+                <img src="img/findings6/reception-map-detail-2.png" alt="D&eacute;tail de l&rsquo;archipel Bonaparte en Australie-Occidentale">
+            </figure>
+            <p class="figure-caption">Enlarged details from a contemporary map of Australia, showing the d&rsquo;Entrecasteaux Channel and Bruny Island in Tasmania, and the Bonaparte Archipelago in Western Australia. <a href="https://placenames.fsdf.org.au/" target="_blank" rel="noopener">https://placenames.fsdf.org.au/</a></p>
+
+            <p>Alors que la nomenclature de d&rsquo;Entrecasteaux n&rsquo;avait pas &eacute;t&eacute; contest&eacute;e par les autorit&eacute;s de l&rsquo;&eacute;poque, celle de P&eacute;ron et Freycinet fut rapidement critiqu&eacute;e &agrave; plusieurs niveaux. Le minist&egrave;re de l&rsquo;Int&eacute;rieur s&rsquo;en trouva notamment contrari&eacute;, dans la mesure o&ugrave; certains hauts fonctionnaires influents n&rsquo;y figuraient pas, tandis que des &laquo;&nbsp;hommes tr&egrave;s obscurs &eacute;taient immortalis&eacute;s&nbsp;&raquo; &mdash; sans doute en r&eacute;f&eacute;rence &agrave; des agents relativement anonymes comme Forestier, responsable du personnel au minist&egrave;re de la Marine et des Colonies, qui avait aid&eacute; P&eacute;ron.</p>
+
+            <p>En outre, Freycinet dut justifier pourquoi le haut officier de marine Gantheaume* n&rsquo;avait &eacute;t&eacute; honor&eacute; que par le nom d&rsquo;un cap sur la grande &icirc;le dont le nom &eacute;tait consacr&eacute; &agrave; Decr&egrave;s* (aujourd&rsquo;hui Kangaroo Island). Il expliqua ce choix dans une lettre adress&eacute;e en juin 1812 &agrave; Decr&egrave;s.</p>
+
+            <figure class="doc-figure single-figure">
+                <img src="img/findings6/reception-freycinet-letter.jpg" alt="Lettre de Louis de Freycinet concernant la d&eacute;nomination du cap Gantheaume">
+            </figure>
+            <p class="figure-caption">Lettre reproduite sur microfilm &agrave; la State Library of South Australia (ARG, s&eacute;rie 1, bobine 29).<br>Original conserv&eacute; au Service historique de la Marine (SHM), Vincennes, s&eacute;rie CC7, dossiers individuels des officiers de Marine et personnels assimil&eacute;s : Louis Claude de Freycinet.</p>
+
             <blockquote class="quote-block">
-                <p>&hellip;Le nom de Gantheaume a d&rsquo;ailleurs &eacute;t&eacute; choisi comme celui du plus illustre officier g&eacute;n&eacute;ral apr&egrave;s celui du Ministre qui dirige toutes les branches de cette partie du service public. Je crois devoir pr&eacute;venir Votre Excellence que le nom de l&rsquo;Amiral a &eacute;t&eacute; appliqu&eacute;, en outre, &agrave; une &icirc;le de dix lieues de circonf&eacute;rence situ&eacute;e sur la c&ocirc;te nord de la Nouvelle-Hollande par 120&deg; de longitude. Toutefois, Monseigneur, s&rsquo;il vous para&icirc;t convenable d&rsquo;omettre du nomenclature de l&rsquo;&Icirc;le Decr&egrave;s le nom du cap Gantheaume, il sera facile de lui en substituer un autre, parce que Monsieur P&eacute;ron ne l&rsquo;a pas mentionn&eacute; dans le premier volume de l&rsquo;histoire du voyage. Je pourrais substituer celui de cap Jean Barth&hellip;</p>
+                <p>&laquo;&nbsp;&hellip;Le nom de Gantheaume a de plus paru devoir s&rsquo;y trouver comme celui de l&rsquo;officier g&eacute;n&eacute;ral le plus marquant apr&egrave;s celui du ministre qui dirige toutes les branches de cette partie de la force publique. Je crois devoir observer &agrave; V.E. [Votre Excellence] que le nom de l&rsquo;amiral a &eacute;t&eacute; appliqu&eacute;, en outre, &agrave; une &icirc;le de dix lieues de tour situ&eacute;e sur la c&ocirc;te nord de la Nouvelle-Hollande, par les 120&deg; de longitude.</p>
+                <p>Maintenant, Monseigneur, s&rsquo;il vous para&icirc;t convenable de supprimer de la nomenclature de l&rsquo;&icirc;le Decr&egrave;s le nom du cap Gantheaume, il est d&rsquo;autant plus facile de lui en substituer un autre que Monsieur P&eacute;ron, dans le premier volume de l&rsquo;histoire du voyage, n&rsquo;en a fait aucune mention. Je pourrais lui substituer celui de cap Jean Bart&hellip;&nbsp;&raquo;</p>
             </blockquote>
-            <p class="section-subtitle">Decr&egrave;s commenta la question dans une br&egrave;ve note en marge de la lettre, avec humour&nbsp;:</p>
+
+            <p class="section-subtitle">Decr&egrave;s commenta la question dans une br&egrave;ve note en marge de la lettre, avec une pointe d&rsquo;humour&nbsp;:</p>
             <blockquote class="quote-block">
                 <p>&laquo;&nbsp;D&egrave;s que Gantheaume a [comme moi] une &icirc;le [qui porte son nom], je suis bien aise de le conserver [de garder aussi son nom] dans la mienne.&nbsp;&raquo;</p>
             </blockquote>
-            <p>D&rsquo;autres obstacles retard&egrave;rent la poursuite de la publication des volumes et de l&rsquo;atlas du voyage&nbsp;: d&rsquo;une part, les savants &eacute;trangers se montraient m&eacute;contents, des scientifiques &eacute;minents comme Humboldt ne figurant pas dans la nomenclature. D&rsquo;autre part, la publication fut retard&eacute;e par le divorce de Napol&eacute;on et Jos&eacute;phine en 1810, afin d&rsquo;&eacute;pouser l&rsquo;archiduchesse Marie-Louise, fille a&icirc;n&eacute;e de l&rsquo;empereur d&rsquo;Autriche, devenue la nouvelle imp&eacute;ratrice des Fran&ccedil;ais (de m&ecirc;me, en un sens, que Marie-Antoinette, archiduchesse d&rsquo;Autriche, avait &eacute;pous&eacute; Louis XVI). En cons&eacute;quence, en 1806, lorsque P&eacute;ron travaillait au r&eacute;cit historique du voyage, il avait choisi les noms de Jos&eacute;phine et de ses enfants comme repr&eacute;sentants de la famille imp&eacute;riale; mais, en 1810, lorsque Freycinet achevait le r&eacute;cit et l&rsquo;atlas g&eacute;ographique en vue de la publication, c&rsquo;&eacute;tait Marie-Louise qui &eacute;tait imp&eacute;ratrice des Fran&ccedil;ais. D&egrave;s lors, et jusqu&rsquo;en 1814, Marie-Louise devint, avec l&rsquo;enfant qu&rsquo;elle eut de Napol&eacute;on, la repr&eacute;sentante de la famille imp&eacute;riale. Cela ajouta une difficult&eacute; suppl&eacute;mentaire &agrave; la publication de l&rsquo;atlas de Freycinet, qui comportait d&eacute;sormais des noms devenus inopportuns.</p>
-            <p class="section-subtitle">Comme l&rsquo;explique sans d&eacute;tour Madame de Chastenay dans ses m&eacute;moires &agrave; propos de ces d&eacute;boires relatifs aux noms de lieux du voyage&nbsp;:</p>
+
+            <p>D&rsquo;autres obstacles retard&egrave;rent la poursuite de la publication des volumes et de l&rsquo;atlas du voyage. D&rsquo;une part, des savants &eacute;trangers se montr&egrave;rent m&eacute;contents, des scientifiques &eacute;minents comme Humboldt ne figurant pas dans la nomenclature. D&rsquo;autre part, la publication fut retard&eacute;e par le divorce de Napol&eacute;on et Jos&eacute;phine en 1810, suivi du mariage avec l&rsquo;archiduchesse Marie-Louise, fille a&icirc;n&eacute;e de l&rsquo;empereur d&rsquo;Autriche, devenue la nouvelle imp&eacute;ratrice des Fran&ccedil;ais.</p>
+
+            <p>En cons&eacute;quence, lorsque P&eacute;ron travaillait au r&eacute;cit historique du voyage en 1806, il avait choisi les noms de Jos&eacute;phine et de ses enfants comme repr&eacute;sentants de la famille imp&eacute;riale&nbsp;; mais en 1810, lorsque Freycinet achevait le r&eacute;cit et l&rsquo;atlas g&eacute;ographique en vue de la publication, c&rsquo;&eacute;tait Marie-Louise qui occupait cette position. Jusqu&rsquo;en 1814, elle devint, avec l&rsquo;enfant qu&rsquo;elle eut de Napol&eacute;on, la figure centrale de la famille imp&eacute;riale. Cela ajouta une difficult&eacute; suppl&eacute;mentaire &agrave; la publication de l&rsquo;atlas de Freycinet, qui comportait d&eacute;sormais des noms devenus politiquement inadapt&eacute;s.</p>
+
+            <p class="section-subtitle">Comme l&rsquo;explique sans d&eacute;tour Madame de Chastenay dans ses m&eacute;moires&nbsp;:</p>
             <blockquote class="quote-block">
-                <p>Le minist&egrave;re refusa d&rsquo;achever la publication de l&rsquo;exp&eacute;dition en Terre Australe, mais ne fit rien, resta immobile et entrava toute action. Plusieurs raisons y contribu&egrave;rent&nbsp;: la nomenclature de toutes les &icirc;les, caps, pointes et rochers n&rsquo;&eacute;tait plus emprunt&eacute;e, comme auparavant, &agrave; l&rsquo;almanach et aux navigateurs, mais au calendrier imp&eacute;rial et &agrave; l&rsquo;Institut; les savants &eacute;trangers s&rsquo;en offusquaient. Le nom de M. de Humboldt ne re&ccedil;ut pas de place dans un ouvrage o&ugrave; l&rsquo;on immortalisait des hommes tr&egrave;s obscurs et o&ugrave;, de surcro&icirc;t, l&rsquo;auteur refusait de nommer des fonctionnaires tr&egrave;s influents du minist&egrave;re de l&rsquo;Int&eacute;rieur, qui les tenait pour extr&ecirc;mement centraux.</p>
-                <p>Mais le plus grand obstacle, sous le r&egrave;gne de Marie-Louise, r&eacute;sidait dans le nom de la vivante Jos&eacute;phine, et l&rsquo;on sait combien les obstacles deviennent insurmontables lorsqu&rsquo;ils ne sont pas pleinement pris en consid&eacute;ration.</p>
+                <p>&laquo;&nbsp;Le minist&egrave;re se refusait &agrave; terminer la publication de l&rsquo;Exp&eacute;dition aux Terres australes, sans toutefois prononcer de refus explicite, se contentant d&rsquo;entraver toutes les d&eacute;marches. Plusieurs causes y contribuaient&nbsp;: la nomenclature des &icirc;les, caps, pointes et rochers avait &eacute;t&eacute; emprunt&eacute;e, non plus au calendrier ou aux navigateurs, mais &agrave; l&rsquo;almanach imp&eacute;rial de la Cour et de l&rsquo;Institut&nbsp;; les savants &eacute;trangers n&rsquo;en &eacute;taient pas satisfaits. Le nom de M. de Humboldt n&rsquo;avait pas de place dans un ouvrage o&ugrave; des hommes tr&egrave;s obscurs &eacute;taient immortalis&eacute;s, et, par une boutade d&rsquo;humeur peu excusable, le r&eacute;dacteur s&rsquo;&eacute;tait refus&eacute; &agrave; mentionner certains employ&eacute;s alors fort influents du minist&egrave;re de l&rsquo;Int&eacute;rieur, qui y attachaient un grand prix.</p>
+                <p>Mais le principal obstacle r&eacute;sidait, sous le r&egrave;gne de Marie-Louise, dans le nom de Jos&eacute;phine encore vivante, et l&rsquo;on sait &agrave; quel point deviennent invincibles des obstacles que l&rsquo;on n&rsquo;avoue pas&hellip;&nbsp;&raquo;</p>
             </blockquote>
-            <p>La nomenclature imp&eacute;riale de P&eacute;ron et Freycinet devint plus inappropri&eacute;e encore lorsque le r&eacute;cit nautique et g&eacute;ographique de Freycinet, qui d&eacute;crit les lieux, ainsi que l&rsquo;atlas qui les situait, furent enfin publi&eacute;s en 1815, apr&egrave;s la chute du r&eacute;gime napol&eacute;onien et l&rsquo;exil de l&rsquo;empereur &agrave; Sainte-H&eacute;l&egrave;ne. Freycinet, pleinement conscient de l&rsquo;inopportunit&eacute; politique de ces noms apr&egrave;s la Restauration monarchique, tenta de justifier la publication en &eacute;crivant&nbsp;:</p>
-            <p>Avant de publier moi-m&ecirc;me la partie nautique du voyage et de continuer le r&eacute;cit de P&eacute;ron, j&rsquo;aurais voulu changer une nomenclature que repoussent aujourd&rsquo;hui la situation politique et morale de la France et de l&rsquo;Europe; mais le premier volume &eacute;tait en vente depuis plusieurs ann&eacute;es, le second &eacute;tait impatiemment attendu par un grand nombre de souscripteurs, et il importait sans doute davantage de satisfaire le public que de supprimer le reste d&rsquo;un livre dont la nomenclature, en d&eacute;finitive, ne saurait nuire &agrave; la nature ni &agrave; l&rsquo;importance des faits.</p>
-            <p>Plus controvers&eacute;e encore fut l&rsquo;atteinte, sur de larges portions, au sacro-saint droit europ&eacute;en de la &lsquo;premi&egrave;re d&eacute;couverte&rsquo; revendiqu&eacute; par le navigateur britannique Matthew Flinders, qui lui conf&eacute;rait des droits de d&eacute;nomination sur certaines parties de la c&ocirc;te m&eacute;ridionale de l&rsquo;Australie. Le non-respect de cette pratique irrita l&rsquo;Amiraut&eacute; britannique. En cons&eacute;quence, plus de la moiti&eacute; des noms de lieux de P&eacute;ron et Freycinet furent supprim&eacute;s de la nomenclature et remplac&eacute;s par des noms britanniques lors de la colonisation de l&rsquo;Australie. Cela conduisit le petit-neveu de Charles de Fleurieu, Alphonse de Fleurieu, &agrave; intervenir aupr&egrave;s du gouvernement britannique, &agrave; la fin du XIXe si&egrave;cle, afin d&rsquo;obtenir la restitution de certains noms relatifs &agrave; des lieux laiss&eacute;s sans nom par Flinders ou par des navigateurs ant&eacute;rieurs. Sur les 32 noms qu&rsquo;Alphonse de Fleurieu revendiquait en Australie-M&eacute;ridionale, huit furent r&eacute;tablis, dont celui de la p&eacute;ninsule Fleurieu.</p>
-            <p>Aujourd&rsquo;hui, environ la moiti&eacute; des noms de lieux (360) issus des exp&eacute;ditions de d&rsquo;Entrecasteaux et de Baudin sont enregistr&eacute;s, sous une traduction en anglais australien, dans la base du Composite Gazetteer of Australia. Ils correspondent principalement &agrave; des noms de savants fran&ccedil;ais et de membres des &eacute;quipages. Les autres noms conserv&eacute;s ont g&eacute;n&eacute;ralement une connotation &lsquo;historique&rsquo;. Les chapitres suivants donnent un aper&ccedil;u du sens et de la port&eacute;e des 671 noms initiaux donn&eacute;s par les Fran&ccedil;ais &agrave; des lieux en Australie. Le choix de la plupart de ces noms fut d&eacute;termin&eacute; par la volont&eacute; de leurs auteurs de magnifier le prestige national que l&rsquo;Empire napol&eacute;onien avait restaur&eacute;. Le fait que ce projet se soit retourn&eacute; contre eux apr&egrave;s la chute de l&rsquo;empereur offre un exemple des d&eacute;tours et retournements de l&rsquo;histoire humaine.</p>
+            <p class="reference-note">Roserot, A. (&eacute;d.), <em>M&eacute;moires de Mme de Chastenay, 1771&ndash;1815</em>, vol. 2, 1896&ndash;1897, p. 143&ndash;144. Source&nbsp;: Biblioth&egrave;que nationale de France<br><a href="http://catalogue.bnf.fr/ark:/12148/cb340194321" target="_blank" rel="noopener">http://catalogue.bnf.fr/ark:/12148/cb340194321</a></p>
+
+            <p>La nomenclature imp&eacute;riale de P&eacute;ron et Freycinet devint plus inappropri&eacute;e encore lorsque le r&eacute;cit nautique et g&eacute;ographique de Freycinet, ainsi que l&rsquo;atlas, furent publi&eacute;s en 1815, apr&egrave;s la chute du r&eacute;gime napol&eacute;onien et l&rsquo;exil de l&rsquo;empereur &agrave; Sainte-H&eacute;l&egrave;ne. Conscient de cette inadaptation politique dans le contexte de la Restauration, Freycinet tenta de justifier la publication en &eacute;crivant&nbsp;:</p>
+
+            <blockquote class="quote-block">
+                <p>&laquo;&nbsp;Avant de publier moi-m&ecirc;me la partie nautique du voyage et de continuer la relation de P&eacute;ron, j&rsquo;aurais voulu changer une nomenclature que repousse aujourd&rsquo;hui la situation politique et morale de la France et de l&rsquo;Europe&nbsp;; mais le premier volume &eacute;tait d&eacute;j&agrave; dans le commerce depuis plusieurs ann&eacute;es, le second &eacute;tait impatiemment attendu par un grand nombre de souscripteurs&nbsp;; et sans doute a-t-on eu raison de penser qu&rsquo;il &eacute;tait plus important de satisfaire le public que de supprimer la suite d&rsquo;un ouvrage dont, en derni&egrave;re analyse, la nomenclature ne peut nuire &agrave; la nature ni &agrave; l&rsquo;importance des faits.&nbsp;&raquo;</p>
+            </blockquote>
+            <p class="reference-note">P&eacute;ron, F., poursuivi par Freycinet, L., <em>Voyage de d&eacute;couvertes aux Terres australes</em>, &eacute;dition 1816, tome 2, p. VIII.</p>
+
+            <p>Plus controvers&eacute;e encore fut l&rsquo;atteinte, sur de larges portions, au principe europ&eacute;en du &laquo;&nbsp;droit de premi&egrave;re d&eacute;couverte&nbsp;&raquo;, revendiqu&eacute; par le navigateur britannique Matthew Flinders, qui lui conf&eacute;rait des droits de d&eacute;nomination sur certaines parties de la c&ocirc;te m&eacute;ridionale de l&rsquo;Australie. Le non-respect de cette pratique irrita l&rsquo;Amiraut&eacute; britannique. En cons&eacute;quence, plus de la moiti&eacute; des noms de lieux attribu&eacute;s par P&eacute;ron et Freycinet furent supprim&eacute;s et remplac&eacute;s par des noms britanniques lors de la colonisation.</p>
+
+            <p>Cette situation conduisit le petit-neveu de Charles de Fleurieu, Alphonse de Fleurieu, &agrave; intervenir aupr&egrave;s du gouvernement britannique &agrave; la fin du XIX<sup>e</sup> si&egrave;cle afin d&rsquo;obtenir la restitution de certains noms relatifs &agrave; des lieux laiss&eacute;s sans d&eacute;nomination par Flinders ou par des navigateurs ant&eacute;rieurs. Sur les 32 noms revendiqu&eacute;s en Australie-M&eacute;ridionale, huit furent r&eacute;tablis, dont celui de la p&eacute;ninsule Fleurieu.</p>
+
+            <figure class="doc-figure single-figure wide">
+                <img src="img/findings6/reception-fleurieu-map-detail.png" alt="Australie c&ocirc;te sud, d&eacute;tail avec noms fran&ccedil;ais en rouge">
+            </figure>
+            <p class="figure-caption">Australie (c&ocirc;te sud) &mdash; d&eacute;tail.<br>Les noms fran&ccedil;ais figurant en rouge correspondent &agrave; ceux dont Alphonse de Fleurieu sollicita la restitution.</p>
+            <p class="figure-source">Source&nbsp;: Archives nationales de France, Golfe de Spencer&nbsp;: Australie (c&ocirc;te sud), feuille n&deg; 5.<br>Cote&nbsp;: GE BB-3 (3582-1912).<br>Biblioth&egrave;que nationale de France, site Tolbiac.</p>
+
+            <p>Aujourd&rsquo;hui, environ la moiti&eacute; des noms de lieux issus des exp&eacute;ditions de d&rsquo;Entrecasteaux et de Baudin &mdash; soit environ 360 &mdash; figurent encore, sous une forme anglicis&eacute;e, dans le <em>Composite Gazetteer of Australia</em>.</p>
+
             <div class="findings-bottom-nav">
                 <a class="findings-top-link" href="findings.html" title="Retour aux enseignements">
                     <img src="img/up-arrow.svg" alt="Retour aux enseignements">
@@ -164,3 +284,4 @@
     <script src="js/main.js?v=20260309"></script>
 </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,25 @@
         .content-section { background-color: white; padding: clamp(28px, 4vw, 40px); margin-top: 10px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); min-height: 50vh; }
         .content-section h2 { font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700; color: #333; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin: 0 0 18px 0; }
         .content-section p { line-height: 1.6; margin-bottom: 16px; }
+        .doc-figure {
+            margin: 18px auto 8px auto;
+            max-width: 980px;
+            background: #fff;
+            border: 1px solid #d8e3f5;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(26, 48, 84, 0.12);
+        }
+        .doc-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .figure-caption {
+            margin: 8px 0 20px 0;
+            font-size: 0.93rem;
+            color: #465774;
+        }
         [data-lang] { display: none; }
         .findings-bottom-nav {
             display: flex;
@@ -71,13 +90,13 @@
     <ul>
         <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
         <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
-        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
+        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&amp;R IA</a></li>
         <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
-        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">Ã€ propos</a></li>
+        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">A propos</a></li>
     </ul>
     <div class="lang-switcher">
-        <button type="button" id="lang-fr" title="Passer en FranÃ§ais">
-            <img src="img/fr.svg" alt="FranÃ§ais">
+        <button type="button" id="lang-fr" title="Passer en Fran&ccedil;ais">
+            <img src="img/fr.svg" alt="Fran&ccedil;ais">
         </button>
         <button type="button" id="lang-en" title="Switch to English">
             <img src="img/au.svg" alt="English">
@@ -89,11 +108,20 @@
         <div data-lang="en">
         <section class="content-section">
             <h2>3. The Right of First Discovery <a href="findings.html" title="Back to Findings"><img src="img/up-arrow.svg" alt="Back to Findings" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
-            <p>It is important to emphasise that no inquiries were made by the crews of the two expeditions regarding the pre-existing Indigenous place names encountered during their contact with Aboriginal peoples. The French names assigned along the Australian coast instead commemorated the ships of the expeditions, honoured members of their crews and the sovereigns and authorities who sponsored the voyages, and celebrated prominent figures deemed to have brought distinction to the French nation.</p>
-            <p>The commanders of the two expeditions, d&rsquo;Entrecasteaux and Baudin, named localities and geographical features in accordance with the European doctrine commonly referred to as the &ldquo;right of first discovery.&rdquo; Emerging in the late fifteenth and sixteenth centuries&mdash;an era later characterised by nineteenth-century historians as the &ldquo;Age of Discovery&rdquo;&mdash;this principle held that European navigators who reached coastlines previously unknown to Europe were entitled to name the features they were the first to chart, acting in the name of their sovereign and nation.</p>
-            <p>Tacitly recognised among European maritime powers, this naming practice intensified during the late eighteenth century, as rival states competed to expand their maritime, commercial, and strategic presence across the globe.</p>
-            <p>The &ldquo;right of first discovery&rdquo; did not automatically entail effective occupation or colonisation, nor were its potential claims invariably pursued. Neither Dutch nor French authorities took steps to convert their exploratory acts in Australia into sustained political control. Nevertheless, the European practice of assigning new proper names to geographical features&mdash;while disregarding pre-existing Indigenous toponyms&mdash;contributed symbolically to broader assertions of presence and precedence in the southern hemisphere.</p>
-            <p>The exercise of these naming prerogatives also generated tensions in the realm of cartographic authority. A notable dispute arose between Fran&ccedil;ois P&eacute;ron and Louis de Freycinet&mdash;editors of the official French narrative and atlas of the Baudin expedition&mdash;and the English navigator Matthew Flinders, reflecting the competitive dynamics that shaped the publication and interpretation of geographical knowledge.</p>
+
+            <figure class="doc-figure">
+                <img src="img/findings3/right-first-discovery-illustration-en.png" alt="Interpretative illustration on competing claims of first discovery in the southern lands">
+            </figure>
+            <p class="figure-caption">AI-generated illustration (ChatGPT, OpenAI), created for interpretative purposes.</p>
+
+            <p>It is important to emphasise that no inquiry was undertaken by the crews of either expedition into pre-existing Indigenous toponyms during their encounters with local populations. The commanders, d&rsquo;Entrecasteaux and Baudin, proceeded to name places and geographical features in accordance with the European conception of the &ldquo;right of first discovery&rdquo;, a doctrine formulated in the late fifteenth and sixteenth centuries, during the period which nineteenth-century French historiography termed the <em>Grandes D&eacute;couvertes</em>.</p>
+
+            <p>Under this principle, captains making landfall upon coasts hitherto unknown to Europeans were deemed entitled to name the spaces they were the first to chart, in the name of their sovereign and nation. Tacitly acknowledged among European powers, this practice of naming intensified towards the end of the eighteenth century, within a context of mounting imperial rivalries and competition for overseas expansion.</p>
+
+            <p>The &ldquo;right of first discovery&rdquo; did not necessarily entail a right of colonisation, and the prerogatives it implied were not always acted upon, although they remained an option for the power of the initial discoverer. Neither the Dutch nor the French authorities exercised such a right in Australia. Nevertheless, the European practice of assigning proper names to geographical features&mdash;while disregarding pre-existing Indigenous designations&mdash;contributed to underpinning European claims to the southern lands.</p>
+
+            <p>The exercise of these naming rights also gave rise to a dispute between the co-editors of the French accounts and atlases of Baudin&rsquo;s voyage, Fran&ccedil;ois P&eacute;ron and Louis de Freycinet, and the English navigator Matthew Flinders.</p>
+
             <div class="findings-bottom-nav">
                 <a class="findings-next-link" href="findings-4.html">4. d&rsquo;Entrecasteaux&rsquo;s nomenclature</a>
                 <a class="findings-top-link" href="findings.html" title="Back to Findings">
@@ -102,13 +130,24 @@
             </div>
         </section>
         </div>
+
         <div data-lang="fr">
         <section class="content-section">
             <h2>3. Le droit de la premi&egrave;re d&eacute;couverte <a href="findings.html" title="Retour aux enseignements"><img src="img/up-arrow.svg" alt="Retour aux enseignements" style="width:24px; vertical-align:middle; margin-left:8px; opacity:0.8;"></a></h2>
-            <p>Il convient de souligner qu&rsquo;aucune enqu&ecirc;te relative aux d&eacute;nominations autochtones pr&eacute;existantes ne fut entreprise par les &eacute;quipages des deux exp&eacute;ditions lors de leurs rencontres avec les populations locales : les commandants, d&rsquo;Entrecasteaux et Baudin, proc&eacute;d&egrave;rent &agrave; la d&eacute;nomination de lieux et d&rsquo;entit&eacute;s g&eacute;ographiques conform&eacute;ment &agrave; la conception europ&eacute;enne du &laquo;&nbsp;droit de premi&egrave;re d&eacute;couverte&nbsp;&raquo;, &eacute;labor&eacute;e &agrave; la fin des XVe et XVIe si&egrave;cles, &agrave; une &eacute;poque que l&rsquo;historiographie fran&ccedil;aise du XIXe si&egrave;cle d&eacute;signa sous le vocable de &laquo;&nbsp;Grandes D&eacute;couvertes&nbsp;&raquo;.</p>
+
+            <figure class="doc-figure">
+                <img src="img/findings3/right-first-discovery-illustration.jpg" alt="Illustration interpr&eacute;tative sur les revendications de premi&egrave;re d&eacute;couverte dans les terres australes">
+            </figure>
+            <p class="figure-caption">Illustration g&eacute;n&eacute;r&eacute;e par IA (ChatGPT, OpenAI), r&eacute;alis&eacute;e &agrave; des fins interpr&eacute;tatives.</p>
+
+            <p>Il convient de souligner qu&rsquo;aucune enqu&ecirc;te relative aux d&eacute;nominations autochtones pr&eacute;existantes ne fut entreprise par les &eacute;quipages des deux exp&eacute;ditions lors de leurs rencontres avec les populations locales&nbsp;: les commandants, d&rsquo;Entrecasteaux et Baudin, proc&eacute;d&egrave;rent &agrave; la d&eacute;nomination de lieux et d&rsquo;entit&eacute;s g&eacute;ographiques conform&eacute;ment &agrave; la conception europ&eacute;enne du &laquo;&nbsp;droit de premi&egrave;re d&eacute;couverte&nbsp;&raquo;, &eacute;labor&eacute;e &agrave; la fin des XVe et XVIe si&egrave;cles, &agrave; une &eacute;poque que l&rsquo;historiographie fran&ccedil;aise du XIXe si&egrave;cle d&eacute;signa sous le vocable de &laquo;&nbsp;Grandes D&eacute;couvertes&nbsp;&raquo;.</p>
+
             <p>Selon ce principe, les capitaines abordant des c&ocirc;tes encore inconnues des Europ&eacute;ens se voyaient reconna&icirc;tre le droit de nommer les espaces qu&rsquo;ils &eacute;taient les premiers &agrave; relever sur leurs cartes, au nom du souverain et de la nation. Tacitement admise entre les puissances europ&eacute;ennes, cette pratique de nomination s&rsquo;accentua &agrave; la fin du XVIIIe si&egrave;cle, dans un contexte de rivalit&eacute;s imp&eacute;riales croissantes et de comp&eacute;tition pour l&rsquo;expansion outre-mer.</p>
+
             <p>Le &laquo;&nbsp;droit de premi&egrave;re d&eacute;couverte&nbsp;&raquo; ne conf&eacute;rait pas n&eacute;cessairement un droit de colonisation, et les pr&eacute;rogatives qu&rsquo;il impliquait ne furent pas toujours suivies d&rsquo;effets, bien qu&rsquo;elles demeurassent une option pour la puissance du premier d&eacute;couvreur. Ni les autorit&eacute;s n&eacute;erlandaises ni les autorit&eacute;s fran&ccedil;aises n&rsquo;exerc&egrave;rent ce droit en Australie. Toutefois, la pratique europ&eacute;enne consistant &agrave; attribuer des noms propres aux lieux g&eacute;ographiques en ignorant les d&eacute;nominations autochtones pr&eacute;existantes contribua &agrave; &eacute;tayer les pr&eacute;tentions europ&eacute;ennes sur les terres australes.</p>
+
             <p>L&rsquo;exercice de ces droits de nomination fut &eacute;galement &agrave; l&rsquo;origine d&rsquo;un diff&eacute;rend opposant les co&eacute;diteurs des r&eacute;cits et atlas fran&ccedil;ais du voyage de Baudin, Fran&ccedil;ois P&eacute;ron et Louis de Freycinet, au navigateur anglais Matthew Flinders.</p>
+
             <div class="findings-bottom-nav">
                 <a class="findings-next-link" href="findings-4.html">4. La nomenclature de d&rsquo;Entrecasteaux</a>
                 <a class="findings-top-link" href="findings.html" title="Retour aux enseignements">
@@ -116,7 +155,8 @@
                 </a>
             </div>
         </section>
-        </div>    </main>
+        </div>
+    </main>
 
     <div data-include-footer></div>
 
@@ -124,3 +164,4 @@
     <script src="js/main.js?v=20260309"></script>
 </body>
 </html>
+
