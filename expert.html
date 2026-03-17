@@ -607,9 +607,48 @@ gtag('config', 'G-LCWV2EVPVQ');
             [base, saintExpanded, saintAbbreviated].forEach((value) => {
                 addVariant(value);
                 addVariant(stripFrenchArticles(value));
+                addVariant(value.replace(/\baignant\b/g, 'aignan'));
+                addVariant(value.replace(/\baignan\b/g, 'aignant'));
             });
 
             return variants;
+        };
+
+        const levenshteinDistance = (a, b) => {
+            if (a === b) {
+                return 0;
+            }
+            if (!a.length) {
+                return b.length;
+            }
+            if (!b.length) {
+                return a.length;
+            }
+
+            const previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+            for (let i = 0; i < a.length; i += 1) {
+                let diagonal = previous[0];
+                previous[0] = i + 1;
+
+                for (let j = 0; j < b.length; j += 1) {
+                    const nextDiagonal = previous[j + 1];
+                    const cost = a[i] === b[j] ? 0 : 1;
+                    previous[j + 1] = Math.min(
+                        previous[j + 1] + 1,
+                        previous[j] + 1,
+                        diagonal + cost
+                    );
+                    diagonal = nextDiagonal;
+                }
+            }
+
+            return previous[b.length];
+        };
+
+        const resolveUniqueCodeFromMatches = (matches) => {
+            const codes = new Set();
+            matches.forEach((match) => match.forEach((code) => codes.add(code)));
+            return codes.size === 1 ? [...codes][0] : null;
         };
 
         async function loadPlaceIndex() {
@@ -623,6 +662,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     ]);
 
                     const index = new Map();
+                    const searchableKeys = [];
 
                     const addEntry = (entry) => {
                         const names = [entry.frenchName, entry.variantName, entry.ausEName].filter(Boolean);
@@ -634,15 +674,16 @@ gtag('config', 'G-LCWV2EVPVQ');
                             buildPlaceNameVariants(trimmed).forEach((key) => {
                                 if (!index.has(key)) index.set(key, new Set());
                                 index.get(key).add(entry.code);
+                                searchableKeys.push({ key, code: entry.code });
                             });
                         });
                     };
 
                     [...baudin, ...entre].forEach(addEntry);
-                    return index;
+                    return { index, searchableKeys };
                 } catch (err) {
                     console.error('Failed to load place index', err);
-                    return new Map();
+                    return { index: new Map(), searchableKeys: [] };
                 }
             })();
 
@@ -651,11 +692,38 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         async function resolvePlaceToCode(name) {
             if (!name) return null;
-            const index = await loadPlaceIndex();
-            const key = normalizeName(name);
-            const codes = index.get(key);
-            if (!codes || codes.size !== 1) return null;
-            return [...codes][0];
+            const { index, searchableKeys } = await loadPlaceIndex();
+            const inputVariants = [...buildPlaceNameVariants(name)];
+
+            const directCode = resolveUniqueCodeFromMatches(
+                inputVariants
+                    .map((key) => index.get(key))
+                    .filter(Boolean)
+            );
+            if (directCode) {
+                return directCode;
+            }
+
+            let bestDistance = Infinity;
+            let bestCodes = new Set();
+
+            inputVariants.forEach((inputKey) => {
+                searchableKeys.forEach(({ key, code }) => {
+                    const distance = levenshteinDistance(inputKey, key);
+                    if (distance > 2) {
+                        return;
+                    }
+
+                    if (distance < bestDistance) {
+                        bestDistance = distance;
+                        bestCodes = new Set([code]);
+                    } else if (distance === bestDistance) {
+                        bestCodes.add(code);
+                    }
+                });
+            });
+
+            return bestDistance <= 2 && bestCodes.size === 1 ? [...bestCodes][0] : null;
         }
 
         async function handlePlaceClick(event, placeName) {
