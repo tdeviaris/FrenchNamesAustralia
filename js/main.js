@@ -30,8 +30,7 @@ function setActiveNavLink() {
         'presentation.html': 'nav-about',
         'author.html': 'nav-about',
         'supporters.html': 'nav-about',
-        'francois_bellecE.html': 'nav-about',
-        'francois_bellecF.html': 'nav-about',
+        'francois_bellec.html': 'nav-about',
         'teachings.html': 'nav-about',
         'site_map.html': 'nav-about',
         'legal_notice.html': 'nav-about'
@@ -59,6 +58,7 @@ function setActiveNavLink() {
         'presentation': 'nav-about',
         'author': 'nav-about',
         'supporters': 'nav-about',
+        'francois_bellec': 'nav-about',
         'legal_notice': 'nav-about',
         'site_map': 'nav-about',
         'map': 'nav-map'
