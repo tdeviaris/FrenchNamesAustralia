@@ -1191,6 +1191,60 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         };
 
+        async function readSseStream(stream, onData) {
+            const reader = stream.getReader();
+            const decoder = new TextDecoder();
+            let buffer = '';
+
+            const flushBuffer = () => {
+                let normalized = buffer.replace(/\r\n/g, '\n');
+                let separatorIndex = normalized.indexOf('\n\n');
+
+                while (separatorIndex !== -1) {
+                    const rawEvent = normalized.slice(0, separatorIndex);
+                    buffer = normalized.slice(separatorIndex + 2);
+
+                    const data = rawEvent
+                        .split('\n')
+                        .filter((line) => line.startsWith('data:'))
+                        .map((line) => line.slice(5).replace(/^ /, ''))
+                        .join('\n');
+
+                    if (data) {
+                        onData(data);
+                    }
+
+                    normalized = buffer.replace(/\r\n/g, '\n');
+                    separatorIndex = normalized.indexOf('\n\n');
+                }
+            };
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (value) {
+                    buffer += decoder.decode(value, { stream: !done });
+                    flushBuffer();
+                }
+
+                if (done) {
+                    buffer += decoder.decode();
+                    flushBuffer();
+
+                    const trailingData = buffer
+                        .replace(/\r\n/g, '\n')
+                        .split('\n')
+                        .filter((line) => line.startsWith('data:'))
+                        .map((line) => line.slice(5).replace(/^ /, ''))
+                        .join('\n');
+
+                    if (trailingData) {
+                        onData(trailingData);
+                    }
+                    break;
+                }
+            }
+        }
+
         // Restaurer l'historique si encore valide
         const existingHistory = loadChatHistory();
         if (existingHistory && existingHistory.length) {
@@ -1281,55 +1335,40 @@ gtag('config', 'G-LCWV2EVPVQ');
                 let fullResponse = '';
                 let gotFirstChunk = false;
 
-                // Lire le stream SSE
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder();
-
-                while (true) {
-                    const { done, value } = await reader.read();
-
-                    if (done) break;
-
-                    const chunk = decoder.decode(value);
-                    const lines = chunk.split('\n');
-
-                    for (const line of lines) {
-                        if (line.startsWith('data: ')) {
-                            const data = line.slice(6);
-
-                            if (data === '[DONE]') {
-                                break;
-                            }
-
-                            try {
-                                const parsed = JSON.parse(data);
-
-                                // Sauvegarder le responseId s'il est fourni
-                                if (parsed.responseId) {
-                                    responseId = parsed.responseId;
-                                }
-
-                                if (parsed.content) {
-                                    fullResponse += parsed.content;
-                                    if (!gotFirstChunk) {
-                                        gotFirstChunk = true;
-                                        clearSlowResponseNote();
-                                    }
-
-                                    // Nettoyer et mettre à jour le message progressivement
-                                    const cleanedResponse = cleanAndFormatContent(fullResponse);
-
-                                    // Appliquer le formatage Markdown directement
-                                    assistantMessage.innerHTML = markdownToHtml(cleanedResponse);
-
-                                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                                }
-                            } catch (e) {
-                                // Ignorer les erreurs de parsing
-                            }
-                        }
+                // Lire le stream SSE de façon robuste même si un événement
+                // est découpé sur plusieurs chunks réseau.
+                await readSseStream(response.body, (data) => {
+                    if (data === '[DONE]') {
+                        return;
                     }
-                }
+
+                    try {
+                        const parsed = JSON.parse(data);
+
+                        // Sauvegarder le responseId s'il est fourni
+                        if (parsed.responseId) {
+                            responseId = parsed.responseId;
+                        }
+
+                        if (parsed.content) {
+                            fullResponse += parsed.content;
+                            if (!gotFirstChunk) {
+                                gotFirstChunk = true;
+                                clearSlowResponseNote();
+                            }
+
+                            // Nettoyer et mettre à jour le message progressivement
+                            const cleanedResponse = cleanAndFormatContent(fullResponse);
+
+                            // Appliquer le formatage Markdown directement
+                            assistantMessage.innerHTML = markdownToHtml(cleanedResponse);
+
+                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                        }
+                    } catch (e) {
+                        console.warn('Unable to parse SSE payload', e);
+                    }
+                });
 
                 // La continuité de conversation est gérée via previous_response_id
                 // (on conserve l'historique côté client uniquement pour l'affichage)
