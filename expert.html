@@ -514,6 +514,57 @@ gtag('config', 'G-LCWV2EVPVQ');
             .replace(/"/g, '&quot;')
             .replace(/</g, '&lt;');
 
+        const buildSafeExternalUrl = (rawValue) => {
+            if (!rawValue) {
+                return null;
+            }
+
+            if (/["'<>`]/.test(rawValue)) {
+                return null;
+            }
+
+            const candidate = rawValue.startsWith('http://') || rawValue.startsWith('https://')
+                ? rawValue
+                : `https://${rawValue}`;
+
+            try {
+                const url = new URL(candidate);
+                if (!['http:', 'https:'].includes(url.protocol)) {
+                    return null;
+                }
+                return url.toString();
+            } catch {
+                return null;
+            }
+        };
+
+        const buildSafeWikipediaUrl = (lang, rawValue) => {
+            if (!rawValue) {
+                return null;
+            }
+
+            const normalizedLang = lang === 'fr' ? 'fr' : 'en';
+            const title = rawValue.trim();
+            if (!title) {
+                return null;
+            }
+
+            return `https://${normalizedLang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+        };
+
+        const buildSafeMapHref = (rawValue) => {
+            if (!rawValue) {
+                return null;
+            }
+
+            const code = rawValue.trim();
+            if (!/^(Baudin|Entre)[A-Za-z0-9_-]+$/i.test(code)) {
+                return null;
+            }
+
+            return `map.html#${encodeURIComponent(code)}`;
+        };
+
         // Index mémoire des lieux (chargé à la demande)
         let placeIndexPromise = null;
 
@@ -606,42 +657,61 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const value = rawValue.trim();
 
                     if (type === 'url') {
-                        const url = value.startsWith('http') ? value : `https://${value}`;
-                        const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
-                        const linkText = wikiMatch
-                            ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
-                            : label;
-                        html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                        const url = buildSafeExternalUrl(value);
+                        if (!url) {
+                            html = escapeHtml(label);
+                        } else {
+                            const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                            const linkText = wikiMatch
+                                ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                                : label;
+                            html = `<a href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                        }
                     } else if (type === 'person') {
                         const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
-                        const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${value}`;
+                        const wikiUrl = buildSafeWikipediaUrl(wikiLang, value);
                         const linkText = label || decodeURIComponent(value).replace(/_/g, ' ');
-                        html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                        html = wikiUrl
+                            ? `<a href="${escapeAttr(wikiUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`
+                            : escapeHtml(linkText);
                     } else if (type === 'place') {
                         html = `<a href="#" data-place="${escapeAttr(value)}" class="place-link">${escapeHtml(label)}</a>`;
                     } else {
                         // fallback type inconnu -> lien externe si ressemble à URL, sinon texte simple
                         if (value.startsWith('http')) {
-                            html = `<a href="${value}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+                            const safeUrl = buildSafeExternalUrl(value);
+                            html = safeUrl
+                                ? `<a href="${escapeAttr(safeUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`
+                                : escapeHtml(label);
                         } else {
                             html = escapeHtml(label);
                         }
                     }
                 } else if (id.startsWith('https://') || id.startsWith('http://')) {
-                    const wikiMatch = id.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
-                    const linkText = wikiMatch
-                        ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
-                        : label;
-                    html = `<a href="${id}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    const safeUrl = buildSafeExternalUrl(id);
+                    if (safeUrl) {
+                        const wikiMatch = safeUrl.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                        const linkText = wikiMatch
+                            ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
+                            : label;
+                        html = `<a href="${escapeAttr(safeUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    } else {
+                        html = escapeHtml(label);
+                    }
                 } else if (/^Baudin/i.test(id) || /^Entre/i.test(id)) {
                     // Compat legacy: codes directs
-                    html = `<a href="map.html#${id}">${escapeHtml(label)}</a>`;
+                    const safeMapHref = buildSafeMapHref(id);
+                    html = safeMapHref
+                        ? `<a href="${escapeAttr(safeMapHref)}">${escapeHtml(label)}</a>`
+                        : escapeHtml(label);
                 } else {
                     // Fallback: supposé Wikipedia EN/FR selon langue
                     const wikiLang = currentLang === 'fr' ? 'fr' : 'en';
-                    const wikiUrl = `https://${wikiLang}.wikipedia.org/wiki/${id}`;
+                    const wikiUrl = buildSafeWikipediaUrl(wikiLang, id);
                     const linkText = decodeURIComponent(id).replace(/_/g, ' ');
-                    html = `<a href="${wikiUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                    html = wikiUrl
+                        ? `<a href="${escapeAttr(wikiUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`
+                        : escapeHtml(linkText);
                 }
 
                 const placeholderId = placeholders.length;
@@ -651,11 +721,14 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             // Anciens liens markdown [label](url) - pour compatibilité
             intermediate = intermediate.replace(/\[([^\]]+)\]\((https?:[^\s)]+)\)/g, (match, label, url) => {
-                const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                const safeUrl = buildSafeExternalUrl(url);
+                const wikiMatch = safeUrl && safeUrl.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
                 const linkText = wikiMatch
                     ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
                     : label;
-                const html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                const html = safeUrl
+                    ? `<a href="${escapeAttr(safeUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`
+                    : escapeHtml(label);
                 const id = placeholders.length;
                 placeholders.push(html);
                 return token(id);
@@ -663,11 +736,14 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             // URLs nues -> liens cliquables
             intermediate = intermediate.replace(/https?:\/\/[^\s<>"']+/g, (url) => {
-                const wikiMatch = url.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
+                const safeUrl = buildSafeExternalUrl(url);
+                const wikiMatch = safeUrl && safeUrl.match(/wikipedia\.org\/wiki\/([^#?\s]+)/i);
                 const linkText = wikiMatch
                     ? decodeURIComponent(wikiMatch[1]).replace(/_/g, ' ')
                     : url.replace(/^https?:\/\//, '');
-                const html = `<a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`;
+                const html = safeUrl
+                    ? `<a href="${escapeAttr(safeUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkText)}</a>`
+                    : escapeHtml(url);
                 const id = placeholders.length;
                 placeholders.push(html);
                 return token(id);
