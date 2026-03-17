@@ -670,6 +670,86 @@ gtag('config', 'G-LCWV2EVPVQ');
             return codes.size === 1 ? [...codes][0] : null;
         };
 
+        const getStateAliases = (state) => {
+            const upperState = (state || '').toUpperCase();
+            const aliases = {
+                TAS: 'tas tasmania tasmanie',
+                WA: 'wa western australia australie occidentale',
+                SA: 'sa south australia australie meridionale australie méridionale',
+                VIC: 'vic victoria',
+                NSW: 'nsw new south wales nouvelle galles du sud'
+            };
+            return aliases[upperState] || upperState.toLowerCase();
+        };
+
+        const tokenizeContext = (text) => {
+            const stopWords = new Set([
+                'dans', 'avec', 'pour', 'that', 'this', 'from', 'sur', 'des', 'les', 'the',
+                'une', 'est', 'and', 'par', 'aux', 'du', 'de', 'la', 'le', 'en', 'au', 'un',
+                'its', 'son', 'ses', 'mais', 'plus', 'near', 'into', 'lui', 'elle'
+            ]);
+
+            return [...new Set(
+                normalizeName(text)
+                    .split(' ')
+                    .filter((token) => token.length >= 4 && !stopWords.has(token))
+            )];
+        };
+
+        const scoreCandidateAgainstContext = (entry, contextText) => {
+            if (!contextText) {
+                return 0;
+            }
+
+            const haystack = normalizeName([
+                entry.frenchName,
+                entry.variantName,
+                entry.ausEName,
+                entry.characteristic_fr,
+                entry.characteristic,
+                entry.history_fr,
+                entry.history,
+                getStateAliases(entry.state)
+            ].filter(Boolean).join(' '));
+
+            if (!haystack) {
+                return 0;
+            }
+
+            let score = 0;
+            tokenizeContext(contextText).forEach((token) => {
+                if (haystack.includes(token)) {
+                    score += token.length >= 8 ? 3 : 1;
+                }
+            });
+
+            return score;
+        };
+
+        const disambiguateCodesWithContext = (codes, entriesByCode, contextText) => {
+            if (!contextText || codes.size <= 1) {
+                return null;
+            }
+
+            let bestCode = null;
+            let bestScore = 0;
+            let isTie = false;
+
+            codes.forEach((code) => {
+                const entry = entriesByCode.get(code);
+                const score = scoreCandidateAgainstContext(entry, contextText);
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestCode = code;
+                    isTie = false;
+                } else if (score === bestScore) {
+                    isTie = true;
+                }
+            });
+
+            return bestScore > 0 && !isTie ? bestCode : null;
+        };
+
         async function loadPlaceIndex() {
             if (placeIndexPromise) return placeIndexPromise;
 
@@ -683,11 +763,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const index = new Map();
                     const searchableKeys = [];
                     const knownCodes = new Set();
+                    const entriesByCode = new Map();
 
                     const addEntry = (entry) => {
                         const normalizedCode = normalizePlaceCode(entry.code || '');
                         if (normalizedCode) {
                             knownCodes.add(normalizedCode);
+                            entriesByCode.set(entry.code, entry);
                         }
 
                         const names = [entry.frenchName, entry.variantName, entry.ausEName].filter(Boolean);
@@ -705,33 +787,43 @@ gtag('config', 'G-LCWV2EVPVQ');
                     };
 
                     [...baudin, ...entre].forEach(addEntry);
-                    return { index, searchableKeys, knownCodes };
+                    return { index, searchableKeys, knownCodes, entriesByCode };
                 } catch (err) {
                     console.error('Failed to load place index', err);
-                    return { index: new Map(), searchableKeys: [], knownCodes: new Set() };
+                    return { index: new Map(), searchableKeys: [], knownCodes: new Set(), entriesByCode: new Map() };
                 }
             })();
 
             return placeIndexPromise;
         }
 
-        async function resolvePlaceToCode(name) {
+        async function resolvePlaceToCode(name, contextText = '') {
             if (!name) return null;
-            const { index, searchableKeys, knownCodes } = await loadPlaceIndex();
+            const { index, searchableKeys, knownCodes, entriesByCode } = await loadPlaceIndex();
             const directCode = normalizePlaceCode(name);
             if (directCode && knownCodes.has(directCode)) {
                 return directCode;
             }
 
             const inputVariants = [...buildPlaceNameVariants(name)];
+            const directMatches = inputVariants
+                .map((key) => index.get(key))
+                .filter(Boolean);
 
             const directMatchCode = resolveUniqueCodeFromMatches(
-                inputVariants
-                    .map((key) => index.get(key))
-                    .filter(Boolean)
+                directMatches
             );
             if (directMatchCode) {
                 return directMatchCode;
+            }
+
+            const disambiguatedDirectCode = disambiguateCodesWithContext(
+                new Set(directMatches.flatMap((match) => [...match])),
+                entriesByCode,
+                contextText
+            );
+            if (disambiguatedDirectCode) {
+                return disambiguatedDirectCode;
             }
 
             let bestDistance = Infinity;
@@ -753,12 +845,20 @@ gtag('config', 'G-LCWV2EVPVQ');
                 });
             });
 
-            return bestDistance <= 2 && bestCodes.size === 1 ? [...bestCodes][0] : null;
+            if (bestDistance <= 2 && bestCodes.size === 1) {
+                return [...bestCodes][0];
+            }
+
+            if (bestDistance <= 2) {
+                return disambiguateCodesWithContext(bestCodes, entriesByCode, contextText);
+            }
+
+            return null;
         }
 
-        async function handlePlaceClick(event, placeName) {
+        async function handlePlaceClick(event, placeName, contextText = '') {
             event.preventDefault();
-            const code = await resolvePlaceToCode(placeName);
+            const code = await resolvePlaceToCode(placeName, contextText);
             if (code) {
                 sessionStorage.setItem('expertScrollY', window.scrollY);
                 sessionStorage.setItem('expertChatScrollTop', chatMessages.scrollTop);
@@ -770,7 +870,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             const link = evt.target.closest('a[data-place]');
             if (!link) return;
             const placeName = link.getAttribute('data-place');
-            handlePlaceClick(evt, placeName);
+            const messageContent = link.closest('.message-content');
+            const contextText = messageContent ? messageContent.textContent || '' : '';
+            handlePlaceClick(evt, placeName, contextText);
         });
 
         // Rendu minimal : échappement + gras/italique + liens (format personnalisé [texte]{type:valeur})
