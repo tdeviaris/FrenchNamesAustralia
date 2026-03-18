@@ -15,7 +15,13 @@
         .text { display: flow-root; }
         .portrait { float: left; width: 260px; margin: 0 18px 14px 0; }
         .portrait img { width: 100%; border-radius: 12px; box-shadow: 0 10px 28px rgba(0,0,0,0.18); background: #fff; border: 6px solid #fff; object-fit: cover; }
-        .text p { line-height: 1.75; margin: 0 0 14px 0; }
+        .text p {
+            line-height: 1.75;
+            margin: 0 0 14px 0;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+        }
         .signature { margin-top: 18px; font-weight: 600; }
         .signature div { margin-top: 4px; font-weight: 400; }
         [data-lang] { display: none; }

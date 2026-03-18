@@ -64,6 +64,34 @@
             border-radius: 12px;
             background: #fbfdff;
         }
+        .resource-item-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-top: 12px;
+        }
+        .resource-item-copy {
+            flex: 1;
+            min-width: 0;
+        }
+        .resource-item-art {
+            flex: 0 0 clamp(118px, 24%, 180px);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .resource-item-art--large {
+            flex-basis: clamp(180px, 36%, 260px);
+        }
+        .resource-item-art img {
+            display: block;
+            width: 100%;
+            max-width: 170px;
+            height: auto;
+            object-fit: contain;
+        }
+        .resource-item-art--large img { max-width: 240px; }
 
 	        /* Title (button) above, then thumbnail + description side-by-side */
 	        .resource-row { margin-top: 12px; display: flex; gap: 18px; align-items: flex-start; }
@@ -104,6 +132,7 @@
         @media (min-width: 769px) {
             .resource-item > p:not(:first-child),
             .resource-item > div[data-i18n-html],
+            .resource-item-copy,
             .resource-text {
                 text-align: justify;
                 text-justify: inter-word;
@@ -149,15 +178,30 @@
                     margin-left: auto;
                     margin-right: auto;
                 }
+                .resource-item-content {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
 	            .resource-thumb,
                 .resource-thumb.resource-thumb-lg {
                     width: min(320px, 100%);
                     flex-basis: auto;
                     margin: 0 auto;
                 }
+                .resource-item-art {
+                    width: min(170px, 52%);
+                    flex-basis: auto;
+                    align-self: center;
+                    justify-content: center;
+                }
+                .resource-item-art--large {
+                    width: min(240px, 72%);
+                }
+                .resource-item-copy,
                 .resource-text { width: 100%; }
                 .resource-item > p:not(:first-child),
                 .resource-item > div[data-i18n-html],
+                .resource-item-copy,
                 .resource-text { text-align: left; }
 	        }
 
@@ -322,8 +366,15 @@ gtag('config', 'G-LCWV2EVPVQ');
 
 		                <div class="resource-item">
 		                    <p data-i18n-html="resources-glossary-entry"><a class="resource-primary-link" href="glossary.html">Glossary of Terms</a></p>
-		                    <p data-i18n="resources-glossary-subtitle">French institutions, political regimes, wars, former country appellations and former scientific expeditions</p>
-		                    <p data-i18n-html="resources-glossary-description">This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.</p>
+                            <div class="resource-item-content">
+                                <div class="resource-item-copy">
+		                            <p data-i18n="resources-glossary-subtitle">French institutions, political regimes, wars, former country appellations and former scientific expeditions</p>
+		                            <p data-i18n-html="resources-glossary-description">This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.</p>
+                                </div>
+                                <div class="resource-item-art resource-item-art--large" aria-hidden="true">
+                                    <img src="img/resources-glossaire.jpg" alt="" loading="lazy" decoding="async">
+                                </div>
+                            </div>
 		                </div>
 		            </div>
 	        </section>
