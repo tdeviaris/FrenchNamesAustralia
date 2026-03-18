@@ -36,6 +36,13 @@
         }
         .text p { margin: 0 0 12px 0; line-height: 1.65; color: #222; }
         .text p:last-child { margin-bottom: 0; }
+        @media (min-width: 861px) {
+            .text {
+                text-align: justify;
+                text-justify: inter-word;
+                hyphens: auto;
+            }
+        }
         .figure { margin: 16px 0 0 0; }
         .figure img {
             width: 100%;
@@ -94,6 +101,7 @@
 
         @media (max-width: 860px) {
             .columns { grid-template-columns: 1fr; }
+            .text { text-align: left; }
         }
 
         [data-lang] { display: none; }

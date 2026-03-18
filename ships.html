@@ -120,6 +120,13 @@
             line-height: 1.55;
             color: #333;
         }
+        @media (min-width: 769px) {
+            .ship-rubric-body .ship-rubric-desc {
+                text-align: justify;
+                text-justify: inter-word;
+                hyphens: auto;
+            }
+        }
 
         /* Modal */
         .ship-modal {
@@ -189,6 +196,7 @@
         @media (max-width: 768px) {
             .ship-rubric-body { flex-direction: column; }
             .ship-rubric-thumb { width: min(320px, 100%); height: auto; aspect-ratio: 1 / 1; }
+            .ship-rubric-body .ship-rubric-desc { text-align: left; }
         }
 
         /* Language-specific content blocks */
@@ -310,10 +318,10 @@
 	                <div class="ship-duo">
 	                    <div class="ship-rubric">
 	                        <div class="ship-rubric-header">
-	                            <a class="ship-rubric-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="• La Recherche, navire amiral de l&rsquo;exp&eacute;dition d&rsquo;Entrecasteaux (1791–1794)">La Recherche</a>
+	                            <a class="ship-rubric-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="La Recherche, navire amiral de l&rsquo;exp&eacute;dition d&rsquo;Entrecasteaux (1791–1794)">La Recherche</a>
 	                        </div>
 	                        <div class="ship-rubric-body">
-	                            <a class="ship-thumb-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="• La Recherche, navire amiral de l&rsquo;exp&eacute;dition d&rsquo;Entrecasteaux (1791–1794)" aria-label="Ouvrir La Recherche">
+	                            <a class="ship-thumb-link" href="larecherche.html" data-ship-modal="larecherche.html" data-ship-title="La Recherche, navire amiral de l&rsquo;exp&eacute;dition d&rsquo;Entrecasteaux (1791–1794)" aria-label="Ouvrir La Recherche">
 	                                <img class="ship-rubric-thumb" src="img/larecherche.jpg" alt="" loading="lazy" decoding="async">
 	                            </a>
 	                            <p class="ship-rubric-desc">Expédition d'Entrecasteaux : gabare de classe Marsouin de la Marine Royale Française</p>
@@ -336,10 +344,10 @@
 		                <div class="ship-duo" style="margin-top: 22px;">
 		                    <div class="ship-rubric">
 		                        <div class="ship-rubric-header">
-		                            <a class="ship-rubric-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="• Le G&eacute;ographe, navire amiral de l&rsquo;exp&eacute;dition Baudin (1800–1804)">Le Géographe</a>
+		                            <a class="ship-rubric-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="Le G&eacute;ographe, navire amiral de l&rsquo;exp&eacute;dition Baudin (1800–1804)">Le Géographe</a>
 		                        </div>
 		                        <div class="ship-rubric-body">
-	                            <a class="ship-thumb-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="• Le G&eacute;ographe, navire amiral de l&rsquo;exp&eacute;dition Baudin (1800–1804)" aria-label="Ouvrir Le Géographe">
+	                            <a class="ship-thumb-link" href="legeographe.html" data-ship-modal="legeographe.html" data-ship-title="Le G&eacute;ographe, navire amiral de l&rsquo;exp&eacute;dition Baudin (1800–1804)" aria-label="Ouvrir Le Géographe">
 	                                <picture>
 	                                    <source srcset="img/legeographe_mini.avif" type="image/avif">
 	                                    <img class="ship-rubric-thumb" src="img/legeographe_mini.jpg" alt="" loading="lazy" decoding="async">

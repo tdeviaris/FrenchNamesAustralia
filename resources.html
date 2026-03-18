@@ -73,6 +73,7 @@
 	        .resource-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
 	        .resource-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; }
             .resource-thumb-media {
+                display: block;
                 position: relative;
                 overflow: hidden;
                 border-radius: 10px;
@@ -80,7 +81,8 @@
                 background: #000;
             }
             .resource-thumb-media img {
-                border-radius: 0;
+                width: 100%;
+                border-radius: inherit;
                 box-shadow: none;
             }
             .resource-thumb-hover-video {
@@ -99,6 +101,15 @@
 	        .resource-text { flex: 1; min-width: 0; }
 	        .resource-text p { margin: 0 0 10px 0; }
 	        .resource-text p:last-child { margin-bottom: 0; }
+        @media (min-width: 769px) {
+            .resource-item > p:not(:first-child),
+            .resource-item > div[data-i18n-html],
+            .resource-text {
+                text-align: justify;
+                text-justify: inter-word;
+                hyphens: auto;
+            }
+        }
 
 	        /* Two-column layout (like ships.html) */
 	        .resource-grid {
@@ -125,6 +136,9 @@
                 .resource-grid-intro { gap: 14px; }
 	            .resource-row { flex-direction: column; }
 	            .resource-thumb { width: min(320px, 100%); flex-basis: auto; }
+                .resource-item > p:not(:first-child),
+                .resource-item > div[data-i18n-html],
+                .resource-text { text-align: left; }
 	        }
 
         /* Assistant AI block */

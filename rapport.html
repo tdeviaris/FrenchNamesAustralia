@@ -32,11 +32,19 @@
             .entry-thumb img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; object-position: center; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; }
             .entry-text { flex: 1; min-width: 0; }
             .entry-text .entry-description { margin-top: 0; }
+            @media (min-width: 769px) {
+                .entry-row .entry-text {
+                    text-align: justify;
+                    text-justify: inter-word;
+                    hyphens: auto;
+                }
+            }
 
             @media (max-width: 768px) {
                 .entries-grid { grid-template-columns: 1fr; }
                 .entry-row { flex-direction: column; }
                 .entry-thumb { width: 100%; flex-basis: auto; }
+                .entry-row .entry-text { text-align: left; }
             }
 
         /* Report modal */
