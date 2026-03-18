@@ -54,6 +54,8 @@
             border-radius: 999px;
             text-decoration: none;
             font-weight: 600;
+            line-height: 1;
+            vertical-align: top;
             transition: background-color 0.2s ease;
         }
         .resource-primary-link:hover { background-color: #003f82; }
@@ -67,6 +69,36 @@
         }
         .resource-item > p { margin: 0 0 10px 0; }
         .resource-item > p:last-child { margin-bottom: 0; }
+        .resource-item > p[data-i18n-html] {
+            display: flex;
+            align-items: flex-start;
+            line-height: 0;
+        }
+        .resource-item-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .resource-item-copy {
+            flex: 1;
+            min-width: 0;
+        }
+        .resource-item-art {
+            flex: 0 0 clamp(118px, 24%, 180px);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .resource-item-art img {
+            display: block;
+            width: 100%;
+            max-width: 170px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 0;
+            box-shadow: none;
+        }
 
         /* Two-column grid */
         .resource-grid {
@@ -130,6 +162,13 @@
             .resource-grid { grid-template-columns: 1fr; gap: 18px; }
             .resource-row { flex-direction: column; }
             .resource-thumb { width: min(320px, 100%); flex-basis: auto; }
+            .resource-item-content { flex-direction: column; align-items: flex-start; }
+            .resource-item-art {
+                width: min(170px, 52%);
+                flex-basis: auto;
+                align-self: center;
+                justify-content: center;
+            }
         }
     </style>
 <!-- Google Analytics 4 -->
@@ -192,14 +231,28 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             <!-- Deux colonnes : Contact | Mentions légales -->
             <div class="resource-grid" style="margin-top: var(--resource-section-gap);">
-                <div class="resource-item">
+                <div class="resource-item resource-item-visual">
                     <p data-i18n-html="about-contact-entry"><a class="resource-primary-link" href="contact.html">Nous contacter</a></p>
-                    <p data-i18n="about-contact-subtitle">Merci pour vos retours, demandes d'améliorations ou de corrections.</p>
+                    <div class="resource-item-content">
+                        <div class="resource-item-copy">
+                            <p data-i18n="about-contact-subtitle">Merci pour vos retours, demandes d'améliorations ou de corrections.</p>
+                        </div>
+                        <div class="resource-item-art" aria-hidden="true">
+                            <img src="img/about-contacts.jpg" alt="" loading="lazy" decoding="async">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="resource-item">
+                <div class="resource-item resource-item-visual">
                     <p data-i18n-html="about-legal-entry"><a class="resource-primary-link" href="legal_notice.html">Mentions légales</a></p>
-                    <p data-i18n="about-legal-subtitle">Informations légales, droits d'auteur et crédits du projet.</p>
+                    <div class="resource-item-content">
+                        <div class="resource-item-copy">
+                            <p data-i18n="about-legal-subtitle">Informations légales, droits d'auteur et crédits du projet.</p>
+                        </div>
+                        <div class="resource-item-art" aria-hidden="true">
+                            <img src="img/about-tampon.jpg" alt="" loading="lazy" decoding="async">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
