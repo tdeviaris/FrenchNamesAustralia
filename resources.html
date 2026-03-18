@@ -81,8 +81,22 @@
             justify-content: flex-end;
             align-items: center;
         }
+        .resource-item-art a {
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .resource-item-art a:focus-visible {
+            outline: 3px solid #FFD700;
+            outline-offset: 6px;
+            border-radius: 12px;
+        }
         .resource-item-art--large {
-            flex-basis: clamp(180px, 36%, 260px);
+            flex-basis: 250px;
+            width: 250px;
+        }
+        .resource-item-art--left {
+            justify-content: flex-start;
         }
         .resource-item-art img {
             display: block;
@@ -91,7 +105,7 @@
             height: auto;
             object-fit: contain;
         }
-        .resource-item-art--large img { max-width: 240px; }
+        .resource-item-art--large img { max-width: 250px; }
 
 	        /* Title (button) above, then thumbnail + description side-by-side */
 	        .resource-row { margin-top: 12px; display: flex; gap: 18px; align-items: flex-start; }
@@ -195,7 +209,7 @@
                     justify-content: center;
                 }
                 .resource-item-art--large {
-                    width: min(240px, 72%);
+                    width: min(250px, 72%);
                 }
                 .resource-item-copy,
                 .resource-text { width: 100%; }
@@ -367,12 +381,14 @@ gtag('config', 'G-LCWV2EVPVQ');
 		                <div class="resource-item">
 		                    <p data-i18n-html="resources-glossary-entry"><a class="resource-primary-link" href="glossary.html">Glossary of Terms</a></p>
                             <div class="resource-item-content">
+                                <div class="resource-item-art resource-item-art--large resource-item-art--left">
+                                    <a href="glossary.html" aria-label="Open Glossary of Terms">
+                                        <img src="img/resources-glossaire.jpg" alt="" loading="lazy" decoding="async">
+                                    </a>
+                                </div>
                                 <div class="resource-item-copy">
 		                            <p data-i18n="resources-glossary-subtitle">French institutions, political regimes, wars, former country appellations and former scientific expeditions</p>
 		                            <p data-i18n-html="resources-glossary-description">This glossary explains key historical, political and scientific terms mentioned in the project <em>French Names Along the Australian Coastline</em>.</p>
-                                </div>
-                                <div class="resource-item-art resource-item-art--large" aria-hidden="true">
-                                    <img src="img/resources-glossaire.jpg" alt="" loading="lazy" decoding="async">
                                 </div>
                             </div>
 		                </div>
