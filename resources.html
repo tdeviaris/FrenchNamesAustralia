@@ -132,10 +132,30 @@
 	        .resource-item > p + p { margin-top: 12px; }
 
 	        @media (max-width: 768px) {
+                .container { padding: 10px; }
+                .content-section {
+                    padding: 24px 14px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
 	            .resource-grid { grid-template-columns: 1fr; gap: 18px; }
                 .resource-grid-intro { gap: 14px; }
-	            .resource-row { flex-direction: column; }
-	            .resource-thumb { width: min(320px, 100%); flex-basis: auto; }
+	            .resource-row {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .resource-item {
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+	            .resource-thumb,
+                .resource-thumb.resource-thumb-lg {
+                    width: min(320px, 100%);
+                    flex-basis: auto;
+                    margin: 0 auto;
+                }
+                .resource-text { width: 100%; }
                 .resource-item > p:not(:first-child),
                 .resource-item > div[data-i18n-html],
                 .resource-text { text-align: left; }
