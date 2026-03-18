@@ -1125,7 +1125,8 @@ gtag('config', 'G-LCWV2EVPVQ');
         const saveChatHistory = () => {
             const payload = {
                 timestamp: Date.now(),
-                messages: chatHistory
+                messages: chatHistory,
+                responseId
             };
             try {
                 localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(payload));
@@ -1147,7 +1148,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                     localStorage.removeItem(HISTORY_STORAGE_KEY);
                     return null;
                 }
-                return parsed.messages;
+                return {
+                    messages: parsed.messages,
+                    responseId: typeof parsed.responseId === 'string' ? parsed.responseId : null
+                };
             } catch (err) {
                 console.warn('Unable to load chat history', err);
                 return null;
@@ -1291,8 +1295,9 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         // Restaurer l'historique si encore valide
         const existingHistory = loadChatHistory();
-        if (existingHistory && existingHistory.length) {
-            chatHistory = existingHistory;
+        if (existingHistory && existingHistory.messages.length) {
+            chatHistory = existingHistory.messages;
+            responseId = existingHistory.responseId;
             renderChatHistory(chatHistory);
             hideSuggestedQuestions();
 
@@ -1392,6 +1397,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                         // Sauvegarder le responseId s'il est fourni
                         if (parsed.responseId) {
                             responseId = parsed.responseId;
+                            saveChatHistory();
                         }
 
                         if (parsed.content) {
