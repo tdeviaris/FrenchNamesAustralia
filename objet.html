@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="presentation-meta-title">À propos du projet | French Place Names Australia</title>
-    <meta name="description" content="Présentation du projet de recherche sur les 671 toponymies françaises du littoral australien, mené par Dany Bréelle (Flinders University) avec le soutien de WAHF, RGSSA et du Musée national de la Marine.">
+<title data-i18n="objet-meta-title">Objet du projet | French Place Names Australia</title>
+    <meta name="description" content="Objet du projet, dialogues audio des deux expéditions, objectifs et méthodologie, enseignements et structure du site.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.frenchplacenames.au/presentation.html">
+    <link rel="canonical" href="https://www.frenchplacenames.au/objet.html">
     <!-- Open Graph / LinkedIn / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="French Place Names Australia">
-    <meta property="og:title" content="À propos — French Place Names Australia">
-    <meta property="og:description" content="Projet académique de Dany Bréelle (Flinders University) sur les 671 toponymies françaises du littoral australien, avec le soutien de WAHF, RGSSA et du Musée national de la Marine.">
-    <meta property="og:url" content="https://www.frenchplacenames.au/presentation.html">
+    <meta property="og:title" content="Objet — French Place Names Australia">
+    <meta property="og:description" content="Objet du projet, dialogues audio des deux expéditions, objectifs et méthodologie, enseignements et structure du site.">
+    <meta property="og:url" content="https://www.frenchplacenames.au/objet.html">
     <meta property="og:image" content="https://www.frenchplacenames.au/img/carte-de-baudin.jpg">
     <meta property="og:locale" content="fr_AU">
     <meta property="og:locale:alternate" content="en_AU">
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="À propos — French Place Names Australia">
-    <meta name="twitter:description" content="Projet académique sur les 671 toponymies françaises du littoral australien (Flinders University, WAHF, RGSSA).">
+    <meta name="twitter:title" content="Objet — French Place Names Australia">
+    <meta name="twitter:description" content="Objet du projet, dialogues audio des deux expéditions, objectifs et méthodologie, enseignements et structure du site.">
     <meta name="twitter:image" content="https://www.frenchplacenames.au/img/carte-de-baudin.jpg">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
@@ -67,6 +67,34 @@
         }
         .resource-item > p { margin: 0 0 10px 0; }
         .resource-item > p:last-child { margin-bottom: 0; }
+        .resource-item-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .resource-item-copy {
+            flex: 1;
+            min-width: 0;
+        }
+        .resource-item-art {
+            flex: 0 0 clamp(118px, 24%, 180px);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .resource-item-art--large {
+            flex-basis: clamp(177px, 36%, 270px);
+        }
+        .resource-item-art img {
+            display: block;
+            width: 100%;
+            max-width: 170px;
+            height: auto;
+            object-fit: contain;
+        }
+        .resource-item-art--large img { max-width: 255px; }
+        .resource-item-content--top { align-items: flex-start; }
 
         /* Two-column grid */
         .resource-grid {
@@ -130,6 +158,13 @@
             .resource-grid { grid-template-columns: 1fr; gap: 18px; }
             .resource-row { flex-direction: column; }
             .resource-thumb { width: min(320px, 100%); flex-basis: auto; }
+            .resource-item-content { flex-direction: column; align-items: flex-start; }
+            .resource-item-art {
+                width: min(170px, 52%);
+                flex-basis: auto;
+                align-self: center;
+                justify-content: center;
+            }
         }
     </style>
 <!-- Google Analytics 4 -->
@@ -163,43 +198,76 @@ gtag('config', 'G-LCWV2EVPVQ');
 
     <main class="container">
         <section class="content-section">
-            <h2 data-i18n="about-title">À propos</h2>
+            <h2 data-i18n="objet-title">Objet</h2>
 
-            <!-- Deux colonnes : Auteur | Soutiens -->
+            <!-- Cadre audio : les deux expéditions -->
+            <div class="resource-item">
+                <div class="audio-block">
+                    <div class="audio-header">
+                        <button type="button" class="audio-title-button" id="dentre-audio-btn" data-i18n="about-dentre-expedition-title" aria-pressed="false">L'expédition d'Entrecasteaux</button>
+                        <audio class="audio-player" id="dentre-audio" controls preload="auto" data-i18n-src="about-dentre-expedition-audio-src">
+                            <source src="data/dentrecasteaux_fr.m4a" type="audio/mp4">
+                            Votre navigateur ne supporte pas l'élément audio.
+                        </audio>
+                    </div>
+                    <p class="audio-subtitle" data-i18n="about-dentre-expedition-subtitle">Découvrez l'expédition d'Entrecasteaux (1791-1794) à travers ce dialogue présentant les objectifs, le déroulement et les résultats de l'expédition.</p>
+                </div>
+
+                <div class="audio-block">
+                    <div class="audio-header">
+                        <button type="button" class="audio-title-button" id="baudin-audio-btn" data-i18n="about-baudin-expedition-title" aria-pressed="false">L'expédition Baudin</button>
+                        <audio class="audio-player" id="baudin-audio" controls preload="auto" data-i18n-src="about-baudin-expedition-audio-src">
+                            <source src="data/baudin_fr.m4a" type="audio/mp4">
+                            Votre navigateur ne supporte pas l'élément audio.
+                        </audio>
+                    </div>
+                    <p class="audio-subtitle" data-i18n="about-baudin-expedition-subtitle">Découvrez l'expédition Baudin (1800-1804) à travers ce dialogue présentant les objectifs, le déroulement et les résultats de l'expédition.</p>
+                </div>
+            </div>
+
             <div class="resource-grid">
                 <div class="resource-item">
-                    <p data-i18n-html="about-author-entry"><a class="resource-primary-link" href="author.html">Présentation de l'auteure</a></p>
-                    <div class="resource-row">
-                        <div class="resource-thumb">
-                            <a href="author.html" aria-label="Open author page">
-                                <picture>
-                                    <img src="img/dany_breelle.jpg" alt="" loading="lazy" decoding="async">
-                                </picture>
-                            </a>
+                    <div class="resource-item-content">
+                        <div class="resource-item-copy">
+                            <p data-i18n-html="resources-methodology-entry"><a class="resource-primary-link" href="methodology.html">Objectifs et Méthodologie</a></p>
+                            <p data-i18n="resources-methodology-description">Objectif de ce site web, méthodologie utilisée et sources du contenu.</p>
+                            <div data-i18n-html="resources-methodology-points"></div>
                         </div>
-                        <div class="resource-text">
-                            <p data-i18n="about-author-subtitle">Dany Bréelle, agrégée et docteur en géographie, auteure du projet.<br><br>Elle est chercheuse associée à la School of Humanities de la Flinders University. Spécialisée dans la géographie historique, elle travaille sur les récits et la nomenclature des grandes expéditions françaises en Australie.</p>
+                        <div class="resource-item-art resource-item-art--large" aria-hidden="true">
+                            <picture>
+                                <img src="img/objet-compass.jpg" alt="" loading="lazy" decoding="async">
+                            </picture>
                         </div>
                     </div>
                 </div>
 
                 <div class="resource-item">
-                    <p data-i18n-html="about-supporters-entry"><a class="resource-primary-link" href="supporters.html">Soutiens du projet</a></p>
-                    <p data-i18n="about-supporters-subtitle">Organisations et personnes ayant soutenu ce projet.</p>
-                    <div data-i18n-html="about-supporters-list"></div>
+                    <div class="resource-item-content">
+                        <div class="resource-item-copy">
+                            <p data-i18n-html="resources-findings-entry"><a class="resource-primary-link" href="findings.html">Enseignements</a></p>
+                            <p data-i18n="resources-findings-subtitle">Synthèse des analyses issues des 671 toponymes des expéditions d’Entrecasteaux et Baudin.</p>
+                            <p data-i18n="resources-findings-description">Six axes clés : contexte révolutionnaire, héritage des voyages français, bascule vers les sciences exactes, écho des arts et des lettres, rôle des administrations et des armées, empreinte napoléonienne et postérité des nomenclatures.</p>
+                        </div>
+                        <div class="resource-item-art resource-item-art--large" aria-hidden="true">
+                            <picture>
+                                <img src="img/objet-flambeau.jpg" alt="" loading="lazy" decoding="async">
+                            </picture>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Deux colonnes : Contact | Mentions légales -->
-            <div class="resource-grid" style="margin-top: var(--resource-section-gap);">
-                <div class="resource-item">
-                    <p data-i18n-html="about-contact-entry"><a class="resource-primary-link" href="contact.html">Nous contacter</a></p>
-                    <p data-i18n="about-contact-subtitle">Merci pour vos retours, demandes d'améliorations ou de corrections.</p>
-                </div>
-
-                <div class="resource-item">
-                    <p data-i18n-html="about-legal-entry"><a class="resource-primary-link" href="legal_notice.html">Mentions légales</a></p>
-                    <p data-i18n="about-legal-subtitle">Informations légales, droits d'auteur et crédits du projet.</p>
+            <div class="resource-item" style="margin-top: var(--resource-section-gap);">
+                <div class="resource-item-content resource-item-content--top">
+                    <div class="resource-item-copy">
+                        <p data-i18n-html="about-sitemap-entry"><a class="resource-primary-link" href="site_map.html">Structure du site</a></p>
+                        <p data-i18n="about-sitemap-subtitle">Vue d'ensemble de la structure et de l'organisation du site.</p>
+                    </div>
+                    <div class="resource-item-art" aria-hidden="true">
+                        <picture>
+                            <img src="img/objet-arbre.jpg" alt="" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
                 </div>
             </div>
         </section>

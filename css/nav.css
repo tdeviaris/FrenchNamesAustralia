@@ -29,15 +29,16 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: clamp(8px, 2vw, 18px);
+    align-items: center;
+    gap: clamp(6px, 1.6vw, 14px);
 }
 
 nav ul li a {
     display: block;
     color: inherit;
     text-decoration: none;
-    padding: 10px 18px;
-    font-size: 1.05rem;
+    padding: 9px 15px;
+    font-size: 1rem;
     border-radius: 999px;
     transition: background 0.2s ease, color 0.2s ease;
 }
@@ -196,8 +197,8 @@ a.up-arrow-link > img[src*="up-arrow.svg"] {
 @media (max-width: 1040px) {
     :root { --nav-height: 64px; }
     nav { padding: 0 18px; }
-    nav ul { gap: 10px; }
-    nav ul li a { padding: 8px 14px; font-size: 0.95rem; }
+    nav ul { gap: 8px; }
+    nav ul li a { padding: 8px 12px; font-size: 0.92rem; }
     .lang-switcher { gap: 8px; }
     .lang-switcher button { width: 38px; height: 38px; }
     .lang-switcher button img { width: 22px; }
@@ -206,8 +207,8 @@ a.up-arrow-link > img[src*="up-arrow.svg"] {
 @media (max-width: 880px) {
     :root { --nav-height: 60px; }
     nav { padding: 0 14px; }
-    nav ul { gap: 8px; }
-    nav ul li a { padding: 7px 12px; font-size: 0.9rem; }
+    nav ul { gap: 6px; }
+    nav ul li a { padding: 6px 10px; font-size: 0.84rem; }
     .lang-switcher { gap: 6px; }
     .lang-switcher button { width: 34px; height: 34px; }
     .lang-switcher button img { width: 20px; }
@@ -217,8 +218,8 @@ a.up-arrow-link > img[src*="up-arrow.svg"] {
 @media (max-width: 768px) {
     :root { --nav-height: 52px; }
     nav { height: var(--nav-height); padding: 0 8px 0 8px; }
-    nav ul { gap: 4px; margin-right: 70px; }
-    nav ul li a { padding: 4px 6px; font-size: 0.75rem; }
+    nav ul { gap: 3px; margin-right: 68px; }
+    nav ul li a { padding: 4px 5px; font-size: 0.7rem; }
     .lang-switcher { gap: 3px; }
     .lang-switcher button { width: 26px; height: 26px; }
     .lang-switcher button img { width: 16px; }

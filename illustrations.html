@@ -22,7 +22,14 @@
         .entry.has-thumb::after { content: ""; display: block; clear: both; }
         .entry-link { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; background-color: #0056b3; color: #fff; border-radius: 999px; border: none; text-decoration: none; font-weight: 400; font-family: 'Lato', sans-serif; transition: background-color 0.2s ease; cursor: pointer; font-size: 1rem; }
         .entry-link:hover { background-color: #003f82; }
-        .entry-description { margin-top: 10px; line-height: 1.6; color: #555; }
+        .entry-description {
+            margin-top: 10px;
+            line-height: 1.6;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+        }
 
         .entry-thumb {
             margin-top: 14px;
@@ -32,10 +39,21 @@
             margin-bottom: 12px;
         }
         .entry-thumb button,
-        .entry-thumb a { border: none; padding: 0; background: transparent; cursor: pointer; display: block; width: 100%; text-decoration: none; }
+        .entry-thumb a { border: none; padding: 0; background: transparent; cursor: zoom-in; display: block; width: 100%; text-decoration: none; }
         .entry-thumb button:focus-visible,
         .entry-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
-        .entry-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+        .entry-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); cursor: zoom-in; }
+
+        .entry-grid-two {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+        .entry-grid-two .entry {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
 
         .illustrations-preview {
             margin-top: 18px;
@@ -47,7 +65,7 @@
             border: none;
             padding: 0;
             background: transparent;
-            cursor: pointer;
+            cursor: zoom-in;
             flex: 1 1 0;
             min-width: 0;
         }
@@ -63,9 +81,14 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            cursor: zoom-in;
         }
 
         @media (max-width: 768px) {
+            .entry-grid-two {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
             .entry-thumb {
                 float: none;
                 width: min(320px, 100%);
@@ -113,6 +136,7 @@
     <nav>
     <ul>
         <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+        <li><a href="objet.html" id="nav-objet" data-i18n="nav-objet">Objet</a></li>
         <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
         <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
         <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
@@ -155,27 +179,29 @@
                 </div>
             </div>
 
-            <div class="entry has-thumb">
-                <p><button class="entry-link js-voyage-link" type="button">Voyage of Discovery to the Southern Lands</button></p>
-                <div class="entry-thumb">
-                    <button type="button" class="js-voyage-link" aria-label="Open Voyage of Discovery to the Southern Lands">
-                        <img src="img/voyage.jpg" alt="Voyage of Discovery to the Southern Lands (thumbnail)" loading="lazy" decoding="async">
-                    </button>
+            <div class="entry-grid-two">
+                <div class="entry has-thumb">
+                    <p><button class="entry-link js-voyage-link" type="button">Voyage of Discovery to the Southern Lands</button></p>
+                    <div class="entry-thumb">
+                        <button type="button" class="js-voyage-link" aria-label="Open Voyage of Discovery to the Southern Lands">
+                            <img src="img/voyage.jpg" alt="Voyage of Discovery to the Southern Lands (thumbnail)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description" style="margin-top: 28px;">Voyage of Discovery to the Southern Lands: executed by order of His Majesty the Emperor and King, on the corvettes the Géographe, the Naturaliste, and the schooner the Casuarina, during the years 1800, 1801, 1802, 1803 and 1804; [Historical account] published by imperial decree, under the ministry of M. de Champagny and written by M. F. Péron.<br>Source: <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener noreferrer">National Library of France</a><br><br>The illustrations presented above come from this work, which can be consulted <button type="button" class="js-voyage-link" style="background:none;border:none;padding:0;color:#0056b3;text-decoration:underline;cursor:pointer;font:inherit;">here</button> in full.</p>
                 </div>
-                <p class="entry-description" style="margin-top: 28px;">Voyage of Discovery to the Southern Lands: executed by order of His Majesty the Emperor and King, on the corvettes the Géographe, the Naturaliste, and the schooner the Casuarina, during the years 1800, 1801, 1802, 1803 and 1804; [Historical account] published by imperial decree, under the ministry of M. de Champagny and written by M. F. Péron.<br>Source: <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener noreferrer">National Library of France</a><br><br>The illustrations presented above come from this work, which can be consulted <button type="button" class="js-voyage-link" style="background:none;border:none;padding:0;color:#0056b3;text-decoration:underline;cursor:pointer;font:inherit;">here</button> in full.</p>
-            </div>
 
-            <div class="entry has-thumb">
-                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Example of coastal profile sketches</button></p>
-                <div class="entry-thumb">
-                    <button type="button" class="js-resource-video" data-video-src="img/Topo1.mp4" aria-label="Play the coastal profile sketches video">
-                        <picture>
-                            <source srcset="img/Croquis_cote.avif" type="image/avif">
-                            <img src="img/Croquis_cote.jpg" alt="Coastal profile sketches (thumbnail)" loading="lazy" decoding="async">
-                        </picture>
-                    </button>
+                <div class="entry has-thumb">
+                    <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Example of coastal profile sketches</button></p>
+                    <div class="entry-thumb">
+                        <button type="button" class="js-resource-video" data-video-src="img/Topo1.mp4" aria-label="Play the coastal profile sketches video">
+                            <picture>
+                                <source srcset="img/Croquis_cote.avif" type="image/avif">
+                                <img src="img/Croquis_cote.jpg" alt="Coastal profile sketches (thumbnail)" loading="lazy" decoding="async">
+                            </picture>
+                        </button>
+                    </div>
+                    <p class="entry-description" style="margin-top: 28px;">Views of different parts of Anthony Van Diemen's Land<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministry of the Navy and Colonies. (1807).<br>Source: <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener noreferrer">National Library of Australia</a></p>
                 </div>
-                <p class="entry-description" style="margin-top: 28px;">Views of different parts of Anthony Van Diemen's Land<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministry of the Navy and Colonies. (1807).<br>Source: <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener noreferrer">National Library of Australia</a></p>
             </div>
         </section>
         </div>
@@ -206,27 +232,29 @@
                 </div>
             </div>
 
-            <div class="entry has-thumb">
-                <p><button class="entry-link js-voyage-link" type="button">Voyage de découvertes aux terres australes</button></p>
-                <div class="entry-thumb">
-                    <button type="button" class="js-voyage-link" aria-label="Ouvrir Voyage de découvertes aux terres australes">
-                        <img src="img/voyage.jpg" alt="Voyage de découvertes aux terres australes (miniature)" loading="lazy" decoding="async">
-                    </button>
+            <div class="entry-grid-two">
+                <div class="entry has-thumb">
+                    <p><button class="entry-link js-voyage-link" type="button">Voyage de découvertes aux terres australes</button></p>
+                    <div class="entry-thumb">
+                        <button type="button" class="js-voyage-link" aria-label="Ouvrir Voyage de découvertes aux terres australes">
+                            <img src="img/voyage.jpg" alt="Voyage de découvertes aux terres australes (miniature)" loading="lazy" decoding="async">
+                        </button>
+                    </div>
+                    <p class="entry-description" style="margin-top: 28px;">Voyage de découvertes aux terres australes : exécuté par ordre de Sa Majesté l'empereur et roi, sur les corvettes le Géographe, le Naturaliste, et la goëlette le Casuarina, pendent les années 1800, 1801, 1802, 1803 et 1804; [Historique] publié par decret impérial, sous le ministère de M. de Champagny et rédigé par M. F. Péron.<br>Source : <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France</a><br><br>Les illustrations présentées ci-dessus proviennent de cet ouvrage qui peut être consulté <button type="button" class="js-voyage-link" style="background:none;border:none;padding:0;color:#0056b3;text-decoration:underline;cursor:pointer;font:inherit;">ici</button> en intégralité.</p>
                 </div>
-                <p class="entry-description" style="margin-top: 28px;">Voyage de découvertes aux terres australes : exécuté par ordre de Sa Majesté l'empereur et roi, sur les corvettes le Géographe, le Naturaliste, et la goëlette le Casuarina, pendent les années 1800, 1801, 1802, 1803 et 1804; [Historique] publié par decret impérial, sous le ministère de M. de Champagny et rédigé par M. F. Péron.<br>Source : <a href="https://gallica.bnf.fr/ark:/12148/btv1b2300134q.item" target="_blank" rel="noopener noreferrer">Bibliothèque nationale de France</a><br><br>Les illustrations présentées ci-dessus proviennent de cet ouvrage qui peut être consulté <button type="button" class="js-voyage-link" style="background:none;border:none;padding:0;color:#0056b3;text-decoration:underline;cursor:pointer;font:inherit;">ici</button> en intégralité.</p>
-            </div>
 
-            <div class="entry has-thumb">
-                <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Exemple de croquis de profils des côtes</button></p>
-                <div class="entry-thumb">
-                    <button type="button" class="js-resource-video" data-video-src="img/Topo1.mp4" aria-label="Lire la vidéo Exemple de croquis de profils des côtes">
-                        <picture>
-                            <source srcset="img/Croquis_cote.avif" type="image/avif">
-                            <img src="img/Croquis_cote.jpg" alt="Croquis de profils des côtes (miniature)" loading="lazy" decoding="async">
-                        </picture>
-                    </button>
+                <div class="entry has-thumb">
+                    <p><button class="entry-link js-resource-video" type="button" data-video-src="img/Topo1.mp4">Exemple de croquis de profils des côtes</button></p>
+                    <div class="entry-thumb">
+                        <button type="button" class="js-resource-video" data-video-src="img/Topo1.mp4" aria-label="Lire la vidéo Exemple de croquis de profils des côtes">
+                            <picture>
+                                <source srcset="img/Croquis_cote.avif" type="image/avif">
+                                <img src="img/Croquis_cote.jpg" alt="Croquis de profils des côtes (miniature)" loading="lazy" decoding="async">
+                            </picture>
+                        </button>
+                    </div>
+                    <p class="entry-description" style="margin-top: 28px;">Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source : <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener noreferrer">National Library of Australia</a></p>
                 </div>
-                <p class="entry-description" style="margin-top: 28px;">Vues de différentes parties de la Terre d'Anthony Van Diemen<br>Beautemps-Beaupré, C. F &amp; Collin, E &amp; Beautemps-Beaupré, C. F &amp; France.<br>Ministère de la marine et des colonies. (1807).<br>Source : <a href="https://nla.gov.au/nla.obj-230811126/view" target="_blank" rel="noopener noreferrer">National Library of Australia</a></p>
             </div>
         </section>
         </div>
