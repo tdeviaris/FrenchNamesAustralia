@@ -188,6 +188,38 @@
             margin-left: 22px;
             margin-bottom: 12px;
         }
+        .om-illustration-pair {
+            float: right;
+            width: min(58%, 780px);
+            margin-left: 22px;
+            margin-bottom: 12px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: 12px;
+        }
+        .om-illustration-pair .om-illustration {
+            max-width: 100%;
+            margin: 0;
+            float: none;
+            min-width: 0;
+        }
+        .om-illustration-pair .om-illustration img {
+            height: 260px;
+            object-fit: contain;
+            background: #ece2c7;
+        }
+        .om-illustration-pair .om-illustration figcaption {
+            font-size: 0.82rem;
+            color: #6a6a6a;
+            line-height: 1.45;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+        .om-illustration-pair .om-illustration figcaption a {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
         .om-clearfix::after {
             content: "";
             display: table;
@@ -198,6 +230,17 @@
                 max-width: 100%;
                 float: none !important;
                 margin: 0 0 16px 0 !important;
+            }
+            .om-illustration-pair {
+                width: 100%;
+                float: none;
+                margin: 0 0 16px 0;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .om-illustration-pair .om-illustration img {
+                height: auto;
             }
         }
 
@@ -259,10 +302,16 @@
             </div>
 
             <div class="om-section-block om-clearfix">
-                <figure class="om-illustration om-illustration--right om-illustration--layered">
-                    <img src="img/capdesTombeaux5h11-18Mars.png" alt="Voyage of discovery to the Austral Lands">
-                    <figcaption>Voyage of discovery to the Austral Lands. <a href="https://gallica.bnf.fr/ark:/12148/bpt6k1912399d/f39.item" target="_blank" rel="noopener noreferrer">Gallica, BnF</a>.</figcaption>
-                </figure>
+                <div class="om-illustration-pair" aria-label="Illustrations of Cape des Tombeaux and the tombs of the natives">
+                    <figure class="om-illustration">
+                        <img src="img/om2-terre-diemen-maria-tombs.png" alt="Terre de Diemen : Ile Maria Tombeaux des Naturels">
+                        <figcaption>&laquo; Terre de Diemen : Ile Maria Tombeaux des Naturels &raquo;, <em>Voyage de d&eacute;couvertes aux terres australes, ex&eacute;cut&eacute; sur les corvettes le G&eacute;ographe, le Naturaliste et la go&euml;lette le Casuarina, pendant les ann&eacute;es 1800, 1801, 1802, 1803 et 1804</em>. Atlas historique. <a href="https://gallica.bnf.fr/ark:/12148/bpt6k1912399d/f39.item" target="_blank" rel="noopener noreferrer">Biblioth&egrave;que nationale de France</a>.</figcaption>
+                    </figure>
+                    <figure class="om-illustration">
+                        <img src="img/om2-maria-cape-des-tombeaux-portrait.jpg" alt="Sketch of Maria Island, with Cape des Tombeaux">
+                        <figcaption>Sketch of Maria Island, with Cape des Tombeaux, near the place where the French discovered the &ldquo;tombs of the natives.&rdquo; Detail. MAP/6JJ/4/A/7, <a href="https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0147_0107_L-medium.jpg" target="_blank" rel="noopener noreferrer">Archives nationales de France</a>.</figcaption>
+                    </figure>
+                </div>
                 <h4>2. Interpretive: Recognising Layered Histories of Naming</h4>
                 <p>Each French place name is treated as a historical document reflecting the intellectual, political, and scientific contexts of its attribution.</p>
                 <p>Entries examine:</p>
@@ -277,8 +326,8 @@
 
             <div class="om-section-block om-section-block--accent om-clearfix">
                 <figure class="om-illustration om-illustration--left">
-                    <img src="img/fabrique_des_toponymes.jpg" alt="The making of place names">
-                    <figcaption>The making of place names. The place names assigned during the expeditions result from a process combining geographical observation, scientific and political contexts, cartography, and historiographical transmission.</figcaption>
+                    <img src="img/finding-aid-voyages-hydrographiques-cropped.png" alt="The making of place names">
+                    <figcaption>Service hydrographique de la Marine. Voyages et missions hydrographiques. Archives nationales de France</figcaption>
                 </figure>
                 <div class="om-method-banner">Methodology</div>
                 <h4>3. Educational: Promoting Transparency, Context, and Critical Engagement</h4>
@@ -356,10 +405,16 @@
             </div>
 
             <div class="om-section-block om-clearfix">
-                <figure class="om-illustration om-illustration--right om-illustration--layered">
-                    <img src="img/capdesTombeaux5h11-18Mars.png" alt="Voyage de dÃ©couvertes aux terres australes">
-                    <figcaption>Voyage de dÃ©couvertes aux terres australes. <a href="https://gallica.bnf.fr/ark:/12148/bpt6k1912399d/f39.item" target="_blank" rel="noopener noreferrer">Gallica, BnF</a>.</figcaption>
-                </figure>
+                <div class="om-illustration-pair" aria-label="Illustrations du Cap des Tombeaux et des Tombeaux des naturels">
+                    <figure class="om-illustration">
+                        <img src="img/om2-terre-diemen-maria-tombs.png" alt="Terre de Diemen : Ile Maria Tombeaux des Naturels">
+                        <figcaption>&laquo; Terre de Diemen : Ile Maria Tombeaux des Naturels &raquo;, <em>Voyage de d&eacute;couvertes aux terres australes, ex&eacute;cut&eacute; sur les corvettes le G&eacute;ographe, le Naturaliste et la go&euml;lette le Casuarina, pendant les ann&eacute;es 1800, 1801, 1802, 1803 et 1804</em>. Atlas historique. Source : <a href="https://gallica.bnf.fr/ark:/12148/bpt6k1912399d/f39.item" target="_blank" rel="noopener noreferrer">Bibliotheque nationale de France</a>.</figcaption>
+                    </figure>
+                    <figure class="om-illustration">
+                        <img src="img/om2-maria-cape-des-tombeaux-portrait.jpg" alt="Ebauche de l&rsquo;Ile Maria avec le Cap des Tombeaux">
+                        <figcaption>Ebauche de l&rsquo;Ile Maria avec le Cap des Tombeaux, &agrave; proximit&eacute; de lieu o&ugrave; les fran&ccedil;ais d&eacute;couvrirent &laquo; les tombeaux des naturels &raquo;, D&eacute;tail. MAP/6JJ/4/A/7, <a href="https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0147_0107_L-medium.jpg" target="_blank" rel="noopener noreferrer">Archives nationales de France</a>.</figcaption>
+                    </figure>
+                </div>
                 <h4>2. Restituer le contexte historique, scientifique et culturel des d&eacute;nominations</h4>
                 <p>Chaque toponyme est envisag&eacute; comme un objet d&rsquo;histoire &agrave; part enti&egrave;re.</p>
                 <p>Les notices associ&eacute;es &agrave; chaque nom pr&eacute;cisent :</p>
@@ -374,8 +429,8 @@
 
             <div class="om-section-block om-section-block--accent om-clearfix">
                 <figure class="om-illustration om-illustration--left">
-                    <img src="img/fabrique_des_toponymes.jpg" alt="La fabrique des toponymes">
-                    <figcaption>La fabrique des toponymes. Les noms de lieux attribuÃ©s lors des expÃ©ditions rÃ©sultent d'un processus associant observation gÃ©ographique, contextes scientifiques et politiques, cartographie et transmission historiographique.</figcaption>
+                    <img src="img/finding-aid-voyages-hydrographiques-cropped.png" alt="La fabrique des toponymes">
+                    <figcaption>Service hydrographique de la Marine. Voyages et missions hydrographiques. Archives nationales de France</figcaption>
                 </figure>
                 <div class="om-method-banner">M&eacute;thodologie</div>
                 <h4>3. Favoriser l&rsquo;acc&egrave;s aux sources et encourager l&rsquo;esprit critique</h4>
