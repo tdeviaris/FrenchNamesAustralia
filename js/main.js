@@ -380,8 +380,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gestion des éléments avec data-i18n-html
         document.querySelectorAll('[data-i18n-html]').forEach((element) => {
             const key = element.getAttribute('data-i18n-html');
-            if (key && translations[lang][key]) {
-                element.innerHTML = translations[lang][key];
+            if (key && translations[lang][key] !== undefined) {
+                const translatedHtml = translations[lang][key];
+                element.innerHTML = translatedHtml;
+                element.style.display = translatedHtml.trim() === '' ? 'none' : '';
             }
         });
 
