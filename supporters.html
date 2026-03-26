@@ -161,7 +161,7 @@
         <section class="content-section">
             <h2 data-i18n="about-supporters-page-title">Soutiens du projet</h2>
 
-            <div class="supporter-item">
+            <div class="supporter-item" id="supporter-bellec">
                 <p style="margin-top:0;">
                     <button class="supporter-title-button js-bellec-link" type="button" data-bellec="francois_bellec.html" data-i18n="supporters-bellec-title">Le mot du contre-amiral François Bellec</button>
                 </p>
@@ -194,7 +194,7 @@
 	            </div>
             </div>
 
-            <div class="supporter-item">
+            <div class="supporter-item" id="supporter-robinson">
                 <p><span class="supporter-title-static" data-i18n="supporters-robinson-title">Le mot de Guy Robinson</span></p>
 	            <div class="supporter-block">
 	                <div class="supporter-text">
@@ -210,8 +210,8 @@
 	            </div>
             </div>
 
-            <div class="supporter-item">
-                <p><span class="supporter-title-static" data-i18n="supporters-wahf-title">The Western Australia History Foundation</span></p>
+            <div class="supporter-item" id="supporter-wahf">
+                <p><span class="supporter-title-static" data-i18n="supporters-wahf-title">The Western Australian History Foundation</span></p>
 	            <div class="supporter-block supporter-block--text-only">
 	                <div class="supporter-text">
 	                    <p data-i18n-html="supporters-wahf-text">Je tiens à exprimer mes sincères remerciements à la Western Australian History Foundation, dont la généreuse subvention a grandement contribué au développement de ce projet de site web, en apportant un soutien particulièrement bienvenu face aux difficultés rencontrées pour obtenir des financements.</p>
@@ -219,7 +219,7 @@
 	            </div>
             </div>
 
-            <div class="supporter-item">
+            <div class="supporter-item" id="supporter-rgssa">
                 <p><span class="supporter-title-static" data-i18n="supporters-rgssa-title">The Royal Geographical Society of South Australia</span></p>
 	            <div class="supporter-block supporter-block--text-only">
 	                <div class="supporter-text">
@@ -245,6 +245,12 @@
     <script src="js/main.js?v=20260309"></script>
     <script>
         (() => {
+            const bellecItem = document.getElementById('supporter-bellec');
+            const robinsonItem = document.getElementById('supporter-robinson');
+            if (bellecItem && robinsonItem && bellecItem.parentNode === robinsonItem.parentNode) {
+                robinsonItem.insertAdjacentElement('afterend', bellecItem);
+            }
+
             const triggers = document.querySelectorAll('.js-bellec-link[data-bellec]');
             const overlay = document.querySelector('.bellec-overlay');
             const frame = document.getElementById('bellec-frame');
