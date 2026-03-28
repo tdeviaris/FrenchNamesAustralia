@@ -178,7 +178,7 @@
 	            </div>
             </div>
 
-            <div class="supporter-item">
+            <div class="supporter-item" id="supporter-hay">
                 <p><span class="supporter-title-static" data-i18n="supporters-hay-title">Le mot de Iain Hay</span></p>
 	            <div class="supporter-block">
 	                <div class="supporter-text">
@@ -220,12 +220,12 @@
             </div>
 
             <div class="supporter-item" id="supporter-rgssa">
-                <p><span class="supporter-title-static" data-i18n="supporters-rgssa-title">The Royal Geographical Society of South Australia</span></p>
+                <p><span class="supporter-title-static" data-i18n="supporters-rgssa-title">La Royal Geographical Society of South Australia</span></p>
 	            <div class="supporter-block supporter-block--text-only">
 	                <div class="supporter-text">
-	                    <p data-i18n-html="supporters-rgssa-text">The development of this website has been made possible through the valued support of the Royal Geographical Society of South Australia (RGSSA).</p>
-	                    <p data-i18n-html="supporters-rgssa-text-2">I would like to express our sincere gratitude to the Director, Iain Hay, and the Vice President, Guy Robinson, for their encouragement, vision, and commitment. Their initiative was instrumental in bringing this project into existence, and their continued interest has been a constant source of motivation throughout its development.</p>
-	                    <p data-i18n-html="supporters-rgssa-text-3">Their support reflects a shared dedication to advancing geographical knowledge and making it accessible to a wider audience. I am deeply appreciative of their confidence in this project and their role in its ongoing growth.</p>
+	                    <p data-i18n-html="supporters-rgssa-text"><strong>Remerciements</strong><br>Le développement de ce site web a été rendu possible grâce au précieux soutien de la Royal Geographical Society of South Australia (RGSSA).</p>
+	                    <p data-i18n-html="supporters-rgssa-text-2">Je souhaite exprimer ma sincère gratitude au Director, Iain Hay, et au Vice President, Guy Robinson, pour leurs encouragements, leur vision et leur engagement. Leur initiative a joué un rôle déterminant dans la concrétisation de ce projet, et l’intérêt constant qu’ils lui ont porté a constitué une source permanente de motivation tout au long de son développement.</p>
+	                    <p data-i18n-html="supporters-rgssa-text-3"><strong>Ressources</strong><br>La bibliothèque de la RGSSA conserve et met à disposition les éditions originales de plusieurs ouvrages majeurs relatifs aux expéditions françaises dans les mers australes.<br>Parmi ces ressources figurent notamment : pour l’expédition d’Entrecasteaux, l’Atlas du voyage de Bruny-Dentrecasteaux (1808) et le Voyage à la recherche de La Pérouse de Labillardière (traduction anglaise, 1800) ; pour l’expédition Baudin et ses toponymes, le récit de Péron accompagné des cartes de Freycinet (1807), le Voyage de découvertes aux terres australes… Navigation et géographie de Freycinet (1815), ainsi que des ouvrages antérieurs ayant nourri les savoirs géographiques de l’époque, tels que le Voyage à la Nouvelle-Guinée de Sonnerat (1776) et l’Histoire naturelle de Buffon (édition illustrée, 1785).</p>
 	                </div>
 	            </div>
             </div>
@@ -245,10 +245,18 @@
     <script src="js/main.js?v=20260309"></script>
     <script>
         (() => {
-            const bellecItem = document.getElementById('supporter-bellec');
-            const robinsonItem = document.getElementById('supporter-robinson');
-            if (bellecItem && robinsonItem && bellecItem.parentNode === robinsonItem.parentNode) {
-                robinsonItem.insertAdjacentElement('afterend', bellecItem);
+            const supporterSection = document.querySelector('.content-section');
+            const supporterOrder = [
+                document.getElementById('supporter-hay'),
+                document.getElementById('supporter-robinson'),
+                document.getElementById('supporter-bellec'),
+                document.getElementById('supporter-wahf'),
+                document.getElementById('supporter-rgssa')
+            ].filter(Boolean);
+            if (supporterSection && supporterOrder.length === 5) {
+                supporterOrder.forEach((item) => {
+                    supporterSection.appendChild(item);
+                });
             }
 
             const triggers = document.querySelectorAll('.js-bellec-link[data-bellec]');
