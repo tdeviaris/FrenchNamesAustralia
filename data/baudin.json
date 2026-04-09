@@ -2336,8 +2336,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin544F.rtf",
+    "detailsLink_en": "Baudin544E.rtf"
   },
   {
     "code": "Baudin091",
@@ -14102,10 +14102,10 @@
     "indigenousLanguage": "",
     "lat": -15.20748,
     "lon": 124.49071,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "-",
-    "history": "",
+    "characteristic_fr": "L’île Lucas présente plusieurs des traits caractéristiques du littoral du Kimberley : de hautes falaises rouges, des rivages bordés de mangroves et des environnements fortement soumis aux marées, qui rendent la navigation difficile. Elle constitue également un habitat pour les crocodiles marins, ce qui impose une vigilance particulière.\nElle doit son nom à Jean Jacques Étienne Lucas (1764–1819), surtout connu pour le rôle qu’il joua lors de la bataille de Trafalgar, le 21 octobre 1805, en tant que commandant du vaisseau de ligne français Le Redoutable.",
+    "characteristic": "Lucas Island displays several of the characteristic features of the Kimberley coastline: high red cliffs, mangrove-fringed shores, and strongly tidal environments that make navigation difficult. It also provides habitat for saltwater crocodiles, which calls for particular caution.\nThe island is named after Jean Jacques Étienne Lucas (1764–1819), who is chiefly remembered for his role in the Battle of Trafalgar on 21 October 1805, when he commanded the French ship of the line Le Redoutable.",
+    "history_fr": "Péron explique : « Non loin de l’île Freycinet, il en est une autre qui se présente sous la forme du comble d’un édifice immense ; nous l’avons nommée l’île Lucas, en l’honneur du capitaine de vaisseau qui, dans le combat du Redoutable contre le Victory, s’est fait naguères tant d’honneur » (t. I, p. 136).",
+    "history": "Péron writes: “Not far from Freycinet Island, there is another which presents itself in the form of the roof of an immense building; we named it Lucas Island, in honour of the captain who, in the battle of the Redoutable against the Victory, had so recently distinguished himself” (vol. I, p. 136).",
     "wiki_fr": "",
     "wiki_en": "-",
     "imgUrl": "",
@@ -14114,8 +14114,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin543F.rtf",
+    "detailsLink_en": "Baudin543E.rtf"
   },
   {
     "code": "Baudin544",
@@ -14128,8 +14128,8 @@
     "indigenousLanguage": "",
     "lat": -15.1122,
     "lon": 124.53293,
-    "characteristic_fr": "",
-    "characteristic": "",
+    "characteristic_fr": "L’île Duguesclin est une île isolée et inhabitée, située le long d’un littoral accidenté caractérisé par de forts mouvements de marée et par la présence d’anciens sites d’art rupestre des peuples autochtones.\nElle doit son nom à Bertrand Du Guesclin (v. 1320–1380), également orthographié Duguesclin, chevalier et chef de guerre qui se distingua lors de la bataille de Cocherel en 1364, victoire qui contribua à rétablir l’autorité de la couronne française à un moment où celle-ci était contestée à la fois par des troubles régionaux et par les revendications de la couronne anglaise.",
+    "characteristic": "Duguesclin Island is a remote, uninhabited island along a rugged stretch of coast characterised by strong tidal movements and by the presence of ancient Indigenous rock art.\nIt is named after Bertrand Du Guesclin (c. 1320–1380), also spelled Duguesclin, a knight and military leader who distinguished himself at the Battle of Cocherel in 1364, a victory that helped restore the authority of the French crown at a time when its legitimacy was challenged both by regional unrest and by English claims.",
     "history_fr": "-",
     "history": "",
     "wiki_fr": "",
@@ -14140,8 +14140,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin544F.rtf",
+    "detailsLink_en": "Baudin544E.rtf"
   },
   {
     "code": "Baudin545",
