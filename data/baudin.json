@@ -3877,9 +3877,9 @@
     "code": "Baudin150",
     "expedition": "Baudin",
     "state": "SA",
-    "frenchName": "Canal Dégérando",
+    "frenchName": "Canal Degérando",
     "variantName": "",
-    "ausEName": "No official name",
+    "ausEName": "West Basin",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -34.75281,
@@ -3896,8 +3896,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin540F.rtf",
+    "detailsLink_en": "Baudin540E.rtf"
   },
   {
     "code": "Baudin151",
@@ -9902,8 +9902,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin540F.rtf",
+    "detailsLink_en": "Baudin540E.rtf"
   },
   {
     "code": "Baudin382",
@@ -10032,7 +10032,7 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
+    "detailsLink": "Baudin542F.rtf",
     "detailsLink_en": ""
   },
   {
@@ -10455,8 +10455,8 @@
     "code": "Baudin403",
     "expedition": "Baudin",
     "state": "WA",
-    "frenchName": "Pointe Freycinet",
-    "variantName": "Pointe aux Trois Ilotss (Baudin)",
+    "frenchName": "Baudin542E.rtf",
+    "variantName": "Pointe aux Trois Ilots (Baudin)",
     "ausEName": "Cape Freycinet",
     "indigenousName": "",
     "indigenousLanguage": "",
@@ -10474,8 +10474,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "“Chart of part of the Lands of Leuwin and Edels (New Holland)”, by Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson, and Bouclet, in Voyage of Discovery to the Southern Lands, section Navigation and Geography (Atlas), plate 21, 1812.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin542F.rtf",
+    "detailsLink_en": "Baudin542E.rtf"
   },
   {
     "code": "Baudin404",
@@ -11696,8 +11696,8 @@
     "mapTitle_fr": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  par Freycinet, Louis & al. Voyage de découvertes aux terres australes partie navigation et géographie, atlas, 1812, Planche 23.",
     "mapTitle_en": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  by Freycinet, Louis & al., in Voyage de découvertes aux terres australes partie navigation et géographie, atlas, 1812, Plate 23.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin542F.rtf",
+    "detailsLink_en": "Baudin542E.rtf"
   },
   {
     "code": "Baudin451",
@@ -14026,8 +14026,8 @@
     "lon": 124.19349,
     "characteristic_fr": "La plus méridionale des îles Champagny reçut un nom particulier : l’île Degérando.\nJoseph Marie Degérando (1772–1842), également connu sous le nom de de Gérando, fut un linguiste, pédagogue et philanthrope français. Il compte aussi parmi les précurseurs de l’anthropologie et parmi les premiers penseurs d’une méthode fondée sur l’observation participante.",
     "characteristic": "The southernmost of the Champagny Islands was given a specific name: Île Degérando.\nJoseph Marie Degérando (1772–1842), also known as de Gérando, was a French linguist, educator, and philanthropist. He is also regarded as a precursor of anthropology and as one of the earliest thinkers to formulate a method based on participant observation.",
-    "history_fr": "L’association des noms de Degérando et de Champagny dans la nomenclature — à la fois dans l’archipel Bonaparte, en Australie-Occidentale, et dans le golfe Bonaparte, en Australie-Méridionale (voir Port Champagny et canal Degérando) — est vraisemblablement tout sauf fortuite. Au moment où Péron et Freycinet élaborent la nomenclature, Joseph Marie Degérando est secrétaire de Jean-Baptiste de Nompère de Champagny, et tous deux collaborent à l’organisation administrative des nouveaux territoires de l’Empire français.",
-    "history": "The association of the names Degérando and Champagny in the nomenclature—both in the Bonaparte Archipelago in Western Australia and in the Golfe Bonaparte in South Australia (see Port Champagny and Canal Degérando)—is unlikely to be fortuitous. At the time when Péron and Freycinet were working on the nomenclature, Joseph Marie Degérando was serving as secretary to Jean-Baptiste de Nompère de Champagny, and the two senior officials collaborated in organising the administration of the new territories of the French Empire.",
+    "history_fr": "L’association des noms de Degérando et de Champagny dans la nomenclature — à la fois dans l’archipel Bonaparte, en Australie-Occidentale, et dans le golfe Bonaparte, en Australie-Méridionale (voir Port Champagny et canal Degérando) — paraît refléter un lien administratif et politique précis, plutôt qu’une simple juxtaposition fortuite de noms. Au moment où Péron et Freycinet élaborent la nomenclature, Joseph Marie Degérando est secrétaire de Jean-Baptiste de Nompère de Champagny, et tous deux collaborent à l’organisation administrative des nouveaux territoires de l’Empire français.",
+    "history": "The association of the names Degérando and Champagny in the nomenclature—both in the Bonaparte Archipelago in Western Australia and in the Golfe Bonaparte in South Australia (see Port Champagny and Canal Degérando)—appears to reflect a specific administrative and political connection, rather than a merely fortuitous juxtaposition of names. At the time when Péron and Freycinet were working on the nomenclature, Joseph Marie Degérando was serving as secretary to Jean-Baptiste de Nompère de Champagny, and the two men were collaborating in the administrative organisation of the new territories of the French Empire.",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -14036,8 +14036,8 @@
     "mapTitle_fr": "Esquisse d'une partie de  l'Archipel Bonaparte, avec les routes de l'expedition MAP/6JJ/5/B.\nSource : Archives nationales de France.",
     "mapTitle_en": "Sketch of part of the Bonaparte Archipelago, with the routes of the expedition, MAP/6JJ/5/B.\nSource: National Archives of France.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin540F.rtf",
+    "detailsLink_en": "Baudin540F.rtf"
   },
   {
     "code": "Baudin541",
@@ -14050,10 +14050,10 @@
     "indigenousLanguage": "",
     "lat": -14.91164,
     "lon": 124.68376,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "",
-    "history": "",
+    "characteristic_fr": "Les îles d’Arcole se situent au large de la région du Kimberley, au nord de Derby, dans l’archipel Bonaparte, au nord-ouest de l’Australie-Occidentale. Elles font partie d’une zone protégée du Kimberley Marine Park et se caractérisent par des rivages rocheux et des récifs frangeants soumis à de fortes amplitudes de marée.\nLe groupe fut nommé en référence à la bataille d’Arcole, livrée entre les forces françaises et autrichiennes en 1796 (voir l’entrée pic d’Arcole* en Tasmanie), l’un des épisodes les plus célèbres de la légende napoléonienne. Cet usage commémoratif témoigne de la forte portée propagandiste attachée à cet affrontement, bien que sa réalité historique ait été plus complexe que ne le laissa ensuite croire le mythe héroïque.",
+    "characteristic": "The D’Arcole Islands lie off the coast of the Kimberley region, north of Derby, within the Bonaparte Archipelago in the north-west of Western Australia. They form a protected area within the Kimberley Marine Park and are characterised by rocky shorelines and fringing reefs exposed to strong tidal movements.\nThe group was named after the Battle of Arcole, fought between French and Austrian forces in 1796 (see the entry Pic d’Arcole* in Tasmania), one of the most celebrated episodes of the Napoleonic legend. Its commemorative use reflects the powerful propaganda value attached to this battle, even though its historical reality was more complex than the heroic myth later suggested.",
+    "history_fr": "Baudin demanda à ses artistes de représenter en couleurs les formes « bizarres et pittoresques » de ces îles, qui furent ensuite intégrées à l’atlas historique de l’expédition. \nPéron écrit même que plusieurs d’entre elles ressemblent à « d’immenses tombeaux antiques ». Son récit montre également que l’expédition observa et documenta les très fortes amplitudes de marée propres aux eaux du Kimberley, qui comptent parmi les plus importantes au monde. Il note ainsi : « Pendant le temps que nous étions restés au mouillage des îles d’Arcole, la différence des sondes nous fit connoître que la marée monte ici de 20 à 25 pieds ; observation qui semble confirmer celle de M. Ronsard sur l’île Depuch, et qui se trouve conforme elle-même à celle de Dampier. Ce navigateur célèbre faillit être, comme on sait, la victime de ces marées extraordinaires, son navire s’étant trouvé à sec dans le lieu même où, la veille, il avoit mouillé par 5 brasses. Cette circonstance ajoute beaucoup au danger de la navigation dans ces mers, et paroît être la cause principale des courans violens qui s’y font sentir. »t1, p.137",
+    "history": "Baudin asked his artists to sketch in colour the “bizarre and picturesque” forms of these islands, which were later included in the historical atlas of the expedition. \nPéron even wrote that several of them resembled “immense ancient tombs.” His narrative also shows that the expedition observed and documented the very large tidal ranges characteristic of the Kimberley waters, which are among the greatest in the world. He notes: “During the time we remained at anchor among the D’Arcole Islands, the difference in soundings showed us that the tide rises here by 20 to 25 feet; an observation that seems to confirm that of M. Ronsard on Depuch Island, and which itself agrees with that of Dampier. As is well known, that celebrated navigator nearly fell victim to these extraordinary tides, his vessel having been left dry in the very place where, on the previous day, he had anchored in 5 fathoms. This circumstance greatly increases the danger of navigation in these seas, and appears to be the principal cause of the violent currents felt there.”\n",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -14076,10 +14076,10 @@
     "indigenousLanguage": "",
     "lat": -14.98859,
     "lon": 124.5346,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "",
-    "history": "",
+    "characteristic_fr": "L’île Freycinet constitue un îlot isolé pour lequel sont établis des horaires de marée et des prévisions météorologiques spécifiques, et qui sert fréquemment de repère à la navigation sur les cartes marines. Sa partie centrale forme un relief bas et plat, couvert d’une végétation tropicale verdoyante, qui contraste nettement avec les rivages plus accidentés de l’îlot.\nElle reçut le nom d’île Freycinet en l’honneur des deux frères, Henri et Louis de Freycinet.",
+    "characteristic": "De Freyciney Islet is a remote islet for which specific tide tables and weather forecasts are issued, and it frequently serves as a navigational marker on charts. Its central part forms a low, flat relief covered with green tropical vegetation, in marked contrast to the more rugged shores of the islet.\nIt was named Freycinet Island in honour of the two brothers, Henri and Louis de Freycinet.De Freyciney Islet",
+    "history_fr": "Péron rapporte que la plupart des Îles \"affectoient une conformation bizarre et pittoresque ; l'une d'elles se faisoit sur-tout remarquer par sa forme parfaitement semblable à celle d'un bolle renversé. On lui donna le nom d'Ile Freycinet,  de ces deux estimables frères auxquels notre expédition est redevable de tant de travaux utiles. Elle est facile à distinguer de toutes les autres, non-seulement par sa forme singulière, mais encore par son élévation beaucoup plus grande.\", t1, p.136.",
+    "history": "Péron recorded: ‘Most of them [Champagny Islands] had a strange and picturesque conformation; one of them was especially remarkable for its shape, which was perfectly similar to that of an upturned bowl. It was given the name of Freycinet Island, for those two esteemed brothers to whom our expedition owns so much useful work. It is easy to distinguish from all the others, not only by its singular shape, but also by its much greater elevation’ (See the entries Presqu’île Freycinet* and Havre Henri Freycinet*).",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -14088,8 +14088,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin542F.rtf",
+    "detailsLink_en": "Baudin542E.rtf"
   },
   {
     "code": "Baudin543",
