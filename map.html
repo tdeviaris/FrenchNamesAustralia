@@ -1514,10 +1514,11 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (/^(?:https?:|data:|mailto:|#)/i.test(value)) {
                 return value;
             }
-            if (value.startsWith('details/')) {
-                return value;
+            const normalizedValue = value.replace(/,rtf$/i, '.rtf').replace(/\.rtf$/i, '.html');
+            if (normalizedValue.startsWith('details/')) {
+                return normalizedValue;
             }
-            return `details/${value}`;
+            return `details/${normalizedValue}`;
         };
 
         const wikiCardState = {
