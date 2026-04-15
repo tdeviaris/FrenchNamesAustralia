@@ -984,7 +984,7 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin038F.html",
+    "detailsLink": "",
     "detailsLink_en": "Baudin038E.html"
   },
   {
@@ -3012,8 +3012,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "L'abbé Gabriel Bonnot de Mably, né à Grenoble le 14 mars 1709 et mort à Paris le 2 avril 1785, est un philosophe français. Issu d'une famille de noblesse parlementaire, L'abbé Mably est le frère de Condillac, lui aussi philosophe. Mably dénonce le « despotisme légal » et critique également le système politique anglais, qui selon lui, subordonne le pouvoir législatif au pouvoir exécutif.",
-    "detailsLink": "Baudin554F.html",
-    "detailsLink_en": "Baudin554E.html"
+    "detailsLink": "Baudin554F.rtf",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin117",
@@ -3116,8 +3116,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "FONTANES, JEAN-PIERRE-LOUIS DE (1757-1821), GRAND-MAÎTRE DE L'UNIVERSITÉ IMPÉRIALE. Mais au moment du coup d'Etat du 18 fructidor an III (4 septembre 1797) contre les royalistes, Fontanes est menacé d'arrestation et doit s'exiler en Angleterre. Il y retrouve Chateaubriand et se lie d'amitié avec lui. Il quitte Londres le 3 juillet 1798 et revient en France par Amsterdam et Francfort.Sur ces entrefaits, le Premier consul décide de faire prononcer l'éloge funèbre de George Washington. Il dit \"Washington est le seul homme qui soit sur ma ligne... Je veux qu'il soit loué dignement et publiquement... Qui choisir ?\" Fontanes ...",
-    "detailsLink": "Baudin555F.html",
-    "detailsLink_en": "Baudin555E.html"
+    "detailsLink": "Baudin555F.rtf",
+    "detailsLink_en": "Baudin555E.rtf"
   },
   {
     "code": "Baudin121",
@@ -4612,10 +4612,10 @@
     "indigenousLanguage": "",
     "lat": -34.92737,
     "lon": 135.85667,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Joseph Pitton de Tournefort (5 juin 1656 – 28 décembre 1708) est un botaniste français.",
-    "history": "Joseph Pitton de Tournefort (5 June 1656 – 28 December 1708) was a French botanist.",
+    "characteristic_fr": "Le cap Tournefort s’inscrit dans un littoral orienté vers le sud-ouest, exposé à une forte houle, à des vagues poussées par le vent et à des vents soutenus. Ces conditions côtières de haute énergie ont favorisé la formation de champs de dunes paraboliques transgressives à l’intérieur des terres, depuis la baie de Sleaford et, plus au sud, entre le cap Tournefort et la baie de Jussieu.\nLe cap doit son nom à Joseph Pitton de Tournefort (1656–1708), l’un des botanistes les plus éminents de son temps au Jardin du Roi à Paris, aujourd’hui le Jardin des Plantes du Muséum national d’Histoire naturelle.",
+    "characteristic": "Cape Tournefort forms part of a south-west-facing coastline exposed to strong swell, wind-driven waves, and persistent winds. These high-energy coastal conditions have produced transgressive fields of parabolic dunes inland from Sleaford Bay and, further south, between Cape Tournefort and Jussieu Bay.\nThe cape is named after Joseph Pitton de Tournefort (1656–1708), one of the foremost botanists of his time at the Jardin du Roi in Paris, now the Jardin des Plantes of the Muséum national d’Histoire naturelle.",
+    "history_fr": "Péron observe depuis le Géographe : « À ce point, les terres du continent se dessinent sur deux plans très distincts. Celui qui constitue le rivage est abaissé, d'une coupe généralement abrupte, et paroît être plus particulièrement formé de dunes de sable qui reposent sur un sol gréseux et jaunâtre. Quelques nuances d'un vert foncé semblent indiquer çà et là une végétation languissante : nous n'avons pu y distinguer aucun arbre. Au second plan appartiennent des terres assez hautes, surmontées encore, de distance en distance, par des pitons peu saillans, et qui, du point où nous étions, affectoient à nos yeux cette nuance aérienne et bleuâtre qui caractérise les terrains élevés vus dans l'éloignement. »",
+    "history": "Péron observes from aboard the Géographe: “At this point, the lands of the continent are outlined in two very distinct planes. The one forming the shore is low-lying, generally abrupt in profile, and appears to consist chiefly of sand dunes resting on a yellowish, sandy sandstone ground. A few dark green tones here and there seem to indicate sparse and struggling vegetation; we were unable to distinguish a single tree. The second plane consists of rather elevated land, still surmounted at intervals by low prominences, which, from where we stood, took on that airy bluish hue that characterises high ground seen in the distance.”",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Joseph_Pitton_de_Tournefort",
     "wiki_en": "https://en.wikipedia.org/wiki/Joseph_Pitton_de_Tournefort",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Tournefort_Joseph_Pitton_de_1656-1708.jpg",
@@ -5080,10 +5080,10 @@
     "indigenousLanguage": "",
     "lat": -34.43422,
     "lon": 135.21667,
-    "characteristic_fr": "Point Sir Isaac est un cap marqué de la côte occidentale de la péninsule d’Eyre, formé d’un socle rocheux résistant surmonté de calcaire dunaire consolidé.\nIl fut nommé par les Français en l’honneur de l'éminent naturaliste René Louiche Desfontaines (1750–1833).",
-    "characteristic": "Point Sir Isaac is a prominent headland on the western coast of the Eyre Peninsula, formed of resistant bedrock capped by consolidated coastal limestone.\nIt was named by the French after the eminent naturalist René Louiche Desfontaines (1750–1833).",
-    "history_fr": "L’attribution de ce toponyme s’inscrit dans le même ensemble de références savantes que l’île Desfontaines. En donnant le nom de Desfontaines à cette pointe, Péron et Freycinet honoraient un naturaliste dont les travaux étaient directement liés à la circulation, à la classification et à l’acclimatation des plantes rapportées des voyages lointains.\nLe choix du nom prend un relief particulier dans le contexte du voyage aux Terres australes, dont les collections botaniques furent versées au Muséum et intégrées par Desfontaines à l’herbier général. La pointe Desfontaines témoigne ainsi de la manière dont la nomenclature côtière de l’expédition associait l’exploration littorale à l’histoire des sciences naturelles et aux institutions savantes de la France postrévolutionnaire.",
-    "history": "The attribution of this place name belongs to the same scholarly network of references as Desfontaines Island. By giving the name Desfontaines to this point, Péron and Freycinet honoured a naturalist whose work was directly connected with the circulation, classification, and acclimatisation of plants brought back from distant voyages.\nThe choice of this name takes on particular significance in the context of the voyage to the Southern Lands, whose botanical collections were deposited at the Muséum and incorporated by Desfontaines into the general herbarium. Pointe Desfontaines thus shows how the coastal nomenclature of the expedition linked littoral exploration with the history of natural science and with the learned institutions of post-Revolutionary France.",
+    "characteristic_fr": "Le cap Sir Isaac marque l’extrémité nord-ouest de la baie de Coffin, sur la côte ouest de la péninsule d’Eyre. Le promontoire est constitué d’un socle rocheux résistant, recouvert de calcaire côtier consolidé.\nIl a été nommé par les Français en l’honneur de l’éminent naturaliste René Louiche Desfontaines (1750–1833).",
+    "characteristic": "Point Sir Isaac marks the north-western extremity of Coffin Bay on the western coast of the Eyre Peninsula. The headland is composed of resistant bedrock capped by consolidated coastal limestone.\nIt was named by the French in honour of the eminent naturalist René Louiche Desfontaines (1750–1833).",
+    "history_fr": "Dans le contexte du voyage aux Terres australes, le choix du nom Desfontaines prend un relief particulier, puisque les collections botaniques rapportées par l’expédition furent versées au Muséum, où Desfontaines exerçait, avant d’être intégrées par lui à l’herbier général. La pointe Desfontaines témoigne ainsi de l’inscription, dans la nomenclature littorale du voyage, d’un lien étroit entre exploration côtière, histoire naturelle et recomposition des institutions savantes dans la France issue de la Révolution. Freycinet y signale en outre des « falaises basses et jaunâtres ».",
+    "history": "In the context of the voyage to the Southern Lands, the choice of the name Desfontaines takes on particular significance, since the botanical collections brought back by the expedition were deposited at the Muséum, where Desfontaines was working, before being incorporated by him into the general herbarium. Pointe Desfontaines thus illustrates the way in which the coastal nomenclature of the voyage inscribed a close link between shoreline exploration, natural history, and the reorganisation of learned institutions in post-Revolutionary France. Freycinet also notes there “low yellowish cliffs.”",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Ren%C3%A9_Desfontaines",
     "wiki_en": "https://en.wikipedia.org/wiki/Ren%C3%A9_Louiche_Desfontaines",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Ren%C3%A9_Louiche_Desfontaines.jpg",
@@ -5108,7 +5108,7 @@
     "lon": 135.36388,
     "characteristic_fr": "",
     "characteristic": "",
-    "history_fr": "Jean-Baptiste Joseph Delambre (19 septembre 1749 – 19 août 1822) est un astronome et mathématicien français.",
+    "history_fr": "",
     "history": "Jean-Baptiste Joseph Delambre (19 September 1749 – 19 August 1822) was a French astronomer and mathematician.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Jean-Baptiste_Joseph_Delambre",
     "wiki_en": "https://en.wikipedia.org/wiki/Jean-Baptiste_Joseph_Delambre",
@@ -8446,8 +8446,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "https://minerva-access.unimelb.edu.au/bitstream/handle/11343/220539/PhD%20thesis%20Tibballs%202019.pdf find Kéraudren Né à Brest (Recouvrance), d'un père chirurgien de marine1, il termine ses études littéraires à Quimper. En 1782, il entre à l'École de médecine navale de Brest1. En 1801, il est nommé médecin-chef et sert dans l'escadre de l'amiral Bruix. En 1803, il est rattaché au ministère de la Marine et soutient sa thèse de doctorat en 1804. En 1813 Napoléon le nomme inspecteur général du service de santé de la Marine, et il en exerça les fonctions jusqu'en 1845",
-    "detailsLink": "Baudin553F.html",
-    "detailsLink_en": "Baudin553E.html"
+    "detailsLink": "Baudin506F.rtf",
+    "detailsLink_en": "Baudin506E.rtf"
   },
   {
     "code": "Baudin326",
@@ -10396,8 +10396,8 @@
     "mapTitle_fr": "« Plan d’une partie de la Terre de Nuyts », par Louis-Claude Desaulses de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie (Atlas), planche 20, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "“Plan of part of the Land of Nuyts”, by Louis-Claude Desaulses de Freycinet, in Voyage of Discovery to the Southern Lands, section Navigation and Geography (Atlas), plate 20, 1812.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin554F.html",
-    "detailsLink_en": "Baudin554E.html"
+    "detailsLink": "Baudin554F.rtf",
+    "detailsLink_en": "Baudin554E.rtf"
   },
   {
     "code": "Baudin401",
@@ -13152,8 +13152,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 1ʳᵉ feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux terres australes, Navigation et géographie, planche 25, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 1, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux terres australes, Navigation et géographie, plate 25, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin553F.html",
-    "detailsLink_en": "Baudin553E.html"
+    "detailsLink": "Baudin506F.rtf",
+    "detailsLink_en": "Baudin506E.rtf"
   },
   {
     "code": "Baudin507",
@@ -14310,7 +14310,7 @@
     "indigenousLanguage": "",
     "lat": -15.02137,
     "lon": 124.85404,
-    "characteristic_fr": "L’île Desfontaines est aujourd’hui comprise dans un petit groupe d’îles portant le même nom, situé parmi les Coronation Islands, dans l’archipel Bonaparte.\nElle doit son nom à René Louiche Desfontaines (1750–1833), naturaliste influent qui, à l’instar de son contemporain Jussieu*, joua un rôle important dans le développement de l’histoire naturelle française.",
+    "characteristic_fr": "L’île Desfontaines est aujourd’hui comprise dans un petit groupe d’îles portant le même nom, situé parmi les Coronation Islands, dans l’archipel Bonaparte.\nElle doit son nom à René Louiche Desfontaines (1750–1833), naturaliste influent qui, à l’instar de son contemporain Jussieu, joua un rôle important dans le développement de l’histoire naturelle française.",
     "characteristic": "Desfontaines Island is now included within a small island group of the same name, situated among the Coronation Islands in the Bonaparte Archipelago.\nIt is named after René Louiche Desfontaines (1750–1833), an influential naturalist who, like his contemporary Jussieu*, played an important role in the development of French natural history.",
     "history_fr": "En attribuant le nom de Desfontaines, Péron rendait hommage à un naturaliste associé à la fois aux fondements institutionnels du Muséum et aux réflexions contemporaines sur l’acclimatation des plantes exotiques en France. Ce choix fait également écho aux horizons économiques et littoraux plus larges du voyage. Dans son rapport sur les Avantages obtenus par les Anglais de la pêche des phoques dans les mers australes, Péron s’appuya sur le mémoire de Desfontaines consacré au thé pour souligner l’importance croissante du commerce avec la Chine, et suggérer que les produits tirés des côtes méridionales parcourues par l’expédition — notamment les peaux et l’huile de phoque australiennes — pourraient être avantageusement échangés contre des marchandises chinoises, en particulier le thé.",
     "history": "By assigning the name Desfontaines, Péron honoured a naturalist associated both with the institutional foundations of the Muséum and with contemporary reflections on the acclimatisation of overseas plants in France. This choice also resonates with the broader economic and coastal horizons of the voyage. In his report, Advantages Gained by the English from the Seals of the Southern Seas, Péron drew on Desfontaines’s memoir on tea to emphasise the growing importance of trade with China, and to suggest that products derived from the southern coasts visited by the expedition—especially Australian sealskins and seal oil—might be exchanged to advantage for Chinese commodities, notably tea.",
@@ -14348,8 +14348,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande) (3e feuille), dressée par Louis-Claude de Freycinet. Voyage de découvertes aux terres australes, partie Navigation et géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Chart of part of Witt Land (in New Holland) (sheet 3), drawn by Louis-Claude de Freycinet. Voyage of Discovery to the Southern Lands, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin552F.html",
-    "detailsLink_en": "Baudin552E.html"
+    "detailsLink": "Baudin038F.rtf",
+    "detailsLink_en": "Baudin038E,rtf"
   },
   {
     "code": "Baudin553",
@@ -14374,8 +14374,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande) (3e feuille), dressée par Louis-Claude de Freycinet. Voyage de découvertes aux terres australes, partie Navigation et géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Chart of part of Witt Land (in New Holland) (sheet 3), drawn by Louis-Claude de Freycinet. Voyage of Discovery to the Southern Lands, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin553F.html",
-    "detailsLink_en": "Baudin553E.html"
+    "detailsLink": "Baudin506F.rtf",
+    "detailsLink_en": "Baudin506E.rtf"
   },
   {
     "code": "Baudin554",
@@ -14466,10 +14466,10 @@
     "indigenousLanguage": "",
     "lat": -14.80747,
     "lon": 125.03126,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "-",
-    "history": "",
+    "characteristic_fr": "L’île Tournefort, au sud de l’île Lamarck à l’entrée du York Sound, doit son nom à Joseph Pitton de Tournefort (1656–1708), l’un des botanistes les plus éminents de son temps au Jardin du Roi à Paris, aujourd’hui le Jardin des Plantes du Muséum national d’Histoire naturelle.",
+    "characteristic": "Tournefort Island, south of Lamarck Island at the entrance to York Sound, is named after Joseph Pitton de Tournefort (1656–1708), one of the foremost botanists of his time at the Jardin du Roi in Paris, now the Jardin des Plantes of the Muséum national d’Histoire naturelle.",
+    "history_fr": "L’île ne fut observée que dans le lointain. Péron, non sans une légère frustration, rapporte que « nous découvrîmes encore plusieurs autres îles qui n’avoient point été aperçues [en août 1801] : elles furent nommées île Fontanes, île Tournefort, île Augereau, île Championnet, &c. Le commandant, ne voulant pas s’engager au milieu de cet archipel, et ne jugeant pas à propos d’y envoyer le Casuarina, se contenta d’en prolonger une seconde fois [le 20 avril 1803] extérieurement le contour. »",
+    "history": "The island was observed only from a distance. Péron, not without a slight note of frustration, reports that “we discovered several other islands which had not been sighted [in August 1801]: they were named Fontanes Island, Tournefort Island, Augereau Island, Championnet Island, etc. The commander, not wishing to venture into the midst of this archipelago, and not judging it advisable to send in the Casuarina, contented himself with following its outer contour a second time [on 20 April 1803].”",
     "wiki_fr": "",
     "wiki_en": "-",
     "imgUrl": "",
