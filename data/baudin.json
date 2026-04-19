@@ -3662,8 +3662,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Hugues-Bernard Maret, duc de Bassano, né le 22 juillet 1763 à Dijon et mort le 13 mai 1839 à Paris, est un homme politique et diplomate français, pair de France, membre de l'Académie française et de l'Académie des sciences morales et politiques.",
-    "detailsLink": "Baudin560F.rtf",
-    "detailsLink_en": "Baudin560E.rtf"
+    "detailsLink": "Baudin560F.html",
+    "detailsLink_en": "Baudin560E.html"
   },
   {
     "code": "Baudin142",
@@ -8628,8 +8628,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "Carte trigonometrique des Iles Hunter by Freycinet/Trigonometric map of the Hunter Islands / drawn up by L. Freycinet, Commander of the schooner Casuarina, December 1802, in Voyage de découvertes aux terres australes partie navigation et géographie Atlas, plate 9.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": "Baudin332E.htlm"
+    "detailsLink": "Baudin458F.html",
+    "detailsLink_en": "Baudin458E.html"
   },
   {
     "code": "Baudin333",
@@ -9434,8 +9434,8 @@
     "mapTitle_fr": "Côte orientale de la Terre de Diemen, carte refaite au Dépôt par Boullanger, sur laquelle le littoral comprenant le cap Péron est repositionné, MAP/6JJ/4/C, pièce 105.\nSource : Archives nationales de France.",
     "mapTitle_en": "Eastern coast of Van Diemen’s Land, map redrawn at the Dépôt by Boullanger, on which the coastline including Cape Péron is repositioned, MAP/6JJ/4/C, item 105.\nSource: National Archives of France.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin458F.html",
+    "detailsLink_en": "Baudin458E.html"
   },
   {
     "code": "Baudin364",
@@ -10013,7 +10013,7 @@
     "code": "Baudin386",
     "expedition": "Baudin",
     "state": "Tas",
-    "frenchName": "Presqu'ȋle Freycinet",
+    "frenchName": "Presqu'île Freycinet",
     "variantName": "",
     "ausEName": "Freycinet Peninsula Historical Note: It had been sighted by Tasman in 1643, and named 'Van der Lyn', after one of the councillors of the Dutch East India Government (Moore-Robinson). Tas Field Naturalists Notes evidently state that Tasman originally applied the name 'Vanderlin Islands'.",
     "indigenousName": "",
@@ -10786,8 +10786,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "\"Carte d'une partie des Terres de Leuwin et d'Edels (a la Nouvelle Hollande)\" by Freycinet, Louis & al., in Voyage de découvertes aux terres australes partie navigation et géographie, atlas (op.cit.), 1812, Plate 21. The map was drawn based on bearings taken in June 1801 and completed in mars 1803.\nSource : National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": "Baufin332E.htlm"
+    "detailsLink": "Baudin458F.html",
+    "detailsLink_en": "Baudin458E.html"
   },
   {
     "code": "Baudin416",
@@ -11885,7 +11885,7 @@
     "code": "Baudin458",
     "expedition": "Baudin",
     "state": "WA",
-    "frenchName": "Presqu'ȋle Péron",
+    "frenchName": "Presqu'île Péron",
     "variantName": "",
     "ausEName": "Peron Peninsula",
     "indigenousName": "",
@@ -11904,8 +11904,8 @@
     "mapTitle_fr": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  par Freycinet, Louis & al. Voyage de découvertes aux terres australes partie navigation et géographie, atlas, 1812, Planche 23.",
     "mapTitle_en": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  by Freycinet, Louis & al., in Voyage de découvertes aux terres australes partie navigation et géographie, atlas, 1812, Plate 23.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": "Baudin458E.rtf"
+    "detailsLink": "Baudin458F.html",
+    "detailsLink_en": "Baudin458E.html"
   },
   {
     "code": "Baudin459",
@@ -14556,8 +14556,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin560F.rtf",
-    "detailsLink_en": "Baudin560E.rtf"
+    "detailsLink": "Baudin560F.html",
+    "detailsLink_en": "Baudin560E.html"
   },
   {
     "code": "Baudin561",
@@ -15551,7 +15551,7 @@
     "code": "Baudin599",
     "expedition": "Baudin",
     "state": "NT",
-    "frenchName": "Ȋle Péron",
+    "frenchName": "Île Péron",
     "variantName": "",
     "ausEName": "Peron island North and Peron island South",
     "indigenousName": "",
@@ -15570,8 +15570,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin458F.html",
+    "detailsLink_en": "Baudin458E.html"
   },
   {
     "code": "Baudin600",
