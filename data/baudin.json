@@ -3662,8 +3662,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Hugues-Bernard Maret, duc de Bassano, né le 22 juillet 1763 à Dijon et mort le 13 mai 1839 à Paris, est un homme politique et diplomate français, pair de France, membre de l'Académie française et de l'Académie des sciences morales et politiques.",
-    "detailsLink": "Baudin560F.html",
-    "detailsLink_en": "Baudin560E.html"
+    "detailsLink": "Baudin560F.rtf",
+    "detailsLink_en": "Baudin560E.rtf"
   },
   {
     "code": "Baudin142",
@@ -10013,7 +10013,7 @@
     "code": "Baudin386",
     "expedition": "Baudin",
     "state": "Tas",
-    "frenchName": "Presqu'île Freycinet",
+    "frenchName": "Presqu'ȋle Freycinet",
     "variantName": "",
     "ausEName": "Freycinet Peninsula Historical Note: It had been sighted by Tasman in 1643, and named 'Van der Lyn', after one of the councillors of the Dutch East India Government (Moore-Robinson). Tas Field Naturalists Notes evidently state that Tasman originally applied the name 'Vanderlin Islands'.",
     "indigenousName": "",
@@ -11885,7 +11885,7 @@
     "code": "Baudin458",
     "expedition": "Baudin",
     "state": "WA",
-    "frenchName": "Presqu'île Péron",
+    "frenchName": "Presqu'ȋle Péron",
     "variantName": "",
     "ausEName": "Peron Peninsula",
     "indigenousName": "",
@@ -11905,7 +11905,7 @@
     "mapTitle_en": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  by Freycinet, Louis & al., in Voyage de découvertes aux terres australes partie navigation et géographie, atlas, 1812, Plate 23.",
     "origin_fr": "",
     "detailsLink": "Baudin458F.html",
-    "detailsLink_en": "Baudin458E.html"
+    "detailsLink_en": "Baudin458E.rtf"
   },
   {
     "code": "Baudin459",
@@ -14128,10 +14128,10 @@
     "indigenousLanguage": "",
     "lat": -15.1122,
     "lon": 124.53293,
-    "characteristic_fr": "L’île Duguesclin est une île isolée et inhabitée, située le long d’un littoral accidenté caractérisé par de forts mouvements de marée et par la présence d’anciens sites d’art rupestre des peuples autochtones.\nElle doit son nom à Bertrand Du Guesclin (v. 1320–1380), également orthographié Duguesclin, chevalier et chef de guerre qui se distingua lors de la bataille de Cocherel en 1364, victoire qui contribua à rétablir l’autorité de la couronne française à un moment où celle-ci était contestée à la fois par des troubles régionaux et par les revendications de la couronne anglaise.",
-    "characteristic": "Duguesclin Island is a remote, uninhabited island along a rugged stretch of coast characterised by strong tidal movements and by the presence of ancient Indigenous rock art.\nIt is named after Bertrand Du Guesclin (c. 1320–1380), also spelled Duguesclin, a knight and military leader who distinguished himself at the Battle of Cocherel in 1364, a victory that helped restore the authority of the French crown at a time when its legitimacy was challenged both by regional unrest and by English claims.",
-    "history_fr": "-",
-    "history": "",
+    "characteristic_fr": "L’île Duguesclin** est une île isolée et inhabitée, située le long d’un littoral accidenté, marqué par de fortes amplitudes de marée et par la présence d’anciens sites d’art rupestre des peuples autochtones.\nElle doit son nom à Bertrand Du Guesclin (v. 1320–1380), également orthographié Duguesclin, chevalier et chef de guerre associé à ce que l’historiographie du XIXe siècle a désigné sous le nom de **guerre de Cent Ans**. Ce long cycle de conflits, entrecoupé de trêves, opposa de 1337 à 1453 le royaume d’Angleterre des Plantagenêts au royaume de France des Valois. L’inscription du nom de Duguesclin dans la nomenclature du voyage rattache ainsi ce littoral australien à une mémoire militaire française de longue durée, antérieure de plusieurs siècles à l’époque napoléonienne mais toujours mobilisable dans la construction symbolique des Terres Australes par les francais.\n\n\n\n\n\n\n",
+    "characteristic": "Duguesclin Island is a remote and uninhabited island, situated along a rugged stretch of coast marked by strong tidal movements and by the presence of ancient Indigenous rock-art sites.\r\nIt is named after Bertrand Du Guesclin (c. 1320–1380), also spelled Duguesclin, a knight and military leader associated with what nineteenth-century historiography came to designate as the **Hundred Years’ War**. This long cycle of conflicts, interrupted by truces, opposed the Plantagenet kingdom of England and the Valois kingdom of France from 1337 to 1453. The inclusion of Duguesclin’s name in the voyage’s nomenclature thus linked this Australian coastline to a long French military memory, predating the Napoleonic era by several centuries yet still available for the symbolic construction of the Southern Lands by the French.\r\n",
+    "history_fr": "Bertrand du Guesclin est souvent associé à la formule suivante : « Le courage donne ce que refuse la beauté. » Cette maxime résume l’image transmise par la tradition d’un homme réputé peu favorisé par son apparence, mais dont la bravoure, l’endurance et les qualités militaires firent l’un des grands héros français de la guerre de Cent Ans. La légende rapporte également qu’après avoir été fait prisonnier en Espagne par le Prince de Galles, à la suite de la bataille de Nájera le 3 avril 1367, et alors qu’était discutée sa rançon, il aurait déclaré : « Monseigneur, le roi de Castille en paiera moitié, et le roi de France le reste ; et si ce n’était assez, il n’y a fileuse en France qui sût filer, qui ne gagnât à filer ma finance. » Cette parole souligne symboliquement l’attachement que lui portait le royaume de France tout entier, jusque dans ses couches les plus modestes. Charles V (1338-1380), roi de France, le nomma connétable de France en 1370, faisant de lui le chef des armées royales. Napoléon admira en lui à la fois la ténacité guerrière, la reconquête méthodique des territoires occupés par les Anglais et l’usage d’une stratégie d’usure voisine de la politique de la terre brûlée. L’ironie de l’histoire veut toutefois que l’Empereur n’ait pas su prévoir que les Russes recourraient contre lui, lors de la campagne de 1812, à des procédés comparables.\n",
+    "history": "Bertrand du Guesclin is most commonly associated with the following saying: “Courage grants what beauty denies.” The phrase encapsulates the traditional image of a man reputed to be physically ungainly, yet whose bravery, endurance, and military abilities made him one of the great French heroes of the Hundred Years’ War. Legend also relates that, after being taken prisoner in Spain by the Prince of Wales following the Battle of Nájera on 3 April 1367, and while the terms of his ransom were being discussed, he declared: “My lord, the King of Castile will pay one half, and the King of France the rest; and if that should not suffice, there is not a spinner in France who can spin who would not earn my ransom by spinning.” The remark symbolically suggests the depth of support he enjoyed throughout the kingdom of France, even among its humblest people. King Charles V of France (1338-1380) appointed him Constable of France in 1370, thus making him commander of the royal armies. Napoleon admired in him both his martial tenacity, his methodical reconquest of territories held by the English, and his use of an attritional strategy akin to scorched-earth warfare. Yet history carries a certain irony, for the Emperor failed to foresee that the Russians would employ comparable methods against him during the campaign of 1812.",
     "wiki_fr": "",
     "wiki_en": "-",
     "imgUrl": "",
@@ -14556,8 +14556,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin560F.html",
-    "detailsLink_en": "Baudin560E.html"
+    "detailsLink": "Baudin560F.rtf",
+    "detailsLink_en": "Baudin560E.rtf"
   },
   {
     "code": "Baudin561",
@@ -15551,7 +15551,7 @@
     "code": "Baudin599",
     "expedition": "Baudin",
     "state": "NT",
-    "frenchName": "Île Péron",
+    "frenchName": "Ȋle Péron",
     "variantName": "",
     "ausEName": "Peron island North and Peron island South",
     "indigenousName": "",
