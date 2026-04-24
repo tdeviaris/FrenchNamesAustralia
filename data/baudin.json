@@ -14591,11 +14591,11 @@
     "state": "WA",
     "frenchName": "Île Du Guillaume-Tell",
     "variantName": "",
-    "ausEName": "No AusE, variant or historical name listed in the place names databases of the Composite Gazetteer of Australia and accredited by the ICSM ",
+    "ausEName": "No current official, variant, or historical name is listed in the place-name databases of the Composite Gazetteer of Australia or accredited by the ICSM. It may possibly correspond to one of today’s southern Albert Islands.\n",
     "indigenousName": "",
     "indigenousLanguage": "",
-    "lat": 0,
-    "lon": 0,
+    "lat": -14.54359,
+    "lon": 124.93765,
     "characteristic_fr": "Située dans l’atlas de Freycinet entre l’île Jussieu et l’île Corvisart, l’île s’inscrivait dans les itinéraires maritimes traditionnels parcourus par les Wunambal Gaambera au moyen de radeaux doubles et de canots. Les Français lui donnèrent le nom de Guillaume Tell, héros légendaire de la Suisse, demeuré célèbre pour avoir, selon la tradition, abattu d’un trait la pomme posée sur la tête de son fils.",
     "characteristic": "Located in Freycinet’s atlas between Île Jussieu and Île Corvisart, the island lay along the traditional maritime routes travelled by the Wunambal Gaambera people by double raft and canoe. The French named it after William Tell, the legendary Swiss hero celebrated for shooting an apple from his son’s head.",
     "history_fr": "Le nom Guillaume-Tell dans la nomenclature évoque la figure du héros patriotique qui, selon la tradition, combattit pour l’indépendance de sa Suisse natale contre l’autorité des Habsbourg au XIVe siècle. La légende de Guillaume Tell, devenue l’un des éléments marquants de la mémoire nationale suisse, fut remise en valeur pendant la Révolution française et réinterprétée comme un emblème de la résistance à la tyrannie, en particulier à celle que l’on associait aux monarchies dynastiques de l’Europe. Cette appropriation politique et morale trouva aussi une expression musicale lorsque André Grétry composa à Paris, en 1791, un opéra-comique sur ce sujet, œuvre que Napoléon admirait beaucoup. Durant la période révolutionnaire, un vaisseau de quatre-vingts canons de la marine française porta également le nom de Guillaume Tell. Capturé par les Britanniques en 1800 après la bataille du Nil, au cours de la campagne d’Égypte (voir glossaire), ce bâtiment illustre à son tour la circulation de ce nom héroïque dans la culture militaire et politique de l’époque.",
@@ -14700,8 +14700,8 @@
     "indigenousLanguage": "",
     "lat": -14.54164,
     "lon": 124.92876,
-    "characteristic_fr": "L’île Suffren se situe au sud des îles Albert. Elle fut nommée en l’honneur de Pierre André de Suffren de Saint-Tropez, bailli de Suffren (1729-1788), l’amiral français que les Britanniques surnommèrent « l’amiral Satan ».",
-    "characteristic": "Suffren Island lies to the south of the Albert Islands. \nIt was named after Pierre André de Suffren de Saint-Tropez, bailli de Suffren (1729–1788), the French admiral whom the British nicknamed “Admiral Satan.”",
+    "characteristic_fr": "Sur les cartes actuelles, l’île Suffren est rattachée au groupe des îles Albert. Dans l’atlas de Freycinet, elle apparaît toutefois plus au nord, parmi les îles Maret, au nord-est de l’île Corvisart. \nElle fut nommée en l’honneur de Pierre André de Suffren de Saint-Tropez, bailli de Suffren (1729-1788), l’amiral français que les Britanniques surnommèrent « l’amiral Satan ».",
+    "characteristic": "On present-day maps, Suffren Island is associated with the Albert Islands group. In Freycinet’s atlas, however, it appears farther north, among the Maret Islands, to the north-east of Corvisart Island. \nIt was named in honour of Pierre André de Suffren de Saint-Tropez, bailli de Suffren (1729–1788), the French admiral whom the British nicknamed “Admiral Satan.”",
     "history_fr": "Pour nommer cette île, que Péron range parmi les terres « absolument semblables » et « inhospitalières » de l’archipel Bonaparte, il retint le nom d’un ancien amiral français qui s’était illustré par des victoires dans l’océan Indien et que Napoléon aurait aimé avoir à son service. Son nom fut également attribué à un cap et à une anse en Australie-Méridionale.",
     "history": "To designate this island, which he included among the “entirely similar” and “inhospitable” islands of the Bonaparte Archipelago, Péron chose the name of a former French admiral who had led French forces to victory in the Indian Ocean and whom Napoléon would no doubt have wished to count among his own commanders. He also gave his name to a cape and a cove in South Australia.",
     "wiki_fr": "",
@@ -14816,8 +14816,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin570F.rtf",
-    "detailsLink_en": "Baudin570E.rtf"
+    "detailsLink": "Baudin570F.html",
+    "detailsLink_en": "Baudin570E.html"
   },
   {
     "code": "Baudin571",
@@ -14842,8 +14842,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin571F.html",
+    "detailsLink_en": "Baudin571E.html"
   },
   {
     "code": "Baudin572",
