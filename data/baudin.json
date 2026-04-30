@@ -594,8 +594,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "‘ Carte d'une partie de la Terre Napoléon ’ by Freycinet, L & Boullanger, C, in Voyage de Découvertes aux Terres Australes Navigation et Géographie, Atlas, 1812., plate13\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Baudin023F.html",
-    "detailsLink_en": "Baudin023E.html"
+    "detailsLink": "",
+    "detailsLink_en": "Baudin021E.htlm"
   },
   {
     "code": "Baudin024",
@@ -1076,9 +1076,9 @@
     "indigenousLanguage": "",
     "lat": -35.71627,
     "lon": 139.15404,
-    "characteristic_fr": "Sur les cartes modernes, l’emplacement du cap $Monge$Gaspard_Monge$ ne correspond pas à la présence physique d’un véritable cap. Il se situe sur le cordon littoral qui délimite la région du Coorong, à égale distance de Nine Mile Point au nord et de Lambert Point au sud — deux promontoires sur le cordon littoral qui s’ouvrent du côté du lagon.\n$Gaspard Monge$Gaspard_Monge$ (1746-1818) est le père fondateur de la géométrie descriptive, qui permet de représenter des objets tridimensionnels en deux dimensions. À l’époque, cette discipline était utile dans la fabrication, la conception de bâtiments et dans les arts. $Monge$Gaspard_Monge$ a également contribué au développement de la géométrie analytique initiée par $Descartes$René_Descartes$ et Fermat.",
-    "characteristic": "On modern maps, the location of Cape $Monge$Gaspard_Monge$ does not correspond to an actual physical cape. It lies on the sandbar referred as the Younghusband Peninsula that defines the Coorong region, equidistant from Nine Mile Point to the north and Lambert Point to the south—two headlands that open onto the lagoon side of the sandbar.\n$Gaspard Monge$Gaspard_Monge$ (1746-1818) is the founding father of descriptive geometry that represents three-dimensional objects in two dimensions. At the time, it was useful in manufacturing and the design of buildings, and in art. $Monge$Gaspard_Monge$ contributed also to further develop $Descartes$René_Descartes$ and Fermat’s analytic geometry.",
-    "history_fr": "Pendant la Révolution, il fut nommé ministre de la Marine (avril 1792 – avril 1793), peu avant que Freycinet ne reçoive sa première formation dans la Marine. Cependant, le désordre régnait dans les arsenaux, en raison d’un manque de discipline et de l’absence d’autorités reconnues.\n$Monge$Gaspard_Monge$ connut davantage de succès en fondant l’École polytechnique (voir cette entrée dans le glossaire), afin de renforcer et d’intensifier l’enseignement des sciences tout en démocratisant l’accès à la profession d’ingénieur. Il appelait ses élèves ses « fils adoptifs », et ses cours étaient très appréciés. Les deux ingénieurs-géographes de l’expédition Baudin, Boullanger* et Faure*, ainsi que le minéralogiste Bailly* et les officiers Maurouard* et Hyacinthe de $Bougainville$Louis-Antoine_de_Bougainville$*, furent formés à l’École polytechnique avant leur embarquement (voir le nom de ces polytechniciens dans Recherche d’un lieu).",
+    "characteristic_fr": "Sur les cartes modernes, l’emplacement du cap Monge ne correspond pas à la présence physique d’un véritable cap. Il se situe sur le cordon littoral qui délimite la région du Coorong, à égale distance de Nine Mile Point au nord et de Lambert Point au sud — deux promontoires sur le cordon littoral qui s’ouvrent du côté du lagon.\nGaspard Monge (1746-1818) est le père fondateur de la géométrie descriptive, qui permet de représenter des objets tridimensionnels en deux dimensions. À l’époque, cette discipline était utile dans la fabrication, la conception de bâtiments et dans les arts. Monge a également contribué au développement de la géométrie analytique initiée par $Descartes$René_Descartes$ et Fermat.",
+    "characteristic": "On modern maps, the location of Cape Monge does not correspond to an actual physical cape. It lies on the sandbar referred as the Younghusband Peninsula that defines the Coorong region, equidistant from Nine Mile Point to the north and Lambert Point to the south—two headlands that open onto the lagoon side of the sandbar.\nGaspard Monge (1746-1818) is the founding father of descriptive geometry that represents three-dimensional objects in two dimensions. At the time, it was useful in manufacturing and the design of buildings, and in art. Monge contributed also to further develop $Descartes$René_Descartes$ and Fermat’s analytic geometry.",
+    "history_fr": "Pendant la Révolution, il fut nommé ministre de la Marine (avril 1792 – avril 1793), peu avant que Freycinet ne reçoive sa première formation dans la Marine. Cependant, le désordre régnait dans les arsenaux, en raison d’un manque de discipline et de l’absence d’autorités reconnues.\nMonge connut davantage de succès en fondant l’École polytechnique (voir cette entrée dans le glossaire), afin de renforcer et d’intensifier l’enseignement des sciences tout en démocratisant l’accès à la profession d’ingénieur. Il appelait ses élèves ses « fils adoptifs », et ses cours étaient très appréciés. Les deux ingénieurs-géographes de l’expédition Baudin, Boullanger* et Faure*, ainsi que le minéralogiste Bailly* et les officiers Maurouard* et Hyacinthe de $Bougainville$Louis-Antoine_de_Bougainville$*, furent formés à l’École polytechnique avant leur embarquement (voir le nom de ces polytechniciens dans Recherche d’un lieu).",
     "history": "During the Revolution he was appointed Navy Minister (April 1792-April 1793), just before Freycinet received his first training in the Navy. However, disorder prevailed in naval dockyards due to a lack of discipline and the absence of recognized authorities. More successfully, $Monge$Gaspard_Monge$ created the École polytechnique (see this entry in the glossary) to enhance and intensify science education and democratize access to the engineering profession. He used to call his students his ‘adoptive sons’ and his lectures were very well-liked. The two engineers’ geographers of the Baudin expedition, Boullanger* and Faure*, as well as the mineralogist Bailly* and the officers Maurouard* and Hyacinthe de $Bougainville$Louis_Antoine_de_Bougainville$*, were trained at the Polytechnique before they embarked (see the name of these polytechniciens in Search for a name).",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Gaspard_Monge",
     "wiki_en": "https://en.wikipedia.org/wiki/Gaspard_Monge",
@@ -2544,8 +2544,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "François de Salignac de La Mothe-Fénelon dit Fénelon, né le 6 août 1651 au château de Fénelon à Sainte-Mondane, mort le 7 janvier 1715 à Cambrai, est un homme d'Église, théologien et écrivain français.",
-    "detailsLink": "Baudin579F.html",
-    "detailsLink_en": "Baudin579E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin099",
@@ -3272,8 +3272,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin023F.html",
-    "detailsLink_en": "Baudin023E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin127",
@@ -7900,8 +7900,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "François de Salignac de La Mothe-Fénelon dit Fénelon, né le 6 août 1651 au château de Fénelon à Sainte-Mondane, mort le 7 janvier 1715 à Cambrai, est un homme d'Église, théologien et écrivain français.",
-    "detailsLink": "Baudin579F.html",
-    "detailsLink_en": "Baudin579E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin305",
@@ -9209,15 +9209,15 @@
     "state": "Tas",
     "frenchName": "Baie Monge",
     "variantName": "",
-    "ausEName": "Pirates Bay Port BuachePresqu'île Tasman",
+    "ausEName": "Pirates Bay ",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -43.02181,
     "lon": 147.93768,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "",
-    "history": "",
+    "characteristic_fr": "La baie Monge, aujourd’hui Pirates Bay, est une baie sableuse encaissée, alimentée par des sables quartzitiques hérités et remaniés, et encadrée par des côtes rocheuses résistantes. Sa singularité géomorphologique tient notamment au *Tessellated Pavement* : une plate-forme intertidale formée dans des roches permiennes, où les diaclases, l’abrasion marine, le sel et les cycles d’humectation et de séchage produisent un pavage naturel exceptionnel. Plus qu’une simple curiosité géologique, ce site offre une expression particulièrement lisible de la dynamique des côtes rocheuses tempérées exposées aux houles de la mer de Tasman.\nLes Français la nommèrent en hommage à Gaspard Monge (1746-1818), fondateur de la géométrie descriptive, qui permet de représenter des objets en trois dimensions sur un plan en deux dimensions.\r\nLa baie parut à Freycinet « vaste et très ouverte […] séparée du port Buache que par un isthme fort bas ».\n",
+    "characteristic": "Pirates Bay is an embayed sandy shoreline, supplied by inherited and reworked quartz-rich sands and framed by resistant rocky coasts. Its geomorphological distinctiveness lies especially in the Tessellated Pavement: an intertidal platform formed in Permian rocks, where joints, marine abrasion, salt, and repeated wetting and drying cycles produce an exceptional natural pavement. More than a geological curiosity, this site offers a particularly clear expression of the dynamics of temperate rocky coasts exposed to the swells of the Tasman Sea.\nThe French named it after Gaspard Monge (1746-1818), the founding father of descriptive geometry that represents three-dimensional objects in two dimensions.\nTo Freycinet, the bay appeared “large and very open […] separated from Port Buache only by a very low isthmus.”",
+    "history_fr": "Péron explique à propos de la baie : « Nous l’appelâmes baie Monge, en l’honneur du savant illustre à qui les sciences physiques et mathématiques doivent tant de précieuses découvertes. »\nLe géographe Faure rapporta de sa mission de reconnaissance de la presqu’île Tasman et des côtes de la baie Monge plusieurs échantillons, que le minéralogiste Bailly décrivit ensuite dans son \"Catalogue des Substances Minérales Recueillies pendant le Voyage de découvertes commandé par le Capitaine Baudin\"\nSi les descriptions de Bailly ne constituent pas une interprétation géomorphologique au sens moderne, elles documentent les matériaux et les formes élémentaires d’un littoral rocheux exposé. La « pierre siliceuse » à cassure conchoïde, apparemment stratifiée et de forme hexagonale allongée, peut être rapprochée des roches fines, jointées et stratifiées qui forment les plates-formes littorales de Pirates Bay. Le « bloc roulé » de granite témoigne, quant à lui, du remaniement mécanique des roches par la houle.\nAinsi, les pierres décrites par Bailly ne sont pas seulement des échantillons minéralogiques. Elles permettent de comprendre, de façon concrète, comment les côtes rocheuses de la presqu’île Tasman et de la baie Monge, aujourd’hui Pirates Bay, se forment et se transforment sous l’action des vagues, du sel et du temps.",
+    "history": "Writing about the bay, Péron explains: “We named it Monge Bay, in honour of the illustrious scholar to whom the physical and mathematical sciences owe so many valuable discoveries.”\nDuring his reconnaissance of the Tasman Peninsula and the shores of Monge Bay, the geographer Faure collected several rock samples. These were later described by the mineralogist Bailly in his \"Catalogue of Mineral Specimens Collected during the Voyage of Discovery Commanded by Captain Baudin\".\nAlthough Bailly’s descriptions do not amount to a modern geomorphological interpretation, they record the materials and basic forms of an exposed rocky coastline. The “siliceous stone” with a conchoidal fracture, apparently layered and elongated hexagonal in shape, can be related to the fine-grained, jointed and stratified rocks that form the coastal platforms of Pirates Bay. The “rounded block” of granite, meanwhile, bears witness to the mechanical reworking of rocks by wave action.\nIn this way, the stones described by Bailly are more than mineralogical specimens. They offer a concrete way of understanding how the rocky shores of the Tasman Peninsula and Monge Bay, now known as Pirates Bay, are formed and transformed by waves, salt and time.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Gaspard_Monge",
     "wiki_en": "https://en.wikipedia.org/wiki/Gaspard_Monge",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Gaspard_monge_litho_delpech.jpg",
@@ -14765,7 +14765,7 @@
     "mapTitle_en": "In Lesueur, C.-A., Petit, N., Freycinet, L., Péron, F. (1816) Illustrations de Voyage de découvertes aux terres australes exécuté sur les corvettes’Le Géographe’,’Le Naturaliste’et la goëlette’Le Casuarina’pendant les années 1800, 1801, 1802, 1803 et 1804...] plate 7, the coastal profiles of the Île Guillaume Tell is on the profile number 5 with red and steep cliffs and Ile Jussieu/Jussieu island (right) in green, sketched by Lesueur\nSource : Bibliothèque nationale de France \n",
     "origin_fr": "",
     "detailsLink": "Baudin568F.html",
-    "detailsLink_en": "Baudin568E.html"
+    "detailsLink_en": "Baudin568F.html"
   },
   {
     "code": "Baudin569",
@@ -15024,8 +15024,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande) (3e feuille), dressée par Louis-Claude de Freycinet. Voyage de découvertes aux terres australes, partie Navigation et géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "In Lesueur, C.-A., Petit, N., Freycinet, L., Péron, F. (1816) Illustrations de Voyage de découvertes aux terres australes exécuté sur les corvettes’Le Géographe’,’Le Naturaliste’et la goëlette’Le Casuarina’pendant les années 1800, 1801, 1802, 1803 et 1804...] plate 7, the coastal profiles of the Île Guillaume Tell is on the profile number 5 with red and steep cliffs and Ile Jussieu/Jussieu island (right) in green, sketched by Lesueur\nSource : Bibliothèque nationale de France \n",
     "origin_fr": "",
-    "detailsLink": "Baudin023F.html",
-    "detailsLink_en": "Baudin023E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin579",
@@ -15050,8 +15050,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande) (3e feuille), dressée par Louis-Claude de Freycinet. Voyage de découvertes aux terres australes, partie Navigation et géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "In Lesueur, C.-A., Petit, N., Freycinet, L., Péron, F. (1816) Illustrations de Voyage de découvertes aux terres australes exécuté sur les corvettes’Le Géographe’,’Le Naturaliste’et la goëlette’Le Casuarina’pendant les années 1800, 1801, 1802, 1803 et 1804...] plate 7, the coastal profiles of the Île Guillaume Tell is on the profile number 5 with red and steep cliffs and Ile Jussieu/Jussieu island (right) in green, sketched by Lesueur\nSource : Bibliothèque nationale de France \n",
     "origin_fr": "",
-    "detailsLink": "Baudin579F.html",
-    "detailsLink_en": "Baudin579E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin580",
@@ -15064,10 +15064,10 @@
     "indigenousLanguage": "",
     "lat": -14.20719,
     "lon": 125.60987,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "-",
-    "history": "",
+    "characteristic_fr": "L’île Monge est une petite île située dans la partie sud du groupe des îles Institut.\nElle fut nommée en hommage à Gaspard Monge (1746-1818), fondateur de la géométrie descriptive, une méthode qui permet de représenter des objets en trois dimensions sur un plan en deux dimensions.\n",
+    "characteristic": "Monge Island is a small island in the southern part of the Institut Islands group.\nIt was named after Gaspard Monge (1746–1818), the founder of descriptive geometry, a method for representing three-dimensional objects on a two-dimensional plane.",
+    "history_fr": "Gaspard Monge fut l’un des grands mathématiciens de son temps et membre de l’Institut national des sciences et des arts, où il fut élu en 1795 dans la classe des Sciences physiques et mathématiques. Napoléon appréciait en lui non seulement le savant, mais aussi le pédagogue, l’organisateur et l’ingénieur du savoir : sa géométrie descriptive était essentielle au dessin technique, au génie militaire et à la formation des nouvelles élites scientifiques. Leur relation se renforça lors des campagnes d’Italie et d’Égypte, et Monge demeura ensuite un fidèle soutien de Napoléon sous l’Empire.",
+    "history": "Gaspard Monge was a leading mathematician and a member of the Institut national des sciences et des arts, elected in 1795 to the Class of Physical and Mathematical Sciences. Napoleon valued him not only as a scientist but also as a teacher, organiser and engineer of knowledge: Monge’s descriptive geometry was central to technical drawing, military engineering and the training of the new scientific elite. Their relationship became especially close during the Italian and Egyptian campaigns, and Monge remained a loyal supporter of Napoleon throughout the Empire.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Gaspard_Monge",
     "wiki_en": "https://en.wikipedia.org/wiki/Gaspard_Monge",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Gaspard_monge_litho_delpech.jpg",
