@@ -594,8 +594,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "‘ Carte d'une partie de la Terre Napoléon ’ by Freycinet, L & Boullanger, C, in Voyage de Découvertes aux Terres Australes Navigation et Géographie, Atlas, 1812., plate13\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Baudin023F.htlm",
-    "detailsLink_en": "Baudin023E.htlm"
+    "detailsLink": "Baudin023F.html",
+    "detailsLink_en": "Baudin023E.html"
   },
   {
     "code": "Baudin024",
@@ -3272,8 +3272,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin023F.htlm",
-    "detailsLink_en": "Baudin023E.htlm"
+    "detailsLink": "Baudin023F.html",
+    "detailsLink_en": "Baudin023E.html"
   },
   {
     "code": "Baudin127",
@@ -5612,8 +5612,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Le duc de Vendôme, futur Charles X? C'est en 1800 qu'un décret envisage la construction d'une colonne, au chef-lieu de chaque département, et dédiée aux braves du département. À Paris, une colonne nationale sur la place de la Concorde, dédiée à la Nation et une départementale sur la place Vendôme furent décidées le 20 mars (29 Ventôse an VIII), par Bonaparte Premier Consul. La colonne nationale ne vit jamais le jour, celle projetée sur la place des Piques (place Vendôme) eut un début d'existence : Lucien, frère de Napoléon Bonaparte et ministre de l'Intérieur, posa la première pierre du monument le 14 juillet 1800 (25 Messidor An VIII). Sans aboutir, l'idée fut reprise en 1803 par le Premier Consul qui confirma la construction d'une colonne place Vendôme « à l'instar de celle élevée à Rome, en l'honneur de Trajan », ornée de 108 figures des départements montées en spirale et surmontée de la statue de Charlemagne ». D'abord dédié à la Gloire du Peuple Français, la colonne deviendra rapidement à la gloire de Napoléon Ier. Mais la construction fut lente et il fallut attendre 1805 et la fonte de 1 200 canons pris à l'ennemi, principalement russes et autrichiens, (au total 180 tonnes) pour que le projet, relancé par Vivant Denon, avance. Achevée en 1810 et dédiée à la gloire des armées victorieuses, la colonne fut baptisée colonne de la Grande Armée. ",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin581F.html",
+    "detailsLink_en": "Baudin581E.html"
   },
   {
     "code": "Baudin217",
@@ -7016,8 +7016,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin547F.html",
+    "detailsLink_en": "Baudin547E.html"
   },
   {
     "code": "Baudin271",
@@ -12223,7 +12223,7 @@
     "code": "Baudin471",
     "expedition": "Baudin",
     "state": "WA",
-    "frenchName": "Ȋles de Rivoli",
+    "frenchName": "Îles de Rivoli",
     "variantName": "",
     "ausEName": "Rivoli Islands",
     "indigenousName": "",
@@ -12239,7 +12239,7 @@
     "imgUrl": "",
     "other_link": "",
     "mapUrl": "http://nla.gov.au/nla.obj-230976266/representativeImage",
-    "mapTitle_fr": "« Carte générale de la Terre de Witt (Nouvelle-Hollande) », par Louis Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et géographie, atlas, 1812, planche 24.\nLes Ȋles de Rivoli figurent dans la partie sud-ouest de la carte.\nSource : National Library of Australia.",
+    "mapTitle_fr": "« Carte générale de la Terre de Witt (Nouvelle-Hollande) », par Louis Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et géographie, atlas, 1812, planche 24.\nLes Îles de Rivoli figurent dans la partie sud-ouest de la carte.\nSource : National Library of Australia.",
     "mapTitle_en": "“General Chart of Witt’s Land (New Holland)”, by Louis Freycinet, in Voyage of Discovery to the Southern Lands: Navigation and Geography, atlas, 1812, Plate 24.\nRivoli Islands appear in the south-western part of the chart.\nSource: National Library of Australia.",
     "origin_fr": "",
     "detailsLink": "Baudin033F.html",
@@ -13802,8 +13802,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 2me feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux terres australes, Navigation et géographie, planche 26, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 2, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux terres australes, Navigation et géographie, plate 26, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin531F.html",
-    "detailsLink_en": "Baudin531E.html"
+    "detailsLink": "Baudin583F.html",
+    "detailsLink_en": "Baudin583E.html"
   },
   {
     "code": "Baudin532",
@@ -14010,8 +14010,8 @@
     "mapTitle_fr": "Esquisse d'une partie de  l'Archipel Bonaparte, avec les routes de l'expedition MAP/6JJ/5/B.\nSource : Archives nationales de France.",
     "mapTitle_en": "Sketch of part of the Bonaparte Archipelago, with the routes of the expedition, MAP/6JJ/5/B.\nSource: National Archives of France.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin539F.html",
+    "detailsLink_en": "Baudin539E.html"
   },
   {
     "code": "Baudin540",
@@ -14037,7 +14037,7 @@
     "mapTitle_en": "Sketch of part of the Bonaparte Archipelago, with the routes of the expedition, MAP/6JJ/5/B.\nSource: National Archives of France.",
     "origin_fr": "",
     "detailsLink": "Baudin540F.html",
-    "detailsLink_en": "Baudin540F.html"
+    "detailsLink_en": "Baudin540E.html"
   },
   {
     "code": "Baudin541",
@@ -15024,8 +15024,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande), troisième feuille, dressée par Louis-Claude de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of part of De Witt’s Land (in New Holland), third sheet, drawn up by Louis-Claude de Freycinet, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.\n",
     "origin_fr": "",
-    "detailsLink": "Baudin023E.htlm",
-    "detailsLink_en": "Baudin023E.htlm"
+    "detailsLink": "Baudin023F.html",
+    "detailsLink_en": "Baudin023E.html"
   },
   {
     "code": "Baudin579",
