@@ -844,8 +844,8 @@
     "lon": 140.07142,
     "characteristic_fr": "L’extrémité nord de la baie est délimitée par la ville de Beachport. Elle est constituée d’une plaine de cordons littoraux longue de 14 km et large de 2 km, formant une barrière sableuse entre le lac George, situé au nord de la baie, et l’océan.\nRivoli est le nom d’une localité italienne de la vallée de l’Adige, dans la province de Vérone, où les forces révolutionnaires françaises, sous le commandement de $Bonaparte$Napoléon_Ier$, ont vaincu l’armée autrichienne les 14 et 15 janvier 1797.",
     "characteristic": "The northern end of the bay is defined by the town of Beachport. It is formed by a beach ridge plain 14 km long and 2 km across which has created a sand barrier, between Lake George to the north of the bay and the open ocean. Rivoli is the name of an Italian locality, in the Adige Valley in the province of Verona, where French Revolutionary forces under the command of $Bonaparte$Napoleon$ defeated the Austrian army (14-15 January 1797).",
-    "history_fr": "La bataille de Rivoli est souvent considérée comme l’une des plus brillantes victoires françaises de la première campagne d’Italie des guerres révolutionnaires. Elle contribua largement à nourrir la propagande napoléonienne visant à promouvoir la figure de $Bonaparte$Napoléon_Ier$. Cet affrontement mit un terme à l’offensive autrichienne en Italie du Nord et ouvrit la voie de Vienne aux troupes républicaines commandées par $Napoléon Bonaparte$Napoléon_Ier$.\nDans un premier temps, les troupes françaises furent fortement encerclées, mais elles furent sauvées in extremis par le général Masséna*, arrivé avec son armée après avoir parcouru 150 kilomètres en seulement deux jours. En 1808, Masséna reçut en récompense le titre de duc de Rivoli pour cet exploit. Le nom de la bataille fut également attribué à la nouvelle grande voie est-ouest menant vers Paris.",
-    "history": "‘The battle of Rivoli’ has been seen as the most brilliant of the French victories of the first Italian campaign of the Revolutionary Wars and fed Napoléon's propaganda, aimed at promoting himself. It ended the Austrian offensive in northern Italy and opened the way to Vienna for the Republican troops of $Napoléon Bonaparte$Napoleon$.\nAt first, the French troops were heavily surrounded but were saved at the last moment by general Massena* who arrived with his army, having travelled 150 km in just two days. In 1808, Massena was rewarded with the title of Duc de Rivoli for his achievement. The name of the battle was also given to the new major West-East arterial road leading towards Paris.",
+    "history_fr": "Péron note qu’au fond de la baie, « nous aperçûmes quelques fumées ». Il décrit ensuite la baie en ces termes : « Cette baie se présente sous la forme d’un grand ovale de 8 à 10 milles de profondeur, et se termine au Sud par le cap Lannes, au Nord par celui de Jaffa. » Par cette nomenclature, Péron inscrit la baie dans le récit national français des campagnes de Bonaparte, depuis l’Italie jusqu’à l’Égypte : Rivoli rappelle la victoire de 1797 lors de la première campagne d’Italie, tandis que Lannes et Jaffa renvoient à l’expédition d’Égypte et de Syrie.",
+    "history": "Péron notes that, at the head of the bay, “we saw a few columns of smoke.” He then describes the bay as follows: “This bay is shaped like a large oval, eight to ten miles deep, ending to the south at Cape Lannes and to the north at Cape Jaffa.” Through this nomenclature, Péron inscribed the bay within the French national narrative of Bonaparte’s campaigns, from Italy to Egypt: Rivoli evoked the victory of 1797 during the first Italian campaign, while Lannes and Jaffa referred to the Egyptian and Syrian expedition.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Bataille_de_Rivoli_(1797)",
     "wiki_en": "https://en.wikipedia.org/wiki/Battle_of_Rivoli",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Napoleon_at_the_Battle_of_Rivoli.jpg",
@@ -2700,8 +2700,8 @@
     "mapTitle_fr": "Esquisse de carte du fond de Spencer Gulf, avec route du Casuarina par Boullanger, 1803. Les toponymes dont Baie Voltaire y ont ete rajoutes, MAP/6JJ/5/B, pièce 116.\nSource : Archives nationales de France",
     "mapTitle_en": "Sketch map of the inner part of Spencer Gulf, with the route of the Casuarina drawn by Boullanger, 1803. Toponyms, including Baie Voltaire, were added, MAP/6JJ/5/B, item 116. Source : Archives nationales de France",
     "origin_fr": "",
-    "detailsLink": "Baudin585F.html",
-    "detailsLink_en": "Baudin585E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin105",
@@ -2882,8 +2882,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin592F.html",
-    "detailsLink_en": "Baudin592E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin112",
@@ -4217,15 +4217,15 @@
     "state": "SA",
     "frenchName": "Cap de Rivoli",
     "variantName": "",
-    "ausEName": "Canal de Rivoli",
+    "ausEName": "Wedge Island Lighthouse",
     "indigenousName": "",
     "indigenousLanguage": "",
-    "lat": -35.10585,
-    "lon": 136.27967,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Victoire de Rivoli (14-15 janvier 1797), une bataille clé de la première campagne d'Italie de $Napoléon Bonaparte$Napoléon_Ier$.",
-    "history": "The victory at Rivoli (14-15 January 1797), a key battle in Napoleon Bonaparte's first Italian campaign.",
+    "lat": -35.18,
+    "lon": 136.49,
+    "characteristic_fr": "Le cap de Rivoli était situé à l’extrémité sud-est de l’actuelle Wedge Island, dans l’archipel aujourd’hui connu sous le nom de Gambier Islands.\nPéron donna à ce cap le nom de Rivoli en mémoire de la bataille de Rivoli, remportée les 14 et 15 janvier 1797. Victoire majeure de la première campagne d’Italie, Rivoli contribua à forger la gloire militaire de Bonaparte et à préparer son ascension politique vers le pouvoir.",
+    "characteristic": "Cape Rivoli was located at the south-eastern tip of present-day Wedge Island, in the island group now known as the Gambier Islands.\nPéron named the cape Rivoli in commemoration of the Battle of Rivoli, fought on 14–15 January 1797. A major victory of the first Italian campaign, Rivoli helped forge Bonaparte’s military glory and prepared the ground for his political rise to power.",
+    "history_fr": "Péron choisit de nommer cap Rivoli un promontoire situé sur l’île Marengo, associant ainsi deux grandes victoires italiennes de Bonaparte : Rivoli et Marengo. Cette superposition toponymique n’est pas fortuite. Elle inscrit l’île et son cap dans une même mémoire napoléonienne, celle des campagnes d’Italie qui contribuèrent à faire de Bonaparte une figure militaire et politique de premier plan.\nLa victoire de Rivoli, en 1797, joua un rôle décisif dans la consolidation de sa gloire militaire sous le Directoire. Celle de Marengo, remportée en 1800 après le coup d’État du 18 Brumaire, confirma son autorité comme Premier consul. Les noms de ces deux victoires s’imposaient donc dans le golfe dédié à Bonaparte, le golfe Bonaparte. En les réunissant dans un même espace géographique, Péron donna au paysage austral une forte charge commémorative : la nomenclature devenait le récit de l’ascension de Bonaparte, depuis le général victorieux de la campagne d’Italie jusqu’au chef du nouveau régime consulaire.",
+    "history": "Péron chose to name a promontory on Marengo Island Cape Rivoli, thereby bringing together two major Italian victories associated with Bonaparte: Rivoli and Marengo. This toponymic association was not accidental. It inscribed both the island and the cape within the same Napoleonic memory, that of the Italian campaigns which helped establish Bonaparte as a leading military and political figure.\nThe victory of Rivoli, in 1797, played a decisive role in consolidating his military glory under the Directory. Marengo, won in 1800 after the coup of 18 Brumaire, confirmed his authority as First Consul. The names of these two victories therefore naturally belonged in the gulf dedicated to Bonaparte, Bonaparte Gulf. By bringing them together within the same geographical space, Péron gave the southern landscape a powerful commemorative charge: nomenclature became a narrative of Bonaparte’s rise, from victorious general of the Italian campaign to head of the new Consular regime.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Bataille_de_Rivoli_(1797)",
     "wiki_en": "https://en.wikipedia.org/wiki/Battle_of_Rivoli",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Napoleon_at_the_Battle_of_Rivoli.jpg",
@@ -4234,8 +4234,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "victoire de Rivoli (janvier 1797)",
-    "detailsLink": "Baudin583F.html",
-    "detailsLink_en": "Baudin583E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin164",
@@ -5430,8 +5430,8 @@
     "mapTitle_fr": "Carte de l’île Decrès (à la Terre Napoléon, Nouvelle-Hollande) / rédigée par L. Freycinet, commandant la goélette Le Casuarina, d’après ses observations et les travaux de M. Boullanger, ingénieur hydrographe, avril 1802 et janvier 1803, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 15, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Île Decrès (in Terre Napoléon, New Holland) / drawn up by L. Freycinet, commander of the schooner Le Casuarina, from his observations and the work of M. Boullanger, hydrographic engineer, April 1802 and January 1803, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 15, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.",
     "origin_fr": "Louis Antoine de Bougainville, né à Paris le 12 novembre 1729 et mort dans la même ville le 31 août 1811, est un officier de marine, navigateur et explorateur français des xviiie et xixe siècles. Il est arrêté pendant la Terreur et libéré suite à la chute de Robespierre. Associé libre de l'Académie des sciences depuis 1789, il est élu membre de l'Institut de France et membre du Bureau des longitudes en 1796. Napoléon Bonaparte le comble de dignités : sénateur en 1799, grand officier de la Légion d'honneur en 1804, comte d'Empire en 1808. Il préside le conseil de guerre qui juge les responsables de la bataille de Trafalgar en 1809. Ce sera sa dernière fonction officielle.",
-    "detailsLink": "Baudin584F.html",
-    "detailsLink_en": "Baudin584E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin210",
@@ -5742,8 +5742,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin583F.html",
-    "detailsLink_en": "Baudin583E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin222",
@@ -5846,8 +5846,8 @@
     "mapTitle_fr": "Carte de l’Île Decrès, à la Terre Napoléon, Nouvelle-Hollande, dressée par L. Freycinet, commandant la goélette Le Casuarina, d’après ses observations et les travaux de M. Boullanger, ingénieur hydrographe, avril 1802 et janvier 1803. Publiée dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 15, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Île Decrès, in Terre Napoléon, New Holland, prepared by L. Freycinet, commander of the schooner Le Casuarina, from his own observations and the work of M. Boullanger, hydrographic engineer, April 1802 and January 1803. Published in Voyage de découvertes aux terres australes, Navigation et Géographie section, atlas, plate 15, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin592F.html",
-    "detailsLink_en": "Baudin592E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin226",
@@ -8680,8 +8680,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Jacques Cassard, 1679- 1740 est un marin et un corsaire français des xviie et xviiie siècles. Moins connu que son ami René Duguay-Trouin et que son célèbre cousin Robert Surcouf",
-    "detailsLink": "Baudin592F.html",
-    "detailsLink_en": "Baudin592E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin335",
@@ -8966,8 +8966,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin582F.html",
-    "detailsLink_en": "Baudin582E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin346",
@@ -9694,8 +9694,8 @@
     "mapTitle_fr": "Carte générale de la Terre de Diemen, comprenant les découvertes et les travaux géographiques exécutés dans cette partie à bord des corvettes Le Géographe, Le Naturaliste et de la goélette Le Casuarina, dressée par Charles-Pierre Boullanger, Louis-Claude de Saulces de Freycinet, Louis-Henri de Saulces de Freycinet, Xavier Faure et Bouclet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 3, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "General Map of Van Diemen’s Land, comprising the discoveries and geographical work carried out in this region aboard the corvettes Le Géographe, Le Naturaliste, and the schooner Le Casuarina, drawn up by Charles-Pierre Boullanger, Louis-Claude de Saulces de Freycinet, Louis-Henri de Saulces de Freycinet, Xavier Faure, and Bouclet, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 3, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin584F.html",
-    "detailsLink_en": "Baudin584E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin374",
@@ -10370,8 +10370,8 @@
     "mapTitle_fr": "« Plan d’une partie de la Terre de Nuyts », par Louis-Claude Desaulses de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie (Atlas), planche 20, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "“Plan of part of the Land of Nuyts”, by Louis-Claude Desaulses de Freycinet, in Voyage of Discovery to the Southern Lands, section Navigation and Geography (Atlas), plate 20, 1812.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin592F.html",
-    "detailsLink_en": "Baudin592E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin400",
@@ -10708,8 +10708,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "\"Carte d'une partie des Terres de Leuwin et d'Edels (a la Nouvelle Hollande)\" by Freycinet, Louis & al., in Voyage de découvertes aux terres australes partie navigation et géographie, atlas (op.cit.), 1812, Plate 21. The map was drawn based on bearings taken in June 1801 and completed in mars 1803.\nSource : National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Baudin592F.html",
-    "detailsLink_en": "Baudin592E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin413",
@@ -13412,8 +13412,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin592F.html",
-    "detailsLink_en": "Baudin592E.html"
+    "detailsLink": "Baudin516F.rtf",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin517",
@@ -13802,8 +13802,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 2me feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux terres australes, Navigation et géographie, planche 26, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 2, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux terres australes, Navigation et géographie, plate 26, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin583F.html",
-    "detailsLink_en": "Baudin583E.html"
+    "detailsLink": "Baudin531F.rtf",
+    "detailsLink_en": "Baudin531E.rtf"
   },
   {
     "code": "Baudin532",
@@ -15128,8 +15128,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande), troisième feuille, dressée par Louis-Claude de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of part of De Witt’s Land (in New Holland), third sheet, drawn up by Louis-Claude de Freycinet, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.\n",
     "origin_fr": "",
-    "detailsLink": "Baudin582F.html",
-    "detailsLink_en": "Baudin582E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin583",
@@ -15154,8 +15154,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande), troisième feuille, dressée par Louis-Claude de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of part of De Witt’s Land (in New Holland), third sheet, drawn up by Louis-Claude de Freycinet, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.\n",
     "origin_fr": "",
-    "detailsLink": "Baudin583F.html",
-    "detailsLink_en": "Baudin583E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin584",
@@ -15180,8 +15180,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande), troisième feuille, dressée par Louis-Claude de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of part of De Witt’s Land (in New Holland), third sheet, drawn up by Louis-Claude de Freycinet, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.\n",
     "origin_fr": "",
-    "detailsLink": "Baudin584F.html",
-    "detailsLink_en": "Baudin584E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin585",
@@ -15206,8 +15206,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande), troisième feuille, dressée par Louis-Claude de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of part of De Witt’s Land (in New Holland), third sheet, drawn up by Louis-Claude de Freycinet, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.\n",
     "origin_fr": "",
-    "detailsLink": "Baudin585F.html",
-    "detailsLink_en": "Baudin585E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin586",
@@ -15232,8 +15232,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande), troisième feuille, dressée par Louis-Claude de Freycinet, dans Voyage de découvertes aux terres australes, partie Navigation et Géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of part of De Witt’s Land (in New Holland), third sheet, drawn up by Louis-Claude de Freycinet, in Voyage de découvertes aux terres australes, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.\n",
     "origin_fr": "",
-    "detailsLink": "Baudin586F.html",
-    "detailsLink_en": "Baudin586E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin587",
@@ -15258,8 +15258,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt, à la Nouvelle-Hollande — quatrième feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de M. Ronsard, années 1801 et 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 28, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Part of Terre de Witt, in New Holland — fourth sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Mr Ronsard, in the years 1801 and 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 28, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin587F.html",
-    "detailsLink_en": "Baudin587E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin588",
@@ -15388,8 +15388,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt, à la Nouvelle-Hollande — quatrième feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de M. Ronsard, années 1801 et 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 28, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Part of Terre de Witt, in New Holland — fourth sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Mr Ronsard, in the years 1801 and 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 28, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin592F.html",
-    "detailsLink_en": "Baudin592E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin593",
