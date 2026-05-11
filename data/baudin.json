@@ -1166,8 +1166,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Nicolas François, comte Mollien est un homme politique français, né à Rouen, le 28 février 1758 et mort à Paris le 20 avril1850.Rapidement apprécié par le Premier consul pour sa compétence et ses connaissances techniques, il devient, à partir de 1801, un de ses interlocuteurs privilégiés, fréquemment consulté sur les questions bancaires et chargé de rédiger chaque jour un rapport sur les événements financiers de la journée et l'état d'esprit des gens de Bourse. La confiance que Napoléon Bonaparte lui témoigne lui vaut bien des jalousies, à commencer par celle de Talleyrand. Sa seconde femme est Adele: Fille d'un premier commis des Finances, Adélaïde-Rosalie, dite Juliette Collart-Dutilleul, naquit en 1785. Elle devint la seconde épouse du comte Nicolas-François Mollien (1758-1850) en août 1802, quelques semaines avant que Talleyrand n'épouse Mme Grand.\n\nSon mari se fit remarquer par son aptitude à redresser l'état des finances publiques, comme ministre du Trésor Public, de 1806 à la chute de l'Empire et durant les Cents Jours. Il deviendra pair de France en 1819.\n\nNommé conseiller d'État en 1804, il remplace François de Barbé-Marbois comme ministre du Trésor en 1806, après une violente crise boursière. Ayant réussi à remettre sur pied des finances compromises, il est créé comte en 1808.",
-    "detailsLink": "Baudin536F.html",
-    "detailsLink_en": "Baudin536E.html"
+    "detailsLink": "",
+    "detailsLink_en": "Baudin045E.html"
   },
   {
     "code": "Baudin046",
@@ -1192,8 +1192,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin536F.html",
-    "detailsLink_en": "Baudin536E.html"
+    "detailsLink": "",
+    "detailsLink_en": "Baudin046E.html"
   },
   {
     "code": "Baudin047",
@@ -10618,10 +10618,10 @@
     "indigenousLanguage": "",
     "lat": -33.625,
     "lon": 115.31944,
-    "characteristic_fr": "La baie Géographe est une vaste échancrure située sur la côte sud-ouest de l’Australie occidentale. Elle doit son nom au navire proncipal de l’expédition, le Géographe, une appellation choisie par Baudin et, fait notable, validée dans la nomenclature adoptée par Péron comme par Freycinet. \nCe choix fait  écho à la nomenclature de l’expédition d’Entrecasteaux, dont la Baie de la Recherche commémorait elle aussi le bâtiment principal. Cette continuité souligne l’importance de la baie Géographe en tant que première découverte de l’expédition et premier lieu d’investigation — son « premier théâtre d’opérations » et, selon Freycinet, « le plus remarquable » site de la Terre de Leuwin.",
+    "characteristic_fr": "La baie Géographe est une vaste échancrure située sur la côte sud-ouest de l’Australie occidentale. Elle doit son nom au navire proncipal de l’expédition, le Géographe, une appellation choisie par Baudin et, fait notable, validée dans la nomenclature adoptée par Péron et Freycinet. \nCe choix fait  écho à la nomenclature de l’expédition d’Entrecasteaux, dont la Baie de la Recherche commémorait elle aussi le bâtiment principal. Cette continuité souligne l’importance de la baie Géographe en tant que première découverte de l’expédition et premier lieu d’investigation — son « premier théâtre d’opérations » et, selon Freycinet, « le plus remarquable » site de la Terre de Leuwin.",
     "characteristic": "Geographe Bay is a broad indentation on the south-west coast of Western Australia. It takes its name from the expedition’s principal vessel, the Géographe, a designation chosen by Baudin and, significantly, one that was retained in the nomenclature adopted by both Péron and Freycinet.\nThe choice echoes the naming practice of the d’Entrecasteaux expedition, whose Baie de la Recherche also commemorated its own lead vessel. This continuity underscores the significance of Géographe Bay as the expedition’s earliest discovery and primary site of investigation—its “first theatre of operation” and, in Freycinet’s words, “the most remarkable” locality along the Land of Leeuwin.",
-    "history_fr": "Le Géographe était une corvette de la classe Serpente, armée de vingt canons. Lancé sous le nom d’Uranie en 1797, puis rebaptisé Galatée en 1799, le navire ne fut cependant pas immédiatement mis à l’eau : son constructeur, qui n’avait pas été payé, s’y refusa jusqu’à ce qu’il fût acquis pour les besoins de l’expédition. Il reçut alors le nom de Géographe. Après son retour en France en 1804, le bâtiment fut désarmé en décembre 1807, tout en continuant à servir comme navire de service.\nC’est dans cette baie que, entre les 30 et 31 mai, puis le 10 juin 1801, les premiers débarquements de l’expédition eurent lieu, donnant lieu aux premières reconnaissances à terre en Terres australes ainsi qu’aux premières rencontres consignées avec les habitants aborigènes.",
-    "history": "The Géographe was a twenty-gun corvette of the Serpente class. Launched under the name Uranie in 1797 and renamed Galatée in 1799, the vessel was not, however, immediately put afloat: her builder, having not been paid, refused to launch her until she was purchased for the purposes of the expedition. It was then that she received the name Géographe. After returning to France in 1804, the ship was decommissioned in December 1807, though it continued to serve thereafter as a service vessel.\nIt was in this bay, on 30 and 31 May and again on 10 June 1801, that the expedition made its first landings, marking both its earliest onshore reconnaissance in the southern lands and its first recorded encounters with Aboriginal inhabitants.",
+    "history_fr": "La baie du Géographe occupe une place particulière dans le déroulement de l’expédition Baudin. C’est là que furent effectués, les 30 et 31 mai puis le 10 juin 1801, les premiers débarquements de l’expédition en Terres australes. Ces reconnaissances à terre furent aussi l’occasion des premières rencontres consignées avec les habitants aborigènes.\nMais la baie fut également associée à l’un des épisodes nautiques les plus éprouvants du voyage. Baudin y signale, selon ses propres mots, « sans contredit, le plus mauvais temps que nous eussions eu depuis notre départ de France ». Le 10 juin 1801, la tempête sépara les deux corvettes de l’expédition. Malgré les points de rendez-vous fixés à Rottnest Island puis à Shark Bay, Le Géographe et Le Naturaliste ne réussirent pas à se rejoindre et ne se retrouvèrent que le 21 septembre 1801, à Timor.",
+    "history": "Geographe Bay occupies a distinctive place in the course of the Baudin expedition. It was there, on 30 and 31 May and again on 10 June 1801, that the expedition made its first landings in the Southern Lands. These shore reconnaissances also gave rise to the first recorded encounters with Aboriginal inhabitants.\nThe bay was also associated with one of the most trying nautical episodes of the voyage. Baudin described the weather encountered there as, in his own words, “without question, the worst weather we had experienced since our departure from France.” On 10 June 1801, the storm separated the expedition’s two corvettes. Despite the rendezvous points that had been agreed upon in the event of separation — Rottnest Island and then Shark Bay — Le Géographe and Le Naturaliste failed to rejoin one another and met again only on 21 September 1801, at Timor.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/G%C3%A9ographe_(corvette)",
     "wiki_en": "https://en.wikipedia.org/wiki/French_corvette_G%C3%A9ographe",
     "imgUrl": "",
@@ -13932,8 +13932,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (à la Nouvelle-Hollande) (3e feuille), dressée par Louis-Claude de Freycinet. Voyage de découvertes aux terres australes, partie Navigation et géographie, atlas, planche 27, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Chart of part of Witt Land (in New Holland) (sheet 3), drawn by Louis-Claude de Freycinet. Voyage of Discovery to the Southern Lands, Navigation and Geography section, atlas, plate 27, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin536F.html",
-    "detailsLink_en": "Baudin536E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin537",
