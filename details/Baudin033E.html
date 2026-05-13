@@ -1,123 +1,152 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Baie de Rivoli – Rivoli Bay
-  </title>
-  <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
-  <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baie de Rivoli - Rivoli Bay</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon16.png">
   <style>
-   body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 2em 1.5em;
-            background-color: #fdfdfd;
-        }
-        .document-header {
-            text-align: center;
-            margin: 1.5em 0 2em;
-        }
-        .document-header p {
-            margin: 0.2em 0;
-            font-weight: 600;
-        }
-        figure {
-            margin: 2.5em 0;
-            text-align: center;
-        }
-        figure img {
-            width: 100%;
-            max-width: 720px;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        figure figcaption {
-            margin-top: 0.8em;
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555;
-        }
-        figure figcaption p {
-            margin: 0.25em 0;
-        }
-        .main-text {
-            text-align: justify;
-            margin-bottom: 2em;
-        }
-        .main-text p {
-            margin: 0 0 1em;
-        }
-        .references-section {
-            border-top: 1px solid #ccc;
-            padding-top: 1em;
-            margin-top: 2em;
-            font-size: 0.95em;
-        }
-        .references-section h2 {
-            font-size: 1.2em;
-            font-style: normal;
-        }
-        .references-section ul {
-            list-style: disc;
-            padding-left: 1.5em;
-            margin: 0.5em 0 0;
-        }
-        .references-section li {
-            margin: 0.4em 0;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    body {
+      margin: 0;
+      padding: 2em 1.5em;
+      color: #222;
+      background: #fdfdfd;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    .document-header {
+      margin: 0 0 1.8em;
+      text-align: center;
+    }
+
+    .document-header p {
+      margin: 0.15em 0;
+    }
+
+    .detail-title,
+    .detail-subtitle {
+      font-family: "Aptos Display", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    figure {
+      margin: 0 0 1.8em;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+      color: #333;
+    }
+
+    figure img {
+      width: min(100%, 543px);
+      height: auto;
+      max-width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    .wide-figure img {
+      width: min(100%, 378px);
+    }
+
+    figcaption {
+      margin: 0.8em auto 0;
+      max-width: 42em;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .main-text {
+      margin: 0 auto 2em;
+      max-width: 72ch;
+      text-align: justify;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 0.96rem;
+    }
+
+    .main-text p {
+      margin: 0 0 1em;
+    }
+
+    .references-section {
+      max-width: 72ch;
+      margin: 2em auto 0;
+      padding-top: 1em;
+      border-top: 1px solid #ccc;
+      font-family: "Speak Pro", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .references-section h2 {
+      margin: 0 0 0.5em;
+      font-size: 1rem;
+    }
+
+    .references-section p {
+      margin: 0 0 0.5em;
+    }
+
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
- </head>
- <body>
+</head>
+<body>
+  <header class="document-header">
+    <p class="detail-title">Baie de Rivoli - Rivoli Bay</p>
+    <p class="detail-subtitle">Cap de Rivoli - Wedge Island Lighthouse</p>
+    <p class="detail-subtitle">Îles de Rivoli - Rivoli Islands</p>
+  </header>
+
   <figure>
-   <img alt="" src="Baudin033E_html_d34a2515.jpg"/>
+    <img src="Baudin033E_html_image001.jpg" alt="Print of the Battle of Rivoli">
+    <figcaption>
+      Battle of Rivoli: won on 25 and 26 Nivôse Year V under the command of General-in-Chief Bonaparte, print, 1797, in <i>Recueil. Collection de Vinck. Un siècle d'histoire de France par l'estampe, 1770-1870. Vol. 50 (pièces 6797-6938), Directoire, Consulat et Empire</i>.<br>
+      <strong>Source:</strong> Bibliothèque nationale de France.<br>
+      <a href="http://catalogue.bnf.fr/ark:/12148/cb40251795j" target="_blank" rel="noopener noreferrer">http://catalogue.bnf.fr/ark:/12148/cb40251795j</a>
+    </figcaption>
   </figure>
-  <figure>
-   <img alt="" src="Baudin033E_html_487aaeb5.png"/>
+
+  <figure class="wide-figure">
+    <img src="Baudin033E_html_image002.png" alt="Manuscript chart showing Rivoli Bay">
+    <figcaption>
+      <strong>Rivoli Bay</strong> was surveyed on 6 April 1802. Its name appears in pencil on this section of the fair manuscript chart entitled <i>Carte de la Côte Sud Ouest de la Nouvelle Hollande, dressée à bord de la Corvette Le Géographe, Cinquième feuille</i> — Map of the South-West Coast of New Holland, drawn up on board the Corvette <i>Le Géographe</i>, Fifth Sheet — now held by the Archives nationales de France under the reference ANF/MAP/6JJ/4/B, pièce 79.<br>
+      <a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_429" target="_blank" rel="noopener noreferrer">https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_429</a>
+    </figcaption>
   </figure>
-  <div class="main-text">
-   <p>
-    Battle of Rivoli: won on 25 and 26 Nivose year 5 under the command of General-in-Chief Bonaparte, print, 1797, in  Recueil. Collection de Vinck. Un siècle d'histoire de France par l'estampe, 1770-1870. Vol. 50 (pièces 6797-6938), Directoire, Consulat et Empire Source :  Bibliothèque nationale de France
-    <a href="http://catalogue.bnf.fr/ark:/12148/cb40251795j">
-     http://catalogue.bnf.fr/ark:/12148/cb40251795j
-    </a>
-   </p>
-   <p>
-    Rivoli Bay, surveyed on 6 April 1802, entitled ‘Carte de la Côte Sud Ouest de la Nouvelle Hollande, dressée à bord de la Corvette le Géographe, Cinquième feuille’ (Map of the South West Coast of New Holland, drawn up on board the Corvette le Géographe , Fifth sheet), manuscript cartographic document, ANF/ MAP/6JJ/4/B piece 79 Source : Archives nationales de France :
-    <a href="https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_429">
-     https://www.siv.archives-nationales.culture.gouv.fr/siv/UD/FRAN_IR_060973/map6JJ_429
-    </a>
-   </p>
-   <p>
-    While Péron was working on the new nomenclature of the voyage, Napoleon had a commemorative monument erected in 1806 on the battlefield at Rivoli — a twenty-metre-high column. It was, however, demolished by the Austrians in 1814. Further information: Baudin called this bay ‘Baie de Quiberon’ (the name of a peninsula in Britany). He also named a reef in the bay ‘La Chaussee’ (The Pavement) which, according to Péron, was detected at the very last moment before the ship was going to run aground, which would have resulted in shipwreck with dire consequences for the crew. The outer part of this reef and other rocky patches are now forming part of Ringwood reef. A group of islands in Western Australia also bear the name of the battle, ‘Ȋles de Rivoli’.
-   </p>
-  </div>
+
+  <main class="main-text">
+    <p>In the commemorative nomenclature composed by François Péron in honour of Napoleon Bonaparte, the name <b>Rivoli</b> naturally imposed itself. It is thus found in three Australian toponyms: a bay, a cape, and a group of islands.</p>
+
+    <p>The Battle of Rivoli, won on 14 and 15 January 1797 — 25 and 26 Nivôse Year V — under the command of General-in-Chief Bonaparte, was regarded as one of the most brilliant victories of the first Italian campaign. It brought the Austrian offensive in northern Italy to an end and helped open the road towards Austria for the Republican armies. The memory of this victory was rapidly disseminated through prints and commemorative imagery, as shown by the 1797 engraving entitled <i>Bataille de Rivoli les 25 et 26 nivôse an 5</i>, held by the Bibliothèque nationale de France.</p>
+
+    <p>Rivoli thus occupied a central place in the making of Bonaparte’s military glory. Masséna’s intervention, whose division reached the battlefield after a forced march, contributed decisively to the French success; in 1808, Napoleon granted him the title <b>Duke of Rivoli</b> in memory of his role in the victory. The name was also given to the great Parisian thoroughfare opened under the Consulate along the Tuileries and the Louvre: the <b>Rue de Rivoli</b>, so named in 1804 in memory of Bonaparte’s victory over the Austrians.</p>
+
+    <p>Péron’s choice therefore did not merely identify a coastal feature, a headland, or an island group. By substituting <b>Rivoli</b> for the names proposed by Baudin, he inscribed the Australian coast within a French national narrative shaped by the Revolutionary Wars, military victory, and the emergence of the cult of Bonaparte. The bay thus became a site of Napoleonic memory, transported into the geography of the southern hemisphere.</p>
+
+    <p>This logic contrasted sharply with that of Nicolas Baudin. Baudin had, for example, named the bay <b>Baie de Quiberon</b>, after the Breton peninsula, and had given a reef within the bay the name <b>La Chaussée</b>. These names followed a more geographical and nautical logic: <b>Quiberon</b> evoked a familiar coastal form in the French landscape, while <b>La Chaussée</b> described a dangerous shoal, a kind of rocky pavement. According to Péron, this reef was sighted at the very last moment, when <i>Le Géographe</i> was at risk of running aground, with consequences that might have been disastrous for the crew. The outer part of this reef, together with other rocky outcrops, now forms part of <b>Ringwood Reef</b>.</p>
+
+    <p>Rivoli’s place in Napoleonic memory was further confirmed in 1806, when Napoleon had a commemorative column about eighty feet high erected on the battlefield. The monument was destroyed by the Austrians in 1814. This official commemoration helps explain why the name <b>Rivoli</b> found such a natural place in Péron’s list of names chosen to honour Bonaparte.</p>
+  </main>
+
   <section class="references-section">
-   <h2>
-    References
-   </h2>
-   <ul>
-    <li>
-     Péron, F &amp; Freycinet (Desaultes de), L-C (2006) Voyage of Discovery to the Southern Lands (translated from the French by Christine Cornell), vol. 1, two vols., Friends of the State Library of South Australia, Adelaide, pp.255, 103
-    </li>
-    <li>
-     Bourman, R.P., Murray-Wallace, C.V., Harvey, N. (2016) Coastal Landscapes of South Australia. University of Adelaide Press, p.158
-    </li>
-   </ul>
+    <h2>References</h2>
+    <p>Péron, F. &amp; Freycinet (Desaultes de), L.-C. (2006), <i>Voyage of Discovery to the Southern Lands</i>, translated from the French by Christine Cornell, vol. 1, Friends of the State Library of South Australia, Adelaide, pp. 103, 255.</p>
+    <p>Bourman, R. P., Murray-Wallace, C. V. &amp; Harvey, N. (2016), <i>Coastal Landscapes of South Australia</i>, University of Adelaide Press, p. 158.</p>
+    <p><i>Bataille de Rivoli les 25 et 26 nivôse an 5</i>, print, 1797, in <i>Recueil. Collection de Vinck. Un siècle d’histoire de France par l’estampe, 1770–1870</i>, vol. 50, Directoire, Consulat et Empire, Bibliothèque nationale de France.</p>
+    <p>Boycott-Brown, Martin (2001), <i>The Road to Rivoli: Napoleon’s First Campaign</i>, London, Cassell.</p>
   </section>
- </body>
+</body>
 </html>
