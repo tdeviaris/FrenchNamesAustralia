@@ -10838,8 +10838,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "\"Carte d'une partie des Terres de Leuwin et d'Edels (a la Nouvelle Hollande)\" by Freycinet, Louis & al., in Voyage de découvertes aux Terres australes partie navigation et géographie, atlas (op.cit.), 1812, Plate 21. The map was drawn based on bearings taken in June 1801 and completed in mars 1803.\nSource : National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": "Baudin417E.htlm"
+    "detailsLink": "Baudin526F.htlm",
+    "detailsLink_en": "Baudin526E.htlm"
   },
   {
     "code": "Baudin418",
@@ -11239,7 +11239,7 @@
     "variantName": "",
     "ausEName": "Gantheaume Bay ",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Nanda / Nhanda Country",
     "lat": -27.70542,
     "lon": 114.1517,
     "characteristic_fr": "La baie de Gantheaume, à l'embouchure de la rivière Murchison, où se trouve la ville de Kalbarri, a été nommée en l'honneur de l'amiral français Ganteaume (voir le cap Gantheaume, sur l'île Kangourou, et également la pointe Gantheaume, près de Broome).",
@@ -13527,7 +13527,7 @@
     "variantName": "",
     "ausEName": "Gantheaume Bay",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Yawuru Country.",
     "lat": -17.97334,
     "lon": 122.17574,
     "characteristic_fr": "L’Île Gantheaume ne correspond pas, à proprement parler, à une île ; sa position sur l’atlas de Louis-Claude de Saulces de Freycinet correspond en réalité à une baie située au sud de Broome, bordée par une plateforme récifale intertidale de beachrock formant un linéaire côtier rectiligne.\nCette appellation renvoie à Honoré Joseph Antoine Ganteaume (voir les notices cap Gantheaume, en Australie-Méridionale, et baie Gantheaume, en Australie-Occidentale, au sud de Shark Bay), qui commandait la flotte partie de Toulon pour rejoindre l’expédition de Saint-Domingue ($Saint-Domingue expedition$Saint-Domingue_expedition$).",
@@ -13672,8 +13672,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 2me feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, planche 26, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 2, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, plate 26, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin417F.html",
-    "detailsLink_en": "Baudin417E.html"
+    "detailsLink": "Baudin526F.html",
+    "detailsLink_en": "Baudin526E.html"
   },
   {
     "code": "Baudin527",
