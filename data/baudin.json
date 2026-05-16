@@ -100,8 +100,8 @@
     "mapTitle_fr": "« Carte générale du détroit de Bass », par Louis-Claude Desaulses de Freycinet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 6, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "Carte générale du Détroit de Bass ’ by Freycinet, L., in Voyage de Découvertes aux Terres australes Navigation et Géographie, Atlas, 1812. Op. cit., plate6\n Source: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Baudin525F.html",
-    "detailsLink_en": "Baudin525E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin005",
@@ -568,8 +568,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Abraham Duquesne, l'un des grands officiers de la marine de guerre française du XVIIe siècle.",
-    "detailsLink": "Baudin525F.html",
-    "detailsLink_en": "Baudin525E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin023",
@@ -8706,8 +8706,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "1736-1806 Ingénieur de formation, il est surtout physicien. Il publie 7 traités sur l'électricité et le magnétisme, et d'autres sur le phénomène de torsion, les frottements solides",
-    "detailsLink": "Baudin525F.html",
-    "detailsLink_en": "Baudin525E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin336",
@@ -10838,8 +10838,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "\"Carte d'une partie des Terres de Leuwin et d'Edels (a la Nouvelle Hollande)\" by Freycinet, Louis & al., in Voyage de découvertes aux Terres australes partie navigation et géographie, atlas (op.cit.), 1812, Plate 21. The map was drawn based on bearings taken in June 1801 and completed in mars 1803.\nSource : National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Baudin526F.html",
-    "detailsLink_en": "Baudin526E.html"
+    "detailsLink": "Baudin526F.htlm",
+    "detailsLink_en": "Baudin526E.htlm"
   },
   {
     "code": "Baudin418",
@@ -13345,7 +13345,7 @@
     "variantName": "",
     "ausEName": "Cape Bossut",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Karajarri Country / Karajarri Ngurra",
     "lat": -18.70389,
     "lon": 121.61861,
     "characteristic_fr": "Le cap est bordé, en arrière, par une dune littorale instable, puis par l’estuaire du Cape Bossut Creek, ourlé de mangroves. Dans son récit, Freycinet note: \"Au N. du cap Duhamel commence un banc de sable et de roches qui borde la côte; une partie en est à sec, le reste est à fleur d’eau voyez le plan particulier, carte n.26.  La mer brise sur quelques points de ce banc, mais nulle part avec plus de force qu’aux environs du cap Bossut.\"\nCharles Bossut (1730–1814), abbé et mathématicien, occupa une place importante dans la culture scientifique des officiers de marine du XVIIIᵉ siècle. Son Traité théorique et expérimental d’hydrodynamique (en deux volumes) constituait une référence majeure pour l’étude des mouvements des fluides, question centrale pour l’architecture navale, la manœuvre et la navigation.",
@@ -13371,7 +13371,7 @@
     "variantName": "",
     "ausEName": "Geoffroy Bay",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Karajarri Country / Karajarri Ngurra",
     "lat": -18.90418,
     "lon": 121.57686,
     "characteristic_fr": "Freycinet notait: \"Les terres de la baie Desault sont basses et sablonneuses ; il en est de même de celles de la baie Geoffroy, dont l’étendue est d’ailleurs bien moins considérable. En général, toute la côte jusqu’au cap Duhamel offre la même constitution sablonneuse et la même stérilité; on doit en excepter cependant les caps et les pointes avancées qui sont formés de falaises de roches, mais sans aucune apparence de végétation.\"\nObservant le rivage depuis la Casuarina, Freycinet ne pouvait toutefois percevoir qu’en arrière de ce littoral en apparence désolé s’étendent d’importants systèmes de mangroves — milieux intertidaux d’une grande richesse et d’une forte valeur écologique — largement dissimulés à la vue depuis le large et difficilement perceptibles dans le cadre d’une reconnaissance hydrographique côtière.\nLa baie Géoffroy doit son nom soit à Lislet Geoffroy (voir la notice Cap Lislet en Tasmanie), soit, plus probablement, à Étienne Geoffroy Saint-Hilaire (1772–1844), professeur chargé des mammifères et des oiseaux, que le Muséum de Paris dépêcha pour prendre en charge l’ensemble des collections d’histoire naturelle et des objets ethnographiques rapportés par le Géographe en mars 1804.",
@@ -13397,7 +13397,7 @@
     "variantName": "",
     "ausEName": "Casuarina Reef",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Karajarri Country / Karajarri Ngurra",
     "lat": -18.69806,
     "lon": 121.57111,
     "characteristic_fr": "Le récif du Casuarina est un récif proche du rivage, situé au large du cap Bossut. Il doit son nom au Casuarina, goélette qui fut le troisième bâtiment de l’expédition Baudin et que Baudin plaça sous le commandement de Freycinet.\n",
@@ -13423,7 +13423,7 @@
     "variantName": "",
     "ausEName": "Lagrange Bay",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Karajarri Country / Karajarri Ngurra",
     "lat": -18.65195,
     "lon": 121.70214,
     "characteristic_fr": "Freycinet écrit : « Dans l’E. du cap Bossut est un enfoncement dont nous n’avons aperçu que l’ouverture ; nous lui donnâmes le nom de baie Lagrange. »\nLa baie Lagrange est une indentation du littoral située dans la région du Kimberley, en Australie-Occidentale, au sud de Broome. Le paysage côtier y est essentiellement plat et bas, caractéristique des rivages sableux et faiblement élevés de cette portion de la côte nord-ouest australienne.\nLe toponyme rend hommage au mathématicien Giuseppe Lodovico Lagrangia, plus connu sous le nom de Joseph-Louis de Lagrange (1736–1813). Né à Turin, alors capitale du royaume de Sardaigne, Lagrange fut néanmoins considéré comme citoyen français — statut qui correspondait également à son propre souhait, la branche paternelle de sa famille étant d’origine française. Lagrange fut l’une des grandes figures scientifiques de l’Europe des Lumières et ses travaux en mécanique et en analyse mathématique exercèrent une influence durable sur les sciences exactes.\n",
@@ -13449,7 +13449,7 @@
     "variantName": "",
     "ausEName": "Cape Latouche Treville",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Karajarri Country / Karajarri Ngurra",
     "lat": -18.44334,
     "lon": 121.84019,
     "characteristic_fr": "Situé sur la côte du Kimberley, ce cap se distingue par des affleurements rocheux intertidaux saillants, qui en marquent l’extrémité et traduisent les dynamiques morphologiques du littoral.\nCe promontoire porte le nom de Louis René Madeleine Le Vassor de La Touche-Tréville, officier de marine français qui commanda l’escadre partie de Rochefort à destination de $l’expédition de Saint-Domingue$Expédition_de_Saint-Domingue$. De retour en France, il exerça ensuite le commandement de la flotte méditerranéenne à Toulon, où il termina sa carrière.",
@@ -13475,7 +13475,7 @@
     "variantName": "",
     "ausEName": "Cape Gourdon",
     "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousLanguage": "Karajarri Country / Karajarri Ngurra",
     "lat": -18.40445,
     "lon": 121.98241,
     "characteristic_fr": "Le cap Gourdon correspond à un petit promontoire côtier escarpé, qui sépare des plages sableuses au sud de Broome.\nCette appellation renvoie à Antoine Louis Gourdon (1765-1833), qui commandait la division navale de Port-de-Paix dans le cadre de l’expédition de Saint-Domingue ($Saint-Domingue expedition$Saint-Domingue_expedition$).",
@@ -13500,8 +13500,8 @@
     "frenchName": "Cap Villaret",
     "variantName": "",
     "ausEName": "Cape Villaret",
-    "indigenousName": "",
-    "indigenousLanguage": "",
+    "indigenousName": "Miriny",
+    "indigenousLanguage": "Yawuru Nagulagun, or Yawuru sea country",
     "lat": -18.32528,
     "lon": 122.06519,
     "characteristic_fr": "Le cap Villaret correspond à un promontoire côtier s’inscrivant au sein d’un paysage de dunes sableuses et de formations arbustives littorales sur la côte du Kimberley.\n\nCette appellation renvoie à Louis Thomas Villaret de Joyeuse (1747-1812), connu à partir de 1792 sous le nom de Villaret-Joyeuse, qui commandait la flotte partie de Brest pour rejoindre l’expédition de Saint-Domingue ($Saint-Domingue expedition$Saint-Domingue_expedition$).",
@@ -13646,8 +13646,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 2me feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, planche 26, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 2, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, plate 26, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin525F.html",
-    "detailsLink_en": "Baudin525E.html"
+    "detailsLink": "Baudin525F,rtf",
+    "detailsLink_en": "Baudin525E,rtf"
   },
   {
     "code": "Baudin526",
