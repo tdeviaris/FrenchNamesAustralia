@@ -3740,8 +3740,8 @@
     "mapTitle_fr": "Esquisse de Port Champagny / Port Lincoln, indiquant la route du Casuarina, lle Lagrange et les sondes, MAP/6JJ/5/B, pièce 127.\nSource : Archives nationales de France.",
     "mapTitle_en": "Sketch of Port Champagny / Port Lincoln, Ile Lagrange / Boston Island and showing the route of the Casuarina and soundings, MAP/6JJ/5/B, item 127.\nSource: National Archives of France.",
     "origin_fr": "Joseph Louis, comte de Lagrange (en italien Giuseppe Lodovico de Lagrangia), né à Turin le 25 janvier 1736 et mort àParis le 10 avril 1813 (à 77 ans), est un mathématicien, mécanicien et astronome. Italien, il passa trente ans dans lePiémont, puis vingt-et-un ans à Berlin, et le restant de ses jours à Paris.",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin517F.html",
+    "detailsLink_en": "Baudin517E.html"
   },
   {
     "code": "Baudin145",
@@ -6288,8 +6288,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Gabriel-Adrien-Marie Poissonier Desperrieres est un général de brigade français né le 12 janvier 1763 et mort le 13 mai 1852.",
-    "detailsLink": "Baudin505F.html",
-    "detailsLink_en": "Baudin505E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin243",
@@ -13064,7 +13064,7 @@
     "lon": 119.0991,
     "characteristic_fr": "Le cap Larrey est situé sur la côte méridionale de la région du Kimberley, au nord-est de Port Hedland, à l’embouchure de la rivière Shaw.\nIl doit son nom à Dominique Jean Larrey, considéré comme le père de la médecine militaire moderne.",
     "characteristic": "Cape Larrey is located on the southern coast of the Kimberley region, north-east of Port Hedland, at the mouth of the Shaw River.\nIt is named after Dominique Jean Larrey, widely regarded as the father of modern military medicine.",
-    "history_fr": "Freycinet note que le Geographe et le casuarina ont trop souvent navigué à une grande distance des côtes pour qu’il fût toujours possible de bien observer. la forme précise des terres, mais que le cap Larrey doit etre regarder comme un point exact sur cette côte, avec îlots des Tortues et le cap Kéraudren.",
+    "history_fr": "Freycinet note que le Géographe et le Casuarina ont trop souvent navigué à grande distance des côtes pour qu’il fût toujours possible d’observer avec précision la forme des terres. Il précise toutefois que le cap Larrey doit être considéré comme un point sûr de cette côte, au même titre que les îlots des Tortues et le cap Kéraudren.",
     "history": "Freycinet notes that Le Géographe and the Casuarina too often sailed at a considerable distance from the coast for it to have been possible to observe the precise form of the land in all cases, but that Cape Larrey should nevertheless be regarded as a reliable fixed point along this coast, together with the Turtle Islets and Cape Kéraudren.",
     "wiki_fr": "",
     "wiki_en": "",
@@ -13126,8 +13126,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 1ʳᵉ feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, planche 25, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 1, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, plate 25, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin505F.html",
-    "detailsLink_en": "Baudin505E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin506",
