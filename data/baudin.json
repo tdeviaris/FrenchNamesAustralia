@@ -100,8 +100,8 @@
     "mapTitle_fr": "« Carte générale du détroit de Bass », par Louis-Claude Desaulses de Freycinet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 6, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "Carte générale du Détroit de Bass ’ by Freycinet, L., in Voyage de Découvertes aux Terres australes Navigation et Géographie, Atlas, 1812. Op. cit., plate6\n Source: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Baudin491F.html",
-    "detailsLink_en": "Baudin491E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin005",
@@ -568,8 +568,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Abraham Duquesne, l'un des grands officiers de la marine de guerre française du XVIIe siècle.",
-    "detailsLink": "Baudin491F.html",
-    "detailsLink_en": "Baudin491E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin023",
@@ -2102,8 +2102,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Les Molé sont une illustre famille de parlementaires originaires de Troyes, fixés à Paris au xvie siècle. Ils sont issus de Nicolas Molé, surintendant de Champagne, nommé en 1519au Parlement de Paris. Louis Mathieu Molé (1781-1855), fils du précédent, fut Grand-Juge et ministre de la Justice sous Napoléon Ier et Premier ministre de Louis-Philippe Ier.\nLa famille Molé est éteinte dans les mâles avec Louis Mathieu Molé. La petite-fille et unique héritière de celui-ci, Clotilde de la Ferté-Meun, épousa le duc de Noailles.",
-    "detailsLink": "Baudin489F.html",
-    "detailsLink_en": "Baudin489E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin082",
@@ -2128,8 +2128,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin489F.html",
-    "detailsLink_en": "Baudin489E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin083",
@@ -3151,15 +3151,15 @@
     "state": "SA",
     "frenchName": "Cap Legendre",
     "variantName": "",
-    "ausEName": "Cap Legendre",
+    "ausEName": "No registered English name for this place",
     "indigenousName": "",
     "indigenousLanguage": "",
-    "lat": 0,
-    "lon": 0,
+    "lat": -33.98911,
+    "lon": 136.50711,
     "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Adrien-Marie Legendre (18 septembre 1752 – 9 janvier 1833) est un mathématicien français.",
-    "history": "Adrien-Marie Legendre (18 September 1752 – 9 January 1833) was a French mathematician.",
+    "characteristic": "On the current map, the place name Cap Legendre is shown north of Baie Fontanes. However, on Freycinet’s map, the cape is positioned to the south of the bay. The cape identified by the French may correspond to the rocky headland, rising up to 10 meters high, located south of Cowleys Beach, or the estuary of the River Driver. \nAdrien-Marie Legendre, (1752-1833, spelt sometimes Le Gendre) was a mathematician. His book Elements of Geometry (1794) was one of the fundamental works that the officers, engineers, and geographers of the time had to study.",
+    "history_fr": "Dans son récit, Freycinet signale qu’à cet endroit la côte s’infléchit davantage vers le sud. Il décrit des terres de faible hauteur, mais bordées de rives escarpées. Cette impression de côte abrupte est renforcée par les sondages : à moins d’un mille du rivage, la sonde ne trouvait parfois pas le fond à 8 ou 9 brasses, soit environ 15 à 16 mètres.",
+    "history": "In his narrative, Freycinet notes that at this point the coast turns more markedly southwards. He describes the land as low, but bordered by steep shores. This impression of an abrupt coastline is reinforced by the soundings: less than one mile from the shore, the sounding line sometimes failed to find bottom at 8 or 9 fathoms, or about 15 to 16 metres.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Adrien-Marie_Legendre",
     "wiki_en": "https://en.wikipedia.org/wiki/Adrien-Marie_Legendre",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Adrien-Marie_LEGENDRE%2C_math%C3%A9maticien_fran%C3%A7ais_du_XIX%C3%A8me_si%C3%A8cle.jpg",
@@ -5118,8 +5118,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre Napoléon, à la Nouvelle-Hollande, 5me feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de MM. H. Freycinet et Bernier, avril 1802, janvier et février 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 17, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of part of Terre Napoléon, in New Holland, 5th sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Messrs H. Freycinet and Bernier, April 1802, January and February 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 17, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "Jean-Baptiste Joseph Delambre, né à Amiens le 19 septembre 1749 et mort à Paris le 19 août 1822, est un astronome etmathématicien français.",
-    "detailsLink": "Baudin491F.html",
-    "detailsLink_en": "Baudin491E.html"
+    "detailsLink": "Baudin491F.rtf",
+    "detailsLink_en": "Baudin491E.rtf"
   },
   {
     "code": "Baudin198",
@@ -5404,8 +5404,8 @@
     "mapTitle_fr": "Carte de l’île Decrès (à la Terre Napoléon, Nouvelle-Hollande) / rédigée par L. Freycinet, commandant la goélette Le Casuarina, d’après ses observations et les travaux de M. Boullanger, ingénieur hydrographe, avril 1802 et janvier 1803, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 15, Paris, 1812 (sic ; publié en 1815).\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Île Decrès (in Terre Napoléon, New Holland) / drawn up by L. Freycinet, commander of the schooner Le Casuarina, from his observations and the work of M. Boullanger, hydrographic engineer, April 1802 and January 1803, in Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 15, Paris, 1812 (sic; published in 1815).\nSource: National Library of Australia.",
     "origin_fr": "Jean-Baptiste Joseph Delambre, né à Amiens le 19 septembre 1749 et mort à Paris le 19 août 1822, est un astronome etmathématicien français.",
-    "detailsLink": "Baudin491F.html",
-    "detailsLink_en": "Baudin491E.html"
+    "detailsLink": "Baudin491.rtf",
+    "detailsLink_en": "Baudin491E.rtf"
   },
   {
     "code": "Baudin209",
@@ -9164,7 +9164,7 @@
     "lon": 147.99972,
     "characteristic_fr": "Cape Hauy est situé dans le Tasman National Park, sur la péninsule de Tasman, en Tasmanie. Le cap est célèbre pour ses hautes falaises maritimes de dolérite et pour ses formations rocheuses spectaculaires, notamment the Totem Pole et the Candlestick, deux aiguilles ou piles rocheuses très connues des grimpeurs.\nLe cap fut nommé par les Français en l’honneur de René-Just Haüy (1743-1822), minéralogiste et cristallographe français, souvent considéré comme le père de la cristallographie moderne.",
     "characteristic": "Cape Hauy lies within Tasman National Park, on Tasmania’s Tasman Peninsula. It is famous for its towering dolerite sea cliffs and for spectacular rock formations such as the Totem Pole and the Candlestick, two sea stacks well known to rock climbers.\nThe cape was named by the French in honour of René-Just Haüy (1743–1822), the French mineralogist and crystallographer often regarded as the father of modern crystallography.",
-    "history_fr": "Freycinet note que le cap Hauy, comme plusieurs autres caps de cette partie de la côte, paraît formé d’une multitude de colonnes basaltiques réunies en faisceaux. Péron en donne une description plus dramatique et fortement imagée. Après avoir évoqué le cap Pillar, il écrit :\nDans le cap Pillar, la même constitution, les mêmes déchirures se reproduisent : on les retrouve plus horribles encore dans le cap qui gît à l’ouest des rochers d’Hippolyte, et que nous nommâmes cap Haüy, en l’honneur du minéralogiste célèbre de ce nom. À la distance de quelques milles, ce cap remarquable se présente comme un immense jeu d’orgues reposant à la surface des eaux. »\nCette description fait du cap Haüy un paysage minéral presque architectural, où les colonnes de roche évoquent les tuyaux d’un orgue monumental surgissant de la mer. Le choix du nom de René-Just Haüy, fondateur de la cristallographie moderne, prend ici un sens particulièrement approprié : le cap lui-même apparaît comme une démonstration naturelle de formes géométriques et de structures minérales.",
+    "history_fr": "Freycinet note que le cap Haüy, comme plusieurs autres caps de cette partie de la côte, paraît formé d’une multitude de colonnes basaltiques réunies en faisceaux. Péron en donne une description plus dramatique et fortement imagée. Après avoir évoqué le cap Pillar, il écrit :\nDans le cap Pillar, la même constitution, les mêmes déchirures se reproduisent : on les retrouve plus horribles encore dans le cap qui gît à l’ouest des rochers d’Hippolyte, et que nous nommâmes cap Haüy, en l’honneur du minéralogiste célèbre de ce nom. À la distance de quelques milles, ce cap remarquable se présente comme un immense jeu d’orgues reposant à la surface des eaux. »\nCette description fait du cap Haüy un paysage minéral presque architectural, où les colonnes de roche évoquent les tuyaux d’un orgue monumental surgissant de la mer. Le choix du nom de René-Just Haüy, fondateur de la cristallographie moderne, prend ici un sens particulièrement approprié : le cap lui-même apparaît comme une démonstration naturelle de formes géométriques et de structures minérales.",
     "history": "Freycinet notes that Cape Hauy, like several other capes along this part of the coast, appeared to be formed of a multitude of basaltic columns gathered into bundles. Péron offers a more dramatic and highly visual description. After referring to Cape Pillar, he writes:\n“At Cape Pillar, the same constitution and the same fractures occur again; they are found in an even more dreadful form in the cape lying west of the Hippolyte Rocks, which we named Cape Haüy, in honour of the celebrated mineralogist of that name. From a distance of a few miles, this remarkable cape appears like an immense set of organ pipes resting on the surface of the waters.”\nThis description turns Cape Hauy into an almost architectural mineral landscape, where columns of rock suggest the pipes of a monumental organ rising from the sea. The choice of René-Just Haüy’s name, as the founder of modern crystallography, is therefore especially apt: the cape itself appears as a natural demonstration of geometrical forms and mineral structures.",
     "wiki_fr": "",
     "wiki_en": "",
@@ -9174,8 +9174,8 @@
     "mapTitle_fr": "Carte particulière de la côte sud-est de la Terre de Diemen / dressée par L. Freycinet d’après ses observations et celles de MM. H. Freycinet, Faure et Boullanger, février 1802. Dans l’Atlas du Voyage de découvertes aux Terres australes, partie Navigation et géographie, planche 4, Paris, 1812 [sic ; publié en 1815]",
     "mapTitle_en": "Detailed chart of the south-eastern coast of Van Diemen’s Land / drawn by L. Freycinet from his own observations and those of Messrs H. Freycinet, Faure and Boullanger, February 1802. In the Atlas of the Voyage de découvertes aux Terres australes, Navigation et géographie section, plate 4, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "",
-    "detailsLink": "Baudin489F.html",
-    "detailsLink_en": "Baudin489E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin354",
@@ -9929,7 +9929,7 @@
     "mapTitle_en": "Detailed chart of the south-eastern coast of Van Diemen’s Land / drawn by L. Freycinet from his own observations and those of Messrs H. Freycinet, Faure and Boullanger, February 1802. In the Atlas of the Voyage de découvertes aux Terres australes, Navigation et géographie section, plate 4, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "",
     "detailsLink": "Baudin496F.html",
-    "detailsLink_en": "Baudin496E.html"
+    "detailsLink_en": "Baudin496F.html"
   },
   {
     "code": "Baudin383",
@@ -10578,8 +10578,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "“Chart of part of the Lands of Leuwin and Edels (New Holland)”, by Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson, and Bouclet, in Voyage of Discovery to the Southern Lands, section Navigation and Geography (Atlas), plate 21, 1812.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin495F.html",
-    "detailsLink_en": "Baudin495E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin408",
@@ -11644,8 +11644,8 @@
     "mapTitle_fr": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  par Freycinet, Louis & al. Voyage de découvertes aux Terres australes partie navigation et géographie, atlas, 1812, Planche 23.",
     "mapTitle_en": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  by Freycinet, Louis & al., in Voyage de découvertes aux Terres australes partie navigation et géographie, atlas, 1812, Plate 23.",
     "origin_fr": "",
-    "detailsLink": "Baudin498F.html",
-    "detailsLink_en": "Baudin498E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin449",
@@ -11748,8 +11748,8 @@
     "mapTitle_fr": "Esquisse de la « Carte de la baie des Chiens-Marins (Shark Bay de Dampier), à la Terre d’Endracht, Nouvelle-Hollande, dressée par L. Freycinet, commandant la Casuarina », sur laquelle figurent les routes des missions, les sondes bathymétriques, le mouillage du Naturaliste, ainsi que les toponymes, dont l'Entrée Depuch. MAP/6JJ/4/A, pièce 60.",
     "mapTitle_en": "Sketch of the “Chart of the Bay of Chiens-Marins (Dampier’s Shark Bay), on the Land of Eendracht, New Holland, drawn by Louis de Freycinet, commander of the Casuarina,” showing the routes of the survey missions, bathymetric soundings, the anchorage of the Naturaliste, and the toponyms, including Entrée Depuch. MAP/6JJ/4/A, item 60.",
     "origin_fr": "",
-    "detailsLink": "Baudin495F.html",
-    "detailsLink_en": "Baudin495E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin453",
@@ -12667,15 +12667,15 @@
     "state": "WA",
     "frenchName": "Île Legendre",
     "variantName": "",
-    "ausEName": "LEGENDRE ISLAND",
+    "ausEName": "Legendre Island",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -20.38806,
     "lon": 116.88056,
-    "characteristic_fr": "L’île Legendre est une île longue et étroite de l’archipel de Dampier, s’étendant sur environ 15,5 km de longueur et couvrant une superficie d’environ 1 344 hectares au-dessus du niveau des plus hautes marées. Sa rive méridionale se caractérise par de vastes hauts-fonds sableux peu profonds, qui la relient partiellement aux îles voisines, tandis que son flanc septentrional plonge rapidement vers des fonds dépassant 20 mètres de profondeur. L’île est constituée principalement de calcaires dunaires du Pléistocène, bordés de sables holocènes, ce qui en fait la plus vaste île calcaire de l’archipel de Dampier.\nElle porte le nom d’Adrien-Marie Legendre (1752–1833, parfois orthographié *Le Gendre*), mathématicien français de premier plan, dont les travaux ont exercé une influence durable sur la formation scientifique des ingénieurs et géographes du tournant des XVIIIᵉ et XIXᵉ siècles.\n",
-    "characteristic": "Legendre Island is a long, narrow island in the Dampier Archipelago, extending roughly 15.5 km in length and covering about 1,344 hectares above high-water mark. Its southern shores are characterised by extensive shallow sandy flats linking it to neighbouring islands, while its northern side drops steeply into deeper waters exceeding 20 metres. The island is composed primarily of Pleistocene dune limestone, fringed by Holocene sands, making it the largest limestone island in the Dampier Archipelago.\nIt has been named after Adrien-Marie Legendre, (1752-1833, spelt sometimes Le Gendre) was a mathematician.",
-    "history_fr": "Les Éléments de géométrie de Legendre (1794) comptaient parmi les ouvrages fondamentaux que devaient étudier les officiers, ingénieurs et géographes de l’époque. Largement diffusé dans l’enseignement scientifique supérieur, ce traité constituait un socle essentiel pour les pratiques de la mesure, de la navigation et de la cartographie. Legendre fut également examinateur en mathématiques à l’École polytechnique et a pu évaluer Boullanger lors des épreuves d’admission de 1795.\nMembre de l’Institut (section des mathématiques), Legendre fut ensuite élu, en 1813, au Bureau des longitudes, institution centrale pour le développement de l’astronomie, de la navigation et de la géodésie françaises.",
-    "history": "Legendre’s Éléments de géométrie (1794) was one of the foundational textbooks studied by officers, engineers, and geographers of the period. Widely used in advanced scientific training, it formed part of the mathematical culture essential to surveying, navigation, and cartography. Legendre also served as a mathematics examiner at the École polytechnique and may have examined Boullanger when the latter sat the entrance examinations in 1795.\nA member of the Institut (mathematical section), Legendre was later elected, in 1813, to the Bureau des longitudes, a key institution in the development of French astronomy, navigation, and geodesy.\n",
+    "characteristic_fr": "L’île Legendre est une île longue et étroite de l’archipel Dampier. Sa rive méridionale est bordée de vastes hauts-fonds sableux peu profonds, qui la relient partiellement aux îles voisines, tandis que son flanc septentrional descend rapidement vers des fonds de plus de 20 mètres. L’île est principalement constituée de calcaires dunaires du Pléistocène, bordés de sables holocènes, ce qui en fait la plus grande île calcaire de l’archipel Dampier.\nElle porte le nom d’Adrien-Marie Legendre (1752-1833, parfois orthographié Le Gendre), mathématicien français de premier plan. Ses travaux exercèrent une influence durable sur la formation scientifique des ingénieurs, hydrographes et géographes du tournant des XVIIIᵉ et XIXᵉ siècles.\n",
+    "characteristic": "L’île Legendre est une île longue et étroite de l’archipel de Dampier. Sa rive méridionale se caractérise par de vastes hauts-fonds sableux peu profonds, qui la relient partiellement aux îles voisines, tandis que son flanc septentrional plonge rapidement vers des fonds dépassant 20 mètres de profondeur. L’île est constituée principalement de calcaires dunaires du Pléistocène, bordés de sables holocènes, ce qui en fait la plus vaste île calcaire de l’archipel de Dampier.\nElle porte le nom d’Adrien-Marie Legendre (1752–1833, parfois orthographié *Le Gendre*), mathématicien français de premier plan, dont les travaux ont exercé une influence durable sur la formation scientifique des ingénieurs et géographes du tournant des XVIIIᵉ et XIXᵉ siècles.",
+    "history_fr": "Dans son récit, Freycinet décrit l’île Legendre comme « basse et stérile comme le reste de la côte ». Il observe aussi qu’à cet endroit le tracé du littoral change d’orientation : « Ici, les terres changent de direction et s’avancent au S. » Cette remarque correspond au secteur où la côte s’infléchit vers le sud, à l’entrée de la baie aujourd’hui connue sous le nom de Nickol Bay.",
+    "history": "In his narrative, Freycinet describes Legendre Island as “low and barren, like the rest of the coast”. He also notes that at this point the coastline changes direction: “Here, the land changes direction and advances southwards.” This observation corresponds to the area where the coast bends to the south, at the entrance to the bay now known as Nickol Bay.\n",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Adrien-Marie_Legendre",
     "wiki_en": "https://en.wikipedia.org/wiki/Adrien-Marie_Legendre",
     "imgUrl": "",
@@ -12684,8 +12684,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 1ʳᵉ feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, planche 25, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 1, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, plate 25, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin488F.html",
+    "detailsLink_en": "Baudin488E.html"
   },
   {
     "code": "Baudin489",
@@ -12726,8 +12726,8 @@
     "lon": 116.6625,
     "characteristic_fr": "L’archipel de Dampier, situé au large de la côte nord-ouest de l’Australie-Occidentale, se compose d’un ensemble de quarante-deux îles. Les populations aborigènes occupent cette région depuis environ 50 000 ans, et l’archipel est riche en sites archéologiques, dont des ensembles d’art rupestre d’une ampleur et d’une importance remarquables.\nÀ l’époque contemporaine, la présence de vastes gisements offshore de gaz et de pétrole, ainsi que de riches dépôts de minerai de fer à proximité, a favorisé un développement industriel de grande ampleur. Cette dynamique a transformé le port de Dampier en un pôle majeur d’exportation des ressources naturelles australiennes, donnant lieu à un paysage où infrastructures industrielles et patrimoine culturel de longue durée coexistent dans une étroite proximité.\nLes Français nommèrent l’archipel en l’honneur de William Dampier, flibustier, navigateur et explorateur anglais qui aborda cette côte en 1699. Cette désignation reflète l’état des connaissances européennes de l’époque, fondées exclusivement sur les récits de navigation antérieurs, dans l’ignorance du patrimoine culturel autochtone plurimillénaire, dont la région est aujourd’hui reconnue comme l’un des témoignages majeurs.\n",
     "characteristic": "The Dampier Archipelago, located off the north-west coast of Western Australia, consists of a group of forty-two islands. Aboriginal populations have inhabited this region for approximately 50,000 years, and the archipelago is rich in archaeological sites, including rock art assemblages of remarkable scale and significance.\nIn the contemporary period, the presence of vast offshore gas and oil fields, together with nearby rich deposits of iron ore, has driven large-scale industrial development. This dynamic has transformed the port of Dampier into a major hub for the export of Australia’s natural resources, resulting in a landscape in which industrial infrastructure and long-standing cultural heritage coexist in close proximity.\nThe French named the archipelago in honour of William Dampier, an English buccaneer, navigator and explorer who landed on this coast in 1699. This designation reflects the state of European knowledge at the time, based exclusively on earlier maritime accounts and unaware of the millennia-old Indigenous cultural heritage for which the region is now recognised as one of the most significant testimonies.",
-    "history_fr": "Péron note, en citant Dampier: \"Pendant toute la journée du 29, nous naviguâmes à vue d'un nombre prodigieux d'îles et d'îlots, que nous jugeâmes devoir être l'archipel où aborda Dampier en 1699. Du haut de notre grand mât, dit ce navigateur célèbre, nous découvrîmes une infinité d'îles à l'Est et à l'Ouest, aussi loin que notre vue pouvoit s'étendre. De même, vers le Sud, on ne voyoit que des îles. . . Les grandes étoient assez hautes, mais elles paroissoient arides et jaunâtres. » (Dampier, Voy. aux Terres Austr. tom. IV, pag. 109 et 112. ) Ces îles nombreuses semblorent former une triple chaîne en avant de la terre continentale ...\"\nCe « nombre prodigieux d’îles et d’îlots » s’est constitué il y a environ 6 000 à 8 000 ans, lorsque l’élévation du niveau marin, au cours d’une période interglaciaire plus chaude, a submergé les vallées côtières, ne laissant émerger que les collines et les crêtes, transformées en îles.",
-    "history": "Péron notes, quoting Dampier:\n“Throughout the day of the 29th, we sailed within sight of a prodigious number of islands and islets, which we judged to be the archipelago where Dampier landed in 1699. From the top of our mainmast,” said the famous navigator, “we discovered an infinite number of islands to the east and to the west, as far as the eye could reach. Likewise, to the south, nothing was visible but islands… The larger ones were of considerable height, but they appeared barren and yellowish.” (Dampier, Voyage aux Terres Australes, vol. IV, pp. 109 and 112.)\nThese numerous islands appeared to form a triple chain extending in front of the mainland.\nThis “prodigious number of islands and islets” was formed between 6,000 and 8,000 years ago, when rising sea levels during a warmer interglacial period inundated coastal valleys, leaving hills and ridges exposed as islands.",
+    "history_fr": "Péron rappelle d’abord le témoignage de Dampier pour identifier l’archipel aperçu par l’expédition Baudin :\n« Pendant toute la journée du 29, nous naviguâmes à vue d’un nombre prodigieux d’îles et d’îlots, que nous jugeâmes devoir être l’archipel où aborda Dampier en 1699. Du haut de notre grand mât, dit ce navigateur célèbre, nous découvrîmes une infinité d’îles à l’est et à l’ouest, aussi loin que notre vue pouvait s’étendre. De même, vers le sud, on ne voyait que des îles… Les grandes étaient assez hautes, mais elles paraissaient arides et jaunâtres. »\nDampier, Voyage aux Terres australes, t. IV, p. 109 et 112, cité dans Péron, continué par Freycinet, Voyage de découvertes aux Terres australes, t. II, 2011, p. 234-235.\nPéron ajoute ensuite que ces îles « semblèrent former une triple chaîne en avant de la terre continentale », que les Français croyaient distinguer au loin vers le sud. Les plus grandes ne leur parurent pas dépasser quatre ou cinq milles d’étendue. Plusieurs étaient défendues par des bancs de sable et de corail, que le Casuarina reconnut de très près, en passant à moins de cinquante toises de l’une des principales, probablement celle où Dampier avait débarqué et qu’il avait désignée sous le nom d’île du Romarin.\nLe paysage morcelé de l’archipel  s’est formé il y a environ 6 000 à 8 000 ans, lorsque l’élévation du niveau marin, liée à la fonte des glaces après la dernière période glaciaire et à l’établissement d’un climat plus chaud, a submergé les anciennes plaines et vallées côtières. Les collines et les crêtes demeurées émergées devinrent alors des îles, donnant naissance à l’archipel actuel.",
+    "history": "Péron first recalls Dampier’s account in order to identify the archipelago sighted by the Baudin expedition:\n“Throughout the day of the 29th, we sailed in sight of a prodigious number of islands and islets, which we judged to be the archipelago where Dampier had landed in 1699. From the top of our mainmast, says that celebrated navigator, we discovered an infinity of islands to the east and west, as far as the eye could reach. Likewise, towards the south, nothing but islands could be seen… The larger ones were fairly high, but they appeared arid and yellowish.”\nDampier, Voyage aux Terres australes, vol. IV, pp. 109 and 112, cited in Péron, continued by Freycinet, Voyage de découvertes aux Terres australes, vol. II, 2011, pp. 234-235.\nPéron then adds that these islands “seemed to form a triple chain in front of the continental land”, which the French believed they could distinguish far away to the south. The largest of them appeared to be no more than four or five miles in extent. Several were protected by sand and coral banks, which the Casuarina examined at very close range, passing within less than fifty toises of one of the principal islands, probably the one on which Dampier had landed and which he had named Rosemary Island.\nThe fragmented landscape  of the archipelago was formed approximately 6,000 to 8,000 years ago, when rising sea levels, caused by the melting of ice after the last glacial period and the establishment of a warmer climate, flooded former coastal plains and valleys. The hills and ridges that remained above water then became islands, producing the present archipelago.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Archipel_Dampier",
     "wiki_en": "https://en.wikipedia.org/wiki/Dampier_Archipelago",
     "imgUrl": "",
@@ -12762,8 +12762,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 1ʳᵉ feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, planche 25, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 1, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, plate 25, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin491F.html",
-    "detailsLink_en": "Baudin491E.html"
+    "detailsLink": "Baudin491F.rtf",
+    "detailsLink_en": "Baudin491E.rtf"
   },
   {
     "code": "Baudin492",
@@ -12944,8 +12944,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 1ʳᵉ feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, planche 25, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 1, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, plate 25, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "Baudin498F.html",
-    "detailsLink_en": "Baudin498E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin499",
