@@ -15284,8 +15284,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt, à la Nouvelle-Hollande — quatrième feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de M. Ronsard, années 1801 et 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 28, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Part of Terre de Witt, in New Holland — fourth sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Mr Ronsard, in the years 1801 and 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 28, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin593F.html",
+    "detailsLink_en": "Baudin593E.html"
   },
   {
     "code": "Baudin589",
@@ -15378,7 +15378,7 @@
     "lon": 127.68583,
     "characteristic_fr": "Le mont Casuarina est une élévation arrondie, de faible étendue, qui domine les terres environnantes avec un relief local inférieur à 300 mètres. Il doit son nom au Casuarina, goélette qui fut le troisième bâtiment de l’expédition Baudin et que Baudin plaça sous le commandement de Freycinet.",
     "characteristic": "Mount Casuarina is a rounded elevation of limited extent, rising above the surrounding country with a local relief of less than 300 metres. It was named after the Casuarina, the schooner that served as the third vessel of the Baudin expedition and was placed under Freycinet’s command.",
-    "history_fr": "À l’approche du cap Saint-Lambert, Freycinet observe un changement dans la ligne de côte : la terre devient moins élevée et découvre, en arrière-plan, une montagne isolée dont la silhouette quadrangulaire se détache nettement du paysage. Par sa forme singulière et sa visibilité, ce relief constitue un repère précieux pour la navigation. Freycinet lui donne le nom de Montagne du Casuarina et en consigne les coordonnées : 14° 21’ de latitude sud et 125° 20’ de longitude est de Paris.",
+    "history_fr": "À l’approche du cap Saint-Lambert, Freycinet observe un changement dans la ligne de côte : le relief s’abaisse et laisse apparaître, en arrière-plan, une montagne isolée, dont la silhouette « quadrangulaire » se détache nettement du paysage. En raison de sa forme singulière et de sa grande visibilité, il souligne son utilité nautique, indiquant qu’elle « peut servir de très bon point de reconnoissance » pour la navigation. Freycinet lui donne le nom de Montagne du Casuarina et en consigne les coordonnées : 14° 21’ de latitude sud et 125° 20’ de longitude est de Paris.",
     "history": "As he approached Cape Saint-Lambert, Freycinet observed a change in the coastline: the land became lower, revealing in the background an isolated mountain whose quadrangular outline stood out clearly in the landscape. Owing to its distinctive form and visibility, this relief provided a valuable landmark for navigation. Freycinet named it Montagne du Casuarina and recorded its coordinates as 14° 21′ south latitude and 125° 20′ east longitude from Paris.",
     "wiki_fr": "",
     "wiki_en": "-",
@@ -15414,8 +15414,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt, à la Nouvelle-Hollande — quatrième feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de M. Ronsard, années 1801 et 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 28, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Part of Terre de Witt, in New Holland — fourth sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Mr Ronsard, in the years 1801 and 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 28, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin593F.html",
+    "detailsLink_en": "Baudin593E.html"
   },
   {
     "code": "Baudin594",
@@ -15423,25 +15423,25 @@
     "state": "WA",
     "frenchName": "Banc des Méduses",
     "variantName": "",
-    "ausEName": "Medusa Banks",
+    "ausEName": "Medusa Bank",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -14.73333,
     "lon": 128.4333,
     "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "-",
-    "history": "",
+    "characteristic": "Medusa Banks lies off the Kimberley coast, in the Joseph Bonaparte Gulf / approaches to Cambridge Gulf, beyond Lacrosse Island. \nThe name Banc des Méduses referred to the jellyfish observed in these waters by Peron in June 1803.",
+    "history_fr": "Freycinet explique qu’au large des îles Lacrosse « on voyait en avant un banc parallèle au rivage et fort étendu : il fut nommé Banc des Méduses, à cause du grand nombre d’animaux de ce genre que nos naturalistes trouvèrent dans les environs ; nous virâmes de bord sur ses accores ». Le choix de ce toponyme relie ainsi le travail hydrographique de l’expédition à sa mission zoologique, ainsi qu’aux études ultérieures de Péron et Lesueur sur les méduses, parmi les premiers travaux scientifiques consacrés à ces animaux.\r\n",
+    "history": "Freycinet explains that off the Lacrosse Islands “a very extensive bank, running parallel to the shore, could be seen ahead: it was named Medusa Bank because of the great number of animals of this kind that our naturalists found in the vicinity; we tacked on its edges.” The choice of this toponym therefore links the expedition’s hydrographic work with its zoological mission, as well as with the later studies of medusae by Péron and Lesueur, among the earliest scientific works devoted to these animals.",
     "wiki_fr": "",
     "wiki_en": "-",
     "imgUrl": "",
     "other_link": "",
-    "mapUrl": "",
-    "mapTitle_fr": "",
-    "mapTitle_en": "",
+    "mapUrl": "https://nla.gov.au/nla.obj-230976709/representativeImage",
+    "mapTitle_fr": "Carte d’une partie de la Terre de Witt, à la Nouvelle-Hollande — quatrième feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de M. Ronsard, années 1801 et 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 28, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
+    "mapTitle_en": "Map of Part of Terre de Witt, in New Holland — fourth sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Mr Ronsard, in the years 1801 and 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 28, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin594F.html",
+    "detailsLink_en": "Baudin594F.html"
   },
   {
     "code": "Baudin595",
@@ -15466,8 +15466,8 @@
     "mapTitle_fr": "Carte générale de la Nouvelle Hollande / dressée par M. L. Freycinet, commandant la goélette Le Casuarina, an 1808.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 1, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "General Map of New Holland / drawn by M. L. Freycinet, commander of the schooner Le Casuarina, year 1808.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, Plate 1, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin593F.html",
+    "detailsLink_en": "Baudin593E.html"
   },
   {
     "code": "Baudin596",
@@ -15518,8 +15518,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt, à la Nouvelle-Hollande — quatrième feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de M. Ronsard, années 1801 et 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 28, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Part of Terre de Witt, in New Holland — fourth sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Mr Ronsard, in the years 1801 and 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 28, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin036F.html",
+    "detailsLink_en": "Baudin036E.html"
   },
   {
     "code": "Baudin598",
@@ -15532,10 +15532,10 @@
     "indigenousLanguage": "",
     "lat": -13.9173,
     "lon": 129.8173,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "-",
-    "history": "",
+    "characteristic_fr": "Ce que les Français nommèrent Îles Barthélémy semble correspondre en réalité à une partie du littoral continental. Ce secteur appartient à une côte basse, fortement soumise à l’action des marées, caractérisée par de vastes estrans vaseux, des chenaux bordés de mangroves et des plaines estuariennes associées au système de la Moyle River. Dans ce paysage amphibie et mouvant, où les marées peuvent isoler certaines portions du rivage, Freycinet put peut-être reconnaître des formes insulaires.\nLe nom donné aux Îles Barthélémy pourrait évoquer Nicolas Martin Barthélemy (1765-1835), général français qui prit une part active aux campagnes d’Italie et d’Égypte, ainsi qu’à la bataille d’Austerlitz. \nLe toponyme pourrait aussi faire référence à Jean-Jacques Barthélemy (1716-1795), érudit français, célèbre pour avoir été le premier à déchiffrer l’alphabet palmyrénien en 1754, puis l’alphabet phénicien en 1758.",
+    "characteristic": "What the French named Îles Barthélémy appears in fact to correspond to part of the continental coastline. This sector belongs to a low-lying coast strongly shaped by tidal action, characterised by broad muddy intertidal flats, mangrove-fringed channels and estuarine plains associated with the Moyle River system. In this amphibious and shifting landscape, where the tides can isolate certain portions of the shore, Freycinet may have perceived insular forms.\nThe name given to the Îles Barthélémy could evoke Nicolas Martin Barthélemy (1765–1835), a French general who took an active part in the Italian and Egyptian campaigns, as well as in the Battle of Austerlitz. \nThe toponym could also refer to Jean-Jacques Barthélemy (1716–1795), a French scholar famous for having been the first to decipher the Palmyrene alphabet in 1754, and then the Phoenician alphabet in 1758.",
+    "history_fr": "Les vents de mousson ne permettant pas au Géographe et au Casuarina de s’approcher de la côte, Freycinet crut distinguer au loin trois îles, qu’il décrit ainsi : « Des îles Lacrosse, en s’avançant vers le N. E., on trouve un espace d’environ trente lieues d’étendue que nous n’avons point reconnu : il se termine aux îles Barthélémy, petit groupe d’îles au nombre de trois, d’un aspect uniforme et qui sont moins élevées que les terres de la partie occidentale du golfe. »\nPendant la campagne d’Italie, à Modène, Nicolas Martin Barthélemy fut chargé de saisir d’importantes œuvres d’art, dont une Sainte Cécile de Raphaël, restituée en 1815. En février 1797, il fut légèrement blessé à Lovadina, près de Mantoue, alors qu’il commandait le 25e régiment de chasseurs à cheval, peu avant l’armistice de Leoben, également rappelé dans le nom du cap Leoben, plus au nord.",
+    "history": "As the monsoon winds prevented Le Géographe and Le Casuarina from approaching the coast, Freycinet thought he could make out three islands in the distance, which he described as follows: “From the Lacrosse Islands, proceeding north-eastwards, there is a stretch of about thirty leagues which we did not survey; it ends at the Barthélémy Islands, a small group of three islands, uniform in appearance and lower than the lands in the western part of the gulf.”\nDuring the Italian campaign, at Modena, Nicolas Martin Barthélemy was entrusted with the seizure of important works of art, including Raphael’s Saint Cecilia, which was returned in 1815. In February 1797, he was slightly wounded at Lovadina, near Mantua, while commanding the 25th Regiment of Chasseurs à Cheval, shortly before the Armistice of Leoben, also recalled in the name of Cape Leoben farther north.",
     "wiki_fr": "",
     "wiki_en": "-",
     "imgUrl": "",
