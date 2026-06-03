@@ -100,8 +100,8 @@
     "mapTitle_fr": "« Carte générale du détroit de Bass », par Louis-Claude Desaulses de Freycinet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 6, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "Carte générale du Détroit de Bass ’ by Freycinet, L., in Voyage de Découvertes aux Terres australes Navigation et Géographie, Atlas, 1812. Op. cit., plate6\n Source: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Baudin427F.html",
-    "detailsLink_en": "Baudin427E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin005",
@@ -568,8 +568,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Abraham Duquesne, l'un des grands officiers de la marine de guerre française du XVIIe siècle.",
-    "detailsLink": "Baudin427F.html",
-    "detailsLink_en": "Baudin427E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin023",
@@ -8585,22 +8585,22 @@
     "state": "Tas",
     "frenchName": "Île Breton",
     "variantName": "",
-    "ausEName": "\"titima / Trefoil Island\" Iles Hunter Ouest: Ile Fleurieu",
-    "indigenousName": "",
-    "indigenousLanguage": "",
+    "ausEName": "Trefoil Island",
+    "indigenousName": "titima",
+    "indigenousLanguage": "palawa kani",
     "lat": -40.60587,
     "lon": 144.77691,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "François-Désiré Breton était aspirant de première classe à bord du *Géographe*. Protégé de l'enseigne de vaisseau Henri de Freycinet, Baudin le qualifiait de « plus inutile de tous ceux qui sont à bord ».",
-    "history": "François-Désiré Breton was a midshipman first class aboard the *Géographe*. A protégé of Ensign Henri de Freycinet, he was described by Baudin as \"the most useless of all those on board\".",
+    "characteristic_fr": "Située près de Cape Grim, au large de la côte nord-ouest de la Tasmanie, titima / Trefoil Island est une petite île escarpée et herbeuse du détroit de Bass, en marge du Hunter Island Group. D’une superficie d’environ 116 hectares, elle présente des côtes rocheuses, des falaises, des rivages de galets et des pentes localement très fortes. Son importance tient surtout à son rôle de grande colonie de puffins à bec grêle, dans un paysage littoral ouvert dominé par les graminées en touffes — ou tussocks — et exposé aux vents et aux houles du détroit.\nLes Français la nommèrent île Breton en référence à François-Désiré Breton (1781-1816), aspirant de première classe à bord du Géographe, transféré sur le Naturaliste à Timor le 29 octobre 1801.",
+    "characteristic": "Located near Cape Grim, off the north-west coast of Tasmania, titima / Trefoil Island is a small, steep, grassy island in Bass Strait, on the margins of the Hunter Island Group. Covering approximately 116 hectares, it has rocky shores, cliffs, pebble beaches, and locally very steep slopes. Its significance lies above all in its role as a major colony of short-tailed shearwaters, within an open coastal landscape dominated by tussock grasses and exposed to the winds and swells of the strait.\nThe French named it Île Breton after François-Désiré Breton (1781–1816), a first-class midshipman on board the Géographe, who was transferred to the Naturaliste at Timor on 29 October 1801.",
+    "history_fr": "Breton ne participa pas à la mission de reconnaissance des îles Hunter. Son nom apparaît toutefois dans un autre contexte technique important : celui des observations magnétiques destinées à déterminer la déclinaison de l’aiguille aimantée, afin de connaître la véritable direction de la route du navire et de corriger les relèvements effectués à la boussole, soit par la méthode des azimuts, soit par celle des amplitudes. Il semble même avoir été l’un de ceux qui s’y livrèrent « avec le plus de persévérance ».\nDans cette perspective, on peut se demander si l’absence de Breton à bord du Casuarina ne fut pas regrettée par Freycinet et Boullanger. Lors de la reconnaissance des îles Hunter, Boullanger se trouva en effet confronté à des difficultés d’usage de la boussole, dont l’aiguille était rendue très instable par l’agitation du bâtiment dans une mer forte. Sans faire de Breton un acteur direct de cette mission, son expérience des observations de déclinaison magnétique éclaire ainsi, par contraste, les difficultés pratiques rencontrées par les hydrographes embarqués sur de petites unités exposées au mauvais temps.",
+    "history": "Breton did not take part in the reconnaissance mission to the Hunter Islands. His name nevertheless appears in another important technical context: that of the magnetic observations intended to determine the declination of the magnetic needle, in order to establish the true direction of the ship’s course and to correct the bearings taken with the compass, whether by the method of azimuths or that of amplitudes. He even seems to have been one of those who pursued these observations “with the greatest perseverance.”\r\nFrom this perspective, one may wonder whether Breton’s absence from the *Casuarina* was not regretted by Freycinet and Boullanger. During the reconnaissance of the Hunter Islands, Boullanger was indeed confronted with difficulties in using the compass, whose needle was rendered highly unstable by the motion of the vessel in heavy seas. Without making Breton a direct participant in this mission, his experience with observations of magnetic declination thus helps to illuminate, by contrast, the practical difficulties encountered by hydrographers embarked on small vessels exposed to bad weather.\r\n",
     "wiki_fr": "https://fr.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Breton",
     "wiki_en": "https://en.wikipedia.org/wiki/Fran%C3%A7ois-D%C3%A9sir%C3%A9_Breton",
     "imgUrl": "",
     "other_link": "",
-    "mapUrl": "",
-    "mapTitle_fr": "",
-    "mapTitle_en": "",
+    "mapUrl": "http://nla.gov.au/nla.obj-230974619/representativeImage",
+    "mapTitle_fr": "Carte trigonométrique des îles Hunter, dressée par L. Freycinet, commandant la goélette Le Casuarina, décembre 1802. Dans l’Atlas du Voyage de découvertes aux Terres australes, partie Navigation et géographie, planche 9, Paris, 1812 [sic ; publié en 1815].",
+    "mapTitle_en": "Trigonometric Chart of the Hunter Islands, drawn by L. Freycinet, commander of the schooner Le Casuarina, December 1802. In the Atlas of the Voyage of Discovery to the Southern Lands, Navigation and Geography section, plate 9, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "François Désiré Breton Aspirant de première classe à bord du Géographe, il passa sur le Naturaliste le 29 octobre 1801 à Timor1. Il était le protégé de l'enseigne de vaisseau Henri de Freycinet; mais Baudin le qualifiait comme « le plus inutile de tous ceux qui sont à bord, ce qui n'est pas peu dire2. »",
     "detailsLink": "",
     "detailsLink_en": ""
@@ -8625,8 +8625,8 @@
     "imgUrl": "",
     "other_link": "",
     "mapUrl": "http://nla.gov.au/nla.obj-230974619/representativeImage",
-    "mapTitle_fr": "",
-    "mapTitle_en": "Carte trigonometrique des Iles Hunter by Freycinet/Trigonometric map of the Hunter Islands / drawn up by L. Freycinet, Commander of the schooner Casuarina, December 1802, in Voyage de découvertes aux Terres australes partie navigation et géographie Atlas, plate 9.",
+    "mapTitle_fr": "Carte trigonométrique des îles Hunter, dressée par L. Freycinet, commandant la goélette Le Casuarina, décembre 1802. Dans l’Atlas du Voyage de découvertes aux Terres australes, partie Navigation et géographie, planche 9, Paris, 1812 [sic ; publié en 1815].",
+    "mapTitle_en": "Trigonometric Chart of the Hunter Islands, drawn by L. Freycinet, commander of the schooner Le Casuarina, December 1802. In the Atlas of the Voyage of Discovery to the Southern Lands, Navigation and Geography section, plate 9, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "",
     "detailsLink": "Baudin458F.html",
     "detailsLink_en": "Baudin458E.html"
@@ -10916,8 +10916,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "“Chart of part of the Lands of Leuwin and Edels (New Holland)”, by Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson, and Bouclet, in Voyage of Discovery to the Southern Lands, section Navigation and Geography (Atlas), plate 21, 1812.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin420F.html",
-    "detailsLink_en": "Baudin420E.html"
+    "detailsLink": "",
+    "detailsLink_en": "Baudin420E.htlm"
   },
   {
     "code": "Baudin421",
@@ -11008,10 +11008,10 @@
     "indigenousLanguage": "",
     "lat": -31.29378,
     "lon": 115.45147,
-    "characteristic_fr": "Le cap Leschenault marque le début de la plage de Seabird sur son côté nord, d’où le rivage s’oriente sur environ deux kilomètres vers le nord-ouest en direction de Seabird, avant d’infléchir plus nettement vers le nord. En raison, sans doute, des processus d’ensablement du littoral, plusieurs repères observés par Hamelin sont aujourd’hui difficiles à reconnaître, notamment le cap Leschenault lui-même, nommé en l’honneur du botaniste de l’expédition (voir également l’entrée port Leschenault en Australie-Occidentale).",
-    "characteristic": "Cape Leschenault marks the beginning of Seabird Beach on its northern flank, from which the shoreline trends approximately two kilometres to the north-west toward Seabird, before turning more distinctly northward. Owing, possibly, to coastal silting processes, several landmarks recorded by Hamelin are difficult to identify today, including Cape Leschenault itself, named in honour of the expedition’s botanist (see also the entry Port Leschenault in Western Australia).",
-    "history_fr": "$Hamelin$Jacques_Félix_Emmanuel_Hamelin$ signala une série de récifs blancs s’étendant sur environ 200 kilomètres le long de la côte. L’un d’entre eux est aujourd’hui connu sous le nom de récif de Leschenault, situé à quelques kilomètres au large du cap Leschenault. Voir aussi Port Leschenault en Australie occidentale.",
-    "history": "Hamelin recorded a series of white reefs extending for approximately 200 kilometres along the coast. One of these is now known as Leschenault Reef, located a few kilometres offshore from Cape Leschenault. See also Port Leschenault in WA.",
+    "characteristic_fr": "Le cap Leschenault marque le début de la plage de Seabird sur son côté nord, d’où le rivage s’oriente sur environ deux kilomètres vers le nord-ouest en direction de Seabird, avant d’infléchir plus nettement vers le nord. En raison, sans doute, des processus d’ensablement du littoral, plusieurs repères observés par $Hamelin$Jacques_Félix_Emmanuel_Hamelin$ sont aujourd’hui difficiles à reconnaître, notamment le cap Leschenault lui-même, nommé en l’honneur du botaniste de l’expédition (voir également l’entrée port Leschenault en Australie-Occidentale).\nCependant, Hamelin signala une série de récifs blancs s’étendant sur environ 200 kilomètres le long de la côte: L’un d’entre eux est aujourd’hui connu sous le nom de récif de Leschenault, situé à quelques kilomètres au large du cap Leschenault. Voir aussi Port et Île Leschenault en Australie occidentale.",
+    "characteristic": "Cape Leschenault marks the beginning of Seabird Beach on its northern flank, from which the shoreline trends approximately two kilometres to the north-west toward Seabird, before turning more distinctly northward. Owing, possibly, to coastal silting processes, several landmarks recorded by Hamelin are difficult to identify today, including Cape Leschenault itself, named in honour of the expedition’s botanist (see also the entry Port Leschenault in Western Australia).\nHowever, Hamelin recorded a series of white reefs extending for approximately 200 kilometres along the coast: One of these is now known as Leschenault Reef, located a few kilometres offshore from Cape Leschenault. See also Port Leschenault  and Ile Leschenault/Salutation Island in WA.",
+    "history_fr": "Leschenault écrit dans son journal: \"Après avoir passé en vue de l’Ile Rotenest qui eft peu éloignée de la rivière des cygnes, nous allames directement au deuxième rendez-vous [Shark Bay]. Pendant cette traversée les damiers ne nous abandonnèrent point, nous vimes de tems en tems la côte de fort loin il eft vrai, elle me parût avoir le même aspect que la terre de Leuwin quelquefois seulement un peu plus accrue. Pendant ce tems j’eus une indisposition assez grave, mais les soins de mes amis et un bon tempérament m’eurent bientôt rétabli.\"\nMichel Jangoux explique que, dans la baie du Géographe, après que la chaloupe censée le ramener à bord se fut échouée et que les vivres eurent été perdus, Leschenault se nourrit de plantes sauvages, notamment de salicorne — probablement une espèce de Sarcocornia —, ce qui lui causa d’importants troubles digestifs.\r\n\n",
+    "history": "Leschenault reports: \"After passing within sight of Rotenest Island, which is not far from Swan River, we sailed directly to the second rendezvous [Shark Bay]. Cape petrel for the whole journey. From time to time we glimpsed the coast, though only, it is true, from a very great distance. It had the same appearance as Leeuwin Land, though at times its slope seemed more sheer. I was gravely ill at this time, but as my friends tended me with great care, and I have a strong constitution, I was quickly restored to health\".\nHe also noted that ‘every evening my legs swelled tremendously’.[ \"Après avoir passé en vue de l’Ile Rotenest qui eft peu éloignée de la rivière des cygnes, nous allames directement au deuxième rendez-vous [Shark Bay].\nMichel Jangoux explains that in Geographe Bay, after the longboat that was supposed to bring him back on board ran aground and the food was lost, Leschenault fed on wild plants, particularly glasswort (probably a species of Sarcocornia), which caused him considerable digestive problems (p.42)\n",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Jean-Baptiste_Leschenault_de_La_Tour",
     "wiki_en": "https://en.wikipedia.org/wiki/Jean-Baptiste_Leschenault_de_La_Tour",
     "imgUrl": "",
@@ -11072,8 +11072,8 @@
     "mapTitle_fr": "« Carte de la Terre d’Edels et d’une partie de celle d’Endracht (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet & al., dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 22, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "\n\n\"Map of Edels Land and Part of Endracht Land (New Holland)\", by Louis-Claude Desaulses de Freycinet & al., in Voyage de découvertes aux Terres australes, part Navigation and Geography (Atlas), plate 22, 1812.\nSource: National Library of Australia.\nLancelin Island is located in the southern part of the map.",
     "origin_fr": "",
-    "detailsLink": "Baudin420F.html",
-    "detailsLink_en": "Baudin420E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin427",
@@ -11099,7 +11099,7 @@
     "mapTitle_en": "\n\"Map of Edels Land and Part of Endracht Land (New Holland)\", by Louis-Claude Desaulses de Freycinet & al., in Voyage de découvertes aux Terres australes, part Navigation and Geography (Atlas), plate 22, 1812.\nSource: National Library of Australia.\nBoullanger Island is located in the southern part of the map.",
     "origin_fr": "",
     "detailsLink": "Baudin427F.html",
-    "detailsLink_en": "Baudin427E.html"
+    "detailsLink_en": "Baudin427E.htlm"
   },
   {
     "code": "Baudin428",
@@ -11280,7 +11280,7 @@
     "mapTitle_fr": "\"Carte de la partie de la baie des Chiens-Marins, sur les côtes de la Nouvelle-Hollande, dressée à bord de la corvette Le Naturaliste, par Faure, géographe\". Le cap Bellefin est originellement nommé Pointe Désirée, MAP/6JJ/4/A, pièce 58.\nSource : Archives nationales de France.",
     "mapTitle_en": "\"Chart of part of Shark Bay on the coasts of New Holland, drawn aboard the corvette Le Naturaliste, by Faure, geographer.\" Cape Bellefin was originally named Pointe Désirée, MAP/6JJ/4/A, item 58.\nSource: National Archives of France.",
     "origin_fr": "",
-    "detailsLink": "",
+    "detailsLink": "Baudin434F.html",
     "detailsLink_en": "Baudin434E.html"
   },
   {
@@ -11632,10 +11632,10 @@
     "indigenousLanguage": "",
     "lat": -24.75568,
     "lon": 113.16138,
-    "characteristic_fr": "Le cap Ronsard constitue l’extrémité septentrionale de l’île Bernier. Il a été nommé en l’honneur de François-Michel Ronsard (1769–1836), ingénieur de la Marine à bord du Géographe, ultérieurement promu au grade de lieutenant.",
-    "characteristic": "Cape Ronsard forms the northernmost headland of Bernier Island. It was named after François-Michel Ronsard (1769–1836), a naval engineer aboard Le Géographe, who was later promoted to the rank of lieutenant.\nnamed after François-Michel Ronsard (1769-1836), a marine engineer on board le Géographe who was promoted to lieutenant. ",
-    "history_fr": "Dans son journal, il décrivit le sol sablo-calcaire de l’île comme « peu favorable à la végétation », mais évoqua une mer bordant ses rivages abondant d’une « quantité prodigieuse de poissons ». Au cours de ses excursions, Ronsard s’attacha à repérer des sources de bois susceptibles de servir à la réparation ou à la reconstruction des embarcations du navire, tâche dont il avait la responsabilité. Baudin appréciait ses compétences, tout comme le ministre de la Marine Pierre-Alexandre-Laurent Forfait (ministre de la Marine avant la nomination de Denis Decrès), qui aurait probablement soutenu sa candidature à l’expédition.",
-    "history": "In his journal, he described the island’s sandy limestone soil as ‘not very suitable for vegetation’ but wrote of the sea along its shores as full of a ‘prodigious quantity of fishes’. On his excursions, Ronsard kept a look-out for sources of wood to repair or reconstruct the vessel’s boats, for which he had responsibility. Baudin valued his skills, as did the Navy Minister Pierre-Alexandre-Laurent Forfait (the Minister of the Navy before Denis Decrès' appointment) who probably fostered his candidacy for the voyage. ",
+    "characteristic_fr": "Le cap Ronsard forme la pointe septentrionale de Bernier Island. Ouvert sur l’océan Indien et situé face au petit îlot de Koks, il appartient à un paysage littoral de calcaires pléistocènes, de dunes claires, de plages sableuses, de plateformes rocheuses et d’eaux peu profondes. Plus qu’un promontoire spectaculaire, il constitue surtout un repère de seuil : celui de l’entrée insulaire de Shark Bay, à la limite entre le large et les eaux abritées du golfe.\nIl a été nommé en l’honneur de François-Michel Ronsard (1769–1836), ingénieur de la Marine à bord du Géographe, promu au grade de lieutenant.",
+    "characteristic": "Cape Ronsard forms the northern point of Bernier Island. Open to the Indian Ocean and facing the small Koks Islet, it belongs to a coastal landscape of Pleistocene limestone, pale dunes, sandy beaches, rocky platforms and shallow waters. Rather than a spectacular headland, it functions above all as a threshold marker: the insular entrance to Shark Bay, at the boundary between the open sea and the sheltered waters of the gulf.\r\nIt was named in honour of François-Michel Ronsard (1769–1836), a naval engineer aboard the Géographe, who was promoted to the rank of lieutenant.\r\n",
+    "history_fr": "Dans son journal, Ronsard décrivit le sol sablo-calcaire de l’île comme « peu favorable à la végétation », mais évoqua une mer bordant ses rivages et abondant en une « quantité prodigieuse de poissons ». Au cours de ses excursions, il s’attacha aussi à repérer des ressources en bois susceptibles de servir à la réparation ou à la reconstruction des embarcations du navire, tâche dont il avait la responsabilité. Baudin appréciait ses compétences, tout comme le ministre de la Marine Pierre-Alexandre-Laurent Forfait — prédécesseur de Denis Decrès à ce poste — qui soutint probablement sa candidature à l’expédition.",
+    "history": "In his journal, Ronsard described the island’s sandy-calcareous soil as “little favourable to vegetation”, while noting that the sea along its shores abounded in a “prodigious quantity of fish”. During his excursions, he also sought to identify timber resources that might be used for the repair or reconstruction of the ship’s boats, a task for which he was responsible. Baudin valued his skills, as did the Minister of the Navy, Pierre-Alexandre-Laurent Forfait — Denis Decrès’s predecessor in that office — who probably supported his candidacy for the expedition.\r\n",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -11644,8 +11644,8 @@
     "mapTitle_fr": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  par Freycinet, Louis & al. Voyage de découvertes aux Terres australes partie navigation et géographie, atlas, 1812, Planche 23.",
     "mapTitle_en": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  by Freycinet, Louis & al., in Voyage de découvertes aux Terres australes partie navigation et géographie, atlas, 1812, Plate 23.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin498F.html",
+    "detailsLink_en": "Baudin498E.html"
   },
   {
     "code": "Baudin449",
@@ -11788,10 +11788,10 @@
     "indigenousLanguage": "",
     "lat": -26.53847,
     "lon": 113.76724,
-    "characteristic_fr": "Located in the southern part of Henri Freycinet Harbour, and measuring only about one kilometre in width by two kilometres in length, Salutation Island is today known as the habitat of the vulnerable greater stick-nest rat (Leporillus conditor, VU).\nFreycinet named the island after the botanist Jean-Baptiste Leschenault de la Tour (see also Port Leschenault), but observed that “Leschenault Island … is completely barren: a multitude of seabirds appear to have made their home there.”",
-    "characteristic": "Located in the south of Henri Freycinet harbour, measuring only about one kilometre wide by two kilometres long, Salutation Island is now the habitat of the vulnerable  species of the greater stick-nest rat Leporillus conditor (VU).\nFreycinet named the island after the botanist Leschenault (see the entry Port Leschenault), but notes \" Leschenault Island ... is completely barren: a multitude of seabirds appear to have made their home there.\"",
-    "history_fr": "Tout en prenant part aux pratiques de collecte de spécimens propres à l’histoire naturelle de son temps, lesquelles impliquaient notamment la mise à mort d’animaux à des fins d’étude, Leschenault se montrait néanmoins sensible au caractère dur et implacable de l’abattage mené par les chasseurs de l’expédition, qui tuaient des kangourous dans la baie des Chiens-Marins — des animaux qui, notait-il,  n’ont d’autres ennemis à redouter que quelques aigles de mer, mais sous des buissons impénétrables, ils peuvent braver la voracité de ces oiseaux, nous vinmes troubler leur retraite, et jetter au milieu deux la terreur, on en tua beaucoup.\"\nIl rapporte en outre que \"un de ceux-ci moins prompt que les autres à sortir de sa retraite fut saisi ; ce petit animal ne parût nullement effayé, il lécha même celui qui venait d’être l’assasin de sa mère et prit la nourriture qui lui fut présentée, le commandant la conservé pendant plusieurs mois, et il perit accidentellement à Timor, il s’etoit parfaitement apprivoisé, etoit caressant, et facile à nourrir, il mangeoit du pain et aimoit beaucoup l’eau sucrée.",
-    "history": "While participating in the practices of specimen collection typical of natural history at the time, including the killing of animals for study, Leschenault was nonetheless sensitised to the harsh and relentless slaughter carried out by the expedition’s hunters, who killed kangaroos in Shark Bay—animals that, as he observed, “have no enemies to fear other than a few sea eagles; by taking refuge beneath impenetrable bushes, they defy the voracity of these birds. We came and brought strife and terror to their refuge…”.\nHe further recounts that “one of the young kangaroos, which was slower than the others in leaving its place of shelter, was captured; and instead of appearing frightened, it licked the man who had just killed its mother and accepted the food offered to it. The Commander kept the animal for several months, until it died accidentally at Timor. It became perfectly tame, affectionate, and easy to feed. It ate bread and was particularly fond of sugar water.”",
+    "characteristic_fr": "Salutation Island est une petite île basse de Henri Freycinet Harbour, dans les eaux intérieures de Shark Bay. Son nom actuel aurait été attribué par Henry Mangles Denham lors de son levé de Shark Bay en 1858, en souvenir d’une rencontre amicale avec des Aborigènes. L’île est aujourd’hui connue comme l’un des habitats du rat-kangourou à nid, ou greater stick-nest rat (*Leporillus conditor*), une espèce classée vulnérable.\nDans la nomenclature de l’expédition Baudin, cette île portait  le nom d’île Leschenault. Freycinet la décrivait comme « absolument stérile », ajoutant qu’« une multitude d’oiseaux de mer paroissent y avoir établi leur demeure ». Le toponyme rendait hommage au botaniste Jean-Baptiste Leschenault de La Tour — voir aussi Port Leschenault —, qui herborisa et collecta des spécimens de plantes et d’animaux dans les îles et sur les littoraux de Shark Bay.\n",
+    "characteristic": "Salutation Island is a small, low-lying island in Henri Freycinet Harbour, within the inner waters of Shark Bay. Its present name is said to have been given by Henry Mangles Denham during his 1858 survey of Shark Bay, in memory of a friendly encounter with Aboriginal people. The island is now known as one of the habitats of the greater stick-nest rat (*Leporillus conditor*), a species classified as vulnerable.\nIn the nomenclature of the Baudin expedition, however, this island bore the name Île Leschenault. Freycinet described it as “absolutely sterile”, adding that “a multitude of seabirds appear to have established their dwelling there”. The toponym honoured the botanist Jean-Baptiste Leschenault de La Tour — see also Port Leschenault — who botanised and collected plant and animal specimens in the islands and coasts of Shark Bay.\n",
+    "history_fr": "Dans la baie des Chiens-Marins, ou Shark Bay, Leschenault participa aux pratiques de collecte de spécimens propres à l’histoire naturelle de son temps. Bien qu’il fût botaniste de formation, son activité de terrain ne se limitait pas à cette spécialité : comme nombre de savants voyageurs du début du XIXᵉ siècle, il recueillait plus largement des objets relevant de ce que l’on désignait alors sous le terme d’histoire naturelle. Ces pratiques impliquaient notamment la capture, la conservation et parfois la mise à mort d’animaux à des fins d’observation et d’étude. Sa collecte d’un scinque à langue bleue en offre un exemple significatif. Leschenault note : « En le saisissant, j’ai rompu la queue, qui, comme celle de tous les lézards, a fait, quoique séparée du tronc, beaucoup de mouvements ; j’ai conservé l’animal dans l’eau-de-vie. »\nSon récit laissait aussi affleurer une sensibilité morale caractéristique d’une partie de l’élite savante et littéraire de la fin des Lumières, en reaction avec la pensee de Descartes des animaux-machines excluant les bêtes du domaine de la subjectivité sensible : sans remettre en cause les pratiques de l’histoire naturelle, il donne à voir la vulnérabilité des animaux rencontrés et la violence introduite par les chasseurs de l’expédition. Il évoque ainsi l’abattage des kangourous de la baie des Chiens-Marins, animaux qui, selon lui, « n’ont d’autres ennemis à redouter que quelques aigles de mer ». À l’abri de « buissons impénétrables », ils pouvaient ordinairement échapper à ces prédateurs ; mais les hommes de l’expédition vinrent « troubler leur retraite » et jeter parmi eux « la terreur ». Leschenault note alors : « on en tua beaucoup ». Il rapporte aussi le sort d’un jeune kangourou, moins prompt que les autres à sortir de sa cachette et saisi par les chasseurs. L’animal « s’était parfaitement apprivoisé, était caressant, et facile à nourrir ; il mangeait du pain et aimait beaucoup l’eau sucrée », mais il périt finalement accidentellement à Timor.\n",
+    "history": "In the Baie des Chiens-Marins, or Shark Bay, Leschenault took part in the specimen-collecting practices characteristic of the natural history of his time. Although trained as a botanist, his fieldwork was not confined to that speciality: like many learned travellers of the early nineteenth century, he collected more broadly objects belonging to what was then designated as natural history. Such practices involved, among other things, the capture, preservation, and sometimes killing of animals for the purposes of observation and study. His collection of a blue-tongued skink provides a significant example. Leschenault noted: “In seizing it, I broke its tail, which, like that of all lizards, continued to move a great deal although separated from the body; I preserved the animal in brandy.”\nHis account also allowed a moral sensibility to surface, one characteristic of part of the learned and literary elite of the late Enlightenment, in reaction against Descartes’s conception of animals as machines, which excluded beasts from the realm of sentient subjectivity: without calling into question the practices of natural history, it reveals the vulnerability of the animals encountered and the violence introduced by the expedition’s hunters. He thus describes the killing of the kangaroos of the Baie des Chiens-Marins, animals which, according to him, “had no enemies to fear other than a few sea eagles.” Sheltered by “impenetrable bushes,” they could ordinarily escape these predators; but the men of the expedition came to “disturb their retreat” and spread “terror” among them. Leschenault then noted: “many were killed.” He also recounts the fate of a young kangaroo, less quick than the others to leave its hiding place and seized by the hunters. The animal “had become perfectly tame, was affectionate and easy to feed; it ate bread and was very fond of sugared water,” but it ultimately died accidentally in Timor.\n\n",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -11868,8 +11868,8 @@
     "lon": 113.57973,
     "characteristic_fr": "Pointe Moreau/Eagle Bluff se caractérise par une haute falaise dominant le Denham Sound et se situe à environ 18 à 20 kilomètres au sud de Denham. Le site fut nommé par les Français en l’honneur de l’aspirant Charles Moreau (voir également l’entrée Moreau, Australie-Occidentale).",
     "characteristic": "Eagle Bluff is characterised by a prominent cliff overlooking Denham Sound and lies approximately 18 to 20 kilometres south of Denham. The site was named by the French in honour of the midshipman Charles Moreau (see also the entry Moreau, Western Australia).",
-    "history_fr": "Le 6 août 1801, le capitaine Emmanuel Hamelin envoya à terre, sur la péninsule Péron, un détachement de neuf hommes placé sous ses ordres. Leur mission consistait à dresser des tentes, à réparer la chaloupe et à couper le bois nécessaire au navire. Hamelin se rendit lui-même sur place pour constater l’avancement des travaux. Dans son journal, à la date du 8 août, il rapporte :\n« Je suis allé à la tente où j’ai trouvé les charpentiers et calfats occupés à débiter de la membrure coupée sur l’île pour réparer la chaloupe, et nos matelots absents avec une garde de sécurité sous l’aspirant Moreau à couper du bois à brûler. J’y ai appris qu’hier ils ont vu de loin trois Naturels du pays qu’ils n’ont pu approcher. »\nL’aspirant Moreau et son équipage regagnèrent le Naturaliste le 11 août 1801.",
-    "history": "On 6 August 1801, Captain Emmanuel Hamelin sent ashore, on the Péron Peninsula, a detachment of nine men under his command. Their mission was to pitch tents, repair the launch, and cut the timber needed for the ship. Hamelin went ashore himself to inspect the progress of the work. In his journal entry for 8 August, he reported:\n“I went to the tent, where I found the carpenters and caulkers busy cutting up timber that had been felled on the island to repair the launch, while our sailors were away, with a security guard under Midshipman Moreau, cutting firewood. There I learned that yesterday they had seen from a distance three Natives of the country whom they had been unable to approach.”\nMidshipman Moreau and his crew returned aboard the Naturaliste on 11 August 1801.",
+    "history_fr": "Le 6 août 1801, le capitaine Emmanuel Hamelin envoya à terre, sur la péninsule Péron, un détachement de neuf hommes placé sous les ordres de Moreau. Leur mission consistait à dresser des tentes, à réparer la chaloupe et à couper le bois nécessaire au navire. Hamelin se rendit lui-même sur place pour constater l’avancement des travaux. Dans son journal, à la date du 8 août, Hamelin rapporte :\n« Je suis allé à la tente où j’ai trouvé les charpentiers et calfats occupés à débiter de la membrure coupée sur l’île pour réparer la chaloupe, et nos matelots absents avec une garde de sécurité sous l’aspirant Moreau à couper du bois à brûler. J’y ai appris qu’hier ils ont vu de loin trois Naturels du pays qu’ils n’ont pu approcher. »\nL’aspirant Moreau et son équipage regagnèrent le Naturaliste le 11 août 1801.",
+    "history": "On 6 August 1801, Captain Emmanuel Hamelin sent ashore, on the Péron Peninsula, a detachment of nine men under Moreau's command. Their mission was to pitch tents, repair the launch, and cut the timber needed for the ship. Hamelin went ashore himself to inspect the progress of the work. In his journal entry for 8 August, Hamelin reported:\n“I went to the tent, where I found the carpenters and caulkers busy cutting up timber that had been felled on the island to repair the launch, while our sailors were away, with a security guard under Midshipman Moreau, cutting firewood. There I learned that yesterday they had seen from a distance three Natives of the country whom they had been unable to approach.”\nMidshipman Moreau and his crew returned aboard the Naturaliste on 11 August 1801.",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -11878,8 +11878,8 @@
     "mapTitle_fr": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  par Freycinet, Louis & al. Voyage de découvertes aux Terres australes partie navigation et géographie, atlas, 1812, Planche 23.",
     "mapTitle_en": "‘ Carte de la Baie des Chiens-Marins, (Shark's Bay de Dampier)  à la Terre d'Endracht ; Nouvelle-Hollande ... ‘  by Freycinet, Louis & al., in Voyage de découvertes aux Terres australes partie navigation et géographie, atlas, 1812, Plate 23.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin419F.html",
+    "detailsLink_en": "Baudin419E.html"
   },
   {
     "code": "Baudin458",
@@ -12932,9 +12932,9 @@
     "indigenousLanguage": "Ngarluma Country context and wider connections",
     "lat": -20.52727,
     "lon": 117.8605,
-    "characteristic_fr": "L’île Ronsard présente une forme allongée et constitue l’île la plus au nord-est de l’archipel Forestier. Elle doit son nom à l’ingénieur de la Marine François-Michel Ronsard, embarqué à bord du Géographe.",
-    "characteristic": "Ronsard Island has an elongated form and is the north-easternmost of the Forestier Islands. It is named after the naval engineer François-Michel Ronsard, who served aboard Le Géographe. ",
-    "history_fr": "Ronsard (voir l’entrée Cap Ronsard, Australie-Occidentale) fut chargé par Baudin de relever les îles les plus occidentales de l’archipel Forestier. Toutefois, il ne disposa pas du temps nécessaire pour examiner chacune d’entre elles en détail et, comme le précise Freycinet,  \"L’île Ronsard n’a point été visitée d’une manière particulière\" . Freycinet observe ue \"ses bords sont assez élevés, comparés aux terres environnantes.\" mais avertit que l’île Ronsard et les îlots qui l’avoisinent ont une position douteuse, qu’indiquent d’ailleurs les lettres P. D. qui les accompagnent.‘ [sur la carte de l’atlas] », signalant ainsi l’incertitude de leur délimitation cartographique.",
+    "characteristic_fr": "L’île Ronsard présente une forme allongée et constitue l’île la plus au nord-est de l’archipel Forestier. Elle doit son nom à l’ingénieur de la Marine François-Michel Ronsard (1769-1836), embarqué à bord du Géographe.",
+    "characteristic": "Ronsard Island has an elongated form and is the north-easternmost of the Forestier Islands. It is named after the naval engineer François-Michel Ronsard (1769-1836), who served aboard Le Géographe. ",
+    "history_fr": "Ronsard (voir l’entrée Cap Ronsard, Australie-Occidentale) fut chargé par Baudin de relever les îles les plus occidentales de l’archipel Forestier. Toutefois, il ne disposa pas du temps nécessaire pour examiner chacune d’entre elles en détail et, comme le précise Freycinet,  \"L’île Ronsard n’a point été visitée d’une manière particulière\" . Freycinet observe que \"ses bords sont assez élevés, comparés aux terres environnantes.\" mais avertit que l’île Ronsard et les îlots qui l’avoisinent ont une position douteuse, qu’indiquent d’ailleurs les lettres P. D. qui les accompagnent.‘ [sur la carte de l’atlas] », signalant ainsi l’incertitude de leur délimitation cartographique.",
     "history": "Ronsard (see the entry Cape Ronsard, Western Australia) was instructed by Baudin to survey the westernmost islands of the Forestier Archipelago. However, he did not have enough time to examine each of them in detail and, as Freycinet notes, “Ronsard Island was not visited in any particular manner.” Freycinet observes that “its shores are fairly elevated compared with the surrounding lands,” but warns that Ronsard Island and the neighbouring islets are of uncertain position, as indicated by the letters “P. D.” that accompany them “on the atlas map,” thus marking the uncertainty of their cartographic delineation.\r\n",
     "wiki_fr": "",
     "wiki_en": "",
@@ -12944,8 +12944,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre de Witt (Nouvelle-Hollande), 1ʳᵉ feuille, dressée par Louis-Claude de Freycinet, commandant le Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations et celles de Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, planche 25, Paris, 1812 (sic ; publié en 1815).",
     "mapTitle_en": "Map of a Part of Terre de Witt (New Holland), Sheet 1, drawn by Louis-Claude de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, based on their observations and those of Jacques Ronsard (1801–1803). Atlas du Voyage de découvertes aux Terres australes, Navigation et géographie, plate 25, Paris, 1812 (sic; published in 1815).",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin498F.html",
+    "detailsLink_en": "Baudin498E.html"
   },
   {
     "code": "Baudin499",
