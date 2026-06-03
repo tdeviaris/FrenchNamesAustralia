@@ -2586,7 +2586,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             [0x0153, 0x9C], [0x017E, 0x9E], [0x0178, 0x9F]
         ]);
 
-        const suspiciousMojibakeRegex = /[\u00C2\u00C3\u00C6\u00E2\uFFFD]/g;
+        const suspiciousMojibakeRegex = /[\u00C2\u00C3\u00C6\u00C8\u00E2\u2039\u0160\uFFFD]/g;
 
         function mojibakeScore(text) {
             if (!text || typeof text !== 'string') return 0;
@@ -2638,6 +2638,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
 
             return best
+                .replace(/È[‹Š](?=le|les|lot|lots)/g, 'Î')
+                .replace(/Presqu['’]Île/g, "Presqu'île")
                 .replace(/\u00C2\u00AB/g, '\u00AB')
                 .replace(/\u00C2\u00BB/g, '\u00BB')
                 .replace(/\u00C2\u00B0/g, '\u00B0')

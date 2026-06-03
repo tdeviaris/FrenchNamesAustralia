@@ -1,135 +1,194 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Île Fourcroy - Lady Julia Percy Island
-  </title>
-  <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
-  <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ile Fourcroy - Lady Julia Percy Island</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon16.png">
   <style>
-   body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 2em 1.5em;
-            background-color: #fdfdfd;
-        }
-        .document-header {
-            text-align: center;
-            margin: 1.5em 0 2em;
-        }
-        .document-header p {
-            margin: 0.2em 0;
-            font-weight: 600;
-        }
-        figure {
-            margin: 2.5em 0;
-            text-align: center;
-        }
-        figure img {
-            width: 100%;
-            max-width: 720px;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        figure figcaption {
-            margin-top: 0.8em;
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555;
-        }
-        figure figcaption p {
-            margin: 0.25em 0;
-        }
-        .main-text {
-            text-align: justify;
-            margin-bottom: 2em;
-        }
-        .main-text p {
-            margin: 0 0 1em;
-        }
-        .references-section {
-            border-top: 1px solid #ccc;
-            padding-top: 1em;
-            margin-top: 2em;
-            font-size: 0.95em;
-        }
-        .references-section h2 {
-            font-size: 1.2em;
-            font-style: normal;
-        }
-        .references-section ul {
-            list-style: disc;
-            padding-left: 1.5em;
-            margin: 0.5em 0 0;
-        }
-        .references-section li {
-            margin: 0.4em 0;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    body {
+      margin: 0;
+      padding: 2em 1.5em;
+      color: #222;
+      background: #fdfdfd;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    .document-header {
+      margin: 0 0 1.8em;
+      text-align: center;
+    }
+
+    .document-header p {
+      margin: 0.15em 0;
+    }
+
+    .detail-title,
+    .detail-subtitle {
+      font-family: "Aptos Display", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    figure {
+      margin: 0 auto 1.8em;
+      max-width: 760px;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+      color: #333;
+    }
+
+    figure img {
+      width: min(560px, 100%);
+      height: auto;
+      max-width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+
+    figcaption {
+      margin: 0.8em auto 0;
+      max-width: 42em;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .main-text {
+      margin: 0 auto 2em;
+      max-width: 72ch;
+      text-align: justify;
+      font-size: 0.96rem;
+    }
+
+    .main-text p {
+      margin: 0 0 1em;
+    }
+
+    .quote-intro {
+      margin: 1.5em auto 0.75em;
+      max-width: 72ch;
+      font-weight: 700;
+    }
+
+    .quote-block {
+      max-width: 72ch;
+      margin: 0 auto 1em;
+      padding: 0 0 0 1.1em;
+      border-left: 3px solid #cfcfcf;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .quote-block p {
+      margin: 0 0 0.9em;
+    }
+
+    .references-section {
+      max-width: 72ch;
+      margin: 2em auto 0;
+      padding-top: 1em;
+      border-top: 1px solid #ccc;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .references-section h2 {
+      margin: 0 0 0.5em;
+      font-size: 1rem;
+    }
+
+    .references-section p {
+      margin: 0.4em 0;
+    }
+
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
- </head>
- <body>
+</head>
+<body>
+  <header class="document-header">
+    <p class="detail-title">Ile Fourcroy - Lady Julia Percy Island</p>
+    <p class="detail-subtitle">Cap Fourcroy - Cape Fourcroy</p>
+  </header>
+
   <figure>
-   <img alt="" src="Baudin018E_html_514a4eda.jpg"/>
+    <img src="Baudin018E_html_image001.jpg" alt="Portrait of Antoine-Francois de Fourcroy">
+    <figcaption>
+      <div><strong>Antoine-Francois de Fourcroy</strong>, engraved by Ambroise Tardieu, year unknown.</div>
+      <div>Source: Bibliotheque nationale de France, departement Societe de Geographie, SG PORTRAIT-2750</div>
+      <div><a href="http://catalogue.bnf.fr/ark:/12148/cb405879125" target="_blank" rel="noopener noreferrer">http://catalogue.bnf.fr/ark:/12148/cb405879125</a></div>
+      <div>He is wearing his Institut/academician's costume, with embroideries of olive leaves in silk threads, the olive tree being a symbol of wisdom.</div>
+    </figcaption>
   </figure>
+
   <figure>
-   <img alt="" src="Baudin018E_html_db9e6ba7.png"/>
+    <img src="Baudin018E_html_image002.png" alt="Current imagery of Lady Julia Percy Island">
+    <figcaption>
+      <div>Current imagery showing <strong>Lady Julia Percy Island</strong> and its topographical form derived from its volcanic origin, as well as the cliff walls described by Freycinet as "steep".</div>
+      <div>Source: Intergovernmental Committee on Surveying and Mapping (ICSM)</div>
+      <div><a href="https://placenames.fsdf.org.au/" target="_blank" rel="noopener noreferrer">https://placenames.fsdf.org.au/</a></div>
+    </figcaption>
   </figure>
-  <div class="main-text">
-   <p>
-    Antoine-François de Fourcroy, engraved by Ambroise Tardieu, year unknown. Source : Bibliothèque nationale de France, département Société de Géographie, SG PORTRAIT-2750
-    <a href="http://catalogue.bnf.fr/ark:/12148/cb405879125">
-     http://catalogue.bnf.fr/ark:/12148/cb405879125
-    </a>
-    He is wearing his Institut/academician’s costume, with embroideries of olive leaves in silk threads, the olive tree being a symbol of wisdom.
-   </p>
-   <p>
-    Today’s imagery showing Lady Julia Percy Island and its topographical form derived from its volcanic origin and its cliff walls described by Freycinet as ‘steep’ Source: Intergovernmental Committee on Surveying and Mapping (ICSM)
-    <a href="https://place">
-     https://place
-    </a>
-    names.fsdf.org.au/
-   </p>
-   <p>
-    Péron studied chemistry and pharmacology under Fourcroy after the latter’s appointment as professor of chemistry in Paris at the Jardin du Roi, which was renamed the Muséum National d’Histoire Naturelle following the French Revolution (see this entry in the glossary)Fourcroy held public offices with the revolutionary government and has been accused of involvement in Lavoisier’s arrest and death, although his participation has not been proved. He was appointed by Bonaparte to the State Council (Section of the Interior ministry) and was in charge of creating and organizing an effective and efficient public education system, of primary schools, colleges and lycées (high schools), specialized schools (medicine, chemistry etc..) and universities. It was to Fourcroy that Péron addressed his ‘Memoir on the English settlements in New Holland, in the land of Diemen and in the archipelagoes of the great Pacific Ocean’, which describes these territories from a colonial perspective. Jean Fornasiero and John West Sooby wrote on the subject of this memoir that: ‘As fate would have it, Péron would in a few short years have the opportunity of emulating the political activism of his masters, for it is to this selfsame Fourcroy, in his capacity as Counsellor of State, that Francois Péron, on his return from the Antipodes, would address a report that had nothing to do with chemistry and everything to do with politics’.
-   </p>
-   <p>
-    Further information: Baudin called the island ‘Isle aux alouettes’, because the crew ‘caught a lark that came and rested on the ship while we were abeam to it’, p.374. A cape in the Northern Territory has also been named after Fourcroy. To the Gunditjmara and Eastern Maar people, the island is where the spirits of the dead go before journeying to their next destination in the afterlife.
-   </p>
-  </div>
-  <section class="references-section">
-   <h2>
-    References
-   </h2>
-   <ul>
-    <li>
-     Péron, F., continued by Freycinet, L. (2016), Voyage of Discovery to the Southern Lands., vol1. Op cit., pp.37, 319
-    </li>
-    <li>
-     Tulard, J. editor (1989) Dictionnaire Napoléon, French &amp; European Publications, Incorporated, p.752
-    </li>
-    <li>
-     Fornasiero , J. &amp; J. West-Sooby. (2004) French Designs on Colonial New South Wales: François Péron's Memoir on the English Settlements in New Holland, Van Diemen's Land and the Archipelagos of the Great Pacific Ocean. The Friends of the State Library of South Australia, pp.25-26
-    </li>
-    <li>
-     Freycinet, L. (1815) Voyage de Découvertes aux Terres Australes Navigation et Géographie. Op cit., p.116
-    </li>
-   </ul>
+
+  <figure>
+    <img src="Baudin018E_html_image003.jpg" alt="Title page of Fourcroy's Philosophie chimique">
+    <figcaption>
+      <div><em>Philosophie chimique, ou Verites fondamentales de la chimie moderne, disposees dans un nouvel ordre, par A.-F. Fourcroy,...</em>, 1792.</div>
+      <div>Source: Bibliotheque nationale de France</div>
+      <div><a href="http://catalogue.bnf.fr/ark:/12148/cb30454212m" target="_blank" rel="noopener noreferrer">http://catalogue.bnf.fr/ark:/12148/cb30454212m</a></div>
+      <div><a href="https://gallica.bnf.fr/ark:/12148/bpt6k15100791.texteImage" target="_blank" rel="noopener noreferrer">https://gallica.bnf.fr/ark:/12148/bpt6k15100791.texteImage</a></div>
+    </figcaption>
+  </figure>
+
+  <figure>
+    <img src="Baudin018E_html_image004.jpg" alt="Title page of Francois Peron's memoir on the English settlements">
+    <figcaption>
+      <div>Title page of the <em>Memoire sur les etablissements Anglais de la Nouvelle-Hollande, a la terre de Diemen et dans l'archipel du Grand Ocean Pacifique</em>, by Francois Peron.</div>
+      <div>Source: Museum d'histoire naturelle, Le Havre, MHNH dossier 12.</div>
+    </figcaption>
+  </figure>
+
+  <main class="main-text">
+    <p>Peron studied chemistry and pharmacology under Fourcroy after Fourcroy's appointment as professor of chemistry in Paris at the Jardin du Roi, renamed the Museum national d'Histoire naturelle after the French Revolution. Fourcroy was a celebrated teacher and a pioneer in chemical science, laying the groundwork for what we now call <strong>biochemistry</strong>. Trained as a physician, he submitted a thesis on the use of quinine in the treatment of intermittent fevers for his medical degree but did not practise medicine.</p>
+
+    <p>His most important scientific contribution was his collaboration with the acclaimed chemist Antoine Lavoisier on the new standardized chemical nomenclature published in 1787. This reform replaced many older alchemical or descriptive names, often based on appearance, discoverers or places, with terms derived from chemical composition. Thus, for example, "philosopher's wool", also known as "flowers of zinc", became zinc oxide. Fourcroy also carried out extensive research on mineral analysis, demonstrated that aragonite and calcite were two forms of calcium carbonate, and helped initiate the method of proximate analysis, used to determine the general composition of organic substances. He was the author or co-author of numerous scientific publications.</p>
+
+    <p>Fourcroy was also a prominent political figure. He held public office under the revolutionary government and was later appointed by Bonaparte to the Council of State, where he served in the Section of the Interior. He played a major role in the creation and organization of a more effective public education system, including primary schools, colleges and lycees, as well as specialized schools in fields such as medicine and chemistry. Although Fourcroy has sometimes been accused of involvement in Lavoisier's arrest and execution, his direct participation has never been proved.</p>
+
+    <p>It was therefore in Fourcroy's capacity as Councillor of State that Peron addressed to him his <em>Memoir on the English Settlements in New Holland, in the Land of Diemen and in the Archipelagoes of the Great Pacific Ocean</em>, a text that described these territories from a colonial and strategic perspective. There is no tangible evidence that Fourcroy requested such a report, or even that he received the memoir. Yet Peron's choice of addressee shows that he regarded Fourcroy not only as a great scientist who taught him how to analyze the biology of "new" species using modern chemical methods, but also as an influential political figure who might help promote the voyage and the potential value of the Terres Australes for France.</p>
+  </main>
+
+  <p class="quote-intro">As Jean Fornasiero and John West-Sooby have written of this memoir:</p>
+  <section class="quote-block">
+    <p>"As fate would have it, Peron would in a few short years have the opportunity of emulating the political activism of his masters, for it is to this selfsame Fourcroy, in his capacity as Counsellor of State, that Francois Peron, on his return from the Antipodes, would address a report that had nothing to do with chemistry and everything to do with politics."</p>
   </section>
-   <script src="../js/details-protection.js"></script>
+
+  <main class="main-text">
+    <p><strong>Further information:</strong> To the Gunditjmara and Eastern Maar people, <em>Ile Fourcroy - Lady Julia Percy Island</em> is where the spirits of the dead go before journeying to their next destination in the afterlife.</p>
+  </main>
+
+  <section class="references-section">
+    <h2>References</h2>
+    <p>Peron, F., continued by Freycinet, L. (2016), <em>Voyage of Discovery to the Southern Lands</em>, vol. 1, pp. 37, 319.</p>
+    <p>Tulard, J. (ed.) (1989), <em>Dictionnaire Napoleon</em>, French &amp; European Publications, p. 752.</p>
+    <p>Fornasiero, J. and West-Sooby, J. (2004), <em>French Designs on Colonial New South Wales: Francois Peron's Memoir on the English Settlements in New Holland, Van Diemen's Land and the Archipelagos of the Great Pacific Ocean</em>, The Friends of the State Library of South Australia, pp. 25-26.</p>
+    <p>Freycinet, L. (1815), <em>Voyage de decouvertes aux Terres Australes. Navigation et Geographie</em>, p. 116.</p>
+  </section>
+
+  <script src="../js/details-protection.js"></script>
 </body>
 </html>
