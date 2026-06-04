@@ -2102,8 +2102,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Les Molé sont une illustre famille de parlementaires originaires de Troyes, fixés à Paris au xvie siècle. Ils sont issus de Nicolas Molé, surintendant de Champagne, nommé en 1519au Parlement de Paris. Louis Mathieu Molé (1781-1855), fils du précédent, fut Grand-Juge et ministre de la Justice sous Napoléon Ier et Premier ministre de Louis-Philippe Ier.\nLa famille Molé est éteinte dans les mâles avec Louis Mathieu Molé. La petite-fille et unique héritière de celui-ci, Clotilde de la Ferté-Meun, épousa le duc de Noailles.",
-    "detailsLink": "Baudin498F.html",
-    "detailsLink_en": "Baudin498E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin082",
@@ -2128,8 +2128,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "Baudin498F.html",
-    "detailsLink_en": "Baudin498E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin083",
@@ -10722,10 +10722,10 @@
     "indigenousLanguage": "",
     "lat": -33.2238,
     "lon": 115.70289,
-    "characteristic_fr": "Au nord de Pointe Casuarina, un lagon/marais protégé de la mer (en réalité un estuaire) a été baptisé Port Leschenault, [estuaire Leschenault], en l'honneur du botaniste Jean Baptiste Leschenault de la Tour (1773-1826).",
-    "characteristic": "To the north of Pointe Casuarina, a lagoon/marsh protected from the sea (in fact, an estuary) was named Port Leschenault, [Leschenault Estuary] after the botanist Jean Baptiste Leschenault de la Tour (1773-1826).",
-    "history_fr": "Le 4 juin 1801, Leschenault, accompagné de Péron et d'autres membres de l'équipage, remonta la rivière Vasse et découvrit, au nord de celle-ci, son estuaire. Ils aperçurent quelques indigènes, qui gardèrent les Français à distance.\nDans son journal, Leschenault suggéra que dans la baie Géographe, « La culture en serait d’autant plus facile qu’on ne rencontre ni pierres, ni pentes, rapides, et qu’il ne faudrait retourner la terre que peu profondément ; les paturages surtout y réussiraient. Il eft dommage que ce pays paraisse manquer d’eau ; cette raison empêchera les Européens d’y porter leur industrie \".",
-    "history": "On the 4th of June 1801, Leschenault, with Péron and other crew members, followed the river Vasse and, to the north of it, discovered its estuary. They saw some natives, who kept the French at a distance. In his journal, Leschenault suggested that in Géographe Bay, ‘cultivation would be all the easier since there are no stones or steep slopes, and the land would only have to be turned over a little. It is a pity that this country seems to lack water; this reason will prevent the Europeans from bringing their industry there’ (See the journal de Leschenault, chapter3).",
+    "characteristic_fr": "Au nord de la pointe Casuarina, le port Leschenault — aujourd’hui connu sous le nom d’estuaire de Leschenault — se caractérise par une géographie physique de lagune estuarienne littorale, peu profonde et salée, façonnée par les dunes, les deltas et les échanges avec l’océan. Il a été baptisé en l’honneur du botaniste Jean-Baptiste Leschenault de La Tour (1773-1826), qui visita la région en juin 1801.",
+    "characteristic": "North of Casuarina Point, Port Leschenault — now known as the Leschenault Estuary — is characterized by the physical geography of a shallow, saline coastal estuarine lagoon, shaped by dunes, deltas, and exchanges with the ocean. It was named in honour of the botanist Jean-Baptiste Leschenault de La Tour (1773–1826), who visited the region in June 1801.\r\n",
+    "history_fr": "Le 4 juin 1801, Leschenault, accompagné de Péron et d’autres membres de l’équipage, remonta la rivière Vasse et découvrit, au nord de celle-ci, l’estuaire qui portera plus tard son nom. Ils aperçurent quelques Autochtones, qui se tinrent à distance des Français.\nDans son journal, Leschenault observa à propos de la baie Géographe : « La culture en serait d’autant plus facile qu’on ne rencontre ni pierres, ni pentes rapides, et qu’il ne faudrait retourner la terre que peu profondément ; les pâturages surtout y réussiraient. Il est dommage que ce pays paraisse manquer d’eau ; cette raison empêchera les Européens d’y porter leur industrie. »\nAujourd’hui, le bassin versant de l’estuaire de Leschenault est fortement transformé par l’agriculture, notamment par les pâturages irrigués, l’élevage laitier et bovin, l’horticulture, les vergers et la viticulture. La région est également concernée par un déficit croissant d’eau douce, typique du sud-ouest australien, qui entraîne une diminution des débits fluviaux.",
+    "history": "On **4 June 1801**, Leschenault, accompanied by Péron and other members of the crew, travelled up the Vasse River and discovered, to the north of it, the estuary that would later bear his name. They saw several Aboriginal people, who kept their distance from the French.\r\nIn his journal, Leschenault observed of Geographe Bay: “Cultivation would be all the easier there, since one encounters neither stones nor steep slopes, and the soil would only need to be turned over to a shallow depth; pastures, in particular, would thrive there. It is a pity that this country appears to lack water; this reason will prevent Europeans from bringing their industry there.”\r\nToday, the catchment of the Leschenault Estuary has been heavily transformed by agriculture, including irrigated pastures, dairy and cattle farming, horticulture, orchards, and viticulture. The region is also affected by a growing freshwater deficit, typical of south-western Australia, which is leading to reduced river flows.\r\n",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -10916,8 +10916,8 @@
     "mapTitle_fr": "« Carte d’une partie des Terres de Leuwin et d’Edels (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson et Bouclet, dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 21, 1812.\nSource : Bibliothèque nationale d’Australie.",
     "mapTitle_en": "“Chart of part of the Lands of Leuwin and Edels (New Holland)”, by Louis-Claude Desaulses de Freycinet, Louis-Henri Desaulses de Freycinet, Charles-Pierre Boullanger, François Heirisson, and Bouclet, in Voyage of Discovery to the Southern Lands, section Navigation and Geography (Atlas), plate 21, 1812.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": "Baudin420E.htlm"
+    "detailsLink": "Baudin420F.html",
+    "detailsLink_en": "Baudin420E.html"
   },
   {
     "code": "Baudin421",
@@ -11047,7 +11047,7 @@
     "mapTitle_en": "\n\n\"Map of Edels Land and Part of Endracht Land (New Holland)\", by Louis-Claude Desaulses de Freycinet & al., in Voyage de découvertes aux Terres australes, part Navigation and Geography (Atlas), plate 22, 1812.\nSource: National Library of Australia.\nBreton bay is located in the southern part of the map.",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": "Baudin425E.htlm"
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin426",
@@ -11124,8 +11124,8 @@
     "mapTitle_fr": "« Carte de la Terre d’Edels et d’une partie de celle d’Endracht (Nouvelle-Hollande) », par Louis-Claude Desaulses de Freycinet & al., dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie (Atlas), planche 22, 1812.\nSource : Bibliothèque nationale d’Australie.\nL'île Boullanger se trouve dans la partie sud de la carte.",
     "mapTitle_en": "\n\"Map of Edels Land and Part of Endracht Land (New Holland)\", by Louis-Claude Desaulses de Freycinet & al., in Voyage de découvertes aux Terres australes, part Navigation and Geography (Atlas), plate 22, 1812.\nSource: National Library of Australia.\nBoullanger Island is located in the southern part of the map.",
     "origin_fr": "",
-    "detailsLink": "Baudin419F.html",
-    "detailsLink_en": "Baudin419E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin429",
