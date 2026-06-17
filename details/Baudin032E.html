@@ -1,131 +1,161 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Cap lannes – Cape Buffon
-  </title>
-  <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
-  <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cap Lannes - Cape Buffon</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon16.png">
   <style>
-   body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 2em 1.5em;
-            background-color: #fdfdfd;
-        }
-        .document-header {
-            text-align: center;
-            margin: 1.5em 0 2em;
-        }
-        .document-header p {
-            margin: 0.2em 0;
-            font-weight: 600;
-        }
-        figure {
-            margin: 2.5em 0;
-            text-align: center;
-        }
-        figure img {
-            width: 100%;
-            max-width: 720px;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        figure figcaption {
-            margin-top: 0.8em;
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555;
-        }
-        figure figcaption p {
-            margin: 0.25em 0;
-        }
-        .main-text {
-            text-align: justify;
-            margin-bottom: 2em;
-        }
-        .main-text p {
-            margin: 0 0 1em;
-        }
-        .references-section {
-            border-top: 1px solid #ccc;
-            padding-top: 1em;
-            margin-top: 2em;
-            font-size: 0.95em;
-        }
-        .references-section h2 {
-            font-size: 1.2em;
-            font-style: normal;
-        }
-        .references-section ul {
-            list-style: disc;
-            padding-left: 1.5em;
-            margin: 0.5em 0 0;
-        }
-        .references-section li {
-            margin: 0.4em 0;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    body {
+      margin: 0;
+      padding: 2em 1.5em;
+      color: #222;
+      background: #fdfdfd;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+    .document-header {
+      margin: 0 0 1.8em;
+      text-align: center;
+    }
+    .document-header p {
+      margin: 0.15em 0;
+    }
+    .detail-title {
+      font-family: "Aptos Display", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    figure {
+      margin: 0 0 1.8em;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+      color: #333;
+    }
+
+    figure img {
+      height: auto;
+      max-width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      background: #fff;
+      box-sizing: border-box;
+    }
+    .figure-portrait img {
+      width: min(560px, 100%);
+    }
+    .figure-wide img {
+      width: min(920px, 100%);
+    }
+
+    figcaption {
+      margin: 0.8em auto 0;
+      max-width: 42em;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .main-text {
+      margin: 0 auto 2em;
+      max-width: 72ch;
+      text-align: justify;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 0.96rem;
+    }
+
+    .main-text p {
+      margin: 0 0 1em;
+    }
+
+    .quote {
+      margin: 0 1.6em 1em;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    .section-label {
+      font-family: "Aptos Display", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .references-section {
+      max-width: 72ch;
+      margin: 2em auto 0;
+      padding-top: 1em;
+      border-top: 1px solid #ccc;
+      font-family: "Speak Pro", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+    .references-section h2 {
+      margin: 0 0 0.5em;
+      font-size: 1rem;
+    }
+
+    .references-section p {
+      margin: 0;
+    }
+
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
- </head>
- <body>
-  <figure>
-   <img alt="" src="Baudin032E_html_1dd79c31.jpg"/>
+</head>
+<body>
+  <header class="document-header">
+    <p class="detail-title">Cap Lannes - Cape Buffon</p>
+  </header>
+
+  <figure class="figure-portrait">
+    <img src="Baudin032_html_image001.jpg" alt="Portrait of Jean Lannes, 1st Duke of Montebello">
+    <figcaption>
+      Portrait of Jean Lannes, 1st Duke of Montebello, Marshal of the Empire, engraved by Jean-Mathias Fontaine, undated, probably after a painting by François Gérard.<br>
+      Source: Musée Carnavalet, Histoire de Paris.<br>
+      <a href="https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/lannes-duc-de-montebello-0#infos-principales" target="_blank" rel="noopener noreferrer">https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/lannes-duc-de-montebello-0#infos-principales</a><br>
+      To view François Gérard’s painting, painted in 1834 and held by the Musée de l’Armée, Paris:<br>
+      <a href="https://www.photo.rmn.fr/archive/06-528021-2C6NU0PTPXZY.html" target="_blank" rel="noopener noreferrer">https://www.photo.rmn.fr/archive/06-528021-2C6NU0PTPXZY.html</a>
+    </figcaption>
   </figure>
-  <figure>
-   <img alt="" src="Baudin032E_html_ae954540.png"/>
+
+  <figure class="figure-wide">
+    <img src="Baudin032_html_image002.jpg" alt="Close-up of the coastal profile between Cap Bourru and Pointe Marbrée">
+    <figcaption>
+      Close-up of the coastal profile “Vue des Terres comprises entre le Cap Bourru à la Pointe Marbrée le 16 Germinal an 10 (6 April 1802)”.<br>
+      Source: Archives nationales de France.<br>
+      <a href="https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0044_02240_L-medium.jpg" target="_blank" rel="noopener noreferrer">https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0044_02240_L-medium.jpg</a>
+    </figcaption>
   </figure>
-  <div class="main-text">
-   <p>
-    Portrait of Jean Lannes, 1st Duke of Montebello, Marshal of the Empire, engraved by Fontaine, Jean-Mathias, unknown date, probably after a painting from Gérard, F. Source : Musée Carnavalet, Histoire de Paris
-    <a href="https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/lannes-duc-de-montebello-0#infos-principales">
-     https://www.parismuseescollections.paris.fr/fr/musee-carnavalet/oeuvres/lannes-duc-de-montebello-0#infos-principales
-    </a>
-    To view Gerard’s painting (1834, now in the Musée de l'Armée, Paris):
-    <a href="https://www.photo.rmn.fr/archive/06-528021-2C6NU0PTPXZY.html">
-     https://www.photo.rmn.fr/archive/06-528021-2C6NU0PTPXZY.html
-    </a>
-   </p>
-   <p>
-    Lannes was celebrated not only for his exceptional courage, but also for his enduring humanity. Though he faithfully executed the Emperor’s orders, he did not hesitate to voice his aversion to unnecessary cruelty. (especially the burning of the village of Binasco) and the ruthless suppression that accompanied the Napoleonic wars. In the aftermath of Austerlitz, he wrote to his wife: ‘Nous avons tout culbuté, c’est-à-dire tout tué ou pris: on n’a jamais vu un carnage pareil‘ (‘We have all collapsed, captured or dead: we have never seen carnage like this’).
-   </p>
-   <p>
-    Further information: Baudin called the cape Pointe Marbrée (marbled), probably because of the alternation of lighter and darker coloured sedimentary sequences that form the cape (see the profile below).
-   </p>
-   <p>
-    Close-up of the coastal profile ‘Vue des Terres comprises entre le Cap Bourru a la Pointe Marbrée le 16 Germinal an 10 (6 April 1802) Source : Archives nationales de France
-    <a href="https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0044_02240_L-medium.jpg">
-     https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0044_02240_L-medium.jpg
-    </a>
-   </p>
-  </div>
+
+  <main class="main-text">
+    <p>Jean Lannes (1769-1809), 1st Duke of Montebello, was one of the most celebrated Marshals of the Empire. Born into modest circumstances, he distinguished himself during the Revolutionary Wars and later in the Napoleonic campaigns, where his bravery and military skill earned him Napoleon’s particular esteem.</p>
+    <p>Lannes appears to have had a reputation as a more humane commander than several other marshals. Although he faithfully carried out the Emperor’s orders, he did not hesitate to voice his aversion to unnecessary cruelty and to the violence that accompanied the Napoleonic wars. During the first Italian campaign, he obeyed orders to burn the village of Binasco and to take part in the repression of the revolt at Arquata, but he expressed disgust at such actions. In the aftermath of Austerlitz, he wrote to his wife: “We swept everything away — that is to say, killed or captured everything: never has such carnage been seen.” The Fondation Napoléon likewise stresses this tension between Lannes’s military obedience and his personal revulsion at certain forms of wartime violence.</p>
+    <p>Another often-cited example is that of Weimar, after the battle of Jena in 1806. Goethe sought protection from French soldiers; Lannes is said to have been the only French commander to respond favourably, ordering guards to be placed around the writer’s house and library.</p>
+    <p>Napoleon, for his part, held Lannes in deep affection, regarding him as one of his finest generals and as a close personal friend. This proximity probably gave Lannes an exceptional freedom of speech with the Emperor. Yet this does not mean that Napoleon turned Lannes’s moral sensitivity into a general principle of military government. He could condemn looting when it harmed discipline, supply, or the army’s reputation, but he also broadly accepted the system of requisitions, war contributions and seizures imposed on occupied territories. The Revolutionary and Napoleonic wars were therefore accompanied by many acts of violence, destruction and plunder, including in the artistic sphere.</p>
+    <p>Today, Cape Lannes refers to a promontory located in Little Dip Conservation Park, south of the township of Robe.</p>
+    <p><span class="section-label">Further information</span></p>
+    <p>Baudin called the cape “Pointe Marbrée” — “Marbled Point” — probably because of the alternation of lighter and darker sedimentary sequences that form the promontory, visible in the coastal profile above.</p>
+  </main>
+
   <section class="references-section">
-   <h2>
-    References
-   </h2>
-   <ul>
-    <li>
-     Péron, F., continued by Freycinet, L. (2011) Voyage de découvertes aux Terres Australes, tome 2. Op cit., p.48
-    </li>
-    <li>
-     Péron, F., continued by Freycinet, L. (2016), Voyage of Discovery to the Southern Lands., tome 1. Op cit.., p.255
-    </li>
-   </ul>
+    <h2>References</h2>
+    <p>Péron, F., continued by Freycinet, L. (2011). <em>Voyage de découvertes aux Terres australes</em>, vol. 2, op. cit., p. 48.</p>
+    <p>Péron, F., continued by Freycinet, L. (2016). <em>Voyage of Discovery to the Southern Lands</em>, vol. 1, op. cit., p. 255.</p>
+    <p>Fondation Napoléon, “LANNES, Jean (1769-1809), duc de Montebello, maréchal”.</p>
+    <p>Chrisawn, Margaret Scott. <em>The Emperor’s Friend: Marshal Jean Lannes</em>. Westport, CT: Greenwood Press, 2001.</p>
   </section>
-   <script src="../js/details-protection.js"></script>
+
+  <script src="../js/details-protection.js"></script>
 </body>
 </html>
