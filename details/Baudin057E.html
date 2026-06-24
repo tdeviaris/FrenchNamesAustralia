@@ -1,128 +1,175 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Cap Sévigné – Rapid head
-  </title>
-  <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
-  <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cap Sévigné - Rapid Head</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon16.png">
   <style>
-   body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 2em 1.5em;
-            background-color: #fdfdfd;
-        }
-        .document-header {
-            text-align: center;
-            margin: 1.5em 0 2em;
-        }
-        .document-header p {
-            margin: 0.2em 0;
-            font-weight: 600;
-        }
-        figure {
-            margin: 2.5em 0;
-            text-align: center;
-        }
-        figure img {
-            width: 100%;
-            max-width: 720px;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        figure figcaption {
-            margin-top: 0.8em;
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555;
-        }
-        figure figcaption p {
-            margin: 0.25em 0;
-        }
-        .main-text {
-            text-align: justify;
-            margin-bottom: 2em;
-        }
-        .main-text p {
-            margin: 0 0 1em;
-        }
-        .references-section {
-            border-top: 1px solid #ccc;
-            padding-top: 1em;
-            margin-top: 2em;
-            font-size: 0.95em;
-        }
-        .references-section h2 {
-            font-size: 1.2em;
-            font-style: normal;
-        }
-        .references-section ul {
-            list-style: disc;
-            padding-left: 1.5em;
-            margin: 0.5em 0 0;
-        }
-        .references-section li {
-            margin: 0.4em 0;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    body {
+      margin: 0;
+      padding: 2em 1.5em;
+      color: #222;
+      background: #fdfdfd;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    .document-header {
+      margin: 0 0 1.8em;
+      text-align: center;
+    }
+
+    .document-header p {
+      margin: 0.15em 0;
+    }
+
+    .detail-title {
+      font-family: "Aptos Display", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    figure {
+      margin: 0 0 1.8em;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+      color: #333;
+    }
+
+    figure img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(720px, 100%);
+      margin: 0 auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    .portrait-figure img {
+      max-width: min(460px, 100%);
+    }
+
+    .manuscript-figure img {
+      max-width: min(760px, 100%);
+    }
+
+    .extract-figure img {
+      max-width: min(760px, 100%);
+    }
+
+    figcaption {
+      margin: 0.8em auto 0;
+      max-width: 44em;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .main-text {
+      margin: 0 auto 2em;
+      max-width: 72ch;
+      text-align: justify;
+      font-size: 0.96rem;
+    }
+
+    .main-text p {
+      margin: 0 0 1em;
+    }
+
+    .references-section {
+      max-width: 72ch;
+      margin: 2em auto 0;
+      padding-top: 1em;
+      border-top: 1px solid #ccc;
+      font-family: "Speak Pro", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .references-section h2 {
+      margin: 0 0 0.5em;
+      font-size: 1rem;
+    }
+
+    .references-section ul {
+      list-style: disc;
+      padding-left: 1.5em;
+      margin: 0.5em 0 0;
+    }
+
+    .references-section li {
+      margin: 0.4em 0;
+    }
+
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
- </head>
- <body>
-  <figure>
-   <img alt="" src="Baudin057E_html_cf43ea72.jpg"/>
+</head>
+<body>
+  <header class="document-header">
+    <p class="detail-title">Cap Sévigné - Rapid Head</p>
+  </header>
+
+  <figure class="portrait-figure">
+    <img src="Baudin057_image001.jpg" alt="Portrait of Madame de Sévigné">
+    <figcaption>
+      Portrait of Mme de Rabutin-Chantal, Marquise de Sévigné, engraving by Petit.<br>
+      Madame de Sévigné took a keen interest in fashion and often commented on dresses and hairstyles in her letters to her daughter. She is credited with introducing a new style: the hair was flattened over the crown, with a fine curled fringe across the forehead, a longer curl at the centre, and thick curls falling beneath the ears on either side.<br>
+      Source: Bibliothèque nationale de France.<br>
+      <a href="https://gallica.bnf.fr/ark:/12148/btv1b84072213" target="_blank" rel="noopener noreferrer">https://gallica.bnf.fr/ark:/12148/btv1b84072213</a><br>
+      <a href="https://gallica.bnf.fr/ark:/12148/btv1b84072213/f1.highres" target="_blank" rel="noopener noreferrer">https://gallica.bnf.fr/ark:/12148/btv1b84072213/f1.highres</a>
+    </figcaption>
   </figure>
-  <figure>
-   <img alt="" src="Baudin057E_html_73bc3b22.png"/>
+
+  <figure class="manuscript-figure">
+    <img src="Baudin057_image002.jpg" alt="Manuscript letter by Madame de Sévigné">
+    <figcaption>
+      Manuscript letter by Madame de Sévigné.
+    </figcaption>
   </figure>
-  <div class="main-text">
-   <p>
-    Portrait of Mme de Rabutin Chantal, marquise de Sévigné, by Petit, engraving Mme de Sévigné enjoyed fashion and commented about dresses and hair styles in her letters to her daughter. She introduced a new hairstyle, with flat hairs on the top of the head, a thin fringe with curls on the forehead with a longer curl in the centre, and, on each side, thick curly hair falling under over the ears. Source :  Bibliothèque nationale de France
-    <a href="https://gallica.bnf.fr/ark:/12148/btv1b84072213">
-     https://gallica.bnf.fr/ark:/12148/btv1b84072213
-    </a>
-   </p>
-   <p>
-    Excerpt from a letter by Madame de Sévigné to her daughter, dated 5 February 1674, in which the Marquise employs a vivid and humorous narrative—evocative of a horse galloping at breakneck speed—to recount the accidental overturning of the Archbishop of Reims’ carriage. In Lettres choisies de madame de Sévigné : extraites de l'édition des Grands écrivains de la France (2e édition) / et publiées sous la direction de M. Adolphe Regnier Source :  Bibliothèque nationale de France
-    <a href="http://catalogue.bnf.fr/ark:/12148/cb31358371b">
-     http://catalogue.bnf.fr/ark:/12148/cb31358371b
-    </a>
-   </p>
-   <p>
-    Further information: Baudin did not specify the cape but named a head next to the cape Pointe aux Corbeaux (crows). It was first named by Péron and Freycinet ‘Cap d’Aboukir’. The name ‘Rapid Head’ comes from the brig Rapid, which brought Col. William Light to South Australia in 1836.
-   </p>
-  </div>
+
+  <figure class="extract-figure">
+    <img src="Baudin057_image003.png" alt="Excerpt from a letter by Madame de Sévigné to her daughter">
+    <figcaption>
+      Extract from a letter by Madame de Sévigné to her daughter, 5 February 1674.<br>
+      In this letter, the Marquise vividly and humorously recounts an accident involving the Archbishop of Reims. In <i>Lettres choisies de Madame de Sévigné</i>, 2nd ed., edited by Adolphe Régnier.<br>
+      Source: Bibliothèque nationale de France.<br>
+      <a href="http://catalogue.bnf.fr/ark:/12148/cb31358371b" target="_blank" rel="noopener noreferrer">http://catalogue.bnf.fr/ark:/12148/cb31358371b</a><br>
+      <a href="https://gallica.bnf.fr/ark:/12148/bpt6k3410843b/f225.item.zoom" target="_blank" rel="noopener noreferrer">https://gallica.bnf.fr/ark:/12148/bpt6k3410843b/f225.item.zoom</a>
+    </figcaption>
+  </figure>
+
+  <main class="main-text">
+    <p>Orphaned at an early age and widowed at twenty-five, Madame de Sévigné enjoyed an unusual degree of autonomy for a woman of her rank in seventeenth-century France. She led an active social life and cultivated a lasting engagement with reading, writing, and conversation.</p>
+
+    <p>She moved in Parisian literary circles, notably the Hôtel de Rambouillet, famous for its "Blue Room", and Madeleine de Scudéry's Saturday gatherings. She also maintained a close relationship with her relative and friend Madame de La Fayette, author of <i>La Princesse de Clèves</i>, published anonymously in 1678. In conversation and correspondence alike, Madame de Sévigné distinguished herself through her wit, powers of observation, and lively style.</p>
+
+    <p>Her letters to her daughter reveal deep maternal affection, expressed within the social and emotional codes of her milieu. They also reflect the galant ideal associated with the <i>Carte de Tendre</i>, the imaginary geography devised by Madeleine de Scudéry in her novel <i>Clélie, histoire romaine</i>. Madame de Sévigné also commented on contemporary theatre, including Racine's plays, among them <i>Bajazet</i>, which was still performed during the Napoleonic period (see Cape and Isle Racine).</p>
+
+    <p>The women and men of letters from the age of Louis XIV who appear in Madame de Sévigné's intellectual world likewise received place-names in the French nomenclature. Taken together, these names may be read as reflecting what would later become French classical culture.</p>
+
+    <p><i>Further information.</i> Baudin did not explicitly name the cape, but gave the nearby headland the name <i>Pointe aux Corbeaux</i> ("Crow Point"). An earlier stage of French mapping uses the name <i>Cape d'Aboukir</i>, while <i>Cape Sévigné</i> was retained in the nomenclature associated with Péron and Freycinet. The modern name, <i>Rapid Head</i>, derives from the brig <i>Rapid</i>, which brought Colonel William Light to South Australia in 1836.</p>
+  </main>
+
   <section class="references-section">
-   <h2>
-    References
-   </h2>
-   <ul>
-    <li>
-     Farrell, M. L. (1991) Performing Motherhood: The Sévigné Correspondence. Hanover, NH : University Press of New England.
-    </li>
-    <li>
-     Sévigné, M.-d.-R.-C. (1881), Lettres choisies de madame de Sévigné : extraites de l'édition des Grands écrivains de la France (2e édition) / et publiées sous la direction de M. Adolphe Regnier,... ; ouvrage contenant huit portraits... d'après les dessins d'Aug. Sandoz...
-     <a href="http://catalogue.bnf.fr/ark:/12148/cb31358371b">
-      http://catalogue.bnf.fr/ark:/12148/cb31358371b
-     </a>
-     , Bibliothèque nationale de France.
-    </li>
-   </ul>
+    <h2>References</h2>
+    <ul>
+      <li>Farrell, M. L. (1991). <i>Performing Motherhood: The Sévigné Correspondence</i>. Hanover, NH: University Press of New England.</li>
+      <li>Sévigné, M.-d.-R.-C. (1881). <i>Lettres choisies de Madame de Sévigné</i>, 2nd ed., edited by Adolphe Régnier. Bibliothèque nationale de France.</li>
+    </ul>
   </section>
-   <script src="../js/details-protection.js"></script>
+  <script src="../js/details-protection.js"></script>
 </body>
 </html>
