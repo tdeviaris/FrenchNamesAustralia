@@ -1,167 +1,219 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Presqu'île Fleurieu– Fleurieu Peninsula
-  </title>
-  <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
-  <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presqu'île Fleurieu - Fleurieu Peninsula</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon16.png">
   <style>
-   body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 2em 1.5em;
-            background-color: #fdfdfd;
-        }
-        .document-header {
-            text-align: center;
-            margin: 1.5em 0 2em;
-        }
-        .document-header p {
-            margin: 0.2em 0;
-            font-weight: 600;
-        }
-        figure {
-            margin: 2.5em 0;
-            text-align: center;
-        }
-        figure img {
-            width: 100%;
-            max-width: 720px;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        figure figcaption {
-            margin-top: 0.8em;
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555;
-        }
-        figure figcaption p {
-            margin: 0.25em 0;
-        }
-        .main-text {
-            text-align: justify;
-            margin-bottom: 2em;
-        }
-        .main-text p {
-            margin: 0 0 1em;
-        }
-        .references-section {
-            border-top: 1px solid #ccc;
-            padding-top: 1em;
-            margin-top: 2em;
-            font-size: 0.95em;
-        }
-        .references-section h2 {
-            font-size: 1.2em;
-            font-style: normal;
-        }
-        .references-section ul {
-            list-style: disc;
-            padding-left: 1.5em;
-            margin: 0.5em 0 0;
-        }
-        .references-section li {
-            margin: 0.4em 0;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    body {
+      margin: 0;
+      padding: 2em 1.5em;
+      color: #222;
+      background: #fdfdfd;
+      font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    .document-header {
+      margin: 0 0 1.8em;
+      text-align: center;
+    }
+
+    .document-header p {
+      margin: 0.15em 0;
+    }
+
+    .detail-title,
+    .detail-subtitle {
+      font-family: "Aptos Display", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    figure {
+      margin: 0 0 1.8em;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+      color: #333;
+    }
+
+    figure img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(720px, 100%);
+      margin: 0 auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    figure.map img {
+      max-width: min(860px, 100%);
+    }
+
+    figcaption {
+      margin: 0.8em auto 0;
+      max-width: 44em;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .main-text {
+      margin: 0 auto 2em;
+      max-width: 72ch;
+      text-align: justify;
+      font-size: 0.96rem;
+    }
+
+    .main-text p {
+      margin: 0 0 1em;
+    }
+
+    .references-section {
+      max-width: 72ch;
+      margin: 2em auto 0;
+      padding-top: 1em;
+      border-top: 1px solid #ccc;
+      font-family: "Speak Pro", Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .references-section h2 {
+      margin: 0 0 0.5em;
+      font-size: 1rem;
+    }
+
+    .references-section ul {
+      list-style: disc;
+      padding-left: 1.5em;
+      margin: 0.5em 0 0;
+    }
+
+    .references-section li {
+      margin: 0.4em 0;
+    }
+
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
- </head>
- <body>
+</head>
+<body>
+  <header class="document-header">
+    <p class="detail-title">Presqu'île Fleurieu - Fleurieu Peninsula</p>
+    <p class="detail-subtitle">Île Fleurieu - Hunter Island</p>
+    <p class="detail-subtitle">Rivière Fleurieu - Agnes Rivulet</p>
+    <p class="detail-subtitle">Baie Fleurieu - Great Oyster Bay</p>
+  </header>
+
   <figure>
-   <img alt="" src="Baudin061E_html_12f83964.jpg"/>
+    <img src="Baudin061_image001.jpg" alt="Title page of Fleurieu's work on French discoveries in 1768 and 1769">
+    <figcaption>
+      Title page of Fleurieu's work on French discoveries in 1768 and 1769 in south-eastern New Guinea. The full title is: <i>Découvertes des François en 1768 &amp; 1769, dans le sud-est de la Nouvelle-Guinée. Et reconnoissances postérieures des mêmes terres par des navigateurs anglois qui leur ont imposé de nouveaux noms ; précédées de l'abrégé historique des navigations &amp; des découvertes des Espagnols dans les mêmes parages. Par M.***, ancien capitaine de vaisseau.</i> Drawing on original sources - journals and reports - Fleurieu's book relates the accounts of early navigators and their discoveries in this region. The name Fleurieu does not appear on the title page because the book was published during the French Revolution, when noble families such as Fleurieu's were being persecuted. His name was added later by hand.<br>
+      Source: Bibliothèque nationale de France.<br>
+      <a href="http://catalogue.bnf.fr/ark:/12148/cb361272152" target="_blank" rel="noopener noreferrer">http://catalogue.bnf.fr/ark:/12148/cb361272152</a><br>
+      <a href="https://gallica.bnf.fr/ark:/12148/bpt6k10405497/f7.highres" target="_blank" rel="noopener noreferrer">https://gallica.bnf.fr/ark:/12148/bpt6k10405497/f7.highres</a>
+    </figcaption>
   </figure>
+
   <figure>
-   <img alt="" src="Baudin061E_html_9f237760.png"/>
+    <img src="Baudin061_image002.jpg" alt="Title page of Étienne Marchand's Voyage around the world edited by Fleurieu">
+    <figcaption>
+      Title page of <i>Voyage autour du monde, pendant les années 1790, 1791 et 1792, par Étienne Marchand, précédé d'une introduction historique, auquel on a joint des recherches sur les terres australes de Drake et un examen critique du voyage de Roggeween…</i>, edited by Fleurieu between 1797 and 1800. Impressed by Marchand's navigation, Fleurieu used the journals of his officers to publish the account of this circumnavigation. He also added a fourth volume devoted to nautical science and navigation, bringing new knowledge to naval officers. The title of this volume reads: “Tome quatrième, contenant des observations sur la division et la nomenclature hydrographiques, l'application du système métrique décimal à la navigation, et les cartes.”<br>
+      Source: Bibliothèque nationale de France, département de la Réserve des livres rares, G-6359.<br>
+      <a href="http://catalogue.bnf.fr/ark:/12148/cb302465638" target="_blank" rel="noopener noreferrer">http://catalogue.bnf.fr/ark:/12148/cb302465638</a><br>
+      <a href="https://gallica.bnf.fr/ark:/12148/btv1b86029468/f13.highres" target="_blank" rel="noopener noreferrer">https://gallica.bnf.fr/ark:/12148/btv1b86029468/f13.highres</a>
+    </figcaption>
   </figure>
-  <figure>
-   <img alt="" src="Baudin061E_html_bfc2223d.jpg"/>
+
+  <figure class="map">
+    <img src="Baudin061_image003.jpg" alt="Annotated map of the Fleurieu Peninsula with French place names added in red ink">
+    <figcaption>
+      Annotated map entitled “Golfe de Spencer : Australie (côte sud), feuille no 5”, based on the work of Hutchington, Howard, Guy, Goalen and Roxby, 1878, with the French names that Alphonse de Fleurieu sought to have recognised added in red ink.<br>
+      Shelfmark: GE BB-3 (3582-1912).<br>
+      Source: Bibliothèque nationale de France.<br>
+      © Bibliothèque nationale de France, 20 July 2018.
+    </figcaption>
   </figure>
-  <figure>
-   <img alt="" src="Baudin061E_html_7dacb62d.png"/>
-  </figure>
-  <div class="main-text">
-   <p>
-    Title page of Fleurieu's work on French discoveries in 1768 and 1769 in south-eastern New Guinea. The full title is :  Découvertes des Franc̜ois en 1768 &amp; 1769, dans le sud-est de la Nouvelle Guinée [Texte imprimé]. Et reconnoissances postérieures des mêmes terres par des navigateurs anglois qui leur ont imposé de nouveaux noms ; précédées de l'abrégé historique des navigations &amp; des découvertes des Espagnols dans les mêmes parages. Par M.***, ancien capitaine de vaisseau. Drawing on original sources (journals and reports), Fleurieu’s book relates the accounts of early navigators and their discoveries in this region. The name Fleurieu does not appear on the title page of the book as it was published during the French Revolution, when noble families like that of Fleurieu were persecuted. His name was added later by hand. Bibliothèque nationale de France
-    <a href="http://catalogue.bnf.fr/ark:/12148/cb361272152">
-     http://catalogue.bnf.fr/ark:/12148/cb361272152
-    </a>
-   </p>
-   <p>
-    Title page of Voyage autour du monde, pendant les années 1790, 1791 et 1792, par Étienne Marchand, précédé d'une introduction historique, auquel on a joint des recherches sur les terres australes de Drake et un examen critique du voyage de Roggeween... .by Fleurieu, C.-P.-C.-d. edited between 1797-1800. Impressed by Marchand’s navigation, Fleurieu used the journals of his officers to publish his circumnavigation and wrote also an additional forth volume about nautical sciences and navigation that provided new knowledge to all navy officers. The title of volume IV reads: ‘Tome quatrième, contenant des observations sur la division et la nomenclature hydrographiques, l'application du système métrique décimal à la navigation, et les cartes’. Source : Bibliothèque nationale de France, département Réserve des livres rares, G-6359
-    <a href="http://catalogue.bnf.fr/ark:/12148/cb302465638">
-     http://catalogue.bnf.fr/ark:/12148/cb302465638
-    </a>
-   </p>
-   <p>
-    Annoted map entitled ‘Golfe de Spencer: Australie (côte sud) Feuille n°5’, based on the work of Hutchington, Howard, Guy, Goalen and Roxby, 1878, with in red the French names claimed by Alphonse de Fleurieu ID/Cote: GE BB-3 (3582-1912) Source : Bibliothèque nationale de France © Bibliothèque Nationale de France, 20/07/2018
-   </p>
-   <p>
-    Fleurieu is the author of significant publications that were scientific, informative, but also strategic with a sense of geopolitics, aimed to defend French maritime discoveries and their overseas presence against the British. For example, Fleurieu wrote Découvertes des françois en 1768 et 1769 dans le sud-est de la Nouvelle Guinée with ‘the desire of restoring to the French nation its own discoveries, which an emulous and jealous neighbour [the British] has endeavoured to appropriate to herself…’. Before the Revolution, this naval officer and savant had been director of the French naval ports and arsenals, then intermittent minister of the navy and governor of the dauphin. During the Terror (see this entry in the glossary), he was deprived of resources, arrested, and imprisoned. After the French Revolution, Fleurieu edited and published an account of a voyage around the world (1790–1792) commanded by Étienne Marchand (1755–1793). This was the second circumnavigation of the world by French navigators, following Antoine de Bougainville’s voyage. Compared to the mortality rate among crews on similar voyages, it was remarkable that no lives were lost, except for one due to natural causes In his long introduction to the book, Fleurieu reviewed the geographical knowledge already obtained on previous voyages that itemize each nation’s own discoveries and commented on navigation and its progress. He concluded this work with a memoir proposing a universal nomenclature for the oceans organised around ‘le Grand Océan’ (Pacific Ocean) and its different divisions all named according to their geographical location (for example, ‘Grand Océan Austral’ [Great Southern Ocean] for the body of water separating Australia from Antarctica and ‘Grand Océan Équinoxal’ for the sea off the eastern coast of Australia - a terminology which Beautemps-Beaupré and Freycinet introduced in their atlases). The memoir also advocated for the introduction of the metric system in the Navy, which Freycinet applied in his working charts by converting marine leagues into ‘myriameters’ (10.000 meters). Fleurieu was also a great administrator able to conceive and perform projects efficiently at the Dépôt des Cartes et Plans de la Marine* as director of the naval yards and as a government minister. Backed by his expertise and skills, he took a leading role in the planning of the three French voyages of discovery in the late eighteen century. After the return of the savants and officers of the d’Entrecasteaux and the Baudin expeditions, Fleurieu continued to support the findings of these voyages. In 1803, Decrès* entrusted him with the task of supervising the edition of the narrative of the d’Entrecasteaux voyage. Then, in 1806, Fleurieu was, together with Laplace*, Bougainville*, Lacépède* and Cuvier*, part of the commission of the Institut* who wrote a report in favour of the publication of the narrative detailing the findings from Baudin’s voyage. Delivered to the government, this report concluded encouragingly ‘that the works which he [Péron] is preparing must contribute splendidly to the progress of the natural sciences’.This judgment contrasted with the rather negative opinions expressed by some scientists who had embarked in Le Havre but, faced with the difficult conditions of the voyage, abandoned the expedition in Isle de France before their mission even began.. Péron acknowledges the ‘rigorousness’ of Fleurieu’s thoughts, and Freycinet salutes Fleurieu’s innovative thinking to print with copper plates fair charts. In their nomenclature, they dedicated four place names to Fleurieu, the most given to any one individual. Fleurieu is also thanked for his advice and support in the introduction of the narratives of the two voyages.
-   </p>
-   <p>
-    Further information: Péron notes: ‘This peninsula, like the one in Italy, has the shape of a boot: the cape Mollien* ends it in the East; then slopes northward, forming a picturesque bay approximately 10 to 12 miles long and nearly as wide. We have named it Bay Cretet*; further on are the small isles Decaen* and the cape of the same name, which forms, so to speak, the spur of the boot; Cape Montalivet* forms the heel … the large cape d'Alembert* ends the Fleurieu peninsula to the east forming the tip of the foot of the boot’. An island (Île Fleurieu*), a river (Rivière Fleurieu*) and a bay (Baie Fleurieu*) were also named after Fleurieu, in Tasmania. Baudin did not name this peninsula as he sailed along its shore in 1802. It was Péron and Freycinet who first named it in honour of Fleurieu. Some years after the founding of South Australia in 1834, the peninsula was given the name of Hindmarsh, after the first governor of the state, Sir John Hindmarsh (1836-38). In 1911, Fleurieu’s grand-nephew, Alphonse de Fleurieu*, made representations to the authorities in South Australia to have the name of his forebear formally reinstated. The portion of an 1878 map of the Gulfs of St Vincent and Spencer shows the name "Presqu’Île de Fleurieu," which had by that time been replaced by "Hindmarsh." It also includes, in red ink, some of the other French place names along the coasts of the Fleurieu Peninsula, which Alphonse de Fleurieu attempted—unsuccessfully—to reinstate.
-   </p>
-  </div>
+
+  <main class="main-text">
+    <p>Charles-Pierre Claret de Fleurieu was a French naval officer, hydrographer, administrator, and statesman. His career, which began under the Ancien Régime and continued through the Revolution, the Consulate, and the Empire, reflects the scientific, technical, and strategic transformations of the French navy at the end of the eighteenth century. A practitioner of navigation, theorist of hydrography, and organiser of expeditions, he made a major contribution to the development of French maritime knowledge and to the preparation of the great voyages of discovery in the Pacific and the southern lands.</p>
+
+    <p><strong>A leading figure in the science of navigation</strong><br>
+    From an early age, Fleurieu was drawn to mathematics and the problems of navigation. He focused on one of the principal challenges facing eighteenth-century seafarers: the reliable determination of longitude at sea. From 1765 onward, he worked with the clockmaker Ferdinand Berthoud on marine timekeepers designed to compare the time at the port of departure with local time established through astronomical observation.</p>
+
+    <p>In 1768-1769, he commanded the corvette <i>Isis</i> during a voyage intended to test Berthoud's marine clocks nos. 6 and 8 at sea, in order to assess their usefulness for determining longitude. These trials demonstrated the practical value of marine timekeepers and helped make astronomical navigation a more precise instrument of cartography. Fleurieu published the results in 1773 in his <i>Voyage made by order of the King in 1768 and 1769 to various parts of the world in order to test at sea the marine clocks invented by Ferdinand Berthoud</i>.</p>
+
+    <p>His work extended far beyond longitude. Fleurieu was the author, coordinator, or reviewer of important hydrographic and cartographic publications, including the <i>Neptune américo-septentrional</i>, the <i>Neptune des mers du Nord</i>, and the atlas of the Kattegat and the Baltic. He also contributed to the modernisation of naval signalling systems, which were essential for visual communication between ships of the same squadron. His approach therefore combined instruments, observations, charts, nomenclature, and naval organisation.</p>
+
+    <p><strong>Architect of the French expeditions</strong><br>
+    Appointed Director of Ports and Arsenals in 1776, Fleurieu held a central position in the administration of the French navy for fifteen years. He supervised matériel, shipyard works, and fleet movements, while also contributing to the planning of naval campaigns and voyages of discovery. His role was especially important in the preparation of French expeditions at the end of the eighteenth century.</p>
+
+    <p>He helped prepare the instructions issued to Jean-François de Galaup, comte de La Pérouse, for the expedition of 1785. These instructions combined scientific objectives, hydrographic surveys, commercial enquiries, and observations on the European powers active in the Pacific. They illustrate the close relationship between maritime geography and France's strategic and imperial interests.</p>
+
+    <p>After La Pérouse disappeared, Fleurieu was also associated with the expedition entrusted to Bruni d'Entrecasteaux in 1791 to search for the missing ships. Under the Consulate, while presiding over the Naval Section of the Council of State, his experience and scientific authority continued to influence preparations for Nicolas Baudin's expedition to the southern lands, undertaken between 1800 and 1804. The instructions issued to Baudin called in particular for a careful examination of Van Diemen's Land and the D'Entrecasteaux Channel, in order to determine whether the British had established settlements there. The mission was therefore not limited to natural-history observations: it also reflected geopolitical concerns about British presence and expansion in the southern seas.</p>
+
+    <p><strong>A thinker of historical and oceanic geography</strong><br>
+    Fleurieu was also a critical historian of navigation. His <i>French Discoveries in 1768 and 1769 in South-Eastern New Guinea</i>, published in 1790, defended the priority of French discoveries against later British renamings. He argued for restoring to France the recognition of its discoveries and its symbolic rights in the regions explored.</p>
+
+    <p>After the Revolution, he published the account of Étienne Marchand's circumnavigation of 1790-1792. In its extensive historical introduction, he surveyed discoveries made by different European powers and reflected on how the major oceanic spaces should be divided and named. The fourth volume included observations on hydrographic nomenclature, the application of the decimal metric system to navigation, and the improvement of charts.</p>
+
+    <p>This conception of geography rested on the precision of observation, comparison of sources, criticism of earlier accounts, and the stabilisation of names on maps. It brought together the history of discovery, nautical science, and rivalry between maritime powers.</p>
+
+    <p><strong>Fleurieu, Péron, and Freycinet</strong><br>
+    Fleurieu was a major point of reference for François Péron and Louis de Freycinet, the two principal scientific authors associated with the Baudin expedition, although each emphasised a different aspect of his work.</p>
+
+    <p>Péron particularly admired Fleurieu's scientific and geographical thought. In his <i>General Considerations on the Formation of Coral Islands and Mountains</i>, he cited Fleurieu's questions about the origin of low islands and coral archipelagos. Fleurieu wondered about these “small plateaux”, isolated or grouped together, which appeared still to be growing in the middle of a deep sea, far from continents and without visible traces of ancient volcanic activity. He suggested that such formations were not the result of sudden catastrophe, but of the gradual and secular work of nature.</p>
+
+    <p>This attention to the slow formation of islands resonated with Péron's own research on reefs, corals, and the transformation of marine landforms. It reflects a physical geography attentive to the relationship between sea depth, island structure, living organisms, and geological time.</p>
+
+    <p>Péron also drew on Fleurieu's ideas in his reflections on the geographical distribution of marine animals. In his <i>Notice on the Habitation of Marine Animals</i>, he described the zonal variation of shell species between equatorial regions, temperate coasts, and southern seas. He praised the “fine geographical-zoological divisions” of Lacepède and Fleurieu's “valuable hydrographic-zoological work”. For Péron, marine species were not distributed at random: they formed a genuine natural geography of the seas.</p>
+
+    <p>Freycinet, by contrast, paid particular tribute to Fleurieu as a hydrographer and cartographer. He emphasised Fleurieu's innovative approach to printing nautical charts, especially the direct transfer of a reduced chart drawing onto copper plates. This method facilitated the drafting and reproduction of charts. Freycinet developed and refined these techniques in his own hydrographic work, particularly in preparing the atlas of the <i>Voyage of Discovery to the Southern Lands</i>.</p>
+
+    <p><strong>A legacy inscribed in the southern lands</strong><br>
+    Péron and Freycinet gave Fleurieu's name to four places, one of the most substantial tributes in their nomenclature. These place names linked the man of science and state to the cartographic and hydrographic work carried out in the southern seas.</p>
+
+    <p>In South Australia, Péron and Freycinet named the peninsula south of Adelaide the Fleurieu Peninsula. The name was later replaced by Hindmarsh Peninsula. In the early twentieth century, Alphonse de Fleurieu, great-nephew of Charles-Pierre Claret de Fleurieu, petitioned South Australian authorities to restore his ancestor's name. These efforts led to the official adoption of the name Fleurieu Peninsula in 1911.</p>
+
+    <p>In Tasmania, Freycinet's Île Fleurieu corresponds to present-day Hunter Island, while the wider island group to which it belongs, formerly called the Hunter Group in British nomenclature, is now commonly known as the Fleurieu Group. Péron's Rivière Fleurieu and Baie Fleurieu were later designated in British colonial toponymy as Agnes Rivulet and Great Oyster Bay.</p>
+
+    <p>These names were not merely personal tributes. They expressed Fleurieu's place within a French geography of the southern lands, founded on coastal observation, positional measurement, chart production, and awareness of imperial rivalries.</p>
+
+    <p><strong>A political career across successive regimes</strong><br>
+    Fleurieu's technical expertise enabled him to retain an important role despite profound political upheaval. He served as Minister of the Navy and Colonies from October 1790 to April 1791, resigning amid tensions between the king, the Assembly, and the naval administration. He was then appointed governor to the Dauphin in 1792.</p>
+
+    <p>Arrested during the Terror, he was imprisoned before being released after Thermidor. He soon regained a position in scientific and political institutions: he became a member of the Bureau des longitudes and the Institut in 1795, and a Councillor of State from 1799. Under the Empire, he presided over the Naval Section of the Council of State, acted several times as interim Minister of the Navy, became a senator in 1805, and was made a Count of the Empire in 1808.</p>
+
+    <p>Fleurieu's career illustrates the continuity of French maritime knowledge across changing political regimes. His influence is not measured solely by his official roles or his publications, but also by the way in which his methods, ideas and authority served as a reference for the expeditions led by La Pérouse, d'Entrecasteaux and Baudin.</p>
+  </main>
+
   <section class="references-section">
-   <h2>
-    References
-   </h2>
-   <ul>
-    <li>
-     Péron, F (2011) Voyage de découvertes aux Terres Australes, tome 1,. Op cit., pp.IXXIV, LXIII ;
-    </li>
-    <li>
-     Péron, F , continued by Freycinet, L. (2011) Voyage de découvertes aux Terres Australes, Op cit., tome 2, pp.180, 445
-    </li>
-    <li>
-     Fleurieu, C. P. C. (1801) A voyage round the world performed during the years 1790, 1791, and 1792, by Etienne Marchand: preceded by a historical introduction, and illustrated by charts, etc. T.N. Longman and O. Rees ... and T. Cadell, Jun. and W. Davies ...
-    </li>
-    <li>
-     Fleurieu, C.-P.-C.-d. (1790) Découvertes des François en 1768 &amp; 1769, dans le sud-est de la Nouvelle Guinée. Et reconnoissances postérieures des mêmes terres par des navigateurs anglois qui leur ont imposé de nouveaux noms ; précédées de l'abrégé historique des navigations &amp; des découvertes des Espagnols dans les mêmes parages. Par M. ***, ancien capitaine de vaisseau ... Imprimerie royale, Paris.
-    </li>
-    <li>
-     Fleurieu, C.-P.-C.-d. (1773) Voyage fait par ordre du roi en 1768 et 1769 à différentes parties du monde pour éprouver en mer les horloges marines inventées par Ferdinand Berthoud. Imprimerie Royale, Paris.
-    </li>
-    <li>
-     Bonnel, U., editor (1992) Fleurieu et la marine de son temps. Economica.
-    </li>
-    <li>
-     Freycinet, L. (1812 [sic, published in 1815]) Voyage de Découvertes aux Terres Australes partie Navigation et Géographie Atlas. de l'imprimerie royale, pp..464-68
-    </li>
-    <li>
-     Freycinet, L. (1815) Voyage de Découvertes aux Terres Australes Navigation et Géographie. Op cit., pp. 464-468
-    </li>
-    <li>
-     Fleurieu, A. d. C. [without date. Alphonse de Fleurieu]. Notes sur l'expédition de N. Baudin aux Terres australes, sur le général Decaen et le navigateur M. Flinders, s.d. (177 pièces et liasses dans un carton) [Document d'archives]. In SG MS4-32 (1147) BNF. Richelieu - Société de Géographie.
-     <a href="http://catalogue.bnf.fr/ark:/12148/cb38794870w.public">
-      http://catalogue.bnf.fr/ark:/12148/cb38794870w.public
-     </a>
-    </li>
-    <li>
-     Bréelle, D. (2018) ‘Définir l’identité géographique de l’Australie pendant la période révolutionnaire : L’approche océanique et indo-pacifique de Charles-Pierre Claret de Fleurieu et François Péron’. Revue de géographie historique, 13,
-     <a href="http://rgh.univ-lorraine.fr">
-      http://rgh.univ-lorraine.fr
-     </a>
-     .
-    </li>
-   </ul>
+    <h2>References</h2>
+    <ul>
+      <li>Péron, F. (2011), <i>Voyage de découvertes aux Terres Australes</i>, vol. 1, pp. IXXIV, LXIII.</li>
+      <li>Péron, F., continued by Freycinet, L. (2011), <i>Voyage de découvertes aux Terres Australes</i>, vol. 2, pp. 180, 324, 351, 445.</li>
+      <li>Fleurieu, C. P. C. (1801), <i>A Voyage Round the World Performed During the Years 1790, 1791, and 1792, by Étienne Marchand: Preceded by a Historical Introduction, and Illustrated by Charts, etc.</i> London, T. N. Longman and O. Rees; T. Cadell Jun. and W. Davies.</li>
+      <li>Fleurieu, C.-P.-C.-d. (1790), <i>Découvertes des François en 1768 &amp; 1769, dans le sud-est de la Nouvelle Guinée</i>. Paris, Imprimerie royale.</li>
+      <li>Fleurieu, C.-P.-C.-d. (1773), <i>Voyage fait par ordre du roi en 1768 et 1769 à différentes parties du monde pour éprouver en mer les horloges marines inventées par Ferdinand Berthoud</i>. Paris, Imprimerie royale.</li>
+      <li>Bonnel, U. (ed.) (1992), <i>Fleurieu et la marine de son temps</i>. Paris, Economica.</li>
+      <li>Freycinet, L. (1812 [published 1815]), <i>Voyage de découvertes aux Terres Australes. Partie Navigation et Géographie. Atlas</i>. Paris, Imprimerie royale, pp. 464-468.</li>
+      <li>Fleurieu, A. de C. [Alphonse de Fleurieu], <i>Notes sur l'expédition de N. Baudin aux Terres australes, sur le général Decaen et le navigateur M. Flinders</i>, undated archival collection, Société de Géographie, Bibliothèque nationale de France, SG MS4-32 (1147). <a href="http://catalogue.bnf.fr/ark:/12148/cb38794870w.public" target="_blank" rel="noopener noreferrer">http://catalogue.bnf.fr/ark:/12148/cb38794870w.public</a></li>
+      <li>Bréelle, D. (2018), “Définir l'identité géographique de l'Australie pendant la période révolutionnaire : L'approche océanique et indo-pacifique de Charles-Pierre Claret de Fleurieu et François Péron”, <i>Revue de géographie historique</i>, no. 13, <a href="http://rgh.univ-lorraine.fr" target="_blank" rel="noopener noreferrer">http://rgh.univ-lorraine.fr</a>.</li>
+    </ul>
   </section>
-   <script src="../js/details-protection.js"></script>
+  <script src="../js/details-protection.js"></script>
 </body>
 </html>
