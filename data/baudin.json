@@ -1972,7 +1972,7 @@
     "mapTitle_fr": "Carte d’une partie de la Terre Napoléon (Nouvelle-Hollande), quatrième feuille, dressée par Louis de Freycinet, commandant du Casuarina, et Charles-Pierre Boullanger, ingénieur hydrographe, d’après leurs observations ainsi que celles d’Henri de Freycinet et de Bernier, avril 1802 et février 1803.\nDans Voyage de découvertes aux Terres australes, partie « Navigation et Géographie », atlas, planche 16, Paris, 1812 [sic ; publié en 1815].",
     "mapTitle_en": "Map of part of Terre Napoléon (New Holland), fourth sheet, compiled by Louis de Freycinet, commander of the Casuarina, and Charles-Pierre Boullanger, hydrographic engineer, from their own observations and those of Henri de Freycinet and Bernier, April 1802 and February 1803.\nIn Voyage de découvertes aux Terres australes, “Navigation and Geography” section, atlas, plate 16, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "Adélaïde Charlotte Louise Éléonore dite Adèle d'Osmond, par son mariage comtesse de Boigne, est née à Versailles le 19 février 1781 et morte à Paris le 10 mai 1866. Adèle revint en France en 1804 et fit partie, jusqu’à la chute de l'Empire, des cercles royalistes que Napoléon tolérait. Elle se lia avec madame de Staël et madame Récamier. Alexandre de Beauharnais aura deux enfants : un fils, Eugène qui sera vice-roi d'Italie après avoir été adopté par Napoléon, une fille Hortense, la reine Hortense, qui sera reine de Hollande, que Napoléon adopta également. Il est le grand-père de Napoléon III.\nIl laissera en outre une fille illégitime, Marie-Adélaïde dite Adèle (Cherbourg, 1786 - Paris, 1869), née de la marquise des Chapelles[Qui ?], et qui épousa en 1804 François-Michel-Auguste Lecomte, capitaine d'infanterie et aide de camp du général Meunier1.",
-    "detailsLink": "Baudin076F.html",
+    "detailsLink": "",
     "detailsLink_en": "Baudin076E.html"
   },
   {
@@ -2596,8 +2596,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Henri de La Tour d'Auvergne (Sedan, 11 septembre 1611 – Salzbach, 27 juillet 1675), vicomte de Turenne, est un gentilhomme et militaire français talentueux passé à la postérité sous le nom que lui donne son titre Turenne.\n\nMaréchal de France en 1643 et maréchal général des camps et armées du roi en 1660, il fut l'un des meilleurs généraux de Louis XIII puis de Louis XIV. Figure populaire, stratège de grand talent, gloire militaire du Grand Siècle par excellence,...Élevé dans la religion réformée, il se convertit au catholicisme en 1668 sous l'influence de Bossuet, notamment après la lecture de son livre Histoire des variations des Églises protestantes. Il accède aux plus hautes dignités : prince étranger en 1651, maréchal de France en 1643 puis maréchal général en 1660.\nTurenne épousa en 1653 Charlotte de Caumont La Force,",
-    "detailsLink": "Baudin100F.html",
-    "detailsLink_en": "Baudin100E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin101",
@@ -2610,10 +2610,10 @@
     "indigenousLanguage": "",
     "lat": -33.00165,
     "lon": 137.94899,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "",
-    "history": "",
+    "characteristic_fr": "La pointe Bayard est un petit promontoire situé au nord de Port Pirie, sur la rive nord-orientale du golfe Spencer. Elle appartient à un littoral très bas, où se développent des mangroves éparses du côté marin et, en arrière du cordon littoral sableux, des formations de mangrove plus denses. Freycinet observe qu’à la hauteur de la pointe Bayard les rives orientale et occidentale du golfe sont très rapprochées, et souligne le faible relief de cette avancée côtière.\nPierre de Terrail, seigneur de Bayard (v. 1473–1524), fut un chevalier français passé à la postérité sous le surnom de « chevalier sans peur et sans reproche ». Sa réputation de bravoure, de loyauté et de droiture en fit l’une des figures héroïques les plus célèbres de l’histoire militaire française.",
+    "characteristic": "Point Bayard is a small headland north of Port Pirie, on the north-eastern shore of Spencer Gulf. It forms part of a very low-lying coastline, with scattered mangroves on the seaward side and denser mangrove formations behind the sandy frontal beach ridge. Freycinet observed that, at Point Bayard, the eastern and western shores of the gulf lie very close to one another, and noted the low elevation of this coastal projection.\nPierre de Terrail, Seigneur de Bayard (c. 1473–1524), was a French knight who became known to posterity as le chevalier sans peur et sans reproche — “the knight without fear and without reproach.” His reputation for bravery, loyalty and moral integrity made him one of the most celebrated heroic figures in French military history.",
+    "history_fr": "Selon la tradition, le roi François Ier aurait été si impressionné par la bravoure de Bayard qu’il lui aurait demandé de l’armer chevalier après la bataille de Marignan, en Italie.\nComme dans le cas du casque supposé de Bertrand Du Guesclin, Napoléon Bonaparte fit un usage concret de la mémoire et des hauts faits de Bayard. Lors de la première cérémonie de remise de la Légion d’honneur, destinée à récompenser les services éminents et la bravoure militaire, les décorations furent, selon le récit traditionnel, déposées sur le bouclier attribué à Bayard, transformant ainsi l’objet en support symbolique de la continuité héroïque française.",
+    "history": "According to tradition, King Francis I was so impressed by Bayard’s bravery that he asked Bayard to knight him after the Battle of Marignano in Italy.\nAs in the case of the supposed helmet of Bertrand Du Guesclin, Napoléon Bonaparte made practical use of the memory and heroic deeds of Bayard. During the first ceremony for the award of the Legion of Honour, intended to reward distinguished service and military bravery, the decorations were, according to the traditional account, placed on the shield attributed to Bayard, thereby turning the object into a symbolic support for French heroic continuity.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Pierre_Terrail_de_Bayard",
     "wiki_en": "https://en.wikipedia.org/wiki/Pierre_Terrail,_seigneur_de_Bayard",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/214---bayard---1493-1515_28834418584_o.jpg",
@@ -2636,10 +2636,10 @@
     "indigenousLanguage": "",
     "lat": -32.69598,
     "lon": 137.84102,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Jean-Baptiste Jules Bernadotte (26 janvier 1763 – 8 mars 1844) était un général français qui devint plus tard roi de Suède et de Norvège sous le nom de $Charles XIV Jean$Charles_XIV_Jean$. Fils d'avocat, il s'enrôle dans l'armée royale en 1780. La Révolution et la guerre avec l'Autriche lui permettent de devenir officier. En 1797, il quitte l'Armée du Rhin pour apporter son soutien à $Bonaparte$Napoléon_Ier$ en Italie.",
-    "history": "Jean-Baptiste Jules Bernadotte (26 January 1763 – 8 March 1844) was a French general who later became King of Sweden and Norway as $Charles XIV John$Charles_XIV_John$. The son of a lawyer, he enlisted in the royal army in 1780. The Revolution and the war with Austria enabled him to become an officer. In 1797, he left the Army of the Rhine to support $Bonaparte$Napoleon$ in Italy.",
+    "characteristic_fr": "De basses falaises forment le cap Bernadotte, à l’extrémité nord du golfe Spencer. Les couches sédimentaires y sont teintées de rouge par la présence d’oxydes de fer. Freycinet observe qu’à cet endroit les terres hautes « tombent à pic dans la mer » et que l’on retrouve « le même caractère d’escarpement sur la bande opposée dans le voisinage du cap Racine ». Il ajoute que « la multitude de bancs hors de l’eau » situés vers cette extrémité du golfe empêcha l’expédition de s’avancer plus au nord.\nJean-Baptiste-Jules Bernadotte (1763–1844) eut une longue carrière militaire. Il servit d’abord dans l’armée royale française, puis dans les armées révolutionnaires, avant de participer aux campagnes de Napoléon, qui le nomma maréchal d’Empire en 1804.",
+    "characteristic": "Low cliffs form Cape Bernadotte, at the northern end of Spencer Gulf. The sedimentary layers are stained red by the presence of iron oxides. Freycinet observed that, at this point, the highlands “fall sheer into the sea” and that “the same escarped character” could be found on the opposite shore, near Cape Racine. He added that “the multitude of banks above water” near this end of the gulf prevented the expedition from advancing farther north.\nJean-Baptiste-Jules Bernadotte (1763–1844) had a long military career. He served first in the French royal army and then in the Revolutionary armies, before taking part in Napoléon’s campaigns; Napoléon appointed him Marshal of the Empire in 1804.",
+    "history_fr": "Freycinet nota que les courants très faibles observés en ce lieu laissaient supposer que l’expédition ne manquerait pas l’embouchure d’un grand système fluvial si elle renonçait à atteindre le fond du golfe en raison des bancs de sable.\r\nBernadotte épousa Désirée Clary, ancienne fiancée de Bonaparte et belle-sœur de Joseph Bonaparte. Républicain, il fut souvent en désaccord avec la politique et les projets de Napoléon, et ne soutint pas le coup d’État du 18 Brumaire. Bien qu’il n’ait pas remporté de victoire décisive comparable à celles des plus grands maréchaux de l’Empire, il occupa une place importante dans l’appareil militaire napoléonien.\nEn 1810, après que la nomenclature du voyage eut été établie, il fut choisi de manière assez inattendue par les États de Suède comme héritier du roi régnant, alors sans descendance. Cette adoption dynastique le plaça progressivement dans une position extérieure, puis hostile à l’Empire français : devenu prince héritier de Suède, Bernadotte rejoignit ensuite la coalition opposée à Napoléon.\n",
+    "history": "Freycinet noted that the very weak currents observed at this location suggested that the expedition would not miss the mouth of a major river system if it gave up trying to reach the head of the gulf because of the sandbanks.\nBernadotte married Désirée Clary, Bonaparte’s former fiancée and the sister-in-law of Joseph Bonaparte. A republican, he often disagreed with Napoléon’s policies and projects, and did not support the coup of 18 Brumaire. Although he did not win a decisive victory comparable to those of the greatest marshals of the Empire, he held an important place within the Napoleonic military apparatus.\nIn 1810, after the voyage nomenclature had already been established, he was rather unexpectedly chosen by the Estates of Sweden as heir to the reigning king, who had no children. This dynastic adoption gradually placed him outside, and then in opposition to, the French Empire: as Crown Prince of Sweden, Bernadotte later joined the coalition against Napoléon.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Jean-Baptiste_Bernadotte",
     "wiki_en": "https://en.wikipedia.org/wiki/Charles_XIV_John",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Charles_XIV_John_as_Crown_Prince_of_Sweden_-_Fran%C3%A7ois_G%C3%A9rard.jpg",
@@ -4260,8 +4260,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Maréchal de France en 1643 et maréchal général des camps et armées du roi en 1660, il fut l'un des meilleursgénéraux de Louis XIII puis Louis XIV.",
-    "detailsLink": "Baudin100F.html",
-    "detailsLink_en": "Baudin100E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin165",
@@ -6672,14 +6672,14 @@
     "history": "Péron notes: “To the E.N.E., about 25 miles from the Saint-François Archipelago, lie the Saint-Pierre Islands; they are five in number, one of which is nearly a league long and was named Turenne Island; the second, a little smaller than the first, received the name Richelieu Island. It is with the two northernmost islands of this group that the dreadful chain of breakers, already mentioned several times under the name Rambarde, connects.”\nRichelieu and Turenne both served Louis XIII with distinction, but in very different capacities: Richelieu as minister and architect of monarchical authority; Turenne as an officer in the royal armies, engaged in the campaigns that gave France a decisive role in the Thirty Years’ War, before continuing his career under Louis XIV, whose reign he would adorn as one of France’s greatest marshals.\nThe joint presence of Richelieu and Turenne in the expedition’s nomenclature gives it a strongly imperial tone. Both men belonged to Bonaparte’s political and military pantheon: Richelieu as a model statesman, Turenne as an exemplary figure of French military genius. Their inscription in the southern landscape thus extends a memory of national greatness, in which the old monarchy is reread through the political and symbolic ambitions of the Empire.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Henri_de_La_Tour_d%27Auvergne_(vicomte_de_Turenne)",
     "wiki_en": "https://en.wikipedia.org/wiki/Henri_de_La_Tour_d%27Auvergne,_Vicomte_de_Turenne",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Portrait_of_Michel_Ney_%284670226%29.jpg",
     "other_link": "",
     "mapUrl": "https://nla.gov.au/nla.obj-230975604/representativeImage",
     "mapTitle_fr": "Carte d’une partie de la Terre Napoléon, à la Nouvelle-Hollande, 6e feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de MM. H. Freycinet et Bernier, mai 1802 et février 1803. Dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 18, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Part of Terre Napoléon, in New Holland, 6th sheet, drawn by MM. L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their observations and those of MM. H. Freycinet and Bernier, May 1802 and February 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 18, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin100F.html",
-    "detailsLink_en": "Baudin100E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin258",
