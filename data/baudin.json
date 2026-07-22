@@ -2596,8 +2596,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre Napoléon, à la Nouvelle-Hollande, 4e feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de MM. H. Freycinet et Bernier, avril 1802 et février 1803'. Dans 'Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas', planche 16, Paris, 1812 [sic ; publié en 1815].\n",
     "mapTitle_en": "Map of part of Terre Napoléon, New Holland, fourth sheet, drawn by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their own observations and those of Messrs H. Freycinet and Bernier, April 1802 and February 1803'. In 'Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas', Plate 16, Paris, 1812 [sic; published in 1815].\n",
     "origin_fr": "Henri de La Tour d'Auvergne (Sedan, 11 septembre 1611 – Salzbach, 27 juillet 1675), vicomte de Turenne, est un gentilhomme et militaire français talentueux passé à la postérité sous le nom que lui donne son titre Turenne.\n\nMaréchal de France en 1643 et maréchal général des camps et armées du roi en 1660, il fut l'un des meilleurs généraux de Louis XIII puis de Louis XIV. Figure populaire, stratège de grand talent, gloire militaire du Grand Siècle par excellence,...Élevé dans la religion réformée, il se convertit au catholicisme en 1668 sous l'influence de Bossuet, notamment après la lecture de son livre Histoire des variations des Églises protestantes. Il accède aux plus hautes dignités : prince étranger en 1651, maréchal de France en 1643 puis maréchal général en 1660.\nTurenne épousa en 1653 Charlotte de Caumont La Force,",
-    "detailsLink": "Baudin100F.html",
-    "detailsLink_en": "Baudin100E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin101",
@@ -3246,8 +3246,8 @@
     "mapTitle_fr": "« Carte d’une partie de la Terre Napoléon, à la Nouvelle-Hollande, 5ᵉ feuille / dressée par MM. L. Freycinet, commandant Le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de MM. H. Freycinet et Bernier, avril 1802, janvier & février 1803 », dans Atlas du Voyage de découvertes aux Terres australes, partie Navigation et Géographie, planche 17, Paris, 1812 [sic ; publié en 1815].",
     "mapTitle_en": "“Map of Part of Terre Napoléon, in New Holland, Sheet 5 / drawn by Messrs L. Freycinet, commander of Le Casuarina, and Boullanger, hydrographic engineer, from their observations and those of Messrs H. Freycinet and Bernier, April 1802, January & February 1803,” in the Atlas of the Voyage of Discovery to the Southern Lands, Navigation and Geography section, plate 17, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "L’abbé Nicolas Louis de Lacaille né à Rumigny le 15 mars 1713 et mort le 21 mars 1762 à Paris, est l'un des principauxastronomes français du xviiie siècle.",
-    "detailsLink": "Baudin125F.html",
-    "detailsLink_en": "Baudin125E.html"
+    "detailsLink": "Baudin125F.htlm",
+    "detailsLink_en": "Baudin125E.htlm"
   },
   {
     "code": "Baudin126",
@@ -4892,15 +4892,15 @@
     "expedition": "Baudin",
     "state": "SA",
     "frenchName": "Baie Rochon",
-    "variantName": "Anse des Granits (Baudin)",
+    "variantName": "Anse des Guérits (Bay of the cured, which seems to have been transcribed as anse des granits, Baudin)",
     "ausEName": "Avoid Bay",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -34.59879,
     "lon": 135.24768,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Alexis-Marie de Rochon, dit l'abbé Rochon (21 février 1741 – 5 avril 1817), est un astronome et voyageur français, inventeur d'un instrument d'optique.",
+    "characteristic_fr": "Avoid Bay, que les Français nommèrent **baie Rochon**, forme une vaste échancrure de la côte sud-ouest de la péninsule d’Eyre, ouverte sur l’océan Austral. Ses plages et ses dunes sont interrompues par des pointes rocheuses et des récifs côtiers, tandis que son exposition aux vents forts et aux houles océaniques rend la navigation difficile et offre peu d’abris aux navires.\nLa baie fut nommée en l’honneur d’Alexis-Marie de Rochon de Fournoux, plus connu sous le nom d’Alexis Rochon (1741–1817), savant et inventeur français dont les travaux étaient bien connus des astronomes et des navigateurs. Il conçut et perfectionna des instruments optiques destinés à améliorer les observations astronomiques et le calcul de la longitude en mer. Ces méthodes reposaient notamment sur l’observation des éclipses des satellites de Jupiter et sur la mesure des distances angulaires entre les corps célestes, en particulier entre les étoiles connues, le Soleil et la Lune.\n",
+    "characteristic": "Avoid Bay, which the French named Baie Rochon, is a broad indentation on the south-western coast of the Eyre Peninsula, open to the Southern Ocean. Its beaches and dunes are interrupted by rocky headlands and offshore reefs, while its exposure to strong winds and ocean swells makes navigation difficult and offers little shelter for vessels.\nThe bay was named after Alexis-Marie de Rochon de Fournoux, better known as Alexis Rochon (1741–1817), a French scientist and inventor whose work was familiar to astronomers and navigators. He devised and perfected optical instruments intended to improve astronomical observations (see Cap Rochon) and the calculation of longitude at sea. These later methods relied, among other techniques, on observing the eclipses of Jupiter’s satellites and measuring angular distances between celestial bodies, particularly known stars, the Sun and the Moon.",
+    "history_fr": "Freycinet note que \" La baie Rochon est peu profonde , mais elle n'a pas moins de dix milles d'ouverture, et nous offrit aussi quelques îlots dans sa partie de l'Est.\". Ces derniers sont probablement les Black Rocks.\nRochon réunissait plusieurs qualités justifiant que son nom apparaisse dans l'atlas de Freycinet : Il etait membre de l’Institut ; spécialiste de la détermination des longitudes ; inventeur d’instruments optiques ; ancien voyageur de l’océan Indien ; éditeur d’une relation et de cartes concernant un précédent voyage français dans les mers australes. Son ouvrage sur Madagascar et les Indes orientales aurait en outre figuré dans la bibliothèque du Géographe.",
     "history": "Alexis-Marie de Rochon, known as Abbé Rochon (21 February 1741 – 5 April 1817), was a French astronomer and traveller, inventor of an optical instrument.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Alexis-Marie_de_Rochon",
     "wiki_en": "https://en.wikipedia.org/wiki/Alexis-Marie_de_Rochon",
@@ -4910,8 +4910,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "Alexis-Marie de Rochon, dit l'abbé Rochon, né à Brest le 21 février 1741 et mort le 5 avril 1817, est un astronome et voyageur français, inventeur d'un instrument d'optique.",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin189F.html",
+    "detailsLink_en": "Baudin189E.html"
   },
   {
     "code": "Baudin190",
@@ -4919,13 +4919,13 @@
     "state": "SA",
     "frenchName": "Île La Caille",
     "variantName": "",
-    "ausEName": "Ile La Caille, West Point, Greenly Island Conservation Park,",
+    "ausEName": "Greenly Island Conservation Park",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -34.64720635,
     "lon": 134.7979809,
-    "characteristic_fr": "L’île La Caille est une petite île escarpée, ou un îlot rocheux, située à proximité de Greenly Island, au large de la côte sud-ouest de la péninsule d’Eyre. Elle appartient à un ensemble de reliefs granitiques exposés, qui s’élèvent abruptement au-dessus des eaux de la Grande Baie australienne. Le nom français attribué par Péron et Freycinet subsiste sur les cartes australiennes actuelles, bien que la correspondance exacte entre l’île figurant sur la carte de Freycinet et l’entité répertoriée dans les nomenclatures modernes reste à confirmer.\nCe nom rend hommage à l’abbé Nicolas-Louis de Lacaille, également orthographié La Caille (1713–1762), astronome et géodésien français. Ses travaux sur la cartographie du ciel austral et sur la détermination astronomique des positions géographiques présentaient un intérêt direct pour la navigation et les voyages d’exploration. Voir Pointe La Caille.",
-    "characteristic": "Île La Caille is a small, steep-sided island or rocky islet lying near Greenly Island, off the south-western coast of Eyre Peninsula. It forms part of a group of exposed granite landforms that rise abruptly from the waters of the Great Australian Bight. The French name assigned by Péron and Freycinet survives on modern Australian maps, although the exact correspondence between the island shown on Freycinet’s chart and the feature recorded in present-day gazetteers remains to be confirmed.\nThe name commemorates the Abbé Nicolas-Louis de Lacaille, also written La Caille (1713–1762), a French astronomer and geodesist. His mapping of the southern sky and his work on the astronomical determination of geographical positions were directly relevant to navigation and maritime exploration. See Pointe La Caille.",
+    "characteristic_fr": "L’île La Caille, aujourd'hui Greenly Island, est une île granitique de forme approximativement arrondie, dominée par un massif en dôme que de profondes fractures divisent en plusieurs blocs, au large de la côte sud-ouest de la péninsule d’Eyre. Elle appartient à un ensemble de reliefs granitiques exposés, qui s’élèvent abruptement au-dessus des eaux de la Grande Baie australienne. Le nom français attribué par Péron et Freycinet subsiste sur les cartes australiennes actuelles, bien que la correspondance exacte entre l’île figurant sur la carte de Freycinet et l’entité répertoriée dans les nomenclatures modernes reste à confirmer.\nCe nom rend hommage à l’abbé Nicolas-Louis de Lacaille, également orthographié La Caille (1713–1762), astronome et géodésien français. Ses travaux sur la cartographie du ciel austral et sur la détermination astronomique des positions géographiques présentaient un intérêt direct pour la navigation et les voyages d’exploration. Voir Pointe La Caille.",
+    "characteristic": "La Caille Island, now known as Greenly Island, is a roughly rounded granite island off the south-western coast of the Eyre Peninsula. It is dominated by a dome-shaped massif divided into several blocks by deep fractures and forms part of a group of exposed granite landforms rising abruptly above the waters of the Great Australian Bight. It forms part of a group of exposed granite landforms that rise abruptly from the waters of the Great Australian Bight. The French name assigned by Péron and Freycinet survives on modern Australian maps, although the exact correspondence between the island shown on Freycinet’s chart and the feature recorded in present-day gazetteers remains to be confirmed.\nThe name commemorates the Abbé Nicolas-Louis de Lacaille, also written La Caille (1713–1762), a French astronomer and geodesist. His mapping of the southern sky and his work on the astronomical determination of geographical positions were directly relevant to navigation and maritime exploration. See Pointe La Caille.",
     "history_fr": "Freycinet observa que « l’île La Caille [lui] parut surtout remarquable par sa forme conique ». Les îles La Caille, Chappe et Fermat avaient été collectivement désignées par Baudin sous le nom d’« îles des Hermites », peut-être en raison de leur isolement au large de la côte.",
     "history": "Freycinet observed that “Île La Caille appeared particularly remarkable to me for its conical shape.” Baudin had collectively named Îles La Caille, Chappe and Fermat the “Îles des Hermites”, perhaps because of their isolated position offshore.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Nicolas-Louis_de_Lacaille",
@@ -4936,8 +4936,8 @@
     "mapTitle_fr": "« Carte d’une partie de la Terre Napoléon, à la Nouvelle-Hollande, 5ᵉ feuille / dressée par MM. L. Freycinet, commandant Le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de MM. H. Freycinet et Bernier, avril 1802, janvier & février 1803 », dans Atlas du Voyage de découvertes aux Terres australes, partie Navigation et Géographie, planche 17, Paris, 1812 [sic ; publié en 1815].",
     "mapTitle_en": "“Map of Part of Terre Napoléon, in New Holland, Sheet 5 / drawn by Messrs L. Freycinet, commander of Le Casuarina, and Boullanger, hydrographic engineer, from their observations and those of Messrs H. Freycinet and Bernier, April 1802, January & February 1803,” in the Atlas of the Voyage of Discovery to the Southern Lands, Navigation and Geography section, plate 17, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "L’abbé Nicolas Louis de Lacaille né à Rumigny le 15 mars 1713 et mort le 21 mars 1762 à Paris, est l'un des principauxastronomes français du xviiie siècle. À la fin du séjour austral, de janvier 1753 à février 1754, il séjourne à l'île de France puis à l'île Bourbon, période au cours de laquelle il effectue un relevé géodésique de l'île de France.",
-    "detailsLink": "Baudin125F.html",
-    "detailsLink_en": "Baudin125E.html"
+    "detailsLink": "Baudin125F.htlm",
+    "detailsLink_en": "Baudin125E.htlm"
   },
   {
     "code": "Baudin191",
@@ -4945,15 +4945,15 @@
     "state": "SA",
     "frenchName": "Île Chappe",
     "variantName": "",
-    "ausEName": "Ile Chappe",
+    "ausEName": "Thorny Passage Marine Park?",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": 0,
     "lon": 0,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Voir Île Pingré/Price Island (observation du passage de Vénus devant le Soleil)\n\n\n",
-    "history": "See Île Pingré/Price Island (observation of the transit of Venus across the face of the Sun).",
+    "characteristic_fr": "L’île Chappe semble se situer dans le périmètre du Thorny Passage Marine Park. Celui-ci comprend une zone marine distincte entourant Greenly Island et s’étendant approximativement jusqu’à trois milles marins au-delà de ses côtes, notamment vers l’ouest.\nLe toponyme rend hommage à Jean Chappe d’Auteroche (1728–1769), également appelé l’abbé Chappe, astronome français et savant voyageur qui consacra sa carrière aux observations astronomiques et aux grandes expéditions scientifiques du XVIIIe siècle.",
+    "characteristic": "Île Chappe appears to lie within the boundaries of the Thorny Passage Marine Park. The park includes a separate marine zone surrounding Greenly Island and extending approximately three nautical miles beyond its shores, including to the west.\nThe place name honours Jean Chappe d’Auteroche (1728–1769), also known as the Abbé Chappe, a French astronomer and scientific traveller who devoted his career to astronomical observation and the major scientific expeditions of the eighteenth century.",
+    "history_fr": "Voir également Île Pingré – Price Island, en relation avec l’observation du passage de Vénus devant le Soleil.\nChappe était membre de l’Académie royale des sciences. Envoyé à Tobolsk en 1761, puis en Basse-Californie en 1769, il participa au vaste programme international d’observation des passages de Vénus, destiné à mesurer plus précisément la distance entre la Terre et le Soleil. Son Voyage en Sibérie associait des observations astronomiques, géographiques et naturalistes à une description critique de l’Empire russe, qui suscita une vive réaction de Catherine II. Après avoir observé avec succès le passage de Vénus à San José del Cabo en 1769, il mourut au cours d’une épidémie, alors qu’il achevait les travaux scientifiques de la mission.\n\n",
+    "history": "See also Île Pingré – Price Island, in connection with the observation of the transit of Venus across the Sun.\nChappe was a member of the French Royal Academy of Sciences. Sent to Tobolsk in 1761 and later to Baja California in 1769, he took part in the major international programme to observe the transits of Venus, which aimed to determine the distance between the Earth and the Sun more accurately. His Voyage en Sibérie combined astronomical, geographical and natural-history observations with a critical description of the Russian Empire, prompting a strong reaction from Catherine II. After successfully observing the transit of Venus at San José del Cabo in 1769, he died during an epidemic while completing the scientific work of the mission.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Jean_Chappe",
     "wiki_en": "https://en.wikipedia.org/wiki/Jean-Baptiste_Chappe_d%27Auteroche",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Jean_Chapp%C3%A9_d%27Auteroche._Line_engraving_by_J._B._Tilliard%2C_1_Wellcome_V0001066.jpg",
@@ -4971,13 +4971,13 @@
     "state": "SA",
     "frenchName": "Île Fermat",
     "variantName": "",
-    "ausEName": "Greenly Island",
+    "ausEName": "Thorny Passage Marine Park? ",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -34.64536897,
     "lon": 134.79798,
-    "characteristic_fr": "Greenly Island est une île granitique isolée, haute, escarpée et protégée, typique des îles rocheuses exposées de la côte sud de l’Australie.\n$Pierre de Fermat$Pierre_de_Fermat$ (vers 1607 – 12 janvier 1665) était un magistrat français et l’un des plus grands mathématiciens du XVIIᵉ siècle. Savant indépendant, il fut souvent surnommé « le prince des amateurs ». Fermat est aussi associé au principe de moindre temps, ou principe de Fermat, en optique : la lumière se propage entre deux points selon le trajet qui rend son temps de parcours extrémal, le plus souvent minimal. Ce principe joua un rôle important dans l’interprétation des phénomènes de réflexion et de réfraction.",
-    "characteristic": "Greenly Island is an isolated, high, steep and protected granitic island, typical of the exposed rocky islands of the southern coast of Australia.\n$Pierre de Fermat$Pierre_de_Fermat$ (c. 1607 – 12 January 1665) was a French magistrate and one of the greatest mathematicians of the seventeenth century. An independent scholar, he was often nicknamed “the prince of amateurs.” Fermat is also associated with the principle of least time, or Fermat’s principle, in optics: light travels between two points along the path that makes its travel time stationary — most often minimal. This principle played an important role in the interpretation of the phenomena of reflection and refraction.",
+    "characteristic_fr": "L’île Fermat, comme l' île Chappe, semble se situer dans le périmètre du Thorny Passage Marine Park. Celui-ci comprend une zone marine distincte entourant Greenly Island et s’étendant approximativement jusqu’à trois milles marins au-delà de ses côtes, notamment vers l’ouest.\n$Pierre de Fermat$Pierre_de_Fermat$ (vers 1607 – 12 janvier 1665) était un magistrat français et l’un des plus grands mathématiciens du XVIIᵉ siècle. Savant indépendant, il fut souvent surnommé « le prince des amateurs ». Fermat est aussi associé au principe de moindre temps, ou principe de Fermat, en optique : la lumière se propage entre deux points selon le trajet qui rend son temps de parcours extrémal, le plus souvent minimal. Ce principe joua un rôle important dans l’interprétation des phénomènes de réflexion et de réfraction.",
+    "characteristic": "Île Fermat, like Île Chappe, appears to lie within the boundaries of the Thorny Passage Marine Park. The park includes a separate marine zone surrounding Greenly Island and extending approximately three nautical miles beyond its shores, including to the west.\n$Pierre de Fermat$Pierre_de_Fermat$ (c. 1607 – 12 January 1665) was a French magistrate and one of the greatest mathematicians of the seventeenth century. An independent scholar, he was often nicknamed “the prince of amateurs.” Fermat is also associated with the principle of least time, or Fermat’s principle, in optics: light travels between two points along the path that makes its travel time stationary — most often minimal. This principle played an important role in the interpretation of the phenomena of reflection and refraction.",
     "history_fr": "Freycinet rapporte que, le 3 février 1803, alors qu’il naviguait à bord du Casuarina, « à cinq heures du matin, je me trouvois par le travers de l’île la Caille et de l’île Chappe, qui font partie du groupe des îles Laplacé ; j’en découvris une troisième qui avoit échappé aux recherches antérieures du Géographe, et que je nommai île Fermat… ». \nLe nom de Fermat se trouve ainsi attaché à la fois à un cap et à une île de  la région littorale  que Péron et Freycinet dédièrent à l’Empereur sous le nom de « Terre Napoléon ». Ce rapprochement n’était pas dépourvu de résonance : Napoléon connaissait le travail de Fermat et aimait les mathématiques. On lui a même attribué, sans que cela soit formellement prouvé, la découverte de deux points remarquables du triangle, dits « points de Napoléon ». Ceux-ci appartiennent à la même géométrie classique des centres du triangle que le point $de Fermat$Pierre_de_Fermat$, défini comme le point dont la somme des distances aux trois sommets d’un triangle est minimale.\nVoir aussi Cap Fermat.",
     "history": "Freycinet reports that, on 3 February 1803, while sailing aboard the Casuarina, “at five o’clock in the morning, I found myself abreast of Île La Caille and Île Chappe, which form part of the Laplace Islands group; I discovered a third island that had escaped the earlier searches of the Géographe, and which I named Île Fermat…”\nFermat’s name was thus attached both to a cape and to an island of the land that Péron and Freycinet dedicated to the Emperor under the name “Terre Napoléon.” This association was not without resonance: Napoleon knew Fermat’s work and had a taste for mathematics. He has even been credited, though this has never been formally proven, with the discovery of two remarkable points of the triangle, known as the “Napoleon points.” These belong to the same classical geometry of triangle centres as the $Fermat point$Pierre_de_Fermat$, defined as the point for which the sum of the distances to the three vertices of a triangle is minimal.\nSee also Cape Fermat.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Pierre_de_Fermat",
@@ -6678,8 +6678,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre Napoléon, à la Nouvelle-Hollande, 6e feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de MM. H. Freycinet et Bernier, mai 1802 et février 1803. Dans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 18, Paris, 1812 [sic ; publié en 1815].\nSource : National Library of Australia.",
     "mapTitle_en": "Map of Part of Terre Napoléon, in New Holland, 6th sheet, drawn by MM. L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their observations and those of MM. H. Freycinet and Bernier, May 1802 and February 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 18, Paris, 1812 [sic; published in 1815].\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Baudin100F.html",
-    "detailsLink_en": "Baudin100E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Baudin258",
@@ -8715,15 +8715,15 @@
     "state": "Tas",
     "frenchName": "Cap Rochon",
     "variantName": "",
-    "ausEName": "Cape Rochon Ile Hunter Est Ile Three hummock",
+    "ausEName": "Cape Rochon ",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -40.7123,
     "lon": 144.9428,
-    "characteristic_fr": "",
-    "characteristic": "",
-    "history_fr": "Alexis-Marie de Rochon (1741-1817) fut nommé astronome de la Marine en 1766. Il inventa le micromètre à double image connu sous le nom de « lunette de Rochon ».",
-    "history": "Alexis-Marie de Rochon (1741-1817) was appointed Astronomer of the Navy in 1766. He invented the double-image micrometer known as the \"Rochon prism\".",
+    "characteristic_fr": "Le cap Rochon forme l’extrémité nord-est de Three Hummock Island, dans le groupe Hunter, au large de la côte nord-ouest de la Tasmanie. Ce promontoire bas et rocheux s’avance dans les eaux du détroit de Bass. Il appartient à une île essentiellement granitique, dont le littoral alterne affleurements rocheux, petites anses et plages sableuses, tandis que l’intérieur est largement couvert de landes, de fourrés et de boisements clairs. Un feu automatique installé sur le cap signale cette partie exposée de l’île aux navigateurs.\nLe toponyme rend hommage à Alexis-Marie de Rochon de Fournoux, généralement connu sous le nom d’Alexis Rochon (1741–1817) ; voir également baie Rochon – Avoid Bay, en Australie-Méridionale. Astronome, opticien et inventeur d’instruments scientifiques, Rochon mit au point le micromètre prismatique, qui utilisait la biréfringence du cristal de roche pour mesurer de très faibles distances angulaires. Il chercha ainsi à accroître la précision des observations astronomiques et de la détermination de la longitude en mer. ",
+    "characteristic": "Cape Rochon forms the north-eastern extremity of Three Hummock Island, in the Hunter Group, off the north-western coast of Tasmania. This low, rocky headland projects into the waters of Bass Strait. It belongs to a predominantly granitic island whose coastline alternates between rocky outcrops, small coves and sandy beaches, while much of the interior is covered with heathland, scrub and open woodland. An automatic light on the cape marks this exposed part of the island for navigators.\nThe place name honours Alexis-Marie de Rochon de Fournoux, generally known as Alexis Rochon (1741–1817); see also Baie Rochon – Avoid Bay, in South Australia. A French astronomer, optician and inventor of scientific instruments, Rochon developed the prismatic micrometer, which used the birefringence of rock crystal to measure very small angular distances. He repeatedly sought to improve the accuracy of astronomical observations and the determination of longitude at sea.",
+    "history_fr": "Lors d’un séjour à Madagascar, probablement en 1768, Rochon se procura des fragments de cristal de roche transparent, dont il exploita ensuite les propriétés de biréfringence dans ses recherches optiques et dans la conception de ses instruments. Plus tard, en France, il s’intéressa également à l’emploi du platine pour la fabrication de miroirs destinés aux télescopes à réflexion. Son Voyage à Madagascar et aux Indes orientales figurait parmi les ouvrages embarqués à bord du Géographe pendant l’expédition Baudin.",
+    "history": "During a visit to Madagascar, probably in 1768, Rochon obtained pieces of transparent rock crystal whose birefringent properties he later used in his optical research and in the design of scientific instruments. Later, in France, he also investigated the use of platinum in the manufacture of mirrors for reflecting telescopes. His Voyage à Madagascar et aux Indes orientales was among the books carried aboard the Géographe during the Baudin expedition.",
     "wiki_fr": "https://fr.wikipedia.org/wiki/Alexis-Marie_de_Rochon",
     "wiki_en": "https://en.wikipedia.org/wiki/Alexis-Marie_de_Rochon",
     "imgUrl": "",
@@ -8732,8 +8732,8 @@
     "mapTitle_fr": "Carte trigonométrique des îles Hunter, dressée par L. Freycinet, commandant la goélette Le Casuarina, décembre 1802. Dans l’Atlas du Voyage de découvertes aux Terres australes, partie Navigation et géographie, planche 9, Paris, 1812 [sic ; publié en 1815].",
     "mapTitle_en": "Trigonometric Chart of the Hunter Islands, drawn by L. Freycinet, commander of the schooner Le Casuarina, December 1802. In the Atlas of the Voyage of Discovery to the Southern Lands, Navigation and Geography section, plate 9, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "1741-1817 Nommé astronome de la Marine en 1766, il part en voyage en Afrique pour déterminer différents points de longitude puis part pour les Terres australes avec le capitaine de Kerguelen. invente le micromètre à double image connu sous le nom de « lunette de Rochon ».",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin189F.html",
+    "detailsLink_en": "Baudin189E.html"
   },
   {
     "code": "Baudin337",
@@ -8785,7 +8785,7 @@
     "mapTitle_en": "Trigonometric Chart of the Hunter Islands, drawn by L. Freycinet, commander of the schooner Le Casuarina, December 1802. In the Atlas of the Voyage of Discovery to the Southern Lands, Navigation and Geography section, plate 9, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "1741-1825 Jean-Nicolas Buache est le neveu dePhilippe Buache, également géographe du roi.",
     "detailsLink": "",
-    "detailsLink_en": "Baudin338E.htlm"
+    "detailsLink_en": "Baudin338E.html"
   },
   {
     "code": "Baudin339",
@@ -14037,7 +14037,7 @@
     "mapTitle_en": "Sketch of part of the Bonaparte Archipelago, with the routes of the expedition, MAP/6JJ/5/B.\nSource: National Archives of France.",
     "origin_fr": "",
     "detailsLink": "Baudin540F.html",
-    "detailsLink_en": "Baudin540E.html"
+    "detailsLink_en": "Baudin540F.html"
   },
   {
     "code": "Baudin541",
