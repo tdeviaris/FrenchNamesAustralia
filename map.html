@@ -1037,14 +1037,17 @@
             text-decoration: underline;
         }
         .search-match {
-            font-weight: 700;
+            font-weight: inherit;
             color: inherit;
+            background-color: rgba(255, 235, 59, 0.28);
         }
         .leaflet-popup-content .search-match {
             color: inherit !important;
+            font-weight: inherit !important;
         }
-        .leaflet-popup-content strong.search-match {
+        .leaflet-popup-content span.search-match {
             color: inherit !important;
+            font-weight: inherit !important;
         }
     </style>
 <!-- Google Analytics 4 -->
@@ -1508,7 +1511,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (!highlightRegex) {
                 return escaped;
             }
-            return escaped.replace(highlightRegex, '<strong class="search-match">$1</strong>');
+            return escaped.replace(highlightRegex, '<span class="search-match">$1</span>');
         };
         const highlightHtml = (html) => {
             if (!html || !highlightRegex) {
@@ -1519,7 +1522,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 if (part.startsWith('<') && part.endsWith('>')) {
                     return part;
                 }
-                return part.replace(highlightRegex, '<strong class="search-match">$1</strong>');
+                return part.replace(highlightRegex, '<span class="search-match">$1</span>');
             }).join('');
         };
         const resolveDetailsUrl = (rawValue = '') => {
