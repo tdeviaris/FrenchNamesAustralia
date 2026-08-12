@@ -1250,6 +1250,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             wheelPxPerZoomLevel: 4 // Dramatically increase sensitivity of wheel/trackpad zoom (lower is more sensitive).
         }).setView(defaultCenter, defaultZoom);
         L.control.zoom({ position: 'topright' }).addTo(map);
+        window.addEventListener('navheightchange', () => {
+            setTimeout(() => map.invalidateSize(false), 0);
+        });
 
         // --- Layer Control ---
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -107,6 +107,46 @@ function enhanceUpArrowLinks() {
     });
 }
 
+function syncNavHeightVariable() {
+    const nav = document.querySelector('nav');
+    if (!nav) {
+        return;
+    }
+
+    const navRect = nav.getBoundingClientRect();
+    let maxBottom = navRect.bottom;
+
+    nav.querySelectorAll('*').forEach((element) => {
+        const style = window.getComputedStyle(element);
+        if (style.display === 'none' || style.visibility === 'hidden') {
+            return;
+        }
+
+        const rect = element.getBoundingClientRect();
+        if (rect.width === 0 && rect.height === 0) {
+            return;
+        }
+
+        maxBottom = Math.max(maxBottom, rect.bottom);
+    });
+
+    const nextHeight = Math.ceil(maxBottom - navRect.top);
+    const currentHeight = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue('--nav-height')
+    );
+
+    if (!Number.isFinite(nextHeight) || nextHeight <= 0) {
+        return;
+    }
+
+    if (Math.abs(nextHeight - currentHeight) < 1) {
+        return;
+    }
+
+    document.documentElement.style.setProperty('--nav-height', `${nextHeight}px`);
+    window.dispatchEvent(new CustomEvent('navheightchange', { detail: { height: nextHeight } }));
+}
+
 function enhanceImagesAvifPreviewThenJpeg() {
     if (!document.getElementById('avif-enhancer-style')) {
         const style = document.createElement('style');
@@ -436,6 +476,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Certains liens sont recréés lors de la traduction (innerHTML).
         enhanceUpArrowLinks();
+        requestAnimationFrame(syncNavHeightVariable);
+        setTimeout(syncNavHeightVariable, 120);
         };
 
         // Ajoute les écouteurs d'événements
@@ -455,5 +497,30 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         switchLanguage(getInitialLanguage());
+    }
+
+    let navHeightSyncQueued = false;
+    const queueNavHeightSync = () => {
+        if (navHeightSyncQueued) {
+            return;
+        }
+        navHeightSyncQueued = true;
+        requestAnimationFrame(() => {
+            navHeightSyncQueued = false;
+            syncNavHeightVariable();
+        });
+    };
+
+    queueNavHeightSync();
+    window.addEventListener('load', queueNavHeightSync);
+    window.addEventListener('resize', queueNavHeightSync);
+    window.addEventListener('orientationchange', queueNavHeightSync);
+
+    if ('ResizeObserver' in window) {
+        const nav = document.querySelector('nav');
+        if (nav) {
+            const navObserver = new ResizeObserver(() => queueNavHeightSync());
+            navObserver.observe(nav);
+        }
     }
 });
