@@ -9417,7 +9417,7 @@
     "state": "Tas",
     "frenchName": "Cap Maurouard",
     "variantName": "",
-    "ausEName": "Cape Maurouard ",
+    "ausEName": "Cape Maurouard",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -42.72024,
@@ -10110,8 +10110,8 @@
     "mapTitle_fr": "",
     "mapTitle_en": "",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin364F.html",
+    "detailsLink_en": "Baudin364E.html"
   },
   {
     "code": "Baudin391",
