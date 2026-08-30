@@ -1036,8 +1036,8 @@
     "mapTitle_fr": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. Par Beautemps-Beaupré, C.-F. Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "mapTitle_en": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Entre40F.html",
-    "detailsLink_en": "Entre40E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Entre41",
@@ -1106,9 +1106,9 @@
     "characteristic": "Île Willaumez, now Betsey Island, is a small island situated south-east of South Arm, at the entrance to Storm Bay. D’Entrecasteaux named it after Jean-Baptiste-Philibert Willaumez (1763–1845), an officer aboard La Recherche and one of the expedition’s most experienced navigators.\nWillaumez already knew d’Entrecasteaux, under whom he had served as a pilot aboard the Patriote in 1790–1791. He joined the expedition in search of La Pérouse with the rank of enseigne de vaisseau, was subsequently promoted to lieutenant de vaisseau, and was entrusted, among other duties, with responsibility for monitoring the ships’ marine timekeepers.",
     "history_fr": "Le 14 février 1793, d’Entrecasteaux confia à Willaumez une reconnaissance particulièrement ambitieuse. Celui-ci note dans son journal : « je fus expédié par le Général qui me donna ordre d’aller reconnaître s’il existait un passage […] entre les îles Maria [et] la grande terre ». Il partit avec Beautemps-Beaupré, « ingénieur géographe », et neuf hommes dans le grand canot, avec quatre jours de vivres, deux jours d’eau et huit jours de biscuit.\nPendant cinq jours, le détachement explora les baies et les passages situés à l’est de la Derwent et de Storm Bay. La navigation se faisait au plus près de la côte, en sondant régulièrement et en débarquant pour permettre à Beautemps-Beaupré de prendre ses relèvements. Chaque ouverture pouvait révéler un passage vers la côte orientale : il fallait donc en examiner les profondeurs, les courants, les mouillages et les ressources en eau douce.\nLes conditions de cette petite expédition étaient rudimentaires. Le 17 février, après avoir longé la côte de Frederick Henry Bay, les hommes trouvèrent une anse abritée où ils passèrent la nuit. Willaumez précise que deux hommes gardaient chaque nuit le canot, tandis que les dix autres se reposaient à terre sous une petite tente.\nLe retour fut beaucoup plus difficile. Le 19 février, le vent d’ouest-sud-ouest fraîchit, la pluie se prolongea jusqu’au début de l’après-midi et la mer devint grosse pour une embarcation aussi petite. Willaumez raconte qu’ils durent louvoyer, réduire la voilure et parfois « gréer les avirons » pour maintenir le canot pendant les accalmies. À proximité de l’île qui porte aujourd’hui le nom de Betsey Island, ils cherchèrent l’abri de la côte, puis réussirent, « à la force des avirons », à passer entre les rochers avant de reprendre leur route vers le détroit. Ils y entrèrent vers sept heures et demie du soir, « au bout de cinq jours d’absence ».\nLe détachement fut d’abord accueilli à bord de l’Espérance, puis Willaumez rejoignit La Recherche pour rendre compte de sa mission à d’Entrecasteaux, qui s’était inquiété de cette longue absence.",
     "history": "On 14 February 1793, d’Entrecasteaux entrusted Willaumez with a particularly ambitious reconnaissance. Willaumez recorded in his journal that he had been sent by the commander to determine whether a passage existed “between the Maria Islands [and] the mainland”. He set out with Beautemps-Beaupré, whom he described as the “hydrographic engineer”, and nine men in the large boat, carrying four days of provisions, two days of water and eight days of biscuit.\nFor five days, the party explored the bays and passages to the east of the Derwent and Storm Bay. They navigated close to the coast, taking frequent soundings and landing so that Beautemps-Beaupré could make his bearings and observations. Every opening might prove to be a passage towards the east coast, and therefore had to be examined for its depth, currents, anchorages and sources of fresh water.\nConditions during this small-boat expedition were rudimentary. On 17 February, after following the shore of Frederick Henry Bay, the men found a sheltered cove where they spent the night. Willaumez noted that two men guarded the boat each night while the other ten slept ashore under a small tent.\nThe return journey proved much more difficult. On 19 February, the west-south-westerly wind strengthened, rain continued until early afternoon, and the sea became heavy for such a small craft. Willaumez recorded that they were forced to tack, shorten sail and at times use the oars to keep the boat under control during the lulls. Near the island now known as Betsey Island, they sought shelter along the coast and then, “by the strength of the oars”, succeeded in passing between the rocks before standing once more towards the strait. They entered it at about half past seven in the evening, “after five days’ absence”.\nThe party was first received aboard the Espérance, before Willaumez returned to La Recherche to report to d’Entrecasteaux, who had become concerned by their prolonged absence.",
-    "wiki_fr": "",
-    "wiki_en": "",
-    "imgUrl": "",
+    "wiki_fr": "https://fr.wikipedia.org/wiki/Jean-Baptiste_Philibert_Willaumez",
+    "wiki_en": "https://en.wikipedia.org/wiki/Jean-Baptiste_Philibert_Willaumez",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jean-Baptiste_Philibert_Willaumez.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
     "other_link": "https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0483_008280_L-medium.jpg",
     "mapUrl": "https://nla.gov.au/nla.obj-230810562/representativeImage",
     "mapTitle_fr": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. Par Beautemps-Beaupré, C.-F. Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
@@ -1135,12 +1135,12 @@
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
-    "other_link": "",
+    "other_link": "https://www.siv.archives-nationales.culture.gouv.fr/siv/rechercheconsultation/consultation/ir/consultationIR.action?irId=FRAN_IR_060973&udId=map6JJ_239&details=true&gotoArchivesNums=false&auSeinIR=true",
     "mapUrl": "https://nla.gov.au/nla.obj-230810562/representativeImage",
     "mapTitle_fr": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. Par Beautemps-Beaupré, C.-F. Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "mapTitle_en": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "https://www.siv.archives-nationales.culture.gouv.fr/siv/rechercheconsultation/consultation/ir/consultationIR.action?irId=FRAN_IR_060973&udId=map6JJ_239&details=true&gotoArchivesNums=false&auSeinIR=true",
+    "detailsLink": "",
     "detailsLink_en": ""
   },
   {
@@ -1166,8 +1166,8 @@
     "mapTitle_fr": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. Par Beautemps-Beaupré, C.-F. Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "mapTitle_en": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Entre40F.html",
-    "detailsLink_en": "Entre40E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Entre46",
@@ -1192,8 +1192,8 @@
     "mapTitle_fr": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. Par Beautemps-Beaupré, C.-F. Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "mapTitle_en": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Entre40F.html",
-    "detailsLink_en": "Entre40E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Entre47",
@@ -1218,8 +1218,8 @@
     "mapTitle_fr": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. Par Beautemps-Beaupré, C.-F. Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "mapTitle_en": " ‘Carte particulière du Canal Dentrecasteaux, entre la terre méridionale d'Anthony Van Diemen et l'Île Bruny ‘. By Beautemps-Beaupré, C.-F. In Atlas du voyage de Bruny-Dentrecasteaux …, 1807, plate4\nThe north is on the right of the map.\nSource: National Library of Australia",
     "origin_fr": "",
-    "detailsLink": "Entre40F.html",
-    "detailsLink_en": "Entre40E.html"
+    "detailsLink": "Entre47F.html",
+    "detailsLink_en": "Entre47E.html"
   },
   {
     "code": "Entre48",
@@ -1286,8 +1286,8 @@
     "lon": 147.92176,
     "characteristic_fr": "Au nord-est de l’actuelle Frederick Henry Bay, d’Entrecasteaux donna le nom de Baie Marion à l’actuelle Marion Bay, en hommage au navigateur français Marc-Joseph Marion du Fresne (1724–1772). Celui-ci y avait mouillé en mars 1772 avec le Mascarin et le Marquis de Castries, au cours d’une expédition dans les mers australes. Les bâtiments y restèrent plusieurs jours afin de se procurer de l’eau douce et du bois nécessaire aux réparations.\nMarion du Fresne croyait alors se trouver à proximité de la Frederick Hendrick Bay décrite par Abel Tasman en 1642. Les erreurs et déplacements successifs de ce nom sur les cartes expliquent en partie la complexité de la nomenclature actuelle : la baie aujourd’hui appelée Frederick Henry Bay n’est pas exactement celle que Tasman avait ainsi nommée.",
     "characteristic": "North-east of present-day Frederick Henry Bay, d’Entrecasteaux gave the name Baie Marion to what is now Marion Bay, in honour of the French navigator Marc-Joseph Marion du Fresne (1724–1772). He had anchored there in March 1772 with the Mascarin and the Marquis de Castries during an expedition into the southern seas. The ships remained in the area for several days to obtain fresh water and timber needed for repairs.\nMarion du Fresne believed that he was near the Frederick Hendrick Bay described by Abel Tasman in 1642. Successive errors in locating and transferring this name on later charts help explain the complexity of the present-day nomenclature: the bay now called Frederick Henry Bay is not exactly the one Tasman had originally named.",
-    "history_fr": "En octobre 1771, Marion du Fresne quitta l’Île de France, aujourd’hui Maurice, avec le Mascarin et le Marquis de Castries. L’un des objectifs du voyage était de ramener à Tahiti Aotourou, venu en France avec Bougainville, tout en poursuivant des explorations dans les mers australes. Mais Aotourou mourut de la variole à Madagascar. Marion du Fresne poursuivit alors son voyage vers le sud de l’océan Indien.\nAprès une collision entre les deux bâtiments, le Marquis de Castries avait notamment besoin d’un nouveau mât. Marion mit donc le cap sur la Terre de Van Diemen afin d’y trouver de l’eau douce et du bois. Les navires aperçurent la côte le 3 mars 1772 et, après avoir contourné le sud de l’île, mouillèrent dans les eaux de l’actuelle Marion Bay. Ils y restèrent six jours.\nLe 7 mars, Marion du Fresne débarqua avec plusieurs hommes. La première rencontre avec les habitants tasmaniens semble avoir été relativement calme, mais la situation se dégrada rapidement lorsque d’autres embarcations françaises approchèrent. Des pierres et des armes furent lancées ; Marion et plusieurs de ses hommes furent blessés et il ordonna finalement de tirer pour disperser le groupe. Un homme aborigène fut tué. Cet épisode constitue l’un des tout premiers contacts documentés entre Français et Tasmaniens.\nAprès avoir quitté la Terre de Van Diemen, l’expédition poursuivit vers la Nouvelle-Zélande. En juin 1772, après plusieurs semaines passées dans la Bay of Islands, Marion du Fresne et vingt-quatre de ses hommes furent tués lors d’une série d’affrontements avec des Māori. Les raisons précises de ces violences restent discutées ; les survivants français exercèrent ensuite de très lourdes représailles avant de quitter la région.",
-    "history": "In October 1771, Marion du Fresne left the Île de France, now Mauritius, with the Mascarin and the Marquis de Castries. One of the aims of the voyage was to return Aotourou, who had travelled to France with Bougainville, to Tahiti, while also continuing exploration in the southern Indian and Pacific Oceans. Aotourou, however, died of smallpox in Madagascar, and Marion du Fresne continued the voyage without him.\nAfter the two ships collided and suffered serious damage, Marion du Fresne made for the eastern coast of Van Diemen’s Land in order to carry out repairs and replenish the ships’ fresh-water supplies. The French reached the coast in early March 1772 and anchored in the bay now known as Marion Bay.\nThe stay was marked by an encounter with Aboriginal Tasmanians that escalated into violence. According to the account of Julien Crozet, Marion’s second-in-command, misunderstandings played an important role in the confrontation: after an initial encounter with two unarmed French sailors, the arrival of additional boats appears to have increased the inhabitants’ distrust. They attempted to prevent the French from landing by throwing stones and weapons, after which the French opened fire and at least one Aboriginal man was killed.\nA few months later, the expedition continued to New Zealand, where Marion du Fresne and several of his companions were killed by Māori. ",
+    "history_fr": "En octobre 1771, Marion du Fresne quitta l’Île de France, aujourd’hui Maurice, avec le Mascarin et le Marquis de Castries. L’un des objectifs du voyage était de ramener à Tahiti Aotourou, venu en France avec Bougainville, tout en poursuivant des explorations dans les mers australes. Mais Aotourou mourut de la variole à Madagascar. Marion du Fresne poursuivit alors son voyage vers le sud de l’océan Indien.\nAprès une collision entre les deux bâtiments, le Marquis de Castries avait notamment besoin d’un nouveau mât. Marion mit donc le cap sur la Terre de Van Diemen afin d’y trouver de l’eau douce et du bois. Les navires aperçurent la côte le 3 mars 1772 et, après avoir contourné le sud de l’île, mouillèrent dans les eaux de l’actuelle Marion Bay. Ils y restèrent six jours.\nLe 7 mars, Marion du Fresne débarqua avec plusieurs hommes. La première rencontre avec les habitants tasmaniens semble avoir été relativement calme, mais la situation se dégrada rapidement lorsque d’autres embarcations françaises approchèrent. Des pierres et des armes furent lancées ; Marion et plusieurs de ses hommes furent blessés et il ordonna finalement de tirer pour disperser le groupe. Un homme aborigène fut tué. Cet épisode constitue l’un des tout premiers contacts documentés entre Français et Tasmaniens.\n",
+    "history": "In October 1771, Marion du Fresne left the Île de France, now Mauritius, with the Mascarin and the Marquis de Castries. One of the aims of the voyage was to return Aotourou, who had travelled to France with Bougainville, to Tahiti, while also continuing exploration in the southern seas. Aotourou, however, died of smallpox in Madagascar. Marion du Fresne then continued his voyage into the southern Indian Ocean.\nAfter the two ships collided, the Marquis de Castries was in particular need of a new mast. Marion therefore made for Van Diemen’s Land in search of fresh water and timber. The ships sighted the coast on 3 March 1772 and, after rounding the south of the island, anchored in the waters of present-day Marion Bay. They remained there for six days.\nOn 7 March, Marion du Fresne went ashore with several men. The first encounter with the Tasmanian inhabitants appears to have been relatively calm, but the situation deteriorated rapidly when additional French boats approached. Stones and weapons were thrown; Marion and several of his men were injured, and he eventually ordered his men to fire in order to disperse the group. One Aboriginal man was killed. This episode was among the earliest documented encounters between French visitors and Tasmanians.\n",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -1520,8 +1520,8 @@
     "lon": 121.79372,
     "characteristic_fr": "Cette petite île, qui offrit à l’expédition un abri particulièrement bienvenu le 9 décembre 1792, reçut le nom d’Île de l’Observatoire. Les officiers et l’astronome y installèrent leurs tentes et leurs instruments afin d’y effectuer des observations astronomiques et des vérifications, de mesurer des angles et de déterminer avec précision la position du lieu.",
     "characteristic": "This small island, which provided the expedition with particularly welcome shelter on 9 December 1792, was named Île de l’Observatoire. The officers and astronomer set up their tents and instruments there in order to carry out astronomical observations and checks, measure angles, and determine the position of the site with precision.",
-    "history_fr": "La longitude de l’île fut établie avec soin et servit ensuite de point de référence pour calculer ou contrôler d’autres longitudes au cours du voyage. Les observations réalisées sur place permirent également de vérifier la marche de la montre marine n° 14, dont on constata qu’elle avançait par rapport au temps solaire moyen.",
-    "history": "The island’s longitude was carefully established and subsequently served as a reference point for calculating or checking other longitudes during the voyage. The observations made there also allowed the expedition to verify the rate of marine watch no. 14, which was found to be gaining relative to mean solar time.",
+    "history_fr": "La longitude de l’île fut établie avec soin et servit ensuite de point de référence pour calculer ou contrôler d’autres longitudes au cours du voyage. Les observations réalisées sur place permirent également de vérifier la marche de la montre marine n° 14, dont on constata qu’elle avançait par rapport au temps solaire moyen.\nD'Entrecasteaux note: \"Le séjour forcé que nous fîmes dans ce mouillage, nous procura le moyen de vérifier le mouvement journalier de la montre n° 14. Elle avançoit, en vingt-quatre heures, de 6″,59 sur le temps moyen. Son retard absolu, sur le temps moyen de la baie de l’Espérance, étoit, le 16 décembre, à 5h 7′, de 8h 0′ 21″,5. Le 16, à 8h 31′ du soir, on observa, à bord de LA RECHERCHE, l’occultation de l’étoile β du capricorne. Le résultat du calcul rapporté à l’île de l’Observatoire nous a donné la longitude de cette île avec une grande précision, et l’a placée par 119° 34′ 35″ de longitude orientale. La longitude obtenue par des distances de la lune au soleil observées en mer, et rapportée à l’île de l’Observatoire, est de 119° 27′ 44″, c’est-à-dire, de 7′ 21″ plus foible que la précédente.\"",
+    "history": "The island’s longitude was carefully established and subsequently served as a reference point for calculating or checking other longitudes during the voyage. The observations made there also allowed the expedition to verify the rate of marine watch no. 14, which was found to be gaining relative to mean solar time.\nD’Entrecasteaux recorded: “the forced sojourn at that anchorage procured us the means to verify the daily movement of chronometer n.14. In twenty-four hours it advanced 6’’59 on the mean time. The absolute difference on the mean time of Esperance Bay, on 16 December at 5:7’, was 8’21’’55. On the 16th, at 8;31’ at night, we observed on board of the Recherche the occultation of the ß star of Capricorne [Dahib]. The result of the calculation received at the island observatory has given the longitude of this island with great precision, and has placed it at longitude 119°34’35’’ east [from the Paris meridian] … the latitude of Observatory Island is 33°55’17’’ south”. Translation by Duyker, p.127",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -1530,8 +1530,8 @@
     "mapTitle_fr": "Carte de l’archipel de la Recherche, situé dans la partie occidentale de la Terre de Nuyts, reconnu par le contre-amiral Bruny-Dentrecasteaux en décembre 1792 (an Ier de l’ère française), par Beautemps-Beaupré. Dans Atlas du voyage de Bruny-Dentrecasteaux, 1807, planche 14.\nSource : National Library of Australia.",
     "mapTitle_en": "Chart of the Recherche Archipelago, situated in the western part of the Terre de Nuyts, surveyed by Rear-Admiral Bruny-Dentrecasteaux in December 1792 (Year I of the French era), by Beautemps-Beaupré. In Atlas du voyage de Bruny-Dentrecasteaux, 1807, plate 14.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Entre59F.html",
-    "detailsLink_en": "Entre59E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Entre60",
@@ -1624,8 +1624,8 @@
     "lon": 121.17844,
     "characteristic_fr": "D'Entrecasteaux a donné à certains lieux cotiers de l’archipel de la Recherche des noms inspirés par leurs caractéristiques topographiques capables d'informer les navigateurs, comme le \"cap des basses\", pour signaler \"une pointe très basse de la grande terre \".",
     "characteristic": "D’Entrecasteaux assigned several coastal locations in the Recherche Archipelago descriptive names derived from their topographical characteristics, intended to guide navigators—for instance, “Cap des Basses” (Low Cape), denoting “a very low point on the mainland.”",
-    "history_fr": "",
-    "history": "",
+    "history_fr": "D’Entrecasteaux rapporte : \"Dans la matinée du 8, on aperçut de l’avant deux récifs à quelques milles l’un de l’autre ; nous passâmes entre eux et la terre : bientôt on découvrit une petite île, qui, examinée de plus près, parut être environnée de brisans qui s’étendent presque jusqu’à une pointe très-basse de la grande terre. Sur cette pointe, dont le sol étoit purement de sable, de la fumée s’élevoit de trois ou quatre endroits. Nous fûmes forcés de passer au large de la petite île et d’un rocher qui n’en étoit pas éloigné ; ensuite on se rapprocha de la côte pour continuer de la prolonger.\"",
+    "history": "D’Entrecasteaux reports: “On the morning of the 8th we saw two reefs in front of us; we passed between these and the mainland. We soon discovered a small island, which, at close examination, seemed surrounded by reefs which extended to a very low point of the mainland. On that point, which was composed mainly of sand, we saw smoke in three or four places. We were forced to pass seaward of the small island and of a rock that was close by …”\n",
     "wiki_fr": "",
     "wiki_en": "",
     "imgUrl": "",
@@ -1634,8 +1634,8 @@
     "mapTitle_fr": "Carte de l’archipel de la Recherche, situé dans la partie occidentale de la Terre de Nuyts, reconnu par le contre-amiral Bruny-Dentrecasteaux en décembre 1792 (an Ier de l’ère française), par Beautemps-Beaupré. Dans Atlas du voyage de Bruny-Dentrecasteaux, 1807, planche 14.\nSource : National Library of Australia.",
     "mapTitle_en": "Chart of the Recherche Archipelago, situated in the western part of the Terre de Nuyts, surveyed by Rear-Admiral Bruny-Dentrecasteaux in December 1792 (Year I of the French era), by Beautemps-Beaupré. In Atlas du voyage de Bruny-Dentrecasteaux, 1807, plate 14.\nSource: National Library of Australia.",
     "origin_fr": "",
-    "detailsLink": "Entre63F.html",
-    "detailsLink_en": "Entre63E.html"
+    "detailsLink": "",
+    "detailsLink_en": ""
   },
   {
     "code": "Entre64",
