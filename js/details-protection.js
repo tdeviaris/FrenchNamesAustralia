@@ -25,6 +25,45 @@
   ].join("\n");
   document.head.appendChild(style);
 
+  // Detail sheets are displayed in an iframe. External sources must open
+  // outside it, since many archives and libraries refuse to be embedded.
+  const prepareExternalLinks = () => {
+    const isFrench = /^fr\b/i.test(root.lang) ||
+      (!root.lang && /F\.html$/i.test(window.location.pathname));
+    const notice = document.createElement("span");
+    notice.id = "details-new-tab-notice";
+    notice.textContent = isFrench ? "S’ouvre dans un nouvel onglet" : "Opens in a new tab";
+    notice.hidden = true;
+    document.body.appendChild(notice);
+
+    document.querySelectorAll("a[href]").forEach((link) => {
+      let url;
+      try {
+        url = new URL(link.getAttribute("href"), document.baseURI);
+      } catch {
+        return;
+      }
+      if (!["http:", "https:"].includes(url.protocol) || url.origin === window.location.origin) {
+        return;
+      }
+      link.target = "_blank";
+      link.relList.add("noopener", "noreferrer");
+      const descriptions = new Set((link.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean));
+      descriptions.add(notice.id);
+      link.setAttribute("aria-describedby", [...descriptions].join(" "));
+      link.title = link.title ? `${link.title} — ${notice.textContent}` : notice.textContent;
+      const indicator = document.createElement("span");
+      indicator.textContent = " ↗";
+      indicator.setAttribute("aria-hidden", "true");
+      link.appendChild(indicator);
+    });
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", prepareExternalLinks, { once: true });
+  } else {
+    prepareExternalLinks();
+  }
+
   const shouldAllowEditableTarget = (target) => {
     if (!(target instanceof Element)) {
       return false;

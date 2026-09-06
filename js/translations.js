@@ -1,6 +1,8 @@
 // js/translations.js
 const translations = {
     'fr': {
+        'technologies-meta-title': 'Les technologies — French Place Names Australia',
+        'anecdotes-meta-title': 'Anecdotes — French Place Names Australia',
         // --- Textes généraux ---
         'hero-title': "Noms Français le&nbsp;long du&nbsp;littoral Australien", 'hero-subtitle': "Les toponymes issus des voyages de d'Entrecasteaux (1791-1794) et Baudin (1800-1804)",
         'hero-dev-status': "Version en cours de développement",
@@ -304,6 +306,8 @@ const translations = {
         'search-no-results': "Pas d'occurrences"
     },
     'en': {
+        'technologies-meta-title': 'Technologies — French Place Names Australia',
+        'anecdotes-meta-title': 'Anecdotes — French Place Names Australia',
         // --- General text ---
         'hero-title': "French Place Names Along the&nbsp;Australian Coastline", 'hero-subtitle': "The toponyms bestowed by the d'Entrecasteaux (1791–1794) and Baudin (1800–1804) voyages",
         'hero-dev-status': "Version under development",

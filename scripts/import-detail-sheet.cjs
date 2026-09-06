@@ -498,7 +498,13 @@ function main() {
     const htmlName = `${targetBase}.html`;
     const htmlPath = path.join(DETAILS_DIR, htmlName);
     const title = args.titleOverride;
-    const html = convertInputToHtml({ sourcePath, code: args.code, lang: item.lang, title, targetBase });
+    let html = convertInputToHtml({ sourcePath, code: args.code, lang: item.lang, title, targetBase });
+    if (!/src\s*=\s*["'][^"']*details-protection\.js["']/i.test(html)) {
+      const sharedScript = '<script src="../js/details-protection.js"></script>\n';
+      html = /<\/body\s*>/i.test(html)
+        ? html.replace(/<\/body\s*>/i, `${sharedScript}</body>`)
+        : `${html}\n${sharedScript}`;
+    }
     fs.writeFileSync(htmlPath, html, 'utf8');
 
     const copiedSource = args.copySource ? copySourceDocument(sourcePath, targetBase) : null;

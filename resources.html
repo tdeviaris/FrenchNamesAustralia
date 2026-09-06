@@ -247,6 +247,14 @@
             .content-section h2 { font-size: 1.5rem; }
             .content-section p { font-size: 0.9rem; }
         }
+
+        .resource-new .resource-thumb img { height: auto; object-fit: contain; background: #f7f7f5; }
+        .resource-new .resource-row { display: block; }
+        .resource-new .resource-thumb { width: 100%; }
+        .resource-new .resource-technologies .resource-thumb img { height: auto; aspect-ratio: 5 / 4; object-fit: cover; object-position: center top; }
+        .resource-new .resource-text { margin-top: 18px; }
+        .resource-new [data-lang] { display: none; }
+        html[lang^="fr"] .resource-new [data-lang="fr"], html[lang^="en"] .resource-new [data-lang="en"] { display: block; }
     </style>
 <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWV2EVPVQ"></script>
@@ -393,17 +401,21 @@ gtag('config', 'G-LCWV2EVPVQ');
                             </div>
 		                </div>
 		            </div>
+<div class="resource-grid resource-new">
+<div class="resource-item resource-technologies"><div data-lang="fr"><p><a class="resource-primary-link" href="technologies.html">Les technologies</a></p><div class="resource-row"><div class="resource-thumb"><a href="technologies.html" aria-label="Les technologies"><img src="details/Baudin583F_html_image002.jpg" alt="" loading="lazy" decoding="async"></a></div><div class="resource-text"><p>Six instruments pour observer le ciel, mesurer le temps et étudier le magnétisme. Avec Borda, Berthoud et Pierson, découvrez les outils scientifiques de l’expédition.</p></div></div></div><div data-lang="en"><p><a class="resource-primary-link" href="technologies.html">Technologies</a></p><div class="resource-row"><div class="resource-thumb"><a href="technologies.html" aria-label="Technologies"><img src="details/Baudin583F_html_image002.jpg" alt="" loading="lazy" decoding="async"></a></div><div class="resource-text"><p>Six instruments for observing the sky, measuring time and studying magnetism. Explore the expedition’s scientific tools through Borda, Berthoud and Pierson.</p></div></div></div></div>
+<div class="resource-item"><div data-lang="fr"><p><a class="resource-primary-link" href="anecdotes.html">Anecdotes</a></p><div class="resource-row"><div class="resource-thumb"><a href="anecdotes.html" aria-label="Anecdotes"><img src="img/anecdotes/girardin-aquarelle.png" alt="" loading="lazy" decoding="async"></a></div><div class="resource-text"><p>Une femme à bord, un chien à bord : découvrez les histoires de Louis Girardin sur La Recherche et de Kismy, le fidèle compagnon de Levillain.</p></div></div></div><div data-lang="en"><p><a class="resource-primary-link" href="anecdotes.html">Anecdotes</a></p><div class="resource-row"><div class="resource-thumb"><a href="anecdotes.html" aria-label="Anecdotes"><img src="img/anecdotes/girardin-aquarelle.png" alt="" loading="lazy" decoding="async"></a></div><div class="resource-text"><p>A woman aboard, a dog aboard: discover the stories of Louis Girardin on La Recherche and Kismy, Levillain’s faithful companion.</p></div></div></div></div>
+</div>
 	        </section>
 	    </main>
 
     <div data-include-footer></div>
 
-    <script src="js/translations.js?v=20260309"></script>
+    <script src="js/translations.js?v=20260905-resources"></script>
 <script>
         window.resourcePageFlags = {
             enableBaudinHoverVideo: false
         };
     </script>
-    <script src="js/main.js?v=20260311b"></script>
+    <script src="js/main.js?v=20260905-resources"></script>
 </body>
 </html>
