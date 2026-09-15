@@ -175,6 +175,98 @@
         .layer-toggle-row > label.route-toggle.is-disabled input {
             cursor: not-allowed;
         }
+        .ship-block {
+            margin-top: 4px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+        }
+        .ship-block-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            opacity: 0.6;
+            margin-bottom: 4px;
+        }
+        .ship-list { display: flex; flex-direction: column; gap: 3px; }
+        /* Neutralise le style "pilule" herite de .layer-toggle label. */
+        .layer-toggle .ship-block label.ship-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            cursor: pointer;
+            line-height: 1.3;
+            background: transparent;
+            border: none;
+            color: #222;
+            padding: 2px 0;
+            border-radius: 0;
+            box-shadow: none;
+            font-weight: 400;
+        }
+        .layer-toggle .ship-block label.ship-item input[type="checkbox"] {
+            accent-color: #444;
+            width: auto;
+            height: auto;
+        }
+        .layer-toggle .ship-block label.ship-item span { flex: 0 0 auto; font-weight: 400; }
+        .layer-toggle .ship-block label.ship-item span:last-child { flex: 1; }
+        .ship-item input[type="checkbox"] { margin: 0; cursor: pointer; }
+        .layer-toggle .ship-block .ship-swatch {
+            width: 18px;
+            height: 3px;
+            border-radius: 2px;
+            flex: 0 0 auto;
+            border: none;
+        }
+
+        .parcours-popup { font-size: 12px; line-height: 1.35; }
+        .parcours-popup-date { font-weight: 700; font-size: 13px; }
+        .parcours-popup-ship { font-size: 11px; opacity: 0.65; margin-top: 1px; }
+        /* Le trait separe l'en-tete (date, navire) du corps de la fiche. */
+        .parcours-popup-body {
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .parcours-popup-remark { margin-bottom: 6px; }
+        .parcours-popup-rows {
+            display: grid;
+            grid-template-columns: auto auto;
+            justify-content: start;
+            gap: 1px 8px;
+            margin: 0;
+        }
+        .parcours-popup-rows dt { opacity: 0.6; white-space: nowrap; }
+        .parcours-popup-rows dd { margin: 0; white-space: nowrap; }
+        .parcours-popup-winds { margin-top: 5px; }
+        .parcours-popup-winds-label {
+            display: block;
+            opacity: 0.6;
+            font-size: 11px;
+        }
+        .parcours-popup-winds-text { display: block; }
+        .parcours-popup-empty { margin-top: 6px; opacity: 0.6; font-style: italic; }
+        .parcours-popup-extrapolated {
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 11px;
+        }
+        /* La fiche parcours reste etroite, independamment des popups de toponymes. */
+        /* Exception : la fiche de parcours reste etroite malgre la largeur imposee
+           aux popups de toponymes (720px, plus bas dans cette feuille). */
+        .leaflet-popup-content-wrapper:has(.parcours-popup),
+        .leaflet-popup-content:has(.parcours-popup) {
+            width: 220px;
+            max-width: 220px;
+        }
+        .leaflet-popup-content:has(.parcours-popup) {
+            text-align: left;
+            padding: 10px 12px;
+        }
+
         /* Ensure popups sit above toggles */
         .leaflet-popup-pane { z-index: 1200 !important; }
 
@@ -503,6 +595,12 @@
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content {
                 width: min(720px, calc(100vw - 60px));
                 max-width: min(720px, calc(100vw - 60px));
+            }
+            /* ... sauf les fiches de parcours, volontairement compactes. */
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper:has(.parcours-popup),
+            .leaflet-popup:not(.popup-has-image) .leaflet-popup-content:has(.parcours-popup) {
+                width: 220px;
+                max-width: 220px;
             }
             /* Le texte utilise toute la largeur quand il n'y a pas d'image */
             .leaflet-popup:not(.popup-has-image) .popup-text-container {
@@ -1089,9 +1187,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                 <span data-i18n="map-layer-entre">d'Entrecasteaux</span>
             </label>
             <label class="toggle-entre route-toggle" aria-label="Afficher la route d'Entrecasteaux">
-                <input type="checkbox" id="toggle-entre-route">
+                <input type="checkbox" id="toggle-entre-parcours">
                 <span>route</span>
             </label>
+        </div>
+        <div class="ship-block" id="ship-block-entre" hidden>
+            <div class="ship-block-title">Navires</div>
+            <div class="ship-list" id="ship-list-entre"></div>
         </div>
         <div class="layer-toggle-row">
             <label class="toggle-baudin">
@@ -1099,9 +1201,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                 <span data-i18n="map-layer-baudin">Baudin</span>
             </label>
             <label class="toggle-baudin route-toggle" aria-label="Afficher la route de Baudin">
-                <input type="checkbox" id="toggle-baudin-route">
+                <input type="checkbox" id="toggle-baudin-parcours">
                 <span>route</span>
             </label>
+        </div>
+        <div class="ship-block" id="ship-block-baudin" hidden>
+            <div class="ship-block-title">Navires</div>
+            <div class="ship-list" id="ship-list-baudin"></div>
         </div>
     </div>
 
@@ -2724,7 +2830,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                     }
                 });
             }
-            centerPopupOnceReady(event.popup);
+            // Les points de parcours ne declenchent pas de recentrage/zoom.
+            if (!currentOpenMarker?.__isParcoursPoint) {
+                centerPopupOnceReady(event.popup);
+            }
             attachPopupActions(event.popup);
             enhancePopupImagesWithAvif(event.popup.getElement());
         });
@@ -3267,29 +3376,6 @@ gtag('config', 'G-LCWV2EVPVQ');
             return paneName;
         };
 
-        const routeLayers = {
-            baudin: L.layerGroup(),
-            entre: L.layerGroup()
-        };
-
-        let baudinRouteEditorAttached = false;
-
-        const routeWanted = {
-            baudin: false,
-            entre: false
-        };
-
-        const updateRouteVisibility = (key) => {
-            const layer = routeLayers[key];
-            if (!layer) return;
-            const shouldShow = Boolean(routeWanted[key]) && selectedExpeditions.has(key);
-            if (shouldShow) {
-                map.addLayer(layer);
-            } else {
-                map.removeLayer(layer);
-            }
-        };
-
         const loadJsonFile = async (url) => {
             // Try standard fetch (works when served via http/https)
             try {
@@ -3310,782 +3396,499 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         };
 
-        const addBaudinRoutes = async () => {
-            const timeline = await loadJsonFile('data/timeline_baudin.json');
-            if (!timeline || !Array.isArray(timeline) || !routeLayers.baudin) {
-                return;
+        // --- Nouveaux parcours (GeoJSON journaliers, trajectoires pre-construites par navire) ---
+        const PARCOURS_SOURCES = {
+            baudin: {
+                url: 'data/baudin_parcours.geojson',
+                shipOrder: ['corvettes-gn', 'corvettes-gc', 'le Géographe', 'le Naturaliste', 'le Casuarina'],
+                colors: {
+                    'corvettes-gn': '#0b63d1',
+                    'corvettes-gc': '#0d9488',
+                    'les corvettes': '#0b63d1',
+                    'le Géographe': '#e8590c',
+                    'le Naturaliste': '#7048e8',
+                    'le Casuarina': '#c2255c'
+                },
+                // "les corvettes" ne designe pas la meme paire tout au long du voyage :
+                // le Naturaliste quitte Port Jackson pour la France le 18 novembre 1802,
+                // remplace par le Casuarina achete sur place.
+                shipSplits: {
+                    'les corvettes': [
+                        { until: '1802-11-18', key: 'corvettes-gn' },
+                        { key: 'corvettes-gc' }
+                    ]
+                }
+            },
+            entre: {
+                url: 'data/dentrecasteaux_parcours.geojson',
+                shipOrder: ['la Recherche'],
+                colors: { 'la Recherche': '#238b45' },
+                // La Recherche fait deux fois le tour de l'Australie et les deux passages
+                // se recoupent. On les distingue par la teinte, la couleur n'ayant pas
+                // d'autre role ici : l'expedition ne compte qu'un navire.
+                // Bascule au depart d'Amboine, deja marque par un changement de section.
+                campaigns: [
+                    {
+                        key: 'aller',
+                        label: { fr: '1ère campagne', en: 'First campaign' },
+                        until: '1792-10-13',
+                        color: '#238b45'
+                    },
+                    {
+                        key: 'retour',
+                        label: { fr: '2e campagne', en: 'Second campaign' },
+                        color: '#9acd32'
+                    }
+                ]
             }
-
-            const baudinPathGeojson =
-                (await loadJsonFile('data/baudin_path.geojson'))
-                || (await loadJsonFile('../Baudin_path.geojson'));
-
-            const paneName = ensureRoutesPane();
-            const routeColor = expeditionConfigs.baudin?.color || '#0b63d1';
-            const sessionStorageSafe = (() => {
-                try {
-                    return window.sessionStorage;
-                } catch (err) {
-                    return null;
-                }
-            })();
-            const baudinRouteEditsStorageKey = 'baudin-route-edits-v1';
-            const baudinRouteRestoreWantedKey = 'baudin-route-restore-wanted';
-            const baudinMapViewRestoreKey = 'map-view-restore';
-
-            const loadBaudinRouteState = () => {
-                if (!sessionStorageSafe) return {};
-                try {
-                    const raw = sessionStorageSafe.getItem(baudinRouteEditsStorageKey);
-                    if (!raw) return {};
-                    const parsed = JSON.parse(raw);
-                    if (!parsed || typeof parsed !== 'object') {
-                        return {};
-                    }
-                    // Backward compatibility: previous format was { [pointKey]: {lat, lon}, ... }
-                    if (!Object.prototype.hasOwnProperty.call(parsed, 'points') && !Object.prototype.hasOwnProperty.call(parsed, 'insertions')) {
-                        return { points: parsed, insertions: {} };
-                    }
-                    const points = (parsed.points && typeof parsed.points === 'object') ? parsed.points : {};
-                    const insertions = (parsed.insertions && typeof parsed.insertions === 'object') ? parsed.insertions : {};
-                    return { points, insertions };
-                } catch (err) {
-                    return {};
-                }
-            };
-
-            const saveBaudinRouteState = (state) => {
-                if (!sessionStorageSafe) return;
-                try {
-                    sessionStorageSafe.setItem(baudinRouteEditsStorageKey, JSON.stringify(state));
-                } catch (err) {
-                    // ignore
-                }
-            };
-
-            const baudinRouteState = loadBaudinRouteState();
-            const baudinRoutePoints = (baudinRouteState.points && typeof baudinRouteState.points === 'object') ? baudinRouteState.points : {};
-            const baudinRouteInsertions = (baudinRouteState.insertions && typeof baudinRouteState.insertions === 'object') ? baudinRouteState.insertions : {};
-            const timelinePointKey = (entry) => `timeline-${entry?.id ?? ''}`;
-            const pathPointKey = (idx) => `path-${idx}`;
-
-            const resolveLatLon = (pointKey, defaultLat, defaultLon) => {
-                const override = baudinRoutePoints?.[pointKey];
-                const lat = override?.lat;
-                const lon = override?.lon;
-                if (isFiniteNumber(lat) && isFiniteNumber(lon)) {
-                    return { lat, lon };
-                }
-                return { lat: defaultLat, lon: defaultLon };
-            };
-
-            const setEditedLatLon = (pointKey, lat, lon) => {
-                baudinRoutePoints[pointKey] = { lat, lon };
-                saveBaudinRouteState({ points: baudinRoutePoints, insertions: baudinRouteInsertions });
-            };
-
-            const formatDateFr = (iso) => {
-                const parts = String(iso || '').split('-');
-                if (parts.length !== 3) return '';
-                const [yyyy, mm, dd] = parts;
-                if (!yyyy || !mm || !dd) return '';
-                return `${dd}/${mm}/${yyyy}`;
-            };
-
-            const findEntryByDateIso = (dateISO) => timeline.find((entry) => entry?.dateISO === dateISO);
-
-            const vesselsFor = (entry) => {
-                const vessels = [];
-                if (entry?.geographe) vessels.push('Le Géographe');
-                if (entry?.naturaliste) vessels.push('Le Naturaliste');
-                if (entry?.casuarina) vessels.push('Le Casuarina');
-                return vessels;
-            };
-
-            const extractBaudinPathLonLat = (geojson) => {
-                if (!geojson) return [];
-                const features = Array.isArray(geojson?.features) ? geojson.features : [];
-                for (const feature of features) {
-                    const geom = feature?.geometry;
-                    const type = geom?.type;
-                    const coords = geom?.coordinates;
-                    if (!coords) continue;
-                    if (type === 'LineString' && Array.isArray(coords) && coords.length) {
-                        return coords;
-                    }
-                    if (type === 'MultiLineString' && Array.isArray(coords) && coords.length) {
-                        return coords.flat().filter((pt) => Array.isArray(pt) && pt.length >= 2);
-                    }
-                }
-                return [];
-            };
-
-            const closestIndexLonLat = (coordsLonLat, targetLonLat) => {
-                const [targetLon, targetLat] = targetLonLat;
-                let bestIdx = -1;
-                let bestDist = Infinity;
-                coordsLonLat.forEach((pt, idx) => {
-                    if (!Array.isArray(pt) || pt.length < 2) return;
-                    const lon = pt[0];
-                    const lat = pt[1];
-                    if (!isFiniteNumber(lon) || !isFiniteNumber(lat)) return;
-                    const dLon = lon - targetLon;
-                    const dLat = lat - targetLat;
-                    const dist = (dLon * dLon) + (dLat * dLat);
-                    if (dist < bestDist) {
-                        bestDist = dist;
-                        bestIdx = idx;
-                    }
-                });
-                return bestIdx;
-            };
-
-            const buildEarlyRoutePoints = () => {
-                const pathLonLatRaw = extractBaudinPathLonLat(baudinPathGeojson);
-                if (!Array.isArray(pathLonLatRaw) || pathLonLatRaw.length < 2) {
-                    return null;
-                }
-
-                const havre = findEntryByDateIso('1800-10-19');
-                const tenerife = findEntryByDateIso('1800-11-02');
-                const equator = findEntryByDateIso('1800-12-12');
-                const capeHope = findEntryByDateIso('1801-02-03');
-                const leeuwin = findEntryByDateIso('1801-05-27');
-
-                const anchors = [
-                    { key: 'havre', entry: havre },
-                    { key: 'tenerife', entry: tenerife },
-                    { key: 'equator', entry: equator },
-                    { key: 'capeHope', entry: capeHope },
-                    { key: 'leeuwin', entry: leeuwin }
-                ];
-
-                const missing = anchors.some((a) => !a.entry || !isFiniteNumber(a.entry?.lat) || !isFiniteNumber(a.entry?.lon));
-                if (missing) {
-                    return null;
-                }
-
-                const anchorLonLat = anchors.map((a) => {
-                    const key = timelinePointKey(a.entry);
-                    const coords = resolveLatLon(key, a.entry.lat, a.entry.lon);
-                    return [coords.lon, coords.lat];
-                });
-
-                const indices = anchorLonLat.map((pt) => closestIndexLonLat(pathLonLatRaw, pt));
-                if (indices.some((idx) => idx < 0)) {
-                    return null;
-                }
-
-                const isIncreasing = indices.every((idx, i) => i === 0 || idx >= indices[i - 1]);
-                const isDecreasing = indices.every((idx, i) => i === 0 || idx <= indices[i - 1]);
-                let pathLonLat = pathLonLatRaw;
-                let fixedIndices = indices;
-
-                if (!isIncreasing && isDecreasing) {
-                    pathLonLat = [...pathLonLatRaw].reverse();
-                    fixedIndices = anchorLonLat.map((pt) => closestIndexLonLat(pathLonLat, pt));
-                }
-
-                if (!fixedIndices.every((idx, i) => i === 0 || idx >= fixedIndices[i - 1])) {
-                    return null;
-                }
-
-                const pathPoints = pathLonLatRaw.map((lonLat, idx) => ({
-                    key: pathPointKey(idx),
-                    kind: 'path',
-                    lat: lonLat?.[1],
-                    lon: lonLat?.[0],
-                }));
-
-                const merged = [];
-
-                const startKey = timelinePointKey(anchors[0].entry);
-                merged.push({ key: startKey, kind: 'timeline', lat: anchors[0].entry.lat, lon: anchors[0].entry.lon, entry: anchors[0].entry });
-                for (let i = 0; i < anchors.length - 1; i += 1) {
-                    const startIdx = fixedIndices[i];
-                    const endIdx = fixedIndices[i + 1];
-                    const segment = pathPoints.slice(startIdx + 1, endIdx);
-                    segment.forEach((pt) => {
-                        if (!pt) return;
-                        if (!isFiniteNumber(pt.lon) || !isFiniteNumber(pt.lat)) return;
-                        merged.push(pt);
-                    });
-
-                    const nextAnchor = anchors[i + 1].entry;
-                    const nextKey = timelinePointKey(nextAnchor);
-                    merged.push({ key: nextKey, kind: 'timeline', lat: nextAnchor.lat, lon: nextAnchor.lon, entry: nextAnchor });
-                }
-                return merged;
-            };
-
-            const expandPointDescriptorsWithInsertions = (baseDescriptors) => {
-                if (!Array.isArray(baseDescriptors) || !baseDescriptors.length) {
-                    return [];
-                }
-                const out = [];
-                const activeStack = new Set();
-
-                const appendKey = (descriptor) => {
-                    if (!descriptor?.key) return;
-                    out.push(descriptor);
-                    const insertionKeys = baudinRouteInsertions?.[descriptor.key];
-                    if (!Array.isArray(insertionKeys) || !insertionKeys.length) {
-                        return;
-                    }
-                    insertionKeys.forEach((key) => {
-                        if (!key) return;
-                        if (activeStack.has(key)) return;
-                        activeStack.add(key);
-                        appendKey({ key, defaultLat: undefined, defaultLon: undefined });
-                        activeStack.delete(key);
-                    });
-                };
-
-                baseDescriptors.forEach(appendKey);
-                return out;
-            };
-
-            const descriptorsForShipTimeline = (shipKey, predicate = () => true) => {
-                const base = [];
-                for (const entry of timeline) {
-                    if (!entry?.[shipKey]) continue;
-                    if (!predicate(entry)) continue;
-                    const key = timelinePointKey(entry);
-                    const coords = resolveLatLon(key, entry?.lat, entry?.lon);
-                    if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) continue;
-                    base.push({ key, defaultLat: entry?.lat, defaultLon: entry?.lon });
-                }
-                return base;
-            };
-
-            const coordsFromDescriptors = (descriptors) => {
-                return descriptors
-                    .map((descriptor) => {
-                        const coords = resolveLatLon(descriptor.key, descriptor.defaultLat, descriptor.defaultLon);
-                        return [coords.lat, coords.lon];
-                    })
-                    .filter((latLng) => isFiniteNumber(latLng[0]) && isFiniteNumber(latLng[1]));
-            };
-
-            const coordsFor = (shipKey) => {
-                const base = descriptorsForShipTimeline(shipKey);
-                const expanded = expandPointDescriptorsWithInsertions(base);
-                return coordsFromDescriptors(expanded);
-            };
-
-            const expandPointsWithInsertions = (points) => {
-                if (!Array.isArray(points) || !points.length) {
-                    return [];
-                }
-                const out = [];
-                const activeStack = new Set();
-
-                const appendPoint = (pt) => {
-                    if (!pt?.key) return;
-                    out.push(pt);
-                    const insertionKeys = baudinRouteInsertions?.[pt.key];
-                    if (!Array.isArray(insertionKeys) || !insertionKeys.length) {
-                        return;
-                    }
-                    insertionKeys.forEach((key) => {
-                        if (!key) return;
-                        if (activeStack.has(key)) return;
-                        const coords = resolveLatLon(key, undefined, undefined);
-                        if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) return;
-                        activeStack.add(key);
-                        appendPoint({ key, kind: 'inserted', lat: coords.lat, lon: coords.lon });
-                        activeStack.delete(key);
-                    });
-                };
-
-                points.forEach(appendPoint);
-                return out;
-            };
-
-            const earlyRouteBasePoints = buildEarlyRoutePoints();
-            const earlyRoutePoints = expandPointsWithInsertions(earlyRouteBasePoints);
-            const earlyRouteEndDateIso = '1801-05-27';
-
-            const coordsForShipRoute = (shipKey) => {
-                if (!earlyRoutePoints || (shipKey !== 'geographe' && shipKey !== 'naturaliste')) {
-                    return coordsFor(shipKey);
-                }
-
-                const afterBase = descriptorsForShipTimeline(shipKey, (entry) => String(entry?.dateISO || '') > String(earlyRouteEndDateIso));
-                const afterExpanded = expandPointDescriptorsWithInsertions(afterBase);
-                const after = coordsFromDescriptors(afterExpanded);
-
-                const early = earlyRoutePoints
-                    .map((pt) => {
-                        const coords = resolveLatLon(pt.key, pt.lat, pt.lon);
-                        return [coords.lat, coords.lon];
-                    })
-                    .filter((latLng) => isFiniteNumber(latLng[0]) && isFiniteNumber(latLng[1]));
-
-                return [...early, ...after];
-            };
-
-            const addShipPolyline = (shipKey, style) => {
-                const coords = coordsForShipRoute(shipKey);
-                if (coords.length < 2) {
-                    return;
-                }
-                const line = L.polyline(coords, {
-                    pane: paneName,
-                    interactive: false,
-                    color: routeColor,
-                    weight: 5,
-                    opacity: 0.95,
-                    lineCap: 'round',
-                    lineJoin: 'round',
-                    ...style
-                });
-                routeLayers.baudin.addLayer(line);
-            };
-
-            addShipPolyline('geographe', {});
-            addShipPolyline('naturaliste', { dashArray: '12 10' });
-            addShipPolyline('casuarina', { dashArray: '1 10' });
-
-            let selectedPointKey = null;
-            let selectedMarker = null;
-            let addPointAfterKey = null;
-            let addModeSelectedMarker = null;
-
-            const clearSelection = () => {
-                if (selectedMarker && selectedMarker.__baseStyle && typeof selectedMarker.setStyle === 'function') {
-                    selectedMarker.setStyle(selectedMarker.__baseStyle);
-                }
-                if (selectedMarker && isFiniteNumber(selectedMarker.__baseRadius) && typeof selectedMarker.setRadius === 'function') {
-                    selectedMarker.setRadius(selectedMarker.__baseRadius);
-                }
-                selectedMarker = null;
-                selectedPointKey = null;
-                if (addModeSelectedMarker && addModeSelectedMarker.__addModeBaseStyle && typeof addModeSelectedMarker.setStyle === 'function') {
-                    addModeSelectedMarker.setStyle(addModeSelectedMarker.__addModeBaseStyle);
-                }
-                addModeSelectedMarker = null;
-                addPointAfterKey = null;
-            };
-
-            const selectMarker = (marker, pointKey) => {
-                if (!marker || !pointKey) return;
-                if (selectedMarker && selectedMarker !== marker) {
-                    clearSelection();
-                }
-                selectedPointKey = pointKey;
-                selectedMarker = marker;
-                // Selection change cancels add mode.
-                if (addModeSelectedMarker && addModeSelectedMarker.__addModeBaseStyle && typeof addModeSelectedMarker.setStyle === 'function') {
-                    addModeSelectedMarker.setStyle(addModeSelectedMarker.__addModeBaseStyle);
-                }
-                addModeSelectedMarker = null;
-                addPointAfterKey = null;
-                marker.__baseStyle = marker.__baseStyle || { color: marker.options.color, weight: marker.options.weight };
-                marker.__baseRadius = marker.__baseRadius ?? marker.options.radius;
-                marker.setStyle({ color: '#ffcc00', weight: 4 });
-                marker.setRadius((marker.__baseRadius || marker.options.radius || 6) + 2);
-            };
-
-            const persistReloadState = () => {
-                if (!sessionStorageSafe) return;
-                try {
-                    const want = Boolean(toggleBaudinRoute?.checked || routeWanted.baudin);
-                    sessionStorageSafe.setItem(baudinRouteRestoreWantedKey, want ? '1' : '0');
-                    const center = map.getCenter?.();
-                    const zoom = map.getZoom?.();
-                    if (center && isFiniteNumber(center.lat) && isFiniteNumber(center.lng) && isFiniteNumber(zoom)) {
-                        sessionStorageSafe.setItem(baudinMapViewRestoreKey, JSON.stringify({ lat: center.lat, lng: center.lng, zoom }));
-                    }
-                } catch (err) {
-                    // ignore
-                }
-            };
-
-            const addInsertedPointAfter = (afterKey, latLng) => {
-                if (!afterKey || !latLng) return;
-                const makeKey = () => `inserted-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-                let newKey = makeKey();
-                while (baudinRoutePoints[newKey]) {
-                    newKey = makeKey();
-                }
-                if (!Array.isArray(baudinRouteInsertions[afterKey])) {
-                    baudinRouteInsertions[afterKey] = [];
-                }
-                baudinRouteInsertions[afterKey].push(newKey);
-                baudinRoutePoints[newKey] = { lat: latLng.lat, lon: latLng.lng };
-                saveBaudinRouteState({ points: baudinRoutePoints, insertions: baudinRouteInsertions });
-                persistReloadState();
-                window.location.reload();
-            };
-
-            const applySelectedPointMove = (latLng) => {
-                if (!selectedPointKey || !latLng) return;
-                setEditedLatLon(selectedPointKey, latLng.lat, latLng.lng);
-                persistReloadState();
-                window.location.reload();
-            };
-
-            const toggleAddModeForSelected = () => {
-                if (!selectedPointKey || !selectedMarker) return;
-                if (addPointAfterKey === selectedPointKey) {
-                    // turn off
-                    if (addModeSelectedMarker && addModeSelectedMarker.__addModeBaseStyle && typeof addModeSelectedMarker.setStyle === 'function') {
-                        addModeSelectedMarker.setStyle(addModeSelectedMarker.__addModeBaseStyle);
-                    }
-                    addModeSelectedMarker = null;
-                    addPointAfterKey = null;
-                    // restore selection highlight
-                    selectedMarker.setStyle({ color: '#ffcc00', weight: 4 });
-                    return;
-                }
-                addPointAfterKey = selectedPointKey;
-                addModeSelectedMarker = selectedMarker;
-                addModeSelectedMarker.__addModeBaseStyle = addModeSelectedMarker.__addModeBaseStyle || { color: addModeSelectedMarker.options.color, weight: addModeSelectedMarker.options.weight };
-                // indicate "add" mode in green
-                addModeSelectedMarker.setStyle({ color: '#00c853', weight: 4 });
-            };
-
-            const applySelectedPointContextAction = (latLng) => {
-                if (!latLng) return;
-                if (addPointAfterKey) {
-                    addInsertedPointAfter(addPointAfterKey, latLng);
-                    return;
-                }
-                applySelectedPointMove(latLng);
-            };
-
-            const attachEditorHandlers = (marker, pointKey) => {
-                if (!marker || !pointKey) return;
-                marker.on('click', (event) => {
-                    if (event?.originalEvent) {
-                        L.DomEvent.stopPropagation(event.originalEvent);
-                    }
-                    selectMarker(marker, pointKey);
-                });
-                marker.on('contextmenu', (event) => {
-                    if (event?.originalEvent) {
-                        L.DomEvent.preventDefault(event.originalEvent);
-                        L.DomEvent.stopPropagation(event.originalEvent);
-                    }
-                    applySelectedPointContextAction(event?.latlng);
-                });
-            };
-
-            if (!baudinRouteEditorAttached) {
-                baudinRouteEditorAttached = true;
-                map.on('click', () => {
-                    // Click on empty map clears selection.
-                    clearSelection();
-                });
-                map.on('contextmenu', (event) => {
-                    if (event?.originalEvent) {
-                        L.DomEvent.preventDefault(event.originalEvent);
-                    }
-                    applySelectedPointContextAction(event?.latlng);
-                });
-
-                window.addEventListener('keydown', (event) => {
-                    const key = event?.key;
-                    if (!key) return;
-                    const active = document.activeElement;
-                    const tag = active?.tagName ? String(active.tagName).toUpperCase() : '';
-                    if (tag === 'INPUT' || tag === 'TEXTAREA' || active?.isContentEditable) {
-                        return;
-                    }
-                    if (key === 'a' || key === 'A') {
-                        toggleAddModeForSelected();
-                    }
-                    if (key === 'Escape') {
-                        clearSelection();
-                    }
-                });
-            }
-
-            const renderedPointKeys = new Set();
-
-            if (earlyRoutePoints) {
-                earlyRoutePoints
-                    .filter((pt) => pt?.kind === 'path')
-                    .forEach((pt) => {
-                        if (renderedPointKeys.has(pt.key)) return;
-                        const coords = resolveLatLon(pt.key, pt.lat, pt.lon);
-                        if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) return;
-                        const marker = L.circleMarker([coords.lat, coords.lon], {
-                            pane: paneName,
-                            radius: 4,
-                            color: '#ffffff',
-                            weight: 1.8,
-                            opacity: 0.9,
-                            fill: true,
-                            fillColor: routeColor,
-                            fillOpacity: 0.55
-                        });
-                        attachEditorHandlers(marker, pt.key);
-                        // Optional lightweight popup with coordinates.
-                        marker.bindPopup(
-                            `<div class="popup-text-container"><p><strong>lat</strong> ${escapeHtml(String(coords.lat))} <strong>lon</strong> ${escapeHtml(String(coords.lon))}</p></div>`,
-                            { maxWidth: 360 }
-                        );
-                        routeLayers.baudin.addLayer(marker);
-                        renderedPointKeys.add(pt.key);
-                    });
-            }
-
-            // Render inserted points anywhere in the route (including those inserted after timeline points).
-            Object.entries(baudinRouteInsertions).forEach(([, insertionKeys]) => {
-                if (!Array.isArray(insertionKeys) || !insertionKeys.length) return;
-                insertionKeys.forEach((key) => {
-                    if (renderedPointKeys.has(key)) return;
-                    const coords = resolveLatLon(key, undefined, undefined);
-                    if (!isFiniteNumber(coords.lat) || !isFiniteNumber(coords.lon)) return;
-                    const marker = L.circleMarker([coords.lat, coords.lon], {
-                        pane: paneName,
-                        radius: 5,
-                        color: '#ffffff',
-                        weight: 2.0,
-                        opacity: 0.95,
-                        fill: true,
-                        fillColor: routeColor,
-                        fillOpacity: 0.75
-                    });
-                    attachEditorHandlers(marker, key);
-                    marker.bindPopup(
-                        `<div class="popup-text-container"><p><strong>lat</strong> ${escapeHtml(String(coords.lat))} <strong>lon</strong> ${escapeHtml(String(coords.lon))}</p></div>`,
-                        { maxWidth: 360 }
-                    );
-                    routeLayers.baudin.addLayer(marker);
-                    renderedPointKeys.add(key);
-                });
-            });
-
-            timeline.forEach((entry) => {
-                const pointKey = timelinePointKey(entry);
-                const coords = resolveLatLon(pointKey, entry?.lat, entry?.lon);
-                const lat = coords.lat;
-                const lon = coords.lon;
-                if (!isFiniteNumber(lat) || !isFiniteNumber(lon)) {
-                    return;
-                }
-
-                const dateFr = formatDateFr(entry?.dateISO);
-                const currentLang = getCurrentLanguage();
-                const vessels = vesselsFor(entry);
-                const historyText = currentLang === 'fr' ? (entry?.histoire || '') : (entry?.story || '');
-
-                const shipsLabel = currentLang === 'fr' ? 'Navires' : 'Ships';
-                const dateLine = dateFr ? `<p><strong>Date</strong> ${escapeHtml(dateFr)}</p>` : '';
-                const vesselsLine = vessels.length ? `<p><strong>${shipsLabel}</strong> ${escapeHtml(vessels.join(' / '))}</p>` : '';
-                const historyLine = historyText ? `<p><strong>${currentLang === 'fr' ? 'Histoire' : 'Story'}</strong> ${escapeHtml(historyText)}</p>` : '';
-
-                const marker = L.circleMarker([lat, lon], {
-                    pane: paneName,
-                    radius: 6,
-                    color: '#ffffff',
-                    weight: 2.5,
-                    opacity: 0.95,
-                    fill: true,
-                    fillColor: routeColor,
-                    fillOpacity: 0.95
-                });
-                marker.bindPopup(
-                    `<div class="popup-text-container">${dateLine}${vesselsLine}${historyLine}</div>`,
-                    { maxWidth: 520 }
-                );
-                attachEditorHandlers(marker, pointKey);
-                routeLayers.baudin.addLayer(marker);
-                renderedPointKeys.add(pointKey);
-            });
-
-            updateRouteVisibility('baudin');
         };
 
-        const addEntrecasteauxRoutes = async () => {
-            const routeData = await loadJsonFile('data/entrecasteaux_routes.json');
-            if (!routeData || !Array.isArray(routeData.features) || !routeLayers.entre) {
-                return;
-            }
+        // Au-dela de ce silence, deux releves consecutifs ne sont plus relies :
+        // le navire a bien navigue, mais sa route est consignee sous un autre libelle
+        // (ou pas consignee du tout). Tracer une droite inventerait un trajet.
+        const PARCOURS_RUPTURE_JOURS = 15;
 
-            const paneName = ensureRoutesPane();
-            const minTurnAngleDeg = 18;
-            const routeOverlays = [];
+        const parcoursLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
+        const parcoursWanted = { baudin: false, entre: false };
+        const parcoursShipLayers = { baudin: {}, entre: {} };
+        const parcoursShipWanted = { baudin: {}, entre: {} };
+        const parcoursLoadPromise = { baudin: null, entre: null };
 
-            const toLineArrays = (latLngs) => {
-                // Leaflet can return:
-                // - Polyline: [LatLng, LatLng, ...]
-                // - MultiPolyline: [[LatLng, ...], [LatLng, ...], ...]
-                if (!Array.isArray(latLngs) || latLngs.length === 0) {
-                    return [];
+        const updateShipBlockVisibility = (key) => {
+            const block = document.getElementById(`ship-block-${key}`);
+            if (!block) return;
+            const shipCount = Object.keys(parcoursShipLayers[key] || {}).length;
+            // Un seul navire : le sous-bloc n'apporte rien.
+            block.hidden = !(parcoursWanted[key] && shipCount > 1);
+        };
+
+        const updateParcoursVisibility = (key) => {
+            const group = parcoursLayers[key];
+            if (!group) return;
+            const shouldShow = Boolean(parcoursWanted[key]);
+            Object.keys(parcoursShipLayers[key] || {}).forEach((ship) => {
+                const shipLayer = parcoursShipLayers[key][ship];
+                if (!shipLayer) return;
+                if (shouldShow && parcoursShipWanted[key][ship] !== false) {
+                    group.addLayer(shipLayer);
+                } else {
+                    group.removeLayer(shipLayer);
                 }
-                return Array.isArray(latLngs[0]) ? latLngs : [latLngs];
-            };
-
-            const angleBetweenDeg = (v1, v2) => {
-                const dot = (v1[0] * v2[0]) + (v1[1] * v2[1]);
-                const n1 = Math.hypot(v1[0], v1[1]);
-                const n2 = Math.hypot(v2[0], v2[1]);
-                if (!n1 || !n2) return 0;
-                const cos = Math.min(1, Math.max(-1, dot / (n1 * n2)));
-                return Math.acos(cos) * 180 / Math.PI;
-            };
-
-            const turningPointIndices = (points) => {
-                const indices = new Set();
-                if (!Array.isArray(points) || points.length < 2) {
-                    return [];
-                }
-                indices.add(0);
-                indices.add(points.length - 1);
-                for (let i = 1; i < points.length - 1; i += 1) {
-                    const prev = points[i - 1];
-                    const curr = points[i];
-                    const next = points[i + 1];
-                    if (!prev || !curr || !next) continue;
-                    const v1 = [curr.lng - prev.lng, curr.lat - prev.lat];
-                    const v2 = [next.lng - curr.lng, next.lat - curr.lat];
-                    const deflection = angleBetweenDeg(v1, v2);
-                    if (deflection >= minTurnAngleDeg) {
-                        indices.add(i);
-                    }
-                }
-                return Array.from(indices).sort((a, b) => a - b);
-            };
-
-            const nonEmptyFeatures = routeData.features.filter((feature) => {
-                const coords = feature?.geometry?.coordinates;
-                if (!coords) return false;
-                if (Array.isArray(coords) && coords.length === 0) return false;
-                const s = JSON.stringify(coords);
-                return !(s === '[]' || s === '[[]]' || s === '[[[]]]');
             });
+            if (shouldShow) {
+                map.addLayer(group);
+            } else {
+                map.removeLayer(group);
+            }
+            updateShipBlockVisibility(key);
+        };
 
-            if (!nonEmptyFeatures.length) {
-                return;
+        const buildShipControls = (key) => {
+            const list = document.getElementById(`ship-list-${key}`);
+            if (!list) return;
+            const source = PARCOURS_SOURCES[key] || {};
+            const ships = Object.keys(parcoursShipLayers[key] || {});
+            const order = Array.isArray(source.shipOrder) ? source.shipOrder : [];
+            ships.sort((a, b) => {
+                const ia = order.indexOf(a);
+                const ib = order.indexOf(b);
+                return (ia < 0 ? order.length : ia) - (ib < 0 ? order.length : ib);
+            });
+            list.textContent = '';
+            ships.forEach((ship) => {
+                const label = document.createElement('label');
+                label.className = 'ship-item';
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.checked = parcoursShipWanted[key][ship] !== false;
+                input.addEventListener('change', () => {
+                    parcoursShipWanted[key][ship] = input.checked;
+                    updateParcoursVisibility(key);
+                });
+                const swatch = document.createElement('span');
+                swatch.className = 'ship-swatch';
+                swatch.style.background = source.colors?.[ship] || expeditionConfigs[key]?.color || '#666';
+                const text = document.createElement('span');
+                text.textContent = shipDisplayName(ship, getCurrentLanguage());
+                label.appendChild(input);
+                label.appendChild(swatch);
+                label.appendChild(text);
+                list.appendChild(label);
+            });
+        };
+
+        // --- Helpers de formatage pour les infobulles du parcours ---
+        const parcoursLabels = {
+            fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
+                  empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée' },
+            en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
+                  empty: 'No reading for this day.', extrapolated: 'Extrapolated position' }
+        };
+
+        const parcoursLabelsFor = (lang) => parcoursLabels[lang] || parcoursLabels.en;
+
+        // Les tables de route designent par "les corvettes" les journees ou le Geographe
+        // et le Naturaliste naviguent de conserve : on nomme les deux navires.
+        const shipDisplayNames = {
+            'les corvettes': { fr: 'le Géographe & le Naturaliste', en: 'Géographe & Naturaliste' },
+            'corvettes-gn': { fr: 'le Géographe & le Naturaliste', en: 'Géographe & Naturaliste' },
+            'corvettes-gc': { fr: 'le Géographe & le Casuarina', en: 'Géographe & Casuarina' }
+        };
+
+        const shipDisplayName = (ship, lang) => {
+            const entry = shipDisplayNames[ship];
+            if (!entry) return ship;
+            return entry[lang] || entry.en || ship;
+        };
+
+        const formatParcoursDate = (value) => {
+            const text = String(value || '').trim();
+            return text || null;
+        };
+
+        const parcoursMonthNames = {
+            fr: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+                 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+            en: ['January', 'February', 'March', 'April', 'May', 'June',
+                 'July', 'August', 'September', 'October', 'November', 'December']
+        };
+
+        // Date en toutes lettres pour la fiche ("15 mai 1792" / "15 May 1792").
+        // L'etiquette de survol conserve le format ISO.
+        const formatParcoursDateLong = (value, lang) => {
+            const text = String(value || '').trim();
+            const match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+            if (!match) return text || null;
+            const year = Number(match[1]);
+            const monthIndex = Number(match[2]) - 1;
+            const day = Number(match[3]);
+            const months = parcoursMonthNames[lang] || parcoursMonthNames.en;
+            if (monthIndex < 0 || monthIndex > 11) return text;
+            const dayLabel = (lang === 'fr' && day === 1) ? '1er' : String(day);
+            return `${dayLabel} ${months[monthIndex]} ${year}`;
+        };
+
+        // Virgule decimale en francais, point en anglais.
+        const formatDecimal = (num, digits, lang) => {
+            const text = num.toFixed(digits);
+            return lang === 'fr' ? text.replace('.', ',') : text;
+        };
+
+        const formatTemperature = (value, lang) => {
+            if (value === null || value === undefined) return null;
+            const text = String(value).trim();
+            if (!text) return null;
+            // Les sources notent la decimale a la francaise ("14,0").
+            const num = Number.parseFloat(text.replace(',', '.'));
+            if (!isFiniteNumber(num)) return null;
+            return `${formatDecimal(num, 1, lang)} °C`;
+        };
+
+        const formatPressure = (value) => {
+            if (value === null || value === undefined) return null;
+            const num = Number.parseFloat(String(value).replace(',', '.'));
+            if (!isFiniteNumber(num)) return null;
+            return `${Math.round(num)} hPa`;
+        };
+
+        const formatWinds = (value) => {
+            const text = String(value || '').trim();
+            return text || null;
+        };
+
+        const escapeHtmlText = (value) => String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+
+        const buildParcoursPopup = (props, ship, campaign) => {
+            const lang = getCurrentLanguage();
+            const labels = parcoursLabelsFor(lang);
+            const temperature = formatTemperature(props?.thermometre, lang);
+            const pressure = formatPressure(props?.barometre_hpa);
+            const winds = formatWinds(props?.vents_etat_du_ciel);
+
+            const remark = String(props?.remarque || '').trim();
+
+            const date = formatParcoursDateLong(props?.date, lang) || '—';
+            let html = `<div class="parcours-popup">`
+                + `<div class="parcours-popup-date">${escapeHtmlText(date)}</div>`;
+            // Sous-titre : le navire quand l'expedition en compte plusieurs,
+            // sinon la campagne quand le trajet est parcouru deux fois.
+            const subtitle = ship
+                ? shipDisplayName(ship, lang)
+                : (campaign ? (campaign.label?.[lang] || campaign.label?.en || '') : '');
+            if (subtitle) {
+                html += `<div class="parcours-popup-ship">${escapeHtmlText(subtitle)}</div>`;
             }
 
-            const sanitized = { ...routeData, features: nonEmptyFeatures };
-            const expeditionColor = expeditionConfigs.entre?.color || '#238b45';
+            // Mesures courtes sur une ligne chacune, vents en bloc pleine largeur.
+            const shortRows = [];
+            if (temperature) shortRows.push([labels.temperature, temperature]);
+            if (pressure) shortRows.push([labels.pressure, pressure]);
 
-            const styleForFeature = (feature) => {
-                const ship = String(feature?.properties?.Ship || '').toLowerCase();
-                const isEsperance = ship.includes('esp');
-                return {
-                    color: isEsperance ? '#1b6f39' : expeditionColor,
-                    weight: 6,
-                    opacity: 0.95,
-                    dashArray: isEsperance ? '2 8' : '8 8',
-                    lineCap: 'round',
-                    lineJoin: 'round',
-                    pane: paneName
+            // Position calculee pour contourner une cote : ce n'est pas un releve.
+            const extrapolated = Boolean(props?.extrapole);
+            const hasBody = extrapolated || Boolean(remark) || shortRows.length || Boolean(winds);
+            if (hasBody) {
+                html += `<div class="parcours-popup-body">`;
+                if (extrapolated) {
+                    html += `<div class="parcours-popup-extrapolated">`
+                        + `${escapeHtmlText(labels.extrapolated)}</div>`;
+                }
+                // La remarque de bord ouvre le corps de la fiche, juste sous le trait.
+                if (remark) {
+                    html += `<div class="parcours-popup-remark">${escapeHtmlText(remark)}</div>`;
+                }
+                if (shortRows.length) {
+                    html += `<dl class="parcours-popup-rows">${shortRows.map(([k, v]) =>
+                        `<dt>${escapeHtmlText(k)}</dt><dd>${escapeHtmlText(v)}</dd>`).join('')}</dl>`;
+                }
+                if (winds) {
+                    html += `<div class="parcours-popup-winds">`
+                        + `<span class="parcours-popup-winds-label">${escapeHtmlText(labels.winds)}</span>`
+                        + `<span class="parcours-popup-winds-text">${escapeHtmlText(winds)}</span>`
+                        + `</div>`;
+                }
+                html += `</div>`;
+            } else {
+                html += `<div class="parcours-popup-empty">${escapeHtmlText(labels.empty)}</div>`;
+            }
+            return html + `</div>`;
+        };
+
+        // Les etiquettes doivent passer au-dessus du pane des routes (z-index 700).
+        const ensureParcoursTooltipPane = () => {
+            const paneName = 'parcoursTooltipPane';
+            if (!map.getPane(paneName)) {
+                map.createPane(paneName);
+                const pane = map.getPane(paneName);
+                if (pane && pane.style) {
+                    pane.style.zIndex = '800';
+                    pane.style.pointerEvents = 'none';
+                }
+            }
+            return paneName;
+        };
+
+        // Deroule les longitudes pour que le trace franchisse le 180e meridien
+        // au lieu de sauter a l'autre bord de la carte.
+        const unwrapLatLngs = (lonLatPairs) => {
+            const out = [];
+            let previousLon = null;
+            lonLatPairs.forEach(([lon, lat]) => {
+                let adjusted = lon;
+                if (previousLon !== null) {
+                    while (adjusted - previousLon > 180) adjusted -= 360;
+                    while (adjusted - previousLon < -180) adjusted += 360;
+                }
+                previousLon = adjusted;
+                out.push([lat, adjusted]);
+            });
+            return out;
+        };
+
+        const loadParcours = (key) => {
+            if (parcoursLoadPromise[key]) return parcoursLoadPromise[key];
+            const source = PARCOURS_SOURCES[key];
+            if (!source) return Promise.resolve();
+            parcoursLoadPromise[key] = (async () => {
+                const geojson = await loadJsonFile(source.url);
+                if (!geojson || !Array.isArray(geojson.features)) {
+                    console.warn(`Parcours introuvable : ${source.url}`);
+                    return;
+                }
+                const paneName = ensureRoutesPane();
+                const tooltipPaneName = ensureParcoursTooltipPane();
+                const fallbackColor = expeditionConfigs[key]?.color || '#666';
+
+                // Les LineStrings du fichier sont coupees a l'antimeridien : on ne s'en sert
+                // que pour connaitre le nom du navire, et on rebatit les traces depuis les points.
+                const shipNamesFromLines = [];
+                geojson.features.forEach((feature) => {
+                    if (feature?.geometry?.type !== 'LineString') return;
+                    const ship = String(feature?.properties?.navire || '').trim();
+                    if (ship && !shipNamesFromLines.includes(ship)) shipNamesFromLines.push(ship);
+                });
+                const defaultShip = shipNamesFromLines.length === 1 ? shipNamesFromLines[0] : 'trajet';
+
+                // Un libelle de navire peut couvrir deux attelages successifs.
+                const splitShip = (ship, dateIso) => {
+                    const regles = source.shipSplits?.[ship];
+                    if (!Array.isArray(regles) || !regles.length) return ship;
+                    for (const r of regles) {
+                        if (!r.until || String(dateIso) < r.until) return r.key;
+                    }
+                    return regles[regles.length - 1].key;
                 };
-            };
 
-            const layer = L.geoJSON(sanitized, {
-                interactive: false,
-                style: styleForFeature,
-                pointToLayer: (feature, latlng) => {
-                    // Optional: allow route GeoJSON to include Point "events" with date/journal excerpts.
-                    return L.circleMarker(latlng, {
-                        pane: paneName,
-                        radius: 5,
-                        color: expeditionColor,
-                        weight: 2,
-                        opacity: 0.95,
-                        fill: true,
-                        fillColor: '#ffffff',
-                        fillOpacity: 0.95
+                const grouped = new Map();
+                geojson.features.forEach((feature, index) => {
+                    if (feature?.geometry?.type !== 'Point') return;
+                    const coords = feature.geometry.coordinates;
+                    if (!Array.isArray(coords) || !isFiniteNumber(coords[0]) || !isFiniteNumber(coords[1])) return;
+                    const brut = String(feature?.properties?.navire || '').trim() || defaultShip;
+                    const ship = splitShip(brut, String(feature?.properties?.date || ''));
+                    if (!grouped.has(ship)) grouped.set(ship, []);
+                    grouped.get(ship).push({ index, coords, props: feature.properties || {} });
+                });
+
+                grouped.forEach((entries, ship) => {
+                    entries.sort((a, b) => {
+                        const da = String(a.props?.date || '');
+                        const db = String(b.props?.date || '');
+                        if (da !== db) return da < db ? -1 : 1;
+                        return a.index - b.index;
                     });
-                },
-                onEachFeature: (feature, lineLayer) => {
-                    // Optional: attach popup content to Point features if present.
-                    if (feature?.geometry?.type === 'Point' && lineLayer && typeof lineLayer.bindPopup === 'function') {
-                        const date = feature?.properties?.Date || feature?.properties?.date || '';
-                        const ship = feature?.properties?.Ship || '';
-                        const journal = feature?.properties?.Journal || feature?.properties?.journal || '';
-                        const titleParts = [];
-                        if (ship) titleParts.push(String(ship));
-                        if (date) titleParts.push(String(date));
-                        const title = titleParts.join(' — ');
+                    const latLngs = unwrapLatLngs(entries.map((e) => e.coords));
+                    if (latLngs.length < 2) return;
 
-                        const parts = [];
-                        if (title) parts.push(`<p><strong>${escapeHtml(title)}</strong></p>`);
-                        if (journal) parts.push(`<p>${escapeHtml(String(journal))}</p>`);
-                        if (parts.length) {
-                            lineLayer.bindPopup(parts.join(''), { maxWidth: 420 });
+                    // Decoupe la suite chronologique en troncons de couleur distincte.
+                    // Chaque troncon reprend le dernier point du precedent pour que la
+                    // ligne reste continue a la jonction.
+                    const campaigns = Array.isArray(source.campaigns) ? source.campaigns : null;
+                    const campaignFor = (dateIso) => {
+                        if (!campaigns || campaigns.length < 2) return null;
+                        for (const c of campaigns) {
+                            if (!c.until || String(dateIso) < c.until) return c;
+                        }
+                        return campaigns[campaigns.length - 1];
+                    };
+                    const joursEntre = (a, b) => {
+                        const ta = Date.parse(`${a}T00:00:00Z`);
+                        const tb = Date.parse(`${b}T00:00:00Z`);
+                        if (!Number.isFinite(ta) || !Number.isFinite(tb)) return 0;
+                        return Math.round((tb - ta) / 86400000);
+                    };
+
+                    const runs = [];
+                    let current = null;
+                    let previousDate = null;
+                    entries.forEach((entry, i) => {
+                        const date = String(entry.props?.date || '');
+                        const campaign = campaignFor(date);
+                        const rupture = previousDate !== null
+                            && joursEntre(previousDate, date) > PARCOURS_RUPTURE_JOURS;
+                        if (!current || rupture || current.campaign !== campaign) {
+                            const previous = current;
+                            current = { campaign, indices: [] };
+                            // Changement de campagne : on raccorde pour que la ligne
+                            // reste continue. Rupture : surtout pas.
+                            if (!rupture && previous && previous.indices.length) {
+                                current.indices.push(previous.indices[previous.indices.length - 1]);
+                            }
+                            runs.push(current);
+                        }
+                        current.indices.push(i);
+                        previousDate = date;
+                    });
+
+                    if (!parcoursShipLayers[key][ship]) {
+                        parcoursShipLayers[key][ship] = L.layerGroup();
+                        if (parcoursShipWanted[key][ship] === undefined) {
+                            parcoursShipWanted[key][ship] = true;
                         }
                     }
+                    const shipLayer = parcoursShipLayers[key][ship];
+                    const shipColor = source.colors?.[ship] || fallbackColor;
 
-                    if (typeof L.polylineDecorator !== 'function') {
-                        return;
-                    }
-                    if (!lineLayer || typeof lineLayer.getLatLngs !== 'function') {
-                        return;
-                    }
+                    runs.forEach((run) => {
+                        const color = run.campaign?.color || shipColor;
+                        const coords = run.indices.map((i) => latLngs[i]);
+                        if (coords.length < 2) return;
 
-                    const style = styleForFeature(feature);
-                    const arrowColor = style.color || expeditionColor;
+                        const line = L.polyline(coords, {
+                            pane: paneName,
+                            color,
+                            weight: 3,
+                            opacity: 0.95,
+                            lineJoin: 'round',
+                            lineCap: 'round'
+                        });
+                        line.addTo(shipLayer);
 
-                    const decorator = L.polylineDecorator(lineLayer, {
-                        patterns: [
-                            {
-                                offset: 20,
-                                repeat: 100,
-                                symbol: L.Symbol.arrowHead({
-                                    pixelSize: 16,
-                                    polygon: true,
-                                    pathOptions: {
-                                        pane: paneName,
-                                        stroke: true,
-                                        color: '#ffffff',
-                                        weight: 1,
-                                        fill: true,
-                                        fillColor: arrowColor,
-                                        fillOpacity: 0.95
-                                    }
-                                })
-                            }
-                        ]
+                        // Fleches de sens de marche, espacees regulierement a l'ecran
+                        // (repeat en pixels : la densite reste lisible a tous les zooms).
+                        if (L.polylineDecorator && L.Symbol && L.Symbol.arrowHead) {
+                            L.polylineDecorator(line, {
+                                pane: paneName,
+                                patterns: [{
+                                    offset: 40,
+                                    repeat: 110,
+                                    symbol: L.Symbol.arrowHead({
+                                        pixelSize: 8,
+                                        headAngle: 60,
+                                        polygon: false,
+                                        pathOptions: {
+                                            pane: paneName,
+                                            stroke: true,
+                                            color,
+                                            weight: 2,
+                                            opacity: 0.95
+                                        }
+                                    })
+                                }]
+                            }).addTo(shipLayer);
+                        }
                     });
 
-                    routeOverlays.push(decorator);
-
-                    // Turning points (inflexion points) along the route.
-                    const allLines = toLineArrays(lineLayer.getLatLngs());
-                    allLines.forEach((line) => {
-                        const indices = turningPointIndices(line);
-                        indices.forEach((idx) => {
-                            const point = line[idx];
-                            if (!point) return;
-                            const isEndpoint = idx === 0 || idx === line.length - 1;
-                            const marker = L.circleMarker(point, {
-                                pane: paneName,
-                                interactive: false,
-                                radius: isEndpoint ? 6 : 4,
-                                color: '#ffffff',
-                                weight: 2.5,
-                                opacity: 0.95,
-                                fill: true,
-                                fillColor: arrowColor,
-                                fillOpacity: 0.95
-                            });
-                            routeOverlays.push(marker);
+                    // Un marqueur par releve, a la couleur de son troncon.
+                    const campaignByIndex = new Map();
+                    runs.forEach((run) => {
+                        run.indices.forEach((i) => {
+                            // Le point de jonction appartient au troncon qui le suit.
+                            if (!campaignByIndex.has(i)) campaignByIndex.set(i, run.campaign);
                         });
                     });
-                },
-            });
 
-            routeLayers.entre.addLayer(layer);
-            // Add overlays after the line so they stay visible on top.
-            routeOverlays.forEach((overlay) => routeLayers.entre.addLayer(overlay));
-            updateRouteVisibility('entre');
+                    entries.forEach((entry, i) => {
+                        const campaign = campaignByIndex.get(i) || null;
+                        const color = campaign?.color || shipColor;
+                        const marker = L.circleMarker(latLngs[i], {
+                            pane: paneName,
+                            radius: 3.5,
+                            color: '#ffffff',
+                            weight: 1,
+                            fillColor: color,
+                            fillOpacity: 0.95
+                        });
+                        // Signale au gestionnaire de popup de ne pas recentrer/zoomer.
+                        marker.__isParcoursPoint = true;
+                        const date = formatParcoursDate(entry.props?.date);
+                        if (date) {
+                            marker.bindTooltip(date, {
+                                direction: 'top',
+                                offset: [0, -4],
+                                pane: tooltipPaneName
+                            });
+                        }
+                        const popupShip = shipNamesFromLines.length > 1 ? ship : null;
+                        // Contenu recalcule a chaque ouverture : suit la langue courante.
+                        marker.bindPopup(() => buildParcoursPopup(entry.props, popupShip, campaign), {
+                            maxWidth: 210,
+                            minWidth: 150,
+                            // Deplacement simple pour degager la barre de recherche et les
+                            // filtres, sans changer le niveau de zoom.
+                            autoPan: true,
+                            autoPanPaddingTopLeft: [20, 90],
+                            autoPanPaddingBottomRight: [20, 30]
+                        });
+                        marker.addTo(shipLayer);
+                    });
+                });
+
+                buildShipControls(key);
+            })();
+            return parcoursLoadPromise[key];
         };
 
         const toggleBaudin = document.getElementById('toggle-baudin');
         const toggleEntre = document.getElementById('toggle-entre');
-        const toggleBaudinRoute = document.getElementById('toggle-baudin-route');
-        const toggleEntreRoute = document.getElementById('toggle-entre-route');
+        const toggleBaudinParcours = document.getElementById('toggle-baudin-parcours');
+        const toggleEntreParcours = document.getElementById('toggle-entre-parcours');
         // Set to true to re-enable the expedition route controls.
-        const ENABLE_ROUTE_TOGGLES = false;
+        const ENABLE_ROUTE_TOGGLES = true;
 
         const normalizeExpeditionKey = (value = '') => {
             const lower = value.toLowerCase();
@@ -4105,29 +3908,21 @@ gtag('config', 'G-LCWV2EVPVQ');
                     toggleEntre.checked = true;
                     map.addLayer(expeditionLayers.entre);
                 }
-                updateRouteVisibility(key);
             }
         };
 
         const setExpeditionVisibility = (key, visible) => {
             const layer = expeditionLayers[key];
             if (!layer) return;
+            // Ne pilote que les lieux : la route reste maitresse de son propre affichage,
+            // ce qui permet de masquer les marqueurs pour alleger la carte.
             if (visible) {
                 map.addLayer(layer);
                 selectedExpeditions.add(key);
             } else {
                 map.removeLayer(layer);
                 selectedExpeditions.delete(key);
-                // If an expedition is hidden, hide (and uncheck) its route as well.
-                routeWanted[key] = false;
-                if (key === 'baudin' && toggleBaudinRoute) {
-                    toggleBaudinRoute.checked = false;
-                }
-                if (key === 'entre' && toggleEntreRoute) {
-                    toggleEntreRoute.checked = false;
-                }
             }
-            updateRouteVisibility(key);
             if (searchInput.value.trim()) {
                 performSearch(searchInput.value);
             } else {
@@ -4137,7 +3932,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         const applyRouteToggleAvailability = () => {
-            const controls = [toggleBaudinRoute, toggleEntreRoute];
+            const controls = [toggleBaudinParcours, toggleEntreParcours];
             controls.forEach((input) => {
                 if (!input) return;
                 input.checked = false;
@@ -4149,10 +3944,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                 }
             });
             if (!ENABLE_ROUTE_TOGGLES) {
-                routeWanted.baudin = false;
-                routeWanted.entre = false;
-                updateRouteVisibility('baudin');
-                updateRouteVisibility('entre');
+                parcoursWanted.baudin = false;
+                parcoursWanted.entre = false;
+                updateParcoursVisibility('baudin');
+                updateParcoursVisibility('entre');
             }
         };
 
@@ -4160,34 +3955,42 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         toggleBaudin.addEventListener('change', () => setExpeditionVisibility('baudin', toggleBaudin.checked));
         toggleEntre.addEventListener('change', () => setExpeditionVisibility('entre', toggleEntre.checked));
-        if (ENABLE_ROUTE_TOGGLES && toggleBaudinRoute) {
-            toggleBaudinRoute.addEventListener('change', () => {
-                const want = toggleBaudinRoute.checked;
+        // Les deux routes restent exclusives l'une de l'autre. L'affichage des lieux,
+        // lui, n'est plus touche : chaque case d'expedition le pilote seule.
+        const hideOtherRoute = (key) => {
+            const other = key === 'baudin' ? 'entre' : 'baudin';
+            const otherBox = other === 'baudin' ? toggleBaudinParcours : toggleEntreParcours;
+            if (otherBox) otherBox.checked = false;
+            parcoursWanted[other] = false;
+            updateParcoursVisibility(other);
+        };
+
+        const attachParcoursToggle = (key, input) => {
+            if (!ENABLE_ROUTE_TOGGLES || !input) return;
+            input.addEventListener('change', async () => {
+                const want = input.checked;
                 if (want) {
-                    // Focus on Baudin: enable Baudin, disable d'Entrecasteaux.
-                    toggleBaudin.checked = true;
-                    toggleEntre.checked = false;
-                    setExpeditionVisibility('entre', false);
-                    setExpeditionVisibility('baudin', true);
+                    hideOtherRoute(key);
                 }
-                routeWanted.baudin = want;
-                updateRouteVisibility('baudin');
-            });
-        }
-        if (ENABLE_ROUTE_TOGGLES && toggleEntreRoute) {
-            toggleEntreRoute.addEventListener('change', () => {
-                const want = toggleEntreRoute.checked;
+                parcoursWanted[key] = want;
                 if (want) {
-                    // Focus on d'Entrecasteaux: enable d'Entrecasteaux, disable Baudin.
-                    toggleEntre.checked = true;
-                    toggleBaudin.checked = false;
-                    setExpeditionVisibility('baudin', false);
-                    setExpeditionVisibility('entre', true);
+                    await loadParcours(key);
                 }
-                routeWanted.entre = want;
-                updateRouteVisibility('entre');
+                updateParcoursVisibility(key);
             });
-        }
+        };
+
+        attachParcoursToggle('baudin', toggleBaudinParcours);
+        attachParcoursToggle('entre', toggleEntreParcours);
+
+        // Les noms de navires suivent la langue du site.
+        document.addEventListener('languageChanged', () => {
+            Object.keys(parcoursShipLayers).forEach((key) => {
+                if (Object.keys(parcoursShipLayers[key] || {}).length) {
+                    buildShipControls(key);
+                }
+            });
+        });
 
         const sessionStorageSafe = (() => {
             try {
@@ -4197,31 +4000,6 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         })();
 
-        const restoreBaudinRouteIfNeeded = () => {
-            if (!ENABLE_ROUTE_TOGGLES || !sessionStorageSafe || !toggleBaudinRoute) {
-                return;
-            }
-            const want = sessionStorageSafe.getItem('baudin-route-restore-wanted') === '1';
-            if (!want) {
-                return;
-            }
-            try {
-                sessionStorageSafe.removeItem('baudin-route-restore-wanted');
-            } catch (err) {
-                // ignore
-            }
-
-            toggleBaudinRoute.checked = true;
-            // Same behavior as the checkbox handler.
-            toggleBaudin.checked = true;
-            toggleEntre.checked = false;
-            setExpeditionVisibility('entre', false);
-            setExpeditionVisibility('baudin', true);
-            routeWanted.baudin = true;
-            updateRouteVisibility('baudin');
-        };
-
-        restoreBaudinRouteIfNeeded();
 
         const addPlacesToMap = (places) => {
             const bounds = L.latLngBounds();
@@ -4446,8 +4224,6 @@ gtag('config', 'G-LCWV2EVPVQ');
                 allMarkers = [];
                 markersByCode = new Map();
                 addPlacesToMap(allPlaces);
-                await addBaudinRoutes();
-                await addEntrecasteauxRoutes();
                 (() => {
                     if (!sessionStorageSafe) {
                         map.setView(defaultCenter, defaultZoom);

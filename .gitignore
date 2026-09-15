@@ -47,3 +47,7 @@ assistant/docs/
 
 # Playwright CLI
 .playwright-cli/
+
+# Trait de cote Natural Earth, retelecharge a la demande par scripts/littoral.py
+data/ne_10m_coastline.geojson
+data/ne_10m_land.geojson
