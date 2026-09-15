@@ -4057,12 +4057,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                     marker.on('mouseout', () => marker.closeTooltip());
                 }
 
-                if (place.imgUrl && place.imgUrl.trim() !== "") {
-                    const img = new Image();
-                    const localImgPreload = place.code ? `img_telecharg/${place.code}_Img.jpg` : '';
-                    img.src = localImgPreload || place.imgUrl;
-                    if (localImgPreload) { img.onerror = () => { img.src = place.imgUrl; }; }
-                }
+                // Pas de prechargement : les 339 photos de fiche (374 Ko en moyenne)
+                // etaient toutes demandees des l'ouverture de la carte, ce qui laissait
+                // l'onglet en chargement plusieurs minutes. Les images sont desormais
+                // recuperees a l'ouverture de la fiche, ou le balisage est construit.
 
                 marker.bindPopup(() => {
                     const currentLang = localStorage.getItem('language') || 'en';
