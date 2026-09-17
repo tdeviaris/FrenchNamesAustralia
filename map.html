@@ -3747,10 +3747,10 @@ gtag('config', 'G-LCWV2EVPVQ');
         const parcoursLabels = {
             fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
                   empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée',
-                  original: '' },
+                  original: '', traduit: '' },
             en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
                   empty: 'No reading for this day.', extrapolated: 'Extrapolated position',
-                  original: '(French original)' }
+                  original: '(French original)', traduit: '(translated from the French)' }
         };
 
         const parcoursLabelsFor = (lang) => parcoursLabels[lang] || parcoursLabels.en;
@@ -3774,12 +3774,14 @@ gtag('config', 'G-LCWV2EVPVQ');
                 champ: 'journal_baudin',
                 nom: { fr: 'Source journal de mer de Nicolas Baudin',
                        en: "Source: Nicolas Baudin's sea journal" },
+                traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2021/07/N-Baudin-Journal-de-mer-vol-1-.pdf' }
             },
             {
                 champ: 'journal_anonyme',
                 nom: { fr: 'Source anonyme à bord du Naturaliste',
                        en: 'Source: anonymous, aboard the Naturaliste' },
+                traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2024/06/anon2.pdf' }
             },
             {
@@ -3965,7 +3967,9 @@ gtag('config', 'G-LCWV2EVPVQ');
                 .map((src) => {
                     const traduit = String(propre?.[src.champ] || '').trim();
                     const origine = String(secours?.[src.champ] || '').trim();
-                    return { src, texte: traduit || origine, nonTraduit: !traduit && !!origine };
+                    const machine = Boolean(traduit) && src.traductionAutomatique;
+                    return { src, texte: traduit || origine,
+                             nonTraduit: !traduit && !!origine, machine };
                 })
                 .filter((j) => j.texte);
             // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
@@ -3999,11 +4003,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 html += `</div>`;
             }
 
-            journaux.forEach(({ src, texte, nonTraduit }) => {
+            journaux.forEach(({ src, texte, nonTraduit, machine }) => {
+                const mention = nonTraduit ? labels.original : (machine ? labels.traduit : '');
                 html += `<div class="parcours-popup-body">`
                     + `<div class="parcours-popup-src">${lienSource(src, lang)}`
-                    + (nonTraduit
-                        ? ` <span class="parcours-popup-vo">${escapeHtmlText(labels.original)}</span>`
+                    + (mention
+                        ? ` <span class="parcours-popup-vo">${escapeHtmlText(mention)}</span>`
                         : '')
                     + `</div>`
                     + `<div class="parcours-popup-journal">${escapeHtmlText(texte)}</div>`
