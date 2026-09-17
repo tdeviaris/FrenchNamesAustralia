@@ -289,7 +289,7 @@
             white-space: nowrap;
         }
         .timeline-row { display: flex; align-items: flex-start; gap: 8px; }
-        .timeline-ruler { position: relative; width: 300px; }
+        .timeline-ruler { position: relative; width: 360px; }
         .timeline-ticks {
             position: relative;
             height: 7px;
@@ -324,28 +324,39 @@
         .timeline-ruler input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 12px;
-            height: 12px;
-            margin-top: -5px;
+            width: 18px;
+            height: 18px;
+            margin-top: -8px;
             border-radius: 50%;
             background: #0b63d1;
             border: 2px solid #fff;
             box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
         }
         .timeline-ruler input[type="range"]::-moz-range-thumb {
-            width: 12px;
-            height: 12px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: #0b63d1;
             border: 2px solid #fff;
             box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
         }
-        .timeline-years { position: relative; height: 13px; margin-top: 1px; }
+        .timeline-months { position: relative; height: 11px; }
+        .timeline-month {
+            position: absolute;
+            transform: translateX(-50%);
+            font-size: 9px;
+            line-height: 11px;
+            opacity: 0.55;
+            white-space: nowrap;
+        }
+        .timeline-years { position: relative; height: 16px; margin-top: 1px; }
         .timeline-year {
             position: absolute;
             transform: translateX(-50%);
-            font-size: 10px;
-            opacity: 0.7;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 16px;
+            opacity: 0.85;
             white-space: nowrap;
         }
         .timeline-buttons { display: flex; gap: 4px; padding-top: 2px; }
@@ -386,7 +397,7 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
         @media (max-width: 640px) {
-            .timeline-ruler { width: 180px; }
+            .timeline-ruler { width: 200px; }
             .timeline-panel { right: 52px; padding: 5px 7px 4px; }
         }
 
@@ -1339,6 +1350,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         <div class="timeline-row">
             <div class="timeline-ruler">
                 <div class="timeline-ticks" id="timeline-ticks" aria-hidden="true"></div>
+                <div class="timeline-months" id="timeline-months" aria-hidden="true"></div>
                 <input type="range" id="timeline-slider" min="0" max="0" value="0" step="1"
                        aria-label="Date affichée">
                 <div class="timeline-years" id="timeline-years" aria-hidden="true"></div>
@@ -3594,6 +3606,10 @@ gtag('config', 'G-LCWV2EVPVQ');
         // jamais entre deux tronçons : pendant une interruption, la position est
         // inconnue, pas approximable.
         const parcoursTimeline = { baudin: {}, entre: {} };
+        // Groupe d'affichage -> nom de navire d'origine. "les corvettes" est scindé
+        // en deux groupes de couleur, mais c'est une seule coque qui poursuit :
+        // les positions doivent former une série continue.
+        const parcoursOrigine = { baudin: {}, entre: {} };
 
         const parcoursLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
         const parcoursWanted = { baudin: false, entre: false };
@@ -3877,6 +3893,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     if (!Array.isArray(coords) || !isFiniteNumber(coords[0]) || !isFiniteNumber(coords[1])) return;
                     const brut = String(feature?.properties?.navire || '').trim() || defaultShip;
                     const ship = splitShip(brut, String(feature?.properties?.date || ''));
+                    parcoursOrigine[key][ship] = brut;
                     if (!grouped.has(ship)) grouped.set(ship, []);
                     grouped.get(ship).push({ index, coords, props: feature.properties || {} });
                 });
@@ -3992,7 +4009,18 @@ gtag('config', 'G-LCWV2EVPVQ');
                         });
                     });
                     serie.sort((a, b) => a.t - b.t || a.i - b.i);
-                    parcoursTimeline[key][ship] = serie;
+                    const origine = parcoursOrigine[key][ship] || ship;
+                    const deja = parcoursTimeline[key][origine];
+                    if (deja) {
+                        // Deux groupes de la meme coque : on concatene en decalant les
+                        // numeros de troncon pour ne pas les confondre.
+                        const decalage = Math.max(...deja.map((x) => x.run)) + 1;
+                        parcoursTimeline[key][origine] = deja
+                            .concat(serie.map((x) => ({ ...x, run: x.run + decalage })))
+                            .sort((a, b) => a.t - b.t);
+                    } else {
+                        parcoursTimeline[key][origine] = serie;
+                    }
 
                     // Un marqueur par releve, a la couleur de son troncon.
                     const campaignByIndex = new Map();
@@ -4159,6 +4187,15 @@ gtag('config', 'G-LCWV2EVPVQ');
         // ---------------------------------------------------------------
         const JOUR_MS = 86400000;
         const TIMELINE_DUREE_MS = 120000;   // 2 minutes pour une expedition entiere
+        // Ecart maximal entre les deux releves encadrant une interruption pour la
+        // tenir pour un mouillage. Les donnees separent nettement : 59 km au plus
+        // pour les escales, 170 km au moins pour les deplacements.
+        const TIMELINE_MOUILLAGE_KM = 60;
+
+        const distanceKm = (a, b) => {
+            const lat = (a[0] + b[0]) / 2;
+            return Math.hypot((b[1] - a[1]) * Math.cos(lat * Math.PI / 180), b[0] - a[0]) * 111.32;
+        };
 
         // Lettres affichees pour chaque groupe. "les corvettes" designe deux
         // batiments naviguant de conserve : on montre les deux.
@@ -4176,6 +4213,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         const timelineDateEl = document.getElementById('timeline-date');
         const timelineSlider = document.getElementById('timeline-slider');
         const timelineTicks = document.getElementById('timeline-ticks');
+        const timelineMonths = document.getElementById('timeline-months');
         const timelineYears = document.getElementById('timeline-years');
         const timelinePlay = document.getElementById('timeline-play');
         const timelineStop = document.getElementById('timeline-stop');
@@ -4215,7 +4253,13 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (apres.t === t) return apres.latLng;
             const avant = serie[lo - 1];
             if (!avant) return null;
-            if (avant.run !== apres.run) return null;   // interruption : pas d'invention
+            if (avant.run !== apres.run) {
+                // Les tables ne repetent pas les coordonnees d'un navire au mouillage :
+                // l'interruption laisse alors le batiment sur place. On la franchit
+                // quand les deux releves qui l'encadrent sont proches ; au-dela, le
+                // navire a reellement navigue ailleurs et sa position reste inconnue.
+                if (distanceKm(avant.latLng, apres.latLng) > TIMELINE_MOUILLAGE_KM) return null;
+            }
             const f = (t - avant.t) / (apres.t - avant.t);
             return [
                 avant.latLng[0] + (apres.latLng[0] - avant.latLng[0]) * f,
@@ -4236,9 +4280,21 @@ gtag('config', 'G-LCWV2EVPVQ');
             // elle fait foi et "les corvettes" ne represente plus que le Geographe.
             const casuarinaSeule = Boolean(timelinePosition(groupes['le Casuarina'], t));
 
-            Object.keys(groupes).forEach((groupe) => {
+            const source = PARCOURS_SOURCES[timelineKey] || {};
+            const iso = new Date(t).toISOString().slice(0, 10);
+            const groupePourDate = (origine) => {
+                const regles = source.shipSplits?.[origine];
+                if (!Array.isArray(regles) || !regles.length) return origine;
+                for (const r of regles) {
+                    if (!r.until || iso < r.until) return r.key;
+                }
+                return regles[regles.length - 1].key;
+            };
+
+            Object.keys(groupes).forEach((origine) => {
+                const groupe = groupePourDate(origine);
                 if (parcoursShipWanted[timelineKey]?.[groupe] === false) return;
-                const latLng = timelinePosition(groupes[groupe], t);
+                const latLng = timelinePosition(groupes[origine], t);
                 if (!latLng) return;
                 let lettres = TIMELINE_NAVIRES[groupe] || [groupe.slice(0, 1).toUpperCase()];
                 if (groupe === 'corvettes-gc' && casuarinaSeule) lettres = ['G'];
@@ -4266,46 +4322,76 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineDateEl.textContent = formatParcoursDateLong(iso, getCurrentLanguage()) || iso;
         };
 
+        const TIMELINE_INITIALES = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+
         const timelineConstruitRegle = () => {
             timelineTicks.textContent = '';
+            timelineMonths.textContent = '';
             timelineYears.textContent = '';
             if (!timelineActive()) return;
             const total = timelineFin - timelineDebut;
+            const pct = (t) => ((t - timelineDebut) / total) * 100;
             const d = new Date(timelineDebut);
-            // Premier debut de mois a partir de la date de depart.
-            let curseur = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1);
-            if (curseur < timelineDebut) {
-                curseur = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1);
-            }
-            const anneesVues = new Set();
-            while (curseur <= timelineFin) {
-                const c = new Date(curseur);
-                const pct = ((curseur - timelineDebut) / total) * 100;
-                const tick = document.createElement('div');
-                tick.className = 'timeline-tick' + (c.getUTCMonth() === 0 ? ' is-year' : '');
-                tick.style.left = `${pct}%`;
-                timelineTicks.appendChild(tick);
-                const annee = c.getUTCFullYear();
-                if (!anneesVues.has(annee) && (c.getUTCMonth() === 0 || anneesVues.size === 0)) {
-                    anneesVues.add(annee);
+
+            // Un pas par mois : trait a la bascule, initiale centree dans le mois.
+            let moisDebut = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1);
+            const spansParAnnee = new Map();
+            while (moisDebut <= timelineFin) {
+                const c = new Date(moisDebut);
+                const moisFin = Date.UTC(c.getUTCFullYear(), c.getUTCMonth() + 1, 1);
+                const visibleDebut = Math.max(moisDebut, timelineDebut);
+                const visibleFin = Math.min(moisFin, timelineFin);
+                if (visibleFin > visibleDebut) {
+                    if (moisDebut > timelineDebut) {
+                        const tick = document.createElement('div');
+                        tick.className = 'timeline-tick'
+                            + (c.getUTCMonth() === 0 ? ' is-year' : '');
+                        tick.style.left = `${pct(moisDebut)}%`;
+                        timelineTicks.appendChild(tick);
+                    }
                     const lab = document.createElement('span');
-                    lab.className = 'timeline-year';
-                    lab.textContent = String(annee);
-                    // Les etiquettes des extremites sont calees sur le bord
-                    // plutot que centrees, pour ne pas deborder de la regle.
-                    if (pct < 6) {
+                    lab.className = 'timeline-month';
+                    lab.textContent = TIMELINE_INITIALES[c.getUTCMonth()];
+                    const centreMois = pct((visibleDebut + visibleFin) / 2);
+                    // Les initiales des mois tronques aux extremites sont calees
+                    // sur le bord plutot que centrees.
+                    if (centreMois < 1.5) {
                         lab.style.left = '0';
                         lab.style.transform = 'none';
-                    } else if (pct > 94) {
+                    } else if (centreMois > 98.5) {
                         lab.style.right = '0';
                         lab.style.transform = 'none';
                     } else {
-                        lab.style.left = `${pct}%`;
+                        lab.style.left = `${centreMois}%`;
                     }
-                    timelineYears.appendChild(lab);
+                    timelineMonths.appendChild(lab);
+
+                    const annee = c.getUTCFullYear();
+                    const span = spansParAnnee.get(annee) || { min: Infinity, max: -Infinity };
+                    span.min = Math.min(span.min, visibleDebut);
+                    span.max = Math.max(span.max, visibleFin);
+                    spansParAnnee.set(annee, span);
                 }
-                curseur = Date.UTC(c.getUTCFullYear(), c.getUTCMonth() + 1, 1);
+                moisDebut = moisFin;
             }
+
+            // L'annee est centree sur son etendue visible, de janvier a decembre.
+            spansParAnnee.forEach((span, annee) => {
+                const centre = pct((span.min + span.max) / 2);
+                const lab = document.createElement('span');
+                lab.className = 'timeline-year';
+                lab.textContent = String(annee);
+                if (centre < 5) {
+                    lab.style.left = '0';
+                    lab.style.transform = 'none';
+                } else if (centre > 95) {
+                    lab.style.right = '0';
+                    lab.style.transform = 'none';
+                } else {
+                    lab.style.left = `${centre}%`;
+                }
+                timelineYears.appendChild(lab);
+            });
         };
 
         const timelineStopAnim = () => {
