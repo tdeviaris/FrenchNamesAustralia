@@ -15,11 +15,28 @@ MOIS = {'janvier':1,'février':2,'mars':3,'avril':4,'mai':5,'juin':6,
 
 BASCULE_NATURALISTE = '1801-10-31'          # Breton passe sur le Naturaliste
 
+# Coquilles de la transcription : le quantième républicain et la date grégorienne
+# donnée entre crochets ne concordent pas. On tranche d'après la suite des
+# en-têtes voisins, qui ne laisse pas de doute.
+CORRECTIONS = {
+    # « Le 5 [brumaire, 26 octobre 1800] » : 5 brumaire an 9 = 27 octobre, et
+    # l'en-tête suivant est « Le 6 [brumaire, 28 octobre 1800] ».
+    ('Le 5', '1800-10-26'): '1800-10-27',
+}
+
+# En-tête couvrant plusieurs journées : « Le 9, 10, 11 & 12 [fructidor, 27, 28,
+# 29 et 30 août 1802] ». On rattache le bloc à sa première date.
+PREMIER_JOUR = re.compile(
+    r'(\d{1,2})(?:\s*(?:,|&|et)\s*\d{1,2})+\s+('
+    + '|'.join(MOIS) + r')\s+(\d{4})')
+# « an 9 », « an X » : le millésime républicain ne doit pas être pris pour un jour
+ANNEE_REP = re.compile(r'\ban\s+[IVXLC\d]+\s*(?:e|er)?\s*,?', re.I)
+
 # en-tête d'entrée en début de ligne, avec sa date grégorienne entre crochets
 ENTETE = re.compile(
-    r'(?m)^[ \t]*(Le|Les|Du|Suite du)\b[^\n\[]{0,60}'
-    r'\[[^\]]{0,60}?(\d{1,2})\s*(?:er)?\s+('
-    + '|'.join(MOIS) + r')\s+(\d{4})\s*\]')
+    r'(?m)^[ \t]*(Le \d{1,2}|Le|Les|Du|Suite du)\b([^\n\[]{0,60})'
+    r'\[([^\]]{0,80}?(\d{1,2})\s*(?:er)?\s+('
+    + '|'.join(MOIS) + r')\s+(\d{4}))\s*\]')
 
 
 def nettoie(texte):
@@ -51,7 +68,12 @@ def decoupe(texte):
     brut = []
     for i, m in enumerate(coupes):
         fin = coupes[i + 1].start() if i + 1 < len(coupes) else len(texte)
-        d = '%04d-%02d-%02d' % (int(m.group(4)), MOIS[m.group(3)], int(m.group(2)))
+        jour, mois, annee = int(m.group(4)), MOIS[m.group(5)], int(m.group(6))
+        liste = PREMIER_JOUR.search(ANNEE_REP.sub(' ', m.group(3)))
+        if liste:                            # en-tête couvrant plusieurs jours
+            jour, mois, annee = int(liste.group(1)), MOIS[liste.group(2)], int(liste.group(3))
+        d = '%04d-%02d-%02d' % (annee, mois, jour)
+        d = CORRECTIONS.get((m.group(1).strip(), d), d)
         corps = texte[m.end():fin]
         corps = corps.lstrip(' .:;-–—\t\n')
         brut.append((d, corps, m.start(), m.group(1)))
