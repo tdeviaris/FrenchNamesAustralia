@@ -1,5 +1,8 @@
-"""Rattache les entrées du journal anonyme (Archives nationales, Marine 5JJ53)
-aux points du parcours Baudin.
+"""Rattache un journal de bord anonyme aux points du parcours Baudin.
+
+Deux journaux sont traités, chacun dans sa propre propriété :
+  journal_anonyme    Archives nationales, Marine 5JJ53 — à bord du Naturaliste
+  journal_geographe  Muséum, ms 1686 — à bord du Géographe
 
 L'auteur — vraisemblablement Charles Moreau, aspirant — navigue sur le
 Naturaliste. Deux precautions en decoulent :
@@ -10,7 +13,7 @@ Naturaliste. Deux precautions en decoulent :
   * avant cette date, une entree se rattache au navire ou se trouvait l'auteur,
     jamais a un autre batiment de la meme date.
 
-Usage : python3 scripts/journal_anonyme.py <journal_textes.json> [--ecrire]
+Usage : python3 scripts/journal_anonyme.py <textes.json> <propriete> [--ecrire]
 """
 import datetime, io, json, os, sys
 
@@ -27,6 +30,13 @@ PERIODES = [
 ]
 PORT_JACKSON = [151.1461, -33.8667]
 DEBUT_ESCALE_PJ = '1802-04-21'
+
+# Dates ou l'interpolation lineaire donnerait une position fausse.
+POSITIONS_IMPOSEES = {
+    # Appareillage de Sainte-Croix de Tenerife : le navire est encore sur rade,
+    # alors qu'interpoler jusqu'au releve du 14 le placerait deja au large.
+    '1800-11-13': ([-16.2569, 28.4769], 'rade de Sainte-Croix de Ténériffe'),
+}
 
 
 def navires_pour(date):
@@ -53,7 +63,7 @@ def interpole(serie, date):
             round(a[1][1] + (b[1][1] - a[1][1]) * f, 5)]
 
 
-def main(chemin_textes, ecrire):
+def main(chemin_textes, propriete, ecrire):
     textes = json.load(io.open(chemin_textes, encoding='utf-8'))
     gj = json.load(io.open(GEOJSON, encoding='utf-8'))
     fs = gj['features']
@@ -86,12 +96,15 @@ def main(chemin_textes, ecrire):
         cible = next((par_nav[n][date] for n in navs
                       if date in par_nav.get(n, {})), None)
         if cible is not None:
-            cible['properties']['journal_anonyme'] = texte
+            cible['properties'][propriete] = texte
             rattaches += 1
             continue
         # Aucun releve ce jour-la : on cree un point, sans position observee.
         nav = navs[0]
-        if date >= DEBUT_ESCALE_PJ and nav == 'le Naturaliste':
+        if date in POSITIONS_IMPOSEES:
+            coords, motif = POSITIONS_IMPOSEES[date]
+            coords = list(coords)
+        elif date >= DEBUT_ESCALE_PJ and nav == 'le Naturaliste':
             coords = list(PORT_JACKSON)          # l'escale de Port Jackson
             motif = "escale de Port Jackson"
         else:
@@ -105,9 +118,9 @@ def main(chemin_textes, ecrire):
         props = {k: "" for k in gabarit}
         props.update({
             'date': date, 'navire': nav,
-            'alerte': f"point ajouté pour une entrée du journal anonyme ; position {motif}",
+            'alerte': f"point ajouté pour une entrée de journal ; position {motif}",
             'extrapole': True,
-            'journal_anonyme': texte,
+            propriete: texte,
         })
         nouveaux.append({"type": "Feature",
                          "geometry": {"type": "Point", "coordinates": coords},
@@ -132,4 +145,4 @@ def main(chemin_textes, ecrire):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], '--ecrire' in sys.argv)
+    main(sys.argv[1], sys.argv[2], '--ecrire' in sys.argv)

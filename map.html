@@ -3761,10 +3761,19 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         };
 
-        const SOURCE_JOURNAL_ANONYME = {
-            nom: 'Source journal anonyme',
-            url: 'https://baudin.sydney.edu.au/wp-content/uploads/2024/06/anon2.pdf'
-        };
+        // Deux journaux de bord anonymes, tenus à bord de deux navires différents.
+        const SOURCES_JOURNAUX = [
+            {
+                champ: 'journal_anonyme',
+                nom: 'Source anonyme à bord du Naturaliste',
+                url: 'https://baudin.sydney.edu.au/wp-content/uploads/2024/06/anon2.pdf'
+            },
+            {
+                champ: 'journal_geographe',
+                nom: 'Source anonyme à bord du Géographe',
+                url: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/anon1journalbaud.pdf'
+            }
+        ];
 
         const lienSource = (src) => {
             const nom = escapeHtmlText(src.nom);
@@ -3894,7 +3903,9 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             // Position calculee : ce n'est pas un releve.
             const extrapolated = Boolean(props?.extrapole);
-            const journal = String(props?.journal_anonyme || '').trim();
+            const journaux = SOURCES_JOURNAUX
+                .map((src) => ({ src, texte: String(props?.[src.champ] || '').trim() }))
+                .filter((j) => j.texte);
             // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
             const contenuTables = Boolean(remark) || shortRows.length || Boolean(winds);
 
@@ -3926,14 +3937,14 @@ gtag('config', 'G-LCWV2EVPVQ');
                 html += `</div>`;
             }
 
-            if (journal) {
+            journaux.forEach(({ src, texte }) => {
                 html += `<div class="parcours-popup-body">`
-                    + `<div class="parcours-popup-src">${lienSource(SOURCE_JOURNAL_ANONYME)}</div>`
-                    + `<div class="parcours-popup-journal">${escapeHtmlText(journal)}</div>`
+                    + `<div class="parcours-popup-src">${lienSource(src)}</div>`
+                    + `<div class="parcours-popup-journal">${escapeHtmlText(texte)}</div>`
                     + `</div>`;
-            }
+            });
 
-            if (!extrapolated && !contenuTables && !journal) {
+            if (!extrapolated && !contenuTables && !journaux.length) {
                 html += `<div class="parcours-popup-empty">${escapeHtmlText(labels.empty)}</div>`;
             }
             return html + `</div>`;
