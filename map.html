@@ -3573,13 +3573,11 @@ gtag('config', 'G-LCWV2EVPVQ');
                 campaigns: [
                     {
                         key: 'aller',
-                        label: { fr: '1ère campagne', en: 'First campaign' },
                         until: '1792-10-13',
                         color: '#238b45'
                     },
                     {
                         key: 'retour',
-                        label: { fr: '2e campagne', en: 'Second campaign' },
                         color: '#9acd32'
                     }
                 ]
@@ -3681,7 +3679,10 @@ gtag('config', 'G-LCWV2EVPVQ');
         const shipDisplayNames = {
             'les corvettes': { fr: 'le Géographe & le Naturaliste', en: 'Géographe & Naturaliste' },
             'corvettes-gn': { fr: 'le Géographe & le Naturaliste', en: 'Géographe & Naturaliste' },
-            'corvettes-gc': { fr: 'le Géographe & le Casuarina', en: 'Géographe & Casuarina' }
+            'corvettes-gc': { fr: 'le Géographe & le Casuarina', en: 'Géographe & Casuarina' },
+            // La Recherche et l'Espérance ont navigué de conserve d'un bout à l'autre
+            // du voyage : les tables ne consignent qu'une position pour les deux.
+            'la Recherche': { fr: "la Recherche & l'Espérance", en: 'Recherche & Espérance' }
         };
 
         const shipDisplayName = (ship, lang) => {
@@ -3763,11 +3764,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             const date = formatParcoursDateLong(props?.date, lang) || '—';
             let html = `<div class="parcours-popup">`
                 + `<div class="parcours-popup-date">${escapeHtmlText(date)}</div>`;
-            // Sous-titre : le navire quand l'expedition en compte plusieurs,
-            // sinon la campagne quand le trajet est parcouru deux fois.
-            const subtitle = ship
-                ? shipDisplayName(ship, lang)
-                : (campaign ? (campaign.label?.[lang] || campaign.label?.en || '') : '');
+            // Sous-titre : les navires concernes par le releve.
+            const subtitle = ship ? shipDisplayName(ship, lang) : '';
             if (subtitle) {
                 html += `<div class="parcours-popup-ship">${escapeHtmlText(subtitle)}</div>`;
             }
@@ -4026,7 +4024,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                                 pane: tooltipPaneName
                             });
                         }
-                        const popupShip = shipNamesFromLines.length > 1 ? ship : null;
+                        const popupShip = ship;
                         // Contenu recalcule a chaque ouverture : suit la langue courante.
                         // Un clic sur un point cale aussi le curseur sur sa date.
                         const dateMs = Date.parse(`${String(entry.props?.date || '')}T00:00:00Z`);
@@ -4171,7 +4169,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             'le Géographe': ['G'],
             'le Naturaliste': ['N'],
             'le Casuarina': ['C'],
-            'la Recherche': ['R']
+            'la Recherche': ['R', 'E']
         };
 
         const timelinePanel = document.getElementById('timeline-panel');
