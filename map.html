@@ -3596,6 +3596,16 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         };
 
+        // Ecart maximal entre les deux releves encadrant une interruption pour la
+        // tenir pour un mouillage. Les donnees separent nettement : 59 km au plus
+        // pour les escales, 170 km au moins pour les deplacements.
+        const TIMELINE_MOUILLAGE_KM = 60;
+
+        const distanceKm = (a, b) => {
+            const lat = (a[0] + b[0]) / 2;
+            return Math.hypot((b[1] - a[1]) * Math.cos(lat * Math.PI / 180), b[0] - a[0]) * 111.32;
+        };
+
         // Au-dela de ce silence, deux releves consecutifs ne sont plus relies :
         // le navire a bien navigue, mais sa route est consignee sous un autre libelle
         // (ou pas consignee du tout). Tracer une droite inventerait un trajet.
@@ -3932,8 +3942,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                     entries.forEach((entry, i) => {
                         const date = String(entry.props?.date || '');
                         const campaign = campaignFor(date);
+                        // Un long silence ne rompt le trace que si le navire a
+                        // reellement bouge : au mouillage, les tables cessent
+                        // simplement de repeter les coordonnees.
                         const rupture = previousDate !== null
-                            && joursEntre(previousDate, date) > PARCOURS_RUPTURE_JOURS;
+                            && joursEntre(previousDate, date) > PARCOURS_RUPTURE_JOURS
+                            && distanceKm(latLngs[i - 1], latLngs[i]) > TIMELINE_MOUILLAGE_KM;
                         if (!current || rupture || current.campaign !== campaign) {
                             const previous = current;
                             current = { campaign, indices: [] };
@@ -4187,16 +4201,6 @@ gtag('config', 'G-LCWV2EVPVQ');
         // ---------------------------------------------------------------
         const JOUR_MS = 86400000;
         const TIMELINE_DUREE_MS = 120000;   // 2 minutes pour une expedition entiere
-        // Ecart maximal entre les deux releves encadrant une interruption pour la
-        // tenir pour un mouillage. Les donnees separent nettement : 59 km au plus
-        // pour les escales, 170 km au moins pour les deplacements.
-        const TIMELINE_MOUILLAGE_KM = 60;
-
-        const distanceKm = (a, b) => {
-            const lat = (a[0] + b[0]) / 2;
-            return Math.hypot((b[1] - a[1]) * Math.cos(lat * Math.PI / 180), b[0] - a[0]) * 111.32;
-        };
-
         // Lettres affichees pour chaque groupe. "les corvettes" designe deux
         // batiments naviguant de conserve : on montre les deux.
         // Chaque batiment garde la couleur de sa route individuelle, quel que soit
