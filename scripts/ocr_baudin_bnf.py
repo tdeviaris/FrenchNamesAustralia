@@ -114,7 +114,10 @@ def main():
         VENV = sys.executable
     ocr = os.path.join(racine, 'ocr')
     os.makedirs(ocr, exist_ok=True)
-    tmp = os.path.join(racine, '_prep.png')
+    # un fichier par flux : quatre OCR tournent en parallèle et se
+    # partageaient jusqu'ici la même image préparée, chacun océrisant
+    # la vue de son voisin et la rangeant sous le nom de la sienne.
+    tmp = os.path.join(racine, '_prep_%d.png' % os.getpid())
     index = {}
     traites = 0
     # vues déjà présentes dans un index écrit par un autre flux
@@ -133,15 +136,22 @@ def main():
         sortie = os.path.join(ocr, nom[:-4] + '.txt')
         # --index-seul : refait la passe uniquement pour retrouver la position
         # des lignes, sans réécrire le texte déjà océrisé
-        if (os.path.exists(sortie) and os.path.getsize(sortie)
-                and '--index-seul' not in sys.argv):
-            continue
-        if nom[:-4] in deja:
+        index_seul = '--index-seul' in sys.argv
+        if not index_seul:
+            # la vue est réservée en créant son fichier de façon exclusive :
+            # deux flux ne peuvent pas prendre la même
+            try:
+                os.close(os.open(sortie, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+            except FileExistsError:
+                continue
+        elif nom[:-4] in deja:
             continue
         try:
             lignes = ocr_page(os.path.join(dossier, nom), sortie, tmp)
         except Exception as e:
             print('ECHEC %s : %s' % (nom, e))
+            if not index_seul:
+                os.remove(sortie)       # la vue est rendue au flux suivant
             continue
         interet = [l for l in lignes
                    if ENTETE.search(l['texte']) or POSITION.search(l['texte'])]
