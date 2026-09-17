@@ -366,7 +366,13 @@
             opacity: 0.85;
             white-space: nowrap;
         }
-        .timeline-buttons { display: flex; gap: 4px; padding-top: 2px; }
+        .timeline-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-top: 2px;
+        }
+        .timeline-btn-row { display: flex; gap: 4px; }
         .timeline-btn {
             width: 24px;
             height: 24px;
@@ -388,6 +394,14 @@
             border-top: 6px solid transparent;
             border-bottom: 6px solid transparent;
         }
+        .timeline-icon-next, .timeline-icon-prev {
+            width: 0; height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        .timeline-icon-next { border-left: 8px solid #333; }
+        .timeline-icon-prev { border-right: 8px solid #333; }
+        .timeline-btn:disabled { opacity: 0.35; cursor: default; }
         /* Pastilles de navires sur la carte */
         .ship-badge {
             display: flex;
@@ -1363,12 +1377,22 @@ gtag('config', 'G-LCWV2EVPVQ');
                 <div class="timeline-years" id="timeline-years" aria-hidden="true"></div>
             </div>
             <div class="timeline-buttons">
-                <button type="button" id="timeline-stop" class="timeline-btn" title="Arrêter">
-                    <span class="timeline-icon-stop"></span>
-                </button>
-                <button type="button" id="timeline-play" class="timeline-btn" title="Lancer">
-                    <span class="timeline-icon-play"></span>
-                </button>
+                <div class="timeline-btn-row">
+                    <button type="button" id="timeline-stop" class="timeline-btn" title="Arrêter">
+                        <span class="timeline-icon-stop"></span>
+                    </button>
+                    <button type="button" id="timeline-play" class="timeline-btn" title="Lancer">
+                        <span class="timeline-icon-play"></span>
+                    </button>
+                </div>
+                <div class="timeline-btn-row">
+                    <button type="button" id="timeline-prev" class="timeline-btn" title="Point précédent">
+                        <span class="timeline-icon-prev"></span>
+                    </button>
+                    <button type="button" id="timeline-next" class="timeline-btn" title="Point suivant">
+                        <span class="timeline-icon-next"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -4264,6 +4288,8 @@ gtag('config', 'G-LCWV2EVPVQ');
         const timelineYears = document.getElementById('timeline-years');
         const timelinePlay = document.getElementById('timeline-play');
         const timelineStop = document.getElementById('timeline-stop');
+        const timelinePrev = document.getElementById('timeline-prev');
+        const timelineNext = document.getElementById('timeline-next');
 
         const timelineBadges = L.layerGroup();
         let timelineKey = null;          // expedition suivie
@@ -4272,6 +4298,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         let timelineJour = 0;            // position du curseur, en jours depuis le debut
         let timelineAnim = null;         // identifiant d'animation
         let timelineDernierTick = 0;
+        let timelineReperes = [];        // dates des releves, tous navires confondus
 
         const timelineActive = () => timelineKey !== null;
 
@@ -4504,7 +4531,40 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineSlider.value = String(timelineJour);
             timelineMajDate();
             timelineDessineBadges();
+            timelineMajBoutonsPas();
         }
+
+        // Dates auxquelles au moins un navire a un releve : ce sont les points
+        // de la route sur lesquels les fleches se calent.
+        const timelineConstruitReperes = () => {
+            const dates = new Set();
+            Object.values(parcoursTimeline[timelineKey] || {}).forEach((serie) => {
+                serie.forEach((p) => dates.add(p.t));
+            });
+            timelineReperes = Array.from(dates).sort((a, b) => a - b);
+        };
+
+        const timelineMajBoutonsPas = () => {
+            if (!timelineActive() || !timelineReperes.length) return;
+            const t = timelineDebut + timelineJour * JOUR_MS;
+            timelinePrev.disabled = !timelineReperes.some((d) => d < t - 1);
+            timelineNext.disabled = !timelineReperes.some((d) => d > t + 1);
+        };
+
+        const timelinePas = (sens) => {
+            if (!timelineActive() || !timelineReperes.length) return;
+            timelineStopAnim();
+            const t = timelineDebut + timelineJour * JOUR_MS;
+            let cible;
+            if (sens > 0) {
+                cible = timelineReperes.find((d) => d > t + 1);
+            } else {
+                const avant = timelineReperes.filter((d) => d < t - 1);
+                cible = avant[avant.length - 1];
+            }
+            if (cible === undefined) return;
+            timelineAllerA(cible);
+        };
 
         const timelineSynchronise = () => {
             const key = parcoursWanted.baudin ? 'baudin' : (parcoursWanted.entre ? 'entre' : null);
@@ -4529,10 +4589,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 timelineSlider.value = '0';
                 timelineConstruitRegle();
             }
+            timelineConstruitReperes();
             timelinePanel.hidden = false;
             map.addLayer(timelineBadges);
             timelineMajDate();
             timelineDessineBadges();
+            timelineMajBoutonsPas();
         };
 
         timelineSlider.addEventListener('input', () => {
@@ -4540,9 +4602,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineJour = Number(timelineSlider.value);
             timelineMajDate();
             timelineDessineBadges();
+            timelineMajBoutonsPas();
         });
         timelinePlay.addEventListener('click', timelineDemarre);
         timelineStop.addEventListener('click', timelineArret);
+        timelinePrev.addEventListener('click', () => timelinePas(-1));
+        timelineNext.addEventListener('click', () => timelinePas(1));
         document.addEventListener('languageChanged', timelineMajDate);
         // Rattache le panneau au cadre de la carte : sans cela il se positionne
         // par rapport a la page et chevauche la barre de navigation.
