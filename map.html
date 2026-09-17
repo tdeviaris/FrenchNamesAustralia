@@ -3670,6 +3670,8 @@ gtag('config', 'G-LCWV2EVPVQ');
         // en deux groupes de couleur, mais c'est une seule coque qui poursuit :
         // les positions doivent former une série continue.
         const parcoursOrigine = { baudin: {}, entre: {} };
+        // Marqueurs indexés par date, pour que le pas à pas ouvre la fiche du point.
+        const parcoursMarqueurs = { baudin: new Map(), entre: new Map() };
 
         const parcoursLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
         const parcoursWanted = { baudin: false, entre: false };
@@ -4208,6 +4210,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                             autoPanPaddingTopLeft: [20, 90],
                             autoPanPaddingBottomRight: [20, 30]
                         });
+                        marker.__parcoursGroupe = ship;
+                        if (Number.isFinite(dateMs)) {
+                            const liste = parcoursMarqueurs[key].get(dateMs) || [];
+                            liste.push(marker);
+                            parcoursMarqueurs[key].set(dateMs, liste);
+                        }
                         marker.addTo(shipLayer);
                     });
                 });
@@ -4629,6 +4637,18 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineNext.disabled = !timelineReperes.some((d) => d > t + 1);
         };
 
+        // Ouvre la fiche du point atteint, en preferant un navire effectivement
+        // affiche : inutile de deployer la fiche d'un batiment decoche.
+        const timelineOuvreFiche = (t) => {
+            const liste = parcoursMarqueurs[timelineKey]?.get(t);
+            if (!liste || !liste.length) return;
+            const visible = liste.find((m) => {
+                const groupe = m.__parcoursGroupe;
+                return parcoursShipWanted[timelineKey]?.[groupe] !== false;
+            });
+            (visible || liste[0]).openPopup();
+        };
+
         const timelinePas = (sens) => {
             if (!timelineActive() || !timelineReperes.length) return;
             timelineStopAnim();
@@ -4642,6 +4662,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
             if (cible === undefined) return;
             timelineAllerA(cible);
+            // Le pas a pas ouvre la fiche et la laisse ouverte ; seul le
+            // defilement automatique les referme.
+            timelineOuvreFiche(cible);
         };
 
         const timelineSynchronise = () => {
