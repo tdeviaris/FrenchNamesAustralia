@@ -4199,6 +4199,25 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         // Lettres affichees pour chaque groupe. "les corvettes" designe deux
         // batiments naviguant de conserve : on montre les deux.
+        // Chaque batiment garde la couleur de sa route individuelle, quel que soit
+        // le libelle sous lequel la table le consigne. L'Esperance n'a pas de route
+        // propre : elle partage celle de la Recherche.
+        const TIMELINE_COULEURS = {
+            'G': '#e8590c',
+            'N': '#7048e8',
+            'C': '#c2255c',
+            'R': '#238b45',
+            'E': '#238b45'
+        };
+
+        // Lettre -> table propre du batiment. Quand celle-ci donne une position,
+        // elle fait foi : un libelle collectif ne peut pas le placer ailleurs.
+        const TIMELINE_SERIE_PROPRE = {
+            'G': 'le Géographe',
+            'N': 'le Naturaliste',
+            'C': 'le Casuarina'
+        };
+
         const TIMELINE_NAVIRES = {
             'corvettes-gn': ['G', 'N'],
             'corvettes-gc': ['G', 'C'],
@@ -4276,9 +4295,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             const t = timelineDebut + timelineJour * JOUR_MS;
             const groupes = parcoursTimeline[timelineKey] || {};
 
-            // Le Casuarina detache a sa propre table : quand elle renseigne la date,
-            // elle fait foi et "les corvettes" ne represente plus que le Geographe.
-            const casuarinaSeule = Boolean(timelinePosition(groupes['le Casuarina'], t));
+            // Batiments dont la table propre donne deja une position a cette date.
+            const positionPropre = new Set();
+            Object.entries(TIMELINE_SERIE_PROPRE).forEach(([lettre, origine]) => {
+                if (timelinePosition(groupes[origine], t)) positionPropre.add(lettre);
+            });
+            const seriesPropres = new Set(Object.values(TIMELINE_SERIE_PROPRE));
 
             const source = PARCOURS_SOURCES[timelineKey] || {};
             const iso = new Date(t).toISOString().slice(0, 10);
@@ -4297,10 +4319,17 @@ gtag('config', 'G-LCWV2EVPVQ');
                 const latLng = timelinePosition(groupes[origine], t);
                 if (!latLng) return;
                 let lettres = TIMELINE_NAVIRES[groupe] || [groupe.slice(0, 1).toUpperCase()];
-                if (groupe === 'corvettes-gc' && casuarinaSeule) lettres = ['G'];
-                const couleur = timelineCouleur(timelineKey, groupe);
-                const html = lettres.map((l) =>
-                    `<span class="ship-badge" style="background:${couleur}">${l}</span>`).join('');
+                // Sur un libelle collectif, on retire les batiments que leur propre
+                // table situe ailleurs : sinon le meme navire s'affiche deux fois.
+                if (!seriesPropres.has(origine)) {
+                    lettres = lettres.filter((l) => !positionPropre.has(l));
+                }
+                if (!lettres.length) return;
+                const html = lettres.map((l) => {
+                    const couleur = TIMELINE_COULEURS[l]
+                        || timelineCouleur(timelineKey, groupe);
+                    return `<span class="ship-badge" style="background:${couleur}">${l}</span>`;
+                }).join('');
                 L.marker(latLng, {
                     pane: ensureParcoursTooltipPane(),
                     interactive: false,
@@ -4429,6 +4458,8 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const timelineDemarre = () => {
             if (!timelineActive() || timelineAnim !== null) return;
+            // La fiche ouverte masquerait le defilement : on la referme.
+            map.closePopup();
             const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
             if (timelineJour >= totalJours) timelineJour = 0;
             timelineDernierTick = 0;
