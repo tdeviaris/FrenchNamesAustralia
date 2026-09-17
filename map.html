@@ -246,6 +246,7 @@
             opacity: 0.7;
         }
         a.parcours-popup-lien { text-decoration: underline; }
+        .parcours-popup-vo { font-size: 10px; font-style: italic; opacity: 0.55; }
         .parcours-popup-journal {
             max-height: 220px;
             overflow-y: auto;
@@ -3745,9 +3746,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         // --- Helpers de formatage pour les infobulles du parcours ---
         const parcoursLabels = {
             fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
-                  empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée' },
+                  empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée',
+                  original: '' },
             en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
-                  empty: 'No reading for this day.', extrapolated: 'Extrapolated position' }
+                  empty: 'No reading for this day.', extrapolated: 'Extrapolated position',
+                  original: '(French original)' }
         };
 
         const parcoursLabelsFor = (lang) => parcoursLabels[lang] || parcoursLabels.en;
@@ -3769,25 +3772,70 @@ gtag('config', 'G-LCWV2EVPVQ');
         const SOURCES_JOURNAUX = [
             {
                 champ: 'journal_baudin',
-                nom: 'Source journal de mer de Nicolas Baudin',
-                url: 'https://baudin.sydney.edu.au/wp-content/uploads/2021/07/N-Baudin-Journal-de-mer-vol-1-.pdf'
+                nom: { fr: 'Source journal de mer de Nicolas Baudin',
+                       en: "Source: Nicolas Baudin's sea journal" },
+                url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2021/07/N-Baudin-Journal-de-mer-vol-1-.pdf' }
             },
             {
                 champ: 'journal_anonyme',
-                nom: 'Source anonyme à bord du Naturaliste',
-                url: 'https://baudin.sydney.edu.au/wp-content/uploads/2024/06/anon2.pdf'
+                nom: { fr: 'Source anonyme à bord du Naturaliste',
+                       en: 'Source: anonymous, aboard the Naturaliste' },
+                url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2024/06/anon2.pdf' }
             },
             {
                 champ: 'journal_geographe',
-                nom: 'Source anonyme à bord du Géographe',
-                url: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/anon1journalbaud.pdf'
+                nom: { fr: 'Source anonyme à bord du Géographe',
+                       en: 'Source: anonymous, aboard the Géographe' },
+                url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/anon1journalbaud.pdf',
+                       en: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/anon1english.pdf' }
             }
         ];
 
-        const lienSource = (src) => {
-            const nom = escapeHtmlText(src.nom);
-            return src.url
-                ? `<a class="parcours-popup-lien" href="${escapeHtmlText(src.url)}"`
+        // Les textes de journaux vivent hors du GeoJSON : le parcours s'affiche
+        // sans les attendre, et chaque langue a son propre fichier.
+        const JOURNAUX_FICHIERS = {
+            baudin: { fr: 'data/journaux/baudin_fr.json', en: 'data/journaux/baudin_en.json' }
+        };
+        const journauxTextes = {};        // clé `${expedition}:${langue}` -> { date: { champ: texte } }
+        const journauxEnCours = {};
+
+        const chargeJournaux = (key, lang) => {
+            const fichier = JOURNAUX_FICHIERS[key]?.[lang];
+            if (!fichier) return Promise.resolve(null);
+            const cle = `${key}:${lang}`;
+            if (journauxTextes[cle]) return Promise.resolve(journauxTextes[cle]);
+            if (journauxEnCours[cle]) return journauxEnCours[cle];
+            journauxEnCours[cle] = loadJsonFile(fichier).then((data) => {
+                journauxTextes[cle] = data || {};
+                // Une fiche déjà ouverte se recompose avec le texte fraîchement arrivé.
+                const ouvert = map._popup;
+                if (ouvert && ouvert._source && ouvert._source.__isParcoursPoint) {
+                    ouvert.update();
+                }
+                return journauxTextes[cle];
+            });
+            return journauxEnCours[cle];
+        };
+
+        const textesJournaux = (key, date) => {
+            const lang = getCurrentLanguage();
+            const propre = journauxTextes[`${key}:${lang}`]?.[date] || {};
+            // À défaut de traduction, on montre l'original français plutôt que rien.
+            const secours = lang === 'fr' ? {} : (journauxTextes[`${key}:fr`]?.[date] || {});
+            return { propre, secours, lang };
+        };
+
+        const valeurLangue = (v, lang) => {
+            if (v === null || v === undefined) return '';
+            if (typeof v === 'string') return v;
+            return v[lang] || v.fr || v.en || '';
+        };
+
+        const lienSource = (src, lang) => {
+            const nom = escapeHtmlText(valeurLangue(src.nom, lang));
+            const url = valeurLangue(src.url, lang);
+            return url
+                ? `<a class="parcours-popup-lien" href="${escapeHtmlText(url)}"`
                   + ` target="_blank" rel="noopener">${nom}</a>`
                 : `<span class="parcours-popup-lien">${nom}</span>`;
         };
@@ -3912,8 +3960,13 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             // Position calculee : ce n'est pas un releve.
             const extrapolated = Boolean(props?.extrapole);
+            const { propre, secours } = textesJournaux(expedition, String(props?.date || ''));
             const journaux = SOURCES_JOURNAUX
-                .map((src) => ({ src, texte: String(props?.[src.champ] || '').trim() }))
+                .map((src) => {
+                    const traduit = String(propre?.[src.champ] || '').trim();
+                    const origine = String(secours?.[src.champ] || '').trim();
+                    return { src, texte: traduit || origine, nonTraduit: !traduit && !!origine };
+                })
                 .filter((j) => j.texte);
             // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
             const contenuTables = Boolean(remark) || shortRows.length || Boolean(winds);
@@ -3946,9 +3999,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                 html += `</div>`;
             }
 
-            journaux.forEach(({ src, texte }) => {
+            journaux.forEach(({ src, texte, nonTraduit }) => {
                 html += `<div class="parcours-popup-body">`
-                    + `<div class="parcours-popup-src">${lienSource(src)}</div>`
+                    + `<div class="parcours-popup-src">${lienSource(src, lang)}`
+                    + (nonTraduit
+                        ? ` <span class="parcours-popup-vo">${escapeHtmlText(labels.original)}</span>`
+                        : '')
+                    + `</div>`
                     + `<div class="parcours-popup-journal">${escapeHtmlText(texte)}</div>`
                     + `</div>`;
             });
@@ -4325,6 +4382,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                     await loadParcours(key);
                 }
                 updateParcoursVisibility(key);
+                if (want) {
+                    // En tâche de fond : le tracé ne l'attend pas.
+                    chargeJournaux(key, getCurrentLanguage());
+                }
                 timelineSynchronise();
             });
         };
@@ -4725,6 +4786,9 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         // Les noms de navires suivent la langue du site.
         document.addEventListener('languageChanged', () => {
+            Object.keys(parcoursWanted).forEach((key) => {
+                if (parcoursWanted[key]) chargeJournaux(key, getCurrentLanguage());
+            });
             Object.keys(parcoursShipLayers).forEach((key) => {
                 if (Object.keys(parcoursShipLayers[key] || {}).length) {
                     buildShipControls(key);
