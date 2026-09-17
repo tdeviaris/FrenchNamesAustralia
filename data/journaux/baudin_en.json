@@ -2560,81 +2560,277 @@
   "journal_breton_naturaliste": "We sighted two ships."
  },
  "1803-02-28": {
+  "journal_anonyme": "Squally weather, a strong breeze from W to WSW. Two three-masters in sight to leeward. At 9.30 a.m. wore ship. Obs. lat. 35° 55' 29\", est. long. 20° 16' 56\". From the 9th to the 10th [Ventôse, Year 11, 28 February - 1 March 1803]. Fine weather, a light breeze from SW. The ship in sight steering for us. At 5 hoisted our colours to make ourselves known. At 5.30, being abeam, we hove to, as did she, and her captain came aboard. At 6 filled and stood on. Obs. lat. 35° 35' 19\", est. long. 19° 46' 56\".",
   "journal_breton_naturaliste": "We communicated with an American bound for the whale fishery in Delagoa Bay."
  },
  "1803-03-01": {
   "journal_breton_naturaliste": "We sounded and had 102 fathoms, sandy bottom. Two sharks were taken."
  },
  "1803-03-02": {
+  "journal_anonyme": "A flat calm. At 2 a light breeze got up from the east. At daybreak sighted five ships ahead of us and to windward. At 11 a.m. the lookout thought he saw land in the WNW. Obs. lat. 35° 31' 7\", est. long. 18° 15' 26\".",
   "journal_breton_naturaliste": "At daybreak five ships were sighted shaping their course to double the Cape. At 11.30 land was thought to be seen in the N 68° W. The ship makes 4 inches of water an hour."
  },
+ "1803-03-03": {
+  "journal_anonyme": "Overcast weather, the wind a fresh breeze from WNW. At 5 a.m. went about. The main topmast backstay having parted near the trestletrees, new masthead rigging was made up on the masthead with the same rope. Obs. lat. 36° 12' 20\", est. long. 17° 51' 32\"."
+ },
+ "1803-03-04": {
+  "journal_anonyme": "Fine weather, a light air, the sea smooth, a fresh breeze from WSW. At 2 the winds having shifted to NW, went onto the starboard tack. Obs. lat. 36° 8' 21\", est. long. 17° 57' 6\"."
+ },
+ "1803-03-05": {
+  "journal_anonyme": "Overcast weather, a strong breeze from NW. At 9 p.m. wore onto the port tack. Obs. lat. 36° 3' 17\", est. long. 16° 12' 14\"."
+ },
  "1803-03-06": {
+  "journal_anonyme": "Fine weather, the sea smooth, a fresh breeze from SW, south and SSE. Worked at getting the bower anchors to the fore hatchway. Obs. lat. 34° 58' 10\", est. long. 14° 45' 20\".",
   "journal_breton_naturaliste": "The anchors (all but one) were struck below; and on the 18th [Ventôse, 9 March 1803] the jib boom and spritsail yard were rigged in to ease the ship forward."
  },
+ "1803-03-07": {
+  "journal_anonyme": "The sea smooth, the weather very fine and the winds variable from SE, south, SSW and south. Obs. lat. 33° 30' 20\", est. long. 13° 1' 20\"."
+ },
+ "1803-03-08": {
+  "journal_anonyme": "Fine weather, smooth sea, a pleasant breeze from SSW to SW. In the forenoon shifted the foresail. Obs. lat. 30° 56' 7\", est. long. 10° 53' 26\"."
+ },
+ "1803-03-09": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze from SW to south and SE. The course NNW. In the forenoon rigged in the jib boom and spritsail yard. Obs. lat. 29° 20' 44\", long. 9° 11' 23\"."
+ },
+ "1803-03-10": {
+  "journal_anonyme": "Fine weather, smooth sea, the sky cloudy, a pleasant breeze from SSE to south. Stowed the jib boom and spritsail yard among the spare spars. Obs. lat. 27° 51' 20\", est. long. 7° 1' 53\"."
+ },
+ "1803-03-11": {
+  "journal_anonyme": "Dark weather, the sea smooth, a pleasant breeze from south, SSW and SE. Bent the old foresail, repaired. Obs. lat. 26° 32' 3\", est. long. 5° 9' 35\"."
+ },
+ "1803-03-12": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze variable from south, SSE, SE and east. Overcast and damp weather. Obs. lat. 25° 36' 3\", est. long. 3° 33' 30\"."
+ },
+ "1803-03-13": {
+  "journal_anonyme": "Overcast weather, the sea smooth, the winds very light, from ESE to south by way of north and west. Obs. lat. 24° 41' 57\", est. long. 2° 15' 0\"."
+ },
  "1803-03-14": {
+  "journal_anonyme": "Fine weather, smooth sea, the sky overcast, a light breeze from SE, SSE and ESE. Obs. lat. 23° 34' 12\", est. long. 0° 40' east.",
   "journal_breton_naturaliste": "We crossed the Tropic of Capricorn for the 8th time. From noon this day the crew had no more liquor."
  },
+ "1803-03-15": {
+  "journal_anonyme": "Fine weather, a light breeze from east to south and SE. Variation NW 18° 27' 47\". Obs. lat. 22° 41' 34\", est. long. W 0° 29' 30\"."
+ },
+ "1803-03-16": {
+  "journal_anonyme": "Fine weather, a light breeze from NE to NW, W and WNW. Obs. lat. 22° 9' 14\", obs. long. W 4° 0'."
+ },
+ "1803-03-17": {
+  "journal_anonyme": "Fine weather, the sea smooth, a light breeze variable from WSW to SSE and SE by S. Obs. lat. 20° 33' 18\", est. long. 5° 42'."
+ },
+ "1803-03-18": {
+  "journal_anonyme": "The sky overcast, the horizon thick, the sea smooth, a fresh breeze from SE. Obs. lat. 17° 58' 50\", est. long. 6° 56' 36\". Var. 17° 29' 20\" NW."
+ },
  "1803-03-19": {
+  "journal_anonyme": "Fine weather, smooth sea. A fresh breeze from ESE to SE. At daybreak sighted Saint Helena bearing NE by compass. Obs. lat. 15° 46' 25\", est. long. 8° 13' 36\". Var. 14° 19' 40\" NW.",
   "journal_breton_naturaliste": "At daybreak Saint Helena was sighted in the N 45° E; at noon it bore from us S 43° E to S 58° E. The day after our departure from Mauritius a man was found who had hidden himself aboard at sailing."
  },
+ "1803-03-20": {
+  "journal_anonyme": "Fine weather, and squally at the end of the watch. At noon the course was shaped NNW. Obs. lat. 13° 50' 21\", est. long. 10° 9'."
+ },
+ "1803-03-21": {
+  "journal_anonyme": "Fine weather, smooth sea, the sky cloudy, a fresh breeze from SE. Obs. lat. 12° 5' 52\", est. long. 11° 29' 0\"."
+ },
+ "1803-03-22": {
+  "journal_anonyme": "Fine weather, a pleasant breeze from SE to SSE. Est. lat. 10° 46' 22\", est. long. 12° 34'. Var. 14° 1' 30\" NW."
+ },
+ "1803-03-23": {
+  "journal_anonyme": "Fine weather, smooth sea. A pleasant breeze from SSE and ESE. Obs. lat. 9° 16' 30\", est. long. 13° 44' 48\"."
+ },
+ "1803-03-24": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze from SE. Obs. lat. 7° 57' 31\", est. long. 14° 42' 18\". Var. 12° 26' NW."
+ },
+ "1803-03-25": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze from SSE. Saw many birds. Obs. lat. 6° 11' 59\", est. long. 15° 48' 18\"."
+ },
+ "1803-03-26": {
+  "journal_anonyme": "Fine weather, the sea smooth, a fresh breeze from SSE. Saw many birds. Obs. lat. 4° 8' 16\", est. long. 16° 41' 6\"."
+ },
+ "1803-03-27": {
+  "journal_anonyme": "Fine weather, smooth sea. A fresh breeze from SSE, the course north. The sea very phosphorescent. Est. lat. 1° 53' 46\", est. long. 17° 9' 12\"."
+ },
  "1803-03-28": {
+  "journal_anonyme": "Fine weather, the sky overcast, the sea smooth, the winds SSE, a fresh breeze. Obs. lat. 0° 3' 55\" north, long. W 17° 32' 42\".",
   "journal_breton_naturaliste": "At 11.30 a.m. we crossed the Line in 17° 32' of longitude."
  },
+ "1803-03-29": {
+  "journal_anonyme": "Fine weather, smooth sea. A fresh breeze from south to SSE. Est. lat. 1° 23' 31\" north, est. long. 17° 55' 24\"."
+ },
+ "1803-03-30": {
+  "journal_anonyme": "Overcast weather, calm; lay under topsails. At 5 trimmed on the starboard tack. Calm all night; at 7 a.m. a light breeze got up from the west. We at once went onto the port tack and made all sail. Est. lat. 1° 49' 25\", obs. long. 19° 47' W."
+ },
  "1803-03-31": {
+  "journal_anonyme": "Overcast and squally weather, the sea smooth, a light breeze from SW to W. At 3 trimmed close-hauled on the port tack. Obs. lat. 2° 38' 27\", est. long. 19° 56'.",
   "journal_breton_naturaliste": "At daybreak a ship was sighted in the N 45° E. At 6.30 p.m. another was sighted to the east."
  },
  "1803-04-01": {
+  "journal_anonyme": "Fine weather, a flat calm until 11 p.m. Saw several ships. At 6 a light breeze from SSW; at 2 it drew round to NW. Est. lat. 2° 49' 9\", est. long. 19° 55'.",
   "journal_breton_naturaliste": "Saw tide rips running E and W. At 5 p.m. saw a sail in the S 68° W."
  },
+ "1803-04-02": {
+  "journal_anonyme": "Fine weather, a light breeze from SW to west. At 10, the breeze having freshened from the NE, went onto the starboard tack. Est. lat. 3° 20' 21\", long. 20° 18' 48\"."
+ },
+ "1803-04-03": {
+  "journal_anonyme": "A light breeze from N and NNE. At 7 a.m. a light breeze from NNW. Obs. lat. 3° 29' 2\", est. long. 20° 22' 30\"."
+ },
+ "1803-04-04": {
+  "journal_anonyme": "Overcast weather and calm, squally, with lightning and thunder; calm from ten in the morning until noon. Obs. lat. 3° 38' 24\", est. long. 20° 18' 48\"."
+ },
+ "1803-04-05": {
+  "journal_anonyme": "A flat calm, the weather dark and misty. Wore onto the starboard tack. The winds, which had drawn round to the west during the manoeuvre, came back to the ENE. Obs. lat. 3° 55' 15\", est. long. 20° 40' 19\"."
+ },
+ "1803-04-06": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze variable from SSE to SSW and WNW. In the 24 hours changed tacks twice. Est. lat. 4° 11' 51\", est. long. 20° 50' 36\"."
+ },
+ "1803-04-07": {
+  "journal_anonyme": "Almost continual rain and a flat calm. At 1.30 a.m. a fresh breeze from ESE; at 11 went onto the port tack. Est. lat. 4° 30' 3\", long. 21° 8' 6\"."
+ },
+ "1803-04-08": {
+  "journal_anonyme": "Overcast and squally weather, continual rain, the wind variable in force and direction from SW, SSE, WNW and SSW. At 3.30 went onto the starboard tack; at 10.30 onto the port tack. Obs. lat. 4° 55' 52\", est. long. 21° 7' 23\"."
+ },
+ "1803-04-09": {
+  "journal_anonyme": "Fine weather, smooth sea, a fresh breeze from N to NNE. The stay of the middle staysail having parted, it was refitted. Est. lat. 5° 15' 40\", est. long. 22° 18' 44\"."
+ },
+ "1803-04-10": {
+  "journal_anonyme": "Fine weather, the breeze light from NNW to north. At 3.15 changed tacks. Obs. lat. 5° 18' 33\", est. long. 21° 43'."
+ },
  "1803-04-11": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze from NNE to north. At noon went onto the starboard tack; at 2 onto the port, and at 9 onto the starboard. Obs. lat. 5° 39', est. long. 21° 49' 0\".",
   "journal_breton_naturaliste": "We passed through tide rips running NE and SW. The crew, who since Mauritius had had rice or beans for supper, had no more; the rice and beans were used up, so that we are now reduced to half a pound of beef or 6 ounces of salt pork and 18 ounces of biscuit a day, with water to drink. We have three meals of fresh bread every ten days."
  },
  "1803-04-12": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze from NNE. Obs. lat. 5° 45' 14\", est. long. 22° 37' 56\". Var. 8° 29' 15\" NW.",
   "journal_breton_naturaliste": "We passed through tide rips running N and south."
  },
  "1803-04-13": {
+  "journal_anonyme": "Fine weather, a fresh breeze from NE to N, NNW and north. At 4 and at 8 changed tacks. Obs. lat. 5° 42' 32\", est. long. 22° 44' 50\".",
   "journal_breton_naturaliste": "At noon a Spanish ship was sighted in the N 45° W, steering S 22° E."
  },
+ "1803-04-14": {
+  "journal_anonyme": "Fine weather, a light breeze from NNE to north and NE. At 9 sighted a Spanish ship in the NW. At 3 a.m. and at 6 changed tacks. Obs. lat. 5° 59' 22\", obs. long. 23° 22'."
+ },
+ "1803-04-15": {
+  "journal_anonyme": "Fine weather, the sea smooth, a light breeze from NE. Obs. lat. 6° 46', obs. long. 24° 26' 0\"."
+ },
  "1803-04-16": {
+  "journal_anonyme": "Fine weather, smooth sea, a fresh breeze from NE to ENE. Saw many fish. Obs. lat. 7° 11' 8\", est. long. 25° 19' 36\". Var. 9° 59' 0\" NW.",
   "journal_breton_naturaliste": "A tuna was taken."
  },
+ "1803-04-17": {
+  "journal_anonyme": "Fine weather, the sea smooth, a pleasant breeze from NNE to NE. The course NW by [W]. Saw many fish of various kinds. Obs. lat. 7° 28' 8\", est. long. 26° 16'. Var. 12° 25' 0\" NW."
+ },
+ "1803-04-18": {
+  "journal_anonyme": "Fine weather, smooth sea, a pleasant breeze from NE to SE. At 8 p.m. it fell calm; at 10 trimmed close-hauled on the starboard tack. Obs. lat. 7° 54' 19\", est. long. 27° 3' 48\". Var. 11° 4' 0\" NW."
+ },
+ "1803-04-19": {
+  "journal_anonyme": "Fine weather, smooth sea, a fresh breeze from NNE to NE. Obs. lat. 8° 21' 33\", est. long. 27° 56' 36\". Est. var. 11° 30' NW."
+ },
+ "1803-04-20": {
+  "journal_anonyme": "Fine weather, the sea smooth, a fresh breeze from NE. Obs. lat. 9° 22' 5\", est. long. 29° 16'. Var. 10° 20' NW."
+ },
+ "1803-04-21": {
+  "journal_anonyme": "Fine weather, smooth sea, a pleasant breeze from NE by E to NE by N. Obs. lat. 10° 47', est. long. 30° 40'. Var. 11° 24' 30\" NW."
+ },
+ "1803-04-22": {
+  "journal_anonyme": "Fine weather, smooth sea, a fresh breeze from ENE to NE. At 1.30 shaped the course NNW. Est. lat. 12° 6' 12\", est. long. 31° 59' 24\". Var. 9° 4' NW."
+ },
+ "1803-04-23": {
+  "journal_anonyme": "Fine weather, a good breeze from ENE. At daybreak set up the main and fore topgallant shrouds. Obs. lat. 13° 57', est. long. 33° 2' 24\". Var. 8° 37' NW."
+ },
+ "1803-04-24": {
+  "journal_anonyme": "Fine weather, smooth sea, a pleasant breeze from ENE, freshening a great deal. At noon shaped the course north. Obs. lat. 15° 48' 18\", est. long. 33° 50' 0\"."
+ },
+ "1803-04-25": {
+  "journal_anonyme": "Fine weather, smooth sea, a fresh breeze from east to ENE. Obs. lat. 17° 30' 35\", est. long. 34° 32' 6\"."
+ },
+ "1803-04-26": {
+  "journal_anonyme": "Fine weather, smooth sea, a pleasant breeze from ENE. Obs. lat. 19° 20' 0\", est. long. 33° 50'."
+ },
+ "1803-04-27": {
+  "journal_anonyme": "Fine weather, smooth sea, the sky cloudy, a pleasant breeze from ENE to E by N. Obs. lat. 20° 40' 36\", est. long. 34° 27' 18\"."
+ },
  "1803-04-28": {
+  "journal_anonyme": "Dark weather, the wind from NE to east and ENE, variable in force and direction. Obs. lat. 22° 28' 4\", est. long. 35° 9' 12\".",
   "journal_breton_naturaliste": "We crossed the Tropic of Cancer. From the 8th to the 15th we saw a great deal of gulfweed lying E and W."
  },
+ "1803-04-29": {
+  "journal_anonyme": "Fine weather, the sky cloudy, a pleasant breeze from ENE. Obs. lat. 24° 19', obs. long. 39° 9'."
+ },
+ "1803-04-30": {
+  "journal_anonyme": "Overcast and squally weather with a little rain, a good breeze from ENE. Obs. lat. 25° 57' 36\", est. long. 40° 16' 0\". Obs. var. 6° 50' NW."
+ },
+ "1803-05-01": {
+  "journal_anonyme": "Fine weather, smooth sea, a good breeze from NE to ENE and east, variable in force and direction. Obs. lat. 27° 47' 33\", est. long. 41° 20' 0\". Var. 11° 29' NW."
+ },
+ "1803-05-02": {
+  "journal_anonyme": "Fine weather, a fresh breeze. Saw a great deal of gulfweed. The breeze at ENE. Obs. lat. 29° 36' 51\", est. long. 42° 9' 18\". Var. 9° 20' NW."
+ },
  "1803-05-03": {
+  "journal_anonyme": "Squally weather, the sea smooth. A pleasant breeze in puffs from ESE to NE, east and E by S. Set up the main topmast shrouds and backstays. Obs. lat. 31° 41' 49\", est. long. 42° 18' 36\".",
   "journal_breton_naturaliste": "The fore topgallant mast was struck."
  },
+ "1803-05-04": {
+  "journal_anonyme": "Overcast and squally weather, the sea smooth, a fresh breeze from ESE to east. Obs. lat. 33° 43', est. long. 42° 29'. Var. 10° 59' NW."
+ },
+ "1803-05-05": {
+  "journal_anonyme": "Fine weather, a pleasant breeze from ESE to east and ENE. Struck the main topgallant mast to shift the sail. Obs. lat. 35° 43' 55\", est. long. 42° 53' 24\". Var. 10° 11' NW."
+ },
+ "1803-05-06": {
+  "journal_anonyme": "Fine weather, smooth sea, a fresh breeze variable from ESE to ENE and SE. Obs. lat. 37° 26' 50\", est. long. 42° 37'."
+ },
+ "1803-05-07": {
+  "journal_anonyme": "Fine weather, smooth sea, a pleasant breeze from SE to ESE. Shifted the mizzen topsail. Obs. lat. 39° 4' 58\", est. long. 41° 26' 30\". Var. 1° 30' NW."
+ },
  "1803-05-08": {
+  "journal_anonyme": "Fine weather, smooth sea, the sky serene, a pleasant breeze from SE to ESE. Saw an American ship to windward of us; we hove to to wait for her, and our small boat went aboard. Obs. lat. 40° 23' 8\", est. long. 40° 22'. Est. var. 7° 0' NW.",
   "journal_breton_naturaliste": "We communicated with the American ship Thomas of Charleston, from Liverpool bound for Philadelphia with a cargo of salt; she had English passengers of distinction. We asked her for 6 casks of wine or 2 of rum; she could give us nothing."
  },
  "1803-05-09": {
+  "journal_anonyme": "Overcast weather, a fresh breeze in puffs from SE to ESE. Repaired the main staysail, which had split where it bears on the fore braces. Obs. lat. 42° 6' 24\", est. long. 39° 32' 30\". Est. var. 7° NW.",
   "journal_breton_naturaliste": "Two Spanish ships were sighted standing S 22° E. At 4 p.m. the sea changed colour completely; we sounded at 9.30 without finding bottom at 180 fathoms — though from the way the captain sounded, we should have found no bottom even at 50 fathoms."
  },
  "1803-05-10": {
+  "journal_anonyme": "Fine weather, the sky cloudy, a pleasant breeze from E by S to ESE and SE. Saw several ships. Obs. lat. 43° 50' 52\", est. long. 38° 36'. Est. var. 9° NW.",
   "journal_breton_naturaliste": "In the morning the sea had recovered its natural colour. At 4 p.m. we communicated with an English brig from Dartmouth bound for Newfoundland in ballast; we asked her for wine or rum, which she had not, and she offered us a little salt pork, which we refused. At 6.30 we spoke an English sloop from Jersey bound for Newfoundland in ballast. The ship was painted."
  },
+ "1803-05-11": {
+  "journal_anonyme": "Fine weather, smooth sea, a pleasant breeze from SE to south and S by E. Several ships in sight. On the morning of the 21st set up the main topmast shrouds and backstays. Obs. lat. 45° 16', est. long. 37° 22'. Var. 10° NW."
+ },
  "1803-05-12": {
+  "journal_anonyme": "Fine weather, smooth sea, a light breeze from south, SE and SSE. Saw several ships. Shifted the main and fore topsails. Obs. lat. 46° 6' 27\", est. long. 36° 10' 26\".",
   "journal_breton_naturaliste": "New sails were bent. At 7 p.m. we communicated with the Danish corvette Frederikssteen of 26 guns and 32-pounder carronades, whose captain gave us 1 barrel of 21 pots of brandy and 600 lb of biscuit; he sent 27 bottles of rum or wine for the captain and the officers. The corvette was from Saint Croix (in the Virgin Islands) bound for Copenhagen. Captain Hamelin forbade the officer who went aboard her to say that we had called at Mauritius, and told him to say that we came from the coasts of New Holland. We have 4 men sick."
  },
  "1803-05-13": {
+  "journal_anonyme": "Fine weather, a light breeze from south to S by E. Several ships in sight; we spoke one which gave us biscuit and brandy. Obs. lat. 47° 2', est. long. 34° 27' 26\". Est. var. 20° NW.",
   "journal_breton_naturaliste": "Several ships were in sight, one of them the Danish corvette. The coffee shipped for the crew at Mauritius being used up, the second sailmaker Auvray, who had a bale of it weighing 85½ lb, let the captain have it for the crew, payable at Le Havre at the current price."
  },
  "1803-05-14": {
+  "journal_anonyme": "Fine weather, smooth sea, a fresh breeze from south, SSE and SSW. Five ships in sight. Hove to and sent our small boat aboard to fetch the captain. Obs. lat. 48° 11' 50\", est. long. 32° 19' 26\". Est. var. 20° NW.",
   "journal_breton_naturaliste": "We saw 5 ships and communicated with one of them, the Concorde of Le Havre, 58 days out from Saint-Domingue and bound for Le Havre; she could give us nothing. The salt pork shipped at Port Jackson is used up; we have nothing left but beef."
  },
+ "1803-05-15": {
+  "journal_anonyme": "Squally weather, a good breeze from SSE. At 1.30 the main topmast backstay having parted, it was repaired at once. Struck the main topgallant mast to shift its sail. Est. lat. 49° 39' 26\", obs. long. 36° 25'. Var. 20° NW."
+ },
  "1803-05-16": {
+  "journal_anonyme": "Fine weather, a pleasant breeze from SE to SSE. During the night the weather turned overcast, the wind variable and unsteady. Four ships in sight. Est. lat. 51° 2' 38\", est. long. 33° 58' 2\". Var. 20° NW.",
   "journal_breton_naturaliste": "The same brig, made out to be French, and three other ships in sight."
  },
+ "1803-05-17": {
+  "journal_anonyme": "Overcast weather, a strong breeze from SSE, SSW and south, in gusts; the sea rather high. Saw birds and porpoises. Est. lat. 51° 59' 38\", est. long. 31° 49' 30\". Var. 30° NW."
+ },
  "1803-05-18": {
+  "journal_anonyme": "Overcast weather, the wind a strong breeze and variable from SSW to SW, in gusts. The sea smooth enough. Obs. lat. 52° 34' 12\", est. long. 29° 5' 30\". Est. var. 30° NW.",
   "journal_breton_naturaliste": "At 6 p.m., after a squall, the mainmast — long since sprung, and which the captain would not spare — cracked abaft between the masthead rigging and the trestletrees. The officer of the watch at once had the main topsail and the staysails taken in, with which the captain was not pleased; the staysails (according to him) having never carried away a mast, because they did not strain it. The main topgallant mast was struck. In the afternoon two ships were in sight."
  },
  "1803-05-19": {
+  "journal_anonyme": "Squally weather, a strong breeze from SSW, SW and WSW in gusts. At 6, in a squall, the mainmast cracked below the masthead rigging; lowered the main topsail on the cap and took 2 reefs in it and 1 in the fore. Struck the main topgallant mast and got it down. At daybreak sighted a ship to windward of us. We set about rigging preventer backstays and unbending the main topsail. Obs. lat. 52° 14' 13\", est. long. 25° 29' 12\". Obs. var. 34° 46' NW.",
   "journal_breton_naturaliste": "The damage to the mainmast was made good. Two preventer backstays were set up to starboard and two to port abaft to support the masthead. The main topmast was lowered about 9 feet; it rested on a stout woolding passed over the cap (the turns of the woolding could not be passed over the trestletrees, the port one being broken). Two fishes were put on the masthead; good woolding was passed round the mast, the fishes, the heel of the topmast and its woolding; wedges were driven between these wooldings and the mast, and a preventer woolding passed. The main topsail and the staysails were unbent. A ship was in sight during the day."
  },
  "1803-05-20": {
+  "journal_anonyme": "Overcast weather, the wind falling away from SW, SSW and WSW. Lowered the main topmast about 9 feet and refitted the lashings of the [one word illegible] shrouds and backstays; meanwhile two fishes for the mainmast were got out of the spare spars. From 5 to 8 went on passing the wooldings on the mainmast fish. From 8 until midnight set up the main topmast rigging, and at 11.45 set the main staysail and bent the main topsail; by midnight it was set. At daybreak worked on the main topmast woolding and on woolding the mainmast. Est. lat. 51° 29', est. long. 22° 31'.",
   "journal_breton_naturaliste": "The main topsail was bent with the three reefs taken in, the middle staysail in place of the main staysail, and the topgallant staysail in place of the middle staysail. The eyebolts to which the mainmast preventer backstays and the main topmast backstays were secured being neither strong nor sound enough, they were brought inboard through the after ports. A ship was in sight during the day."
  },
  "1803-05-21": {
+  "journal_anonyme": "Overcast weather with rain at intervals, the sea smooth, a strong breeze from WSW to SW. We were busy setting up the mainmast shrouds, finishing the wooldings and refitting the preventer backstays, the eyebolts they had been secured to not being strong enough. At 5.30 all was ready. A ship in sight. We got up our main topgallant mast, swayed it up and rigged it; the shrouds and backstays of that mast were set up. Est. lat. 50° 48' 49\", est. long. 19° 59' 42\". Est. var. 34° NW. [No more follows.]",
   "journal_breton_naturaliste": "A fore topgallant mast was rigged as a main topgallant mast, and a small staysail set to serve as a topgallant staysail. A reef was added to the main topsail. At 3.30 p.m. we sounded without finding bottom at 160 fathoms. Two ships were in sight during the day."
  }
 }
