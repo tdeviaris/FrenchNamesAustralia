@@ -32,10 +32,13 @@ PORT_JACKSON = [151.1461, -33.8667]
 DEBUT_ESCALE_PJ = '1802-04-21'
 
 # Dates ou l'interpolation lineaire donnerait une position fausse.
+RADE_TENERIFFE = [-16.2569, 28.4769]
 POSITIONS_IMPOSEES = {
-    # Appareillage de Sainte-Croix de Tenerife : le navire est encore sur rade,
-    # alors qu'interpoler jusqu'au releve du 14 le placerait deja au large.
-    '1800-11-13': ([-16.2569, 28.4769], 'rade de Sainte-Croix de Ténériffe'),
+    # Relache a Sainte-Croix de Tenerife, du 2 au 13 novembre 1800 : les tables
+    # ne relevent rien pendant l'escale. Interpoler jusqu'au releve du 14
+    # placerait les corvettes au large alors qu'elles etaient sur rade.
+    **{f'1800-11-{j:02d}': (RADE_TENERIFFE, 'rade de Sainte-Croix de Ténériffe')
+       for j in range(3, 14)},
 }
 
 
