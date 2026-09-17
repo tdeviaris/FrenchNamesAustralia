@@ -247,7 +247,7 @@
         }
         a.parcours-popup-lien { text-decoration: underline; }
         .parcours-popup-journal {
-            max-height: 150px;
+            max-height: 220px;
             overflow-y: auto;
             text-align: left;
             hyphens: auto;
@@ -280,8 +280,10 @@
            aux popups de toponymes (720px, plus bas dans cette feuille). */
         .leaflet-popup-content-wrapper:has(.parcours-popup),
         .leaflet-popup-content:has(.parcours-popup) {
-            width: 220px;
-            max-width: 220px;
+            /* 260 px laissent les lignes de source tenir sur une seule ligne :
+               la plus longue en demande 203, plus 24 de marges internes. */
+            width: 260px;
+            max-width: min(260px, calc(100vw - 60px));
         }
         .leaflet-popup-content:has(.parcours-popup) {
             text-align: left;
@@ -771,8 +773,8 @@
             /* ... sauf les fiches de parcours, volontairement compactes. */
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper:has(.parcours-popup),
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content:has(.parcours-popup) {
-                width: 220px;
-                max-width: 220px;
+                width: 260px;
+                max-width: 260px;
             }
             /* Le texte utilise toute la largeur quand il n'y a pas d'image */
             .leaflet-popup:not(.popup-has-image) .popup-text-container {
@@ -4198,8 +4200,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                             marker.on('click', () => timelineAllerA(dateMs));
                         }
                         marker.bindPopup(() => buildParcoursPopup(entry.props, popupShip, campaign, key), {
-                            maxWidth: 210,
-                            minWidth: 150,
+                            maxWidth: 260,
+                            minWidth: 200,
                             // Deplacement simple pour degager la barre de recherche et les
                             // filtres, sans changer le niveau de zoom.
                             autoPan: true,
