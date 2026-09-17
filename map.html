@@ -267,6 +267,129 @@
             padding: 10px 12px;
         }
 
+        .timeline-panel {
+            position: absolute;
+            top: 10px;
+            /* Juste a gauche des boutons de zoom (34 px + marge). */
+            right: 56px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            padding: 6px 10px 5px;
+            font-size: 12px;
+            user-select: none;
+        }
+        .timeline-date {
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+        }
+        .timeline-row { display: flex; align-items: flex-start; gap: 8px; }
+        .timeline-ruler { position: relative; width: 300px; }
+        .timeline-ticks {
+            position: relative;
+            height: 7px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+        }
+        .timeline-tick {
+            position: absolute;
+            bottom: 0;
+            width: 1px;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.35);
+        }
+        .timeline-tick.is-year { height: 7px; background: rgba(0, 0, 0, 0.6); }
+        .timeline-ruler input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            margin: 2px 0 0;
+            background: transparent;
+            cursor: pointer;
+        }
+        .timeline-ruler input[type="range"]::-webkit-slider-runnable-track {
+            height: 3px;
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 2px;
+        }
+        .timeline-ruler input[type="range"]::-moz-range-track {
+            height: 3px;
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 2px;
+        }
+        .timeline-ruler input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            margin-top: -5px;
+            border-radius: 50%;
+            background: #0b63d1;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+        .timeline-ruler input[type="range"]::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0b63d1;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+        .timeline-years { position: relative; height: 13px; margin-top: 1px; }
+        .timeline-year {
+            position: absolute;
+            transform: translateX(-50%);
+            font-size: 10px;
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+        .timeline-buttons { display: flex; gap: 4px; padding-top: 2px; }
+        .timeline-btn {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+        }
+        .timeline-btn:hover { background: #f0f0f0; }
+        .timeline-btn[aria-pressed="true"] { background: #d9e8fb; border-color: #0b63d1; }
+        .timeline-icon-stop { width: 9px; height: 9px; background: #333; }
+        .timeline-icon-play {
+            width: 0; height: 0;
+            border-left: 10px solid #333;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+        /* Pastilles de navires sur la carte */
+        .ship-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: 11px;
+            line-height: 1;
+            border: 1.5px solid #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        @media (max-width: 640px) {
+            .timeline-ruler { width: 180px; }
+            .timeline-panel { right: 52px; padding: 5px 7px 4px; }
+        }
+
         /* Ensure popups sit above toggles */
         .leaflet-popup-pane { z-index: 1200 !important; }
 
@@ -1208,6 +1331,26 @@ gtag('config', 'G-LCWV2EVPVQ');
         <div class="ship-block" id="ship-block-baudin" hidden>
             <div class="ship-block-title">Navires</div>
             <div class="ship-list" id="ship-list-baudin"></div>
+        </div>
+    </div>
+
+    <div class="timeline-panel" id="timeline-panel" hidden aria-label="Curseur temporel">
+        <div class="timeline-date" id="timeline-date">&mdash;</div>
+        <div class="timeline-row">
+            <div class="timeline-ruler">
+                <div class="timeline-ticks" id="timeline-ticks" aria-hidden="true"></div>
+                <input type="range" id="timeline-slider" min="0" max="0" value="0" step="1"
+                       aria-label="Date affichée">
+                <div class="timeline-years" id="timeline-years" aria-hidden="true"></div>
+            </div>
+            <div class="timeline-buttons">
+                <button type="button" id="timeline-stop" class="timeline-btn" title="Arrêter">
+                    <span class="timeline-icon-stop"></span>
+                </button>
+                <button type="button" id="timeline-play" class="timeline-btn" title="Lancer">
+                    <span class="timeline-icon-play"></span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -3448,6 +3591,12 @@ gtag('config', 'G-LCWV2EVPVQ');
         // (ou pas consignee du tout). Tracer une droite inventerait un trajet.
         const PARCOURS_RUPTURE_JOURS = 15;
 
+        // Séries temporelles du curseur : par expédition, par groupe de navires,
+        // chaque point portant sa date et son numéro de tronçon. On n'interpole
+        // jamais entre deux tronçons : pendant une interruption, la position est
+        // inconnue, pas approximable.
+        const parcoursTimeline = { baudin: {}, entre: {} };
+
         const parcoursLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
         const parcoursWanted = { baudin: false, entre: false };
         const parcoursShipLayers = { baudin: {}, entre: {} };
@@ -3833,6 +3982,20 @@ gtag('config', 'G-LCWV2EVPVQ');
                         }
                     });
 
+                    // Serie temporelle du groupe, pour le curseur et l'animation.
+                    const serie = [];
+                    runs.forEach((run, numeroRun) => {
+                        run.indices.forEach((i) => {
+                            const iso = String(entries[i].props?.date || '');
+                            const t = Date.parse(`${iso}T00:00:00Z`);
+                            if (!Number.isFinite(t)) return;
+                            if (serie.length && serie[serie.length - 1].i === i) return;
+                            serie.push({ i, t, run: numeroRun, latLng: latLngs[i] });
+                        });
+                    });
+                    serie.sort((a, b) => a.t - b.t || a.i - b.i);
+                    parcoursTimeline[key][ship] = serie;
+
                     // Un marqueur par releve, a la couleur de son troncon.
                     const campaignByIndex = new Map();
                     runs.forEach((run) => {
@@ -3865,6 +4028,11 @@ gtag('config', 'G-LCWV2EVPVQ');
                         }
                         const popupShip = shipNamesFromLines.length > 1 ? ship : null;
                         // Contenu recalcule a chaque ouverture : suit la langue courante.
+                        // Un clic sur un point cale aussi le curseur sur sa date.
+                        const dateMs = Date.parse(`${String(entry.props?.date || '')}T00:00:00Z`);
+                        if (Number.isFinite(dateMs)) {
+                            marker.on('click', () => timelineAllerA(dateMs));
+                        }
                         marker.bindPopup(() => buildParcoursPopup(entry.props, popupShip, campaign), {
                             maxWidth: 210,
                             minWidth: 150,
@@ -3983,8 +4151,265 @@ gtag('config', 'G-LCWV2EVPVQ');
                     await loadParcours(key);
                 }
                 updateParcoursVisibility(key);
+                timelineSynchronise();
             });
         };
+
+
+        // ---------------------------------------------------------------
+        //  Curseur temporel : rejoue la progression des navires
+        // ---------------------------------------------------------------
+        const JOUR_MS = 86400000;
+        const TIMELINE_DUREE_MS = 120000;   // 2 minutes pour une expedition entiere
+
+        // Lettres affichees pour chaque groupe. "les corvettes" designe deux
+        // batiments naviguant de conserve : on montre les deux.
+        const TIMELINE_NAVIRES = {
+            'corvettes-gn': ['G', 'N'],
+            'corvettes-gc': ['G', 'C'],
+            'les corvettes': ['G', 'N'],
+            'le Géographe': ['G'],
+            'le Naturaliste': ['N'],
+            'le Casuarina': ['C'],
+            'la Recherche': ['R']
+        };
+
+        const timelinePanel = document.getElementById('timeline-panel');
+        const timelineDateEl = document.getElementById('timeline-date');
+        const timelineSlider = document.getElementById('timeline-slider');
+        const timelineTicks = document.getElementById('timeline-ticks');
+        const timelineYears = document.getElementById('timeline-years');
+        const timelinePlay = document.getElementById('timeline-play');
+        const timelineStop = document.getElementById('timeline-stop');
+
+        const timelineBadges = L.layerGroup();
+        let timelineKey = null;          // expedition suivie
+        let timelineDebut = null;
+        let timelineFin = null;
+        let timelineJour = 0;            // position du curseur, en jours depuis le debut
+        let timelineAnim = null;         // identifiant d'animation
+        let timelineDernierTick = 0;
+
+        const timelineActive = () => timelineKey !== null;
+
+        const timelineBornes = (key) => {
+            let min = Infinity, max = -Infinity;
+            Object.values(parcoursTimeline[key] || {}).forEach((serie) => {
+                serie.forEach((p) => {
+                    if (p.t < min) min = p.t;
+                    if (p.t > max) max = p.t;
+                });
+            });
+            return Number.isFinite(min) ? { min, max } : null;
+        };
+
+        // Position d'un groupe a un instant donne. Interpolation lineaire a
+        // l'interieur d'un troncon seulement : au-dela, la position est inconnue.
+        const timelinePosition = (serie, t) => {
+            if (!serie || serie.length === 0) return null;
+            if (t < serie[0].t || t > serie[serie.length - 1].t) return null;
+            let lo = 0, hi = serie.length - 1;
+            while (lo < hi) {
+                const mid = (lo + hi) >> 1;
+                if (serie[mid].t < t) lo = mid + 1; else hi = mid;
+            }
+            const apres = serie[lo];
+            if (apres.t === t) return apres.latLng;
+            const avant = serie[lo - 1];
+            if (!avant) return null;
+            if (avant.run !== apres.run) return null;   // interruption : pas d'invention
+            const f = (t - avant.t) / (apres.t - avant.t);
+            return [
+                avant.latLng[0] + (apres.latLng[0] - avant.latLng[0]) * f,
+                avant.latLng[1] + (apres.latLng[1] - avant.latLng[1]) * f
+            ];
+        };
+
+        const timelineCouleur = (key, groupe) =>
+            PARCOURS_SOURCES[key]?.colors?.[groupe] || expeditionConfigs[key]?.color || '#333';
+
+        const timelineDessineBadges = () => {
+            timelineBadges.clearLayers();
+            if (!timelineActive()) return;
+            const t = timelineDebut + timelineJour * JOUR_MS;
+            const groupes = parcoursTimeline[timelineKey] || {};
+
+            // Le Casuarina detache a sa propre table : quand elle renseigne la date,
+            // elle fait foi et "les corvettes" ne represente plus que le Geographe.
+            const casuarinaSeule = Boolean(timelinePosition(groupes['le Casuarina'], t));
+
+            Object.keys(groupes).forEach((groupe) => {
+                if (parcoursShipWanted[timelineKey]?.[groupe] === false) return;
+                const latLng = timelinePosition(groupes[groupe], t);
+                if (!latLng) return;
+                let lettres = TIMELINE_NAVIRES[groupe] || [groupe.slice(0, 1).toUpperCase()];
+                if (groupe === 'corvettes-gc' && casuarinaSeule) lettres = ['G'];
+                const couleur = timelineCouleur(timelineKey, groupe);
+                const html = lettres.map((l) =>
+                    `<span class="ship-badge" style="background:${couleur}">${l}</span>`).join('');
+                L.marker(latLng, {
+                    pane: ensureParcoursTooltipPane(),
+                    interactive: false,
+                    keyboard: false,
+                    icon: L.divIcon({
+                        className: 'ship-badge-wrapper',
+                        html: `<div style="display:flex;gap:2px">${html}</div>`,
+                        // Juste au-dessous du point du parcours.
+                        iconSize: [lettres.length * 19, 17],
+                        iconAnchor: [lettres.length * 19 / 2, -6]
+                    })
+                }).addTo(timelineBadges);
+            });
+        };
+
+        const timelineMajDate = () => {
+            if (!timelineActive()) return;
+            const iso = new Date(timelineDebut + timelineJour * JOUR_MS).toISOString().slice(0, 10);
+            timelineDateEl.textContent = formatParcoursDateLong(iso, getCurrentLanguage()) || iso;
+        };
+
+        const timelineConstruitRegle = () => {
+            timelineTicks.textContent = '';
+            timelineYears.textContent = '';
+            if (!timelineActive()) return;
+            const total = timelineFin - timelineDebut;
+            const d = new Date(timelineDebut);
+            // Premier debut de mois a partir de la date de depart.
+            let curseur = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1);
+            if (curseur < timelineDebut) {
+                curseur = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1);
+            }
+            const anneesVues = new Set();
+            while (curseur <= timelineFin) {
+                const c = new Date(curseur);
+                const pct = ((curseur - timelineDebut) / total) * 100;
+                const tick = document.createElement('div');
+                tick.className = 'timeline-tick' + (c.getUTCMonth() === 0 ? ' is-year' : '');
+                tick.style.left = `${pct}%`;
+                timelineTicks.appendChild(tick);
+                const annee = c.getUTCFullYear();
+                if (!anneesVues.has(annee) && (c.getUTCMonth() === 0 || anneesVues.size === 0)) {
+                    anneesVues.add(annee);
+                    const lab = document.createElement('span');
+                    lab.className = 'timeline-year';
+                    lab.textContent = String(annee);
+                    // Les etiquettes des extremites sont calees sur le bord
+                    // plutot que centrees, pour ne pas deborder de la regle.
+                    if (pct < 6) {
+                        lab.style.left = '0';
+                        lab.style.transform = 'none';
+                    } else if (pct > 94) {
+                        lab.style.right = '0';
+                        lab.style.transform = 'none';
+                    } else {
+                        lab.style.left = `${pct}%`;
+                    }
+                    timelineYears.appendChild(lab);
+                }
+                curseur = Date.UTC(c.getUTCFullYear(), c.getUTCMonth() + 1, 1);
+            }
+        };
+
+        const timelineStopAnim = () => {
+            if (timelineAnim !== null) {
+                cancelAnimationFrame(timelineAnim);
+                timelineAnim = null;
+            }
+            timelinePlay.setAttribute('aria-pressed', 'false');
+        };
+
+        const timelineArret = () => {
+            timelineStopAnim();
+            timelineBadges.clearLayers();      // le stop desactive l'affichage des logos
+        };
+
+        const timelineBoucle = (horodatage) => {
+            if (!timelineActive()) return;
+            const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
+            const dt = timelineDernierTick ? horodatage - timelineDernierTick : 0;
+            timelineDernierTick = horodatage;
+            timelineJour += (dt / TIMELINE_DUREE_MS) * totalJours;
+            if (timelineJour >= totalJours) {
+                timelineJour = totalJours;
+                timelineSlider.value = String(Math.round(timelineJour));
+                timelineMajDate();
+                timelineDessineBadges();
+                timelineStopAnim();
+                return;
+            }
+            timelineSlider.value = String(Math.round(timelineJour));
+            timelineMajDate();
+            timelineDessineBadges();
+            timelineAnim = requestAnimationFrame(timelineBoucle);
+        };
+
+        const timelineDemarre = () => {
+            if (!timelineActive() || timelineAnim !== null) return;
+            const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
+            if (timelineJour >= totalJours) timelineJour = 0;
+            timelineDernierTick = 0;
+            timelinePlay.setAttribute('aria-pressed', 'true');
+            timelineAnim = requestAnimationFrame(timelineBoucle);
+        };
+
+        // Appelee par le clic sur un point du parcours.
+        function timelineAllerA(dateMs) {
+            if (!timelineActive() || !Number.isFinite(dateMs)) return;
+            const jour = Math.round((dateMs - timelineDebut) / JOUR_MS);
+            const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
+            timelineJour = Math.min(Math.max(jour, 0), totalJours);
+            timelineSlider.value = String(timelineJour);
+            timelineMajDate();
+            timelineDessineBadges();
+        }
+
+        const timelineSynchronise = () => {
+            const key = parcoursWanted.baudin ? 'baudin' : (parcoursWanted.entre ? 'entre' : null);
+            if (key === null) {
+                timelineArret();
+                timelineKey = null;
+                timelinePanel.hidden = true;
+                map.removeLayer(timelineBadges);
+                return;
+            }
+            const bornes = timelineBornes(key);
+            if (!bornes) return;                 // parcours pas encore charge
+            const changement = key !== timelineKey;
+            timelineKey = key;
+            timelineDebut = bornes.min;
+            timelineFin = bornes.max;
+            const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
+            timelineSlider.max = String(totalJours);
+            if (changement) {
+                timelineArret();
+                timelineJour = 0;
+                timelineSlider.value = '0';
+                timelineConstruitRegle();
+            }
+            timelinePanel.hidden = false;
+            map.addLayer(timelineBadges);
+            timelineMajDate();
+            timelineDessineBadges();
+        };
+
+        timelineSlider.addEventListener('input', () => {
+            timelineStopAnim();
+            timelineJour = Number(timelineSlider.value);
+            timelineMajDate();
+            timelineDessineBadges();
+        });
+        timelinePlay.addEventListener('click', timelineDemarre);
+        timelineStop.addEventListener('click', timelineArret);
+        document.addEventListener('languageChanged', timelineMajDate);
+        // Rattache le panneau au cadre de la carte : sans cela il se positionne
+        // par rapport a la page et chevauche la barre de navigation.
+        const timelineConteneur = map.getContainer();
+        if (timelineConteneur && timelinePanel.parentElement !== timelineConteneur) {
+            timelineConteneur.appendChild(timelinePanel);
+        }
+        // Le panneau ne doit pas faire glisser la carte sous lui.
+        L.DomEvent.disableClickPropagation(timelinePanel);
+        L.DomEvent.disableScrollPropagation(timelinePanel);
 
         attachParcoursToggle('baudin', toggleBaudinParcours);
         attachParcoursToggle('entre', toggleEntreParcours);
