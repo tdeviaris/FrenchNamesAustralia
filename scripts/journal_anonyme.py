@@ -19,14 +19,18 @@ import datetime, io, json, os, sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GEOJSON = os.path.join(RACINE, 'data', 'baudin_parcours.geojson')
-LIMITE = '1802-11-20'          # depart du Naturaliste pour la France
+# Le retour du Naturaliste vers la France est desormais porte au parcours,
+# reconstruit depuis les journaux du bord (scripts/retour_naturaliste.py) :
+# le journal peut donc etre rattache jusqu'a sa derniere entree.
+LIMITE = '1803-05-21'          # derniere entree du journal, « [Sans suite.] »
 
 # Navires auxquels rattacher, par ordre de preference, selon la periode.
 PERIODES = [
     ('1800-10-19', '1801-06-11', ['les corvettes', 'le Géographe']),  # de conserve
     ('1801-06-12', '1801-11-12', ['le Naturaliste']),
     ('1801-11-13', '1802-03-08', ['les corvettes']),
-    ('1802-03-09', LIMITE,       ['le Naturaliste']),
+    ('1802-03-09', '1802-11-20', ['le Naturaliste']),
+    ('1802-11-21', LIMITE,       ['le Naturaliste']),      # retour en France
 ]
 PORT_JACKSON = [151.1461, -33.8667]
 DEBUT_ESCALE_PJ = '1802-04-21'

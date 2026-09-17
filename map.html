@@ -3747,9 +3747,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         const parcoursLabels = {
             fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
                   empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée',
+                  logbook: 'Position d’après le journal de bord',
                   original: '', traduit: '' },
             en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
                   empty: 'No reading for this day.', extrapolated: 'Extrapolated position',
+                  logbook: 'Position from the ship’s log',
                   original: '(French original)', traduit: '(translated from the French)' }
         };
 
@@ -3976,6 +3978,9 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             // Position calculee : ce n'est pas un releve.
             const extrapolated = Boolean(props?.extrapole);
+            // Retour du Naturaliste : la position vient des journaux du bord,
+            // les tables de Freycinet s'arrêtant à Port Jackson.
+            const fromLog = Boolean(props?.position_journal);
             const { propre, secours } = textesJournaux(expedition, String(props?.date || ''));
             const journaux = SOURCES_JOURNAUX
                 .map((src) => {
@@ -3989,11 +3994,15 @@ gtag('config', 'G-LCWV2EVPVQ');
             // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
             const contenuTables = Boolean(remark) || shortRows.length || Boolean(winds);
 
-            if (extrapolated || contenuTables) {
+            if (extrapolated || fromLog || contenuTables) {
                 html += `<div class="parcours-popup-body">`;
                 if (extrapolated) {
                     html += `<div class="parcours-popup-extrapolated">`
                         + `${escapeHtmlText(labels.extrapolated)}</div>`;
+                }
+                if (fromLog) {
+                    html += `<div class="parcours-popup-extrapolated">`
+                        + `${escapeHtmlText(labels.logbook)}</div>`;
                 }
                 if (contenuTables) {
                     const src = SOURCES_PARCOURS[expedition];
@@ -4029,7 +4038,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     + `</div>`;
             });
 
-            if (!extrapolated && !contenuTables && !journaux.length) {
+            if (!extrapolated && !fromLog && !contenuTables && !journaux.length) {
                 html += `<div class="parcours-popup-empty">${escapeHtmlText(labels.empty)}</div>`;
             }
             return html + `</div>`;

@@ -5,10 +5,9 @@
 Breton change de navire le 9 brumaire an 10 (31 octobre 1801) : le texte est
 donc réparti sur deux champs, chacun portant sa propre mention de navire.
 
-Après la séparation du 20 novembre 1802 le Naturaliste rentre en France et
-n'a plus de point sur le parcours : les journées suivantes sont écartées
-(le contrôle des longitudes donne 8,9° d'écart avec l'escadre restée en
-Australie, contre 0,7° avant la séparation).
+Après la séparation du 20 novembre 1802 le Naturaliste rentre en France : sa
+route est reconstruite depuis les journaux du bord (retour_naturaliste.py), si
+bien que les journées du retour ont elles aussi un point d'accroche.
 
 Usage : python3 scripts/integre_breton.py [--ecrire]
 """
@@ -18,7 +17,7 @@ PARCOURS   = 'data/baudin_parcours.geojson'
 JOURNAL    = 'data/journal_breton.json'
 CIBLE      = 'data/journaux/baudin_fr.json'
 BASCULE    = '1801-10-31'      # Breton passe sur le Naturaliste
-LIMITE     = '1802-11-20'      # dernier point du Naturaliste sur le parcours
+LIMITE     = '1803-05-21'      # dernier point du Naturaliste sur le parcours
 
 CHAMP_GEO = 'journal_breton_geographe'
 CHAMP_NAT = 'journal_breton_naturaliste'

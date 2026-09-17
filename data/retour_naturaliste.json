@@ -1,0 +1,1193 @@
+[
+ {
+  "date": "1802-11-21",
+  "lon": 151.8366,
+  "lat": -37.4667,
+  "source": "anonyme",
+  "km_j": 405
+ },
+ {
+  "date": "1802-11-22",
+  "lon": 152.7439,
+  "lat": -38.4,
+  "source": "breton",
+  "km_j": 131
+ },
+ {
+  "date": "1802-11-23",
+  "lon": 151.3072,
+  "lat": -38.6733,
+  "source": "anonyme",
+  "km_j": 129
+ },
+ {
+  "date": "1802-11-24",
+  "lon": 150.8822,
+  "lat": -39.395,
+  "source": "anonyme",
+  "km_j": 88
+ },
+ {
+  "date": "1802-11-25",
+  "lon": 150.0672,
+  "lat": -38.87,
+  "source": "breton",
+  "km_j": 91
+ },
+ {
+  "date": "1802-11-26",
+  "lon": 149.3516,
+  "lat": -38.7153,
+  "source": "anonyme",
+  "km_j": 64
+ },
+ {
+  "date": "1802-11-27",
+  "lon": 149.7466,
+  "lat": -39.05,
+  "source": "anonyme",
+  "km_j": 51
+ },
+ {
+  "date": "1802-11-28",
+  "lon": 150.0716,
+  "lat": -38.8386,
+  "source": "anonyme",
+  "km_j": 37
+ },
+ {
+  "date": "1802-11-29",
+  "lon": 150.2372,
+  "lat": -38.8528,
+  "source": "anonyme",
+  "km_j": 14
+ },
+ {
+  "date": "1802-11-30",
+  "lon": 150.0689,
+  "lat": -39.5833,
+  "source": "anonyme",
+  "km_j": 83
+ },
+ {
+  "date": "1802-12-01",
+  "lon": 149.9189,
+  "lat": -39.4058,
+  "source": "anonyme",
+  "km_j": 24
+ },
+ {
+  "date": "1802-12-02",
+  "lon": 149.8039,
+  "lat": -39.2958,
+  "source": "breton",
+  "km_j": 16
+ },
+ {
+  "date": "1802-12-03",
+  "lon": 147.8522,
+  "lat": -39.4306,
+  "source": "anonyme",
+  "km_j": 168
+ },
+ {
+  "date": "1802-12-04",
+  "lon": 147.7239,
+  "lat": -39.8242,
+  "source": "anonyme",
+  "km_j": 45
+ },
+ {
+  "date": "1802-12-05",
+  "lon": 147.0039,
+  "lat": -40.1528,
+  "source": "anonyme",
+  "km_j": 71
+ },
+ {
+  "date": "1802-12-06",
+  "lon": 145.3372,
+  "lat": -40.2561,
+  "source": "anonyme",
+  "km_j": 142
+ },
+ {
+  "date": "1802-12-07",
+  "lon": 145.2505,
+  "lat": -39.8833,
+  "source": "anonyme",
+  "km_j": 42
+ },
+ {
+  "date": "1802-12-09",
+  "lon": 144.6489,
+  "lat": -39.3319,
+  "source": "anonyme",
+  "km_j": 40
+ },
+ {
+  "date": "1802-12-10",
+  "lon": 142.2372,
+  "lat": -39.05,
+  "source": "breton",
+  "km_j": 210
+ },
+ {
+  "date": "1802-12-11",
+  "lon": 139.8539,
+  "lat": -38.6656,
+  "source": "anonyme",
+  "km_j": 211
+ },
+ {
+  "date": "1802-12-12",
+  "lon": 136.5705,
+  "lat": -38.4425,
+  "source": "anonyme",
+  "km_j": 287
+ },
+ {
+  "date": "1802-12-13",
+  "lon": 134.8705,
+  "lat": -38.6881,
+  "source": "anonyme",
+  "km_j": 150
+ },
+ {
+  "date": "1802-12-14",
+  "lon": 134.1039,
+  "lat": -38.885,
+  "source": "anonyme",
+  "km_j": 70
+ },
+ {
+  "date": "1802-12-15",
+  "lon": 131.7872,
+  "lat": -37.6783,
+  "source": "anonyme",
+  "km_j": 243
+ },
+ {
+  "date": "1802-12-18",
+  "lon": 130.7222,
+  "lat": -35.7567,
+  "source": "anonyme",
+  "km_j": 78
+ },
+ {
+  "date": "1802-12-19",
+  "lon": 131.2522,
+  "lat": -36.2028,
+  "source": "anonyme",
+  "km_j": 69
+ },
+ {
+  "date": "1802-12-20",
+  "lon": 129.9189,
+  "lat": -36.1194,
+  "source": "anonyme",
+  "km_j": 120
+ },
+ {
+  "date": "1802-12-21",
+  "lon": 128.1439,
+  "lat": -34.9011,
+  "source": "anonyme",
+  "km_j": 210
+ },
+ {
+  "date": "1802-12-22",
+  "lon": 126.4605,
+  "lat": -36.3286,
+  "source": "anonyme",
+  "km_j": 220
+ },
+ {
+  "date": "1802-12-23",
+  "lon": 125.5428,
+  "lat": -36.6644,
+  "source": "anonyme",
+  "km_j": 90
+ },
+ {
+  "date": "1802-12-24",
+  "lon": 124.2428,
+  "lat": -37.4247,
+  "source": "anonyme",
+  "km_j": 143
+ },
+ {
+  "date": "1802-12-25",
+  "lon": 123.2094,
+  "lat": -38.41,
+  "source": "anonyme",
+  "km_j": 142
+ },
+ {
+  "date": "1802-12-26",
+  "lon": 121.9278,
+  "lat": -38.6381,
+  "source": "anonyme",
+  "km_j": 114
+ },
+ {
+  "date": "1802-12-27",
+  "lon": 121.1861,
+  "lat": -39.2281,
+  "source": "anonyme",
+  "km_j": 92
+ },
+ {
+  "date": "1802-12-28",
+  "lon": 121.6705,
+  "lat": -39.3083,
+  "source": "anonyme",
+  "km_j": 43
+ },
+ {
+  "date": "1802-12-29",
+  "lon": 120.5872,
+  "lat": -39.395,
+  "source": "anonyme",
+  "km_j": 94
+ },
+ {
+  "date": "1802-12-30",
+  "lon": 118.1811,
+  "lat": -39.875,
+  "source": "anonyme",
+  "km_j": 213
+ },
+ {
+  "date": "1802-12-31",
+  "lon": 117.0661,
+  "lat": -41.2764,
+  "source": "anonyme",
+  "km_j": 182
+ },
+ {
+  "date": "1803-01-01",
+  "lon": 116.1705,
+  "lat": -39.7972,
+  "source": "anonyme",
+  "km_j": 181
+ },
+ {
+  "date": "1803-01-02",
+  "lon": 115.1022,
+  "lat": -38.4978,
+  "source": "anonyme",
+  "km_j": 171
+ },
+ {
+  "date": "1803-01-03",
+  "lon": 114.8872,
+  "lat": -38.05,
+  "source": "breton",
+  "km_j": 53
+ },
+ {
+  "date": "1803-01-04",
+  "lon": 114.1428,
+  "lat": -38.1181,
+  "source": "anonyme",
+  "km_j": 66
+ },
+ {
+  "date": "1803-01-05",
+  "lon": 112.8511,
+  "lat": -37.1347,
+  "source": "anonyme",
+  "km_j": 158
+ },
+ {
+  "date": "1803-01-06",
+  "lon": 111.1194,
+  "lat": -35.15,
+  "source": "anonyme",
+  "km_j": 270
+ },
+ {
+  "date": "1803-01-07",
+  "lon": 110.0111,
+  "lat": -34.6694,
+  "source": "anonyme",
+  "km_j": 114
+ },
+ {
+  "date": "1803-01-08",
+  "lon": 108.8011,
+  "lat": -33.5097,
+  "source": "anonyme",
+  "km_j": 170
+ },
+ {
+  "date": "1803-01-09",
+  "lon": 107.3261,
+  "lat": -32.0847,
+  "source": "anonyme",
+  "km_j": 210
+ },
+ {
+  "date": "1803-01-10",
+  "lon": 106.0178,
+  "lat": -30.5922,
+  "source": "anonyme",
+  "km_j": 207
+ },
+ {
+  "date": "1803-01-11",
+  "lon": 105.1844,
+  "lat": -29.8386,
+  "source": "anonyme",
+  "km_j": 116
+ },
+ {
+  "date": "1803-01-12",
+  "lon": 105.0872,
+  "lat": -29.9333,
+  "source": "breton",
+  "km_j": 14
+ },
+ {
+  "date": "1803-01-13",
+  "lon": 103.6294,
+  "lat": -29.5347,
+  "source": "anonyme",
+  "km_j": 148
+ },
+ {
+  "date": "1803-01-14",
+  "lon": 100.9039,
+  "lat": -27.6531,
+  "source": "anonyme",
+  "km_j": 339
+ },
+ {
+  "date": "1803-01-15",
+  "lon": 100.2411,
+  "lat": -26.3778,
+  "source": "anonyme",
+  "km_j": 156
+ },
+ {
+  "date": "1803-01-16",
+  "lon": 98.7744,
+  "lat": -25.3461,
+  "source": "anonyme",
+  "km_j": 186
+ },
+ {
+  "date": "1803-01-17",
+  "lon": 96.7478,
+  "lat": -23.9897,
+  "source": "anonyme",
+  "km_j": 254
+ },
+ {
+  "date": "1803-01-18",
+  "lon": 92.3539,
+  "lat": -22.8261,
+  "source": "anonyme",
+  "km_j": 467,
+  "invraisemblable": true
+ },
+ {
+  "date": "1803-01-19",
+  "lon": 92.6694,
+  "lat": -21.4058,
+  "source": "anonyme",
+  "km_j": 161
+ },
+ {
+  "date": "1803-01-20",
+  "lon": 89.8694,
+  "lat": -20.8025,
+  "source": "anonyme",
+  "km_j": 298
+ },
+ {
+  "date": "1803-01-21",
+  "lon": 87.2028,
+  "lat": -20.5333,
+  "source": "anonyme",
+  "km_j": 279
+ },
+ {
+  "date": "1803-01-22",
+  "lon": 87.2028,
+  "lat": -20.2639,
+  "source": "anonyme",
+  "km_j": 30
+ },
+ {
+  "date": "1803-01-23",
+  "lon": 80.6111,
+  "lat": -20.0942,
+  "source": "anonyme",
+  "km_j": 688,
+  "invraisemblable": true
+ },
+ {
+  "date": "1803-01-24",
+  "lon": 76.8111,
+  "lat": -20.2692,
+  "source": "anonyme",
+  "km_j": 397
+ },
+ {
+  "date": "1803-01-25",
+  "lon": 72.6194,
+  "lat": -20.6933,
+  "source": "anonyme",
+  "km_j": 439,
+  "invraisemblable": true
+ },
+ {
+  "date": "1803-01-26",
+  "lon": 70.5039,
+  "lat": -21.1497,
+  "source": "anonyme",
+  "km_j": 226
+ },
+ {
+  "date": "1803-01-27",
+  "lon": 69.3705,
+  "lat": -20.3428,
+  "source": "anonyme",
+  "km_j": 148
+ },
+ {
+  "date": "1803-01-28",
+  "lon": 66.1539,
+  "lat": -20.4689,
+  "source": "anonyme",
+  "km_j": 336
+ },
+ {
+  "date": "1803-01-29",
+  "lon": 63.3039,
+  "lat": -20.445,
+  "source": "anonyme",
+  "km_j": 297
+ },
+ {
+  "date": "1803-01-30",
+  "lon": 60.9539,
+  "lat": -20.3886,
+  "source": "anonyme",
+  "km_j": 245
+ },
+ {
+  "date": "1803-01-31",
+  "lon": 58.2372,
+  "lat": -20.2344,
+  "source": "anonyme",
+  "km_j": 284
+ },
+ {
+  "date": "1803-02-04",
+  "lon": 57.55,
+  "lat": -19.92,
+  "source": "anonyme",
+  "extrapole": true,
+  "motif": "relâche à l’île de France, contournement par le nord",
+  "km_j": 0
+ },
+ {
+  "date": "1803-02-09",
+  "lon": 55.4,
+  "lat": -20.55,
+  "source": "anonyme",
+  "extrapole": true,
+  "motif": "contournement de l’île Bourbon par le nord, indiqué par le journal au 11 février 1803",
+  "km_j": 0
+ },
+ {
+  "date": "1803-02-11",
+  "lon": 54.9205,
+  "lat": -21.1333,
+  "source": "anonyme",
+  "km_j": 33
+ },
+ {
+  "date": "1803-02-12",
+  "lon": 53.8939,
+  "lat": -22.0283,
+  "source": "anonyme",
+  "km_j": 146
+ },
+ {
+  "date": "1803-02-13",
+  "lon": 51.9939,
+  "lat": -24.215,
+  "source": "anonyme",
+  "km_j": 311
+ },
+ {
+  "date": "1803-02-14",
+  "lon": 50.1939,
+  "lat": -26.1961,
+  "source": "anonyme",
+  "km_j": 285
+ },
+ {
+  "date": "1803-02-15",
+  "lon": 47.2772,
+  "lat": -28.4294,
+  "source": "anonyme",
+  "km_j": 380
+ },
+ {
+  "date": "1803-02-16",
+  "lon": 46.6639,
+  "lat": -29.6511,
+  "source": "anonyme",
+  "km_j": 148
+ },
+ {
+  "date": "1803-02-17",
+  "lon": 45.9639,
+  "lat": -29.8094,
+  "source": "anonyme",
+  "km_j": 70
+ },
+ {
+  "date": "1803-02-19",
+  "lon": 40.9155,
+  "lat": -30.2411,
+  "source": "anonyme",
+  "km_j": 244
+ },
+ {
+  "date": "1803-02-20",
+  "lon": 38.3739,
+  "lat": -31.3825,
+  "source": "anonyme",
+  "km_j": 274
+ },
+ {
+  "date": "1803-02-21",
+  "lon": 36.0189,
+  "lat": -31.9889,
+  "source": "anonyme",
+  "km_j": 233
+ },
+ {
+  "date": "1803-02-22",
+  "lon": 33.6189,
+  "lat": -32.6006,
+  "source": "anonyme",
+  "km_j": 236
+ },
+ {
+  "date": "1803-02-23",
+  "lon": 31.3939,
+  "lat": -32.9092,
+  "source": "anonyme",
+  "km_j": 211
+ },
+ {
+  "date": "1803-02-24",
+  "lon": 27.3372,
+  "lat": -34.1133,
+  "source": "anonyme",
+  "km_j": 399
+ },
+ {
+  "date": "1803-02-25",
+  "lon": 23.4289,
+  "lat": -35.7728,
+  "source": "anonyme",
+  "km_j": 401
+ },
+ {
+  "date": "1803-02-26",
+  "lon": 22.1839,
+  "lat": -35.5164,
+  "source": "anonyme",
+  "km_j": 116
+ },
+ {
+  "date": "1803-02-27",
+  "lon": 22.0505,
+  "lat": -35.3614,
+  "source": "anonyme",
+  "km_j": 21
+ },
+ {
+  "date": "1803-02-28",
+  "lon": 22.6194,
+  "lat": -35.9247,
+  "source": "anonyme",
+  "km_j": 81
+ },
+ {
+  "date": "1803-03-02",
+  "lon": 20.5944,
+  "lat": -35.5186,
+  "source": "anonyme",
+  "km_j": 94
+ },
+ {
+  "date": "1803-03-03",
+  "lon": 20.1961,
+  "lat": -36.2056,
+  "source": "anonyme",
+  "km_j": 84
+ },
+ {
+  "date": "1803-03-04",
+  "lon": 20.2889,
+  "lat": -36.1392,
+  "source": "anonyme",
+  "km_j": 11
+ },
+ {
+  "date": "1803-03-05",
+  "lon": 18.5411,
+  "lat": -36.0547,
+  "source": "anonyme",
+  "km_j": 157
+ },
+ {
+  "date": "1803-03-06",
+  "lon": 17.0928,
+  "lat": -34.9694,
+  "source": "anonyme",
+  "km_j": 178
+ },
+ {
+  "date": "1803-03-07",
+  "lon": 15.3594,
+  "lat": -33.0,
+  "source": "anonyme",
+  "km_j": 271
+ },
+ {
+  "date": "1803-03-08",
+  "lon": 13.2278,
+  "lat": -30.9353,
+  "source": "anonyme",
+  "km_j": 305
+ },
+ {
+  "date": "1803-03-09",
+  "lon": 11.5269,
+  "lat": -29.3456,
+  "source": "anonyme",
+  "km_j": 241
+ },
+ {
+  "date": "1803-03-10",
+  "lon": 9.3686,
+  "lat": -27.8556,
+  "source": "anonyme",
+  "km_j": 268
+ },
+ {
+  "date": "1803-03-11",
+  "lon": 7.4969,
+  "lat": -26.5342,
+  "source": "anonyme",
+  "km_j": 236
+ },
+ {
+  "date": "1803-03-12",
+  "lon": 5.8955,
+  "lat": -25.6008,
+  "source": "anonyme",
+  "km_j": 191
+ },
+ {
+  "date": "1803-03-13",
+  "lon": 4.5872,
+  "lat": -24.6992,
+  "source": "anonyme",
+  "km_j": 166
+ },
+ {
+  "date": "1803-03-14",
+  "lon": 3.0039,
+  "lat": -23.57,
+  "source": "anonyme",
+  "km_j": 204
+ },
+ {
+  "date": "1803-03-15",
+  "lon": 1.8455,
+  "lat": -22.6928,
+  "source": "anonyme",
+  "km_j": 153
+ },
+ {
+  "date": "1803-03-16",
+  "lon": -1.6628,
+  "lat": -22.1539,
+  "source": "anonyme",
+  "km_j": 366
+ },
+ {
+  "date": "1803-03-17",
+  "lon": -3.3628,
+  "lat": -20.555,
+  "source": "anonyme",
+  "km_j": 250
+ },
+ {
+  "date": "1803-03-18",
+  "lon": -4.6061,
+  "lat": -17.9806,
+  "source": "anonyme",
+  "km_j": 315
+ },
+ {
+  "date": "1803-03-19",
+  "lon": -5.8895,
+  "lat": -15.7736,
+  "source": "anonyme",
+  "km_j": 281
+ },
+ {
+  "date": "1803-03-20",
+  "lon": -7.8128,
+  "lat": -13.8392,
+  "source": "anonyme",
+  "km_j": 298
+ },
+ {
+  "date": "1803-03-21",
+  "lon": -9.1461,
+  "lat": -12.0978,
+  "source": "anonyme",
+  "km_j": 242
+ },
+ {
+  "date": "1803-03-22",
+  "lon": -10.2295,
+  "lat": -10.7728,
+  "source": "anonyme",
+  "km_j": 189
+ },
+ {
+  "date": "1803-03-23",
+  "lon": -11.4095,
+  "lat": -9.275,
+  "source": "anonyme",
+  "km_j": 211
+ },
+ {
+  "date": "1803-03-24",
+  "lon": -12.3678,
+  "lat": -7.9586,
+  "source": "anonyme",
+  "km_j": 180
+ },
+ {
+  "date": "1803-03-25",
+  "lon": -13.4678,
+  "lat": -6.1997,
+  "source": "anonyme",
+  "km_j": 230
+ },
+ {
+  "date": "1803-03-26",
+  "lon": -14.3478,
+  "lat": -4.1378,
+  "source": "anonyme",
+  "km_j": 249
+ },
+ {
+  "date": "1803-03-27",
+  "lon": -14.8161,
+  "lat": -1.8961,
+  "source": "anonyme",
+  "km_j": 255
+ },
+ {
+  "date": "1803-03-28",
+  "lon": -15.2078,
+  "lat": -0.0653,
+  "source": "anonyme",
+  "km_j": 208
+ },
+ {
+  "date": "1803-03-29",
+  "lon": -15.5861,
+  "lat": 1.3919,
+  "source": "anonyme",
+  "km_j": 167
+ },
+ {
+  "date": "1803-03-30",
+  "lon": -17.4461,
+  "lat": 1.8236,
+  "source": "anonyme",
+  "km_j": 212
+ },
+ {
+  "date": "1803-03-31",
+  "lon": -17.5961,
+  "lat": 2.6408,
+  "source": "anonyme",
+  "km_j": 92
+ },
+ {
+  "date": "1803-04-01",
+  "lon": -17.5795,
+  "lat": 2.8192,
+  "source": "anonyme",
+  "km_j": 20
+ },
+ {
+  "date": "1803-04-02",
+  "lon": -17.9761,
+  "lat": 3.3392,
+  "source": "anonyme",
+  "km_j": 73
+ },
+ {
+  "date": "1803-04-03",
+  "lon": -18.0378,
+  "lat": 3.4839,
+  "source": "anonyme",
+  "km_j": 17
+ },
+ {
+  "date": "1803-04-04",
+  "lon": -17.9761,
+  "lat": 3.64,
+  "source": "anonyme",
+  "km_j": 19
+ },
+ {
+  "date": "1803-04-05",
+  "lon": -18.3347,
+  "lat": 3.9208,
+  "source": "anonyme",
+  "km_j": 51
+ },
+ {
+  "date": "1803-04-06",
+  "lon": -18.5061,
+  "lat": 4.1975,
+  "source": "anonyme",
+  "km_j": 36
+ },
+ {
+  "date": "1803-04-07",
+  "lon": -18.7978,
+  "lat": 4.5008,
+  "source": "anonyme",
+  "km_j": 47
+ },
+ {
+  "date": "1803-04-08",
+  "lon": -18.7859,
+  "lat": 4.9311,
+  "source": "anonyme",
+  "km_j": 48
+ },
+ {
+  "date": "1803-04-09",
+  "lon": -19.975,
+  "lat": 5.2611,
+  "source": "anonyme",
+  "km_j": 137
+ },
+ {
+  "date": "1803-04-10",
+  "lon": -19.3795,
+  "lat": 5.3092,
+  "source": "anonyme",
+  "km_j": 66
+ },
+ {
+  "date": "1803-04-11",
+  "lon": -19.4795,
+  "lat": 5.65,
+  "source": "anonyme",
+  "km_j": 39
+ },
+ {
+  "date": "1803-04-12",
+  "lon": -20.295,
+  "lat": 5.7539,
+  "source": "anonyme",
+  "km_j": 91
+ },
+ {
+  "date": "1803-04-13",
+  "lon": -20.41,
+  "lat": 5.7089,
+  "source": "anonyme",
+  "km_j": 14
+ },
+ {
+  "date": "1803-04-14",
+  "lon": -21.0295,
+  "lat": 5.9894,
+  "source": "anonyme",
+  "km_j": 75
+ },
+ {
+  "date": "1803-04-15",
+  "lon": -22.0961,
+  "lat": 6.7667,
+  "source": "anonyme",
+  "km_j": 146
+ },
+ {
+  "date": "1803-04-16",
+  "lon": -22.9895,
+  "lat": 7.1856,
+  "source": "anonyme",
+  "km_j": 109
+ },
+ {
+  "date": "1803-04-17",
+  "lon": -23.9295,
+  "lat": 7.4689,
+  "source": "anonyme",
+  "km_j": 108
+ },
+ {
+  "date": "1803-04-18",
+  "lon": -24.7261,
+  "lat": 7.9053,
+  "source": "anonyme",
+  "km_j": 100
+ },
+ {
+  "date": "1803-04-19",
+  "lon": -25.6061,
+  "lat": 8.3592,
+  "source": "anonyme",
+  "km_j": 109
+ },
+ {
+  "date": "1803-04-20",
+  "lon": -26.9295,
+  "lat": 9.3681,
+  "source": "anonyme",
+  "km_j": 184
+ },
+ {
+  "date": "1803-04-21",
+  "lon": -28.3295,
+  "lat": 10.7833,
+  "source": "anonyme",
+  "km_j": 220
+ },
+ {
+  "date": "1803-04-22",
+  "lon": -29.6528,
+  "lat": 12.1033,
+  "source": "anonyme",
+  "km_j": 206
+ },
+ {
+  "date": "1803-04-23",
+  "lon": -30.7028,
+  "lat": 13.95,
+  "source": "anonyme",
+  "km_j": 235
+ },
+ {
+  "date": "1803-04-24",
+  "lon": -31.4961,
+  "lat": 15.805,
+  "source": "anonyme",
+  "km_j": 223
+ },
+ {
+  "date": "1803-04-25",
+  "lon": -32.1978,
+  "lat": 17.5097,
+  "source": "anonyme",
+  "km_j": 204
+ },
+ {
+  "date": "1803-04-26",
+  "lon": -31.4961,
+  "lat": 19.3333,
+  "source": "anonyme",
+  "km_j": 216
+ },
+ {
+  "date": "1803-04-27",
+  "lon": -32.1178,
+  "lat": 20.6767,
+  "source": "anonyme",
+  "km_j": 163
+ },
+ {
+  "date": "1803-04-28",
+  "lon": -32.8161,
+  "lat": 22.4678,
+  "source": "anonyme",
+  "km_j": 212
+ },
+ {
+  "date": "1803-04-29",
+  "lon": -36.8128,
+  "lat": 24.3167,
+  "source": "anonyme",
+  "km_j": 457,
+  "invraisemblable": true
+ },
+ {
+  "date": "1803-04-30",
+  "lon": -37.9295,
+  "lat": 25.96,
+  "source": "anonyme",
+  "km_j": 215
+ },
+ {
+  "date": "1803-05-01",
+  "lon": -38.9961,
+  "lat": 27.7925,
+  "source": "anonyme",
+  "km_j": 230
+ },
+ {
+  "date": "1803-05-02",
+  "lon": -39.8178,
+  "lat": 29.6142,
+  "source": "anonyme",
+  "km_j": 218
+ },
+ {
+  "date": "1803-05-03",
+  "lon": -39.9728,
+  "lat": 31.6969,
+  "source": "anonyme",
+  "km_j": 232
+ },
+ {
+  "date": "1803-05-04",
+  "lon": -40.1461,
+  "lat": 33.7167,
+  "source": "anonyme",
+  "km_j": 225
+ },
+ {
+  "date": "1803-05-05",
+  "lon": -40.5528,
+  "lat": 35.7319,
+  "source": "anonyme",
+  "km_j": 227
+ },
+ {
+  "date": "1803-05-06",
+  "lon": -40.2795,
+  "lat": 37.4472,
+  "source": "anonyme",
+  "km_j": 192
+ },
+ {
+  "date": "1803-05-07",
+  "lon": -39.1045,
+  "lat": 39.0828,
+  "source": "anonyme",
+  "km_j": 209
+ },
+ {
+  "date": "1803-05-08",
+  "lon": -38.0295,
+  "lat": 40.3856,
+  "source": "anonyme",
+  "km_j": 172
+ },
+ {
+  "date": "1803-05-09",
+  "lon": -37.2045,
+  "lat": 42.1067,
+  "source": "anonyme",
+  "km_j": 203
+ },
+ {
+  "date": "1803-05-10",
+  "lon": -36.2628,
+  "lat": 43.8478,
+  "source": "anonyme",
+  "km_j": 208
+ },
+ {
+  "date": "1803-05-11",
+  "lon": -35.0295,
+  "lat": 45.2667,
+  "source": "anonyme",
+  "km_j": 186
+ },
+ {
+  "date": "1803-05-12",
+  "lon": -33.8367,
+  "lat": 46.1075,
+  "source": "anonyme",
+  "km_j": 132
+ },
+ {
+  "date": "1803-05-13",
+  "lon": -32.12,
+  "lat": 47.0333,
+  "source": "anonyme",
+  "km_j": 167
+ },
+ {
+  "date": "1803-05-14",
+  "lon": -29.9867,
+  "lat": 48.1972,
+  "source": "anonyme",
+  "km_j": 206
+ },
+ {
+  "date": "1803-05-15",
+  "lon": -34.0795,
+  "lat": 49.6572,
+  "source": "anonyme",
+  "km_j": 340
+ },
+ {
+  "date": "1803-05-16",
+  "lon": -31.63,
+  "lat": 51.0439,
+  "source": "anonyme",
+  "km_j": 232
+ },
+ {
+  "date": "1803-05-17",
+  "lon": -29.4878,
+  "lat": 51.9939,
+  "source": "anonyme",
+  "km_j": 182
+ },
+ {
+  "date": "1803-05-18",
+  "lon": -26.7545,
+  "lat": 52.57,
+  "source": "anonyme",
+  "km_j": 197
+ },
+ {
+  "date": "1803-05-19",
+  "lon": -23.1495,
+  "lat": 52.2369,
+  "source": "anonyme",
+  "km_j": 247
+ },
+ {
+  "date": "1803-05-20",
+  "lon": -20.1795,
+  "lat": 51.4833,
+  "source": "anonyme",
+  "km_j": 221
+ },
+ {
+  "date": "1803-05-21",
+  "lon": -17.6578,
+  "lat": 50.8136,
+  "source": "anonyme",
+  "km_j": 191
+ }
+]
