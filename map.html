@@ -3957,12 +3957,18 @@ gtag('config', 'G-LCWV2EVPVQ');
         toggleEntre.addEventListener('change', () => setExpeditionVisibility('entre', toggleEntre.checked));
         // Les deux routes restent exclusives l'une de l'autre. L'affichage des lieux,
         // lui, n'est plus touche : chaque case d'expedition le pilote seule.
-        const hideOtherRoute = (key) => {
+        // Afficher une route met l'autre expedition en retrait : sa route est decochee,
+        // et ses lieux aussi, pour degager la carte autour du parcours consulte.
+        const hideOtherExpedition = (key) => {
             const other = key === 'baudin' ? 'entre' : 'baudin';
-            const otherBox = other === 'baudin' ? toggleBaudinParcours : toggleEntreParcours;
-            if (otherBox) otherBox.checked = false;
+            const otherRoute = other === 'baudin' ? toggleBaudinParcours : toggleEntreParcours;
+            if (otherRoute) otherRoute.checked = false;
             parcoursWanted[other] = false;
             updateParcoursVisibility(other);
+
+            const otherPlaces = other === 'baudin' ? toggleBaudin : toggleEntre;
+            if (otherPlaces) otherPlaces.checked = false;
+            setExpeditionVisibility(other, false);
         };
 
         const attachParcoursToggle = (key, input) => {
@@ -3970,7 +3976,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             input.addEventListener('change', async () => {
                 const want = input.checked;
                 if (want) {
-                    hideOtherRoute(key);
+                    hideOtherExpedition(key);
                 }
                 parcoursWanted[key] = want;
                 if (want) {
