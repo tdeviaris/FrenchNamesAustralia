@@ -225,6 +225,13 @@
         .parcours-popup { font-size: 12px; line-height: 1.35; }
         .parcours-popup-date { font-weight: 700; font-size: 13px; }
         .parcours-popup-ship { font-size: 11px; opacity: 0.65; margin-top: 1px; }
+        .parcours-popup-source {
+            font-size: 11px;
+            font-style: italic;
+            opacity: 0.6;
+            margin-top: 1px;
+            line-height: 1.3;
+        }
         /* Le trait separe l'en-tete (date, navire) du corps de la fiche. */
         .parcours-popup-body {
             margin-top: 6px;
@@ -3711,6 +3718,19 @@ gtag('config', 'G-LCWV2EVPVQ');
             'la Recherche': { fr: "la Recherche & l'Espérance", en: 'Recherche & Espérance' }
         };
 
+        // Les tables de Baudin sont numerotees de plusieurs facons : "4 - Titre",
+        // "TABLE 17.e - Titre", "TABLE 30.e Titre", "Suite de la TABLE 32.e Titre".
+        // On ne garde que l'intitule.
+        const MOTIF_NUMERO_TABLE = /^(?:Suite de la\s+)?(?:TABLE\s+)?\d+(?:\.e)?\s*[-–—]?\s*/;
+
+        const libelleSource = (props) => {
+            // d'Entrecasteaux consigne une section, Baudin une table.
+            const section = String(props?.section || '').trim();
+            if (section) return section;
+            const table = String(props?.table || '').trim();
+            return table ? table.replace(MOTIF_NUMERO_TABLE, '') : '';
+        };
+
         const shipDisplayName = (ship, lang) => {
             const entry = shipDisplayNames[ship];
             if (!entry) return ship;
@@ -3794,6 +3814,10 @@ gtag('config', 'G-LCWV2EVPVQ');
             const subtitle = ship ? shipDisplayName(ship, lang) : '';
             if (subtitle) {
                 html += `<div class="parcours-popup-ship">${escapeHtmlText(subtitle)}</div>`;
+            }
+            const source = libelleSource(props);
+            if (source) {
+                html += `<div class="parcours-popup-source">${escapeHtmlText(source)}</div>`;
             }
 
             // Mesures courtes sur une ligne chacune, vents en bloc pleine largeur.
