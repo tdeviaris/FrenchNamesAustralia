@@ -238,6 +238,21 @@
             padding-top: 6px;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
+        .parcours-popup-src { margin-bottom: 4px; }
+        .parcours-popup-lien {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+        a.parcours-popup-lien { text-decoration: underline; }
+        .parcours-popup-journal {
+            max-height: 150px;
+            overflow-y: auto;
+            text-align: left;
+            hyphens: auto;
+        }
         .parcours-popup-remark { margin-bottom: 6px; }
         .parcours-popup-rows {
             display: grid;
@@ -3731,6 +3746,32 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const parcoursLabelsFor = (lang) => parcoursLabels[lang] || parcoursLabels.en;
 
+        // Sources citees dans les fiches. Les relevés viennent des tables de route
+        // publiées, pas des journaux de bord eux-mêmes.
+        const SOURCES_PARCOURS = {
+            baudin: {
+                nom: 'Tables de route — Freycinet, 1815',
+                url: 'https://gallica.bnf.fr/ark:/12148/bpt6k74602q'
+            },
+            entre: {
+                nom: 'Tables de route — Rossel, 1808',
+                url: ''
+            }
+        };
+
+        const SOURCE_JOURNAL_ANONYME = {
+            nom: 'Journal anonyme — Archives nationales, Marine 5JJ53',
+            url: 'https://baudin.sydney.edu.au/wp-content/uploads/2024/06/anon2.pdf'
+        };
+
+        const lienSource = (src) => {
+            const nom = escapeHtmlText(src.nom);
+            return src.url
+                ? `<a class="parcours-popup-lien" href="${escapeHtmlText(src.url)}"`
+                  + ` target="_blank" rel="noopener">${nom}</a>`
+                : `<span class="parcours-popup-lien">${nom}</span>`;
+        };
+
         // Les tables de route designent par "les corvettes" les journees ou le Geographe
         // et le Naturaliste naviguent de conserve : on nomme les deux navires.
         const shipDisplayNames = {
@@ -3822,7 +3863,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;');
 
-        const buildParcoursPopup = (props, ship, campaign) => {
+        const buildParcoursPopup = (props, ship, campaign, expedition) => {
             const lang = getCurrentLanguage();
             const labels = parcoursLabelsFor(lang);
             const temperature = formatTemperature(props?.thermometre, lang);
@@ -3849,31 +3890,48 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (temperature) shortRows.push([labels.temperature, temperature]);
             if (pressure) shortRows.push([labels.pressure, pressure]);
 
-            // Position calculee pour contourner une cote : ce n'est pas un releve.
+            // Position calculee : ce n'est pas un releve.
             const extrapolated = Boolean(props?.extrapole);
-            const hasBody = extrapolated || Boolean(remark) || shortRows.length || Boolean(winds);
-            if (hasBody) {
+            const journal = String(props?.journal_anonyme || '').trim();
+            // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
+            const contenuTables = Boolean(remark) || shortRows.length || Boolean(winds);
+
+            if (extrapolated || contenuTables) {
                 html += `<div class="parcours-popup-body">`;
                 if (extrapolated) {
                     html += `<div class="parcours-popup-extrapolated">`
                         + `${escapeHtmlText(labels.extrapolated)}</div>`;
                 }
-                // La remarque de bord ouvre le corps de la fiche, juste sous le trait.
-                if (remark) {
-                    html += `<div class="parcours-popup-remark">${escapeHtmlText(remark)}</div>`;
-                }
-                if (shortRows.length) {
-                    html += `<dl class="parcours-popup-rows">${shortRows.map(([k, v]) =>
-                        `<dt>${escapeHtmlText(k)}</dt><dd>${escapeHtmlText(v)}</dd>`).join('')}</dl>`;
-                }
-                if (winds) {
-                    html += `<div class="parcours-popup-winds">`
-                        + `<span class="parcours-popup-winds-label">${escapeHtmlText(labels.winds)}</span>`
-                        + `<span class="parcours-popup-winds-text">${escapeHtmlText(winds)}</span>`
-                        + `</div>`;
+                if (contenuTables) {
+                    const src = SOURCES_PARCOURS[expedition];
+                    if (src) {
+                        html += `<div class="parcours-popup-src">${lienSource(src)}</div>`;
+                    }
+                    if (remark) {
+                        html += `<div class="parcours-popup-remark">${escapeHtmlText(remark)}</div>`;
+                    }
+                    if (shortRows.length) {
+                        html += `<dl class="parcours-popup-rows">${shortRows.map(([k, v]) =>
+                            `<dt>${escapeHtmlText(k)}</dt><dd>${escapeHtmlText(v)}</dd>`).join('')}</dl>`;
+                    }
+                    if (winds) {
+                        html += `<div class="parcours-popup-winds">`
+                            + `<span class="parcours-popup-winds-label">${escapeHtmlText(labels.winds)}</span>`
+                            + `<span class="parcours-popup-winds-text">${escapeHtmlText(winds)}</span>`
+                            + `</div>`;
+                    }
                 }
                 html += `</div>`;
-            } else {
+            }
+
+            if (journal) {
+                html += `<div class="parcours-popup-body">`
+                    + `<div class="parcours-popup-src">${lienSource(SOURCE_JOURNAL_ANONYME)}</div>`
+                    + `<div class="parcours-popup-journal">${escapeHtmlText(journal)}</div>`
+                    + `</div>`;
+            }
+
+            if (!extrapolated && !contenuTables && !journal) {
                 html += `<div class="parcours-popup-empty">${escapeHtmlText(labels.empty)}</div>`;
             }
             return html + `</div>`;
@@ -4121,7 +4179,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                         if (Number.isFinite(dateMs)) {
                             marker.on('click', () => timelineAllerA(dateMs));
                         }
-                        marker.bindPopup(() => buildParcoursPopup(entry.props, popupShip, campaign), {
+                        marker.bindPopup(() => buildParcoursPopup(entry.props, popupShip, campaign, key), {
                             maxWidth: 210,
                             minWidth: 150,
                             // Deplacement simple pour degager la barre de recherche et les
