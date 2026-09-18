@@ -1502,9 +1502,20 @@ gtag('config', 'G-LCWV2EVPVQ');
                 <span>route</span>
             </label>
         </div>
-        <!-- Deux volets : les trois batiments de Baudin, puis les trois que
-             Flinders monta tour a tour. Ils partagent la meme couche mais ne
-             viennent pas de la meme source, et on les lit mieux separes. -->
+        <div class="layer-toggle-row">
+            <label class="toggle-flinders">
+                <input type="checkbox" id="toggle-flinders" checked>
+                <span data-i18n="map-layer-flinders">Flinders</span>
+            </label>
+            <label class="toggle-flinders route-toggle" aria-label="Afficher la route de Flinders">
+                <input type="checkbox" id="toggle-flinders-parcours">
+                <span>route</span>
+            </label>
+        </div>
+        <!-- Baudin et Flinders partagent une seule couche de traces : ils ont
+             croise les memes cotes aux memes annees. Les deux volets se posent
+             donc sous les deux cases, et chaque case allume les batiments de
+             son bord -- libre a qui veut d'y ajouter ceux de l'autre. -->
         <div class="ship-block" id="ship-block-baudin" hidden>
             <div class="ship-block-title">Navires Baudin</div>
             <div class="ship-list" id="ship-list-baudin"></div>
@@ -1512,14 +1523,6 @@ gtag('config', 'G-LCWV2EVPVQ');
         <div class="ship-block" id="ship-block-baudin-flinders" hidden>
             <div class="ship-block-title">Navires Flinders</div>
             <div class="ship-list" id="ship-list-baudin-flinders"></div>
-        </div>
-        <!-- Les noms donnes par Flinders. Sa route est tracee au-dessus, parmi
-             celles de Baudin, qu'elle croisa : elle n'a pas de case ici. -->
-        <div class="layer-toggle-row">
-            <label class="toggle-flinders">
-                <input type="checkbox" id="toggle-flinders" checked>
-                <span data-i18n="map-layer-flinders">Flinders</span>
-            </label>
         </div>
     </div>
 
@@ -3790,13 +3793,20 @@ gtag('config', 'G-LCWV2EVPVQ');
                 },
                 shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina',
                             "l'Investigator", 'le Porpoise', 'le Cumberland'],
-                // Les cases se rangent en deux volets. Un batiment qu'aucun
+                // Les cases se rangent en deux volets, chacun commande par sa
+                // propre case « route ». Cocher l'une allume les batiments de
+                // son volet et laisse l'autre eteint ; la couche reste tracee
+                // tant qu'une des deux cases est cochee. Un batiment qu'aucun
                 // volet ne nomme retombe dans le premier.
                 volets: [
                     { liste: 'ship-list-baudin',
-                      bloc: 'ship-block-baudin' },
+                      bloc: 'ship-block-baudin',
+                      route: 'toggle-baudin-parcours',
+                      navires: ['le Géographe', 'le Naturaliste', 'le Casuarina',
+                                'les corvettes'] },
                     { liste: 'ship-list-baudin-flinders',
                       bloc: 'ship-block-baudin-flinders',
+                      route: 'toggle-flinders-parcours',
                       navires: ["l'Investigator", 'le Porpoise', 'le Cumberland'] }
                 ],
                 colors: {
@@ -4851,6 +4861,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
         const toggleBaudinParcours = document.getElementById('toggle-baudin-parcours');
         const toggleEntreParcours = document.getElementById('toggle-entre-parcours');
+        const toggleFlindersParcours = document.getElementById('toggle-flinders-parcours');
         // Set to true to re-enable the expedition route controls.
         const ENABLE_ROUTE_TOGGLES = true;
 
@@ -4893,7 +4904,8 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         const applyRouteToggleAvailability = () => {
-            const controls = [toggleBaudinParcours, toggleEntreParcours];
+            const controls = [toggleBaudinParcours, toggleEntreParcours,
+                              toggleFlindersParcours];
             controls.forEach((input) => {
                 if (!input) return;
                 input.checked = false;
@@ -4924,47 +4936,65 @@ gtag('config', 'G-LCWV2EVPVQ');
         // lui, n'est plus touche : chaque case d'expedition le pilote seule.
         // Afficher une route met l'autre expedition en retrait : sa route est decochee,
         // et ses lieux aussi, pour degager la carte autour du parcours consulte.
-        const casesRoute = {
-            baudin: toggleBaudinParcours, entre: toggleEntreParcours
+        // Une route demande la carte entiere : on efface d'abord tous les
+        // marqueurs de lieux, qui la couvriraient. Chaque expedition se
+        // rallume ensuite d'une case, si on la veut.
+        const masqueTousLesToponymes = () => {
+            Object.keys(expeditionConfigs).forEach((exp) => {
+                const places = casesExpedition[exp];
+                if (places) places.checked = false;
+                setExpeditionVisibility(exp, false);
+            });
         };
 
-        const hideOtherExpedition = (key) => {
-            Object.keys(expeditionConfigs).forEach((autre) => {
-                if (autre === key) return;
-                // Flinders nomma les memes cotes que Baudin, et sa trace est
-                // tracee avec la sienne : consulter l'une n'efface pas l'autre.
-                if (key === 'baudin' && autre === 'flinders') return;
-                if (key === 'flinders' && autre === 'baudin') return;
-                const route = casesRoute[autre];
-                if (route) route.checked = false;
-                if (autre in parcoursWanted) {
-                    parcoursWanted[autre] = false;
-                    updateParcoursVisibility(autre);
-                }
-                const places = casesExpedition[autre];
-                if (places) places.checked = false;
-                setExpeditionVisibility(autre, false);
-            });
+        // Une couche de traces peut etre commandee par plusieurs cases : celle
+        // de Baudin et celle de Flinders reglent la meme, chacune n'allumant
+        // que les batiments de son volet. `volet` vaut null pour une expedition
+        // dont la case commande tout.
+        const basculeParcours = async (key, input, volet) => {
+            const want = input.checked;
+            if (want) {
+                masqueTousLesToponymes();
+            }
+            const volets = voletsDe(key);
+            if (volet) {
+                // Chaque volet suit sa propre case, y compris celui qu'on ne
+                // vient pas de toucher : sans quoi les batiments encore
+                // indecis s'allumeraient tout seuls au chargement. Ce qu'on
+                // ajoute ensuite a la main tient jusqu'a la prochaine bascule.
+                volets.forEach((v) => {
+                    const coche = v.route
+                        && document.getElementById(v.route)?.checked;
+                    (v.navires || []).forEach((n) => {
+                        parcoursShipWanted[key][n] = Boolean(coche);
+                    });
+                });
+            }
+            // La couche reste tracee tant qu'une des cases de route la demande.
+            const cases = volets.map((v) => v.route && document.getElementById(v.route))
+                                .filter(Boolean);
+            parcoursWanted[key] = cases.length
+                ? cases.some((el) => el.checked)
+                : want;
+            if (parcoursWanted[key]) {
+                await loadParcours(key);
+            }
+            if (volet) {
+                // Les cases du volet refletent ce qu'on vient de decider.
+                buildShipControls(key);
+            }
+            updateParcoursVisibility(key);
+            if (want) {
+                // En tâche de fond : le tracé ne l'attend pas.
+                chargeJournauxExpedition(key, getCurrentLanguage());
+            }
+            timelineSynchronise();
         };
 
         const attachParcoursToggle = (key, input) => {
             if (!ENABLE_ROUTE_TOGGLES || !input) return;
-            input.addEventListener('change', async () => {
-                const want = input.checked;
-                if (want) {
-                    hideOtherExpedition(key);
-                }
-                parcoursWanted[key] = want;
-                if (want) {
-                    await loadParcours(key);
-                }
-                updateParcoursVisibility(key);
-                if (want) {
-                    // En tâche de fond : le tracé ne l'attend pas.
-                    chargeJournauxExpedition(key, getCurrentLanguage());
-                }
-                timelineSynchronise();
-            });
+            const volet = voletsDe(key).find((v) => v.route === input.id) || null;
+            input.addEventListener('change', () => basculeParcours(key, input, volet));
         };
 
 
@@ -5206,6 +5236,11 @@ gtag('config', 'G-LCWV2EVPVQ');
                 return regles[regles.length - 1].key;
             };
 
+            // On releve d'abord toutes les lettres a poser, puis on les groupe :
+            // deux batiments qui font route ensemble occupent le meme point, et
+            // deux marqueurs poses la se recouvrent exactement -- on n'en voyait
+            // qu'un seul. Groupes, ils s'alignent cote a cote.
+            const aPoser = [];
             Object.keys(groupes).forEach((origine) => {
                 const groupe = groupePourDate(origine);
                 if (parcoursShipWanted[timelineKey]?.[groupe] === false) return;
@@ -5218,12 +5253,36 @@ gtag('config', 'G-LCWV2EVPVQ');
                     lettres = lettres.filter((l) => !positionPropre.has(l));
                 }
                 if (!lettres.length) return;
-                const html = lettres.map((l) => {
+                aPoser.push({ latLng, groupe, lettres });
+            });
+
+            // Le voisinage se mesure a l'ecran, non en degres : deux positions
+            // distantes d'un mille se confondent au loin et se separent de pres.
+            const CHEVAUCHEMENT_PX = 22;
+            const amas = [];
+            aPoser.forEach((item) => {
+                const p = map.latLngToLayerPoint(item.latLng);
+                const proche = amas.find((a) => a.p.distanceTo(p) < CHEVAUCHEMENT_PX);
+                if (proche) {
+                    item.lettres.forEach((l) => {
+                        if (!proche.lettres.some((x) => x.l === l)) {
+                            proche.lettres.push({ l, groupe: item.groupe });
+                        }
+                    });
+                } else {
+                    amas.push({ p, latLng: item.latLng,
+                                lettres: item.lettres.map((l) => ({ l, groupe: item.groupe })) });
+                }
+            });
+
+            amas.forEach((a) => {
+                const html = a.lettres.map(({ l, groupe }) => {
                     const couleur = TIMELINE_COULEURS[l]
                         || timelineCouleur(timelineKey, groupe);
                     return `<span class="ship-badge" style="background:${couleur}">${l}</span>`;
                 }).join('');
-                L.marker(latLng, {
+                const n = a.lettres.length;
+                L.marker(a.latLng, {
                     pane: ensureParcoursTooltipPane(),
                     interactive: false,
                     keyboard: false,
@@ -5231,8 +5290,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                         className: 'ship-badge-wrapper',
                         html: `<div style="display:flex;gap:2px">${html}</div>`,
                         // Juste au-dessous du point du parcours.
-                        iconSize: [lettres.length * 19, 17],
-                        iconAnchor: [lettres.length * 19 / 2, -6]
+                        iconSize: [n * 19, 17],
+                        iconAnchor: [n * 19 / 2, -6]
                     })
                 }).addTo(timelineBadges);
             });
@@ -5484,6 +5543,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         L.DomEvent.disableScrollPropagation(timelinePanel);
 
         attachParcoursToggle('baudin', toggleBaudinParcours);
+        attachParcoursToggle('baudin', toggleFlindersParcours);
         attachParcoursToggle('entre', toggleEntreParcours);
 
         // Les noms de navires suivent la langue du site.
