@@ -313,11 +313,15 @@
             white-space: nowrap;
         }
         .timeline-row { display: flex; align-items: flex-start; gap: 8px; }
+        /* Les crochets se placent en pourcentage de cette boite, comme les
+           graduations : pas de marge interieure, sans quoi les deux reperes se
+           decaleraient l'un par rapport a l'autre. Ils debordent un peu dans la
+           marge du panneau, ce qui ne gene rien. */
         .timeline-ruler { position: relative; width: 360px; }
         .timeline-ticks {
             position: relative;
             height: 7px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.55);
         }
         .timeline-tick {
             position: absolute;
@@ -326,7 +330,49 @@
             height: 3px;
             background: rgba(0, 0, 0, 0.35);
         }
-        .timeline-tick.is-year { height: 7px; background: rgba(0, 0, 0, 0.6); }
+        .timeline-tick.is-year {
+            height: 9px;
+            width: 2px;
+            margin-left: -0.5px;
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        /* Crochets de selection : on ne garde a l'ecran que les trajets compris
+           entre les deux. Bleus et gras pour qu'on voie qu'ils se prennent. */
+        .timeline-bracket {
+            position: absolute;
+            top: -3px;
+            height: 34px;
+            width: 16px;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: #0b63d1;
+            font-family: 'Lato', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1;
+            cursor: ew-resize;
+            z-index: 6;
+            text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+            touch-action: none;
+        }
+        .timeline-bracket:hover,
+        .timeline-bracket.is-drag { color: #08408c; }
+        .timeline-bracket:focus-visible { outline: 2px solid #0b63d1; outline-offset: 1px; }
+        /* Ce qui tombe hors des crochets est grise sur la reglette elle-meme. */
+        .timeline-hors {
+            position: absolute;
+            top: -3px;
+            height: 34px;
+            background: rgba(11, 99, 209, 0.10);
+            pointer-events: none;
+            z-index: 5;
+        }
         .timeline-ruler input[type="range"] {
             -webkit-appearance: none;
             appearance: none;
@@ -1430,6 +1476,14 @@ gtag('config', 'G-LCWV2EVPVQ');
         <div class="timeline-date" id="timeline-date">&mdash;</div>
         <div class="timeline-row">
             <div class="timeline-ruler">
+                <div class="timeline-hors" id="timeline-hors-avant"></div>
+                <div class="timeline-hors" id="timeline-hors-apres"></div>
+                <button type="button" class="timeline-bracket" id="timeline-bracket-debut"
+                        title="Début de la période affichée"
+                        aria-label="Début de la période affichée">[</button>
+                <button type="button" class="timeline-bracket" id="timeline-bracket-fin"
+                        title="Fin de la période affichée"
+                        aria-label="Fin de la période affichée">]</button>
                 <div class="timeline-ticks" id="timeline-ticks" aria-hidden="true"></div>
                 <div class="timeline-months" id="timeline-months" aria-hidden="true"></div>
                 <input type="range" id="timeline-slider" min="0" max="0" value="0" step="1"
@@ -3734,6 +3788,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         // fiches pour la meme journee et fausserait l'index du curseur.
         const parcoursPointLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
         const parcoursPoints = { baudin: [], entre: [] };
+        // Chaque trace garde la date de chacun de ses points : c'est ce qui permet
+        // aux crochets de la frise de n'en montrer qu'une tranche.
+        const parcoursLignes = { baudin: [], entre: [] };
+        // Bornes de la periode affichee, en millisecondes. null = tout le voyage.
+        const parcoursFenetre = { baudin: null, entre: null };
 
         const parcoursLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
         const parcoursWanted = { baudin: false, entre: false };
@@ -3766,6 +3825,20 @@ gtag('config', 'G-LCWV2EVPVQ');
                 }
             });
 
+            // Les crochets de la frise bornent la periode montree : on rejoue
+            // chaque trace sur la seule tranche retenue. Les sommets d'un meme
+            // troncon se suivent dans le temps, la tranche reste donc continue.
+            const fenetre = parcoursFenetre[key];
+            const dansFenetre = (t) => !fenetre || !Number.isFinite(t)
+                || (t >= fenetre[0] && t <= fenetre[1]);
+            (parcoursLignes[key] || []).forEach(({ line, pts, fleches }) => {
+                const gardes = fenetre ? pts.filter((p) => dansFenetre(p.t)) : pts;
+                line.setLatLngs(gardes.length > 1 ? gardes.map((p) => p.latLng) : []);
+                if (fleches && typeof fleches.setPaths === 'function') {
+                    fleches.setPaths(line);
+                }
+            });
+
             // Un trait de conserve ne reste en tirets que tant que la coque qui
             // porte le trait plein est affichee. Seule, il redevient plein et
             // retrouve ses fleches : autrement il se lirait comme une route
@@ -3789,7 +3862,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (couchePoints) {
                 (parcoursPoints[key] || []).forEach((marker) => {
                     const coques = marker.__coques || [marker.__parcoursGroupe];
-                    const montrer = coques.some(visible);
+                    const montrer = coques.some(visible) && dansFenetre(marker.__t);
                     if (montrer) {
                         if (!couchePoints.hasLayer(marker)) couchePoints.addLayer(marker);
                     } else if (couchePoints.hasLayer(marker)) {
@@ -4392,6 +4465,14 @@ gtag('config', 'G-LCWV2EVPVQ');
                             dashArray: second ? '9 9' : null
                         });
                         line.addTo(shipLayer);
+                        // Chaque sommet garde sa date : les crochets de la frise
+                        // rejouent ensuite la ligne sur la seule tranche voulue.
+                        const pts = run.indices.map((i) => ({
+                            latLng: latLngs[i],
+                            t: Date.parse(`${String(entries[i].props?.date || '')}T00:00:00Z`)
+                        }));
+                        const inscrite = { line, ship, pts, fleches: null };
+                        parcoursLignes[key].push(inscrite);
                         if (second) {
                             parcoursPaires[key].push({ line, ship, compagnon: run.compagnon });
                         }
@@ -4418,6 +4499,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                                     })
                                 }]
                             });
+                            inscrite.fleches = fleches;
                             // Les fleches ne se portent pas en double sur un trait
                             // de conserve : celles de la coque en tirets n'
                             // apparaissent que si elle se retrouve seule.
@@ -4508,6 +4590,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                         // Les coques concernees : le point reste visible tant que
                         // l'une d'elles l'est.
                         marker.__coques = entry.coques;
+                        marker.__t = Number.isFinite(dateMs) ? dateMs : null;
                         if (Number.isFinite(dateMs)) {
                             const liste = parcoursMarqueurs[key].get(dateMs) || [];
                             liste.push(marker);
@@ -4672,6 +4755,113 @@ gtag('config', 'G-LCWV2EVPVQ');
         const timelineTicks = document.getElementById('timeline-ticks');
         const timelineMonths = document.getElementById('timeline-months');
         const timelineYears = document.getElementById('timeline-years');
+        const timelineCrochets = [
+            document.getElementById('timeline-bracket-debut'),
+            document.getElementById('timeline-bracket-fin')
+        ];
+        const timelineHors = [
+            document.getElementById('timeline-hors-avant'),
+            document.getElementById('timeline-hors-apres')
+        ];
+        // Periode retenue entre les deux crochets, en millisecondes.
+        let timelineTranche = null;
+        // On ne laisse pas les crochets se refermer l'un sur l'autre.
+        const TIMELINE_TRANCHE_MINI_JOURS = 7;
+
+        const timelinePctDe = (t) => {
+            const total = timelineFin - timelineDebut;
+            if (!total) return 0;
+            return Math.min(100, Math.max(0, ((t - timelineDebut) / total) * 100));
+        };
+
+        const timelinePlaceCrochets = () => {
+            if (!timelineActive() || !timelineTranche) return;
+            const a = timelinePctDe(timelineTranche[0]);
+            const b = timelinePctDe(timelineTranche[1]);
+            timelineCrochets[0].style.left = `${a}%`;
+            timelineCrochets[1].style.left = `${b}%`;
+            timelineHors[0].style.left = '0';
+            timelineHors[0].style.width = `${a}%`;
+            timelineHors[1].style.left = `${b}%`;
+            timelineHors[1].style.width = `${100 - b}%`;
+        };
+
+        // Les crochets grands ouverts valent « tout le voyage » : on retire alors
+        // la fenetre plutot que de la poser aux bornes, pour que rien ne soit
+        // recoupe inutilement.
+        const timelineAppliqueTranche = () => {
+            if (!timelineActive() || !timelineTranche) return;
+            const pleine = timelineTranche[0] <= timelineDebut
+                && timelineTranche[1] >= timelineFin;
+            parcoursFenetre[timelineKey] = pleine ? null : timelineTranche.slice();
+            timelinePlaceCrochets();
+            updateParcoursVisibility(timelineKey);
+            timelineDessineBadges();
+        };
+
+        const timelineRouvreCrochets = () => {
+            if (!timelineActive()) return;
+            timelineTranche = [timelineDebut, timelineFin];
+            parcoursFenetre[timelineKey] = null;
+            timelinePlaceCrochets();
+        };
+
+        const timelineBougeCrochet = (cote, t) => {
+            const mini = TIMELINE_TRANCHE_MINI_JOURS * JOUR_MS;
+            if (cote === 0) {
+                timelineTranche[0] = Math.max(timelineDebut,
+                    Math.min(t, timelineTranche[1] - mini));
+            } else {
+                timelineTranche[1] = Math.min(timelineFin,
+                    Math.max(t, timelineTranche[0] + mini));
+            }
+            timelineAppliqueTranche();
+        };
+
+        timelineCrochets.forEach((el, cote) => {
+            if (!el) return;
+            let prise = false;
+            const dateSous = (clientX) => {
+                const r = el.parentElement.getBoundingClientRect();
+                const f = r.width ? (clientX - r.left) / r.width : 0;
+                const t = timelineDebut
+                    + Math.min(1, Math.max(0, f)) * (timelineFin - timelineDebut);
+                return Math.round(t / JOUR_MS) * JOUR_MS;   // au jour près
+            };
+            el.addEventListener('pointerdown', (ev) => {
+                if (!timelineActive() || !timelineTranche) return;
+                prise = true;
+                el.classList.add('is-drag');
+                try { el.setPointerCapture(ev.pointerId); } catch (e) { /* sans capture */ }
+                ev.preventDefault();
+            });
+            el.addEventListener('pointermove', (ev) => {
+                if (!prise || !timelineActive() || !timelineTranche) return;
+                timelineBougeCrochet(cote, dateSous(ev.clientX));
+            });
+            const lache = (ev) => {
+                if (!prise) return;
+                prise = false;
+                el.classList.remove('is-drag');
+                try { el.releasePointerCapture(ev.pointerId); } catch (e) { /* deja lache */ }
+            };
+            el.addEventListener('pointerup', lache);
+            el.addEventListener('pointercancel', lache);
+            // Double-clic : ce crochet retourne a son extremite.
+            el.addEventListener('dblclick', (ev) => {
+                ev.preventDefault();
+                if (!timelineActive() || !timelineTranche) return;
+                timelineBougeCrochet(cote, cote === 0 ? timelineDebut : timelineFin);
+            });
+            // Au clavier, une semaine par flèche.
+            el.addEventListener('keydown', (ev) => {
+                const pas = ev.key === 'ArrowLeft' ? -7
+                    : ev.key === 'ArrowRight' ? 7 : 0;
+                if (!pas || !timelineActive() || !timelineTranche) return;
+                ev.preventDefault();
+                timelineBougeCrochet(cote, timelineTranche[cote] + pas * JOUR_MS);
+            });
+        });
         const timelinePlay = document.getElementById('timeline-play');
         const timelineStop = document.getElementById('timeline-stop');
         const timelinePrev = document.getElementById('timeline-prev');
@@ -4989,7 +5179,18 @@ gtag('config', 'G-LCWV2EVPVQ');
                 timelineJour = 0;
                 timelineSlider.value = '0';
                 timelineConstruitRegle();
+                timelineRouvreCrochets();
+            } else if (timelineTranche) {
+                // Les bornes ont pu bouger avec le chargement d'un navire :
+                // on ramene la tranche dans la nouvelle etendue.
+                timelineTranche = [
+                    Math.max(timelineDebut, Math.min(timelineTranche[0], timelineFin)),
+                    Math.min(timelineFin, Math.max(timelineTranche[1], timelineDebut))
+                ];
+            } else {
+                timelineRouvreCrochets();
             }
+            timelineAppliqueTranche();
             timelineConstruitReperes();
             timelinePanel.hidden = false;
             map.addLayer(timelineBadges);
