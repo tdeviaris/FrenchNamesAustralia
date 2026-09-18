@@ -3653,22 +3653,22 @@ gtag('config', 'G-LCWV2EVPVQ');
         const PARCOURS_SOURCES = {
             baudin: {
                 url: 'data/baudin_parcours.geojson',
-                shipOrder: ['corvettes-gn', 'corvettes-gc', 'le Géographe', 'le Naturaliste', 'le Casuarina'],
+                // Une couleur par coque, et une seule. Un trajet parcouru de
+                // conserve se trace des deux couleurs, la seconde en tirets
+                // par-dessus la premiere.
+                shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina'],
                 colors: {
-                    'corvettes-gn': '#0b63d1',
-                    'corvettes-gc': '#0d9488',
-                    'les corvettes': '#0b63d1',
                     'le Géographe': '#e8590c',
-                    'le Naturaliste': '#7048e8',
-                    'le Casuarina': '#c2255c'
+                    'le Naturaliste': '#0b63d1',
+                    'le Casuarina': '#7048e8'
                 },
-                // "les corvettes" ne designe pas la meme paire tout au long du voyage :
-                // le Naturaliste quitte Port Jackson pour la France le 18 novembre 1802,
-                // remplace par le Casuarina achete sur place.
-                shipSplits: {
+                // "les corvettes" ne designe pas la meme paire tout au long du
+                // voyage : le Naturaliste quitte Port Jackson pour la France le
+                // 18 novembre 1802, remplace par le Casuarina achete sur place.
+                compagnons: {
                     'les corvettes': [
-                        { until: '1802-11-18', key: 'corvettes-gn' },
-                        { key: 'corvettes-gc' }
+                        { until: '1802-11-18', navires: ['le Géographe', 'le Naturaliste'] },
+                        { navires: ['le Géographe', 'le Casuarina'] }
                     ]
                 }
             },
@@ -3721,6 +3721,20 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Marqueurs indexés par date, pour que le pas à pas ouvre la fiche du point.
         const parcoursMarqueurs = { baudin: new Map(), entre: new Map() };
 
+        // Les traces parcourus de conserve existent en double, une fois par coque.
+        // Celui de la seconde coque se porte en tirets par-dessus celui de la
+        // premiere, de sorte que le trait montre les deux couleurs. Mais si l'on
+        // eteint la premiere, les tirets resteraient seuls et se liraient comme
+        // une route interrompue : on les rend alors pleins. D'ou ce registre,
+        // relu a chaque bascule de navire.
+        const parcoursPaires = { baudin: [], entre: [] };
+        // Un releve n'a qu'un point, meme quand deux coques le partagent : le
+        // marqueur est donc unique et vit dans sa propre couche, affichee des
+        // qu'une des coques concernees est visible. Le dupliquer donnerait deux
+        // fiches pour la meme journee et fausserait l'index du curseur.
+        const parcoursPointLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
+        const parcoursPoints = { baudin: [], entre: [] };
+
         const parcoursLayers = { baudin: L.layerGroup(), entre: L.layerGroup() };
         const parcoursWanted = { baudin: false, entre: false };
         const parcoursShipLayers = { baudin: {}, entre: {} };
@@ -3739,15 +3753,56 @@ gtag('config', 'G-LCWV2EVPVQ');
             const group = parcoursLayers[key];
             if (!group) return;
             const shouldShow = Boolean(parcoursWanted[key]);
+            const visible = (ship) => shouldShow
+                && parcoursShipWanted[key][ship] !== false;
+
             Object.keys(parcoursShipLayers[key] || {}).forEach((ship) => {
                 const shipLayer = parcoursShipLayers[key][ship];
                 if (!shipLayer) return;
-                if (shouldShow && parcoursShipWanted[key][ship] !== false) {
+                if (visible(ship)) {
                     group.addLayer(shipLayer);
                 } else {
                     group.removeLayer(shipLayer);
                 }
             });
+
+            // Un trait de conserve ne reste en tirets que tant que la coque qui
+            // porte le trait plein est affichee. Seule, il redevient plein et
+            // retrouve ses fleches : autrement il se lirait comme une route
+            // interrompue.
+            (parcoursPaires[key] || []).forEach(({ line, ship, compagnon, fleches }) => {
+                const accompagne = visible(compagnon);
+                line.setStyle({ dashArray: accompagne ? '9 9' : null });
+                if (!fleches) return;
+                const shipLayer = parcoursShipLayers[key][ship];
+                if (!shipLayer) return;
+                if (!accompagne && visible(ship)) {
+                    if (!shipLayer.hasLayer(fleches)) shipLayer.addLayer(fleches);
+                } else if (shipLayer.hasLayer(fleches)) {
+                    shipLayer.removeLayer(fleches);
+                }
+            });
+
+            // Les points vivent a part : chacun s'affiche des qu'une des coques
+            // qu'il concerne est visible.
+            const couchePoints = parcoursPointLayers[key];
+            if (couchePoints) {
+                (parcoursPoints[key] || []).forEach((marker) => {
+                    const coques = marker.__coques || [marker.__parcoursGroupe];
+                    const montrer = coques.some(visible);
+                    if (montrer) {
+                        if (!couchePoints.hasLayer(marker)) couchePoints.addLayer(marker);
+                    } else if (couchePoints.hasLayer(marker)) {
+                        couchePoints.removeLayer(marker);
+                    }
+                });
+                if (shouldShow) {
+                    group.addLayer(couchePoints);
+                } else {
+                    group.removeLayer(couchePoints);
+                }
+            }
+
             if (shouldShow) {
                 map.addLayer(group);
             } else {
@@ -3951,12 +4006,10 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         });
 
-        // Les tables de route designent par "les corvettes" les journees ou le Geographe
-        // et le Naturaliste naviguent de conserve : on nomme les deux navires.
+        // Les traces nomment desormais les coques une a une ; ce tableau ne sert
+        // plus qu'aux libelles collectifs que portent encore les donnees brutes.
         const shipDisplayNames = {
             'les corvettes': { fr: 'le Géographe & le Naturaliste', en: 'Géographe & Naturaliste' },
-            'corvettes-gn': { fr: 'le Géographe & le Naturaliste', en: 'Géographe & Naturaliste' },
-            'corvettes-gc': { fr: 'le Géographe & le Casuarina', en: 'Géographe & Casuarina' },
             // La Recherche et l'Espérance ont navigué de conserve d'un bout à l'autre
             // du voyage : les tables ne consignent qu'une position pour les deux.
             'la Recherche': { fr: "la Recherche & l'Espérance", en: 'Recherche & Espérance' }
@@ -3976,6 +4029,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         const shipDisplayName = (ship, lang) => {
+            // Deux coques de conserve : on les nomme toutes les deux, dans l'ordre
+            // ou le trace les porte.
+            if (Array.isArray(ship)) {
+                return ship.map((s) => shipDisplayName(s, lang)).join(' & ');
+            }
             const entry = shipDisplayNames[ship];
             if (!entry) return ship;
             return entry[lang] || entry.en || ship;
@@ -4192,26 +4250,52 @@ gtag('config', 'G-LCWV2EVPVQ');
                 });
                 const defaultShip = shipNamesFromLines.length === 1 ? shipNamesFromLines[0] : 'trajet';
 
-                // Un libelle de navire peut couvrir deux attelages successifs.
-                const splitShip = (ship, dateIso) => {
-                    const regles = source.shipSplits?.[ship];
-                    if (!Array.isArray(regles) || !regles.length) return ship;
+                // Les coques nommement relevees ce jour-la. « Les corvettes »
+                // designe la table du batiment amiral ; quand un compagnon tient
+                // sa propre table le meme jour, c'est qu'il etait releve a part,
+                // et la position des « corvettes » n'est plus que celle du
+                // Geographe. Les donnees le disent d'elles-memes : les deux
+                // releves viennent de deux tables publiees distinctes.
+                const nommeesParDate = new Map();
+                geojson.features.forEach((feature) => {
+                    if (feature?.geometry?.type !== 'Point') return;
+                    const nav = String(feature?.properties?.navire || '').trim();
+                    const date = String(feature?.properties?.date || '');
+                    if (!nav || !date || source.compagnons?.[nav]) return;
+                    if (!nommeesParDate.has(date)) nommeesParDate.set(date, new Set());
+                    nommeesParDate.get(date).add(nav);
+                });
+
+                // Un libelle collectif se resout en une ou deux coques.
+                const coquesPour = (ship, dateIso) => {
+                    const regles = source.compagnons?.[ship];
+                    if (!Array.isArray(regles) || !regles.length) return [ship];
+                    let paire = regles[regles.length - 1].navires;
                     for (const r of regles) {
-                        if (!r.until || String(dateIso) < r.until) return r.key;
+                        if (!r.until || String(dateIso) < r.until) { paire = r.navires; break; }
                     }
-                    return regles[regles.length - 1].key;
+                    const apart = nommeesParDate.get(String(dateIso));
+                    const ensemble = paire.filter((c) => !apart || !apart.has(c));
+                    return ensemble.length ? ensemble : [paire[0]];
                 };
 
+                // Chaque releve sait desormais quelles coques il concerne : une
+                // seule, ou deux quand elles naviguaient de conserve.
+                const releves = [];
                 const grouped = new Map();
                 geojson.features.forEach((feature, index) => {
                     if (feature?.geometry?.type !== 'Point') return;
                     const coords = feature.geometry.coordinates;
                     if (!Array.isArray(coords) || !isFiniteNumber(coords[0]) || !isFiniteNumber(coords[1])) return;
                     const brut = String(feature?.properties?.navire || '').trim() || defaultShip;
-                    const ship = splitShip(brut, String(feature?.properties?.date || ''));
-                    parcoursOrigine[key][ship] = brut;
-                    if (!grouped.has(ship)) grouped.set(ship, []);
-                    grouped.get(ship).push({ index, coords, props: feature.properties || {} });
+                    const coques = coquesPour(brut, String(feature?.properties?.date || ''));
+                    const releve = { index, coords, props: feature.properties || {}, coques, brut };
+                    releves.push(releve);
+                    coques.forEach((ship) => {
+                        parcoursOrigine[key][ship] = ship;
+                        if (!grouped.has(ship)) grouped.set(ship, []);
+                        grouped.get(ship).push(releve);
+                    });
                 });
 
                 grouped.forEach((entries, ship) => {
@@ -4242,23 +4326,31 @@ gtag('config', 'G-LCWV2EVPVQ');
                         return Math.round((tb - ta) / 86400000);
                     };
 
+                    // Le compagnon du moment : l'autre coque du meme releve, s'il
+                    // y en a une. Il change en cours de route, et le trace doit
+                    // changer avec lui puisque c'est lui qui donne la seconde
+                    // couleur.
+                    const compagnonDe = (entry) => entry.coques.find((c) => c !== ship) || null;
+
                     const runs = [];
                     let current = null;
                     let previousDate = null;
                     entries.forEach((entry, i) => {
                         const date = String(entry.props?.date || '');
                         const campaign = campaignFor(date);
+                        const compagnon = compagnonDe(entry);
                         // Un long silence ne rompt le trace que si le navire a
                         // reellement bouge : au mouillage, les tables cessent
                         // simplement de repeter les coordonnees.
                         const rupture = previousDate !== null
                             && joursEntre(previousDate, date) > PARCOURS_RUPTURE_JOURS
                             && distanceKm(latLngs[i - 1], latLngs[i]) > TIMELINE_MOUILLAGE_KM;
-                        if (!current || rupture || current.campaign !== campaign) {
+                        if (!current || rupture || current.campaign !== campaign
+                                || current.compagnon !== compagnon) {
                             const previous = current;
-                            current = { campaign, indices: [] };
-                            // Changement de campagne : on raccorde pour que la ligne
-                            // reste continue. Rupture : surtout pas.
+                            current = { campaign, compagnon, indices: [] };
+                            // Changement de campagne ou de compagnon : on raccorde
+                            // pour que la ligne reste continue. Rupture : surtout pas.
                             if (!rupture && previous && previous.indices.length) {
                                 current.indices.push(previous.indices[previous.indices.length - 1]);
                             }
@@ -4277,25 +4369,37 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const shipLayer = parcoursShipLayers[key][ship];
                     const shipColor = source.colors?.[ship] || fallbackColor;
 
+                    const ordre = Array.isArray(source.shipOrder) ? source.shipOrder : [];
                     runs.forEach((run) => {
                         const color = run.campaign?.color || shipColor;
                         const coords = run.indices.map((i) => latLngs[i]);
                         if (coords.length < 2) return;
 
+                        // De conserve, l'une des deux coques porte le trait plein
+                        // et l'autre les tirets. L'ordre de la legende decide, pour
+                        // que le choix soit le meme des deux cotes.
+                        const second = Boolean(run.compagnon)
+                            && ordre.indexOf(ship) > ordre.indexOf(run.compagnon);
                         const line = L.polyline(coords, {
                             pane: paneName,
                             color,
-                            weight: 3,
+                            // Un trait de conserve est un peu plus epais : deux
+                            // couleurs dans un trait fin ne se lisent plus au dezoom.
+                            weight: run.compagnon ? 4 : 3,
                             opacity: 0.95,
                             lineJoin: 'round',
-                            lineCap: 'round'
+                            lineCap: 'round',
+                            dashArray: second ? '9 9' : null
                         });
                         line.addTo(shipLayer);
+                        if (second) {
+                            parcoursPaires[key].push({ line, ship, compagnon: run.compagnon });
+                        }
 
                         // Fleches de sens de marche, espacees regulierement a l'ecran
                         // (repeat en pixels : la densite reste lisible a tous les zooms).
                         if (L.polylineDecorator && L.Symbol && L.Symbol.arrowHead) {
-                            L.polylineDecorator(line, {
+                            const fleches = L.polylineDecorator(line, {
                                 pane: paneName,
                                 patterns: [{
                                     offset: 40,
@@ -4313,7 +4417,15 @@ gtag('config', 'G-LCWV2EVPVQ');
                                         }
                                     })
                                 }]
-                            }).addTo(shipLayer);
+                            });
+                            // Les fleches ne se portent pas en double sur un trait
+                            // de conserve : celles de la coque en tirets n'
+                            // apparaissent que si elle se retrouve seule.
+                            if (second) {
+                                parcoursPaires[key][parcoursPaires[key].length - 1].fleches = fleches;
+                            } else {
+                                fleches.addTo(shipLayer);
+                            }
                         }
                     });
 
@@ -4352,6 +4464,9 @@ gtag('config', 'G-LCWV2EVPVQ');
                     });
 
                     entries.forEach((entry, i) => {
+                        // Un releve partage par deux coques ne donne qu'un point :
+                        // c'est la premiere des deux qui le porte.
+                        if (entry.coques[0] !== ship) return;
                         const campaign = campaignByIndex.get(i) || null;
                         const color = campaign?.color || shipColor;
                         const marker = L.circleMarker(latLngs[i], {
@@ -4372,7 +4487,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                                 pane: tooltipPaneName
                             });
                         }
-                        const popupShip = ship;
+                        // De conserve, la fiche nomme les deux coques.
+                        const popupShip = entry.coques.length > 1 ? entry.coques : ship;
                         // Contenu recalcule a chaque ouverture : suit la langue courante.
                         // Un clic sur un point cale aussi le curseur sur sa date.
                         const dateMs = Date.parse(`${String(entry.props?.date || '')}T00:00:00Z`);
@@ -4389,12 +4505,16 @@ gtag('config', 'G-LCWV2EVPVQ');
                             autoPanPaddingBottomRight: [20, 30]
                         });
                         marker.__parcoursGroupe = ship;
+                        // Les coques concernees : le point reste visible tant que
+                        // l'une d'elles l'est.
+                        marker.__coques = entry.coques;
                         if (Number.isFinite(dateMs)) {
                             const liste = parcoursMarqueurs[key].get(dateMs) || [];
                             liste.push(marker);
                             parcoursMarqueurs[key].set(dateMs, liste);
                         }
-                        marker.addTo(shipLayer);
+                        parcoursPoints[key].push(marker);
+                        marker.addTo(parcoursPointLayers[key]);
                     });
                 });
 
@@ -4539,8 +4659,6 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         const TIMELINE_NAVIRES = {
-            'corvettes-gn': ['G', 'N'],
-            'corvettes-gc': ['G', 'C'],
             'les corvettes': ['G', 'N'],
             'le Géographe': ['G'],
             'le Naturaliste': ['N'],
@@ -4825,8 +4943,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             const liste = parcoursMarqueurs[timelineKey]?.get(t);
             if (!liste || !liste.length) return;
             const visible = liste.find((m) => {
-                const groupe = m.__parcoursGroupe;
-                return parcoursShipWanted[timelineKey]?.[groupe] !== false;
+                const coques = m.__coques || [m.__parcoursGroupe];
+                return coques.some((c) => parcoursShipWanted[timelineKey]?.[c] !== false);
             });
             (visible || liste[0]).openPopup();
         };
