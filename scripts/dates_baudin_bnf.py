@@ -45,6 +45,25 @@ NOUVEL_AN = {9: (1800, 9, 23), 10: (1801, 9, 23),
 ANCRE = datetime.date(1801, 2, 20)
 FIN_PLAUSIBLE = datetime.date(1803, 9, 30)
 
+# Les relectures faites a l'oeil sur l'image, consignees dans relectures.json :
+#   « ancres » : en-tetes dont la date a ete etablie de visu. Le solveur ne
+#                discute pas ces journees-la, il compose avec.
+#   « rejets » : lignes de recit prises a tort pour des en-tetes.
+# Le fichier est facultatif : sans lui, la datation reste entierement calculee.
+RELECTURES = 'relectures.json'
+
+
+def relectures(dossier):
+    chemin = os.path.join(dossier, RELECTURES)
+    if not os.path.exists(chemin):
+        return {}, set()
+    d = json.load(open(chemin, encoding='utf-8'))
+    ancres = {(a['vue'], a['ligne']): datetime.date.fromisoformat(a['date'])
+              for a in d.get('ancres', [])}
+    rejets = {(r['vue'], r['ligne']) for r in d.get('rejets', [])}
+    return ancres, rejets
+
+
 LIGNE_COURTE = 62
 # un en-tête est centré, précédé d'un ornement typographique court ; la prose
 # qui parle elle aussi d'une « nuit du 7 au 8 » commence par des mots
@@ -161,7 +180,7 @@ def republicain(d):
     return None
 
 
-def entetes(dossier):
+def entetes(dossier, rejets=frozenset()):
     """Les repères de journée, dans l'ordre des feuillets.
 
     Deux sortes. L'en-tête proprement dit, « - Du 21 au 22 Floréal - ». Et,
@@ -181,9 +200,11 @@ def entetes(dossier):
         for i, ligne in enumerate(lignes):
             ligne = ligne.strip()
             # un en-tête est court et compte peu de mots ; la prose, qui parle
-            # elle aussi d'une « nuit du 7 au 8 », en compte davantage
-            if (len(ligne) > LIGNE_COURTE or len(ligne.split()) > 9
-                    or not ORNEMENT.match(ligne)):
+            # elle aussi d'une « nuit du 7 au 8 », en compte davantage. La
+            # première journée du volume fait exception : elle porte la formule
+            # complète, « Du 30 au 1er de Ventose an 9 de la République ».
+            if (len(ligne) > LIGNE_COURTE or not ORNEMENT.match(ligne)
+                    or len(ligne.split()) > 14):
                 continue
             m = ENTETE.search(ligne)
             if not m:
@@ -193,6 +214,11 @@ def entetes(dossier):
             if mois is None and (m.group(2) is None
                                  or chiffre(m.group(1)) is None):
                 continue
+            # au-delà de neuf mots, seul un nom de mois lisible fait foi
+            if len(ligne.split()) > 9 and mois is None:
+                continue
+            if (vue, ligne) in rejets:
+                continue        # ligne de récit, écartée après relecture
             a = chiffre(m.group(1))
             b = chiffre(m.group(2)) if m.group(2) else None
             if b is None:
@@ -204,6 +230,10 @@ def entetes(dossier):
         for i, ligne in enumerate(lignes):
             n = quantieme_ecrit([ligne])
             if n is None or any(0 <= i - j <= 6 for j in pris):
+                continue
+            # « le premier qui y est venu » n'ouvre aucune journée : les
+            # reprises écartées après relecture sont nommées une à une
+            if (vue, ligne.strip()) in rejets:
                 continue
             pris.append(i)
             trouves.append({'vue': vue, 'rang': i, 'ligne': ligne.strip(),
@@ -268,13 +298,21 @@ def penalites(vues_franchies):
     return p
 
 
-def resout(tr):
+def resout(tr, ancres=None):
     """La suite de dates de moindre coût, ancrée sur la première journée."""
     jours = [ANCRE + datetime.timedelta(days=i)
              for i in range((FIN_PLAUSIBLE - ANCRE).days + 1)]
     D, n = len(jours), len(tr)
 
     base = np.array([[cout_lecture(t, d) for d in jours] for t in tr])
+    # une journée relue sur l'image n'est plus une hypothèse : on l'impose,
+    # et le solveur réarrange le reste de la chaîne autour d'elle
+    rang = {d: i for i, d in enumerate(jours)}
+    for i, t in enumerate(tr):
+        d = (ancres or {}).get((t['vue'], t['ligne']))
+        if d is not None and d in rang:
+            base[i][:] = np.inf
+            base[i][rang[d]] = 0.0
     cout = np.full(D, np.inf)
     cout[0] = base[0][0]            # ancre imposée : la première journée
     parents = np.zeros((n, D), dtype=np.int32)
@@ -304,12 +342,13 @@ def resout(tr):
 
 def main():
     dossier = sys.argv[1].rstrip('/')
-    tr = entetes(dossier)
+    ancres, rejets = relectures(dossier)
+    tr = entetes(dossier, rejets)
     if not tr:
         sys.exit('aucun en-tête trouvé dans %s/ocr' % dossier)
-    suite = resout(tr)
+    suite = resout(tr, ancres)
 
-    accords = ecarts = sauts = 0
+    accords = ecarts = sauts = relus = 0
     precedent = None
     for t, d in zip(tr, suite):
         an, mo, jo = republicain(d)
@@ -322,14 +361,19 @@ def main():
         mois_ok = t['mois'] is None or mo >= 12 or t['mois'] == mo
         ecrit_ok = t['ecrit'] is None or t['ecrit'] == jo
         # le quantième en toutes lettres suffit à établir la journée
-        t['etat'] = ('accord' if ((lu_ok or t['ecrit'] == jo) and mois_ok
-                                  and ecrit_ok) else 'désaccord')
-        accords += t['etat'] == 'accord'
+        if (t['vue'], t['ligne']) in ancres:
+            t['etat'] = 'relu'          # établi de visu, hors de discussion
+        else:
+            t['etat'] = ('accord' if ((lu_ok or t['ecrit'] == jo) and mois_ok
+                                      and ecrit_ok) else 'désaccord')
+            accords += t['etat'] == 'accord'
         ecarts += t['etat'] == 'désaccord'
+        relus += t['etat'] == 'relu'
 
     vues = sorted({t['vue'] for t in tr})
     print('en-têtes repérés         : %d   (vues %d à %d, %d vues)'
           % (len(tr), vues[0], vues[-1], len(vues)))
+    print('  relues sur l’image     : %d' % relus)
     print('  date lue conforme      : %d  (%.0f %%)'
           % (accords, 100.0 * accords / len(tr)))
     print('  DÉSACCORD à relire     : %d' % ecarts)

@@ -235,6 +235,13 @@ couvrent très exactement ce que couvre le typescript, du 20 février 1801 au
         chemin = os.path.join(dossier, 'A_VERIFIER.md')
         open(chemin, 'w', encoding='utf-8').write(texte)
         print('\nécrit : %s' % chemin)
+        # la même liste, classée, pour les outils qui l'exploitent
+        brut = os.path.join(dossier, 'a_verifier.json')
+        json.dump([{k: v for k, v in d.items() if k != 'verdict'}
+                   for d in douteuses],
+                  open(brut, 'w', encoding='utf-8'),
+                  ensure_ascii=False, indent=1)
+        print('écrit : %s' % brut)
 
 
 if __name__ == '__main__':

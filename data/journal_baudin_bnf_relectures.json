@@ -1,0 +1,326 @@
+{
+ "ancres": [
+  {
+   "vue": 4,
+   "ligne": "- Du I au © Ventose an 9.eta.- ‘",
+   "date": "1801-02-21",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 9,
+   "ligne": "- Du 7 qu 68 Ventose —",
+   "date": "1801-02-27",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 10,
+   "ligne": ". « Du 8 au 5 Ventose —",
+   "date": "1801-02-28",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 40,
+   "ligne": "+ Du 82 Csrminal —",
+   "date": "1801-04-12",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 55,
+   "ligne": "« DU 12 au Ié Fioréai — |",
+   "date": "1801-05-03",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 167,
+   "ligne": "- Du 206 Messidor an 9 —",
+   "date": "1801-07-09",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 168,
+   "ligne": "- Du 28 lessidor an 9 -",
+   "date": "1801-07-11",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 217,
+   "ligne": "+ Du 86 Thermiéor —",
+   "date": "1801-08-14",
+   "motif": "lu « - Du 26 Thermidor - », suivi de « Le 26 »"
+  },
+  {
+   "vue": 221,
+   "ligne": "- Du 86 Thermidor - |",
+   "date": "1801-08-16",
+   "motif": "lu « - Du 28 Thermidor - », suivi de « Le 28 »"
+  },
+  {
+   "vue": 239,
+   "ligne": "- Du 18 Fructiéor -",
+   "date": "1801-08-30",
+   "motif": "lu « - Du 12 Fructidor - », suivi de « Le 12 »"
+  },
+  {
+   "vue": 246,
+   "ligne": "… Du 5 Brumaire an 10 de 1a République -",
+   "date": "1801-11-14",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 261,
+   "ligne": "… Du 8 au y Frimaire an 10 — .",
+   "date": "1801-11-30",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 265,
+   "ligne": "| - Du IT au IR Frimaire,.— :",
+   "date": "1801-12-03",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 266,
+   "ligne": "| - Du 12 au If Frimaire -",
+   "date": "1801-12-04",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 281,
+   "ligne": "…- Du 29 au 60 Frimaire -",
+   "date": "1801-12-21",
+   "motif": "lu « - Du 29 au 30 Frimaire - »"
+  },
+  {
+   "vue": 330,
+   "ligne": "- Du 5 Pluvioces — |",
+   "date": "1802-01-28",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 357,
+   "ligne": "- Du 86 Fluviose —.",
+   "date": "1802-02-15",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 363,
+   "ligne": "| - Du 6 Ventose -—",
+   "date": "1802-02-22",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 384,
+   "ligne": "- Du I? au 15 Ventose -",
+   "date": "1802-03-04",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 390,
+   "ligne": "— Du 17 au IS Ventose -",
+   "date": "1802-03-09",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 392,
+   "ligne": "… Du IS au If Ventese - |",
+   "date": "1802-03-10",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 397,
+   "ligne": "- DU 25 au £4 Ventose -",
+   "date": "1802-03-15",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 416,
+   "ligne": "Du 9 au ICO Germinak,",
+   "date": "1802-03-31",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 465,
+   "ligne": "| - Du 17 au IS Floréal -",
+   "date": "1802-05-08",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 470,
+   "ligne": "- DU 22 au 85 Floréal -",
+   "date": "1802-05-13",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 489,
+   "ligne": "+ Du 15 au lé Prairiai —",
+   "date": "1802-06-03",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 490,
+   "ligne": "- Du lé au 15 Prairial -",
+   "date": "1802-06-04",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 510,
+   "ligne": "- Du I au © Frimaire -",
+   "date": "1802-11-23",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 521,
+   "ligne": "… Du IC au IT Frimaire —",
+   "date": "1802-12-02",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 522,
+   "ligne": "- Du IT su IS Frimaire —",
+   "date": "1802-12-03",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 533,
+   "ligne": "« Du IS Frimaire -",
+   "date": "1802-12-09",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 538,
+   "ligne": "… Du 28 Frimaire - |",
+   "date": "1802-12-14",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 572,
+   "ligne": "… Du 81 Hivose —",
+   "date": "1803-01-11",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 575,
+   "ligne": "- DU 89 Nivose -",
+   "date": "1803-01-19",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 582,
+   "ligne": "- Du Ie au 15 Pluviose -",
+   "date": "1803-02-02",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 582,
+   "ligne": "- Du 15 au Lé Pluviose —",
+   "date": "1803-02-03",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 595,
+   "ligne": "- Du 25 Pluviose au 24 -",
+   "date": "1803-02-13",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 597,
+   "ligne": "- Du 26 au ?7 Pluviose —",
+   "date": "1803-02-16",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 619,
+   "ligne": "- Du II au I£ Ventose -",
+   "date": "1803-03-03",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 630,
+   "ligne": "- Du 21 au 82 Véntose —",
+   "date": "1803-03-13",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 632,
+   "ligne": "- Du 22 au 28 Ventose -",
+   "date": "1803-03-14",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 637,
+   "ligne": "- Du 87 Ventose an IT",
+   "date": "1803-03-18",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 640,
+   "ligne": "“ Du 86 Ventose",
+   "date": "1803-03-21",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 649,
+   "ligne": "… Du T'au 2 Serminal -",
+   "date": "1803-03-23",
+   "motif": "lu « - Du 1 au 2 Germinal - »"
+  },
+  {
+   "vue": 660,
+   "ligne": "+ Du IE Germinal |",
+   "date": "1803-04-02",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 684,
+   "ligne": "- Du 589 Germinal -",
+   "date": "1803-04-20",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 699,
+   "ligne": "| - Du 287 Prairial —",
+   "date": "1803-06-10",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 721,
+   "ligne": "- Du 90 Hessidor - |",
+   "date": "1803-07-09",
+   "motif": "lu « - Du 20 Messidor - / Le 20 (9 Juillet) », date grégorienne donnée par le typescript lui-même"
+  },
+  {
+   "vue": 722,
+   "ligne": "| - Du 2% Messidor.",
+   "date": "1803-07-11",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  },
+  {
+   "vue": 733,
+   "ligne": "- Du 19 Thoermidor -",
+   "date": "1803-08-01",
+   "motif": "en-tête relu sur l’image, conforme au calcul"
+  }
+ ],
+ "rejets": [
+  {
+   "vue": 18,
+   "ligne": "Le dix-sept los vents rovinrent au 8,6. et au 5.8.1/4 de"
+  },
+  {
+   "vue": 37,
+   "ligne": "le premior qui y ost venu."
+  },
+  {
+   "vue": 67,
+   "ligne": "le premier n'avait pas fait.Nous ramassames une assez grande"
+  },
+  {
+   "vue": 185,
+   "ligne": "‘ Le trois au coucher du soleil on diminua de voiles quoiqué"
+  },
+  {
+   "vue": 382,
+   "ligne": "le pesmier jour &6 notre dérart,"
+  }
+ ]
+}
