@@ -163,6 +163,9 @@
         .toggle-baudin input { accent-color: #0b63d1 !important; }
         .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
         .toggle-entre input { accent-color: #238b45 !important; }
+        /* Flinders reprend le carmin de la route de l'Investigator. */
+        .toggle-flinders { --toggle-color: #c2255c; background: #c2255c !important; border-color: #c2255c !important; }
+        .toggle-flinders input { accent-color: #c2255c !important; }
         .layer-toggle span { flex: 1; font-weight: 400; }
         .layer-toggle-row { display: flex; gap: 6px; }
         .layer-toggle-row > label { flex: 1; }
@@ -1510,6 +1513,14 @@ gtag('config', 'G-LCWV2EVPVQ');
             <div class="ship-block-title">Navires Flinders</div>
             <div class="ship-list" id="ship-list-baudin-flinders"></div>
         </div>
+        <!-- Les noms donnes par Flinders. Sa route est tracee au-dessus, parmi
+             celles de Baudin, qu'elle croisa : elle n'a pas de case ici. -->
+        <div class="layer-toggle-row">
+            <label class="toggle-flinders">
+                <input type="checkbox" id="toggle-flinders" checked>
+                <span data-i18n="map-layer-flinders">Flinders</span>
+            </label>
+        </div>
     </div>
 
     <div class="timeline-panel" id="timeline-panel" hidden aria-label="Curseur temporel">
@@ -1611,7 +1622,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         </div>
     </div>
 
-    <script src="js/translations.js?v=20260309"></script>
+    <script src="js/translations.js?v=20260918"></script>
     <script src="js/main.js?v=20260309"></script>
     <script>
         const defaultCenter = [-27, 135];
@@ -3701,14 +3712,24 @@ gtag('config', 'G-LCWV2EVPVQ');
                 label: "d'Entrecasteaux",
                 color: '#238b45',
                 dataUrl: `data/entrecasteaux.json`
+            },
+            // Les noms de Flinders ne sont pas francais : la fiche les annonce
+            // autrement, d'ou `libelleNom`.
+            flinders: {
+                key: 'flinders',
+                label: 'Flinders',
+                color: '#c2255c',
+                dataUrl: `data/flinders.json`,
+                libelleNom: 'popup-flinders-name'
             }
         };
 
         const expeditionLayers = {
             baudin: L.layerGroup().addTo(map),
-            entre: L.layerGroup().addTo(map)
+            entre: L.layerGroup().addTo(map),
+            flinders: L.layerGroup().addTo(map)
         };
-        let selectedExpeditions = new Set(['baudin', 'entre']);
+        let selectedExpeditions = new Set(Object.keys(expeditionConfigs));
 
         const ensureRoutesPane = () => {
             const paneName = 'routesPane';
@@ -4822,6 +4843,12 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const toggleBaudin = document.getElementById('toggle-baudin');
         const toggleEntre = document.getElementById('toggle-entre');
+        const toggleFlinders = document.getElementById('toggle-flinders');
+        // La case de chaque expedition, et sa case de route quand elle en a une.
+        // Flinders n'en a pas : sa trace se regle dans le volet de Baudin.
+        const casesExpedition = {
+            baudin: toggleBaudin, entre: toggleEntre, flinders: toggleFlinders
+        };
         const toggleBaudinParcours = document.getElementById('toggle-baudin-parcours');
         const toggleEntreParcours = document.getElementById('toggle-entre-parcours');
         // Set to true to re-enable the expedition route controls.
@@ -4831,6 +4858,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             const lower = value.toLowerCase();
             if (lower.includes('baudin')) return 'baudin';
             if (lower.includes('entre') || lower.includes("d'entrecasteaux")) return 'entre';
+            if (lower.includes('flinders')) return 'flinders';
             return '';
         };
 
@@ -4838,13 +4866,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (!key) return;
             if (!selectedExpeditions.has(key)) {
                 selectedExpeditions.add(key);
-                if (key === 'baudin') {
-                    toggleBaudin.checked = true;
-                    map.addLayer(expeditionLayers.baudin);
-                } else if (key === 'entre') {
-                    toggleEntre.checked = true;
-                    map.addLayer(expeditionLayers.entre);
-                }
+                const case_ = casesExpedition[key];
+                if (case_) case_.checked = true;
+                if (expeditionLayers[key]) map.addLayer(expeditionLayers[key]);
             }
         };
 
@@ -4892,20 +4916,35 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         toggleBaudin.addEventListener('change', () => setExpeditionVisibility('baudin', toggleBaudin.checked));
         toggleEntre.addEventListener('change', () => setExpeditionVisibility('entre', toggleEntre.checked));
+        if (toggleFlinders) {
+            toggleFlinders.addEventListener('change',
+                () => setExpeditionVisibility('flinders', toggleFlinders.checked));
+        }
         // Les deux routes restent exclusives l'une de l'autre. L'affichage des lieux,
         // lui, n'est plus touche : chaque case d'expedition le pilote seule.
         // Afficher une route met l'autre expedition en retrait : sa route est decochee,
         // et ses lieux aussi, pour degager la carte autour du parcours consulte.
-        const hideOtherExpedition = (key) => {
-            const other = key === 'baudin' ? 'entre' : 'baudin';
-            const otherRoute = other === 'baudin' ? toggleBaudinParcours : toggleEntreParcours;
-            if (otherRoute) otherRoute.checked = false;
-            parcoursWanted[other] = false;
-            updateParcoursVisibility(other);
+        const casesRoute = {
+            baudin: toggleBaudinParcours, entre: toggleEntreParcours
+        };
 
-            const otherPlaces = other === 'baudin' ? toggleBaudin : toggleEntre;
-            if (otherPlaces) otherPlaces.checked = false;
-            setExpeditionVisibility(other, false);
+        const hideOtherExpedition = (key) => {
+            Object.keys(expeditionConfigs).forEach((autre) => {
+                if (autre === key) return;
+                // Flinders nomma les memes cotes que Baudin, et sa trace est
+                // tracee avec la sienne : consulter l'une n'efface pas l'autre.
+                if (key === 'baudin' && autre === 'flinders') return;
+                if (key === 'flinders' && autre === 'baudin') return;
+                const route = casesRoute[autre];
+                if (route) route.checked = false;
+                if (autre in parcoursWanted) {
+                    parcoursWanted[autre] = false;
+                    updateParcoursVisibility(autre);
+                }
+                const places = casesExpedition[autre];
+                if (places) places.checked = false;
+                setExpeditionVisibility(autre, false);
+            });
         };
 
         const attachParcoursToggle = (key, input) => {
@@ -5535,7 +5574,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const safeAlt = escapeHtml(place.frenchName || '');
                     const aliasLabel = trans['popup-alias-name'] || 'Alias :';
 
-                    let textHtml = `<p><strong>${trans['popup-french-name']}</strong> ${highlightMatches(place.frenchName || '')}</p>`;
+                    // Les noms de Flinders sont anglais : les annoncer comme
+                    // « Nom francais » serait faux. Chaque expedition peut donc
+                    // nommer son propre libelle.
+                    const cleNom = expeditionConfigs[place.expeditionKey]?.libelleNom
+                        || 'popup-french-name';
+                    const libelleNom = trans[cleNom] || trans['popup-french-name'];
+                    let textHtml = `<p><strong>${libelleNom}</strong> ${highlightMatches(place.frenchName || '')}</p>`;
                     if (place.variantName && place.variantName.trim() !== "") {
                         textHtml += `<p class="popup-alias-p"><strong>${aliasLabel}</strong> ${highlightMatches(place.variantName)}</p>`;
                     }
@@ -5682,9 +5727,12 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         (async () => {
             try {
-                const baudinPlaces = await loadExpedition(expeditionConfigs.baudin);
-                const entrePlaces = await loadExpedition(expeditionConfigs.entre);
-                allPlaces = [...baudinPlaces, ...entrePlaces];
+                // Toutes les expeditions declarees, dans l'ordre du registre.
+                const lots = [];
+                for (const cfg of Object.values(expeditionConfigs)) {
+                    lots.push(await loadExpedition(cfg));
+                }
+                allPlaces = lots.flat();
                 allPlaces.forEach(place => computeRichness(place));
                 allMarkers = [];
                 markersByCode = new Map();

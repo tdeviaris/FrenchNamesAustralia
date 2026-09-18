@@ -12,6 +12,7 @@ const translations = {
         'nav-home': "Accueil", 'nav-map': "Carte", 'nav-ai': "Q&R IA", 'nav-resources': "Ressources", 'nav-objet': "Objet", 'nav-about': "À propos",
         'map-layer-baudin': "Baudin",
         'map-layer-entre': "d’Entrecasteaux",
+        'map-layer-flinders': "Flinders",
         'nav-actors': "Acteurs", 'nav-maps': "Cartes et illustrations", 'nav-glossary': "Glossaire", 'nav-expert': "Assistant IA",
         'skip-intro': "Passer",
 
@@ -272,6 +273,7 @@ const translations = {
         
         // --- Étiquettes pour les fiches des cartes (Popups) ---
         'popup-french-name': "Nom Français :",
+        'popup-flinders-name': "Nom donné par Flinders :",
         'popup-ause-name': "Nom Australien :",
         'popup-indigenous-name': "En",
         'popup-coordinates': "Lat-Long :",
@@ -317,6 +319,7 @@ const translations = {
         'nav-home': "Home", 'nav-map': "Map", 'nav-ai': "AI Q&A", 'nav-resources': "Resources", 'nav-objet': "Aim", 'nav-about': "About",
         'map-layer-baudin': "Baudin",
         'map-layer-entre': "d’Entrecasteaux",
+        'map-layer-flinders': "Flinders",
         'nav-actors': "Actors", 'nav-maps': "Maps and illustrations", 'nav-glossary': "Glossary", 'nav-expert': "AI Assistant",
         'skip-intro': "Skip",
 
@@ -579,6 +582,7 @@ const translations = {
 
         // --- Labels for Map Popups ---
         'popup-french-name': "French name:",
+        'popup-flinders-name': "Name given by Flinders:",
         'popup-ause-name': "Australian name:",
         'popup-indigenous-name': "In",
         'popup-coordinates': "Lat-Long :",
