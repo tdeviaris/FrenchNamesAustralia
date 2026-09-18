@@ -301,7 +301,8 @@
             border: 1px solid rgba(0, 0, 0, 0.15);
             border-radius: 6px;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-            padding: 6px 10px 5px;
+            /* La marge laterale loge les crochets, qui debordent la reglette. */
+            padding: 6px 15px 5px;
             font-size: 12px;
             user-select: none;
         }
@@ -317,7 +318,7 @@
            graduations : pas de marge interieure, sans quoi les deux reperes se
            decaleraient l'un par rapport a l'autre. Ils debordent un peu dans la
            marge du panneau, ce qui ne gene rien. */
-        .timeline-ruler { position: relative; width: 360px; }
+        .timeline-ruler { position: relative; width: 384px; }
         .timeline-ticks {
             position: relative;
             height: 7px;
@@ -345,8 +346,8 @@
            et s'arrete avant le curseur de date, qu'il ne doit pas gener. */
         .timeline-bracket {
             position: absolute;
-            top: -4px;
-            height: 24px;
+            top: -7px;
+            height: 30px;
             width: 15px;                /* la zone de prise, plus large que le trait */
             transform: translateX(-50%);
             padding: 0;
@@ -368,16 +369,16 @@
             /* Un lisere blanc, pour que le crochet se detache des graduations. */
             box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
         }
-        /* Le montant vertical tombe sur la date, les retours pointent vers
-           l'interieur de la periode retenue. */
+        /* Chaque crochet se tient entierement en dehors de la periode qu'il
+           borne : l'ouvrant a gauche de sa date, le fermant a droite. Les deux
+           enserrent ainsi ce qu'ils retiennent, et aux extremites ils ne
+           recouvrent plus les initiales de mois. */
         #timeline-bracket-debut::before {
-            left: 50%;
-            margin-left: -3px;
+            right: 50%;
             border-right: 0;
         }
         #timeline-bracket-fin::before {
-            right: 50%;
-            margin-right: -3px;
+            left: 50%;
             border-left: 0;
         }
         .timeline-bracket:hover::before,
@@ -386,8 +387,8 @@
         /* Ce qui tombe hors des crochets est grise sur la reglette elle-meme. */
         .timeline-hors {
             position: absolute;
-            top: -4px;
-            height: 24px;
+            top: -7px;
+            height: 30px;
             background: rgba(11, 99, 209, 0.10);
             pointer-events: none;
             z-index: 5;
@@ -399,8 +400,8 @@
             /* La poignee du curseur, haute de 18 px, remonte de 8 px au-dessus de
                sa piste, qui n'en fait que 3 : sans cette marge elle monterait
                jusque dans les initiales de mois et viendrait toucher les
-               crochets. Elle les degage de cinq bons pixels. */
-            margin: 14px 0 0;
+               crochets. Elle les degage de six bons pixels. */
+            margin: 19px 0 0;
             background: transparent;
             cursor: pointer;
         }
@@ -508,7 +509,7 @@
         }
         @media (max-width: 640px) {
             .timeline-ruler { width: 200px; }
-            .timeline-panel { right: 52px; padding: 5px 7px 4px; }
+            .timeline-panel { right: 52px; padding: 5px 12px 4px; }
         }
 
         /* Ensure popups sit above toggles */
