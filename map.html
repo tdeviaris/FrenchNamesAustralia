@@ -946,6 +946,46 @@
             outline: 2px solid #FFD700;
             outline-offset: 2px;
         }
+        /* Une note de source : un carton sobre, pour créditer un transcripteur
+           là où les autres sources portent un lien vers leur document. */
+        .note-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3200;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .note-modal.open { display: flex; }
+        .note-modal-content {
+            background: #fff;
+            max-width: 430px;
+            padding: 22px 24px 18px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.98rem;
+            line-height: 1.5;
+            color: #222;
+            position: relative;
+        }
+        .note-modal-close {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            border: 0;
+            background: none;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #666;
+        }
+        .note-modal-close:hover { color: #000; }
+        .note-modal-close:focus-visible { outline: 2px solid #0b6; }
+
         .map-modal {
             position: fixed;
             top: 0;
@@ -1435,6 +1475,13 @@ gtag('config', 'G-LCWV2EVPVQ');
         <div class="image-modal-container">
             <img src="" alt="" id="image-modal-image">
             <button type="button" id="image-modal-close" aria-label="Fermer l'image">&times;</button>
+        </div>
+    </div>
+
+    <div id="note-modal" class="note-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="note-modal-content">
+            <button type="button" class="note-modal-close" id="note-modal-close" aria-label="Fermer">&times;</button>
+            <p id="note-modal-text"></p>
         </div>
     </div>
 
@@ -3779,13 +3826,17 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // a ete confie a Dany avec l'accord de l'utiliser. Le lien
                 // pointera vers la page du site qui lui rend hommage.
                 champ: 'journal_baudin_autographe',
-                nom: { fr: 'Source journal de mer de Nicolas Baudin, manuscrit autographe — transcription de Marc Soviche',
-                       en: "Source: Nicolas Baudin's autograph sea journal — transcribed by Marc Soviche" }
+                nom: { fr: 'Source journal de mer de Baudin',
+                       en: "Source: Baudin's sea journal" },
+                note: { fr: "Transcription effectuée par Marc Soviche, Capitaine de Marine "
+                            + "Marchande, auteur du livre « 30 ans à la mer ».",
+                        en: "Transcribed by Marc Soviche, Master Mariner, author of the "
+                            + "book « 30 ans à la mer »." }
             },
             {
                 champ: 'journal_baudin',
-                nom: { fr: 'Source journal de mer de Nicolas Baudin',
-                       en: "Source: Nicolas Baudin's sea journal" },
+                nom: { fr: 'Source journal de mer de Baudin',
+                       en: "Source: Baudin's sea journal" },
                 traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2021/07/N-Baudin-Journal-de-mer-vol-1-.pdf' }
             },
@@ -3862,11 +3913,43 @@ gtag('config', 'G-LCWV2EVPVQ');
         const lienSource = (src, lang) => {
             const nom = escapeHtmlText(valeurLangue(src.nom, lang));
             const url = valeurLangue(src.url, lang);
-            return url
-                ? `<a class="parcours-popup-lien" href="${escapeHtmlText(url)}"`
-                  + ` target="_blank" rel="noopener">${nom}</a>`
-                : `<span class="parcours-popup-lien">${nom}</span>`;
+            if (url) {
+                return `<a class="parcours-popup-lien" href="${escapeHtmlText(url)}"`
+                    + ` target="_blank" rel="noopener">${nom}</a>`;
+            }
+            // Certaines sources n'ont pas de document en ligne mais une note
+            // à afficher : le nom reste cliquable et ouvre un carton.
+            const note = valeurLangue(src.note, lang);
+            if (note) {
+                return `<a class="parcours-popup-lien" href="#"`
+                    + ` data-note="${escapeHtmlText(note)}">${nom}</a>`;
+            }
+            return `<span class="parcours-popup-lien">${nom}</span>`;
         };
+
+        const noteModal = document.getElementById('note-modal');
+        const noteModalTexte = document.getElementById('note-modal-text');
+        const fermeNote = () => {
+            noteModal.classList.remove('open');
+            noteModal.setAttribute('aria-hidden', 'true');
+        };
+        document.addEventListener('click', (e) => {
+            const lien = e.target.closest('[data-note]');
+            if (lien) {
+                e.preventDefault();
+                noteModalTexte.textContent = lien.getAttribute('data-note');
+                noteModal.classList.add('open');
+                noteModal.setAttribute('aria-hidden', 'false');
+                return;
+            }
+            if (e.target === noteModal
+                || e.target.id === 'note-modal-close') fermeNote();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && noteModal.classList.contains('open')) {
+                fermeNote();
+            }
+        });
 
         // Les tables de route designent par "les corvettes" les journees ou le Geographe
         // et le Naturaliste naviguent de conserve : on nomme les deux navires.

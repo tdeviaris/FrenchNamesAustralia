@@ -40,7 +40,11 @@ DATE_GREG = re.compile(
 ENTETE_REP = re.compile(r'\b(' + MOIS_REP + r')\b', re.I)
 ANNEE_REP = re.compile(r'\ban\s*(\d{1,2})', re.I)
 # apparat de l'éditeur : renvois de feuillet et filets de séparation
-FEUILLET = re.compile(r'\[\s*\d+\s*V\s*p\.?\s*[\d,\s àa]*\]\s*')
+FEUILLET = re.compile(r'\[\s*(\d+)\s*V\s*p\.?\s*[\d,\s àa]*\]\s*')
+# Le volume 1 du manuscrit (Marine 5JJ/36) est celui que publie l'universite
+# de Sydney : le projet le donne deja, avec son lien. On ne retient donc ici
+# que les volumes 2 a 5, que Sydney ne publie pas.
+PREMIER_VOLUME = 2
 FILET = re.compile(r'^[_\-–—\s]{8,}$')
 # une journée qui ne porte que des notes d'éditeur n'a pas de texte
 VIDE = re.compile(r'^\(?\s*(vierge|blanc|table de lock[^)]*|non transcrit[^)]*|'
@@ -154,15 +158,23 @@ def est_entete(ligne):
 
 
 def journees(chemin):
-    """Les blocs de texte, un par en-tête rencontré."""
-    lots, courant = [], None
+    """Les blocs de texte, un par en-tête rencontré.
+
+    Le volume est suivi au fil des renvois de feuillet — « [2V p. 17] » ouvre
+    le deuxième volume — de sorte que chaque journée sait d'où elle vient.
+    """
+    lots, courant, volume = [], None, 1
     for ligne in paragraphes(chemin):
+        marque = FEUILLET.search(ligne)
+        if marque:
+            volume = int(marque.group(1))
         if FILET.match(ligne):
             continue
         if est_entete(ligne):
             if courant:
                 lots.append(courant)
-            courant = {'entete': FEUILLET.sub('', ligne).strip(), 'corps': []}
+            courant = {'entete': FEUILLET.sub('', ligne).strip(),
+                       'volume': volume, 'corps': []}
         elif courant is not None:
             nu = FEUILLET.sub('', ligne).strip()
             if nu and not VIDE.match(nu):
@@ -175,6 +187,8 @@ def journees(chemin):
 def main():
     chemin = sys.argv[1]
     lots = journees(chemin)
+    volume1 = sum(1 for l in lots if l['volume'] < PREMIER_VOLUME)
+    lots = [l for l in lots if l['volume'] >= PREMIER_VOLUME]
     textes, sans_date, vides = {}, 0, 0
     derniere = None
     for lot in lots:
@@ -194,7 +208,9 @@ def main():
         derniere = d
 
     js = sorted(textes)
-    print('en-têtes repérés          : %d' % len(lots))
+    print('en-têtes du volume 1      : %d  (écartés : Sydney les publie)'
+          % volume1)
+    print('en-têtes des volumes 2 à 5: %d' % len(lots))
     print('  sans date en clair      : %d' % sans_date)
     print('  sans texte (page vierge): %d' % vides)
     print('journées retenues         : %d' % len(textes))
@@ -204,6 +220,10 @@ def main():
 
     if '--ecrire' in sys.argv:
         gros = json.load(io.open(SORTIE, encoding='utf-8'))
+        # on repart de zéro pour ce champ : relancer le script ne doit pas
+        # laisser traîner des journées d'une extraction précédente
+        for v in gros.values():
+            v.pop(CHAMP, None)
         for cle, texte in textes.items():
             gros.setdefault(cle, {})[CHAMP] = texte.strip()
         json.dump(gros, io.open(SORTIE, 'w', encoding='utf-8'),
