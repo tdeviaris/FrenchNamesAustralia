@@ -1,4 +1,13 @@
-"""Rattache un journal de bord anonyme aux points du parcours Baudin.
+"""OBSOLETE -- ne plus lancer. Voir scripts/integre_anonyme.py.
+
+Ce script ecrivait les textes dans le GeoJSON, ce que l'architecture actuelle
+ne fait plus : les journaux vivent dans data/journaux/. Il creait aussi les
+points manquants par interpolation entre les deux releves encadrants, sans
+borner la duree du silence -- d'ou trois positions jetees en plein continent,
+reprises depuis par scripts/corrige_mouillages.py. Il n'est conserve que pour
+memoire de la facon dont les points extrapoles ont ete produits.
+
+Rattache un journal de bord anonyme aux points du parcours Baudin.
 
 Deux journaux sont traités, chacun dans sa propre propriété :
   journal_anonyme    Archives nationales, Marine 5JJ53 — à bord du Naturaliste

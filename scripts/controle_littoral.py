@@ -16,8 +16,28 @@ from littoral import Cote, Terre, km, points_tries, RACINE
 
 ECART_MAX_JOURS = 3
 LONGUEUR_MIN_KM = 12
+# Un mouillage tombe dans les terres parce que le trait de cote ne resout pas
+# les baies : la mediane de ces faux positifs est de l'ordre de dix kilometres.
+# Au-dela de ce seuil, ce n'est plus une baie mal dessinee, c'est une position
+# fausse -- et si elle est extrapolee, c'est une interpolation qui a saute
+# par-dessus un long silence des tables.
+ENFONCEMENT_MAX_KM = 25
 FICHIERS = [('Baudin', 'baudin_parcours.geojson'),
             ("d'Entrecasteaux", 'dentrecasteaux_parcours.geojson')]
+
+
+def enfoncement(terre, point):
+    """Distance, en km, entre une position a terre et la cote la plus proche."""
+    import numpy as np
+    global _SOMMETS
+    if _SOMMETS is None:
+        _SOMMETS = np.vstack(terre.anneaux)
+    lon, lat = point[0], point[1]
+    dx = (_SOMMETS[:, 0] - lon) * np.cos(np.radians(lat))
+    return float(np.min(np.hypot(dx, _SOMMETS[:, 1] - lat)) * 111.32)
+
+
+_SOMMETS = None
 
 
 def main(data):
@@ -68,6 +88,27 @@ def main(data):
                 j = f"{ecart}j" if ecart is not None else "?"
                 print(f"     [{cat:9}] {d1} -> {d2} ({j:>5}) | {p[1]:>9.4f},{p[0]:<10.4f} ->"
                       f" {q[1]:>9.4f},{q[0]:<10.4f} | {longueur:6.0f} km")
+
+        # Les segments disent quand la route coupe une terre ; ils ne disent pas
+        # a quel point un releve s'en est ecarte. Une position au milieu d'un
+        # continent ne se trahit qu'a cette mesure-la.
+        loin = []
+        for nav, lst in points_tries(gj).items():
+            for f in lst:
+                c = f['geometry']['coordinates']
+                if not terre.contient(c):
+                    continue
+                d = enfoncement(terre, c)
+                if d > ENFONCEMENT_MAX_KM:
+                    loin.append((d, str(f['properties'].get('date') or ''), nav,
+                                 c, bool(f['properties'].get('extrapole'))))
+        if loin:
+            print(f"\n  positions enfoncees de plus de {ENFONCEMENT_MAX_KM} km "
+                  f"dans les terres : {len(loin)}")
+            for d, date, nav, c, ext in sorted(loin, reverse=True):
+                quoi = 'extrapolee' if ext else 'RELEVEE'
+                print(f"     [{quoi:10}] {date} {nav:<15} "
+                      f"{c[1]:>9.4f},{c[0]:<10.4f} | {d:5.0f} km de la cote")
 
     print(f"\n{'='*78}\nTOTAL : {total} segment(s)")
     for k in sorted(global_cat):
