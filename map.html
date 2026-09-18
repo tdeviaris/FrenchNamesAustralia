@@ -276,6 +276,15 @@
             opacity: 0.7;
             font-size: 11px;
         }
+        /* Le motif qui accompagne la mention : pourquoi la position a ete
+           calculee, ou d'apres quoi un releve a ete corrige. Ecrit dans les
+           donnees depuis le debut, il n'etait affiche nulle part. */
+        .parcours-popup-motif {
+            font-size: 10px;
+            line-height: 1.35;
+            opacity: 0.6;
+            margin: 1px 0 3px;
+        }
         /* La fiche parcours reste etroite, independamment des popups de toponymes. */
         /* Exception : la fiche de parcours reste etroite malgre la largeur imposee
            aux popups de toponymes (720px, plus bas dans cette feuille). */
@@ -3947,10 +3956,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
                   empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée',
                   logbook: 'Position d’après le journal de bord',
+                  corrected: 'Relevé corrigé',
                   original: '', traduit: '' },
             en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
                   empty: 'No reading for this day.', extrapolated: 'Extrapolated position',
                   logbook: 'Position from the ship’s log',
+                  corrected: 'Corrected reading',
                   original: '(French original)', traduit: '(translated from the French)' }
         };
 
@@ -4241,12 +4252,29 @@ gtag('config', 'G-LCWV2EVPVQ');
                 .filter((j) => j.texte);
             // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
             const contenuTables = Boolean(remark) || shortRows.length || Boolean(winds);
+            // Un chiffre des tables que ses voisins dementent et que le recit
+            // contredit : la fiche dit lequel, et pourquoi.
+            const corrige = String(props?.releve_corrige || '').trim();
+            // Le motif n'accompagne que les positions calculees. Sur un releve
+            // ordinaire, le meme champ porte des notes techniques -- « longitude
+            // estimee », « longitude montre » -- qui n'ont rien a dire au lecteur.
+            const motif = extrapolated ? String(props?.alerte || '').trim() : '';
 
-            if (extrapolated || fromLog || contenuTables) {
+            if (extrapolated || fromLog || corrige || contenuTables) {
                 html += `<div class="parcours-popup-body">`;
                 if (extrapolated) {
                     html += `<div class="parcours-popup-extrapolated">`
                         + `${escapeHtmlText(labels.extrapolated)}</div>`;
+                    if (motif) {
+                        html += `<div class="parcours-popup-motif">`
+                            + `${escapeHtmlText(motif)}</div>`;
+                    }
+                }
+                if (corrige) {
+                    html += `<div class="parcours-popup-extrapolated">`
+                        + `${escapeHtmlText(labels.corrected)}</div>`
+                        + `<div class="parcours-popup-motif">`
+                        + `${escapeHtmlText(corrige)}</div>`;
                 }
                 if (fromLog) {
                     html += `<div class="parcours-popup-extrapolated">`
@@ -4286,7 +4314,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     + `</div>`;
             });
 
-            if (!extrapolated && !fromLog && !contenuTables && !journaux.length) {
+            if (!extrapolated && !fromLog && !corrige && !contenuTables && !journaux.length) {
                 html += `<div class="parcours-popup-empty">${escapeHtmlText(labels.empty)}</div>`;
             }
             return html + `</div>`;

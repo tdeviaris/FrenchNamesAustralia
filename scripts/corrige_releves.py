@@ -18,18 +18,32 @@ import io, json, os, sys
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GEOJSON = os.path.join(RACINE, 'data', 'baudin_parcours.geojson')
 
+def annotation(c):
+    """La note portée sur le point, telle que la fiche l'affichera."""
+    return ('latitude %s corrigée en %s — %s (table %s)'
+            % (sexagesimal(c['lat_avant']), sexagesimal(c['lat_apres']),
+               c['motif'], c['table']))
+
+
 CORRECTIONS = [
     {
         'date': '1802-04-13',
         'navire': 'le Géographe',
         'lon': 138.3094, 'lat_avant': -32.2000, 'lat_apres': -35.2000,
-        'table': '14 - Routes du Géographe à la Terre Napoléon, 1re campagne, p. 499',
-        'motif': "latitude portée 32°12' S ; les quatre relevés voisins vont de "
-                 "35°03' à 35°40' et la remarque de la veille dit « Entré dans "
-                 "le golfe Joséphine ». 32°12' placerait le navire à 350 km "
-                 "dans les terres. Le 5 a été lu 2",
+        'table': '14, p. 499',
+        'motif': "les quatre relevés voisins vont de 35°03\u2032 à 35°40\u2032 et "
+                 "la remarque de la veille dit « Entré dans le golfe Joséphine » ; "
+                 "la valeur portée placerait le navire à 350 km dans les terres. "
+                 "Le 5 a été lu 2",
     },
 ]
+
+
+def sexagesimal(lat):
+    """La latitude comme la porte une table : degrés, minutes, hémisphère."""
+    hemisphere = 'S' if lat < 0 else 'N'
+    minutes = round(abs(lat) * 60)
+    return '%d°%02d\u2032 %s' % (minutes // 60, minutes % 60, hemisphere)
 
 
 def main():
@@ -44,15 +58,16 @@ def main():
                 continue
             lon, lat = f['geometry']['coordinates']
             if abs(lat - c['lat_apres']) < 1e-6:
-                continue                      # déjà corrigé
+                # Déjà corrigé : on rafraîchit seulement la note, qui a pu
+                # changer de formulation.
+                p['releve_corrige'] = annotation(c)
+                continue
             if abs(lat - c['lat_avant']) > 1e-3:
                 print('  ATTENTION %s : latitude %.4f, attendue %.4f — laissé tel quel'
                       % (c['date'], lat, c['lat_avant']))
                 continue
             f['geometry']['coordinates'] = [lon, c['lat_apres']]
-            p['releve_corrige'] = ('latitude %.4f corrigée en %.4f — %s (%s)'
-                                   % (c['lat_avant'], c['lat_apres'],
-                                      c['motif'], c['table']))
+            p['releve_corrige'] = annotation(c)
             faits.append(c)
 
     print('relevés corrigés : %d' % len(faits))
