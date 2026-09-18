@@ -3747,6 +3747,11 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // trace est jointe ici pour qu'on puisse les voir ensemble,
                 // mais elle vient d'une autre source et d'un autre fichier.
                 urlsJointes: ['data/flinders_parcours.geojson'],
+                journauxJoints: ['flinders'],
+                // Flinders ne donne sa position que de loin en loin : avec le
+                // seuil commun, sa route se briserait en une vingtaine de
+                // troncons. On la garde d'un seul tenant.
+                ruptureJours: { "l'Investigator": 400 },
                 shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina',
                             "l'Investigator"],
                 colors: {
@@ -3997,6 +4002,15 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Deux journaux de bord anonymes, tenus à bord de deux navires différents.
         const SOURCES_JOURNAUX = [
             {
+                // Flinders a publie son recit lui-meme en 1814 ; le texte est
+                // ici dans sa langue, et c'est le site francais qui le donnera
+                // comme non traduit.
+                champ: 'journal_flinders',
+                nom: { fr: 'Source journal de Matthew Flinders',
+                       en: "Source: Matthew Flinders's journal" },
+                url: { fr: 'https://gutenberg.net.au/ebooks/e00049.html' }
+            },
+            {
                 // Transcription du manuscrit autographe de Baudin (Archives
                 // nationales, Marine 5JJ/36 a 5JJ/40) par Marc Soviche,
                 // capitaine de la marine marchande, mort en 2024. Son travail
@@ -4050,10 +4064,25 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Les textes de journaux vivent hors du GeoJSON : le parcours s'affiche
         // sans les attendre, et chaque langue a son propre fichier.
         const JOURNAUX_FICHIERS = {
-            baudin: { fr: 'data/journaux/baudin_fr.json', en: 'data/journaux/baudin_en.json' }
+            baudin: { fr: 'data/journaux/baudin_fr.json', en: 'data/journaux/baudin_en.json' },
+            // Flinders ecrit en anglais : c'est ici l'original, et c'est le
+            // site francais qui affichera un texte non traduit.
+            flinders: { en: 'data/journaux/flinders_en.json' }
         };
         const journauxTextes = {};        // clé `${expedition}:${langue}` -> { date: { champ: texte } }
         const journauxEnCours = {};
+
+        // Une expedition peut porter la trace d'un navire etranger : ses
+        // journaux se chargent avec les siens.
+        const chargeJournauxExpedition = (key, lang) => {
+            chargeJournaux(key, lang);
+            // Un journal joint n'existe pas forcement dans la langue du site :
+            // celui de Flinders n'est qu'en anglais. On charge donc toutes les
+            // versions qu'il declare, et la fiche se rabattra sur l'original.
+            (PARCOURS_SOURCES[key]?.journauxJoints || []).forEach((k) => {
+                Object.keys(JOURNAUX_FICHIERS[k] || {}).forEach((l) => chargeJournaux(k, l));
+            });
+        };
 
         const chargeJournaux = (key, lang) => {
             const fichier = JOURNAUX_FICHIERS[key]?.[lang];
@@ -4076,8 +4105,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         const textesJournaux = (key, date) => {
             const lang = getCurrentLanguage();
             const propre = journauxTextes[`${key}:${lang}`]?.[date] || {};
-            // À défaut de traduction, on montre l'original français plutôt que rien.
-            const secours = lang === 'fr' ? {} : (journauxTextes[`${key}:fr`]?.[date] || {});
+            // À défaut de traduction, on montre l'original plutôt que rien.
+            // L'original n'est pas toujours le français : Flinders écrit en
+            // anglais, et c'est alors le site français qui se rabat sur lui.
+            const autre = lang === 'fr' ? 'en' : 'fr';
+            const secours = journauxTextes[`${key}:${autre}`]?.[date] || {};
             return { propre, secours, lang };
         };
 
@@ -4259,10 +4291,13 @@ gtag('config', 'G-LCWV2EVPVQ');
             // propre etiquette. Les journaux de bord de l'expedition hote ne
             // sont pas les siens -- ils raconteraient la journee d'un autre
             // navire, a des centaines de lieues de la.
-            const joint = Boolean(String(props?.expedition || '').trim());
-            const { propre, secours } = joint
-                ? { propre: null, secours: null }
-                : textesJournaux(expedition, String(props?.date || ''));
+            // Un point joint vient d'une autre expedition : ses journaux sont
+            // les siens, non ceux de l'expedition hote, qui raconteraient la
+            // journee d'un autre navire a des centaines de lieues de la.
+            const venuDe = String(props?.expedition || '').trim();
+            const joint = Boolean(venuDe);
+            const { propre, secours } = textesJournaux(
+                joint ? venuDe.toLowerCase() : expedition, String(props?.date || ''));
             const journaux = SOURCES_JOURNAUX
                 .map((src) => {
                     const traduit = String(propre?.[src.champ] || '').trim();
@@ -4494,6 +4529,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                     // changer avec lui puisque c'est lui qui donne la seconde
                     // couleur.
                     const compagnonDe = (entry) => entry.coques.find((c) => c !== ship) || null;
+                    const rupture_jours = (source.ruptureJours || {})[ship]
+                        ?? PARCOURS_RUPTURE_JOURS;
 
                     const runs = [];
                     let current = null;
@@ -4506,7 +4543,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                         // reellement bouge : au mouillage, les tables cessent
                         // simplement de repeter les coordonnees.
                         const rupture = previousDate !== null
-                            && joursEntre(previousDate, date) > PARCOURS_RUPTURE_JOURS
+                            && joursEntre(previousDate, date) > rupture_jours
                             && distanceKm(latLngs[i - 1], latLngs[i]) > TIMELINE_MOUILLAGE_KM;
                         if (!current || rupture || current.campaign !== campaign
                                 || current.compagnon !== compagnon) {
@@ -4798,7 +4835,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 updateParcoursVisibility(key);
                 if (want) {
                     // En tâche de fond : le tracé ne l'attend pas.
-                    chargeJournaux(key, getCurrentLanguage());
+                    chargeJournauxExpedition(key, getCurrentLanguage());
                 }
                 timelineSynchronise();
             });
@@ -5319,7 +5356,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Les noms de navires suivent la langue du site.
         document.addEventListener('languageChanged', () => {
             Object.keys(parcoursWanted).forEach((key) => {
-                if (parcoursWanted[key]) chargeJournaux(key, getCurrentLanguage());
+                if (parcoursWanted[key]) chargeJournauxExpedition(key, getCurrentLanguage());
             });
             Object.keys(parcoursShipLayers).forEach((key) => {
                 if (Object.keys(parcoursShipLayers[key] || {}).length) {

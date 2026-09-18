@@ -21,7 +21,30 @@ import datetime, io, json, os, re, sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SORTIE = os.path.join(RACINE, 'data', 'flinders_parcours.geojson')
+JOURNAL = os.path.join(RACINE, 'data', 'journaux', 'flinders_en.json')
 NAVIRE = "l'Investigator"
+
+# Au mouillage, Flinders cesse de donner sa position : elle ne change pas. Sans
+# ces escales le trace saute d'un bout a l'autre du continent, et il manquait
+# tout Port Jackson -- ou l'Investigator passa dix semaines, en meme temps que
+# Baudin. Les dates viennent du recit lui-meme.
+ESCALES = [
+    {'du': '1801-12-09', 'au': '1802-01-04',
+     'lon': 117.95, 'lat': -35.05,
+     'lieu': "King George's Sound",
+     'appui': "le 10 decembre « we got the ship under way to beat up to the "
+              "entrance » ; le 30, « the ship unmoored » ; le 3 janvier on "
+              "prend conge des habitants"},
+    {'du': '1802-05-09', 'au': '1802-07-22',
+     'lon': 151.1461, 'lat': -33.8667,
+     'lieu': 'Port Jackson',
+     'appui': "le 9 mai « the Investigator was anchored in Sydney Cove » ; "
+              "le 22 juillet « we sailed out of Port Jackson »"},
+    {'du': '1803-06-09', 'au': '1803-06-09',
+     'lon': 151.1461, 'lat': -33.8667,
+     'lieu': 'Port Jackson, retour de la circumnavigation',
+     'appui': "fin de la campagne de l'Investigator, condamne a son retour"},
+]
 
 MOIS = {m: i + 1 for i, m in enumerate(
     'JANUARY FEBRUARY MARCH APRIL MAY JUNE JULY AUGUST SEPTEMBER OCTOBER '
@@ -121,10 +144,55 @@ def terre():
     return Terre()
 
 
+# Restes de la mise en page du site qui héberge le texte, et renvois d'atlas :
+# rien de cela n'appartient au récit.
+PARASITES = re.compile(
+    r'(?:Go to reference to Table[^.]{0,40}\.?|\[?Atlas[^)\]]{0,40}[)\]]|'
+    r'Project Gutenberg[^.]{0,80}\.|CHAPTER [IVXL]+\.)', re.I)
+
+
+def texte_du_jour(bloc):
+    """Le récit de la journée, débarrassé de l'appareil de l'édition."""
+    t = PARASITES.sub(' ', bloc)
+    # Les filets des tableaux d'appendice sont de la mise en page, non du récit.
+    t = re.sub(r'-{3,}', ' ', t)
+    t = re.sub(r'\s+', ' ', t).strip()
+    # Le bloc court jusqu'à l'en-tête suivant : on s'arrête à la fin de la
+    # dernière phrase entière, pour ne pas laisser une amorce en suspens.
+    # Une fiche de carte n'est pas une page de livre : on donne la substance de
+    # la journée et l'on renvoie au texte complet par le lien de la source.
+    if len(t) > 3600:
+        coupe = t.rfind('. ', 0, 3600)
+        t = (t[:coupe + 1] if coupe > 1200 else t[:3600]) + ' […]'
+    return t
+
+
+def proprietes(p):
+    """Ce que porte un point : sa source, et pourquoi il est la."""
+    e = p.get('escale')
+    if e:
+        return {
+            "date": p['date'].isoformat(), "navire": NAVIRE,
+            "expedition": "Flinders",
+            "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814",
+            "extrapole": True,
+            "alerte": "position tenue au mouillage : %s (%s)" % (e['lieu'], e['appui']),
+        }
+    return {
+        "date": p['date'].isoformat(), "navire": NAVIRE,
+        "expedition": "Flinders",
+        "table": "Matthew Flinders, A Voyage to Terra Australis, "
+                 "Londres, 1814, vol. %s" % p['volume'],
+        "alerte": "position relevée dans le récit publié ; Flinders ne la "
+                  "donne pas tous les jours",
+    }
+
+
 def main():
     dossier = sys.argv[1].rstrip('/')
     sol = terre()
     points, refuses, aterre, hors = [], 0, 0, 0
+    recits = {}
     for fichier in ('volume1.txt', 'volume2.txt'):
         chemin = os.path.join(dossier, fichier)
         if not os.path.exists(chemin):
@@ -134,6 +202,9 @@ def main():
             if d > FIN_INVESTIGATOR:
                 hors += 1
                 continue
+            recit = texte_du_jour(bloc)
+            if len(recit) > 120:
+                recits[d.isoformat()] = recit
             p = position(bloc)
             if not p:
                 continue
@@ -144,12 +215,28 @@ def main():
                 continue
             points.append({'date': d, 'coords': list(p), 'volume': fichier[6]})
 
+    # Les escales. On ne pose pas un point par journee du sejour : le navire ne
+    # bouge pas, et un marqueur muet n'apprend rien. On retient les journees ou
+    # Flinders a ecrit quelque chose, plus le premier et le dernier jour, qui
+    # marquent l'arrivee et l'appareillage.
+    connues = {p['date'] for p in points}
+    for e in ESCALES:
+        d = datetime.date.fromisoformat(e['du'])
+        fin = datetime.date.fromisoformat(e['au'])
+        while d <= fin:
+            if d not in connues and (d.isoformat() in recits or d == fin
+                                     or d == datetime.date.fromisoformat(e['du'])):
+                points.append({'date': d, 'coords': [e['lon'], e['lat']],
+                               'volume': '-', 'escale': e})
+                connues.add(d)
+            d += datetime.timedelta(days=1)
+
     points.sort(key=lambda x: x['date'])
     # Une position qui demanderait une vitesse impossible n'est pas celle du
     # navire : c'est une terre citée, ou un chiffre mal lu.
     gardes = []
     for p in points:
-        if gardes:
+        if gardes and not p.get('escale'):
             v = km(gardes[-1]['coords'], p['coords'])
             j = max(1, (p['date'] - gardes[-1]['date']).days)
             if v / j > KM_JOUR_MAX:
@@ -161,6 +248,10 @@ def main():
     print('  écartées, tombant à terre     : %d' % aterre)
     print('  écartées, vitesse impossible  : %d' % refuses)
     print('  journées postérieures à l’Investigator : %d' % hors)
+    print('récits de journée : %d  (%d caractères)'
+          % (len(recits), sum(len(x) for x in recits.values())))
+    avec = sum(1 for p in gardes if p['date'].isoformat() in recits)
+    print('  positions accompagnées de leur récit : %d / %d' % (avec, len(gardes)))
     if gardes:
         print('  du %s au %s' % (gardes[0]['date'], gardes[-1]['date']))
 
@@ -168,17 +259,13 @@ def main():
         gj = {"type": "FeatureCollection", "features": [
             {"type": "Feature",
              "geometry": {"type": "Point", "coordinates": p['coords']},
-             "properties": {
-                 "date": p['date'].isoformat(),
-                 "navire": NAVIRE,
-                 "expedition": "Flinders",
-                 "table": "Matthew Flinders, A Voyage to Terra Australis, "
-                          "Londres, 1814, vol. %s" % p['volume'],
-                 "alerte": "position tirée du récit publié ; Flinders ne la "
-                           "donne pas tous les jours",
-             }} for p in gardes]}
+             "properties": proprietes(p)} for p in gardes]}
         json.dump(gj, io.open(SORTIE, 'w', encoding='utf-8'), ensure_ascii=False)
         print('\n-> %s' % os.path.relpath(SORTIE, RACINE))
+        os.makedirs(os.path.dirname(JOURNAL), exist_ok=True)
+        json.dump({d: {'journal_flinders': t} for d, t in sorted(recits.items())},
+                  io.open(JOURNAL, 'w', encoding='utf-8'), ensure_ascii=False)
+        print('-> %s' % os.path.relpath(JOURNAL, RACINE))
     else:
         print('\n(simulation — relancer avec --ecrire)')
 
