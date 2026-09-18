@@ -1,0 +1,16 @@
+Vue : 18
+Folio : 16
+Date : suite
+
+sud estimée 28°36'- observée 28°41'- Longitude orientale estimée 51°59'- au N°31: 53°46'56". Au N°38:54°11'42"- Baromètre 28 pouces 1 ligne. Thermomètre 19°-
+Le dix-sept les vents revinrent au S.E. et au S.E.1/4 de Sud presque calme. Le ciel fut nébuleux et beau. Il se forma à différentes fois des grains dans plusieurs points de l'horizon mais aucun ne vint à nous et la chaleur du soleil sembla les avoir absorbés avant qu'ils se fussent élevés à une certaine hauteur au dessus de l'horizon. Dans la matinée nous multipliâmes les observations par les distances et leur résultat nous mit par 56°8'45" La longitude moyenne des montres à la même époque étoit de 53°59'19" en sorte que nous trouvâmes à quelques minutes près la même différence que les jours précédents et qui semble assurer bien exactement le retard de la marche de nos montres.
+Nous vimes dans la matinée et depuis la seconde fois seulement à compter de notre départ de Ténériff trois ou quatre pail en cul qui vinrent jouer au dessus de la girouette du batiment mais ils se tinrentà une trop grande hauteur pour pouvoir être tirés au fusil. Depuis les trente deux degrés nous avions perdu la vue des Albatros.
+A midi la latitude observée fut de 28°41' et la longitude suivant l'estime de 51°59'. La montre N°31 nous mettait alors par 53°46'36" et le N°38 par 54°11'42" ce qui nous donna pour la route parcourue une différence au Nord de 4"43" et une seconde à l'Est de 6'42".
+Pendant la soirée le temps fut beau mais il venta peu et quoique nous eussions toutes voiles dehors on ne fit pas grand chemin.
+Le résultat moyen de plusieurs armultt[?] et amplitudes donna pour déclinaison N.O. 18°27.30. La nuit du dix sept au dix huit fut belle et quoique le ciel se couvrit parfois de nuages venant du Sud ils passèrent sur nos têtes sans nous donner de vent.Ils allaient cependant assez vite pour nous donner lieu de croire qu'à une latitude plus Sud il devait venter bon frais de cette partie. Malgré que toutes nos observations de longitudes nous mettaient par celle de l'Isle de France je ne voulus point charger de route et continuai à gouverner au N.E. ne me croyant pas assez certain que nos montres qui avaient eu une marche si régulière jusqu'au Cap de Bonne Espérance ayant pu éprouver du Cap à l'endroit où nous trouvons une différence aussi considérable que celle dont nous venons de nous appercevoir depuis trois jours.
+
+Date : 1801-03-09
+En-tête : - du 17 au 18 Ventose -
+
+Observation. Route Nord 35) est. Chemin 40 mil. Latitude Sud estimée 28°11'- observée 28°3'32"- Longitude orientale p.l'estime 52°15'5" au N)31:54°4'54" au N)38 54°34'12". Barométre 28pouces 2 lignes. Therm.18°2.
+</content>

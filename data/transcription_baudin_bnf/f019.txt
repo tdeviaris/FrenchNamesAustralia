@@ -1,0 +1,18 @@
+Vue : 19
+Folio : 17
+Date : 1801-03-10
+
+Le 18 au matin les vents restèrent au S. Ouest et le calme continua jusqu'à 8 heures il y eut dans la matinée des grains dans presque tous les points de l'horizon et qui étaient tous agités par un vent différent.Nous en reçûmes plusieurs à bord qui nous donnèrent abondamment de la pluie et sans vent.Dans les intervalles nous répétâmes nos observations par des distances dont le résultat donna encore 2°27'42" à l'Est des montres mais le temps n'avait pas été trop favorable et nous fîmes peu de cas de ces derniers résultats.
+A midi la latitude observée fut de 28°3'32" et la longitude par l'estime de 52°15'5".Celle de nos montres à ce moment était pour le N°31:de 54°4'54" et au N°38 de 54°34'12" nous nous trouvâmes dans les 24 heures une différence de 1'16" à l'Est et une de 7'7" au Nord.
+A peine était-il midi que nous eûmes un grain qui fit passer les vents au S.S.E. et il venta jolie brise.Nous pensions qu'après le grain passé nous aurions du calme mais nous nous trompâmes cette fois à notre avantage,car les vents s'étant fixés au Sud ils furent toujours en augmentant.Nous avions même la crainte que le temps ne devint mauvais pendant la nuit tant le ciel était chargé de nuages sombres et avait mauvaise apparence.Le baromètre parraissait vouloir descendre et nous prîmes en conséquence nos précautions pour la nuit en serrant notre grand voile et nos perroquets dont nous n'avions pas besoin pour conserver le Naturaliste qui avait néanmoins toutes voiles dehors
+La nuit du 18 au 19 nous n'eûmes point le mauvais temps que les apparences nous avaient annoncé.Bien au contraire il venta très bonne brise du Sud au S.E. et nous fîmes bon chemin en gouvernant au Nord Est.Car malgré que nos distances observées nous missent beaucoup plus à l'Est que les montres j'avais peine à croire que leur marche eut éprouvé le retard dont nous croyions nous être aperçus.Pendant la nuit le temps fut très nébuleux et il passa quelques bonnes risées.Néanmoins nous n'amenâmes quelquefois de nos huniers que pour attendre le Naturaliste qui forçait de voiles pour nous suivre.
+
+- Du 18 au 19 Ventose -
+
+Observations.Route 23°45"Est.Chemin 200 milles.Latitude Sud estimée 25°12'.observée 25°2'49".Longitude orientale estimée 53°54'51"au N°31:55°31'9" au N°38:56°8'.Baromètre 28 pouces 2 lignes.Therm.18°8'.
+Le 19 nous eûmes très beau temps et une jolie brise variable dans la matinée du S.au S.S.E.et nous fîmes bon chemin les vents continuèrent ainsi dans l'après midi et pendant la nuit en sorte que les 24 heures furent la plus forte route que nous ayons faite depuis avoir doublé le Cap de Bonne Espérance.C'était sans contredit le plus beau jour de notre navigation puisque le bon vent que nous eûmes fut accompagné d'un beau soleil.
+A midi la latitude observée fut de 25°2'Sud et la longitude par l'estime de 53°54'51" celle indiquée par les montres fut
+</content>
+</invoke>
+<invoke name="Read">
+<parameter name="file_path">/Users/tdeviaris/Desktop/Toponymes/sources/baudin_bnf/bandes/f020a.jpg
