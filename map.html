@@ -3743,11 +3743,17 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // Une couleur par coque, et une seule. Un trajet parcouru de
                 // conserve se trace des deux couleurs, la seconde en tirets
                 // par-dessus la premiere.
-                shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina'],
+                // L'Investigator de Flinders croise la route de Baudin : sa
+                // trace est jointe ici pour qu'on puisse les voir ensemble,
+                // mais elle vient d'une autre source et d'un autre fichier.
+                urlsJointes: ['data/flinders_parcours.geojson'],
+                shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina',
+                            "l'Investigator"],
                 colors: {
                     'le Géographe': '#e8590c',
                     'le Naturaliste': '#0b63d1',
-                    'le Casuarina': '#7048e8'
+                    'le Casuarina': '#7048e8',
+                    "l'Investigator": '#c2255c'
                 },
                 // "les corvettes" ne designe pas la meme paire tout au long du
                 // voyage : le Naturaliste quitte Port Jackson pour la France le
@@ -3972,7 +3978,15 @@ gtag('config', 'G-LCWV2EVPVQ');
         const SOURCES_PARCOURS = {
             baudin: {
                 nom: 'Source Freycinet 1815',
-                url: 'https://gallica.bnf.fr/ark:/12148/bpt6k74602q'
+                url: 'https://gallica.bnf.fr/ark:/12148/bpt6k74602q',
+                // La trace de l'Investigator ne vient pas des tables de
+                // Freycinet mais du recit que Flinders a publie lui-meme.
+                parNavire: {
+                    "l'Investigator": {
+                        nom: 'Source Flinders 1814',
+                        url: 'https://gutenberg.net.au/ebooks/e00049.html'
+                    }
+                }
             },
             entre: {
                 nom: 'Source Rossel 1808',
@@ -4120,7 +4134,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             'les corvettes': { fr: 'le Géographe & le Naturaliste', en: 'Géographe & Naturaliste' },
             // La Recherche et l'Espérance ont navigué de conserve d'un bout à l'autre
             // du voyage : les tables ne consignent qu'une position pour les deux.
-            'la Recherche': { fr: "la Recherche & l'Espérance", en: 'Recherche & Espérance' }
+            'la Recherche': { fr: "la Recherche & l'Espérance", en: 'Recherche & Espérance' },
+            "l'Investigator": { fr: "l'Investigator (Flinders)", en: 'Investigator (Flinders)' }
         };
 
         // Les tables de Baudin sont numerotees de plusieurs facons : "4 - Titre",
@@ -4240,7 +4255,14 @@ gtag('config', 'G-LCWV2EVPVQ');
             // Retour du Naturaliste : la position vient des journaux du bord,
             // les tables de Freycinet s'arrêtant à Port Jackson.
             const fromLog = Boolean(props?.position_journal);
-            const { propre, secours } = textesJournaux(expedition, String(props?.date || ''));
+            // Un point joint vient d'une autre expedition : il porte alors sa
+            // propre etiquette. Les journaux de bord de l'expedition hote ne
+            // sont pas les siens -- ils raconteraient la journee d'un autre
+            // navire, a des centaines de lieues de la.
+            const joint = Boolean(String(props?.expedition || '').trim());
+            const { propre, secours } = joint
+                ? { propre: null, secours: null }
+                : textesJournaux(expedition, String(props?.date || ''));
             const journaux = SOURCES_JOURNAUX
                 .map((src) => {
                     const traduit = String(propre?.[src.champ] || '').trim();
@@ -4251,7 +4273,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                 })
                 .filter((j) => j.texte);
             // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
-            const contenuTables = Boolean(remark) || shortRows.length || Boolean(winds);
+            // Un point joint n'a ni remarque ni mesures, mais il doit tout de
+            // meme nommer sa source : on lui ouvre le bloc.
+            const contenuTables = Boolean(remark) || shortRows.length
+                || Boolean(winds) || joint;
             // Un chiffre des tables que ses voisins dementent et que le recit
             // contredit : la fiche dit lequel, et pourquoi.
             const corrige = String(props?.releve_corrige || '').trim();
@@ -4281,7 +4306,9 @@ gtag('config', 'G-LCWV2EVPVQ');
                         + `${escapeHtmlText(labels.logbook)}</div>`;
                 }
                 if (contenuTables) {
-                    const src = SOURCES_PARCOURS[expedition];
+                    const racine = SOURCES_PARCOURS[expedition];
+                    const src = racine?.parNavire?.[String(props?.navire || '')]
+                        || racine;
                     if (src) {
                         html += `<div class="parcours-popup-src">${lienSource(src)}</div>`;
                     }
@@ -4360,6 +4387,17 @@ gtag('config', 'G-LCWV2EVPVQ');
                 if (!geojson || !Array.isArray(geojson.features)) {
                     console.warn(`Parcours introuvable : ${source.url}`);
                     return;
+                }
+                // Une expedition peut se voir adjoindre la trace d'un autre
+                // navire, tenue dans son propre fichier : on concatene les
+                // points, chacun gardant son navire et sa source.
+                for (const jointe of (source.urlsJointes || [])) {
+                    const autre = await loadJsonFile(jointe);
+                    if (autre && Array.isArray(autre.features)) {
+                        geojson.features = geojson.features.concat(autre.features);
+                    } else {
+                        console.warn(`Parcours joint introuvable : ${jointe}`);
+                    }
                 }
                 const paneName = ensureRoutesPane();
                 const tooltipPaneName = ensureParcoursTooltipPane();
@@ -4790,7 +4828,8 @@ gtag('config', 'G-LCWV2EVPVQ');
         const TIMELINE_SERIE_PROPRE = {
             'G': 'le Géographe',
             'N': 'le Naturaliste',
-            'C': 'le Casuarina'
+            'C': 'le Casuarina',
+            'I': "l'Investigator"
         };
 
         const TIMELINE_NAVIRES = {
@@ -4798,6 +4837,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             'le Géographe': ['G'],
             'le Naturaliste': ['N'],
             'le Casuarina': ['C'],
+            "l'Investigator": ['I'],
             'la Recherche': ['R', 'E']
         };
 
