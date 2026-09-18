@@ -3968,11 +3968,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                   empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée',
                   logbook: 'Position d’après le journal de bord',
                   corrected: 'Relevé corrigé',
+                  fromChart: 'Position relevée sur la carte',
                   original: '', traduit: '' },
             en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
                   empty: 'No reading for this day.', extrapolated: 'Extrapolated position',
                   logbook: 'Position from the ship’s log',
                   corrected: 'Corrected reading',
+                  fromChart: 'Position taken from the chart',
                   original: '(French original)', traduit: '(translated from the French)' }
         };
 
@@ -4315,12 +4317,15 @@ gtag('config', 'G-LCWV2EVPVQ');
             // Un chiffre des tables que ses voisins dementent et que le recit
             // contredit : la fiche dit lequel, et pourquoi.
             const corrige = String(props?.releve_corrige || '').trim();
+            // Position lue sur une gravure d'epoque plutot qu'observee : la
+            // fiche le dit, et donne le repere date d'ou elle vient.
+            const surCarte = String(props?.releve_carte || '').trim();
             // Le motif n'accompagne que les positions calculees. Sur un releve
             // ordinaire, le meme champ porte des notes techniques -- « longitude
             // estimee », « longitude montre » -- qui n'ont rien a dire au lecteur.
             const motif = extrapolated ? String(props?.alerte || '').trim() : '';
 
-            if (extrapolated || fromLog || corrige || contenuTables) {
+            if (extrapolated || fromLog || corrige || surCarte || contenuTables) {
                 html += `<div class="parcours-popup-body">`;
                 if (extrapolated) {
                     html += `<div class="parcours-popup-extrapolated">`
@@ -4335,6 +4340,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                         + `${escapeHtmlText(labels.corrected)}</div>`
                         + `<div class="parcours-popup-motif">`
                         + `${escapeHtmlText(corrige)}</div>`;
+                }
+                if (surCarte) {
+                    html += `<div class="parcours-popup-extrapolated">`
+                        + `${escapeHtmlText(labels.fromChart)}</div>`
+                        + `<div class="parcours-popup-motif">`
+                        + `${escapeHtmlText(surCarte)}</div>`;
                 }
                 if (fromLog) {
                     html += `<div class="parcours-popup-extrapolated">`
@@ -4376,7 +4387,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                     + `</div>`;
             });
 
-            if (!extrapolated && !fromLog && !corrige && !contenuTables && !journaux.length) {
+            if (!extrapolated && !fromLog && !corrige && !surCarte
+                    && !contenuTables && !journaux.length) {
                 html += `<div class="parcours-popup-empty">${escapeHtmlText(labels.empty)}</div>`;
             }
             return html + `</div>`;

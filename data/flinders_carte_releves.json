@@ -1,0 +1,232 @@
+{
+ "source": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814 ; exemplaire numérisé par la National Library of Australia, nla.obj-232588549",
+ "methode": "Positions relevées à l'œil sur la gravure, aux dates que Flinders y a portées, puis converties par scripts/carte_flinders.py. La carte est en projection de Mercator. Deux résolutions ont servi : le fichier ordinaire de 5000 px, où un pixel vaut 1,2 km, et la gravure pleine de 11850 x 8992 px, servie en tuiles DeepZoom, où il vaut 0,5 km et où les quantièmes se lisent sans ambiguïté.",
+ "releves": [
+  {
+   "date": "1801-12-03",
+   "lon": 105.421,
+   "lat": -35.254,
+   "libelle": "Dec. 3. 1801",
+   "resolution": "pleine",
+   "note": "sur la route venue du Cap de Bonne-Espérance, contre le bord ouest de la carte"
+  },
+  {
+   "date": "1801-12-06",
+   "lon": 114.27,
+   "lat": -35.24,
+   "libelle": "Dec. 6",
+   "note": "confirme la position tirée du récit (114,32 E / 35,17 S)"
+  },
+  {
+   "date": "1802-01-07",
+   "lon": 119.719,
+   "lat": -34.331,
+   "libelle": "Jan. 7. 1802",
+   "resolution": "pleine",
+   "note": "côte sud, à l'est de Point Hood"
+  },
+  {
+   "date": "1802-01-19",
+   "lon": 124.79,
+   "lat": -33.1,
+   "libelle": "Jan. 19. 1802",
+   "note": "côte sud, à l'est de l'archipel de la Recherche"
+  },
+  {
+   "date": "1802-01-26",
+   "lon": 128.8,
+   "lat": -31.96,
+   "libelle": "Jan. 26. 1802",
+   "resolution": "ordinaire",
+   "note": "confirme le récit (128,68 E / 31,86 S)"
+  },
+  {
+   "date": "1802-01-28",
+   "lon": 131.32,
+   "lat": -32.02,
+   "libelle": "Jan. 28. 1802",
+   "resolution": "ordinaire",
+   "note": "confirme le récit (131,85 E / 32,04 S)"
+  },
+  {
+   "date": "1802-01-30",
+   "lon": 132.36,
+   "lat": -32.44,
+   "libelle": "Jan. 30. 1802",
+   "resolution": "ordinaire",
+   "note": "archipel de Nuyts"
+  },
+  {
+   "date": "1802-02-19",
+   "lon": 135.582,
+   "lat": -35.156,
+   "libelle": "Feb. 19. 1802",
+   "resolution": "pleine",
+   "note": "entrée du golfe Spencer"
+  },
+  {
+   "date": "1802-03-08",
+   "lon": 137.286,
+   "lat": -33.926,
+   "libelle": "Mar. 8.",
+   "resolution": "pleine",
+   "note": "dans le golfe Spencer, vers sa tête"
+  },
+  {
+   "date": "1802-03-19",
+   "lon": 136.928,
+   "lat": -34.88,
+   "libelle": "Mar. 19.",
+   "resolution": "pleine",
+   "note": "au sud de Port Lincoln, vers l'île Thistle"
+  },
+  {
+   "date": "1802-04-11",
+   "lon": 139.528,
+   "lat": -36.331,
+   "libelle": "Apr. 11. 1802",
+   "resolution": "pleine",
+   "note": "au sud du cap Jervis ; le libellé, illisible à la résolution ordinaire, se lit « 11 » et non « 13 » sur la gravure pleine"
+  },
+  {
+   "date": "1802-04-19",
+   "lon": 141.284,
+   "lat": -38.562,
+   "libelle": "Apr. 19",
+   "resolution": "pleine",
+   "note": "à l'est du cap Northumberland"
+  },
+  {
+   "date": "1802-04-21",
+   "lon": 144.415,
+   "lat": -39.263,
+   "libelle": "Apr. 21. 1802",
+   "resolution": "pleine",
+   "note": "abords de l'île King ; confirme le récit"
+  },
+  {
+   "date": "1802-05-03",
+   "lon": 144.877,
+   "lat": -38.709,
+   "libelle": "May 3.",
+   "resolution": "pleine",
+   "note": "sortie de Port Phillip ; lu en bord de vue, à confirmer"
+  },
+  {
+   "date": "1802-05-04",
+   "lon": 146.605,
+   "lat": -39.672,
+   "libelle": "May 4. 1802",
+   "resolution": "pleine",
+   "note": "au sud-est de Wilson's Promontory, dans le détroit de Bass"
+  },
+  {
+   "date": "1802-05-07",
+   "lon": 151.26,
+   "lat": -36.4,
+   "libelle": "May 7. 1802",
+   "note": "au large de l'île Montague"
+  },
+  {
+   "date": "1802-05-08",
+   "lon": 151.919,
+   "lat": -34.308,
+   "libelle": "May 8. 1802",
+   "resolution": "pleine",
+   "note": "au large de Botany Bay"
+  },
+  {
+   "date": "1802-07-23",
+   "lon": 152.948,
+   "lat": -32.245,
+   "libelle": "July 23. 1802",
+   "resolution": "pleine",
+   "note": "côte de Nouvelle-Galles du Sud, au nord du cap Hawke"
+  },
+  {
+   "date": "1802-07-25",
+   "lon": 153.531,
+   "lat": -29.177,
+   "libelle": "July 25. 1802",
+   "resolution": "pleine",
+   "note": "côte est, près du cap Byron"
+  },
+  {
+   "date": "1802-07-27",
+   "lon": 153.265,
+   "lat": -25.826,
+   "libelle": "July 27. 1802",
+   "resolution": "pleine",
+   "note": "au nord de Double Island Point, sous Indian Head"
+  },
+  {
+   "date": "1802-10-17",
+   "lon": 149.591,
+   "lat": -20.509,
+   "libelle": "Oct. 17. 1802",
+   "resolution": "pleine",
+   "note": "îles Cumberland, dans la Grande Barrière"
+  },
+  {
+   "date": "1802-10-22",
+   "lon": 148.731,
+   "lat": -16.767,
+   "libelle": "Oct. 22.",
+   "resolution": "pleine",
+   "note": "au large de l'île Green"
+  },
+  {
+   "date": "1802-10-25",
+   "lon": 147.385,
+   "lat": -13.01,
+   "libelle": "Oct. 25. 1802",
+   "resolution": "pleine",
+   "note": "mer de Corail, dans l'approche du détroit de Torrès"
+  },
+  {
+   "date": "1802-10-27",
+   "lon": 146.131,
+   "lat": -10.6,
+   "libelle": "Oct. 27",
+   "resolution": "pleine",
+   "note": "à l'est du détroit de Torrès, vers les Eastern Fields"
+  },
+  {
+   "date": "1802-11-04",
+   "lon": 141.758,
+   "lat": -11.534,
+   "libelle": "Nov. 4. 1802",
+   "resolution": "pleine",
+   "note": "au sud du cap York, à la sortie du détroit"
+  },
+  {
+   "date": "1802-11-13",
+   "lon": 141.226,
+   "lat": -16.499,
+   "libelle": "Nov. 13.",
+   "resolution": "pleine",
+   "note": "rive orientale du golfe de Carpentarie, au nord des îles Wellesley"
+  },
+  {
+   "date": "1803-06-08",
+   "lon": 151.284,
+   "lat": -34.52,
+   "libelle": "June 8. 1803",
+   "resolution": "pleine",
+   "note": "près de Red Point, au retour de la circumnavigation"
+  }
+ ],
+ "restantes": [],
+ "autres_campagnes": {
+  "commentaire": "Relevés lus sur la même planche mais qui n'appartiennent pas à l'Investigator. Flinders rentre en 1803 sur le Porpoise, qui fait naufrage, puis sur la goélette Cumberland, à bord de laquelle il sera retenu à l'Île de France. Dany le confirme pour le 30 octobre.",
+  "cumberland_1803": [
+   {
+    "date": "1803-10-30",
+    "lon": 135.016,
+    "lat": -10.6,
+    "libelle": "Oct. 30.",
+    "note": "mer d'Arafura, contre le raccord des deux feuilles ; entouré des dates de mars 1803 du levé de la côte nord, et dans la suite est-ouest de « Oct. 19. 1803 » et « Oct. 25. 1803 »"
+   }
+  ]
+ }
+}
