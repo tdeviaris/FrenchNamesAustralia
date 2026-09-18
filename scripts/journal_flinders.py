@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Tire le parcours de l'Investigator du récit publié par Flinders.
+"""Tire du récit publié par Flinders le parcours de ses trois bâtiments.
 
 « A Voyage to Terra Australis », Londres, 1814, deux volumes, tels que les
 donne Project Gutenberg Australia. Le texte est daté journée par journée, en
@@ -13,6 +13,11 @@ Deux volumes se succèdent sans rien perdre : le premier s'arrête au 9 mai 1802
 le second reprend au 22 juillet. L'intervalle est le carénage de Port Jackson,
 où le navire ne bougeait pas — et où Baudin se trouvait aussi.
 
+L'Investigator est condamné à son retour à Port Jackson. Flinders repart le
+10 août 1803 sur le Porpoise, qui se perd sept jours plus tard sur Wreck Reef,
+puis le 21 septembre sur la goélette Cumberland. Le récit ne s'interrompt pas :
+seul change le bâtiment sous ses pieds, et c'est ce que dit NAVIRES.
+
 Les positions sont rapportées à Greenwich, non à Paris : aucune conversion.
 
 Usage : python3 scripts/journal_flinders.py <dossier des textes> [--ecrire]
@@ -22,7 +27,23 @@ import datetime, io, json, os, re, sys
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SORTIE = os.path.join(RACINE, 'data', 'flinders_parcours.geojson')
 JOURNAL = os.path.join(RACINE, 'data', 'journaux', 'flinders_en.json')
-NAVIRE = "l'Investigator"
+# Chaque campagne, du jour de l'appareillage au dernier jour utile. Entre le
+# naufrage de Wreck Reef et l'appareillage de la Cumberland, Flinders regagne
+# Port Jackson dans un canot puis y attend un bâtiment : ces cinq semaines ne
+# sont la route d'aucun navire, et ne portent pas de point.
+NAVIRES = [
+    ("l'Investigator", '1801-01-01', '1803-06-09'),
+    ('le Porpoise',    '1803-08-10', '1803-08-17'),
+    ('le Cumberland',  '1803-09-21', '1803-12-16'),
+]
+
+
+def navire_du_jour(d):
+    """Le bâtiment que Flinders monte ce jour-là, ou None."""
+    for nom, du, au in NAVIRES:
+        if datetime.date.fromisoformat(du) <= d <= datetime.date.fromisoformat(au):
+            return nom
+    return None
 
 # Au mouillage, Flinders cesse de donner sa position : elle ne change pas. Sans
 # ces escales le trace saute d'un bout a l'autre du continent, et il manquait
@@ -32,9 +53,9 @@ ESCALES = [
     {'du': '1801-12-09', 'au': '1802-01-04',
      'lon': 117.95, 'lat': -35.05,
      'lieu': "King George's Sound",
-     'appui': "le 10 decembre « we got the ship under way to beat up to the "
+     'appui': "le 10 décembre « we got the ship under way to beat up to the "
               "entrance » ; le 30, « the ship unmoored » ; le 3 janvier on "
-              "prend conge des habitants"},
+              "prend congé des habitants"},
     {'du': '1802-05-09', 'au': '1802-07-22',
      'lon': 151.1461, 'lat': -33.8667,
      'lieu': 'Port Jackson',
@@ -43,7 +64,49 @@ ESCALES = [
     {'du': '1803-06-09', 'au': '1803-06-09',
      'lon': 151.1461, 'lat': -33.8667,
      'lieu': 'Port Jackson, retour de la circumnavigation',
-     'appui': "fin de la campagne de l'Investigator, condamne a son retour"},
+     'appui': "fin de la campagne de l'Investigator, condamné à son retour"},
+    {'du': '1803-08-10', 'au': '1803-08-10',
+     'lon': 151.1461, 'lat': -33.8667,
+     'lieu': 'Port Jackson, appareillage du Porpoise',
+     'appui': "le 10 août « we sailed out of Port Jackson together, at eleven "
+              "o'clock of the same morning, and steered north-eastward for "
+              "Torres' Strait »"},
+    {'du': '1803-09-21', 'au': '1803-09-21',
+     'lon': 151.1461, 'lat': -33.8667,
+     'lieu': 'Port Jackson, appareillage de la Cumberland',
+     'appui': "le 21 septembre « I sailed out of the harbour in the Cumberland "
+              "at daylight, with the Rolla and Francis in company »"},
+    {'du': '1803-10-07', 'au': '1803-10-11',
+     'lon': 155.293, 'lat': -22.239,
+     'lieu': 'Wreck Reef, où la Cumberland recueille les naufragés',
+     'appui': "arrivée le 7 octobre ; « on parting from the Rolla, at noon "
+              "Oct. 11, off Bird Islet, our course was steered N. N. W. »"},
+]
+
+# Flinders a perdu son journal dans le naufrage du Porpoise : la traversee de
+# la Cumberland vers Wreck Reef est racontee de memoire, sans les tournures
+# habituelles, et le depouillement automatique n'y trouve rien. Ces deux
+# positions-la sont pourtant dites en toutes lettres.
+POSITIONS_DITES = [
+    {'date': '1803-09-22', 'lon': 152.22, 'lat': -32.73,
+     'appui': "« I anchored in a small bight under Point Stephens, in very bad "
+              "plight » ; le lendemain la Cumberland rejoint la Rolla et la "
+              "Francis dans Port Stephens"},
+    {'date': '1803-10-02', 'lon': 153.867, 'lat': -22.2,
+     'appui': "« on the 2nd a.m. our corrected longitude was 153° 52' », par le "
+              "travers de Wreck Reef, que la goélette cherche cinq jours durant"},
+]
+
+# Entre Point Stephens et Wreck Reef, dix jours sans une seule position : le
+# trait direct couperait la Nouvelle-Galles du Sud sur trois cents kilometres.
+# Ce point-ci n'est pas releve, il est CALCULE : c'est le plus proche de la
+# route directe qui degage le trait de cote des deux cotes. La fiche le dit.
+CONTOURNEMENTS = [
+    {'date': '1803-09-24', 'lon': 153.55, 'lat': -31.6,
+     'raison': "au large de Smoky Cape, entre le mouillage de Point Stephens du "
+               "22 septembre et le travers de Wreck Reef du 2 octobre. Flinders "
+               "a perdu son journal dans le naufrage et ne donne aucune position "
+               "de cette traversée : seul le passage au large est certain"},
 ]
 
 MOIS = {m: i + 1 for i, m in enumerate(
@@ -71,12 +134,6 @@ LON = re.compile(r'longitude[^0-9]{0,70}(\d{1,3})\s*°?\s*(\d{1,2}[¼½¾]?)?\s*
 # Un bâtiment de 1801 ne franchit pas cela en une journée : au-delà, la lecture
 # est fautive ou la position désigne autre chose que le navire.
 KM_JOUR_MAX = 420.0
-
-# L'Investigator est condamné à Port Jackson au retour de sa circumnavigation.
-# Flinders repart ensuite sur le Porpoise, qui fait naufrage, puis sur le
-# Cumberland : le récit continue, mais ce n'est plus le même bâtiment.
-FIN_INVESTIGATOR = datetime.date(1803, 6, 9)
-
 
 def nombre(s):
     """Un nombre qui peut porter une fraction d'époque : 58¼, 36½."""
@@ -172,20 +229,32 @@ def proprietes(p):
     e = p.get('escale')
     if e:
         return {
-            "date": p['date'].isoformat(), "navire": NAVIRE,
+            "date": p['date'].isoformat(), "navire": p['navire'],
             "expedition": "Flinders",
             "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814",
             "extrapole": True,
             "alerte": "position tenue au mouillage : %s (%s)" % (e['lieu'], e['appui']),
         }
-    return {
-        "date": p['date'].isoformat(), "navire": NAVIRE,
+    commun = {
+        "date": p['date'].isoformat(), "navire": p['navire'],
         "expedition": "Flinders",
         "table": "Matthew Flinders, A Voyage to Terra Australis, "
                  "Londres, 1814, vol. %s" % p['volume'],
-        "alerte": "position relevée dans le récit publié ; Flinders ne la "
-                  "donne pas tous les jours",
     }
+    detour = p.get('detour')
+    if detour:
+        commun["extrapole"] = True
+        commun["alerte"] = ("position calculée, non relevée : %s"
+                            % detour['raison'])
+        return commun
+    dite = p.get('dite')
+    if dite:
+        commun["alerte"] = ("position donnée en prose dans le récit, et non "
+                            "dans une observation de midi : %s" % dite['appui'])
+        return commun
+    commun["alerte"] = ("position relevée dans le récit publié ; Flinders ne la "
+                        "donne pas tous les jours")
+    return commun
 
 
 def main():
@@ -199,7 +268,8 @@ def main():
             sys.exit('introuvable : %s' % chemin)
         texte = io.open(chemin, encoding='utf-8').read().replace('\xad', '')
         for d, bloc in journees(texte):
-            if d > FIN_INVESTIGATOR:
+            navire = navire_du_jour(d)
+            if navire is None:
                 hors += 1
                 continue
             recit = texte_du_jour(bloc)
@@ -213,7 +283,24 @@ def main():
             if sol.contient(p):
                 aterre += 1
                 continue
-            points.append({'date': d, 'coords': list(p), 'volume': fichier[6]})
+            points.append({'date': d, 'coords': list(p),
+                           'volume': fichier[6], 'navire': navire})
+
+    # Les positions que Flinders donne en prose, hors de ses tournures
+    # habituelles : elles ne remplacent jamais une position deja trouvee.
+    connues = {p['date'] for p in points}
+    for e in POSITIONS_DITES:
+        d = datetime.date.fromisoformat(e['date'])
+        if d in connues:
+            continue
+        points.append({'date': d, 'coords': [e['lon'], e['lat']],
+                       'volume': '2', 'navire': navire_du_jour(d), 'dite': e})
+    for e in CONTOURNEMENTS:
+        d = datetime.date.fromisoformat(e['date'])
+        if d in connues:
+            continue
+        points.append({'date': d, 'coords': [e['lon'], e['lat']],
+                       'volume': '2', 'navire': navire_du_jour(d), 'detour': e})
 
     # Les escales. On ne pose pas un point par journee du sejour : le navire ne
     # bouge pas, et un marqueur muet n'apprend rien. On retient les journees ou
@@ -227,7 +314,8 @@ def main():
             if d not in connues and (d.isoformat() in recits or d == fin
                                      or d == datetime.date.fromisoformat(e['du'])):
                 points.append({'date': d, 'coords': [e['lon'], e['lat']],
-                               'volume': '-', 'escale': e})
+                               'volume': '-', 'escale': e,
+                               'navire': navire_du_jour(d)})
                 connues.add(d)
             d += datetime.timedelta(days=1)
 
@@ -236,7 +324,9 @@ def main():
     # navire : c'est une terre citée, ou un chiffre mal lu.
     gardes = []
     for p in points:
-        if gardes and not p.get('escale'):
+        if (gardes and not p.get('escale') and not p.get('dite')
+                and not p.get('detour')
+                and gardes[-1]['navire'] == p['navire']):
             v = km(gardes[-1]['coords'], p['coords'])
             j = max(1, (p['date'] - gardes[-1]['date']).days)
             if v / j > KM_JOUR_MAX:
@@ -247,7 +337,10 @@ def main():
     print('positions retenues : %d' % len(gardes))
     print('  écartées, tombant à terre     : %d' % aterre)
     print('  écartées, vitesse impossible  : %d' % refuses)
-    print('  journées postérieures à l’Investigator : %d' % hors)
+    print('  journées hors campagne (retour du naufrage) : %d' % hors)
+    from collections import Counter
+    for nom, n in Counter(p['navire'] for p in gardes).items():
+        print('  %-16s : %d' % (nom, n))
     print('récits de journée : %d  (%d caractères)'
           % (len(recits), sum(len(x) for x in recits.values())))
     avec = sum(1 for p in gardes if p['date'].isoformat() in recits)

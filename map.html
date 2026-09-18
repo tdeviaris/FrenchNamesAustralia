@@ -3746,19 +3746,29 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // L'Investigator de Flinders croise la route de Baudin : sa
                 // trace est jointe ici pour qu'on puisse les voir ensemble,
                 // mais elle vient d'une autre source et d'un autre fichier.
+                // Flinders change deux fois de bord en 1803 : l'Investigator
+                // est condamne a Port Jackson, le Porpoise se perd sur Wreck
+                // Reef, et il finit sur la goelette Cumberland. Trois coques,
+                // trois traces.
                 urlsJointes: ['data/flinders_parcours.geojson'],
                 journauxJoints: ['flinders'],
                 // Flinders ne donne sa position que de loin en loin : avec le
                 // seuil commun, sa route se briserait en une vingtaine de
                 // troncons. On la garde d'un seul tenant.
-                ruptureJours: { "l'Investigator": 400 },
+                ruptureJours: {
+                    "l'Investigator": 400,
+                    'le Porpoise': 400,
+                    'le Cumberland': 400
+                },
                 shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina',
-                            "l'Investigator"],
+                            "l'Investigator", 'le Porpoise', 'le Cumberland'],
                 colors: {
                     'le Géographe': '#e8590c',
                     'le Naturaliste': '#0b63d1',
                     'le Casuarina': '#7048e8',
-                    "l'Investigator": '#c2255c'
+                    "l'Investigator": '#c2255c',
+                    'le Porpoise': '#2f9e44',
+                    'le Cumberland': '#0c8599'
                 },
                 // "les corvettes" ne designe pas la meme paire tout au long du
                 // voyage : le Naturaliste quitte Port Jackson pour la France le
@@ -3988,10 +3998,20 @@ gtag('config', 'G-LCWV2EVPVQ');
                 url: 'https://gallica.bnf.fr/ark:/12148/bpt6k74602q',
                 // La trace de l'Investigator ne vient pas des tables de
                 // Freycinet mais du recit que Flinders a publie lui-meme.
+                // Le Porpoise et la Cumberland n'occupent que la fin du
+                // second volume : le lien y renvoie directement.
                 parNavire: {
                     "l'Investigator": {
                         nom: 'Source Flinders 1814',
                         url: 'https://gutenberg.net.au/ebooks/e00049.html'
+                    },
+                    'le Porpoise': {
+                        nom: 'Source Flinders 1814',
+                        url: 'https://gutenberg.net.au/ebooks/e00050.html'
+                    },
+                    'le Cumberland': {
+                        nom: 'Source Flinders 1814',
+                        url: 'https://gutenberg.net.au/ebooks/e00050.html'
                     }
                 }
             },
@@ -4169,7 +4189,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             // La Recherche et l'Espérance ont navigué de conserve d'un bout à l'autre
             // du voyage : les tables ne consignent qu'une position pour les deux.
             'la Recherche': { fr: "la Recherche & l'Espérance", en: 'Recherche & Espérance' },
-            "l'Investigator": { fr: "l'Investigator (Flinders)", en: 'Investigator (Flinders)' }
+            "l'Investigator": { fr: "l'Investigator (Flinders)", en: 'Investigator (Flinders)' },
+            'le Porpoise': { fr: 'le Porpoise (Flinders)', en: 'Porpoise (Flinders)' },
+            'le Cumberland': { fr: 'la Cumberland (Flinders)', en: 'Cumberland (Flinders)' }
         };
 
         // Les tables de Baudin sont numerotees de plusieurs facons : "4 - Titre",
@@ -4866,8 +4888,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         // propre : elle partage celle de la Recherche.
         const TIMELINE_COULEURS = {
             'G': '#e8590c',
-            'N': '#7048e8',
-            'C': '#c2255c',
+            'N': '#0b63d1',
+            'C': '#7048e8',
+            'I': '#c2255c',
+            'P': '#2f9e44',
+            'Cu': '#0c8599',
             'R': '#238b45',
             'E': '#238b45'
         };
@@ -4878,7 +4903,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             'G': 'le Géographe',
             'N': 'le Naturaliste',
             'C': 'le Casuarina',
-            'I': "l'Investigator"
+            'I': "l'Investigator",
+            'P': 'le Porpoise',
+            'Cu': 'le Cumberland'
         };
 
         const TIMELINE_NAVIRES = {
@@ -4887,6 +4914,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             'le Naturaliste': ['N'],
             'le Casuarina': ['C'],
             "l'Investigator": ['I'],
+            'le Porpoise': ['P'],
+            'le Cumberland': ['Cu'],
             'la Recherche': ['R', 'E']
         };
 

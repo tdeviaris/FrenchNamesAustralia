@@ -1,6 +1,6 @@
 {
  "source": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814 ; exemplaire numérisé par la National Library of Australia, nla.obj-232588549",
- "methode": "Positions relevées à l'œil sur la gravure, aux dates que Flinders y a portées, puis converties par scripts/carte_flinders.py. La carte est en projection de Mercator. Deux résolutions ont servi : le fichier ordinaire de 5000 px, où un pixel vaut 1,2 km, et la gravure pleine de 11850 x 8992 px, servie en tuiles DeepZoom, où il vaut 0,5 km et où les quantièmes se lisent sans ambiguïté.",
+ "methode": "Positions relevées à l'œil sur la gravure, aux dates que Flinders y a portées, puis converties par scripts/carte_flinders.py. La carte est en projection de Mercator. Deux résolutions ont servi : le fichier ordinaire de 5000 px, où un pixel vaut 1,2 km, et la gravure pleine de 11850 x 8992 px, servie en tuiles DeepZoom, où il vaut 0,5 km et où les quantièmes se lisent sans ambiguïté. Une seconde campagne de relevés est partie de la carte annotée en couleur par Dany Breelle : elle y a entouré chaque repère daté à reprendre et coloré la route de chaque bâtiment — rouge l'Investigator, vert le Porpoise, bleu la Cumberland. Les ellipses ont été retrouvées par seuillage de couleur, et le petit cercle de position accolé à chaque quantième lu sur la gravure pleine.",
  "releves": [
   {
    "date": "1801-12-03",
@@ -8,14 +8,16 @@
    "lat": -35.254,
    "libelle": "Dec. 3. 1801",
    "resolution": "pleine",
-   "note": "sur la route venue du Cap de Bonne-Espérance, contre le bord ouest de la carte"
+   "note": "sur la route venue du Cap de Bonne-Espérance, contre le bord ouest de la carte",
+   "navire": "l'Investigator"
   },
   {
    "date": "1801-12-06",
    "lon": 114.27,
    "lat": -35.24,
    "libelle": "Dec. 6",
-   "note": "confirme la position tirée du récit (114,32 E / 35,17 S)"
+   "note": "confirme la position tirée du récit (114,32 E / 35,17 S)",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-01-07",
@@ -23,14 +25,16 @@
    "lat": -34.331,
    "libelle": "Jan. 7. 1802",
    "resolution": "pleine",
-   "note": "côte sud, à l'est de Point Hood"
+   "note": "côte sud, à l'est de Point Hood",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-01-19",
    "lon": 124.79,
    "lat": -33.1,
    "libelle": "Jan. 19. 1802",
-   "note": "côte sud, à l'est de l'archipel de la Recherche"
+   "note": "côte sud, à l'est de l'archipel de la Recherche",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-01-26",
@@ -38,7 +42,8 @@
    "lat": -31.96,
    "libelle": "Jan. 26. 1802",
    "resolution": "ordinaire",
-   "note": "confirme le récit (128,68 E / 31,86 S)"
+   "note": "confirme le récit (128,68 E / 31,86 S)",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-01-28",
@@ -46,7 +51,8 @@
    "lat": -32.02,
    "libelle": "Jan. 28. 1802",
    "resolution": "ordinaire",
-   "note": "confirme le récit (131,85 E / 32,04 S)"
+   "note": "confirme le récit (131,85 E / 32,04 S)",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-01-30",
@@ -54,7 +60,8 @@
    "lat": -32.44,
    "libelle": "Jan. 30. 1802",
    "resolution": "ordinaire",
-   "note": "archipel de Nuyts"
+   "note": "archipel de Nuyts",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-02-19",
@@ -62,7 +69,8 @@
    "lat": -35.156,
    "libelle": "Feb. 19. 1802",
    "resolution": "pleine",
-   "note": "entrée du golfe Spencer"
+   "note": "entrée du golfe Spencer",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-03-08",
@@ -70,7 +78,8 @@
    "lat": -33.926,
    "libelle": "Mar. 8.",
    "resolution": "pleine",
-   "note": "dans le golfe Spencer, vers sa tête"
+   "note": "dans le golfe Spencer, vers sa tête",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-03-19",
@@ -78,7 +87,8 @@
    "lat": -34.88,
    "libelle": "Mar. 19.",
    "resolution": "pleine",
-   "note": "au sud de Port Lincoln, vers l'île Thistle"
+   "note": "au sud de Port Lincoln, vers l'île Thistle",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-04-11",
@@ -86,7 +96,8 @@
    "lat": -36.331,
    "libelle": "Apr. 11. 1802",
    "resolution": "pleine",
-   "note": "au sud du cap Jervis ; le libellé, illisible à la résolution ordinaire, se lit « 11 » et non « 13 » sur la gravure pleine"
+   "note": "au sud du cap Jervis ; le libellé, illisible à la résolution ordinaire, se lit « 11 » et non « 13 » sur la gravure pleine",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-04-19",
@@ -94,7 +105,8 @@
    "lat": -38.562,
    "libelle": "Apr. 19",
    "resolution": "pleine",
-   "note": "à l'est du cap Northumberland"
+   "note": "à l'est du cap Northumberland",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-04-21",
@@ -102,7 +114,8 @@
    "lat": -39.263,
    "libelle": "Apr. 21. 1802",
    "resolution": "pleine",
-   "note": "abords de l'île King ; confirme le récit"
+   "note": "abords de l'île King ; confirme le récit",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-05-03",
@@ -110,7 +123,8 @@
    "lat": -38.709,
    "libelle": "May 3.",
    "resolution": "pleine",
-   "note": "sortie de Port Phillip ; lu en bord de vue, à confirmer"
+   "note": "sortie de Port Phillip ; lu en bord de vue, à confirmer",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-05-04",
@@ -118,14 +132,16 @@
    "lat": -39.672,
    "libelle": "May 4. 1802",
    "resolution": "pleine",
-   "note": "au sud-est de Wilson's Promontory, dans le détroit de Bass"
+   "note": "au sud-est de Wilson's Promontory, dans le détroit de Bass",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-05-07",
    "lon": 151.26,
    "lat": -36.4,
    "libelle": "May 7. 1802",
-   "note": "au large de l'île Montague"
+   "note": "au large de l'île Montague",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-05-08",
@@ -133,7 +149,8 @@
    "lat": -34.308,
    "libelle": "May 8. 1802",
    "resolution": "pleine",
-   "note": "au large de Botany Bay"
+   "note": "au large de Botany Bay",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-07-23",
@@ -141,7 +158,8 @@
    "lat": -32.245,
    "libelle": "July 23. 1802",
    "resolution": "pleine",
-   "note": "côte de Nouvelle-Galles du Sud, au nord du cap Hawke"
+   "note": "côte de Nouvelle-Galles du Sud, au nord du cap Hawke",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-07-25",
@@ -149,7 +167,8 @@
    "lat": -29.177,
    "libelle": "July 25. 1802",
    "resolution": "pleine",
-   "note": "côte est, près du cap Byron"
+   "note": "côte est, près du cap Byron",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-07-27",
@@ -157,7 +176,8 @@
    "lat": -25.826,
    "libelle": "July 27. 1802",
    "resolution": "pleine",
-   "note": "au nord de Double Island Point, sous Indian Head"
+   "note": "au nord de Double Island Point, sous Indian Head",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-10-17",
@@ -165,7 +185,8 @@
    "lat": -20.509,
    "libelle": "Oct. 17. 1802",
    "resolution": "pleine",
-   "note": "îles Cumberland, dans la Grande Barrière"
+   "note": "îles Cumberland, dans la Grande Barrière",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-10-22",
@@ -173,7 +194,8 @@
    "lat": -16.767,
    "libelle": "Oct. 22.",
    "resolution": "pleine",
-   "note": "au large de l'île Green"
+   "note": "au large de l'île Green",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-10-25",
@@ -181,7 +203,8 @@
    "lat": -13.01,
    "libelle": "Oct. 25. 1802",
    "resolution": "pleine",
-   "note": "mer de Corail, dans l'approche du détroit de Torrès"
+   "note": "mer de Corail, dans l'approche du détroit de Torrès",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-10-27",
@@ -189,7 +212,8 @@
    "lat": -10.6,
    "libelle": "Oct. 27",
    "resolution": "pleine",
-   "note": "à l'est du détroit de Torrès, vers les Eastern Fields"
+   "note": "à l'est du détroit de Torrès, vers les Eastern Fields",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-11-04",
@@ -197,7 +221,8 @@
    "lat": -11.534,
    "libelle": "Nov. 4. 1802",
    "resolution": "pleine",
-   "note": "au sud du cap York, à la sortie du détroit"
+   "note": "au sud du cap York, à la sortie du détroit",
+   "navire": "l'Investigator"
   },
   {
    "date": "1802-11-13",
@@ -205,7 +230,170 @@
    "lat": -16.499,
    "libelle": "Nov. 13.",
    "resolution": "pleine",
-   "note": "rive orientale du golfe de Carpentarie, au nord des îles Wellesley"
+   "note": "rive orientale du golfe de Carpentarie, au nord des îles Wellesley",
+   "navire": "l'Investigator"
+  },
+  {
+   "date": "1803-03-13",
+   "lon": 132.6939,
+   "lat": -10.891,
+   "libelle": "Mar. 13.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "cote nord, au large de la terre d'Arnhem"
+  },
+  {
+   "date": "1803-03-18",
+   "lon": 130.5623,
+   "lat": -9.7919,
+   "libelle": "Mar. 18.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "mer de Timor, au nord des iles Melville et Bathurst"
+  },
+  {
+   "date": "1803-03-25",
+   "lon": 126.8593,
+   "lat": -10.6614,
+   "libelle": "Mar. 25. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "mer de Timor, dans la route de Coupang, ou l'Investigator mouille le 31 mars"
+  },
+  {
+   "date": "1803-04-12",
+   "lon": 121.8912,
+   "lat": -11.3329,
+   "libelle": "Apr. 12. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "quatre jours apres avoir quitte Coupang, cap au sud-ouest"
+  },
+  {
+   "date": "1803-04-15",
+   "lon": 117.8532,
+   "lat": -15.0231,
+   "libelle": "Apr. 15.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "au large de la cote nord-ouest"
+  },
+  {
+   "date": "1803-04-18",
+   "lon": 113.8094,
+   "lat": -17.0065,
+   "libelle": "Apr. 18.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "au large de la cote nord-ouest"
+  },
+  {
+   "date": "1803-04-22",
+   "lon": 106.4151,
+   "lat": -19.2868,
+   "libelle": "Apr. 22. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "au large, la route s'ecarte de la terre vers le sud-ouest"
+  },
+  {
+   "date": "1803-04-24",
+   "lon": 103.8675,
+   "lat": -20.8449,
+   "libelle": "Apr. 24.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "plein ocean ; le recit donne le 26 une position voisine (104,9 E / 20,6 S)"
+  },
+  {
+   "date": "1803-05-01",
+   "lon": 105.9183,
+   "lat": -22.6608,
+   "libelle": "May 1. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "plein ocean, au large de la cote occidentale"
+  },
+  {
+   "date": "1803-05-05",
+   "lon": 103.3476,
+   "lat": -26.3989,
+   "libelle": "May 5.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "point le plus occidental de la route de retour"
+  },
+  {
+   "date": "1803-05-12",
+   "lon": 111.516,
+   "lat": -33.2847,
+   "libelle": "May 12. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "au sud-ouest du cap Leeuwin"
+  },
+  {
+   "date": "1803-05-16",
+   "lon": 120.4586,
+   "lat": -34.9225,
+   "libelle": "May 16. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "sud de la Nouvelle-Hollande, au large de la cote"
+  },
+  {
+   "date": "1803-05-22",
+   "lon": 125.8253,
+   "lat": -34.6228,
+   "libelle": "May 22. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "traversee du Grand Golfe australien"
+  },
+  {
+   "date": "1803-05-24",
+   "lon": 130.4583,
+   "lat": -35.3839,
+   "libelle": "May 24. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "traversee du Grand Golfe australien"
+  },
+  {
+   "date": "1803-05-27",
+   "lon": 137.87,
+   "lat": -38.3387,
+   "libelle": "May 27.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "approche de la terre de Van Diemen"
+  },
+  {
+   "date": "1803-05-31",
+   "lon": 146.154,
+   "lat": -39.9959,
+   "libelle": "May 31. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "au sud-est de la terre de Van Diemen ; le recit donne le 30 une position voisine"
+  },
+  {
+   "date": "1803-06-01",
+   "lon": 148.7189,
+   "lat": -39.192,
+   "libelle": "June 1.",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "detroit de Bass, la gravure porte ici « To Port Jackson »"
+  },
+  {
+   "date": "1803-06-04",
+   "lon": 150.4693,
+   "lat": -38.6243,
+   "libelle": "June 4. 1803",
+   "navire": "l'Investigator",
+   "resolution": "pleine",
+   "note": "remontee de la cote est vers Port Jackson"
   },
   {
    "date": "1803-06-08",
@@ -213,20 +401,123 @@
    "lat": -34.52,
    "libelle": "June 8. 1803",
    "resolution": "pleine",
-   "note": "près de Red Point, au retour de la circumnavigation"
+   "note": "près de Red Point, au retour de la circumnavigation",
+   "navire": "l'Investigator"
+  },
+  {
+   "date": "1803-08-13",
+   "lon": 154.3513,
+   "lat": -32.3024,
+   "libelle": "Aug. 13.",
+   "navire": "le Porpoise",
+   "resolution": "pleine",
+   "note": "trois jours apres l'appareillage de Port Jackson, au large"
+  },
+  {
+   "date": "1803-08-15",
+   "lon": 156.3675,
+   "lat": -27.6127,
+   "libelle": "Aug. 15. 1802",
+   "navire": "le Porpoise",
+   "resolution": "pleine",
+   "note": "au large ; la gravure grave « 1802 » par erreur, le Porpoise appareille en 1803"
+  },
+  {
+   "date": "1803-08-18",
+   "lon": 155.293,
+   "lat": -22.2393,
+   "libelle": "Wreck Reef",
+   "navire": "le Porpoise",
+   "resolution": "pleine",
+   "note": "le Porpoise y touche le 17 août à neuf heures et demie du soir et s'y perd avec le Cato. Le repère porte le lieu et non un quantième ; il est daté ici du 18, au matin duquel les naufragés sont sur le banc de sable, la position de midi du 17 étant donnée par Flinders lui-même (23° 22' S, 155° 34' E)",
+   "nature": "lieu"
+  },
+  {
+   "date": "1803-10-14",
+   "lon": 152.8725,
+   "lat": -17.5997,
+   "libelle": "Oct. 14. 1803",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "mer de Corail, trois jours apres avoir quitte Wreck Reef"
+  },
+  {
+   "date": "1803-10-19",
+   "lon": 147.0898,
+   "lat": -11.1819,
+   "libelle": "Oct. 19. 1803.",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "approche du detroit de Torres"
+  },
+  {
+   "date": "1803-10-25",
+   "lon": 141.3246,
+   "lat": -10.8126,
+   "libelle": "Oct. 25. 1803",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "entree du golfe de Carpentarie, sous « TORRES »"
+  },
+  {
+   "date": "1803-10-30",
+   "lon": 135.0682,
+   "lat": -10.5549,
+   "libelle": "Oct. 30.",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "mer d'Arafura, contre le raccord des deux feuilles"
+  },
+  {
+   "date": "1803-11-04",
+   "lon": 128.3613,
+   "lat": -9.9828,
+   "libelle": "Nov. 4. 1803",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "mer de Timor"
+  },
+  {
+   "date": "1803-11-08",
+   "lon": 125.392,
+   "lat": -10.269,
+   "libelle": "Nov. 8.",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "mer de Timor"
+  },
+  {
+   "date": "1803-11-17",
+   "lon": 121.2038,
+   "lat": -11.0868,
+   "libelle": "Nov. 17. 1803",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "au large de Timor ; la Cumberland relache a Coupang"
+  },
+  {
+   "date": "1803-11-21",
+   "lon": 112.9198,
+   "lat": -10.9861,
+   "libelle": "Nov. 21.",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "ocean Indien, cap a l'ouest vers l'Ile de France"
+  },
+  {
+   "date": "1803-11-25",
+   "lon": 103.1511,
+   "lat": -12.9101,
+   "libelle": "Nov. 25. 1803",
+   "navire": "le Cumberland",
+   "resolution": "pleine",
+   "note": "ocean Indien, la route s'infléchit vers le sud-ouest"
   }
  ],
  "restantes": [],
- "autres_campagnes": {
-  "commentaire": "Relevés lus sur la même planche mais qui n'appartiennent pas à l'Investigator. Flinders rentre en 1803 sur le Porpoise, qui fait naufrage, puis sur la goélette Cumberland, à bord de laquelle il sera retenu à l'Île de France. Dany le confirme pour le 30 octobre.",
-  "cumberland_1803": [
-   {
-    "date": "1803-10-30",
-    "lon": 135.016,
-    "lat": -10.6,
-    "libelle": "Oct. 30.",
-    "note": "mer d'Arafura, contre le raccord des deux feuilles ; entouré des dates de mars 1803 du levé de la côte nord, et dans la suite est-ouest de « Oct. 19. 1803 » et « Oct. 25. 1803 »"
-   }
-  ]
+ "navires": {
+  "l'Investigator": "campagne de levé, mars 1801 - juin 1803",
+  "le Porpoise": "retour vers l'Angleterre, appareille de Port Jackson le 10 août 1803, perdu sur Wreck Reef le 17 août",
+  "le Cumberland": "goélette de vingt-neuf tonneaux, appareille de Port Jackson le 21 septembre 1803, Flinders y sera retenu à l'Île de France"
  }
 }
