@@ -21,6 +21,20 @@ FICHIERS = [('Baudin', 'baudin_parcours.geojson'),
 ECART_MAX_JOURS = 3      # au-dela : lacune de releve, pas un cap mal contourne
 LONGUEUR_MIN_KM = 12     # en deca : mouillage, le trait de cote ne resout pas la baie
 OFFSETS_KM = [5, 8, 12, 18, 25, 35, 50, 70, 95, 125, 160, 200, 250, 300]
+
+# Detours poses a la main, pour les caps que la recherche ne trouve pas. Elle
+# n'essaie que des points perpendiculaires au segment : une pointe etroite dont
+# il faut faire le tour par l'exterieur demande un trace qu'elle ne rencontre
+# jamais. Chaque entree porte le chemin retenu et ce qui l'a dicte.
+DETOURS_MANUELS = {
+    ('les corvettes', '1803-01-03', '1803-01-04'): {
+        'points': [(136.63, -36.06), (136.49, -35.85)],
+        'raison': "contournement de la pointe occidentale de l'île Decrès "
+                  "(Kangaroo Island) par le cap du Couedic ; la ligne droite "
+                  "coupait l'île, ces deux points la longent au plus près "
+                  "(131 km dans la journée, soit 2,9 nœuds de moyenne)",
+    },
+}
 FRACTIONS = [0.5, 0.35, 0.65, 0.2, 0.8]   # points d'appui le long du segment
 
 
@@ -126,16 +140,24 @@ def main(ecrire):
                              'arrivée' if aterre_q and not aterre_p else 'les deux')
                     aterre.append((nav, d1, d2, round(longueur), lequel))
                     continue
-                ms, offset = contourner(cote, p, q)
-                if ms is None:
-                    ms, offset = contourner_double(cote, p, q)
+                manuel = DETOURS_MANUELS.get((nav, d1, d2))
+                if manuel:
+                    ms, offset = [tuple(m) for m in manuel['points']], None
+                else:
+                    ms, offset = contourner(cote, p, q)
+                    if ms is None:
+                        ms, offset = contourner_double(cote, p, q)
                 if ms is None:
                     echecs.append((nav, d1, d2, round(longueur)))
                     continue
                 for rang, m in enumerate(ms):
                     suffixe = f" [{rang + 1}/{len(ms)}]" if len(ms) > 1 else ""
-                    raison = (f"position extrapolée : contournement de côte entre "
-                              f"le {d1} et le {d2} (détour de {offset} km){suffixe}")
+                    if manuel:
+                        raison = (f"position extrapolée : {manuel['raison']}"
+                                  f"{suffixe}")
+                    else:
+                        raison = (f"position extrapolée : contournement de côte entre "
+                                  f"le {d1} et le {d2} (détour de {offset} km){suffixe}")
                     ajouts.append((gabarit(lst[i], m, d2, raison), lst[i], p, q, rang))
 
         print(f"{nom} : {len(ajouts)} point(s) de contournement, "
