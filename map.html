@@ -3899,10 +3899,12 @@ gtag('config', 'G-LCWV2EVPVQ');
         const parcoursWanted = { baudin: false, entre: false };
         const parcoursShipLayers = { baudin: {}, entre: {} };
         const parcoursShipWanted = { baudin: {}, entre: {} };
-        // Pendant le defilement, la trace s'efface : on ne suit plus que les
-        // batiments qui avancent. Rien n'est defait pour autant -- la couche
-        // est seulement retiree de la carte, et revient telle quelle.
-        let parcoursCacheParDefilement = false;
+        // Pendant le defilement, les points de releve s'effacent : le trait de
+        // la route suffit a lire le chemin, et les quelque mille cercles qui le
+        // jalonnent masquaient les badges des batiments en marche. Rien n'est
+        // defait pour autant -- la couche des points est seulement retiree, et
+        // revient telle quelle.
+        let pointsCachesParDefilement = false;
         const parcoursLoadPromise = { baudin: null, entre: null };
 
         // Les volets declares par la source, ou le volet unique par defaut.
@@ -3988,14 +3990,14 @@ gtag('config', 'G-LCWV2EVPVQ');
                         couchePoints.removeLayer(marker);
                     }
                 });
-                if (shouldShow) {
+                if (shouldShow && !pointsCachesParDefilement) {
                     group.addLayer(couchePoints);
                 } else {
                     group.removeLayer(couchePoints);
                 }
             }
 
-            if (shouldShow && !parcoursCacheParDefilement) {
+            if (shouldShow) {
                 map.addLayer(group);
             } else {
                 map.removeLayer(group);
@@ -5379,12 +5381,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             });
         };
 
-        // Rend la trace, qu'on efface le temps du defilement. Appelee par le
+        // Rend les points, qu'on efface le temps du defilement. Appelee par le
         // bouton d'arret, par la fin du parcours, et des qu'on reprend la main
         // sur le curseur ou les fleches.
-        const timelineRendLaTrace = () => {
-            if (!parcoursCacheParDefilement) return;
-            parcoursCacheParDefilement = false;
+        const timelineRendLesPoints = () => {
+            if (!pointsCachesParDefilement) return;
+            pointsCachesParDefilement = false;
             if (timelineActive()) updateParcoursVisibility(timelineKey);
         };
 
@@ -5394,7 +5396,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 timelineAnim = null;
             }
             timelinePlay.setAttribute('aria-pressed', 'false');
-            timelineRendLaTrace();
+            timelineRendLesPoints();
         };
 
         const timelineArret = () => {
@@ -5429,8 +5431,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
             if (timelineJour >= totalJours) timelineJour = 0;
             timelineDernierTick = 0;
-            // La carte se degage : seuls les badges avancent.
-            parcoursCacheParDefilement = true;
+            // La carte se degage : le trait des routes reste, les points s'en
+            // vont, et les badges avancent dessus sans rien qui les brouille.
+            pointsCachesParDefilement = true;
             updateParcoursVisibility(timelineKey);
             timelinePlay.setAttribute('aria-pressed', 'true');
             timelineAnim = requestAnimationFrame(timelineBoucle);
