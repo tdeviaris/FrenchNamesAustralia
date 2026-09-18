@@ -339,36 +339,55 @@
 
         /* Crochets de selection : on ne garde a l'ecran que les trajets compris
            entre les deux. Bleus et gras pour qu'on voie qu'ils se prennent. */
+        /* Le crochet est trace en bordures plutot qu'ecrit au clavier : la
+           hauteur d'un caractere depend de la fonte, celle d'une bordure non.
+           Il court du dessus des graduations au dessous des initiales de mois,
+           et s'arrete avant le curseur de date, qu'il ne doit pas gener. */
         .timeline-bracket {
             position: absolute;
-            top: -3px;
-            height: 34px;
-            width: 16px;
+            top: -4px;
+            height: 24px;
+            width: 15px;                /* la zone de prise, plus large que le trait */
             transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 0;
             border: 0;
             background: none;
-            color: #0b63d1;
-            font-family: 'Lato', sans-serif;
-            font-size: 30px;
-            font-weight: 800;
-            line-height: 1;
+            font-size: 0;               /* le caractere du balisage ne sert qu'aux lecteurs d'ecran */
             cursor: ew-resize;
             z-index: 6;
-            text-shadow: 0 0 3px #fff, 0 0 3px #fff;
             touch-action: none;
         }
-        .timeline-bracket:hover,
-        .timeline-bracket.is-drag { color: #08408c; }
+        .timeline-bracket::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 7px;
+            box-sizing: border-box;
+            border: 3px solid #0b63d1;
+            /* Un lisere blanc, pour que le crochet se detache des graduations. */
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+        }
+        /* Le montant vertical tombe sur la date, les retours pointent vers
+           l'interieur de la periode retenue. */
+        #timeline-bracket-debut::before {
+            left: 50%;
+            margin-left: -3px;
+            border-right: 0;
+        }
+        #timeline-bracket-fin::before {
+            right: 50%;
+            margin-right: -3px;
+            border-left: 0;
+        }
+        .timeline-bracket:hover::before,
+        .timeline-bracket.is-drag::before { border-color: #08408c; }
         .timeline-bracket:focus-visible { outline: 2px solid #0b63d1; outline-offset: 1px; }
         /* Ce qui tombe hors des crochets est grise sur la reglette elle-meme. */
         .timeline-hors {
             position: absolute;
-            top: -3px;
-            height: 34px;
+            top: -4px;
+            height: 24px;
             background: rgba(11, 99, 209, 0.10);
             pointer-events: none;
             z-index: 5;
@@ -377,7 +396,11 @@
             -webkit-appearance: none;
             appearance: none;
             width: 100%;
-            margin: 2px 0 0;
+            /* La poignee du curseur, haute de 18 px, remonte de 8 px au-dessus de
+               sa piste, qui n'en fait que 3 : sans cette marge elle monterait
+               jusque dans les initiales de mois et viendrait toucher les
+               crochets. Elle les degage de cinq bons pixels. */
+            margin: 14px 0 0;
             background: transparent;
             cursor: pointer;
         }
