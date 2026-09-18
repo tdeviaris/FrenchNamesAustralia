@@ -19,12 +19,35 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JOURNAL = os.path.join(RACINE, 'data', 'journal_baudin_bnf.json')
 GEOJSON = os.path.join(RACINE, 'data', 'baudin_parcours.geojson')
 
-# « Latitude Sud estimée 34.46.30, observée 33°3'30" », « Latit-de Sud est. »
-LATITUDE = re.compile(
-    r'latit[a-zé-]*[^0-9]{0,40}?(\d{1,2})\s*[.°:,;]\s*(\d{1,2})'
-    r'(?:\s*[.\'’:,;]\s*(\d{1,2}))?', re.I)
-# le dactylographe coupe les mots en fin de ligne : « Latitu- / de Sud »
-COUPURE = re.compile(r'-\s*\n\s*')
+# Le relevé de navigation donne la latitude estimée puis la latitude observée.
+# Ces deux mots-là sont le seul point d'accroche sûr : l'OCR écorche tout le
+# reste. Il perd les signes de degré — « 4102253 » pour 41°22'53" —, lit le
+# tiret de césure comme un point — « La.titude » —, et brise les nombres
+# n'importe où. On récupère donc le premier amas de chiffres qui suit le mot,
+# et on le découpe en degrés et minutes selon sa longueur.
+ANCRE = re.compile(r"(?:estim|observ)[a-zéèê]{0,4}"
+                   r"[^0-9\n]{0,10}([0-9][0-9°'\"»,.:;%*\s-]{2,18})", re.I)
+BLANCS = re.compile(r'[ \t]+')
+# « La- / titude », « La. / titude » : le dactylographe coupe, l'OCR se trompe
+# de signe. On recolle avant de chercher.
+COUPURE = re.compile(r"[-.,]\s*\n\s*")
+
+
+def degres_minutes(amas):
+    """Degrés et minutes tirés d'un amas de chiffres plus ou moins abîmé."""
+    groupes = [g for g in re.findall(r'\d+', amas) if g]
+    if not groupes:
+        return None
+    tete = groupes[0]
+    if len(tete) >= 4:
+        # les séparateurs ont disparu : « 4102253 » vaut 41°22'53"
+        return int(tete[:2]), int(tete[2:4]) % 60
+    if len(tete) == 3:
+        # « 419 » : le degré a mangé le signe, on ne garde que les degrés
+        return int(tete[:2]), 0
+    if len(groupes) > 1 and len(groupes[1]) <= 2:
+        return int(tete), int(groupes[1]) % 60
+    return int(tete), 0
 
 
 def variantes_degre(d):
@@ -39,13 +62,16 @@ def variantes_degre(d):
 
 
 def latitudes(texte, tolerant=False):
-    """Les latitudes Sud lues dans les premières lignes d'une journée."""
+    """Les latitudes Sud lues dans le relevé de navigation d'une journée."""
+    texte = BLANCS.sub(' ', COUPURE.sub('', texte))
     vues = []
-    texte = COUPURE.sub('', texte)
-    for m in LATITUDE.finditer(texte[:700]):
-        d, mi = int(m.group(1)), int(m.group(2))
-        if not (8 <= d <= 55 and mi < 60):
+    # la ligne de route ouvre la journee, mais Baudin redonne souvent la
+    # latitude au fil du recit : on lit toute la journee
+    for m in ANCRE.finditer(texte[:2500]):
+        dm = degres_minutes(m.group(1))
+        if not dm or not 8 <= dm[0] <= 55:
             continue
+        d, mi = dm
         for dd in (variantes_degre(d) if tolerant else {d}):
             vues.append(-(dd + mi / 60.0))
     return vues
