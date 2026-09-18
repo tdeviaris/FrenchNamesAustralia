@@ -1499,9 +1499,16 @@ gtag('config', 'G-LCWV2EVPVQ');
                 <span>route</span>
             </label>
         </div>
+        <!-- Deux volets : les trois batiments de Baudin, puis les trois que
+             Flinders monta tour a tour. Ils partagent la meme couche mais ne
+             viennent pas de la meme source, et on les lit mieux separes. -->
         <div class="ship-block" id="ship-block-baudin" hidden>
-            <div class="ship-block-title">Navires</div>
+            <div class="ship-block-title">Navires Baudin</div>
             <div class="ship-list" id="ship-list-baudin"></div>
+        </div>
+        <div class="ship-block" id="ship-block-baudin-flinders" hidden>
+            <div class="ship-block-title">Navires Flinders</div>
+            <div class="ship-list" id="ship-list-baudin-flinders"></div>
         </div>
     </div>
 
@@ -3762,6 +3769,15 @@ gtag('config', 'G-LCWV2EVPVQ');
                 },
                 shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina',
                             "l'Investigator", 'le Porpoise', 'le Cumberland'],
+                // Les cases se rangent en deux volets. Un batiment qu'aucun
+                // volet ne nomme retombe dans le premier.
+                volets: [
+                    { liste: 'ship-list-baudin',
+                      bloc: 'ship-block-baudin' },
+                    { liste: 'ship-list-baudin-flinders',
+                      bloc: 'ship-block-baudin-flinders',
+                      navires: ["l'Investigator", 'le Porpoise', 'le Cumberland'] }
+                ],
                 colors: {
                     'le Géographe': '#e8590c',
                     'le Naturaliste': '#0b63d1',
@@ -3854,12 +3870,26 @@ gtag('config', 'G-LCWV2EVPVQ');
         const parcoursShipWanted = { baudin: {}, entre: {} };
         const parcoursLoadPromise = { baudin: null, entre: null };
 
+        // Les volets declares par la source, ou le volet unique par defaut.
+        const voletsDe = (key) => {
+            const source = PARCOURS_SOURCES[key] || {};
+            return Array.isArray(source.volets) && source.volets.length
+                ? source.volets
+                : [{ liste: `ship-list-${key}`, bloc: `ship-block-${key}` }];
+        };
+
         const updateShipBlockVisibility = (key) => {
-            const block = document.getElementById(`ship-block-${key}`);
-            if (!block) return;
             const shipCount = Object.keys(parcoursShipLayers[key] || {}).length;
             // Un seul navire : le sous-bloc n'apporte rien.
-            block.hidden = !(parcoursWanted[key] && shipCount > 1);
+            const montrer = Boolean(parcoursWanted[key]) && shipCount > 1;
+            voletsDe(key).forEach((v) => {
+                const block = document.getElementById(v.bloc);
+                if (!block) return;
+                // Un volet dont aucun batiment n'est charge reste ferme.
+                const liste = document.getElementById(v.liste);
+                const garni = liste && liste.querySelector('.ship-item');
+                block.hidden = !(montrer && garni);
+            });
         };
 
         const updateParcoursVisibility = (key) => {
@@ -3939,9 +3969,10 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         const buildShipControls = (key) => {
-            const list = document.getElementById(`ship-list-${key}`);
-            if (!list) return;
             const source = PARCOURS_SOURCES[key] || {};
+            const volets = voletsDe(key);
+            const listes = volets.map((v) => document.getElementById(v.liste));
+            if (!listes[0]) return;
             const ships = Object.keys(parcoursShipLayers[key] || {});
             const order = Array.isArray(source.shipOrder) ? source.shipOrder : [];
             ships.sort((a, b) => {
@@ -3949,8 +3980,16 @@ gtag('config', 'G-LCWV2EVPVQ');
                 const ib = order.indexOf(b);
                 return (ia < 0 ? order.length : ia) - (ib < 0 ? order.length : ib);
             });
-            list.textContent = '';
+            listes.forEach((l) => { if (l) l.textContent = ''; });
+            // Un batiment va dans le premier volet qui le nomme ; a defaut,
+            // dans le premier volet tout court.
+            const voletDe = (ship) => {
+                const i = volets.findIndex((v) => Array.isArray(v.navires)
+                    && v.navires.indexOf(ship) >= 0);
+                return i < 0 ? 0 : i;
+            };
             ships.forEach((ship) => {
+                const list = listes[voletDe(ship)] || listes[0];
                 const label = document.createElement('label');
                 label.className = 'ship-item';
                 const input = document.createElement('input');
@@ -3964,7 +4003,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 swatch.className = 'ship-swatch';
                 swatch.style.background = source.colors?.[ship] || expeditionConfigs[key]?.color || '#666';
                 const text = document.createElement('span');
-                text.textContent = shipDisplayName(ship, getCurrentLanguage());
+                text.textContent = shipPanelName(ship, getCurrentLanguage());
                 label.appendChild(input);
                 label.appendChild(swatch);
                 label.appendChild(text);
@@ -4189,9 +4228,15 @@ gtag('config', 'G-LCWV2EVPVQ');
             // La Recherche et l'Espérance ont navigué de conserve d'un bout à l'autre
             // du voyage : les tables ne consignent qu'une position pour les deux.
             'la Recherche': { fr: "la Recherche & l'Espérance", en: 'Recherche & Espérance' },
-            "l'Investigator": { fr: "l'Investigator (Flinders)", en: 'Investigator (Flinders)' },
-            'le Porpoise': { fr: 'le Porpoise (Flinders)', en: 'Porpoise (Flinders)' },
-            'le Cumberland': { fr: 'la Cumberland (Flinders)', en: 'Cumberland (Flinders)' }
+            // `court` sert dans le volet, dont le titre nomme deja Flinders ;
+            // le libelle complet reste celui des fiches et de la frise, ou il
+            // faut distinguer ces coques de celles de Baudin.
+            "l'Investigator": { fr: "l'Investigator (Flinders)", en: 'Investigator (Flinders)',
+                                court: { fr: "l'Investigator", en: 'Investigator' } },
+            'le Porpoise': { fr: 'le Porpoise (Flinders)', en: 'Porpoise (Flinders)',
+                             court: { fr: 'le Porpoise', en: 'Porpoise' } },
+            'le Cumberland': { fr: 'la Cumberland (Flinders)', en: 'Cumberland (Flinders)',
+                               court: { fr: 'la Cumberland', en: 'Cumberland' } }
         };
 
         // Les tables de Baudin sont numerotees de plusieurs facons : "4 - Titre",
@@ -4216,6 +4261,14 @@ gtag('config', 'G-LCWV2EVPVQ');
             const entry = shipDisplayNames[ship];
             if (!entry) return ship;
             return entry[lang] || entry.en || ship;
+        };
+
+        // Le nom tel que le porte le volet des navires : plus court quand le
+        // titre du volet dit deja a quelle expedition la coque appartient.
+        const shipPanelName = (ship, lang) => {
+            const court = shipDisplayNames[ship]?.court;
+            return court ? (court[lang] || court.en || ship)
+                         : shipDisplayName(ship, lang);
         };
 
         const formatParcoursDate = (value) => {
