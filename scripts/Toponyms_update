@@ -1,25 +1,76 @@
+// ============================================================================
+// Classeur « Toponymes » -> fichiers JSON du site, sur GitHub.
+//
+// Trois expéditions désormais, et deux onglets :
+//
+//   - « Source »   porte d'Entrecasteaux et Baudin, triés par la colonne
+//                  Expedition, et produit deux fichiers ;
+//   - « Flinders » porte les lieux nommés par Matthew Flinders, avec treize
+//                  colonnes de plus que les autres : le bâtiment, la date, le
+//                  secteur, la typologie du choix de nom, la planche, les
+//                  notes de Dany, et le crédit des images libres.
+//
+// Deux garde-fous ont été ajoutés le 19 septembre 2026, parce que le site
+// avait atteint le plafond de stockage de Vercel : chaque envoi crée un
+// déploiement, et le dépôt entier y est recopié.
+//
+//   - on n'envoie rien si le fichier est déjà identique sur GitHub. Cela se
+//     vérifie sans rien télécharger, en comparant l'empreinte que git donne
+//     au contenu ;
+//   - au-delà d'un envoi par jour, il faut passer par « Forcer la mise à
+//     jour » : la limite est un garde-fou, pas une serrure.
+// ============================================================================
+
 // ----- 1. VOS VARIABLES À CONFIGURER -----
 const GITHUB_TOKEN_NAME = 'GITHUB_TOKEN';
 const GITHUB_USER = 'tdeviaris'; // Votre nom d'utilisateur GitHub
 const GITHUB_REPO = 'FrenchNamesAustralia'; // Le nom de votre dépôt
 
-// NOUVEAU : Définissez les chemins pour les DEUX fichiers JSON de sortie
-const ENTRECASTEAUX_PATH = 'data/entrecasteaux.json'; // Chemin pour le fichier d'Entrecasteaux
-const BAUDIN_PATH = 'data/baudin.json';             // Chemin pour le fichier Baudin
+// Les chemins des TROIS fichiers JSON de sortie
+const ENTRECASTEAUX_PATH = 'data/entrecasteaux.json';
+const BAUDIN_PATH = 'data/baudin.json';
+const FLINDERS_PATH = 'data/flinders.json';
 
-const SHEET_NAME = 'Source'; // Assurez-vous que c'est le nom exact de votre onglet
+const SHEET_NAME = 'Source';       // d'Entrecasteaux et Baudin
+const FLINDERS_SHEET = 'Flinders'; // Flinders, avec ses colonnes propres
+
+// Mémorise la date du dernier envoi effectif, pour la limite quotidienne.
+const CLE_DERNIER_ENVOI = 'DERNIER_ENVOI';
 // ------------------------------------------
 
 
 /**
- * MODIFIÉ : Le nom de la fonction principale a changé pour refléter la nouvelle logique.
- * C'est cette fonction qu'il faudra exécuter.
+ * Le point d'entrée du menu. Respecte la limite d'un envoi par jour.
  */
 function updateJsonFilesOnGitHub() {
-  try {
-    // Étape 1 : Lire la feuille et trier les données dans deux objets distincts.
-    const datasets = convertSheetToTwoDatasets();
+  majGitHub(false);
+}
 
+/**
+ * Le même travail, mais sans la limite quotidienne : pour une correction
+ * qui doit paraître tout de suite.
+ */
+function forcerMiseAJourGitHub() {
+  majGitHub(true);
+}
+
+
+function majGitHub(forcer) {
+  try {
+    const classeur = SpreadsheetApp.getActiveSpreadsheet();
+
+    if (!forcer && dejaEnvoyeAujourdHui()) {
+      const msg = "Un envoi a déjà eu lieu aujourd'hui.\n\n"
+        + "Chaque envoi déclenche un déploiement du site, et le stockage est "
+        + "compté. Pour publier tout de même, utilisez « Forcer la mise à "
+        + "jour » dans le menu GitHub.";
+      Logger.log(msg);
+      Browser.msgBox('Mise à jour différée', msg, Browser.Buttons.OK);
+      return;
+    }
+
+    // Étape 1 : lire les deux onglets.
+    const datasets = convertSheetToTwoDatasets();
     if (!datasets) {
       const errorMsg = "Conversion annulée : feuille vide ou colonne 'Expedition' manquante.";
       Logger.log(errorMsg);
@@ -27,48 +78,81 @@ function updateJsonFilesOnGitHub() {
       return;
     }
 
+    // L'onglet Flinders peut manquer sans que tout s'arrête : les deux autres
+    // expéditions partent quand même, et le fichier Flinders reste tel quel.
+    const flinders = convertFlindersSheet();
+
     Logger.log(`Trouvé ${datasets.entrecasteaux.length} entrées pour d'Entrecasteaux.`);
     Logger.log(`Trouvé ${datasets.baudin.length} entrées pour Baudin.`);
+    Logger.log(flinders ? `Trouvé ${flinders.length} entrées pour Flinders.`
+                        : `Onglet « ${FLINDERS_SHEET} » absent : Flinders n'est pas touché.`);
 
-    // Étape 2 : Uploader le premier fichier JSON sur GitHub.
-    const entrecasteauxJsonString = JSON.stringify(datasets.entrecasteaux, null, 2);
-    const result1 = uploadToGitHub(ENTRECASTEAUX_PATH, entrecasteauxJsonString, "Mise à jour automatique (d'Entrecasteaux)");
-    
-    if (!result1.success) {
-      throw new Error(`Échec de l'upload d'Entrecasteaux: ${result1.error}`);
+    // Étape 2 : envoyer chaque fichier, en sautant ceux qui n'ont pas bougé.
+    const envois = [
+      { chemin: ENTRECASTEAUX_PATH, donnees: datasets.entrecasteaux,
+        nom: "d'Entrecasteaux" },
+      { chemin: BAUDIN_PATH, donnees: datasets.baudin, nom: 'Baudin' }
+    ];
+    if (flinders) {
+      envois.push({ chemin: FLINDERS_PATH, donnees: flinders, nom: 'Flinders' });
     }
 
-    // Étape 3 : Uploader le second fichier JSON sur GitHub.
-    const baudinJsonString = JSON.stringify(datasets.baudin, null, 2);
-    const result2 = uploadToGitHub(BAUDIN_PATH, baudinJsonString, "Mise à jour automatique (Baudin)");
-    
-    if (!result2.success) {
-      throw new Error(`Échec de l'upload de Baudin: ${result2.error}`);
+    const resume = [];
+    let auMoinsUnEnvoi = false;
+
+    envois.forEach((envoi) => {
+      const json = JSON.stringify(envoi.donnees, null, 2);
+      const resultat = uploadToGitHub(envoi.chemin, json,
+                                      `Mise à jour automatique (${envoi.nom})`);
+      if (!resultat.success) {
+        throw new Error(`Échec de l'upload de ${envoi.nom} : ${resultat.error}`);
+      }
+      if (resultat.inchange) {
+        resume.push(`${envoi.nom} : inchangé`);
+      } else {
+        auMoinsUnEnvoi = true;
+        resume.push(`${envoi.nom} : ${envoi.donnees.length} entrées envoyées`);
+      }
+    });
+
+    // La limite quotidienne ne compte que les envois réels : relancer le
+    // script sans avoir rien modifié ne doit pas consommer la journée.
+    if (auMoinsUnEnvoi) {
+      PropertiesService.getScriptProperties()
+        .setProperty(CLE_DERNIER_ENVOI, dateDuJour());
     }
 
-    // Message de succès dans le Logger - pas de Browser.msgBox qui bloque
-    const successMsg = `Mise à jour réussie ! ${datasets.entrecasteaux.length} entrées d'Entrecasteaux, ${datasets.baudin.length} entrées Baudin. Fichiers mis à jour sur GitHub.`;
+    const successMsg = auMoinsUnEnvoi
+      ? `Mise à jour réussie. ${resume.join(' · ')}`
+      : `Rien à envoyer : les trois fichiers sont déjà à jour sur GitHub.`;
     Logger.log(successMsg);
-    
-    // Affichage d'un toast non-bloquant au lieu de msgBox
-    SpreadsheetApp.getActiveSpreadsheet().toast(
-      `✓ ${datasets.entrecasteaux.length} entrées d'Entrecasteaux, ${datasets.baudin.length} entrées Baudin mis à jour sur GitHub`,
-      'Mise à jour réussie',
-      10  // Durée d'affichage en secondes
-    );
+    classeur.toast(successMsg, auMoinsUnEnvoi ? 'Mise à jour réussie' : 'Aucun changement', 10);
 
   } catch (e) {
     const errorMsg = `Erreur lors de la mise à jour GitHub : ${e.toString()}`;
     Logger.log(`Erreur complète : ${e.stack || e.toString()}`);
-    
-    // Pour les erreurs, on peut garder Browser.msgBox car l'utilisateur doit voir l'erreur
     Browser.msgBox('Erreur', errorMsg, Browser.Buttons.OK);
   }
 }
 
+
 /**
- * NOUVEAU : Cette fonction lit la feuille et la divise en deux listes,
- * en reproduisant la logique du script Python.
+ * La date d'aujourd'hui dans le fuseau du classeur, en yyyy-MM-dd.
+ */
+function dateDuJour() {
+  const fuseau = SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
+  return Utilities.formatDate(new Date(), fuseau, 'yyyy-MM-dd');
+}
+
+function dejaEnvoyeAujourdHui() {
+  const dernier = PropertiesService.getScriptProperties()
+    .getProperty(CLE_DERNIER_ENVOI);
+  return dernier === dateDuJour();
+}
+
+
+/**
+ * Lit l'onglet « Source » et le divise en deux listes.
  */
 function convertSheetToTwoDatasets() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
@@ -76,22 +160,22 @@ function convertSheetToTwoDatasets() {
     Logger.log(`Erreur : L'onglet "${SHEET_NAME}" est introuvable.`);
     return null;
   }
-  
+
   const data = sheet.getDataRange().getValues();
   if (data.length <= 1) {
     Logger.log("Feuille vide ou ne contient que l'en-tête.");
     return null;
   }
-  
+
   const headers = data.shift();
-  
+
   // Trouve l'index de la colonne 'Expedition', qui est cruciale pour le tri.
   const expeditionIndex = headers.indexOf('Expedition');
   if (expeditionIndex === -1) {
       Logger.log("Erreur critique : La colonne 'Expedition' est introuvable dans les en-têtes.");
       return null;
   }
-  
+
   // Crée un mappage des en-têtes vers leur index pour un accès facile.
   const headerMap = {};
   headers.forEach((header, index) => {
@@ -165,13 +249,165 @@ function convertSheetToTwoDatasets() {
       throw newErr;
     }
   });
-  
+
   return { entrecasteaux: entrecasteaux_data, baudin: baudin_data };
 }
 
 
 /**
- * MODIFIÉ : La fonction d'upload est maintenant plus générique.
+ * Lit l'onglet « Flinders ». Retourne null si l'onglet n'existe pas, pour que
+ * l'absence n'empêche pas les deux autres expéditions de partir.
+ *
+ * Trois différences avec l'onglet « Source », et chacune a sa raison :
+ *
+ *   - treize colonnes de plus, propres à Flinders ;
+ *   - une coordonnée vide reste vide, elle ne devient pas zéro. Vingt-cinq
+ *     lieux n'ont pas de position relevée ; à zéro ils s'afficheraient au
+ *     large de l'Afrique ;
+ *   - « Incertain » est une vraie valeur logique, pas un texte.
+ */
+function convertFlindersSheet() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(FLINDERS_SHEET);
+  if (!sheet) {
+    Logger.log(`L'onglet "${FLINDERS_SHEET}" est introuvable : Flinders est ignoré.`);
+    return null;
+  }
+
+  const data = sheet.getDataRange().getValues();
+  if (data.length <= 1) {
+    Logger.log(`L'onglet "${FLINDERS_SHEET}" est vide : Flinders est ignoré.`);
+    return null;
+  }
+
+  const headers = data.shift();
+  const headerMap = {};
+  headers.forEach((header, index) => {
+    headerMap[header.toString().trim()] = index;
+  });
+
+  // On vérifie les colonnes indispensables plutôt que de produire en silence
+  // un fichier amputé.
+  const requises = ['Code', 'French name', 'latitude South', 'longitude East',
+                    'Caracteristiques (FR)', 'Characteristic (EN)'];
+  const manquantes = requises.filter((c) => headerMap[c] === undefined);
+  if (manquantes.length) {
+    throw new Error(`Onglet « ${FLINDERS_SHEET} » : colonne(s) introuvable(s) : `
+                    + manquantes.join(', '));
+  }
+
+  const flinders_data = [];
+
+  data.forEach((row, idx) => {
+    try {
+      const texte = (headerName) => {
+        const i = headerMap[headerName];
+        if (i === undefined) return '';
+        const value = row[i];
+        return value !== null && value !== undefined ? value.toString() : '';
+      };
+
+      // Une coordonnée absente reste absente : null, jamais zéro.
+      const coordonnee = (headerName) => {
+        const brut = texte(headerName).trim();
+        if (brut === '') return null;
+        const nombre = parseFloat(brut.replace(',', '.'));
+        return isNaN(nombre) ? null : nombre;
+      };
+
+      // La cellule peut rendre un vrai booléen, ou le texte qu'on y a importé.
+      const logique = (headerName) => {
+        const i = headerMap[headerName];
+        if (i === undefined) return false;
+        const brut = row[i];
+        if (typeof brut === 'boolean') return brut;
+        const s = (brut === null || brut === undefined ? '' : brut.toString())
+                    .trim().toLowerCase();
+        return s === 'vrai' || s === 'true' || s === 'oui' || s === '1';
+      };
+
+      // Une ligne sans code n'est pas un toponyme : séparateur, ligne de
+      // travail, ou simple blanc en fin de feuille.
+      if (texte('Code').trim() === '') return;
+
+      flinders_data.push({
+        "code": texte('Code'),
+        "expedition": texte('Expedition') || 'Flinders',
+        "state": texte('State'),
+        "frenchName": texte('French name'),
+        "variantName": texte('Variant and other historical name'),
+        "ausEName": texte('Australian name'),
+        "indigenousName": texte('Aboriginal name'),
+        "indigenousLanguage": texte('Aboriginal language group'),
+        "lat": coordonnee('latitude South'),
+        "lon": coordonnee('longitude East'),
+        "characteristic": texte('Characteristic (EN)'),
+        "characteristic_fr": texte('Caracteristiques (FR)'),
+        "history": texte('Story (EN)'),
+        "history_fr": texte('Histoire (FR)'),
+        "detailsLink": texte('fiche detaillee F'),
+        "detailsLink_en": texte('detailed information sheet E'),
+        "imgUrl": texte('URL IMG'),
+        "mapUrl": texte('URL Carte'),
+        "mapTitle_fr": texte('Titre Carte (FR)'),
+        "mapTitle_en": texte('Map title (EN)'),
+        "origin_fr": texte('Origine du nom version initiale'),
+        "other_link": texte('URL DIV'),
+        "wiki_fr": texte('URL WIKI FR'),
+        "wiki_en": texte('URL WIKi EN'),
+        // --- les treize colonnes propres à Flinders
+        "navire": texte('Navire'),
+        "campagne": texte('Campagne'),
+        "date": texte('Date'),
+        "secteur": texte('Secteur'),
+        "categorie": texte('Categorie'),
+        "sousCategorie": texte('Sous-categorie'),
+        "classe": texte('Classe'),
+        "planche": texte('Planche'),
+        "commentaire": texte('Commentaire'),
+        "incertain": logique('Incertain'),
+        "imgCredit": texte('Credit image'),
+        "imgSource": texte('Source image'),
+        "imgSujet": texte('Sujet image')
+      });
+    } catch (err) {
+      const rowInfo = `Onglet ${FLINDERS_SHEET}, ligne ${idx + 2}`;
+      const newErr = new Error(`Erreur à la ${rowInfo} : ${err.message}`);
+      Logger.log(`${newErr.message}\nStack: ${err.stack}`);
+      throw newErr;
+    }
+  });
+
+  return flinders_data;
+}
+
+
+/**
+ * L'empreinte que git donnerait à ce contenu.
+ *
+ * git nomme un fichier par le SHA-1 de « blob <longueur en octets>\0 » suivi
+ * du contenu. La même empreinte est celle que l'API de GitHub renvoie sous le
+ * nom « sha ». La calculer ici permet de savoir si le fichier a changé sans
+ * le télécharger -- ce qui compte : baudin.json pèse trois mégaoctets, et
+ * l'API refuse de rendre le contenu au-delà d'un mégaoctet.
+ */
+function gitBlobSha(contenu) {
+  const corps = Utilities.newBlob(contenu).getBytes();          // UTF-8
+  const entete = Utilities.newBlob('blob ' + corps.length).getBytes();
+  const octets = entete.concat([0]).concat(corps);
+  const digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_1, octets);
+  return digest.map(function (o) {
+    const v = (o < 0 ? o + 256 : o).toString(16);
+    return v.length === 1 ? '0' + v : v;
+  }).join('');
+}
+
+
+/**
+ * Envoie un fichier sur GitHub, sauf s'il y est déjà à l'identique.
+ *
+ * Retourne { success, inchange } : « inchangé » n'est pas un échec, c'est le
+ * cas le plus fréquent et le plus désirable -- pas de commit, donc pas de
+ * déploiement, donc pas de stockage consommé.
  */
 function uploadToGitHub(filePath, jsonContent, commitMessage) {
   try {
@@ -188,17 +424,24 @@ function uploadToGitHub(filePath, jsonContent, commitMessage) {
 
     let currentSha = null;
     try {
-      const getResponse = UrlFetchApp.fetch(apiUrl, { 
-        method: 'get', 
-        headers: headers, 
-        muteHttpExceptions: true 
+      const getResponse = UrlFetchApp.fetch(apiUrl, {
+        method: 'get',
+        headers: headers,
+        muteHttpExceptions: true
       });
       if (getResponse.getResponseCode() == 200) {
         const responseData = JSON.parse(getResponse.getContentText());
         currentSha = responseData.sha;
       }
-    } catch (e) { 
+    } catch (e) {
       Logger.log(`Fichier ${filePath} n'existe pas encore (première création)`);
+    }
+
+    // Rien n'a bougé : on s'arrête là. C'est ce test qui évite les dizaines de
+    // commits « Mise à jour automatique » sans différence réelle.
+    if (currentSha && currentSha === gitBlobSha(jsonContent)) {
+      Logger.log(`${filePath} : identique sur GitHub, aucun envoi.`);
+      return { success: true, inchange: true };
     }
 
     const contentBase64 = Utilities.base64Encode(jsonContent, Utilities.Charset.UTF_8);
@@ -222,10 +465,10 @@ function uploadToGitHub(filePath, jsonContent, commitMessage) {
 
     const putResponse = UrlFetchApp.fetch(apiUrl, putOptions);
     const responseCode = putResponse.getResponseCode();
-    
+
     if (responseCode == 200 || responseCode == 201) {
       Logger.log(`Succès ! Fichier ${filePath} mis à jour/créé.`);
-      return { success: true };
+      return { success: true, inchange: false };
     } else {
       const errorMsg = `Échec de l'upload pour ${filePath}. Code: ${responseCode}, Réponse: ${putResponse.getContentText()}`;
       Logger.log(errorMsg);
@@ -238,22 +481,69 @@ function uploadToGitHub(filePath, jsonContent, commitMessage) {
 }
 
 
-// ----- FONCTIONS DU MENU (INCHANGÉES) -----
+// ----- FONCTIONS DU MENU -----
 function setGitHubToken() {
-  const token = Browser.inputBox('Stocker le Token GitHub', 
-                                'Veuillez coller votre Personal Access Token GitHub ici :', 
+  const token = Browser.inputBox('Stocker le Token GitHub',
+                                'Veuillez coller votre Personal Access Token GitHub ici :',
                                 Browser.Buttons.OK_CANCEL);
   if (token && token !== 'cancel') {
     PropertiesService.getScriptProperties().setProperty(GITHUB_TOKEN_NAME, token);
-    // LIGNE CORRIGÉE CI-DESSOUS
     Browser.msgBox('Succès', 'Votre Token GitHub a été stocké.', Browser.Buttons.OK);
+  }
+}
+
+/**
+ * Compare les trois onglets à ce qui est en ligne, sans rien envoyer.
+ * De quoi vérifier avant de publier, et se passer d'un envoi « pour voir ».
+ */
+function verifierSansEnvoyer() {
+  try {
+    const datasets = convertSheetToTwoDatasets();
+    if (!datasets) {
+      Browser.msgBox('Erreur', "Onglet « Source » illisible.", Browser.Buttons.OK);
+      return;
+    }
+    const flinders = convertFlindersSheet();
+    const aTester = [
+      { chemin: ENTRECASTEAUX_PATH, donnees: datasets.entrecasteaux, nom: "d'Entrecasteaux" },
+      { chemin: BAUDIN_PATH, donnees: datasets.baudin, nom: 'Baudin' }
+    ];
+    if (flinders) {
+      aTester.push({ chemin: FLINDERS_PATH, donnees: flinders, nom: 'Flinders' });
+    }
+
+    const token = PropertiesService.getScriptProperties().getProperty(GITHUB_TOKEN_NAME);
+    const lignes = aTester.map((t) => {
+      const json = JSON.stringify(t.donnees, null, 2);
+      const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${t.chemin}`;
+      const r = UrlFetchApp.fetch(url, {
+        method: 'get',
+        headers: { 'Authorization': `token ${token}`,
+                   'Accept': 'application/vnd.github.v3+json' },
+        muteHttpExceptions: true
+      });
+      const enLigne = r.getResponseCode() == 200
+        ? JSON.parse(r.getContentText()).sha : null;
+      const identique = enLigne && enLigne === gitBlobSha(json);
+      return `${t.nom} : ${t.donnees.length} entrées — `
+           + (identique ? 'identique en ligne' : 'à publier');
+    });
+    if (!flinders) {
+      lignes.push(`Flinders : onglet « ${FLINDERS_SHEET} » absent`);
+    }
+    Browser.msgBox('État par rapport à GitHub', lignes.join('\n'), Browser.Buttons.OK);
+  } catch (e) {
+    Browser.msgBox('Erreur', e.toString(), Browser.Buttons.OK);
   }
 }
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('GitHub')
-    .addItem('Mettre à jour les JSONs maintenant', 'updateJsonFilesOnGitHub') // MODIFIÉ pour appeler la bonne fonction
+    .addItem('Mettre à jour les JSONs maintenant', 'updateJsonFilesOnGitHub')
+    .addItem('Comparer avec GitHub (sans envoyer)', 'verifierSansEnvoyer')
+    .addSeparator()
+    .addItem('Forcer la mise à jour (hors limite quotidienne)', 'forcerMiseAJourGitHub')
     .addSeparator()
     .addItem('Configurer le Token GitHub', 'setGitHubToken')
     .addToUi();
