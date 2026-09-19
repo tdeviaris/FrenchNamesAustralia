@@ -111,6 +111,14 @@ POSITIONS_DITES = [
 # Ce point-ci n'est pas releve, il est CALCULE : c'est le plus proche de la
 # route directe qui degage le trait de cote des deux cotes. La fiche le dit.
 CONTOURNEMENTS = [
+    {'date': '1803-05-15', 'lon': 117.0, 'lat': -35.2,
+     'raison': "au sud d'Albany, entre les deux relèves de la carte de 1814 — "
+               "le 12 mai au sud-ouest du cap Leeuwin, le 16 mai déjà loin sur "
+               "la côte méridionale. Le trait direct coupait la pointe "
+               "sud-ouest du continent : Flinders doubla le cap, et ce point "
+               "est le plus proche de sa route qui dégage la côte des deux "
+               "côtés. Il allonge la traversée de vingt et un kilomètres sur "
+               "huit cent quarante-quatre"},
     {'date': '1803-09-24', 'lon': 153.55, 'lat': -31.6,
      'raison': "au large de Smoky Cape, entre le mouillage de Point Stephens du "
                "22 septembre et le travers de Wreck Reef du 2 octobre. Flinders "
