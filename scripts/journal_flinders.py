@@ -20,6 +20,15 @@ seul change le bâtiment sous ses pieds, et c'est ce que dit NAVIRES.
 
 Les positions sont rapportées à Greenwich, non à Paris : aucune conversion.
 
+ATTENTION : ce script RÉÉCRIT data/flinders_parcours.geojson à partir du seul
+récit. Les positions relevées sur la carte générale de 1814 y sont versées
+ensuite, par scripts/integre_carte_flinders.py — quarante-deux points, dont
+toute la traversée de retour d'avril et mai 1803, que le récit ne donne pas.
+Les relancer dans l'ordre, toujours :
+
+    python3 scripts/journal_flinders.py <dossier> --ecrire
+    python3 scripts/integre_carte_flinders.py --ecrire
+
 Usage : python3 scripts/journal_flinders.py <dossier des textes> [--ecrire]
 """
 import datetime, io, json, os, re, sys
@@ -366,6 +375,10 @@ def main():
         json.dump({d: {'journal_flinders': t} for d, t in sorted(recits.items())},
                   io.open(JOURNAL, 'w', encoding='utf-8'), ensure_ascii=False)
         print('-> %s' % os.path.relpath(JOURNAL, RACINE))
+        print('\nLe parcours ne contient que le récit. Pour y remettre les '
+              'quarante-deux\npositions lues sur la carte de 1814, enchaîner '
+              'maintenant :\n'
+              '    python3 scripts/integre_carte_flinders.py --ecrire')
     else:
         print('\n(simulation — relancer avec --ecrire)')
 
