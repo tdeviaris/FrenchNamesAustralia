@@ -3215,7 +3215,9 @@ gtag('config', 'G-LCWV2EVPVQ');
                     if (img.dataset.avifDone) continue;
                     img.dataset.avifDone = '1';
 
-                    const avifSrc = src.replace(/\.jpg$/i, '.avif');
+                    // L'apercu suit la planche reellement servie : une planche
+                    // mutualisee n'a pas d'apercu a son ancien nom.
+                    const avifSrc = aliasTelecharg(src.replace(/\.jpg$/i, '.avif'));
                     if (!(await hasAvif(avifSrc))) continue;
 
                     const parent = img.parentNode;
@@ -4135,11 +4137,15 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // silencieux : l'absence de table n'empeche pas la carte
             }
         };
+        // Le meme renvoi, pour un chemin deja forme.
+        const aliasTelecharg = (chemin) => {
+            const nom = chemin.replace(/^img_telecharg\//, '');
+            return `img_telecharg/${imgAlias[nom] || nom}`;
+        };
         // Le chemin d'une image de telechargement, planche ou illustration.
         const cheminTelecharg = (code, suffixe) => {
             if (!code) return null;
-            const nom = `${code}_${suffixe}.jpg`;
-            return `img_telecharg/${imgAlias[nom] || nom}`;
+            return aliasTelecharg(`img_telecharg/${code}_${suffixe}.jpg`);
         };
 
         // --- Helpers de formatage pour les infobulles du parcours ---
