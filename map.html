@@ -4120,12 +4120,14 @@ gtag('config', 'G-LCWV2EVPVQ');
         const parcoursLabels = {
             fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
                   empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée',
+                  atAnchor: 'Position au mouillage',
                   logbook: 'Position d’après le journal de bord',
                   corrected: 'Relevé corrigé',
                   fromChart: 'Position relevée sur la carte',
                   original: '', traduit: '' },
             en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
                   empty: 'No reading for this day.', extrapolated: 'Extrapolated position',
+                  atAnchor: 'Position at anchor',
                   logbook: 'Position from the ship’s log',
                   corrected: 'Corrected reading',
                   fromChart: 'Position taken from the chart',
@@ -4497,6 +4499,11 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             // Position calculee : ce n'est pas un releve.
             const extrapolated = Boolean(props?.extrapole);
+            // ... mais une escale n'est pas calculee pour autant : le navire
+            // est au mouillage, en un lieu nomme et date, et les tables se
+            // taisent simplement tant qu'il n'y a pas de route a consigner.
+            // L'annoncer « extrapolee » ferait douter d'une position sure.
+            const auMouillage = extrapolated && Boolean(props?.mouillage);
             // Retour du Naturaliste : la position vient des journaux du bord,
             // les tables de Freycinet s'arrêtant à Port Jackson.
             const fromLog = Boolean(props?.position_journal);
@@ -4553,7 +4560,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                 html += `<div class="parcours-popup-body">`;
                 if (extrapolated) {
                     html += `<div class="parcours-popup-extrapolated">`
-                        + `${escapeHtmlText(labels.extrapolated)}</div>`;
+                        + `${escapeHtmlText(auMouillage ? labels.atAnchor
+                                                        : labels.extrapolated)}</div>`;
                     if (motif) {
                         html += `<div class="parcours-popup-motif">`
                             + `${escapeHtmlText(motif)}</div>`;

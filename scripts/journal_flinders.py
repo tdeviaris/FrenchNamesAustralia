@@ -281,6 +281,9 @@ def proprietes(p):
             "expedition": "Flinders",
             "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814",
             "extrapole": True,
+            # Un mouillage n'est pas une position calculee : le lieu est connu
+            # et date. La fiche doit le dire autrement.
+            "mouillage": True,
             "alerte": "position tenue au mouillage : %s (%s)" % (e['lieu'], e['appui']),
         }
     commun = {

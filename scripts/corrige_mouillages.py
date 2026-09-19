@@ -75,6 +75,9 @@ def main():
                 continue                      # déjà corrigé
             f['geometry']['coordinates'] = [m['lon'], m['lat']]
             p['extrapole'] = True
+            # Le lieu est connu et date : la fiche ne doit pas annoncer une
+            # position extrapolee.
+            p['mouillage'] = True
             p['alerte'] = ('position tenue au mouillage : %s (%s)'
                            % (m['lieu'], m['appui']))
             corriges.append((date, navire, avant, m['lieu']))

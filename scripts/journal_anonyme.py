@@ -117,6 +117,9 @@ def main(chemin_textes, propriete, ecrire):
             continue
         # Aucun releve ce jour-la : on cree un point, sans position observee.
         nav = navs[0]
+        # Une escale donne une position connue, pas une position calculee :
+        # la fiche l'annonce autrement.
+        mouillage = True
         if date in POSITIONS_IMPOSEES:
             coords, motif = POSITIONS_IMPOSEES[date]
             coords = list(coords)
@@ -126,6 +129,7 @@ def main(chemin_textes, propriete, ecrire):
         else:
             coords = interpole(series.get(nav, []), date)
             motif = "interpolée entre les deux relevés encadrants"
+            mouillage = False
         if coords is None:
             perdus += 1
             continue
@@ -136,6 +140,7 @@ def main(chemin_textes, propriete, ecrire):
             'date': date, 'navire': nav,
             'alerte': f"point ajouté pour une entrée de journal ; position {motif}",
             'extrapole': True,
+            'mouillage': mouillage,
             propriete: texte,
         })
         nouveaux.append({"type": "Feature",
