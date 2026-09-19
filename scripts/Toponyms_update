@@ -571,10 +571,12 @@ function onOpen() {
 // Il reçoit les soumissions du formulaire de contact et les écrit dans un
 // onglet « Contacts ». Déployé comme application web, accès : tout le monde.
 //
-// Le site ne s'en sert plus : contact.html poste aujourd'hui sur
-// /api/contact, une fonction Vercel qui envoie un courriel par Resend et
-// n'écrit rien dans le classeur. Le point d'entrée reste néanmoins en place,
-// n'ayant rien coûté et pouvant encore servir à un appelant qu'on ignore.
+// Il est bien en service, et le supprimer ferait perdre la trace écrite des
+// messages. La chaîne est à trois maillons : contact.html poste sur
+// /api/contact ; cette fonction Vercel envoie le courriel par Resend, puis
+// appelle ici, à l'adresse que porte sa variable GOOGLE_SHEET_WEBHOOK. Le
+// courriel et l'onglet sont deux dépôts indépendants : si l'un échoue,
+// l'autre passe quand même, et la fonction le consigne.
 
 const CONTACT_SHEET_NAME = 'Contacts';
 
