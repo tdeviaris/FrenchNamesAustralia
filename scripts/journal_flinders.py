@@ -43,7 +43,7 @@ JOURNAL = os.path.join(RACINE, 'data', 'journaux', 'flinders_en.json')
 NAVIRES = [
     ("l'Investigator", '1801-01-01', '1803-06-09'),
     ('le Porpoise',    '1803-08-10', '1803-08-17'),
-    ('le Cumberland',  '1803-09-21', '1803-12-16'),
+    ('le Cumberland',  '1803-09-21', '1803-12-17'),
 ]
 
 
@@ -92,6 +92,18 @@ ESCALES = [
      'lieu': 'Port Jackson, appareillage de la Cumberland',
      'appui': "le 21 septembre « I sailed out of the harbour in the Cumberland "
               "at daylight, with the Rolla and Francis in company »"},
+    {'du': '1803-12-16', 'au': '1803-12-16',
+     'lon': 57.38, 'lat': -20.52,
+     'lieu': "Baie du Cap, à l'Île de France",
+     'appui': "le 15 décembre la terre est vue au point du jour et la goélette "
+              "mouille dans la baie ; le 16, le commandant retient la "
+              "Cumberland et Flinders dîne chez le major Dunienville"},
+    {'du': '1803-12-17', 'au': '1803-12-17',
+     'lon': 57.48, 'lat': -20.15,
+     'lieu': 'Port Louis, terme du voyage',
+     'appui': "« PORT LOUIS. SATURDAY 17 DECEMBER 1803 » : la Cumberland "
+              "mouille dans la rade, et Flinders y sera retenu six ans et "
+              "demi. C'est la dernière position de la campagne"},
     {'du': '1803-10-07', 'au': '1803-10-11',
      'lon': 155.293, 'lat': -22.239,
      'lieu': 'Wreck Reef, où la Cumberland recueille les naufragés',
@@ -108,6 +120,11 @@ POSITIONS_DITES = [
      'appui': "« I anchored in a small bight under Point Stephens, in very bad "
               "plight » ; le lendemain la Cumberland rejoint la Rolla et la "
               "Francis dans Port Stephens"},
+    {'date': '1803-12-15', 'lon': 57.95, 'lat': -20.55,
+     'appui': "atterrage à l'Île de France : « before daylight, the land was "
+              "seen » ; la goélette double l'angle sud-est de l'île le long "
+              "d'un récif, puis « in steering westward along the shore » "
+              "gagne Baie du Cap, où elle mouille le soir"},
     {'date': '1803-10-02', 'lon': 153.867, 'lat': -22.2,
      'appui': "« on the 2nd a.m. our corrected longitude was 153° 52' », par le "
               "travers de Wreck Reef, que la goélette cherche cinq jours durant"},
