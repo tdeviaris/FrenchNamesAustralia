@@ -4116,6 +4116,32 @@ gtag('config', 'G-LCWV2EVPVQ');
             });
         };
 
+        // Plusieurs toponymes figurent sur la meme planche gravee, et chacun en
+        // gardait sa copie sous son propre code : une planche de 3,8 Mo etait
+        // stockee trente-trois fois. La planche n'existe plus qu'une fois, et
+        // les autres codes y renvoient par cette table. Elle est dressee par
+        // scripts/dedoublonne.py, qui la reecrit en entier a chaque passage.
+        //
+        // La table arrive avant les toponymes : une fiche ne s'ouvre qu'apres.
+        // Si le chargement echoue, chaque code garde son propre nom -- la
+        // planche manquera, mais la fiche s'affichera, et le lien distant
+        // prend le relais comme pour toute image absente.
+        let imgAlias = {};
+        const chargeImgAlias = async () => {
+            try {
+                const r = await fetch('data/img_alias.json', { cache: 'no-cache' });
+                if (r.ok) imgAlias = await r.json();
+            } catch (err) {
+                // silencieux : l'absence de table n'empeche pas la carte
+            }
+        };
+        // Le chemin d'une image de telechargement, planche ou illustration.
+        const cheminTelecharg = (code, suffixe) => {
+            if (!code) return null;
+            const nom = `${code}_${suffixe}.jpg`;
+            return `img_telecharg/${imgAlias[nom] || nom}`;
+        };
+
         // --- Helpers de formatage pour les infobulles du parcours ---
         const parcoursLabels = {
             fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
@@ -5955,7 +5981,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     if (place.mapUrl && place.mapUrl.trim() !== "") {
                         const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
                         const safeMapTitle = mapTitle && mapTitle.trim() !== '' ? escapeHtml(mapTitle) : safeAlt;
-                        const localCartePath = place.code ? `img_telecharg/${place.code}_Carte.jpg` : null;
+                        const localCartePath = cheminTelecharg(place.code, 'Carte');
                         if (localCartePath) {
                             const safeRemoteMapUrl = escapeHtml(place.mapUrl);
                             linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${localCartePath}" data-map-url-remote="${safeRemoteMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
@@ -6020,7 +6046,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
                     if (place.imgUrl && place.imgUrl.trim() !== "") {
                         const escapedImg = escapeHtml(place.imgUrl);
-                        const localImgPath = place.code ? `img_telecharg/${place.code}_Img.jpg` : null;
+                        const localImgPath = cheminTelecharg(place.code, 'Img');
                         const imgSrc = localImgPath || escapedImg;
                         const imgOnerror = localImgPath
                             ? ` data-remote="${escapedImg}" onerror="this.onerror=null;this.src=this.dataset.remote;var b=this.closest('button');if(b)b.dataset.img=this.dataset.remote;"`
@@ -6082,6 +6108,8 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         (async () => {
             try {
+                // La table d'alias des planches, avant toute fiche.
+                await chargeImgAlias();
                 // Toutes les expeditions declarees, dans l'ordre du registre.
                 const lots = [];
                 for (const cfg of Object.values(expeditionConfigs)) {
