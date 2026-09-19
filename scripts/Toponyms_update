@@ -139,9 +139,12 @@ function majGitHub(forcer) {
 /**
  * La date d'aujourd'hui dans le fuseau du classeur, en yyyy-MM-dd.
  */
+function fuseauDuClasseur() {
+  return SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
+}
+
 function dateDuJour() {
-  const fuseau = SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
-  return Utilities.formatDate(new Date(), fuseau, 'yyyy-MM-dd');
+  return Utilities.formatDate(new Date(), fuseauDuClasseur(), 'yyyy-MM-dd');
 }
 
 function dejaEnvoyeAujourdHui() {
@@ -303,7 +306,16 @@ function convertFlindersSheet() {
         const i = headerMap[headerName];
         if (i === undefined) return '';
         const value = row[i];
-        return value !== null && value !== undefined ? value.toString() : '';
+        if (value === null || value === undefined) return '';
+        // Une cellule devenue vraie date rendrait « Mon Dec 07 1801 00:00:00
+        // GMT+0009 ». Les journées de Flinders vont de 1796 à 1803, en deçà
+        // du 30 décembre 1899 où commence le calendrier des tableurs : la
+        // colonne doit rester du texte, et l'import se fait sans conversion.
+        // Si malgré tout une date s'y glisse, on la remet en yyyy-MM-dd.
+        if (value instanceof Date) {
+          return Utilities.formatDate(value, fuseauDuClasseur(), 'yyyy-MM-dd');
+        }
+        return value.toString();
       };
 
       // Une coordonnée absente reste absente : null, jamais zéro.
