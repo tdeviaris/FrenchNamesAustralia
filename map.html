@@ -4958,6 +4958,9 @@ gtag('config', 'G-LCWV2EVPVQ');
                         // l'une d'elles l'est.
                         marker.__coques = entry.coques;
                         marker.__t = Number.isFinite(dateMs) ? dateMs : null;
+                        // Un point de contournement partage la date de son
+                        // voisin : il ne doit pas lui voler la fiche.
+                        marker.__contournement = Boolean(entry.props?.contournement);
                         if (Number.isFinite(dateMs)) {
                             const liste = parcoursMarqueurs[key].get(dateMs) || [];
                             liste.push(marker);
@@ -5594,10 +5597,13 @@ gtag('config', 'G-LCWV2EVPVQ');
         const timelineOuvreFiche = (t) => {
             const liste = parcoursMarqueurs[timelineKey]?.get(t);
             if (!liste || !liste.length) return;
-            const visible = liste.find((m) => {
+            const montrable = (m) => {
                 const coques = m.__coques || [m.__parcoursGroupe];
                 return coques.some((c) => parcoursShipWanted[timelineKey]?.[c] !== false);
-            });
+            };
+            // Le releve prime sur le detour qui partage sa date.
+            const visible = liste.find((m) => montrable(m) && !m.__contournement)
+                || liste.find(montrable);
             (visible || liste[0]).openPopup();
         };
 
@@ -5769,8 +5775,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 timelineAppliqueTranche();
             }
             const liste = parcoursMarqueurs[key]?.get(t) || [];
-            const marqueur = liste.find((m) =>
-                (m.__coques || [m.__parcoursGroupe]).includes(repere.navire)) || liste[0];
+            // Deux points peuvent porter le meme jour quand un contournement
+            // s'insere : la date remarquable vise le releve, non le detour.
+            const duNavire = liste.filter((m) =>
+                (m.__coques || [m.__parcoursGroupe]).includes(repere.navire));
+            const candidats = duNavire.length ? duNavire : liste;
+            const marqueur = candidats.find((m) => !m.__contournement) || candidats[0];
             if (!marqueur) return;
             // Le navire du repere a pu etre decoche dans son volet : son point
             // serait absent de la carte, et la fiche ne s'ouvrirait pas.

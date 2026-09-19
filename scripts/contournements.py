@@ -125,6 +125,9 @@ def gabarit(modele, coords, date, raison):
         'navire': modele['properties'].get('navire', ''),
         'alerte': raison,
         'extrapole': True,
+        # Un point de contournement porte la meme date que son voisin : la
+        # carte doit savoir lequel des deux ouvrir quand on demande ce jour-la.
+        'contournement': True,
     })
     if not props.get('navire'):
         props.pop('navire', None)

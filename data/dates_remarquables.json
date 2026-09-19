@@ -1,650 +1,659 @@
 [
-  {
-    "date": "1800-10-19",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Appareillage du Havre : le Géographe et le Naturaliste prennent la mer",
-      "en": "Sailing from Le Havre: the Géographe and the Naturaliste put to sea"
-    }
-  },
-  {
-    "date": "1800-11-02",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Mouillage sur la rade de Sainte-Croix de Ténériffe",
-      "en": "Anchoring in the roadstead of Santa Cruz de Tenerife"
-    }
-  },
-  {
-    "date": "1800-12-12",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Passage de la ligne, à 6 heures du soir",
-      "en": "Crossing the equator, at six in the evening"
-    }
-  },
-  {
-    "date": "1801-03-16",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Mouillage dans le port Nord-Ouest de l'Île-de-France",
-      "en": "Anchoring in the North-West harbour of the Île de France"
-    }
-  },
-  {
-    "date": "1801-04-25",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Départ de l'Île-de-France pour la Nouvelle-Hollande",
-      "en": "Departure from the Île de France for New Holland"
-    }
-  },
-  {
-    "date": "1801-05-27",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Première vue des terres de la Nouvelle-Hollande",
-      "en": "First sight of the coast of New Holland"
-    }
-  },
-  {
-    "date": "1801-06-25",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Le Géographe mouille dans la baie des Chiens-Marins",
-      "en": "The Géographe anchors in Shark Bay"
-    }
-  },
-  {
-    "date": "1801-07-17",
-    "expedition": "B",
-    "navire": "le Naturaliste",
-    "libelle": {
-      "fr": "Le Naturaliste rejoint la baie des Chiens-Marins",
-      "en": "The Naturaliste reaches Shark Bay"
-    }
-  },
-  {
-    "date": "1801-08-21",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Le Géographe mouille dans le détroit de Simâô, à Timor",
-      "en": "The Géographe anchors in the Semau strait, off Timor"
-    }
-  },
-  {
-    "date": "1801-09-21",
-    "expedition": "B",
-    "navire": "le Naturaliste",
-    "libelle": {
-      "fr": "Le Naturaliste mouille dans la baie de Coupang",
-      "en": "The Naturaliste anchors in Kupang bay"
-    }
-  },
-  {
-    "date": "1801-11-13",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Appareillage de la rade de Coupang",
-      "en": "Sailing from the Kupang roadstead"
-    }
-  },
-  {
-    "date": "1802-01-13",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Première vue de la Terre de Diémen ; mouillage au canal d'Entrecasteaux",
-      "en": "First sight of Van Diemen's Land; anchoring in the D'Entrecasteaux Channel"
-    }
-  },
-  {
-    "date": "1802-02-18",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Mouillage à l'ouest de l'île Maria",
-      "en": "Anchoring west of Maria Island"
-    }
-  },
-  {
-    "date": "1802-03-06",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Le grand canot du Géographe est abandonné en mer",
-      "en": "The Géographe's launch is abandoned at sea"
-    }
-  },
-  {
-    "date": "1802-04-08",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Rencontre de l'Investigator du capitaine Flinders",
-      "en": "Meeting with captain Flinders's Investigator"
-    }
-  },
-  {
-    "date": "1802-04-17",
-    "expedition": "B",
-    "navire": "le Naturaliste",
-    "libelle": {
-      "fr": "Le Naturaliste met en route pour Port Jackson",
-      "en": "The Naturaliste sets course for Port Jackson"
-    }
-  },
-  {
-    "date": "1802-06-20",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Le Géographe mouille à l'entrée de Port Jackson",
-      "en": "The Géographe anchors at the entrance of Port Jackson"
-    }
-  },
-  {
-    "date": "1802-11-18",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Sortie de Port Jackson, le Casuarina en conserve",
-      "en": "Leaving Port Jackson, the Casuarina in company"
-    }
-  },
-  {
-    "date": "1802-12-07",
-    "expedition": "B",
-    "navire": "le Casuarina",
-    "libelle": {
-      "fr": "Le Casuarina part relever les îles Hunter",
-      "en": "The Casuarina leaves to survey the Hunter Islands"
-    }
-  },
-  {
-    "date": "1803-01-06",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Mouillage dans la baie Bougainville, île Decrès",
-      "en": "Anchoring in Bougainville Bay, Decrès Island"
-    }
-  },
-  {
-    "date": "1803-02-17",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Le Géographe mouille dans le port du Roi-George",
-      "en": "The Géographe anchors in King George Sound"
-    }
-  },
-  {
-    "date": "1803-03-16",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Retour à la baie des Chiens-Marins",
-      "en": "Return to Shark Bay"
-    }
-  },
-  {
-    "date": "1803-05-06",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Seconde relâche à Coupang, sur l'île Timor",
-      "en": "Second call at Kupang, on Timor"
-    }
-  },
-  {
-    "date": "1803-06-03",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Départ de Timor pour la côte du Nord-Ouest",
-      "en": "Departure from Timor for the north-west coast"
-    }
-  },
-  {
-    "date": "1803-06-26",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Dernier relèvement sur la Nouvelle-Hollande, au cap Helvétius",
-      "en": "Last bearing taken on New Holland, at Cape Helvétius"
-    }
-  },
-  {
-    "date": "1803-08-07",
-    "expedition": "B",
-    "navire": "le Géographe",
-    "libelle": {
-      "fr": "Arrivée à l'Île-de-France, terme du voyage de Baudin",
-      "en": "Arrival at the Île de France, the end of Baudin's voyage"
-    }
-  },
-  {
-    "date": "1791-09-29",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Appareillage de Brest, à la recherche de La Pérouse",
-      "en": "Sailing from Brest, in search of La Pérouse"
-    }
-  },
-  {
-    "date": "1791-10-12",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée à Sainte-Croix de Ténériffe",
-      "en": "Arrival at Santa Cruz de Tenerife"
-    }
-  },
-  {
-    "date": "1791-10-24",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ de Sainte-Croix pour le cap de Bonne-Espérance",
-      "en": "Departure from Santa Cruz for the Cape of Good Hope"
-    }
-  },
-  {
-    "date": "1792-01-16",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée au cap de Bonne-Espérance",
-      "en": "Arrival at the Cape of Good Hope"
-    }
-  },
-  {
-    "date": "1792-02-16",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ du Cap pour les mers australes",
-      "en": "Departure from the Cape for the southern seas"
-    }
-  },
-  {
-    "date": "1792-04-21",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée au port du Nord, Terre de Van-Diémen",
-      "en": "Arrival at the North harbour, Van Diemen's Land"
-    }
-  },
-  {
-    "date": "1792-05-28",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Appareillage du port du Nord pour Amboine",
-      "en": "Sailing from the North harbour for Amboina"
-    }
-  },
-  {
-    "date": "1792-09-05",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée à Amboine",
-      "en": "Arrival at Amboina"
-    }
-  },
-  {
-    "date": "1792-10-13",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ d'Amboine pour la côte méridionale",
-      "en": "Departure from Amboina for the southern coast"
-    }
-  },
-  {
-    "date": "1792-12-09",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée au port de l'Espérance, terre de Nuyts",
-      "en": "Arrival at Esperance harbour, Nuyts Land"
-    }
-  },
-  {
-    "date": "1792-12-17",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ du port de l'Espérance pour la Terre de Van-Diémen",
-      "en": "Departure from Esperance harbour for Van Diemen's Land"
-    }
-  },
-  {
-    "date": "1793-01-20",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée au port du Sud, Terre de Van-Diémen",
-      "en": "Arrival at the South harbour, Van Diemen's Land"
-    }
-  },
-  {
-    "date": "1793-02-27",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Appareillage du port du Sud pour Tongatabou",
-      "en": "Sailing from the South harbour for Tongatapu"
-    }
-  },
-  {
-    "date": "1793-03-23",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée à Tongatabou",
-      "en": "Arrival at Tongatapu"
-    }
-  },
-  {
-    "date": "1793-04-09",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ de Tongatabou pour la Nouvelle-Calédonie",
-      "en": "Departure from Tongatapu for New Caledonia"
-    }
-  },
-  {
-    "date": "1793-04-18",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée à Balade, Nouvelle-Calédonie",
-      "en": "Arrival at Balade, New Caledonia"
-    }
-  },
-  {
-    "date": "1793-05-09",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ de Balade pour les îles Salomon",
-      "en": "Departure from Balade for the Solomon Islands"
-    }
-  },
-  {
-    "date": "1793-07-20",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Mort de d'Entrecasteaux, au large des côtes de la Nouvelle-Guinée",
-      "en": "Death of D'Entrecasteaux, off the coast of New Guinea"
-    }
-  },
-  {
-    "date": "1793-08-15",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée au havre de Boni",
-      "en": "Arrival at Boni harbour"
-    }
-  },
-  {
-    "date": "1793-08-27",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ du havre de Boni pour Cajeli",
-      "en": "Departure from Boni harbour for Cajeli"
-    }
-  },
-  {
-    "date": "1793-09-16",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Départ de Cajeli pour l'île Boutoun",
-      "en": "Departure from Cajeli for Buton island"
-    }
-  },
-  {
-    "date": "1793-10-20",
-    "expedition": "E",
-    "navire": "la Recherche",
-    "libelle": {
-      "fr": "Arrivée sur la rade de Sourabaya, terme du voyage",
-      "en": "Arrival in the Surabaya roadstead, the end of the voyage"
-    }
-  },
-  {
-    "date": "1801-08-06",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Relâche à Madère : vivres embarqués, calfatage achevé",
-      "en": "Call at Madeira: provisions received, caulking completed"
-    }
-  },
-  {
-    "date": "1801-09-20",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Parages de l'île Trinidad, dans l'Atlantique sud",
-      "en": "Off Trinidad island, in the South Atlantic"
-    }
-  },
-  {
-    "date": "1801-10-14",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "En approche du cap de Bonne-Espérance",
-      "en": "Approaching the Cape of Good Hope"
-    }
-  },
-  {
-    "date": "1801-12-06",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Approche de la Nouvelle-Hollande, au sud-ouest du continent",
-      "en": "Landfall on New Holland, off the south-west cape"
-    }
-  },
-  {
-    "date": "1801-12-09",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Relâche au port du Roi-George, avant la côte sud",
-      "en": "Call at King George's Sound, before the south coast"
-    }
-  },
-  {
-    "date": "1802-01-28",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Baie Fowler : fin des côtes connues, la découverte commence",
-      "en": "Fowler's Bay: the known coast ends, discovery begins"
-    }
-  },
-  {
-    "date": "1802-02-20",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Remontée du grand enfoncement, futur golfe Spencer",
-      "en": "Working up the great bight, the future Spencer's Gulf"
-    }
-  },
-  {
-    "date": "1802-03-17",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Relevé de la côte orientale du golfe Spencer",
-      "en": "Surveying the eastern shore of Spencer's Gulf"
-    }
-  },
-  {
-    "date": "1802-04-09",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Séparation d'avec le Géographe, au lendemain de la rencontre",
-      "en": "Parting from the Géographe, the day after the meeting"
-    }
-  },
-  {
-    "date": "1802-05-09",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "L'Investigator mouille dans Sydney Cove",
-      "en": "The Investigator anchors in Sydney Cove"
-    }
-  },
-  {
-    "date": "1802-07-22",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Départ de Port Jackson, le Lady Nelson en conserve",
-      "en": "Departure from Port Jackson, the Lady Nelson in company"
-    }
-  },
-  {
-    "date": "1802-08-04",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Baie Bustard, sur la côte orientale",
-      "en": "Bustard Bay, on the east coast"
-    }
-  },
-  {
-    "date": "1802-10-21",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Les derniers récifs franchis, cap sur le détroit de Torrès",
-      "en": "The last reefs cleared, course set for Torres' Strait"
-    }
-  },
-  {
-    "date": "1802-11-06",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Golfe de Carpentarie : passage devant la rivière Batavia",
-      "en": "Gulf of Carpentaria: passing the Batavia River"
-    }
-  },
-  {
-    "date": "1802-12-11",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Relevé de la côte méridionale du golfe de Carpentarie",
-      "en": "Surveying the southern shore of the Gulf of Carpentaria"
-    }
-  },
-  {
-    "date": "1803-02-11",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Le cap Arnhem reçoit son nom",
-      "en": "Cape Arnhem is named"
-    }
-  },
-  {
-    "date": "1803-03-07",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Côte du Nord : route à l'ouest, vers les terres de McCluer",
-      "en": "North coast: steering west, towards McCluer's land"
-    }
-  },
-  {
-    "date": "1803-04-26",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Traversée de l'océan Indien, à la recherche d'une terre",
-      "en": "Crossing the Indian Ocean, in search of land"
-    }
-  },
-  {
-    "date": "1803-06-09",
-    "expedition": "F",
-    "navire": "l'Investigator",
-    "libelle": {
-      "fr": "Retour à Port Jackson : le tour du continent est achevé",
-      "en": "Return to Port Jackson: the circuit of the continent completed"
-    }
-  },
-  {
-    "date": "1803-08-10",
-    "expedition": "F",
-    "navire": "le Porpoise",
-    "libelle": {
-      "fr": "Le Porpoise quitte Port Jackson pour l'Angleterre",
-      "en": "The Porpoise leaves Port Jackson for England"
-    }
-  },
-  {
-    "date": "1803-08-17",
-    "expedition": "F",
-    "navire": "le Porpoise",
-    "libelle": {
-      "fr": "Naufrage du Porpoise sur le récif Wreck",
-      "en": "The Porpoise is wrecked on Wreck Reef"
-    }
-  },
-  {
-    "date": "1803-09-21",
-    "expedition": "F",
-    "navire": "le Cumberland",
-    "libelle": {
-      "fr": "Flinders repart de Port Jackson sur la goélette Cumberland",
-      "en": "Flinders sails from Port Jackson in the schooner Cumberland"
-    }
-  },
-  {
-    "date": "1803-10-11",
-    "expedition": "F",
-    "navire": "le Cumberland",
-    "libelle": {
-      "fr": "Départ du récif Wreck, cap sur le détroit de Torrès",
-      "en": "Leaving Wreck Reef, course set for Torres' Strait"
-    }
-  },
-  {
-    "date": "1803-11-25",
-    "expedition": "F",
-    "navire": "le Cumberland",
-    "libelle": {
-      "fr": "Au-delà de Java Head : la goélette fait eau",
-      "en": "Past Java Head: the schooner is leaking"
-    }
+ {
+  "date": "1800-10-19",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Appareillage du Havre : le Géographe et le Naturaliste prennent la mer",
+   "en": "Sailing from Le Havre: the Géographe and the Naturaliste put to sea"
   }
+ },
+ {
+  "date": "1800-11-02",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Mouillage sur la rade de Sainte-Croix de Ténériffe",
+   "en": "Anchoring in the roadstead of Santa Cruz de Tenerife"
+  }
+ },
+ {
+  "date": "1800-12-12",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Passage de la ligne, à 6 heures du soir",
+   "en": "Crossing the equator, at six in the evening"
+  }
+ },
+ {
+  "date": "1801-03-16",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Mouillage dans le port Nord-Ouest de l'Île-de-France",
+   "en": "Anchoring in the North-West harbour of the Île de France"
+  }
+ },
+ {
+  "date": "1801-04-25",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Départ de l'Île-de-France pour la Nouvelle-Hollande",
+   "en": "Departure from the Île de France for New Holland"
+  }
+ },
+ {
+  "date": "1801-05-27",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Première vue des terres de la Nouvelle-Hollande",
+   "en": "First sight of the coast of New Holland"
+  }
+ },
+ {
+  "date": "1801-06-25",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Le Géographe mouille dans la baie des Chiens-Marins",
+   "en": "The Géographe anchors in Shark Bay"
+  }
+ },
+ {
+  "date": "1801-07-17",
+  "expedition": "B",
+  "navire": "le Naturaliste",
+  "libelle": {
+   "fr": "Le Naturaliste rejoint la baie des Chiens-Marins",
+   "en": "The Naturaliste reaches Shark Bay"
+  }
+ },
+ {
+  "date": "1801-08-21",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Le Géographe mouille dans le détroit de Simâô, à Timor",
+   "en": "The Géographe anchors in the Semau strait, off Timor"
+  }
+ },
+ {
+  "date": "1801-09-21",
+  "expedition": "B",
+  "navire": "le Naturaliste",
+  "libelle": {
+   "fr": "Le Naturaliste mouille dans la baie de Coupang",
+   "en": "The Naturaliste anchors in Kupang bay"
+  }
+ },
+ {
+  "date": "1801-11-13",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Appareillage de la rade de Coupang",
+   "en": "Sailing from the Kupang roadstead"
+  }
+ },
+ {
+  "date": "1802-01-13",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Première vue de la Terre de Diémen ; mouillage au canal d'Entrecasteaux",
+   "en": "First sight of Van Diemen's Land; anchoring in the D'Entrecasteaux Channel"
+  }
+ },
+ {
+  "date": "1802-02-18",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Mouillage à l'ouest de l'île Maria",
+   "en": "Anchoring west of Maria Island"
+  }
+ },
+ {
+  "date": "1802-03-06",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Le grand canot du Géographe est abandonné en mer",
+   "en": "The Géographe's launch is abandoned at sea"
+  }
+ },
+ {
+  "date": "1802-04-08",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Rencontre de l'Investigator du capitaine Flinders",
+   "en": "Meeting with captain Flinders's Investigator"
+  }
+ },
+ {
+  "date": "1802-04-17",
+  "expedition": "B",
+  "navire": "le Naturaliste",
+  "libelle": {
+   "fr": "Le Naturaliste met en route pour Port Jackson",
+   "en": "The Naturaliste sets course for Port Jackson"
+  }
+ },
+ {
+  "date": "1802-06-20",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Le Géographe mouille à l'entrée de Port Jackson",
+   "en": "The Géographe anchors at the entrance of Port Jackson"
+  }
+ },
+ {
+  "date": "1802-11-18",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Sortie de Port Jackson, le Casuarina en conserve",
+   "en": "Leaving Port Jackson, the Casuarina in company"
+  }
+ },
+ {
+  "date": "1802-12-07",
+  "expedition": "B",
+  "navire": "le Casuarina",
+  "libelle": {
+   "fr": "Le Casuarina part relever les îles Hunter",
+   "en": "The Casuarina leaves to survey the Hunter Islands"
+  }
+ },
+ {
+  "date": "1803-01-06",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Mouillage dans la baie Bougainville, île Decrès",
+   "en": "Anchoring in Bougainville Bay, Decrès Island"
+  }
+ },
+ {
+  "date": "1803-02-17",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Le Géographe mouille dans le port du Roi-George",
+   "en": "The Géographe anchors in King George Sound"
+  }
+ },
+ {
+  "date": "1803-03-16",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Retour à la baie des Chiens-Marins",
+   "en": "Return to Shark Bay"
+  }
+ },
+ {
+  "date": "1803-05-06",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Seconde relâche à Coupang, sur l'île Timor",
+   "en": "Second call at Kupang, on Timor"
+  }
+ },
+ {
+  "date": "1803-06-03",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Départ de Timor pour la côte du Nord-Ouest",
+   "en": "Departure from Timor for the north-west coast"
+  }
+ },
+ {
+  "date": "1803-06-26",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Dernier relèvement sur la Nouvelle-Hollande, au cap Helvétius",
+   "en": "Last bearing taken on New Holland, at Cape Helvétius"
+  }
+ },
+ {
+  "date": "1803-08-07",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Arrivée à l'Île-de-France, terme du voyage de Baudin",
+   "en": "Arrival at the Île de France, the end of Baudin's voyage"
+  }
+ },
+ {
+  "date": "1791-09-29",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Appareillage de Brest, à la recherche de La Pérouse",
+   "en": "Sailing from Brest, in search of La Pérouse"
+  }
+ },
+ {
+  "date": "1791-10-12",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée à Sainte-Croix de Ténériffe",
+   "en": "Arrival at Santa Cruz de Tenerife"
+  }
+ },
+ {
+  "date": "1791-10-24",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ de Sainte-Croix pour le cap de Bonne-Espérance",
+   "en": "Departure from Santa Cruz for the Cape of Good Hope"
+  }
+ },
+ {
+  "date": "1792-01-16",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée au cap de Bonne-Espérance",
+   "en": "Arrival at the Cape of Good Hope"
+  }
+ },
+ {
+  "date": "1792-02-16",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ du Cap pour les mers australes",
+   "en": "Departure from the Cape for the southern seas"
+  }
+ },
+ {
+  "date": "1792-04-21",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée au port du Nord, Terre de Van-Diémen",
+   "en": "Arrival at the North harbour, Van Diemen's Land"
+  }
+ },
+ {
+  "date": "1792-05-28",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Appareillage du port du Nord pour Amboine",
+   "en": "Sailing from the North harbour for Amboina"
+  }
+ },
+ {
+  "date": "1792-09-05",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée à Amboine",
+   "en": "Arrival at Amboina"
+  }
+ },
+ {
+  "date": "1792-10-13",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ d'Amboine pour la côte méridionale",
+   "en": "Departure from Amboina for the southern coast"
+  }
+ },
+ {
+  "date": "1792-12-09",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée au port de l'Espérance, terre de Nuyts",
+   "en": "Arrival at Esperance harbour, Nuyts Land"
+  }
+ },
+ {
+  "date": "1792-12-17",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ du port de l'Espérance pour la Terre de Van-Diémen",
+   "en": "Departure from Esperance harbour for Van Diemen's Land"
+  }
+ },
+ {
+  "date": "1793-01-20",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée au port du Sud, Terre de Van-Diémen",
+   "en": "Arrival at the South harbour, Van Diemen's Land"
+  }
+ },
+ {
+  "date": "1793-02-27",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Appareillage du port du Sud pour Tongatabou",
+   "en": "Sailing from the South harbour for Tongatapu"
+  }
+ },
+ {
+  "date": "1793-03-23",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée à Tongatabou",
+   "en": "Arrival at Tongatapu"
+  }
+ },
+ {
+  "date": "1793-04-09",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ de Tongatabou pour la Nouvelle-Calédonie",
+   "en": "Departure from Tongatapu for New Caledonia"
+  }
+ },
+ {
+  "date": "1793-04-18",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée à Balade, Nouvelle-Calédonie",
+   "en": "Arrival at Balade, New Caledonia"
+  }
+ },
+ {
+  "date": "1793-05-09",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ de Balade pour les îles Salomon",
+   "en": "Departure from Balade for the Solomon Islands"
+  }
+ },
+ {
+  "date": "1793-07-20",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Mort de d'Entrecasteaux, au large des côtes de la Nouvelle-Guinée",
+   "en": "Death of D'Entrecasteaux, off the coast of New Guinea"
+  }
+ },
+ {
+  "date": "1793-08-15",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée au havre de Boni",
+   "en": "Arrival at Boni harbour"
+  }
+ },
+ {
+  "date": "1793-08-27",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ du havre de Boni pour Cajeli",
+   "en": "Departure from Boni harbour for Cajeli"
+  }
+ },
+ {
+  "date": "1793-09-16",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Départ de Cajeli pour l'île Boutoun",
+   "en": "Departure from Cajeli for Buton island"
+  }
+ },
+ {
+  "date": "1793-10-20",
+  "expedition": "E",
+  "navire": "la Recherche",
+  "libelle": {
+   "fr": "Arrivée sur la rade de Sourabaya, terme du voyage",
+   "en": "Arrival in the Surabaya roadstead, the end of the voyage"
+  }
+ },
+ {
+  "date": "1801-08-06",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Relâche à Madère : vivres embarqués, calfatage achevé",
+   "en": "Call at Madeira: provisions received, caulking completed"
+  }
+ },
+ {
+  "date": "1801-09-20",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Parages de l'île Trinidad, dans l'Atlantique sud",
+   "en": "Off Trinidad island, in the South Atlantic"
+  }
+ },
+ {
+  "date": "1801-10-14",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "En approche du cap de Bonne-Espérance",
+   "en": "Approaching the Cape of Good Hope"
+  }
+ },
+ {
+  "date": "1801-12-06",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Approche de la Nouvelle-Hollande, au sud-ouest du continent",
+   "en": "Landfall on New Holland, off the south-west cape"
+  }
+ },
+ {
+  "date": "1801-12-09",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Relâche au port du Roi-George, avant la côte sud",
+   "en": "Call at King George's Sound, before the south coast"
+  }
+ },
+ {
+  "date": "1802-01-28",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Baie Fowler : fin des côtes connues, la découverte commence",
+   "en": "Fowler's Bay: the known coast ends, discovery begins"
+  }
+ },
+ {
+  "date": "1802-02-20",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Remontée du grand enfoncement, futur golfe Spencer",
+   "en": "Working up the great bight, the future Spencer's Gulf"
+  }
+ },
+ {
+  "date": "1802-03-17",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Relevé de la côte orientale du golfe Spencer",
+   "en": "Surveying the eastern shore of Spencer's Gulf"
+  }
+ },
+ {
+  "date": "1802-04-09",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Séparation d'avec le Géographe, au lendemain de la rencontre",
+   "en": "Parting from the Géographe, the day after the meeting"
+  }
+ },
+ {
+  "date": "1802-05-09",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "L'Investigator mouille dans Sydney Cove",
+   "en": "The Investigator anchors in Sydney Cove"
+  }
+ },
+ {
+  "date": "1802-07-22",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Départ de Port Jackson, le Lady Nelson en conserve",
+   "en": "Departure from Port Jackson, the Lady Nelson in company"
+  }
+ },
+ {
+  "date": "1802-08-04",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Baie Bustard, sur la côte orientale",
+   "en": "Bustard Bay, on the east coast"
+  }
+ },
+ {
+  "date": "1802-10-21",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Les derniers récifs franchis, cap sur le détroit de Torrès",
+   "en": "The last reefs cleared, course set for Torres' Strait"
+  }
+ },
+ {
+  "date": "1802-11-06",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Golfe de Carpentarie : passage devant la rivière Batavia",
+   "en": "Gulf of Carpentaria: passing the Batavia River"
+  }
+ },
+ {
+  "date": "1802-12-11",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Relevé de la côte méridionale du golfe de Carpentarie",
+   "en": "Surveying the southern shore of the Gulf of Carpentaria"
+  }
+ },
+ {
+  "date": "1803-02-11",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Le cap Arnhem reçoit son nom",
+   "en": "Cape Arnhem is named"
+  }
+ },
+ {
+  "date": "1803-03-07",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Côte du Nord : route à l'ouest, vers les terres de McCluer",
+   "en": "North coast: steering west, towards McCluer's land"
+  }
+ },
+ {
+  "date": "1803-04-26",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Traversée de l'océan Indien, à la recherche d'une terre",
+   "en": "Crossing the Indian Ocean, in search of land"
+  }
+ },
+ {
+  "date": "1803-06-09",
+  "expedition": "F",
+  "navire": "l'Investigator",
+  "libelle": {
+   "fr": "Retour à Port Jackson : le tour du continent est achevé",
+   "en": "Return to Port Jackson: the circuit of the continent completed"
+  }
+ },
+ {
+  "date": "1803-08-10",
+  "expedition": "F",
+  "navire": "le Porpoise",
+  "libelle": {
+   "fr": "Le Porpoise quitte Port Jackson pour l'Angleterre",
+   "en": "The Porpoise leaves Port Jackson for England"
+  }
+ },
+ {
+  "date": "1803-08-17",
+  "expedition": "F",
+  "navire": "le Porpoise",
+  "libelle": {
+   "fr": "Naufrage du Porpoise sur le récif Wreck",
+   "en": "The Porpoise is wrecked on Wreck Reef"
+  }
+ },
+ {
+  "date": "1803-09-21",
+  "expedition": "F",
+  "navire": "le Cumberland",
+  "libelle": {
+   "fr": "Flinders repart de Port Jackson sur la goélette Cumberland",
+   "en": "Flinders sails from Port Jackson in the schooner Cumberland"
+  }
+ },
+ {
+  "date": "1803-10-11",
+  "expedition": "F",
+  "navire": "le Cumberland",
+  "libelle": {
+   "fr": "Départ du récif Wreck, cap sur le détroit de Torrès",
+   "en": "Leaving Wreck Reef, course set for Torres' Strait"
+  }
+ },
+ {
+  "date": "1803-11-25",
+  "expedition": "F",
+  "navire": "le Cumberland",
+  "libelle": {
+   "fr": "Au-delà de Java Head : la goélette fait eau",
+   "en": "Past Java Head: the schooner is leaking"
+  }
+ },
+ {
+  "date": "1803-12-17",
+  "expedition": "F",
+  "navire": "le Cumberland",
+  "libelle": {
+   "fr": "Port Louis, Île de France : le voyage s'achève, la captivité commence",
+   "en": "Port Louis, Île de France: the voyage ends and the detention begins"
+  }
+ }
 ]
