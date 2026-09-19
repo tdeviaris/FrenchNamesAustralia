@@ -34,6 +34,10 @@ const FLINDERS_PATH = 'data/flinders.json';
 const SHEET_NAME = 'Source';       // d'Entrecasteaux et Baudin
 const FLINDERS_SHEET = 'Flinders'; // Flinders, avec ses colonnes propres
 
+// Les visuels retenus pour les toponymes de Flinders, choisis hors du
+// classeur puis importés dans son onglet. Voir scripts/applique_visuels.py.
+const VISUELS_PATH = 'data/visuels_flinders.json';
+
 // Mémorise la date du dernier envoi effectif, pour la limite quotidienne.
 const CLE_DERNIER_ENVOI = 'DERNIER_ENVOI';
 // ------------------------------------------
@@ -493,6 +497,132 @@ function uploadToGitHub(filePath, jsonContent, commitMessage) {
 }
 
 
+/**
+ * Lit un fichier du dépôt et rend son texte.
+ *
+ * L'API rend le contenu en base64, coupé en lignes qu'il faut recoller avant
+ * de décoder. Elle refuse au-delà d'un mégaoctet : ce fichier-ci en pèse
+ * seize kilo-octets, on est loin du compte.
+ */
+function lisFichierGitHub(chemin) {
+  const token = PropertiesService.getScriptProperties().getProperty(GITHUB_TOKEN_NAME);
+  if (!token) throw new Error("Token GitHub non trouvé. Configurez-le via le menu.");
+  const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${chemin}`;
+  const r = UrlFetchApp.fetch(url, {
+    method: 'get',
+    headers: { 'Authorization': `token ${token}`,
+               'Accept': 'application/vnd.github.v3+json' },
+    muteHttpExceptions: true
+  });
+  if (r.getResponseCode() !== 200) {
+    throw new Error(`${chemin} illisible sur GitHub (code ${r.getResponseCode()})`);
+  }
+  const base64 = JSON.parse(r.getContentText()).content.replace(/\s+/g, '');
+  return Utilities.newBlob(Utilities.base64Decode(base64)).getDataAsString('UTF-8');
+}
+
+
+/**
+ * Verse dans l'onglet « Flinders » les visuels retenus dans le dépôt.
+ *
+ * Les images viennent de Wikimedia Commons, choisies sur une planche de
+ * contrôle produite hors du classeur, avec leur auteur et leur licence --
+ * l'attribution est une obligation, pas un ornement.
+ *
+ * Par défaut une cellule déjà remplie n'est pas touchée : le classeur fait
+ * foi, et une image changée à la main doit le rester. « en écrasant » sert
+ * quand on veut au contraire imposer la sélection du dépôt.
+ */
+function importerVisuels() { majVisuels(false); }
+function importerVisuelsEnEcrasant() { majVisuels(true); }
+
+function majVisuels(ecraser) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(FLINDERS_SHEET);
+    if (!sheet) throw new Error(`L'onglet « ${FLINDERS_SHEET} » est introuvable.`);
+
+    const data = sheet.getDataRange().getValues();
+    if (data.length <= 1) throw new Error(`L'onglet « ${FLINDERS_SHEET} » est vide.`);
+    const entetes = data[0].map((h) => h.toString().trim());
+
+    // Le champ du fichier -> la colonne de l'onglet.
+    const colonnes = {
+      imgUrl:    'URL IMG',
+      imgCredit: 'Credit image',
+      imgSource: 'Source image',
+      imgSujet:  'Sujet image'
+    };
+    const rang = {};
+    const absentes = [];
+    Object.keys(colonnes).forEach((champ) => {
+      const i = entetes.indexOf(colonnes[champ]);
+      if (i === -1) absentes.push(colonnes[champ]); else rang[champ] = i;
+    });
+    if (absentes.length) {
+      throw new Error(`Colonne(s) introuvable(s) dans « ${FLINDERS_SHEET} » : `
+                      + absentes.join(', '));
+    }
+
+    const rangCode = entetes.indexOf('Code');
+    if (rangCode === -1) throw new Error("Colonne « Code » introuvable.");
+
+    const visuels = JSON.parse(lisFichierGitHub(VISUELS_PATH));
+
+    // Où se trouve chaque toponyme dans la feuille.
+    const ligneDe = {};
+    for (let i = 1; i < data.length; i++) {
+      const code = (data[i][rangCode] || '').toString().trim();
+      if (code) ligneDe[code] = i;
+    }
+
+    let poses = 0, inchanges = 0, preserves = 0;
+    const inconnus = [];
+    const modifiees = {};          // champ -> true si la colonne a bougé
+
+    Object.keys(visuels).forEach((code) => {
+      const i = ligneDe[code];
+      if (i === undefined) { inconnus.push(code); return; }
+      let touche = false;
+      Object.keys(colonnes).forEach((champ) => {
+        const neuf = (visuels[code][champ] || '').toString();
+        const actuel = (data[i][rang[champ]] || '').toString();
+        if (actuel === neuf) return;
+        if (actuel.trim() && !ecraser) { preserves++; return; }
+        data[i][rang[champ]] = neuf;
+        modifiees[champ] = true;
+        touche = true;
+      });
+      if (touche) poses++; else inchanges++;
+    });
+
+    // Une colonne entière d'un coup : quatre écritures, pas quatre cents.
+    Object.keys(modifiees).forEach((champ) => {
+      const colonne = data.slice(1).map((row) => [row[rang[champ]]]);
+      sheet.getRange(2, rang[champ] + 1, colonne.length, 1).setValues(colonne);
+    });
+
+    const lignes = [
+      `${Object.keys(visuels).length} visuels dans le dépôt`,
+      `${poses} toponyme(s) complété(s)`,
+      `${inchanges} déjà à jour`
+    ];
+    if (preserves) {
+      lignes.push(`${preserves} cellule(s) déjà remplies, laissées telles quelles`
+                  + ` (« en écrasant » pour les remplacer)`);
+    }
+    if (inconnus.length) {
+      lignes.push(`codes absents de l'onglet : ${inconnus.join(', ')}`);
+    }
+    Logger.log(lignes.join(' · '));
+    Browser.msgBox('Import des visuels', lignes.join('\n'), Browser.Buttons.OK);
+
+  } catch (e) {
+    Logger.log(`Erreur importerVisuels : ${e.stack || e.toString()}`);
+    Browser.msgBox('Erreur', e.toString(), Browser.Buttons.OK);
+  }
+}
+
+
 // ----- FONCTIONS DU MENU -----
 function setGitHubToken() {
   const token = Browser.inputBox('Stocker le Token GitHub',
@@ -554,6 +684,9 @@ function onOpen() {
   ui.createMenu('GitHub')
     .addItem('Mettre à jour les JSONs maintenant', 'updateJsonFilesOnGitHub')
     .addItem('Comparer avec GitHub (sans envoyer)', 'verifierSansEnvoyer')
+    .addSeparator()
+    .addItem('Importer les visuels', 'importerVisuels')
+    .addItem('Importer les visuels (en écrasant)', 'importerVisuelsEnEcrasant')
     .addSeparator()
     .addItem('Forcer la mise à jour (hors limite quotidienne)', 'forcerMiseAJourGitHub')
     .addSeparator()
