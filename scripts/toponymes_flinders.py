@@ -31,6 +31,10 @@ import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SORTIE = os.path.join(RACINE, 'data', 'flinders.json')
+# Les citations traduites, une par fichier, nommees comme le code du lieu.
+# Sans elles la fiche francaise porte la citation anglaise, introduite en
+# francais : lisible, mais en deux langues.
+CITATIONS_FR = os.path.join(RACINE, 'data', 'flinders_citations_fr.json')
 FEUILLE = 'Sheet2'
 PREMIERE = 2                       # les deux premières lignes sont des titres
 
@@ -166,10 +170,12 @@ def noms(brut):
     return donne, actuel, doute
 
 
-def fiche(actuel, ligne, nav, date, langue):
+def fiche(actuel, ligne, nav, date, langue, citation_fr=None):
     """Le texte de la fiche : ce que Flinders en a écrit, et quand."""
     coque, campagne_fr, campagne_en = nav
     citation = texte(ligne[ORIGINE]).strip('"“” ')
+    if langue == 'fr' and citation_fr:
+        citation = citation_fr
     quand = ''
     if date:
         j = datetime.date.fromisoformat(date)
@@ -197,11 +203,18 @@ def fiche(actuel, ligne, nav, date, langue):
     return tete
 
 
+def citations_francaises():
+    if not os.path.exists(CITATIONS_FR):
+        return {}
+    return json.load(io.open(CITATIONS_FR, encoding='utf-8'))
+
+
 def main():
     import xlrd
     classeur = sys.argv[1]
     s = xlrd.open_workbook(classeur).sheet_by_name(FEUILLE)
 
+    fr = citations_francaises()
     lieux, sections, sans_coord, sans_date, inconnus = [], [], [], [], set()
     section = ''
     for r in range(PREMIERE, s.nrows):
@@ -241,7 +254,8 @@ def main():
             'lat': lat,
             'lon': lon,
             'characteristic': fiche(actuel, ligne, nav, date, 'en'),
-            'characteristic_fr': fiche(actuel, ligne, nav, date, 'fr'),
+            'characteristic_fr': fiche(actuel, ligne, nav, date, 'fr',
+                                       fr.get('Flinders%03d' % (len(lieux) + 1))),
             'history': '',
             'history_fr': '',
             'detailsLink': '',
@@ -268,6 +282,10 @@ def main():
         })
 
     import collections
+    print('citations traduites  : %d / %d'
+          % (sum(1 for l in lieux
+                 if 'Flinders écrit, dans' in l['characteristic_fr']
+                 and fr.get(l['code'])), len(fr)))
     print('sections traversées : %d' % len(sections))
     print('toponymes           : %d' % len(lieux))
     print('  sans coordonnées  : %d  %s'
