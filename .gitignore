@@ -51,3 +51,10 @@ assistant/docs/
 # Trait de cote Natural Earth, retelecharge a la demande par scripts/littoral.py
 data/ne_10m_coastline.geojson
 data/ne_10m_land.geojson
+
+# Documents de travail : jamais cites par une page, et servis publiquement
+# tant qu'ils sont versionnes. Le depot est publie tel quel par Vercel.
+*.docx
+
+# Rapports produits par les scripts, relisibles en les relancant
+output/
