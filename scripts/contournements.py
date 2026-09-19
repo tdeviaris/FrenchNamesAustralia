@@ -40,6 +40,25 @@ DETOURS_MANUELS = {
                   "doublant Bald Head — le cap que Flinders nomma lui-même. "
                   "278 km au lieu de 231, soit un cinquième de plus",
     },
+    ('les corvettes', '1802-01-13', '1802-01-14'): {
+        'points': [(146.98, -43.62), (147.14, -43.30)],
+        'raison': "doublement du cap Sud-Est de la Terre de Van Diemen et "
+                  "entrée dans le canal d'Entrecasteaux ; la ligne droite "
+                  "coupait la pointe, ces deux points la longent "
+                  "(62 km au lieu de 45)",
+    },
+    ('le Casuarina', '1802-12-12', '1802-12-13'): {
+        'points': [(144.72, -40.58), (144.56, -40.98)],
+        'raison': "passage à l'ouest des îlots Hunter, au nord-ouest de la "
+                  "Terre de Van Diemen ; la ligne droite les traversait "
+                  "(114 km au lieu de 85)",
+    },
+    ('la Recherche', '1793-09-23', '1793-09-24'): {
+        'points': [(122.87, -4.495)],
+        'raison': "contournement de la pointe méridionale de Bouton, aux "
+                  "Célèbes ; le point se pose sur la route directe, qu'il "
+                  "n'allonge pas",
+    },
     ('les corvettes', '1803-01-03', '1803-01-04'): {
         'points': [(136.63, -36.06), (136.49, -35.85)],
         'raison': "contournement de la pointe occidentale de l'île Decrès "

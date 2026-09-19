@@ -73,22 +73,22 @@ ESCALES = [
               "entrance » ; le 30, « the ship unmoored » ; le 3 janvier on "
               "prend congé des habitants"},
     {'du': '1802-05-09', 'au': '1802-07-22',
-     'lon': 151.26, 'lat': -33.84,
+     'lon': 151.286, 'lat': -33.851,
      'lieu': "Port Jackson, mouillage de Sydney Cove",
      'appui': "le 9 mai « the Investigator was anchored in Sydney Cove » ; "
               "le 22 juillet « we sailed out of Port Jackson »"},
     {'du': '1803-06-09', 'au': '1803-06-09',
-     'lon': 151.26, 'lat': -33.84,
+     'lon': 151.286, 'lat': -33.851,
      'lieu': 'Port Jackson, retour de la circumnavigation',
      'appui': "fin de la campagne de l'Investigator, condamné à son retour"},
     {'du': '1803-08-10', 'au': '1803-08-10',
-     'lon': 151.26, 'lat': -33.84,
+     'lon': 151.286, 'lat': -33.851,
      'lieu': 'Port Jackson, appareillage du Porpoise',
      'appui': "le 10 août « we sailed out of Port Jackson together, at eleven "
               "o'clock of the same morning, and steered north-eastward for "
               "Torres' Strait »"},
     {'du': '1803-09-21', 'au': '1803-09-21',
-     'lon': 151.26, 'lat': -33.84,
+     'lon': 151.286, 'lat': -33.851,
      'lieu': 'Port Jackson, appareillage de la Cumberland',
      'appui': "le 21 septembre « I sailed out of the harbour in the Cumberland "
               "at daylight, with the Rolla and Francis in company »"},
