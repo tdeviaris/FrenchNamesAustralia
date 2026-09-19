@@ -54,6 +54,13 @@ def navire_du_jour(d):
             return nom
     return None
 
+# Les quatre escales de Port Jackson portent la position de l'ENTREE du port,
+# 151° 16' E, et non celle de Sydney Cove ou le navire mouillait reellement :
+# le trait de cote employe par la carte, au 1/10 000 000, ne resout pas le
+# port, et Sydney Cove y tombe en pleine terre. Toute route partant de la
+# traversait alors la presqu'ile. L'ecart est de onze kilometres, et la fiche
+# nomme le mouillage.
+#
 # Au mouillage, Flinders cesse de donner sa position : elle ne change pas. Sans
 # ces escales le trace saute d'un bout a l'autre du continent, et il manquait
 # tout Port Jackson -- ou l'Investigator passa dix semaines, en meme temps que
@@ -66,22 +73,22 @@ ESCALES = [
               "entrance » ; le 30, « the ship unmoored » ; le 3 janvier on "
               "prend congé des habitants"},
     {'du': '1802-05-09', 'au': '1802-07-22',
-     'lon': 151.1461, 'lat': -33.8667,
-     'lieu': 'Port Jackson',
+     'lon': 151.26, 'lat': -33.84,
+     'lieu': "Port Jackson, mouillage de Sydney Cove",
      'appui': "le 9 mai « the Investigator was anchored in Sydney Cove » ; "
               "le 22 juillet « we sailed out of Port Jackson »"},
     {'du': '1803-06-09', 'au': '1803-06-09',
-     'lon': 151.1461, 'lat': -33.8667,
+     'lon': 151.26, 'lat': -33.84,
      'lieu': 'Port Jackson, retour de la circumnavigation',
      'appui': "fin de la campagne de l'Investigator, condamné à son retour"},
     {'du': '1803-08-10', 'au': '1803-08-10',
-     'lon': 151.1461, 'lat': -33.8667,
+     'lon': 151.26, 'lat': -33.84,
      'lieu': 'Port Jackson, appareillage du Porpoise',
      'appui': "le 10 août « we sailed out of Port Jackson together, at eleven "
               "o'clock of the same morning, and steered north-eastward for "
               "Torres' Strait »"},
     {'du': '1803-09-21', 'au': '1803-09-21',
-     'lon': 151.1461, 'lat': -33.8667,
+     'lon': 151.26, 'lat': -33.84,
      'lieu': 'Port Jackson, appareillage de la Cumberland',
      'appui': "le 21 septembre « I sailed out of the harbour in the Cumberland "
               "at daylight, with the Rolla and Francis in company »"},

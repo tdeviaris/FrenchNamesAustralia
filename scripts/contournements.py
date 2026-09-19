@@ -15,8 +15,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from littoral import Cote, Terre, km, points_tries, RACINE
 
 DATA = os.path.join(RACINE, 'data')
-FICHIERS = [('Baudin', 'baudin_parcours.geojson'),
-            ("d'Entrecasteaux", 'dentrecasteaux_parcours.geojson')]
+# Chaque parcours porte son propre ecart maximal, parce que les sources ne se
+# valent pas : Baudin tient des tables journalieres, ou trois jours de silence
+# signalent une lacune, tandis que Flinders ne donne sa position que de loin en
+# loin et qu'une semaine sans releve y est ordinaire.
+FICHIERS = [('Baudin', 'baudin_parcours.geojson', 3),
+            ("d'Entrecasteaux", 'dentrecasteaux_parcours.geojson', 3),
+            ('Flinders', 'flinders_parcours.geojson', 12)]
 
 ECART_MAX_JOURS = 3      # au-dela : lacune de releve, pas un cap mal contourne
 LONGUEUR_MIN_KM = 12     # en deca : mouillage, le trait de cote ne resout pas la baie
@@ -27,6 +32,14 @@ OFFSETS_KM = [5, 8, 12, 18, 25, 35, 50, 70, 95, 125, 160, 200, 250, 300]
 # il faut faire le tour par l'exterieur demande un trace qu'elle ne rencontre
 # jamais. Chaque entree porte le chemin retenu et ce qui l'a dicte.
 DETOURS_MANUELS = {
+    ("l'Investigator", '1801-12-07', '1801-12-09'): {
+        'points': [(116.75, -35.35), (118.05, -35.10)],
+        'raison': "entrée de King George's Sound. La ligne droite coupait la "
+                  "côte méridionale : le navire longe d'abord le rivage au "
+                  "large, puis remonte dans le détroit par le sud-est, en "
+                  "doublant Bald Head — le cap que Flinders nomma lui-même. "
+                  "278 km au lieu de 231, soit un cinquième de plus",
+    },
     ('les corvettes', '1803-01-03', '1803-01-04'): {
         'points': [(136.63, -36.06), (136.49, -35.85)],
         'raison': "contournement de la pointe occidentale de l'île Decrès "
@@ -107,7 +120,7 @@ def main(ecrire):
     print(f"trait de cote : {len(cote):,} aretes | polygones terrestres : {len(terre.anneaux):,} anneaux\n")
     total_ajouts = total_echecs = total_aterre = 0
 
-    for nom, fichier in FICHIERS:
+    for nom, fichier, ecart_max in FICHIERS:
         chemin = os.path.join(DATA, fichier)
         if not os.path.exists(chemin):
             continue
@@ -129,7 +142,7 @@ def main(ecrire):
                 except ValueError:
                     continue
                 longueur = km(p, q)
-                if ecart > ECART_MAX_JOURS or longueur < LONGUEUR_MIN_KM:
+                if ecart > ecart_max or longueur < LONGUEUR_MIN_KM:
                     continue                      # lacune ou mouillage : hors perimetre
                 if not cote.traverse(p, q):
                     continue
