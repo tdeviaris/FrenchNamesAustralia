@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 """Intègre le journal anonyme du Naturaliste dans data/journaux/baudin_fr.json.
 
-Remplace l'ancien scripts/journal_anonyme.py, qui écrivait les textes dans le
-GeoJSON : les journaux vivent désormais dans data/journaux/, le parcours ne
-porte plus que les positions.
+Le rattachement se faisait autrefois dans le GeoJSON, par un script retiré du
+dépôt en septembre 2026 : les journaux vivent désormais dans data/journaux/ et
+le parcours ne porte plus que les positions. C'est map.html qui décide, par
+SOURCES_JOURNAUX, à quel bâtiment chaque journal appartient -- celui-ci est
+tenu à bord du Naturaliste et ne s'affiche que sur lui.
 
 Le retour vers la France étant maintenant tracé (scripts/retour_naturaliste.py),
 le journal est rattaché jusqu'à sa dernière entrée.

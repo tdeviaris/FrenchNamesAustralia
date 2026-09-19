@@ -48,6 +48,9 @@ assistant/docs/
 # Playwright CLI
 .playwright-cli/
 
+# Captures et instantanes du navigateur d'automatisation
+.playwright-mcp/
+
 # Trait de cote Natural Earth, retelecharge a la demande par scripts/littoral.py
 data/ne_10m_coastline.geojson
 data/ne_10m_land.geojson
