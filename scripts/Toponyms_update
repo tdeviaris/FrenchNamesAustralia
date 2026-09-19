@@ -560,3 +560,55 @@ function onOpen() {
     .addItem('Configurer le Token GitHub', 'setGitHubToken')
     .addToUi();
 }
+
+
+// ─── Formulaire de contact ─────────────────────────────────────────────────
+// Ce bloc vivait dans le classeur sans figurer dans le dépôt : il a été
+// retrouvé le 19 septembre 2026, en comparant l'éditeur Apps Script à la
+// copie versionnée, avant de remplacer le script. Sans cette vérification, le
+// collage l'aurait effacé.
+//
+// Il reçoit les soumissions du formulaire de contact et les écrit dans un
+// onglet « Contacts ». Déployé comme application web, accès : tout le monde.
+//
+// Le site ne s'en sert plus : contact.html poste aujourd'hui sur
+// /api/contact, une fonction Vercel qui envoie un courriel par Resend et
+// n'écrit rien dans le classeur. Le point d'entrée reste néanmoins en place,
+// n'ayant rien coûté et pouvant encore servir à un appelant qu'on ignore.
+
+const CONTACT_SHEET_NAME = 'Contacts';
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName(CONTACT_SHEET_NAME);
+
+    // Crée l'onglet s'il n'existe pas encore
+    if (!sheet) {
+      sheet = ss.insertSheet(CONTACT_SHEET_NAME);
+      const headers = ['Date', 'Type', 'Nom', 'Email', 'Objet', 'Message'];
+      sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
+    }
+
+    sheet.appendRow([
+      data.timestamp || new Date().toISOString(),
+      data.type || '',
+      data.name || '',
+      data.email || '',
+      data.subject || '',
+      data.message || '',
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ error: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
