@@ -250,11 +250,16 @@
         }
         a.parcours-popup-lien { text-decoration: underline; }
         .parcours-popup-vo { font-size: 10px; font-style: italic; opacity: 0.55; }
+        /* Une journee peut porter cinq recits : chacun se plie a une hauteur
+           de fenetre et defile chez lui, pour que la fiche entiere reste lisible. */
         .parcours-popup-journal {
-            max-height: 220px;
+            max-height: 150px;
             overflow-y: auto;
             text-align: left;
             hyphens: auto;
+            /* La marge degage l'ascenseur du texte. */
+            padding-right: 6px;
+            scrollbar-width: thin;
         }
         .parcours-popup-remark { margin-bottom: 6px; }
         .parcours-popup-rows {
@@ -293,22 +298,33 @@
            aux popups de toponymes (720px, plus bas dans cette feuille). */
         .leaflet-popup-content-wrapper:has(.parcours-popup),
         .leaflet-popup-content:has(.parcours-popup) {
-            /* 260 px laissent les lignes de source tenir sur une seule ligne :
-               la plus longue en demande 203, plus 24 de marges internes. */
-            width: 260px;
-            max-width: min(260px, calc(100vw - 60px));
+            /* 460 px : les recits de journaux tiennent en moins de lignes,
+               et la fiche reste loin des 720 px des fiches de toponymes. */
+            width: 460px;
+            max-width: min(460px, calc(100vw - 60px));
         }
         .leaflet-popup-content:has(.parcours-popup) {
             text-align: left;
             padding: 10px 12px;
         }
 
-        .timeline-panel {
+        /* Colonne des panneaux de droite : le calendrier, puis les dates
+           remarquables au-dessous. Seuls les panneaux prennent la souris ; le
+           vide entre eux laisse passer les clics vers la carte. */
+        .panneaux-droite {
             position: absolute;
             top: 10px;
             /* Juste a gauche des boutons de zoom (34 px + marge). */
             right: 56px;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .panneaux-droite > * { pointer-events: auto; }
+        .timeline-panel {
             background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(0, 0, 0, 0.15);
             border-radius: 6px;
@@ -317,6 +333,40 @@
             padding: 6px 15px 5px;
             font-size: 12px;
             user-select: none;
+        }
+        /* Le bloc des dates remarquables reprend l'habit du calendrier : le
+           titre a gauche, et la liste en face, qui garde le repere choisi
+           sous les yeux une fois refermee. */
+        .remarquables-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            padding: 6px 15px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* `display: flex` l'emporterait sur le `display: none` que le navigateur
+           attache a l'attribut hidden : il faut le redire ici. */
+        .remarquables-panel[hidden] { display: none; }
+        .remarquables-titre {
+            font-weight: 700;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .remarquables-select {
+            flex: 1 1 auto;
+            /* Sans cela, une option longue etirerait le panneau entier. */
+            min-width: 0;
+            font-family: inherit;
+            font-size: 12px;
+            color: #222;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            padding: 2px 4px;
         }
         .timeline-date {
             text-align: center;
@@ -853,11 +903,13 @@
                 width: min(720px, calc(100vw - 60px));
                 max-width: min(720px, calc(100vw - 60px));
             }
-            /* ... sauf les fiches de parcours, volontairement compactes. */
+            /* ... sauf les fiches de parcours, plus etroites. Cette regle-ci
+               l'emporte sur celle du haut de la feuille : les deux largeurs
+               doivent donc rester accordees. */
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content-wrapper:has(.parcours-popup),
             .leaflet-popup:not(.popup-has-image) .leaflet-popup-content:has(.parcours-popup) {
-                width: 260px;
-                max-width: 260px;
+                width: 460px;
+                max-width: 460px;
             }
             /* Le texte utilise toute la largeur quand il n'y a pas d'image */
             .leaflet-popup:not(.popup-has-image) .popup-text-container {
@@ -1504,7 +1556,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         </div>
         <div class="layer-toggle-row">
             <label class="toggle-flinders">
-                <input type="checkbox" id="toggle-flinders" checked>
+                <input type="checkbox" id="toggle-flinders">
                 <span data-i18n="map-layer-flinders">Flinders</span>
             </label>
             <label class="toggle-flinders route-toggle" aria-label="Afficher la route de Flinders">
@@ -1526,6 +1578,9 @@ gtag('config', 'G-LCWV2EVPVQ');
         </div>
     </div>
 
+    <!-- Les deux panneaux de droite s'empilent : le calendrier, puis les dates
+         remarquables. Le second remonte de lui-meme quand le premier s'efface. -->
+    <div class="panneaux-droite" id="panneaux-droite">
     <div class="timeline-panel" id="timeline-panel" hidden aria-label="Curseur temporel">
         <div class="timeline-date" id="timeline-date">&mdash;</div>
         <div class="timeline-row">
@@ -1563,6 +1618,14 @@ gtag('config', 'G-LCWV2EVPVQ');
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="remarquables-panel" id="remarquables-panel" hidden>
+        <label class="remarquables-titre" for="remarquables-select"
+               data-i18n="map-remarkable-dates">Dates remarquables</label>
+        <select class="remarquables-select" id="remarquables-select"
+                aria-label="Dates remarquables"></select>
+    </div>
     </div>
 
     <!-- Search Interface -->
@@ -3727,12 +3790,15 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         };
 
+        // Les noms de Flinders sont anglais : ils restent eteints au premier
+        // affichage, et attendent qu'on coche leur case.
         const expeditionLayers = {
             baudin: L.layerGroup().addTo(map),
             entre: L.layerGroup().addTo(map),
-            flinders: L.layerGroup().addTo(map)
+            flinders: L.layerGroup()
         };
-        let selectedExpeditions = new Set(Object.keys(expeditionConfigs));
+        let selectedExpeditions = new Set(
+            Object.keys(expeditionConfigs).filter((key) => key !== 'flinders'));
 
         const ensureRoutesPane = () => {
             const paneName = 'routesPane';
@@ -4064,6 +4130,19 @@ gtag('config', 'G-LCWV2EVPVQ');
                   original: '(French original)', traduit: '(translated from the French)' }
         };
 
+        // La mention depend de la langue d'ORIGINE du journal, non de celle du
+        // site. Baudin ecrit en francais : c'est l'anglais qui est traduit.
+        // Flinders ecrit en anglais : c'est le francais. Le lecteur doit savoir
+        // lequel des deux textes est de la main de l'auteur.
+        const MENTION_TRADUIT = {
+            fr: { en: '(traduit de l’anglais)' },
+            en: { fr: '(translated from the French)' }
+        };
+        const MENTION_ORIGINAL = {
+            fr: { en: '(texte anglais, non traduit)' },
+            en: { fr: '(French original)' }
+        };
+
         const parcoursLabelsFor = (lang) => parcoursLabels[lang] || parcoursLabels.en;
 
         // Sources citees dans les fiches. Les relevés viennent des tables de route
@@ -4098,14 +4177,22 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         // Deux journaux de bord anonymes, tenus à bord de deux navires différents.
+        // Chaque journal declare la ou les coques ou il fut tenu : un releve qui
+        // ne concerne qu'un navire ne montre que les recits ecrits a son bord.
         const SOURCES_JOURNAUX = [
             {
                 // Flinders a publie son recit lui-meme en 1814 ; le texte est
                 // ici dans sa langue, et c'est le site francais qui le donnera
                 // comme non traduit.
                 champ: 'journal_flinders',
+                langue: 'en',
+                // Flinders tient son journal sur chacune de ses coques.
+                navires: ["l'Investigator", 'le Porpoise', 'le Cumberland'],
                 nom: { fr: 'Source journal de Matthew Flinders',
                        en: "Source: Matthew Flinders's journal" },
+                // L'original est anglais : seule la version francaise est
+                // traduite, et la fiche ne le signale donc qu'en francais.
+                traductionAutomatique: true,
                 url: { fr: 'https://gutenberg.net.au/ebooks/e00049.html' }
             },
             {
@@ -4115,8 +4202,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // a ete confie a Dany avec l'accord de l'utiliser. Le lien
                 // pointera vers la page du site qui lui rend hommage.
                 champ: 'journal_baudin_autographe',
+                navires: ['le Géographe'],
                 nom: { fr: 'Source journal de mer de Baudin',
                        en: "Source: Baudin's sea journal" },
+                // L'original est francais, dans la transcription de Marc
+                // Soviche : c'est la version anglaise qui est traduite.
+                traductionAutomatique: true,
                 note: { fr: "Transcription effectuée par Marc Soviche, Capitaine de Marine "
                             + "Marchande, auteur du livre « 30 ans à la mer ».",
                         en: "Transcribed by Marc Soviche, Master Mariner, author of the "
@@ -4124,6 +4215,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             },
             {
                 champ: 'journal_baudin',
+                navires: ['le Géographe'],
                 nom: { fr: 'Source journal de mer de Baudin',
                        en: "Source: Baudin's sea journal" },
                 traductionAutomatique: true,
@@ -4131,6 +4223,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             },
             {
                 champ: 'journal_anonyme',
+                navires: ['le Naturaliste'],
                 nom: { fr: 'Source anonyme à bord du Naturaliste',
                        en: 'Source: anonymous, aboard the Naturaliste' },
                 traductionAutomatique: true,
@@ -4138,6 +4231,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             },
             {
                 champ: 'journal_geographe',
+                navires: ['le Géographe'],
                 nom: { fr: 'Source anonyme à bord du Géographe',
                        en: 'Source: anonymous, aboard the Géographe' },
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/anon1journalbaud.pdf',
@@ -4145,6 +4239,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             },
             {
                 champ: 'journal_breton_geographe',
+                navires: ['le Géographe'],
                 nom: { fr: 'Source journal de Breton à bord du Géographe',
                        en: "Source: Breton's journal, aboard the Géographe" },
                 traductionAutomatique: true,
@@ -4152,6 +4247,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             },
             {
                 champ: 'journal_breton_naturaliste',
+                navires: ['le Naturaliste'],
                 nom: { fr: 'Source journal de Breton à bord du Naturaliste',
                        en: "Source: Breton's journal, aboard the Naturaliste" },
                 traductionAutomatique: true,
@@ -4163,9 +4259,10 @@ gtag('config', 'G-LCWV2EVPVQ');
         // sans les attendre, et chaque langue a son propre fichier.
         const JOURNAUX_FICHIERS = {
             baudin: { fr: 'data/journaux/baudin_fr.json', en: 'data/journaux/baudin_en.json' },
-            // Flinders ecrit en anglais : c'est ici l'original, et c'est le
-            // site francais qui affichera un texte non traduit.
-            flinders: { en: 'data/journaux/flinders_en.json' }
+            // Flinders ecrit en anglais : l'anglais est donc l'original, et
+            // le francais une traduction, signalee comme telle dans la fiche.
+            flinders: { en: 'data/journaux/flinders_en.json',
+                        fr: 'data/journaux/flinders_fr.json' }
         };
         const journauxTextes = {};        // clé `${expedition}:${langue}` -> { date: { champ: texte } }
         const journauxEnCours = {};
@@ -4412,12 +4509,25 @@ gtag('config', 'G-LCWV2EVPVQ');
             const joint = Boolean(venuDe);
             const { propre, secours } = textesJournaux(
                 joint ? venuDe.toLowerCase() : expedition, String(props?.date || ''));
+            // Les coques que le releve concerne. Separees, chacune n'a droit
+            // qu'aux recits tenus a son bord ; de conserve, elles n'ont qu'un
+            // point, et ce point reunit les recits des deux.
+            const coques = Array.isArray(ship) ? ship : (ship ? [ship] : []);
+            const dansLeBord = (src) => !Array.isArray(src.navires)
+                || coques.length !== 1
+                || src.navires.includes(coques[0]);
             const journaux = SOURCES_JOURNAUX
+                .filter(dansLeBord)
                 .map((src) => {
                     const traduit = String(propre?.[src.champ] || '').trim();
                     const origine = String(secours?.[src.champ] || '').trim();
-                    const machine = Boolean(traduit) && src.traductionAutomatique;
-                    return { src, texte: traduit || origine,
+                    // `langue` est celle dans laquelle l'auteur a ecrit ; a
+                    // defaut le francais, qui est le cas de tous les journaux
+                    // de l'expedition Baudin.
+                    const source = src.langue || 'fr';
+                    const machine = Boolean(traduit) && src.traductionAutomatique
+                        && source !== lang;
+                    return { src, texte: traduit || origine, langueSource: source,
                              nonTraduit: !traduit && !!origine, machine };
                 })
                 .filter((j) => j.texte);
@@ -4487,8 +4597,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                 html += `</div>`;
             }
 
-            journaux.forEach(({ src, texte, nonTraduit, machine }) => {
-                const mention = nonTraduit ? labels.original : (machine ? labels.traduit : '');
+            journaux.forEach(({ src, texte, nonTraduit, machine, langueSource }) => {
+                const mention = nonTraduit
+                    ? (MENTION_ORIGINAL[lang]?.[langueSource] || labels.original)
+                    : (machine ? (MENTION_TRADUIT[lang]?.[langueSource] || labels.traduit) : '');
                 html += `<div class="parcours-popup-body">`
                     + `<div class="parcours-popup-src">${lienSource(src, lang)}`
                     + (mention
@@ -4829,7 +4941,9 @@ gtag('config', 'G-LCWV2EVPVQ');
                             marker.on('click', () => timelineAllerA(dateMs));
                         }
                         marker.bindPopup(() => buildParcoursPopup(entry.props, popupShip, campaign, key), {
-                            maxWidth: 260,
+                            // Accorde a la largeur que la feuille de style
+                            // donne a la fiche parcours.
+                            maxWidth: 460,
                             minWidth: 200,
                             // Deplacement simple pour degager la barre de recherche et les
                             // filtres, sans changer le niveau de zoom.
@@ -4995,6 +5109,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 chargeJournauxExpedition(key, getCurrentLanguage());
             }
             timelineSynchronise();
+            remarquablesMaj();
         };
 
         const attachParcoursToggle = (key, input) => {
@@ -5554,13 +5669,117 @@ gtag('config', 'G-LCWV2EVPVQ');
         document.addEventListener('languageChanged', timelineMajDate);
         // Rattache le panneau au cadre de la carte : sans cela il se positionne
         // par rapport a la page et chevauche la barre de navigation.
-        const timelineConteneur = map.getContainer();
-        if (timelineConteneur && timelinePanel.parentElement !== timelineConteneur) {
-            timelineConteneur.appendChild(timelinePanel);
+        // ---------------------------------------------------------------
+        //  Dates remarquables : quelques jours qui comptent, par expedition.
+        //  Choisir une ligne cale le curseur sur la date et ouvre la fiche du
+        //  point correspondant.
+        // ---------------------------------------------------------------
+        const remarquablesPanel = document.getElementById('remarquables-panel');
+        const remarquablesSelect = document.getElementById('remarquables-select');
+        // Lettre du fichier -> couche de traces et case de route qui la commande.
+        // Baudin et Flinders partagent une couche, mais pas leur case.
+        const REMARQUABLES_EXPEDITIONS = {
+            E: { couche: 'entre', route: 'toggle-entre-parcours' },
+            B: { couche: 'baudin', route: 'toggle-baudin-parcours' },
+            F: { couche: 'baudin', route: 'toggle-flinders-parcours' }
+        };
+        let remarquables = [];
+
+        const remarquablesTexte = (valeur, lang) => {
+            if (!valeur) return '';
+            if (typeof valeur === 'string') return valeur;
+            return valeur[lang] || valeur.fr || valeur.en || '';
+        };
+
+        // Ne figurent dans la liste que les expeditions dont la route est cochee.
+        const remarquablesRetenues = () => remarquables.filter((r) => {
+            const exp = REMARQUABLES_EXPEDITIONS[r.expedition];
+            return exp && document.getElementById(exp.route)?.checked;
+        });
+
+        function remarquablesMaj() {
+            if (!remarquablesPanel || !remarquablesSelect) return;
+            const lang = getCurrentLanguage();
+            const liste = remarquablesRetenues();
+            remarquablesPanel.hidden = !liste.length;
+            // Le repere deja choisi reste sous les yeux s'il figure encore.
+            const choix = remarquablesSelect.value;
+            remarquablesSelect.innerHTML = '';
+            const vide = document.createElement('option');
+            vide.value = '';
+            vide.textContent = lang === 'en' ? 'Choose a date…' : 'Choisir une date…';
+            remarquablesSelect.appendChild(vide);
+            liste.forEach((r) => {
+                const opt = document.createElement('option');
+                opt.value = String(r.__id);
+                const date = formatParcoursDateLong(r.date, lang) || r.date;
+                opt.textContent = `${date} — ${remarquablesTexte(r.libelle, lang)}`;
+                remarquablesSelect.appendChild(opt);
+            });
+            remarquablesSelect.value =
+                liste.some((r) => String(r.__id) === choix) ? choix : '';
         }
-        // Le panneau ne doit pas faire glisser la carte sous lui.
-        L.DomEvent.disableClickPropagation(timelinePanel);
-        L.DomEvent.disableScrollPropagation(timelinePanel);
+
+        const remarquableOuvre = async (repere) => {
+            const exp = REMARQUABLES_EXPEDITIONS[repere.expedition];
+            if (!exp) return;
+            const key = exp.couche;
+            await loadParcours(key);
+            const t = Date.parse(`${String(repere.date)}T00:00:00Z`);
+            if (!Number.isFinite(t)) return;
+            timelineStopAnim();
+            // Un repere hors de la tranche tenue par les crochets ne serait pas
+            // trace : on rouvre le voyage entier plutot que de laisser le choix
+            // sans effet.
+            if (timelineKey === key && timelineTranche
+                    && (t < timelineTranche[0] || t > timelineTranche[1])) {
+                timelineRouvreCrochets();
+                timelineAppliqueTranche();
+            }
+            const liste = parcoursMarqueurs[key]?.get(t) || [];
+            const marqueur = liste.find((m) =>
+                (m.__coques || [m.__parcoursGroupe]).includes(repere.navire)) || liste[0];
+            if (!marqueur) return;
+            // Le navire du repere a pu etre decoche dans son volet : son point
+            // serait absent de la carte, et la fiche ne s'ouvrirait pas.
+            const coques = marqueur.__coques || [marqueur.__parcoursGroupe];
+            if (coques.every((c) => parcoursShipWanted[key]?.[c] === false)) {
+                parcoursShipWanted[key][repere.navire] = true;
+                buildShipControls(key);
+                updateParcoursVisibility(key);
+            }
+            timelineAllerA(t);
+            map.panTo(marqueur.getLatLng());
+            marqueur.openPopup();
+        };
+
+        if (remarquablesSelect) {
+            remarquablesSelect.addEventListener('change', () => {
+                const repere = remarquables.find(
+                    (r) => String(r.__id) === remarquablesSelect.value);
+                if (repere) remarquableOuvre(repere);
+            });
+        }
+
+        loadJsonFile('data/dates_remarquables.json').then((data) => {
+            remarquables = (Array.isArray(data) ? data : [])
+                .map((r, i) => ({ ...r, __id: i }))
+                .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+            remarquablesMaj();
+        }).catch(() => { /* sans le fichier, le bloc reste ferme */ });
+
+        const timelineConteneur = map.getContainer();
+        const panneauxDroite = document.getElementById('panneaux-droite');
+        if (timelineConteneur && panneauxDroite
+                && panneauxDroite.parentElement !== timelineConteneur) {
+            timelineConteneur.appendChild(panneauxDroite);
+        }
+        // Les panneaux ne doivent pas faire glisser la carte sous eux.
+        [timelinePanel, remarquablesPanel].forEach((el) => {
+            if (!el) return;
+            L.DomEvent.disableClickPropagation(el);
+            L.DomEvent.disableScrollPropagation(el);
+        });
 
         attachParcoursToggle('baudin', toggleBaudinParcours);
         attachParcoursToggle('baudin', toggleFlindersParcours);
@@ -5568,6 +5787,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         // Les noms de navires suivent la langue du site.
         document.addEventListener('languageChanged', () => {
+            remarquablesMaj();
             Object.keys(parcoursWanted).forEach((key) => {
                 if (parcoursWanted[key]) chargeJournauxExpedition(key, getCurrentLanguage());
             });

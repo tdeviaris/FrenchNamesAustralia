@@ -169,7 +169,12 @@ def journees(texte):
             d = datetime.date(int(m.group(3)), MOIS[m.group(2)], int(m.group(1)))
         except (ValueError, KeyError):
             continue
-        yield d, texte[m.end():fin]
+        # L'en-tête est entre crochets — « [THURSDAY 8 APRIL 1802] » — mais le
+        # motif ne prend que la date. Les deux crochets tombaient donc chez le
+        # voisin : le fermant en tête du bloc, l'ouvrant du suivant à sa queue.
+        bloc = re.sub(r'^\s*\]\s*[.,;:]?\s*', '', texte[m.end():fin])
+        bloc = re.sub(r'\s*\[\s*$', '', bloc)
+        yield d, bloc
 
 
 def position(bloc):
@@ -204,7 +209,9 @@ def terre():
 # Restes de la mise en page du site qui héberge le texte, et renvois d'atlas :
 # rien de cela n'appartient au récit.
 PARASITES = re.compile(
-    r'(?:Go to reference to Table[^.]{0,40}\.?|\[?Atlas[^)\]]{0,40}[)\]]|'
+    # La parenthèse ouvrante fait partie du renvoi : sans elle, « (Atlas
+    # Plate II.) » laissait un « ( » orphelin au milieu du récit.
+    r'(?:Go to reference to Table[^.]{0,40}\.?|[(\[]?\s*Atlas[^)\]]{0,40}[)\]]|'
     r'Project Gutenberg[^.]{0,80}\.|CHAPTER [IVXL]+\.)', re.I)
 
 
