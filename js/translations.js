@@ -13,6 +13,7 @@ const translations = {
         'map-layer-baudin': "Baudin",
         'map-layer-entre': "d’Entrecasteaux",
         'map-layer-flinders': "Flinders",
+        'map-remarkable-choose': "Choisir une date remarquable…",
         'nav-actors': "Acteurs", 'nav-maps': "Cartes et illustrations", 'nav-glossary': "Glossaire", 'nav-expert': "Assistant IA",
         'skip-intro': "Passer",
 
@@ -320,6 +321,7 @@ const translations = {
         'map-layer-baudin': "Baudin",
         'map-layer-entre': "d’Entrecasteaux",
         'map-layer-flinders': "Flinders",
+        'map-remarkable-choose': "Choose a notable date…",
         'nav-actors': "Actors", 'nav-maps': "Maps and illustrations", 'nav-glossary': "Glossary", 'nav-expert': "AI Assistant",
         'skip-intro': "Skip",
 

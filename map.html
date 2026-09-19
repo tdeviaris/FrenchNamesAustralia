@@ -324,6 +324,14 @@
             pointer-events: none;
         }
         .panneaux-droite > * { pointer-events: auto; }
+        /* Le calendrier donne la mesure. Une largeur nulle empeche le bloc des
+           dates de peser sur celle de la colonne ; `min-width` le ramene
+           ensuite a la largeur ainsi fixee. */
+        .panneaux-droite > .remarquables-panel {
+            width: 0;
+            min-width: 100%;
+            box-sizing: border-box;
+        }
         .timeline-panel {
             background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(0, 0, 0, 0.15);
@@ -346,19 +354,15 @@
             font-size: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
         }
         /* `display: flex` l'emporterait sur le `display: none` que le navigateur
            attache a l'attribut hidden : il faut le redire ici. */
         .remarquables-panel[hidden] { display: none; }
-        .remarquables-titre {
-            font-weight: 700;
-            font-size: 13px;
-            white-space: nowrap;
-        }
         .remarquables-select {
-            flex: 1 1 auto;
-            /* Sans cela, une option longue etirerait le panneau entier. */
+            /* Base nulle : sans elle, la plus longue des lignes imposerait sa
+               largeur au bloc, et le calendrier s'etirerait avec lui. La liste
+               se contente de remplir la place que le calendrier a fixee. */
+            flex: 1 1 0;
             min-width: 0;
             font-family: inherit;
             font-size: 12px;
@@ -1621,8 +1625,6 @@ gtag('config', 'G-LCWV2EVPVQ');
     </div>
 
     <div class="remarquables-panel" id="remarquables-panel" hidden>
-        <label class="remarquables-titre" for="remarquables-select"
-               data-i18n="map-remarkable-dates">Dates remarquables</label>
         <select class="remarquables-select" id="remarquables-select"
                 aria-label="Dates remarquables"></select>
     </div>
@@ -5541,6 +5543,9 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const timelineDemarre = () => {
             if (!timelineActive() || timelineAnim !== null) return;
+            // Le defilement va parcourir toutes les dates : le repere affiche
+            // ne dirait plus ou l'on est.
+            remarquablesRaz();
             // La fiche ouverte masquerait le defilement : on la referme.
             map.closePopup();
             const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
@@ -5557,6 +5562,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Appelee par le clic sur un point du parcours.
         function timelineAllerA(dateMs) {
             if (!timelineActive() || !Number.isFinite(dateMs)) return;
+            remarquablesRaz();
             const jour = Math.round((dateMs - timelineDebut) / JOUR_MS);
             const totalJours = Math.round((timelineFin - timelineDebut) / JOUR_MS);
             timelineJour = Math.min(Math.max(jour, 0), totalJours);
@@ -5656,6 +5662,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         timelineSlider.addEventListener('input', () => {
+            remarquablesRaz();
             timelineStopAnim();
             timelineJour = Number(timelineSlider.value);
             timelineMajDate();
@@ -5697,6 +5704,21 @@ gtag('config', 'G-LCWV2EVPVQ');
             return exp && document.getElementById(exp.route)?.checked;
         });
 
+        // Date courte, en tete de ligne : toutes font la meme largeur, et les
+        // libelles se lisent l'un sous l'autre sans decalage.
+        const remarquablesDate = (iso) => {
+            const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+            return m ? `${m[3]}-${m[2]}-${m[1]}` : String(iso || '');
+        };
+
+        const remarquablesInvite = (lang) => {
+            const dico = (typeof translations === 'object' && translations)
+                ? translations[lang] : null;
+            return dico?.['map-remarkable-choose']
+                || (lang === 'en' ? 'Choose a notable date…'
+                                  : 'Choisir une date remarquable…');
+        };
+
         function remarquablesMaj() {
             if (!remarquablesPanel || !remarquablesSelect) return;
             const lang = getCurrentLanguage();
@@ -5707,17 +5729,27 @@ gtag('config', 'G-LCWV2EVPVQ');
             remarquablesSelect.innerHTML = '';
             const vide = document.createElement('option');
             vide.value = '';
-            vide.textContent = lang === 'en' ? 'Choose a date…' : 'Choisir une date…';
+            vide.textContent = remarquablesInvite(lang);
             remarquablesSelect.appendChild(vide);
             liste.forEach((r) => {
                 const opt = document.createElement('option');
                 opt.value = String(r.__id);
-                const date = formatParcoursDateLong(r.date, lang) || r.date;
-                opt.textContent = `${date} — ${remarquablesTexte(r.libelle, lang)}`;
+                // L'espace insecable tient l'ecart : le navigateur reduirait
+                // deux espaces ordinaires a un seul.
+                opt.textContent = `${remarquablesDate(r.date)}\u00a0 ${remarquablesTexte(r.libelle, lang)}`;
                 remarquablesSelect.appendChild(opt);
             });
             remarquablesSelect.value =
                 liste.some((r) => String(r.__id) === choix) ? choix : '';
+        }
+
+        // Des que la date change autrement que par la liste -- un point clique,
+        // une fleche, le curseur --, le repere affiche ne dit plus ou l'on est :
+        // la liste revient a son invite.
+        let remarquableEnCours = false;
+        function remarquablesRaz() {
+            if (remarquableEnCours || !remarquablesSelect) return;
+            remarquablesSelect.value = '';
         }
 
         const remarquableOuvre = async (repere) => {
@@ -5748,9 +5780,14 @@ gtag('config', 'G-LCWV2EVPVQ');
                 buildShipControls(key);
                 updateParcoursVisibility(key);
             }
-            timelineAllerA(t);
-            map.panTo(marqueur.getLatLng());
-            marqueur.openPopup();
+            remarquableEnCours = true;
+            try {
+                timelineAllerA(t);
+                map.panTo(marqueur.getLatLng());
+                marqueur.openPopup();
+            } finally {
+                remarquableEnCours = false;
+            }
         };
 
         if (remarquablesSelect) {
