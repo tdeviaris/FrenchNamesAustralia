@@ -10,8 +10,8 @@
     "indigenousLanguage": "",
     "lat": -34.37667,
     "lon": 115.1358,
-    "characteristic": "Charted by Matthew Flinders on 7 December 1801, during the Investigator's survey voyage (1801-1803). The name appears only in 1814, in the published narrative. Flinders writes, in “A Voyage to Terra Australis” (London, 1814): “At two in the morning we had 80 fathoms, and veered towards the land. It was seen from the mast head at five; and the highest part, the same which had been set in the evening, bore N. 12° W. This is the largest of the before-mentioned Isles of St. Alouarn; but at half past seven we saw hills extending from behind, and, to all appearance, joining it to the main land. This supposed isle is, therefore, what I denominate CAPE LEEUWIN, as being the south-western and most projecting part of Leeuwin's Land. The highest hill lies nearly in latitude 34° 19' south, and longitude 115° 6' east; it is a sloping piece of land of about six hundred feet in elevation, and appeared to be rocky, with a slight covering of trees and shrubs; but this cape will be best known from Mr. Westall's sketch. (Atlas Plate XVII. View I.).\"",
-    "characteristic_fr": "Lieu reconnu par Matthew Flinders le 7 décembre 1801, lors de la campagne de levé de l'Investigator (1801-1803). Le nom ne paraît qu’en 1814, dans le récit du voyage. Flinders écrit, dans « A Voyage to Terra Australis » (Londres, 1814) : « À deux heures du matin nous avions quatre-vingts brasses, et nous orientâmes vers la terre. Elle fut aperçue de la tête de mât à cinq heures ; et la partie la plus élevée, celle même qui avait été relevée le soir, portait N. 12° O. C'est la plus grande des Îles de Saint-Alouarn mentionnées précédemment ; mais à sept heures et demie nous vîmes des collines s'étendant par-derrière, et en toute apparence la joignant à la terre ferme. Cette supposée île est donc ce que j'appelle Cape Leeuwin, comme étant la partie la plus australe et la plus saillante de Leeuwin's Land. La colline la plus élevée gît presque par le travers de la latitude 34° 19' sud, et longitude 115° 6' est ; c'est une pente de terre d'environ six cents pieds d'élévation, et elle parut rocheuse, avec un léger couvert d'arbres et d'arbustes ; mais ce cap sera mieux connu par le croquis de M. Westall. (Atlas Planche XVII. Vue I.)",
+    "characteristic": "On 7 December 1801, Matthew Flinders sighted Cape Leeuwin and took bearings of it from offshore. He wrote in his account, A Voyage to Terra Australis (London, 1814): “At two in the morning we had 80 fathoms, and veered towards the land. It was seen from the mast head at five; and the highest part, the same which had been set in the evening, bore N. 12° W. This is the largest of the before-mentioned Isles of St. Alouarn; but at half past seven we saw hills extending from behind, and, to all appearance, joining it to the main land. This supposed isle is, therefore, what I denominate CAPE LEEUWIN, as being the south-western and most projecting part of Leeuwin's Land. The highest hill lies nearly in latitude 34° 19' south, and longitude 115° 6' east; it is a sloping piece of land of about six hundred feet in elevation, and appeared to be rocky, with a slight covering of trees and shrubs; but this cape will be best known from Mr. Westall's sketch. (Atlas Plate XVII. View I.).\"",
+    "characteristic_fr": "Le 7 décembre 1801, Matthew Flinders reconnut et releva le cap Leeuwin depuis le large.  Il écrit dans son récit « A Voyage to Terra Australis »: « À deux heures du matin, nous trouvâmes 80 brasses, et nous portâmes vers la terre. À cinq heures, on l’aperçut du haut du mât ; sa partie la plus élevée, la même qui avait été relevée la veille au soir, restait au N. 12° O. C’est la plus grande des îles de Saint-Alouarn mentionnées précédemment ; mais, à sept heures et demie, nous aperçûmes des collines qui se prolongeaient par-derrière et qui, selon toute apparence, la rattachaient à la terre ferme. Cette île supposée est donc ce que je nomme le CAP LEEUWIN, parce qu’il constitue la partie la plus sud-occidentale et la plus saillante de la Terre de Leeuwin.\nLa colline la plus élevée est située approximativement par 34° 19′ de latitude sud et 115° 6′ de longitude est. C’est un terrain en pente, haut d’environ six cents pieds, qui nous parut rocheux et légèrement couvert d’arbres et d’arbrisseaux ; mais ce cap sera plus aisément reconnu d’après le dessin de M. Westall. »\n(Atlas, planche XVII, vue I.)",
     "history": "",
     "history_fr": "",
     "detailsLink": "",
@@ -42,15 +42,15 @@
     "code": "Flinders002",
     "expedition": "Flinders",
     "state": "WA",
-    "frenchName": "Mount Manypeak(s",
+    "frenchName": "Mount Manypeak",
     "variantName": "",
-    "ausEName": "Mount Manypeak(s",
+    "ausEName": "Mount Manypeaks",
     "indigenousName": "",
     "indigenousLanguage": "",
     "lat": -34.895556,
     "lon": 118.262222,
-    "characteristic": "Charted by Matthew Flinders on 5 January 1802, during the Investigator's survey voyage (1801-1803). The name appears only in 1814, in the published narrative. Flinders writes, in “A Voyage to Terra Australis” (London, 1814): “It lies off a rocky projection of the mainland, at which terminates a ridge of mountain extending three leagues along the shore from the bight behind Mount Gardner. There are a number of small peaks upon the top of this ridge which induced me to give it the name Mount Manypeak.\" The mountain is the dominant feature in the area. The plural form has now become the accepted form of spelling.”",
-    "characteristic_fr": "Lieu reconnu par Matthew Flinders le 5 janvier 1802, lors de la campagne de levé de l'Investigator (1801-1803). Le nom ne paraît qu’en 1814, dans le récit du voyage. Flinders écrit, dans « A Voyage to Terra Australis » (Londres, 1814) : « Il s'étend au large d'une saillie rocheuse du continent, à laquelle se termine une chaîne de montagnes s'étendant trois lieues le long de la côte depuis l'enfoncement derrière Mount Gardner. Il y a plusieurs petits pics au sommet de cette chaîne qui m'ont conduit à lui donner le nom Mount Manypeak. La montagne est la caractéristique dominante de la région. La forme plurielle est devenue désormais la forme d'orthographe acceptée. »",
+    "characteristic": "On 5 January 1802, during the Investigator’s survey voyage (1801–1803), Matthew Flinders charted this part of the coast and named its prominent mountain ridge Mount Manypeak. The name was first published in his A Voyage to Terra Australis (London, 1814), in which he wrote:\n“It lies off a rocky projection of the mainland, at which terminates a ridge of mountain extending three leagues along the shore from the bight behind Mount Gardner. There are a number of small peaks upon the top of this ridge which induced me to give it the name Mount Manypeak.”\nThe mountain ridge is the dominant geographical feature of the area. The plural form, Mount Manypeaks, has since become the accepted spelling.",
+    "characteristic_fr": "Le 5 janvier 1802, au cours de la campagne hydrographique de l’Investigator (1801–1803), Matthew Flinders leva cette partie de la côte et donna à l’importante chaîne montagneuse qui la domine le nom de Mount Manypeak. Ce nom fut publié pour la première fois dans son ouvrage A Voyage to Terra Australis (Londres, 1814), où il écrit :\n« Elle se trouve au large d’une pointe rocheuse de la terre ferme, où vient se terminer une chaîne de montagnes qui s’étend sur trois lieues le long de la côte, depuis l’enfoncement situé derrière le mont Gardner. Cette chaîne est surmontée d’un certain nombre de petits sommets, ce qui m’incita à lui donner le nom de Mount Manypeak. »\nCette chaîne montagneuse constitue l’élément géographique dominant de la région. La forme plurielle, Mount Manypeaks, est depuis devenue la graphie officielle.",
     "history": "",
     "history_fr": "",
     "detailsLink": "",
@@ -88,8 +88,8 @@
     "indigenousLanguage": "",
     "lat": -34.701944,
     "lon": 118.661111,
-    "characteristic": "Charted by Matthew Flinders on 5 January 1802, during the Investigator's survey voyage (1801-1803). The name appears only in 1814, in the published narrative. Flinders writes, in “A Voyage to Terra Australis” (London, 1814): “At six we came up with a steep rock, one mile from the main, and then hauled to the wind, offshore, for the night. This lump, which appeared to be of granite, I called Haul-off Rock; it lies in 31° 43' south and 118° 39' east, and two leagues to the south-west of a cliffy point which bears the name of Cape Riche in the French chart.”",
-    "characteristic_fr": "Lieu reconnu par Matthew Flinders le 5 janvier 1802, lors de la campagne de levé de l'Investigator (1801-1803). Le nom ne paraît qu’en 1814, dans le récit du voyage. Flinders écrit, dans « A Voyage to Terra Australis » (Londres, 1814) : « À six heures nous arrivâmes à un roc escarpé, à un mille de la terre, et alors nous fîmes route au vent, au large, pour la nuit. Ce bloc, qui paraissait être de granit, je l'appelai Haul-off Rock ; il gît par 31° 43' sud et 118° 39' est, et deux lieues au sud-ouest d'une pointe à pic qui porte le nom de Cape Riche sur la carte française. »",
+    "characteristic": "On 5 January 1802, during the Investigator’s survey voyage (1801–1803), Matthew Flinders charted this rock and named it Haul-off Rock. The name was first published in his A Voyage to Terra Australis (London, 1814), in which he wrote:\n“At six we came up with a steep rock, one mile from the main, and then hauled to the wind, offshore, for the night. This lump, which appeared to be of granite, I called Haul-off Rock; it lies in 31° 43′ south and 118° 39′ east, and two leagues to the south-west of a cliffy point which bears the name of Cape Riche in the French chart.”",
+    "characteristic_fr": "Le 5 janvier 1802, au cours de la campagne hydrographique de l’Investigator (1801–1803), Matthew Flinders releva ce rocher et lui donna le nom de Haul-off Rock. Ce nom fut publié pour la première fois dans son ouvrage A Voyage to Terra Australis (Londres, 1814), où il écrit :\n« À six heures, nous arrivâmes à la hauteur d’un rocher escarpé, situé à un mille de la terre ferme ; puis nous serrâmes le vent en prenant le large pour la nuit. Je donnai à cette masse rocheuse, qui paraissait être de granit, le nom de Haul-off Rock. Elle est située par 31° 43′ de latitude sud et 118° 39′ de longitude est, à deux lieues au sud-ouest d’une pointe bordée de falaises qui porte, sur la carte française, le nom de cap Riche. »",
     "history": "",
     "history_fr": "",
     "detailsLink": "",
@@ -562,7 +562,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Samuel_Lane_%281780-1859%29_-_Admiral_Sir_Pulteney_Malcolm_%281768%E2%80%931838%29%2C_Sailor_-_PG_2050_-_National_Galleries_of_Scotland.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -580,9 +580,9 @@
     "planche": "Plate II",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Samuel Lane · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Samuel_Lane_(1780-1859)_-_Admiral_Sir_Pulteney_Malcolm_(1768%E2%80%931838),_Sailor_-_PG_2050_-_National_Galleries_of_Scotland.jpg",
+    "imgSujet": "Pulteney Malcolm"
   },
   {
     "code": "Flinders016",
@@ -679,7 +679,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Sir_William_Draper_KB.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -697,9 +697,9 @@
     "planche": "Plate II",
     "commentaire": "shown by F as Draper's I",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Thomas Gainsborough · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_William_Draper_KB.jpg",
+    "imgSujet": "William Draper (British Army officer)"
   },
   {
     "code": "Flinders019",
@@ -1264,7 +1264,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/J._J._Williams%2C_Portrait_of_Elizabeth_McHutcheson_Sinclair.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -1282,9 +1282,9 @@
     "planche": "Plate IV",
     "commentaire": "previous name: Islet Rubens, variant name: Sinclair Island, F shows as Sinclair's Rocks . \"Point Sinclair\" appears also in the Marine Park",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "J. J. William · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:J._J._Williams,_Portrait_of_Elizabeth_McHutcheson_Sinclair.jpg",
+    "imgSujet": "Elizabeth Sinclair"
   },
   {
     "code": "Flinders034",
@@ -1420,7 +1420,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Sir_John_Franklin_by_Thomas_Phillips.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -1438,9 +1438,9 @@
     "planche": "Plate IV",
     "commentaire": "F shows as Franklin's Island. Vn: Iles St Pierre",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Thomas Phillips · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_John_Franklin_by_Thomas_Phillips.jpg",
+    "imgSujet": "John Franklin"
   },
   {
     "code": "Flinders038",
@@ -1498,7 +1498,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Lo_Tinent_General_don_Lluis_Lacy.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -1516,9 +1516,9 @@
     "planche": "Plate IV",
     "commentaire": "Lacy's Island",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Garcia · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Lo_Tinent_General_don_Lluis_Lacy.jpg",
+    "imgSujet": "Luis de Lacy"
   },
   {
     "code": "Flinders040",
@@ -1927,7 +1927,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Admiral_William_Waldegrave%2C_1st_Baron_Radstock_%281753-1825%29_by_James_Northcote.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -1945,9 +1945,9 @@
     "planche": "Plate IV",
     "commentaire": "variant name: Cap Halle",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "James Northcote · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_William_Waldegrave,_1st_Baron_Radstock_(1753-1825)_by_James_Northcote.jpg",
+    "imgSujet": "William Waldegrave, 1st Baron Radstock"
   },
   {
     "code": "Flinders051",
@@ -2005,7 +2005,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Admiral_William_Waldegrave%2C_1st_Baron_Radstock_%281753-1825%29_by_James_Northcote.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -2023,9 +2023,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Iles Morio",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "James Northcote · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_William_Waldegrave,_1st_Baron_Radstock_(1753-1825)_by_James_Northcote.jpg",
+    "imgSujet": "William Waldegrave, 1st Baron Radstock"
   },
   {
     "code": "Flinders053",
@@ -2239,7 +2239,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Toussaint_Antoine_DE_CHAZAL_DE_Chamerel_-_Portrait_of_Captain_Matthew_Flinders%2C_RN%2C_1774-1814_-_Google_Art_Project.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -2257,9 +2257,9 @@
     "planche": "Plate IV",
     "commentaire": "F shows as Flinders'I. vn: Isle Andreossy",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Antoine Toussaint de Chazal · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Toussaint_Antoine_DE_CHAZAL_DE_Chamerel_-_Portrait_of_Captain_Matthew_Flinders,_RN,_1774-1814_-_Google_Art_Project.jpg",
+    "imgSujet": "Matthew Flinders"
   },
   {
     "code": "Flinders059",
@@ -2317,7 +2317,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_%28cropped%29.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -2335,9 +2335,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Coffin's Bay",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Gilbert Stuart · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_(cropped).jpg",
+    "imgSujet": "Sir Isaac Coffin, 1st Baronet"
   },
   {
     "code": "Flinders061",
@@ -2356,7 +2356,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_%28cropped%29.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -2374,9 +2374,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Pointe Desfontaines",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Gilbert Stuart · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_(cropped).jpg",
+    "imgSujet": "Sir Isaac Coffin, 1st Baronet"
   },
   {
     "code": "Flinders062",
@@ -2473,7 +2473,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/A_Portrait_of_Joseph_Whidbey.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -2491,9 +2491,9 @@
     "planche": "Plate IV",
     "commentaire": "F shows as Whidbey's Islands",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Unknown authorUnknown author · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:A_Portrait_of_Joseph_Whidbey.jpg",
+    "imgSujet": "Joseph Whidbey"
   },
   {
     "code": "Flinders065",
@@ -3253,7 +3253,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/James_Gambier%2C_1st_Baron_Gambier_by_Joseph_Slater.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -3271,9 +3271,9 @@
     "planche": "Plate IV",
     "commentaire": "F shows as Gambier's Isles. vn: Iles Berthier",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Joseph Slater · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:James_Gambier,_1st_Baron_Gambier_by_Joseph_Slater.jpg",
+    "imgSujet": "James Gambier, 1st Baron Gambier"
   },
   {
     "code": "Flinders085",
@@ -4618,7 +4618,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/George_Young_%28Admiral%29.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -4636,9 +4636,9 @@
     "planche": "Plate IV",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "After John Smart · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:George_Young_(Admiral).jpg",
+    "imgSujet": "George Young (Royal Navy officer)"
   },
   {
     "code": "Flinders120",
@@ -4891,7 +4891,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/4thEarlOfHardwicke.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -4909,9 +4909,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Baie de Fontenoy",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:4thEarlOfHardwicke.jpg",
+    "imgSujet": "Charles Yorke, 4th Earl of Hardwicke"
   },
   {
     "code": "Flinders127",
@@ -4930,7 +4930,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Frederick%2C_4th_Earl_Spencer_KG_%281798-1857%29_by_Stephen_Catterson_Smith.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -4948,9 +4948,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Spencer's Gulf, Formerly named as Golfe Bonaparte by Peron & Freycinet.",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Stephen Catterson Smith · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Frederick,_4th_Earl_Spencer_KG_(1798-1857)_by_Stephen_Catterson_Smith.jpg",
+    "imgSujet": "Frederick Spencer, 4th Earl Spencer"
   },
   {
     "code": "Flinders128",
@@ -4969,7 +4969,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Frederick%2C_4th_Earl_Spencer_KG_%281798-1857%29_by_Stephen_Catterson_Smith.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -4987,9 +4987,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Pointe Mornay",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Stephen Catterson Smith · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Frederick,_4th_Earl_Spencer_KG_(1798-1857)_by_Stephen_Catterson_Smith.jpg",
+    "imgSujet": "Frederick Spencer, 4th Earl Spencer"
   },
   {
     "code": "Flinders129",
@@ -5086,7 +5086,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/John_Jervis%2C_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -5104,9 +5104,9 @@
     "planche": "Plate IV",
     "commentaire": "F shows as St Vincent's Gulf vn: Golfe Josephine, Wongajerla",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Workshop of Lemuel Francis Abbott · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:John_Jervis,_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
+    "imgSujet": "John Jervis, 1st Earl of St Vincent"
   },
   {
     "code": "Flinders132",
@@ -5320,7 +5320,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Sir_Thomas_Troubridge%2C_1st_Baronet.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -5338,9 +5338,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Trowbridge Hill",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "William Beechey · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_Thomas_Troubridge,_1st_Baronet.jpg",
+    "imgSujet": "Sir Thomas Troubridge, 1st Baronet"
   },
   {
     "code": "Flinders138",
@@ -5359,7 +5359,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Sir_Thomas_Troubridge%2C_1st_Baronet.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -5377,9 +5377,9 @@
     "planche": "",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "William Beechey · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_Thomas_Troubridge,_1st_Baronet.jpg",
+    "imgSujet": "Sir Thomas Troubridge, 1st Baronet"
   },
   {
     "code": "Flinders139",
@@ -5632,7 +5632,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/SirEvanNepean.JPG",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -5650,9 +5650,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Baie Bougainville",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Nepean Museum · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:SirEvanNepean.JPG",
+    "imgSujet": "Evan Nepean"
   },
   {
     "code": "Flinders146",
@@ -5866,7 +5866,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Digby_Willoughby%2C_7th_Baron_Middleton_%28cropped%29.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -5884,9 +5884,9 @@
     "planche": "Plate IV",
     "commentaire": "vn: Cap Sane. Site of first lighthouse, completed in 1852",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "After Thomas Barber · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Digby_Willoughby,_7th_Baron_Middleton_(cropped).jpg",
+    "imgSujet": "Digby Willoughby, 7th Baron Middleton"
   },
   {
     "code": "Flinders152",
@@ -6841,7 +6841,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Benjamin_Waterhouse.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -6859,9 +6859,9 @@
     "planche": "",
     "commentaire": "F shows as ISLE WATERHOUSE",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Rembrandt Peale · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Benjamin_Waterhouse.jpg",
+    "imgSujet": "Benjamin Waterhouse"
   },
   {
     "code": "Flinders177",
@@ -6880,7 +6880,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Benjamin_Waterhouse.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -6898,9 +6898,9 @@
     "planche": "",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Rembrandt Peale · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Benjamin_Waterhouse.jpg",
+    "imgSujet": "Benjamin Waterhouse"
   },
   {
     "code": "Flinders178",
@@ -8635,7 +8635,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/John_Jervis%2C_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -8653,9 +8653,9 @@
     "planche": "",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "Workshop of Lemuel Francis Abbott · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:John_Jervis,_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
+    "imgSujet": "John Jervis, 1st Earl of St Vincent"
   },
   {
     "code": "Flinders223",
@@ -9571,7 +9571,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Vice-Admiral_Sir_Roger_Curtis_%281746-1816%29%2C_by_British_school_of_the_18th_century.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -9589,9 +9589,9 @@
     "planche": "",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "British school of the 18th century · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Vice-Admiral_Sir_Roger_Curtis_(1746-1816),_by_British_school_of_the_18th_century.jpg",
+    "imgSujet": "Roger Curtis"
   },
   {
     "code": "Flinders247",
@@ -9649,7 +9649,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Captain_James_Bowen_%281751-1835%29%2C_by_British_school_of_the_19th_century.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -9667,9 +9667,9 @@
     "planche": "",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "British school of the 19th century · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Captain_James_Bowen_(1751-1835),_by_British_school_of_the_19th_century.jpg",
+    "imgSujet": "James Bowen (Royal Navy officer)"
   },
   {
     "code": "Flinders249",
@@ -9922,7 +9922,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Charles_Townshend%2C_2nd_Viscount_Townshend_by_Sir_Godfrey_Kneller%2C_Bt_%282%29.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -9940,9 +9940,9 @@
     "planche": "",
     "commentaire": "",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "After Godfrey Kneller · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Charles_Townshend,_2nd_Viscount_Townshend_by_Sir_Godfrey_Kneller,_Bt_(2).jpg",
+    "imgSujet": "Charles Townshend, 2nd Viscount Townshend"
   },
   {
     "code": "Flinders256",
@@ -10819,7 +10819,7 @@
     "history_fr": "",
     "detailsLink": "",
     "detailsLink_en": "",
-    "imgUrl": "",
+    "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/3rd_Duke_of_Portland.jpg",
     "mapUrl": "",
     "mapTitle_fr": "",
     "mapTitle_en": "",
@@ -10837,9 +10837,9 @@
     "planche": "",
     "commentaire": "F shows as Bentinck's Island",
     "incertain": false,
-    "imgCredit": "",
-    "imgSource": "",
-    "imgSujet": ""
+    "imgCredit": "After Joshua Reynolds · Public domain",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:3rd_Duke_of_Portland.jpg",
+    "imgSujet": "William Cavendish-Bentinck, 3rd Duke of Portland"
   },
   {
     "code": "Flinders279",
