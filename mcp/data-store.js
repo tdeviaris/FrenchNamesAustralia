@@ -66,29 +66,58 @@ function vesselLabel(vessels) {
 }
 
 const ROUTE_FILES = [
-  { expedition: 'Baudin', path: 'data/baudin_parcours.geojson' },
-  { expedition: 'Entrecasteaux', path: 'data/dentrecasteaux_parcours.geojson' },
-  { expedition: 'Flinders', path: 'data/flinders_parcours.geojson' },
+  {
+    expedition: 'Baudin',
+    path: 'data/baudin_parcours.geojson',
+    url: new URL('../data/baudin_parcours.geojson', import.meta.url),
+  },
+  {
+    expedition: 'Entrecasteaux',
+    path: 'data/dentrecasteaux_parcours.geojson',
+    url: new URL('../data/dentrecasteaux_parcours.geojson', import.meta.url),
+  },
+  {
+    expedition: 'Flinders',
+    path: 'data/flinders_parcours.geojson',
+    url: new URL('../data/flinders_parcours.geojson', import.meta.url),
+  },
 ];
 
 const JOURNAL_FILES = [
-  { source: 'baudin', path: 'data/journal_baudin.json', title: 'Journal de Nicolas Baudin' },
+  {
+    source: 'baudin',
+    path: 'data/journal_baudin.json',
+    url: new URL('../data/journal_baudin.json', import.meta.url),
+    title: 'Journal de Nicolas Baudin',
+  },
   {
     source: 'baudin_bnf',
     path: 'data/journal_baudin_bnf.json',
+    url: new URL('../data/journal_baudin_bnf.json', import.meta.url),
     title: 'Journal de Baudin, transcription du manuscrit de la BnF',
   },
-  { source: 'breton', path: 'data/journal_breton.json', title: 'Journal de Pierre-Guillaume Gicquel Breton' },
-  { source: 'anonyme', path: 'data/journal_anonyme.json', title: 'Journal anonyme du Naturaliste' },
-  { source: 'geographe', path: 'data/journal_geographe.json', title: 'Journal tenu à bord du Géographe' },
+  {
+    source: 'breton',
+    path: 'data/journal_breton.json',
+    url: new URL('../data/journal_breton.json', import.meta.url),
+    title: 'Journal de Pierre-Guillaume Gicquel Breton',
+  },
+  {
+    source: 'anonyme',
+    path: 'data/journal_anonyme.json',
+    url: new URL('../data/journal_anonyme.json', import.meta.url),
+    title: 'Journal anonyme du Naturaliste',
+  },
+  {
+    source: 'geographe',
+    path: 'data/journal_geographe.json',
+    url: new URL('../data/journal_geographe.json', import.meta.url),
+    title: 'Journal tenu à bord du Géographe',
+  },
 ];
 
 function readJson(url) {
   return JSON.parse(readFileSync(url, 'utf8'));
-}
-
-function readDataFile(path) {
-  return readJson(new URL(`../${path}`, import.meta.url));
 }
 
 export function normalizeText(value) {
@@ -216,8 +245,8 @@ function routePosition(feature, expedition, datasetPath, index, fallbackVessel, 
 const routeTrajectories = [];
 
 export const ROUTE_POSITIONS = Object.freeze(
-  ROUTE_FILES.flatMap(({ expedition, path }) => {
-    const collection = readDataFile(path);
+  ROUTE_FILES.flatMap(({ expedition, path, url }) => {
+    const collection = readJson(url);
     const trajectoryVessels = new Set(
       collection.features
         .filter((feature) => feature.geometry?.type === 'LineString')
@@ -276,8 +305,8 @@ export const ROUTE_POSITIONS = Object.freeze(
 export const ROUTE_TRAJECTORIES = Object.freeze(routeTrajectories);
 
 export const JOURNAL_ENTRIES = Object.freeze(
-  JOURNAL_FILES.flatMap(({ source, path, title }) => {
-    const raw = readDataFile(path);
+  JOURNAL_FILES.flatMap(({ source, path, url, title }) => {
+    const raw = readJson(url);
     return Object.entries(raw)
       .filter(([date]) => /^\d{4}-\d{2}-\d{2}$/.test(date))
       .map(([date, value]) => {
