@@ -115,8 +115,14 @@ def main():
             continue
         if code in retenus:
             remplaces.append(code)
+        # Les quatre champs d'image forment un bloc : ils decrivent une image
+        # precise, son auteur, sa page et son sujet. Sans image a poser, on
+        # n'y touche pas -- ecrire le seul sujet legenderait l'image en place
+        # du nom d'un portrait qui n'existe pas. « Sweers Island » portait une
+        # photo de l'ile ; la proposition nommait Salomon Sweers, qui n'a pas
+        # de portrait : la photo se serait retrouvee sous son nom.
         fiche = {}
-        if not args.liens_seuls:
+        if not args.liens_seuls and p.get("url"):
             fiche = {
                 "imgUrl": url_propre(p.get("url") or ""),
                 "imgCredit": credit(p),
