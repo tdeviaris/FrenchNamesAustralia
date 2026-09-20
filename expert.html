@@ -540,7 +540,20 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         // Fonction pour nettoyer et formater le contenu
         function cleanAndFormatContent(content) {
-            // Supprimer les citations sources 【...†...】
+            // Citations de l'API Responses : un bloc délimité par des caractères
+            // de la zone Unicode à usage privé — U+E200 en tête, U+E202 entre
+            // les renvois, U+E201 en queue. Rien ne les rend à l'écran, si bien
+            // que le lecteur verrait « fileciteturn0file4turn0file6 » en clair
+            // au milieu d'une phrase.
+            content = content.replace(/[\s\S]*?/g, '');
+            // Pendant le streaming le bloc arrive parfois coupé : on efface
+            // aussi l'amorce restée ouverte en fin de texte, qui sans cela
+            // clignoterait le temps d'un ou deux fragments.
+            content = content.replace(/[\s\S]*$/, '');
+            // Ceinture et bretelles : tout délimiteur isolé de cette zone.
+            // Aucun texte légitime du corpus n'y puise.
+            content = content.replace(/[-]/g, '');
+            // Ancien format des citations, du temps de l'API Assistants
             content = content.replace(/【[^】]*】/g, '');
             // Normaliser les retours à la ligne, conserver la mise en forme d'origine
             return content.replace(/\r\n?/g, '\n').trim();

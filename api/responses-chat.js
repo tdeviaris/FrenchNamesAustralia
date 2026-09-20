@@ -66,12 +66,20 @@ export default async function handler(req, res) {
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
     stream = openai.responses.stream({
-      model: 'gpt-4.1',
+      // Mesuré sur le corpus complet (voir rag/departager.mjs) : sur six
+      // épreuves, terra produit deux fois moins de liens morts que gpt-5.4-mini
+      // et ne laisse jamais fuir de marqueur de citation. Il coûte 0,8 seconde
+      // de plus avant le premier mot — le reste s'écrit sous les yeux du
+      // lecteur, qui ne l'attend donc pas.
+      model: 'gpt-5.6-terra',
       instructions: TOPONYMES_INSTRUCTIONS,
       input: messageWithLanguage,
       previous_response_id: responseId,
       store: true,
-      temperature: 0.3,
+      // Un effort plus soutenu n'améliore pas les réponses ici, et allonge la
+      // queue de distribution : jusqu'à douze secondes de silence initial.
+      // Les modèles à raisonnement refusent temperature.
+      reasoning: { effort: 'low' },
       tools: [
         {
           type: 'file_search',
