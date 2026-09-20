@@ -537,25 +537,39 @@ gtag('config', 'G-LCWV2EVPVQ');
         // continue de s'accumuler hors de vue. S'il redescend au bas du fil,
         // le suivi reprend de lui-même — c'est ce que font les autres
         // messageries, et cela n'exige aucun bouton.
-        const MARGE_BAS = 48; // px : « en bas » à quelques pixels près
-        let suitLeFil = true;
+        // Le fil suit la réponse tant que le lecteur n'a rien demandé. Au
+        // premier geste de défilement de sa part, il prend la main : le texte
+        // continue de s'écrire, mais le fil se fige et c'est lui qui avance au
+        // rythme de sa lecture. Il garde la main jusqu'à sa prochaine question.
+        //
+        // On guette le geste — molette, doigt, touche — plutôt que la position.
+        // La position ne distingue pas le lecteur du code : c'est nous qui
+        // recollons le fil en bas à chaque fragment reçu, et l'événement
+        // « scroll » qui en résulte est indiscernable du sien. Une version
+        // antérieure s'y fiait et rendait la main au code dès que le lecteur,
+        // en suivant son texte, repassait près du bas — le fil repartait sous
+        // ses yeux, ce qu'il venait justement d'interrompre.
+        let lecteurAPrisLaMain = false;
 
-        const estEnBasDuFil = () =>
-            chatMessages.scrollHeight - chatMessages.scrollTop - chatMessages.clientHeight <= MARGE_BAS;
+        const GESTES_DE_LECTURE = ['wheel', 'touchmove', 'pointerdown'];
+        for (const geste of GESTES_DE_LECTURE) {
+            chatMessages.addEventListener(geste, () => { lecteurAPrisLaMain = true; },
+                                          { passive: true });
+        }
+        // Les touches de navigation valent le même geste, pour qui lit au clavier.
+        const TOUCHES_DE_LECTURE = new Set([
+            'PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown', ' ']);
+        chatMessages.addEventListener('keydown', (evt) => {
+            if (TOUCHES_DE_LECTURE.has(evt.key)) lecteurAPrisLaMain = true;
+        });
 
-        // Recolle le fil en bas et réarme le suivi. Pour les gestes délibérés :
-        // envoi d'une question, erreur à montrer, reprise d'un historique.
+        // Recolle le fil en bas et rend la main au code. Pour les gestes
+        // délibérés : envoi d'une question, erreur à montrer, reprise d'un
+        // historique — autant de moments où le lecteur veut voir le bas du fil.
         const colleLeFilEnBas = () => {
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            suitLeFil = true;
+            lecteurAPrisLaMain = false;
         };
-
-        // Le défilement que nous provoquons nous-mêmes laisse scrollTop en bas,
-        // donc estEnBasDuFil() reste vrai et le suivi n'est pas coupé par
-        // inadvertance. Seul un vrai mouvement vers le haut le désarme.
-        chatMessages.addEventListener('scroll', () => {
-            suitLeFil = estEnBasDuFil();
-        }, { passive: true });
         let slowResponseTimer = null;
         let slowResponseNote = null;
         let chatHistory = [];
@@ -1345,7 +1359,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             inner.textContent = 'Toujours en cours ...';
             note.appendChild(inner);
             chatMessages.appendChild(note);
-            if (suitLeFil) {
+            if (!lecteurAPrisLaMain) {
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
             slowResponseNote = note;
@@ -1537,8 +1551,9 @@ gtag('config', 'G-LCWV2EVPVQ');
                             assistantMessage.innerHTML = markdownToHtml(cleanedResponse);
 
                             // Le texte s'accumule quoi qu'il arrive ; on ne
-                            // déplace le fil que si le lecteur est resté en bas.
-                            if (suitLeFil) {
+                            // déplace le fil que tant que le lecteur n'a pas
+                            // pris la main.
+                            if (!lecteurAPrisLaMain) {
                                 chatMessages.scrollTop = chatMessages.scrollHeight;
                             }
                         }
