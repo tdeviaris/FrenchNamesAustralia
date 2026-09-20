@@ -76,6 +76,46 @@ function forcerMiseAJourGitHub() {
 }
 
 
+/**
+ * Les boites de dialogue.
+ *
+ * L'ancienne interface de Sheets, Browser.msgBox, rend mal, et son defaut le
+ * plus couteux est qu'on ne sait pas la distinguer d'un calcul : le
+ * 20 septembre 2026, une execution restee douze minutes « en cours » a fait
+ * croire a un dialogue en attente, faute de pouvoir verifier.
+ * SpreadsheetApp.getUi() est l'interface actuelle.
+ *
+ * getUi() n'existe pas hors d'une session ouverte -- un declencheur horaire,
+ * un doPost n'en ont pas. Le repli est le journal, qui a de toute facon deja
+ * tout ecrit : un message perdu ne doit pas faire echouer un envoi.
+ */
+function dis(titre, message) {
+  Logger.log(`${titre} : ${message}`);
+  try {
+    const ui = SpreadsheetApp.getUi();
+    ui.alert(titre, message, ui.ButtonSet.OK);
+  } catch (e) {
+    Logger.log("Pas d'interface pour afficher ce message.");
+  }
+}
+
+
+/**
+ * Une question fermee. Sans interface, on repond non : ne pas publier est
+ * toujours le choix reversible.
+ */
+function demande(titre, message) {
+  Logger.log(`${titre} : ${message}`);
+  try {
+    const ui = SpreadsheetApp.getUi();
+    return ui.alert(titre, message, ui.ButtonSet.YES_NO) === ui.Button.YES;
+  } catch (e) {
+    Logger.log("Pas d'interface pour poser la question : on s'abstient.");
+    return false;
+  }
+}
+
+
 function majGitHub(forcer) {
   try {
     const classeur = SpreadsheetApp.getActiveSpreadsheet();
@@ -83,9 +123,7 @@ function majGitHub(forcer) {
     // Étape 0 : le jeton. Sans lui rien n'est possible, et le demander ici
     // évite d'aller chercher une entrée de menu qui n'existe plus.
     if (!jetonGitHub()) {
-      Browser.msgBox('Mise à jour annulée',
-                     "Aucun jeton GitHub : rien n'a été envoyé.",
-                     Browser.Buttons.OK);
+      dis('Mise à jour annulée', "Aucun jeton GitHub : rien n'a été envoyé.");
       return;
     }
 
@@ -94,8 +132,7 @@ function majGitHub(forcer) {
         + "Chaque envoi déclenche un déploiement du site, et le stockage est "
         + "compté. Pour publier tout de même, utilisez « Forcer la mise à "
         + "jour » dans le menu GitHub.";
-      Logger.log(msg);
-      Browser.msgBox('Mise à jour différée', msg, Browser.Buttons.OK);
+      dis('Mise à jour différée', msg);
       return;
     }
 
@@ -116,8 +153,7 @@ function majGitHub(forcer) {
     etape('onglet Source lu');
     if (!datasets) {
       const errorMsg = "Conversion annulée : feuille vide ou colonne 'Expedition' manquante.";
-      Logger.log(errorMsg);
-      Browser.msgBox('Erreur', errorMsg, Browser.Buttons.OK);
+      dis('Erreur', errorMsg);
       return;
     }
 
@@ -139,10 +175,7 @@ function majGitHub(forcer) {
       const question = "Avant de publier, à vérifier :\n\n"
         + soucis.map((s) => '• ' + s).join('\n')
         + "\n\nPublier quand même ?";
-      Logger.log('Contrôles : ' + soucis.join(' | '));
-      const reponse = Browser.msgBox('Contrôles avant envoi', question,
-                                     Browser.Buttons.YES_NO);
-      if (reponse !== 'yes') {
+      if (!demande('Contrôles avant envoi', question)) {
         classeur.toast("Rien n'a été envoyé.", 'Mise à jour annulée', 8);
         return;
       }
@@ -198,7 +231,7 @@ function majGitHub(forcer) {
   } catch (e) {
     const errorMsg = `Erreur lors de la mise à jour GitHub : ${e.toString()}`;
     Logger.log(`Erreur complète : ${e.stack || e.toString()}`);
-    Browser.msgBox('Erreur', errorMsg, Browser.Buttons.OK);
+    dis('Erreur', errorMsg);
   }
 }
 
@@ -805,12 +838,21 @@ function jetonGitHub() {
   const proprietes = PropertiesService.getScriptProperties();
   let token = proprietes.getProperty(GITHUB_TOKEN_NAME);
   if (token) return token;
-  token = Browser.inputBox(
-    'Jeton GitHub',
-    "Le jeton d'accès GitHub n'est pas encore enregistré.\n"
-    + "Collez-le ici : il sera conservé, et cette question ne reviendra pas.",
-    Browser.Buttons.OK_CANCEL);
-  if (!token || token === 'cancel') return null;
+  let reponse;
+  try {
+    const ui = SpreadsheetApp.getUi();
+    reponse = ui.prompt(
+      'Jeton GitHub',
+      "Le jeton d'accès GitHub n'est pas encore enregistré.\n"
+      + "Collez-le ici : il sera conservé, et cette question ne reviendra pas.",
+      ui.ButtonSet.OK_CANCEL);
+    if (reponse.getSelectedButton() !== ui.Button.OK) return null;
+    token = reponse.getResponseText();
+  } catch (e) {
+    Logger.log("Pas d'interface pour réclamer le jeton GitHub.");
+    return null;
+  }
+  if (!token) return null;
   token = token.trim();
   if (!token) return null;
   proprietes.setProperty(GITHUB_TOKEN_NAME, token);
