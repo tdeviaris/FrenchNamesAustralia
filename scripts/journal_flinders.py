@@ -116,6 +116,15 @@ ESCALES = [
 # habituelles, et le depouillement automatique n'y trouve rien. Ces deux
 # positions-la sont pourtant dites en toutes lettres.
 POSITIONS_DITES = [
+    {'date': '1801-11-10', 'lon': 33.633, 'lat': -36.5, 'volume': '1',
+     'appui': "traversée du Cap de Bonne-Espérance vers la Nouvelle-Hollande, "
+              "cinq jours après le départ de False Bay : « During our run "
+              "across the Agulhas Bank, I did not find any current setting to "
+              "the westward; but in the five days taken to reach the latitude "
+              "36° 30' and longitude 33° 38', the ship was set 59' to the "
+              "north of the reckoning ». L'en-tête TUESDAY 10 NOVEMBER 1801 "
+              "est inséré au milieu de cette phrase, après la longitude : le "
+              "dépouillement automatique la manquait"},
     {'date': '1803-09-22', 'lon': 152.22, 'lat': -32.73,
      'appui': "« I anchored in a small bight under Point Stephens, in very bad "
               "plight » ; le lendemain la Cumberland rejoint la Rolla et la "
@@ -345,7 +354,8 @@ def main():
         if d in connues:
             continue
         points.append({'date': d, 'coords': [e['lon'], e['lat']],
-                       'volume': '2', 'navire': navire_du_jour(d), 'dite': e})
+                       'volume': e.get('volume', '2'),
+                       'navire': navire_du_jour(d), 'dite': e})
     for e in CONTOURNEMENTS:
         d = datetime.date.fromisoformat(e['date'])
         if d in connues:
