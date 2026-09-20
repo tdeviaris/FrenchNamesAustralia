@@ -66,6 +66,12 @@ def navire_du_jour(d):
 # tout Port Jackson -- ou l'Investigator passa dix semaines, en meme temps que
 # Baudin. Les dates viennent du recit lui-meme.
 ESCALES = [
+    {'du': '1801-07-18', 'au': '1801-07-18',
+     'lon': -1.100, 'lat': 50.750,
+     'lieu': "Spithead, appareillage de l'Investigator",
+     'appui': "« On July 18 we sailed from Spithead » ; les vivres étaient "
+              "venus à bord la veille au matin, « when the ship was "
+              "unmoored »"},
     {'du': '1801-12-09', 'au': '1802-01-04',
      'lon': 117.95, 'lat': -35.05,
      'lieu': "King George's Sound",
@@ -116,6 +122,11 @@ ESCALES = [
 # habituelles, et le depouillement automatique n'y trouve rien. Ces deux
 # positions-la sont pourtant dites en toutes lettres.
 POSITIONS_DITES = [
+    {'date': '1801-07-27', 'lon': -14.300, 'lat': 38.0167, 'volume': '1',
+     'appui': "comparaison des compas à l'habitacle et sur les bittons : "
+              "« The head was south-west by the steering compass, our latitude "
+              "was 38° 1' north, longitude 14° 18' west ». Au large du "
+              "Portugal, cette position écarte la route de l'Espagne"},
     {'date': '1801-11-10', 'lon': 33.633, 'lat': -36.5, 'volume': '1',
      'appui': "traversée du Cap de Bonne-Espérance vers la Nouvelle-Hollande, "
               "cinq jours après le départ de False Bay : « During our run "
@@ -144,6 +155,41 @@ POSITIONS_DITES = [
 # Ce point-ci n'est pas releve, il est CALCULE : c'est le plus proche de la
 # route directe qui degage le trait de cote des deux cotes. La fiche le dit.
 CONTOURNEMENTS = [
+    # Le depart. Les trois premiers points sortent le navire de Spithead : le
+    # trait de cote au 1/10 000 000 ne separe pas l'ile de Wight du continent,
+    # le Solent n'y figure pas, et la route directe traversait la terre.
+    {'date': '1801-07-18', 'lon': -1.050, 'lat': 50.680,
+     'raison': "sortie de Spithead par l'est de l'île de Wight. Le trait de "
+               "côte employé par la carte, au 1/10 000 000, ne sépare pas "
+               "l'île du continent : le Solent n'y figure pas, et toute route "
+               "partant du mouillage traversait la terre. Ces deux points la "
+               "contournent par où le trait laisse le passage [1/2]"},
+    {'date': '1801-07-18', 'lon': -1.300, 'lat': 50.500,
+     'raison': "sortie de Spithead par l'est de l'île de Wight. Le trait de "
+               "côte employé par la carte, au 1/10 000 000, ne sépare pas "
+               "l'île du continent : le Solent n'y figure pas, et toute route "
+               "partant du mouillage traversait la terre. Ces deux points la "
+               "contournent par où le trait laisse le passage [2/2]"},
+    {'date': '1801-07-20', 'lon': -3.5089, 'lat': 49.9592,
+     'raison': "au large du Start, d'où Flinders prend son point de départ : "
+               "« our departure was taken from the Start, bearing N. 18° W. "
+               "five or six leagues ». La position se déduit de ce relèvement "
+               "et de cette distance — cinq lieues et demie, soit trente "
+               "kilomètres au S 18° E du cap"},
+    {'date': '1801-07-21', 'lon': -6.000, 'lat': 48.400,
+     'raison': "au large d'Ouessant, où l'Investigator rencontre le "
+               "vice-amiral Sir Andrew Mitchell et quatre vaisseaux à trois "
+               "ponts de la flotte qui bloque Brest. Flinders ne donne pas sa "
+               "position : seule la station de blocus est connue, au large "
+               "dans l'ouest. Le point est estimé, et c'est lui qui écarte la "
+               "route de la Bretagne"},
+    {'date': '1801-08-01', 'lon': -16.278, 'lat': 32.434,
+     'raison': "atterrage de Madère, déduit des relèvements de midi : « Porto "
+               "Santo bore N. 11° W., and the rocky islands called Dezertas, "
+               "from N. 65° to S. 85° W. distant three leagues ». Le point est "
+               "le meilleur accord entre les trois relèvements et la "
+               "distance ; il place le navire à l'est des Dezertas, d'où la "
+               "route gagne Funchal par le sud sans couper Madère"},
     {'date': '1803-05-15', 'lon': 117.0, 'lat': -35.2,
      'raison': "au sud d'Albany, entre les deux relèves de la carte de 1814 — "
                "le 12 mai au sud-ouest du cap Leeuwin, le 16 mai déjà loin sur "
