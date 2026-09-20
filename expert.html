@@ -527,6 +527,35 @@ gtag('config', 'G-LCWV2EVPVQ');
         const chatForm = document.getElementById('chat-form');
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
+
+        // La réponse arrive mot à mot, et le fil se recollait en bas à chaque
+        // fragment reçu. Celui qui avait commencé à lire voyait sa ligne fuir
+        // vers le haut à chaque phrase : impossible de suivre.
+        //
+        // Désormais le fil ne suit la réponse que si le lecteur se trouve déjà
+        // en bas. Dès qu'il remonte, on le laisse tranquille et le texte
+        // continue de s'accumuler hors de vue. S'il redescend au bas du fil,
+        // le suivi reprend de lui-même — c'est ce que font les autres
+        // messageries, et cela n'exige aucun bouton.
+        const MARGE_BAS = 48; // px : « en bas » à quelques pixels près
+        let suitLeFil = true;
+
+        const estEnBasDuFil = () =>
+            chatMessages.scrollHeight - chatMessages.scrollTop - chatMessages.clientHeight <= MARGE_BAS;
+
+        // Recolle le fil en bas et réarme le suivi. Pour les gestes délibérés :
+        // envoi d'une question, erreur à montrer, reprise d'un historique.
+        const colleLeFilEnBas = () => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            suitLeFil = true;
+        };
+
+        // Le défilement que nous provoquons nous-mêmes laisse scrollTop en bas,
+        // donc estEnBasDuFil() reste vrai et le suivi n'est pas coupé par
+        // inadvertance. Seul un vrai mouvement vers le haut le désarme.
+        chatMessages.addEventListener('scroll', () => {
+            suitLeFil = estEnBasDuFil();
+        }, { passive: true });
         let slowResponseTimer = null;
         let slowResponseNote = null;
         let chatHistory = [];
@@ -1094,7 +1123,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             messageDiv.appendChild(contentDiv);
             chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            colleLeFilEnBas();
 
             return contentDiv;
         }
@@ -1111,7 +1140,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             typingDiv.appendChild(indicator);
             chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            colleLeFilEnBas();
         }
 
         // Fonction pour masquer l'indicateur de frappe
@@ -1128,7 +1157,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             errorDiv.className = 'error-message';
             errorDiv.textContent = message;
             chatMessages.appendChild(errorDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            colleLeFilEnBas();
         }
 
         const sendIcon = `
@@ -1142,7 +1171,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const scrollChatToBottom = () => {
             requestAnimationFrame(() => {
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                colleLeFilEnBas();
             });
         };
 
@@ -1248,7 +1277,9 @@ gtag('config', 'G-LCWV2EVPVQ');
             inner.textContent = 'Toujours en cours ...';
             note.appendChild(inner);
             chatMessages.appendChild(note);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            if (suitLeFil) {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
             slowResponseNote = note;
         };
 
@@ -1437,7 +1468,11 @@ gtag('config', 'G-LCWV2EVPVQ');
                             // Appliquer le formatage Markdown directement
                             assistantMessage.innerHTML = markdownToHtml(cleanedResponse);
 
-                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                            // Le texte s'accumule quoi qu'il arrive ; on ne
+                            // déplace le fil que si le lecteur est resté en bas.
+                            if (suitLeFil) {
+                                chatMessages.scrollTop = chatMessages.scrollHeight;
+                            }
                         }
                     } catch (e) {
                         console.warn('Unable to parse SSE payload', e);
