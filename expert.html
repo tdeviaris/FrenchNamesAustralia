@@ -578,7 +578,18 @@ gtag('config', 'G-LCWV2EVPVQ');
             // Pendant le streaming le bloc arrive parfois coupé : on efface
             // aussi l'amorce restée ouverte en fin de texte, qui sans cela
             // clignoterait le temps d'un ou deux fragments.
-            content = content.replace(/[\s\S]*$/, '');
+            //
+            // On ne le fait QUE si l'amorce est dans la queue du texte, ce
+            // qu'elle est par construction pendant le streaming. Sans cette
+            // reserve, une amorce restee ouverte au milieu d'une reponse
+            // emporterait tout ce qui suit -- et, pire, la version amputee
+            // partirait dans l'historique local, ou elle resterait apres
+            // rechargement. Ailleurs qu'en queue, la regle suivante se
+            // contente de retirer le delimiteur et garde le texte.
+            const amorce = content.lastIndexOf('\uE200');
+            if (amorce !== -1 && amorce >= content.length - 400) {
+                content = content.slice(0, amorce);
+            }
             // Ceinture et bretelles : tout délimiteur isolé de cette zone.
             // Aucun texte légitime du corpus n'y puise.
             content = content.replace(/[-]/g, '');
@@ -1271,6 +1282,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 const role = entry?.role === 'user' ? 'user' : 'assistant';
                 const rawContent = entry?.content || '';
                 const cleaned = cleanAndFormatContent(rawContent);
+                // Une reponse vide ne donne qu'une bulle blanche muette, que le
+                // rechargement ramene indefiniment. Mieux vaut ne rien montrer :
+                // la question reste, et l'on peut la reposer.
+                if (role === 'assistant' && !cleaned) {
+                    return;
+                }
                 if (role === 'user') {
                     addMessage(cleaned, true);
                 } else {
@@ -1535,8 +1552,13 @@ gtag('config', 'G-LCWV2EVPVQ');
 
                 // Sauvegarder l'échange complet (assistant)
                 const cleanedFinal = cleanAndFormatContent(fullResponse);
-                chatHistory.push({ role: 'assistant', content: cleanedFinal });
-                saveChatHistory();
+                // Un flux interrompu, une coupure reseau : la reponse peut etre
+                // vide. L'enregistrer condamnerait le lecteur a une bulle
+                // blanche a chaque rechargement, sans moyen de s'en defaire.
+                if (cleanedFinal) {
+                    chatHistory.push({ role: 'assistant', content: cleanedFinal });
+                    saveChatHistory();
+                }
 
             } catch (error) {
                 console.error('Error:', error);
