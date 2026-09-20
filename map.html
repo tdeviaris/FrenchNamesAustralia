@@ -3395,11 +3395,80 @@ gtag('config', 'G-LCWV2EVPVQ');
             pendingHashCode = '';
             clearUrlHash();
         };
+        // A quelle expedition rattacher une coque. Le Q&R renvoie vers une
+        // journee de journal en nommant le navire ; c'est lui qui dit sur
+        // quelle couche chercher le point.
+        const EXPEDITION_DE_LA_COQUE = {
+            'le géographe': 'B', 'le naturaliste': 'B', 'le casuarina': 'B',
+            'les corvettes': 'B',
+            "l'investigator": 'F', 'le porpoise': 'F', 'le cumberland': 'F',
+            'la recherche': 'E', "l'espérance": 'E'
+        };
+
+        // Ouvre la fiche du parcours d'un jour donne, pour un navire donne.
+        // La fiche porte deja les journaux tenus ce jour-la a ce bord : il
+        // suffit donc d'amener le lecteur sur le bon point.
+        //
+        // On s'appuie sur remarquableOuvre, qui sait deja charger la couche,
+        // rouvrir la tranche si la date en sort, rendre la coque visible si
+        // elle avait ete decochee, recentrer et ouvrir la fiche.
+        const ouvreJourneeDeJournal = async (date, navire) => {
+            const coque = String(navire || '').trim().toLowerCase();
+            const exp = EXPEDITION_DE_LA_COQUE[coque];
+            if (!exp) return false;
+
+            // remarquableOuvre se rabat sur n'importe quel point de la date
+            // quand aucun ne porte le navire demande. C'est ce qu'il faut pour
+            // une date remarquable, ou la date fait foi ; c'est faux ici, ou le
+            // navire fait foi : le journal de Flinders le 31 juillet 1801
+            // ouvrirait la fiche du Geographe, qui raconte une autre traversee
+            // a des centaines de lieues de la. On verifie donc nous-memes, et
+            // l'on refuse plutot que d'egarer le lecteur.
+            const couche = REMARQUABLES_EXPEDITIONS[exp]?.couche;
+            if (!couche) return false;
+            await loadParcours(couche);
+            const t = Date.parse(`${date}T00:00:00Z`);
+            if (!Number.isFinite(t)) return false;
+            const duJour = parcoursMarqueurs[couche]?.get(t) || [];
+            const pourCetteCoque = duJour.some((m) =>
+                (m.__coques || [m.__parcoursGroupe])
+                    .some((c) => String(c).toLowerCase() === coque));
+            if (!pourCetteCoque) return false;
+
+            // Les routes sont decochees au premier affichage : sans cela, le
+            // point existe en memoire mais n'est pas sur la carte, et sa fiche
+            // ne s'ouvre pas. On coche la case comme l'aurait fait le lecteur,
+            // en passant par l'evenement pour que la couche se charge et que
+            // le volet du navire suive.
+            const idRoute = REMARQUABLES_EXPEDITIONS[exp]?.route;
+            const caseRoute = idRoute ? document.getElementById(idRoute) : null;
+            if (caseRoute && !caseRoute.checked) {
+                caseRoute.checked = true;
+                caseRoute.dispatchEvent(new Event('change'));
+            }
+
+            await remarquableOuvre({ expedition: exp, date, navire: String(navire).trim() });
+            return true;
+        };
+
+        // Une ancre de journee : 1801-07-18@l'Investigator. Le navire est
+        // obligatoire -- deux coques peuvent avoir un point le meme jour, et
+        // leurs journaux ne racontent pas la meme traversee.
+        const ANCRE_JOURNEE = /^(\d{4}-\d{2}-\d{2})@(.+)$/;
+
         const handleHashNavigation = () => {
             if (!window.location.hash) {
                 return;
             }
-            openMarkerByCode(window.location.hash.substring(1));
+            let brut = window.location.hash.substring(1);
+            try { brut = decodeURIComponent(brut); } catch { /* ancre malformee */ }
+            const journee = brut.match(ANCRE_JOURNEE);
+            if (journee) {
+                ouvreJourneeDeJournal(journee[1], journee[2])
+                    .then((ouvert) => { if (ouvert) clearUrlHash(); });
+                return;
+            }
+            openMarkerByCode(brut);
         };
         const tryOpenPendingHash = () => {
             if (!pendingHashCode) {

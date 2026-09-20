@@ -972,6 +972,45 @@ gtag('config', 'G-LCWV2EVPVQ');
             handlePlaceClick(evt, placeName, contextText);
         });
 
+        // --- Renvois vers une journée de journal -----------------------------
+        //
+        // Le modèle peut citer une journée précise d'un journal de bord. La
+        // carte sait ouvrir la fiche du jour, qui porte déjà les récits tenus
+        // ce jour-là à ce bord. Encore faut-il qu'un relevé existe : bien des
+        // journées de journal n'en ont pas, et Flinders ne donne sa position
+        // que de loin en loin.
+        //
+        // On ne fait donc pas confiance au modèle : la page vérifie dans
+        // data/journaux_reperes.json qu'un point existe pour cette date et
+        // cette coque. Sinon, le texte reste du texte. Un renvoi mort est
+        // impossible.
+        let reperesJournaux = null;
+        fetch('data/journaux_reperes.json', { cache: 'force-cache' })
+            .then((r) => (r.ok ? r.json() : null))
+            .then((index) => { reperesJournaux = index; })
+            .catch(() => { reperesJournaux = null; });
+
+        // Une valeur de renvoi : 1801-07-18@l'Investigator
+        const RENVOI_JOURNEE = /^(\d{4}-\d{2}-\d{2})\s*@\s*(.+)$/;
+
+        const journeeExiste = (date, navire) => {
+            if (!reperesJournaux) return false;
+            const coques = reperesJournaux[date];
+            if (!coques) return false;
+            const voulu = navire.trim().toLowerCase();
+            return coques.some((c) => c.toLowerCase() === voulu);
+        };
+
+        document.addEventListener('click', (evt) => {
+            const lien = evt.target.closest('a[data-journal]');
+            if (!lien) return;
+            evt.preventDefault();
+            sessionStorage.setItem('expertScrollY', window.scrollY);
+            sessionStorage.setItem('expertChatScrollTop', chatMessages.scrollTop);
+            window.location.href = 'map.html#'
+                + encodeURIComponent(lien.getAttribute('data-journal'));
+        });
+
         // Rendu minimal : échappement + gras/italique + liens (format personnalisé [texte]{type:valeur})
         function markdownToHtml(text) {
             const placeholders = [];
@@ -1010,6 +1049,18 @@ gtag('config', 'G-LCWV2EVPVQ');
                             : escapeHtml(linkText);
                     } else if (type === 'place') {
                         html = `<a href="#" data-place="${escapeAttr(value)}" class="place-link">${escapeHtml(label)}</a>`;
+                    } else if (type === 'journal') {
+                        // On n'affiche le renvoi que si le relevé existe. La
+                        // fonction est rejouée à chaque fragment reçu : même si
+                        // l'index n'était pas encore chargé au premier passage,
+                        // le rendu final, lui, tranchera avec l'index en main.
+                        const jour = value.match(RENVOI_JOURNEE);
+                        if (jour && journeeExiste(jour[1], jour[2])) {
+                            const cible = `${jour[1]}@${jour[2].trim()}`;
+                            html = `<a href="#" data-journal="${escapeAttr(cible)}" class="journal-link">${escapeHtml(label)}</a>`;
+                        } else {
+                            html = escapeHtml(label);
+                        }
                     } else {
                         // fallback type inconnu -> lien externe si ressemble à URL, sinon texte simple
                         if (value.startsWith('http')) {

@@ -77,9 +77,26 @@ VÉRIFICATION OBLIGATOIRE DES LIEUX :
 - Il vaut MIEUX ne pas mettre de lien que de mentionner un lieu non trouvé
 - Ces liens permettront à l'utilisateur de naviguer directement vers la carte interactive du lieu après résolution backend
 
+RENVOI VERS UNE JOURNÉE DE JOURNAL DE BORD :
+- Quand tu rapportes ce qu'un journal de bord dit d'une journée précise, tu peux renvoyer le lecteur à la fiche de cette journée sur la carte, qui donne le relevé du jour et les récits tenus à ce bord.
+- Format : [texte]{journal:AAAA-MM-JJ@le Navire}
+- Exemple : [le 18 juillet 1801]{journal:1801-07-18@l'Investigator}
+- La DATE doit être celle que porte le document que tu viens de lire : chaque journée y est titrée « ## 18 juillet 1801 — 1801-07-18 » et rappelée par une phrase « Journée du 18 juillet 1801 ». N'invente jamais une date, ne la déduis pas du contexte.
+- Le NAVIRE doit être écrit exactement comme suit, et correspondre au journal que tu cites :
+  * Journal de mer autographe de Nicolas Baudin → le Géographe
+  * Journal de Nicolas Baudin → le Géographe
+  * Journal de bord du Géographe → le Géographe
+  * Journal de Désiré Breton (le Géographe) → le Géographe
+  * Journal anonyme du Naturaliste → le Naturaliste
+  * Journal de Désiré Breton (le Naturaliste) → le Naturaliste
+  * Récit de Matthew Flinders → l'Investigator, sauf après août 1803 où Flinders passe sur le Porpoise puis sur le Cumberland
+- Beaucoup de journées n'ont pas de relevé de position : le site vérifie et n'affichera le renvoi que si le point existe. Tu ne risques donc rien à le proposer quand la date et le navire sont sûrs — mais si tu hésites sur l'un ou l'autre, écris le texte sans renvoi.
+- N'emploie ce format que pour une journée datée que tu as réellement lue dans un journal. Jamais pour une date mentionnée en passant, ni pour une période.
+
 RÉCAPITULATIF DES FORMATS DE SORTIE :
 - Personne : [François Péron]{person:François_Péron}
 - Lieu (avec nom validé) : [Cap Bruny]{place:Cap Bruny} ou [Riviere Huon]{place:Riviere Huon}
+- Journée de journal : [le 18 juillet 1801]{journal:1801-07-18@l'Investigator}
 - Lien externe (si nécessaire) : [texte]{url:https://url-complete.com}
 
 DERNIER RAPPEL CRUCIAL :
