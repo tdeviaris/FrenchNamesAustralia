@@ -43,7 +43,7 @@ DATA_DIR   = ROOT_DIR / "data"
 IMG_DIR    = ROOT_DIR / "img_telecharg"
 LOG_FILE   = SCRIPT_DIR / "telecharg_img.log"
 
-JSON_FILES = ["baudin.json", "entrecasteaux.json"]
+JSON_FILES = ["baudin.json", "entrecasteaux.json", "flinders.json"]
 
 FIELDS = {
     "imgUrl":  "Img",
@@ -130,6 +130,45 @@ def generate_avif(jpg_path: Path) -> str:
         return f"KO ({e})"
 
 
+MINIATURE_LARGEUR = 480          # largeur servie aux téléphones
+
+
+def generate_miniature(jpg_path: Path) -> str:
+    """Fabrique <nom>_min.avif, large de MINIATURE_LARGEUR pixels.
+
+    L'AVIF de pleine taille garde les dimensions de l'original : un téléphone
+    qui n'affiche qu'une vignette de soixante pixels téléchargeait jusqu'ici
+    cinq mille pixels de large. Celui-ci est fait pour lui.
+    """
+    mini_jpg = jpg_path.with_name(jpg_path.stem + "_min.jpg")
+    mini_avif = jpg_path.with_name(jpg_path.stem + "_min.avif")
+    try:
+        img = Image.open(jpg_path)
+        if img.width <= MINIATURE_LARGEUR:
+            return "skipped (déjà petite)"
+        hauteur = round(img.height * MINIATURE_LARGEUR / img.width)
+        img = img.convert("RGB").resize((MINIATURE_LARGEUR, hauteur), Image.LANCZOS)
+        img.save(mini_jpg, "JPEG", quality=78, optimize=True)
+    except Exception as e:
+        return f"KO ({e})"
+
+    if not AVIFENC:
+        return f"OK jpeg {mini_jpg.stat().st_size // 1024} Ko (avifenc absent)"
+    try:
+        r = subprocess.run(
+            [AVIFENC, "-q", "45", "-s", "4", "-y", "420", "--jobs", "all",
+             "--ignore-exif", "--ignore-xmp", "--ignore-icc",
+             str(mini_jpg), str(mini_avif)],
+            capture_output=True, timeout=60)
+        if r.returncode == 0:
+            # Le JPEG reste : tous les navigateurs ne lisent pas l'AVIF, et la
+            # page se sert du premier des deux qu'elle trouve.
+            return f"OK {mini_avif.stat().st_size // 1024} Ko"
+        return f"KO (avifenc exit {r.returncode})"
+    except Exception as e:
+        return f"KO ({e})"
+
+
 def download_raw(url: str) -> tuple[bytes | None, str]:
     """Télécharge l'URL et retourne (bytes, message). Gère 429 + retries."""
     for attempt in range(1, MAX_RETRIES + 1):
@@ -173,11 +212,17 @@ def process_entry(entry: dict, log_parts: list[str]) -> None:
         avif_path = IMG_DIR / f"{code}_{suffix}.avif"
         rule      = RULES[suffix]
 
+        mini_path = IMG_DIR / f"{code}_{suffix}_min.avif"
+
         if jpg_path.exists():
-            # JPEG déjà présent — génère l'AVIF s'il manque
+            # JPEG déjà présent — complète l'AVIF et la miniature s'ils manquent
+            manques = []
             if AVIFENC and not avif_path.exists():
-                avif_msg = generate_avif(jpg_path)
-                print(f"  {code} {suffix}: JPEG déjà présent, AVIF généré → {avif_msg}")
+                manques.append(f"AVIF {generate_avif(jpg_path)}")
+            if suffix == "Img" and not mini_path.exists():
+                manques.append(f"miniature {generate_miniature(jpg_path)}")
+            if manques:
+                print(f"  {code} {suffix}: JPEG déjà présent, {' | '.join(manques)}")
             else:
                 print(f"  {code} {suffix}: déjà présent, ignoré")
             results.append(f"{suffix} OK")
@@ -202,8 +247,11 @@ def process_entry(entry: dict, log_parts: list[str]) -> None:
             continue
 
         avif_msg = generate_avif(jpg_path)
-        print(f"{jpeg_msg} | AVIF {avif_msg}")
-        results.append(f"{suffix} {jpeg_msg} | AVIF {avif_msg}")
+        # La carte s'ouvre en grand, jamais en vignette : elle n'a pas besoin
+        # de miniature. L'image de la fiche, si.
+        mini_msg = generate_miniature(jpg_path) if suffix == "Img" else "sans objet"
+        print(f"{jpeg_msg} | AVIF {avif_msg} | mini {mini_msg}")
+        results.append(f"{suffix} {jpeg_msg} | AVIF {avif_msg} | mini {mini_msg}")
 
     if results:
         log_parts.append(f"{code} {' | '.join(results)}")

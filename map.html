@@ -856,6 +856,14 @@
             display: block;
             object-fit: contain;
         }
+        .popup-image-credit {
+            margin: 4px 0 0;
+            font-size: 10px;
+            line-height: 1.3;
+            color: #777;
+            text-align: right;
+        }
+        .popup-image-credit a { color: inherit; text-decoration: underline; }
         .popup-image-thumb {
             display: none;
         }
@@ -6057,18 +6065,36 @@ gtag('config', 'G-LCWV2EVPVQ');
                         const imgOnerror = localImgPath
                             ? ` data-remote="${escapedImg}" onerror="this.onerror=null;this.src=this.dataset.remote;var b=this.closest('button');if(b)b.dataset.img=this.dataset.remote;"`
                             : '';
+                        // La vignette du telephone n'a que faire de cinq mille
+                        // pixels : elle prend la miniature, quand elle existe.
+                        const miniSrc = localImgPath
+                            ? localImgPath.replace(/\.jpg$/i, '_min.jpg') : null;
+                        const thumbSrc = miniSrc || imgSrc;
+                        const thumbOnerror = miniSrc
+                            ? ` data-plein="${imgSrc}" onerror="this.onerror=null;this.src=this.dataset.plein;"`
+                            : imgOnerror;
                         const mobileThumbHtml = `
                                 <button type="button" class="popup-image-button popup-image-thumb" data-img="${imgSrc}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
-                                    <img src="${imgSrc}" alt="${safeAlt}"${imgOnerror}>
+                                    <img src="${thumbSrc}" alt="${safeAlt}" loading="lazy"${thumbOnerror}>
                                 </button>`;
 
                         textHtml = `${mobileThumbHtml}${textHtml}`;
 
+                        // Les images libres demandent leur attribution : la
+                        // fiche la porte sous l'image, en petits caracteres.
+                        const credit = (place.imgCredit || '').trim();
+                        const creditHtml = credit
+                            ? `<p class="popup-image-credit">${place.imgSource
+                                ? `<a href="${escapeHtml(place.imgSource)}" target="_blank" rel="noopener noreferrer">${escapeHtml(credit)}</a>`
+                                : escapeHtml(credit)}</p>`
+                            : '';
+
                         const imageHtml = `
                                 <div class="popup-image-wrapper">
                                     <button type="button" class="popup-image-button" data-img="${imgSrc}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
-                                        <img src="${imgSrc}" alt="${safeAlt}" class="popup-image"${imgOnerror}>
+                                        <img src="${imgSrc}" alt="${safeAlt}" class="popup-image" loading="lazy"${imgOnerror}>
                                     </button>
+                                    ${creditHtml}
                                 </div>`;
 
                         return fixTypoInHtml(`<div class="popup-layout">
