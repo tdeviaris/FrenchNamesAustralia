@@ -829,12 +829,15 @@
         .popup-image-wrapper {
             grid-column: 2;
             display: flex;
+            /* En colonne, sinon le credit se range A COTE de l'image, en
+               second element de la ligne flex, et lui mange sa largeur. Il
+               va dessous. */
+            flex-direction: column;
             flex: 0 0 auto;
             min-width: 0;
             position: sticky;
             top: 12px;
             align-self: flex-start;
-            max-height: 70vh;
         }
         .popup-image-button {
             background: none;
@@ -954,7 +957,6 @@
                 height: auto;
                 flex-basis: auto;
                 margin-top: 10px;
-                max-height: 60vh;
             }
             .popup-image-wrapper .popup-image {
                 max-width: 100%;
