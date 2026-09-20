@@ -123,6 +123,10 @@ footer.site-footer {
     display: block;
     width: auto;
     max-height: 56px;
+    /* Le cote du pied de page vaut min(260px, 28vw) : entre 720 et 930 px de
+       large, il tombe sous la largeur du logo RGSSA. Sans cette limite,
+       l'image deborderait au lieu de se reduire. */
+    max-width: 100%;
     object-fit: contain;
 }
 
