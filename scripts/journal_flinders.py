@@ -122,6 +122,106 @@ ESCALES = [
 # habituelles, et le depouillement automatique n'y trouve rien. Ces deux
 # positions-la sont pourtant dites en toutes lettres.
 POSITIONS_DITES = [
+    # --- 20 septembre 2026 : depouillement elargi -------------------------
+    # Le motif ANCRE ci-dessus n'accepte qu'une poignee de tournures. Le recit
+    # en emploie d'autres, tout aussi fermes : « at noon, the latitude was »,
+    # « our observations gave », « the anchor was dropped in latitude ». Une
+    # relecture a ramasse TOUTE phrase portant un couple latitude/longitude,
+    # ecarte celles qui designent un amer, soumis le reste au trait de cote et
+    # a la vitesse, puis relu chaque survivante a la main : le recit n'est pas
+    # une table, et aucune regle ne remplace la lecture.
+    # Deux dates ont du etre rectifiees -- « until the 23rd » dans le bloc du
+    # 15 aout, « at noon next day » dans celui du 7 septembre. Un cas a du etre
+    # tranche par le voisinage : le recit donne parfois la longitude sans dire
+    # l'hemisphere, et le supposer « est » versait l'Atlantique dans l'ocean
+    # Indien.
+    # Ecartes a la relecture : les positions d'amers (Bald Head, Duyfhen Point,
+    # la tete du Grand Golfe Australien, Cato's Bank), le mouillage de Memory
+    # Cove et le releve du 8 janvier 1802, tous deux tombant a terre sur le
+    # trait au 1/10 000 000, et le 30 juillet 1801, dont le « 30° 5' north »
+    # contredit Porto Santo vu au ouest-nord-ouest le meme apres-midi.
+    {'date': '1801-08-23', 'lon': -23.0, 'lat': 11.0, 'volume': '1',
+     'appui': "« These variable winds […] continued until the 23rd, in "
+               "latitude 11° north and longitude 23° west ». La journée n'a "
+               "pas d'en-tête propre dans le récit : la date est celle que la "
+               "phrase désigne"},
+    {'date': '1801-08-27', 'lon': -17.5, 'lat': 6.0, 'volume': '1',
+     'appui': "« On the 27th, in latitude 6° north and longitude 17½° west, a "
+               "noddy was caught »"},
+    {'date': '1801-09-02', 'lon': -11.25, 'lat': 3.8333, 'volume': '1',
+     'appui': "« this could not be done with any advantage until the 2nd of "
+               "September, when we were in latitude 3° 50' north, and "
+               "longitude 11¼° west »"},
+    {'date': '1801-09-08', 'lon': -17.1167, 'lat': -0.2833, 'volume': '1',
+     'appui': "« At noon next day, the latitude was 0° 17' south, and "
+               "longitude 17° 7' west ; so that the line had been crossed in "
+               "nearly 17° ». Passage de l'équateur, vers sept heures du matin"},
+    {'date': '1801-09-09', 'lon': -18.5833, 'lat': -0.7167, 'volume': '1',
+     'appui': "« On the 9th, the latitude was 0° 43' south, and longitude 18° "
+               "35' ». Le récit ne dit pas l'hémisphère de la longitude ; les "
+               "positions de la veille et du lendemain, toutes deux à l'ouest, "
+               "ne laissent pas de doute"},
+    {'date': '1801-09-10', 'lon': -20.0833, 'lat': -0.3667, 'volume': '1',
+     'appui': "« Next day at noon, our situation was in 0° 22' south and 20° "
+               "5' west ». Flinders abandonne ce jour-là la recherche de l'île "
+               "Saint-Paul et fait route vers le cap de Bonne-Espérance"},
+    {'date': '1801-09-13', 'lon': -23.2833, 'lat': -4.7333, 'volume': '1',
+     'appui': "« On the 13th, in latitude 4° 44' south and longitude 23° 17' "
+               "west, a swallow, a gannet, and two sheerwaters were seen »"},
+    {'date': '1801-09-30', 'lon': -22.7667, 'lat': -30.6833, 'volume': '1',
+     'appui': "« On the following noon, the observed latitude was 30° 41' and "
+               "longitude 22° 46' ». Ni l'hémisphère de la latitude ni celui "
+               "de la longitude ne sont dits : la recherche du Saxemberg, "
+               "entre les positions du 29 septembre et du 1er octobre, les "
+               "fixe au sud et à l'ouest"},
+    {'date': '1801-10-01', 'lon': -20.4667, 'lat': -30.5667, 'volume': '1',
+     'appui': "« Next day, our observations gave 30° 34' south, and 20° 28' "
+               "west ». Flinders court à l'est sur le parallèle du Saxemberg, "
+               "île portée aux cartes qu'il établit ce jour-là ne pas exister"},
+    {'date': '1801-11-12', 'lon': 38.3833, 'lat': -36.6, 'volume': '1',
+     'appui': "« The latitude of our situation was 36° 36' south, and "
+               "longitude 38° 23' east »"},
+    {'date': '1802-03-11', 'lon': 137.8322, 'lat': -32.7447, 'volume': '1',
+     'appui': "« The observations taken by lieutenant Flinders fixed the "
+               "position of the ship in latitude 32° 44' 41\" south, and "
+               "longitude by the time keepers 137° 49' 56\" east ». C'est le "
+               "point le plus avancé dans le golfe Spencer"},
+    {'date': '1802-10-07', 'lon': 150.8, 'lat': -20.9667, 'volume': '2',
+     'appui': "« at noon, when we tacked to the northward in 20° 58' south "
+               "and 150° 48' east, there were five others [récifs], distant "
+               "from two to five miles ». Navigation dans le labyrinthe de la "
+               "Grande Barrière"},
+    {'date': '1802-10-10', 'lon': 150.9083, 'lat': -20.9417, 'volume': '2',
+     'appui': "« the anchor was dropped in latitude 20° 56½' south and "
+               "longitude 150° 54½' east ». Mouillage de nuit, les hauts-fonds "
+               "étant indiscernables à marée haute"},
+    {'date': '1802-10-23', 'lon': 149.0333, 'lat': -15.2, 'volume': '2',
+     'appui': "« Next day at noon, we were in 15° 12' south, and 149° 2' east "
+               "; the current had set half a knot to the N. N. W. »"},
+    {'date': '1803-03-26', 'lon': 126.5, 'lat': -10.6333, 'volume': '2',
+     'appui': "« until the evening of the 26th, in 10° 38' south and 126° 30' "
+               "east ; in which situation they were lost » — les sondes, "
+               "perdues ce soir-là. Le vent de sud-ouest pousse l'Investigator "
+               "vers Timor"},
+    {'date': '1803-03-28', 'lon': 125.7833, 'lat': -10.6, 'volume': '2',
+     'appui': "« On the 28th, being then in 10° 36' south, and 125° 47' east, "
+               "the high land of Timor was seen bearing N. »"},
+    {'date': '1803-04-27', 'lon': 104.3333, 'lat': -20.55, 'volume': '2',
+     'appui': "« the mean, corrected to the meridian, will be 3° 43' west, in "
+               "20° 33' south and 104° 20' east longitude ». Position d'une "
+               "observation de variation, sur la traversée de retour"},
+    {'date': '1803-05-23', 'lon': 128.9, 'lat': -35.1667, 'volume': '2',
+     'appui': "« In the afternoon of the 23rd, being in latitude 35° 10' and "
+               "longitude 128° 54', the variation was observed with three "
+               "compasses ». Le récit ne dit pas les hémisphères : la côte "
+               "méridionale, longée ce mois-là, les fixe au sud et à l'est"},
+    {'date': '1803-05-26', 'lon': 135.8, 'lat': -37.8833, 'volume': '2',
+     'appui': "« On the 26th, in 37° 53' south and 135° 48' east, with the "
+               "head S. E. by E., the variation was 1° 33' west ». Le jour où "
+               "meurt James Greenhalgh, sergent des marines"},
+    {'date': '1803-10-12', 'lon': 155.0333, 'lat': -20.7667, 'volume': '2',
+     'appui': "« and at noon were in 20° 46' south and 155° 2' east ». "
+               "Traversée de la Cumberland, après le naufrage de Wreck Reef"},
     {'date': '1801-07-27', 'lon': -14.300, 'lat': 38.0167, 'volume': '1',
      'appui': "comparaison des compas à l'habitacle et sur les bittons : "
               "« The head was south-west by the steering compass, our latitude "
@@ -155,6 +255,11 @@ POSITIONS_DITES = [
 # Ce point-ci n'est pas releve, il est CALCULE : c'est le plus proche de la
 # route directe qui degage le trait de cote des deux cotes. La fiche le dit.
 CONTOURNEMENTS = [
+    {'date': '1802-03-11', 'lon': 137.786, 'lat': -32.978,
+     'raison': "remontée de la tête du golfe Spencer. La ligne droite venue du "
+                "9 mars coupait la rive est ; ce point la dégage en "
+                "n'allongeant la route que de trois pour cent, quarante-deux "
+                "kilomètres au lieu de quarante et un"},
     # Le depart. Les trois premiers points sortent le navire de Spithead : le
     # trait de cote au 1/10 000 000 ne separe pas l'ile de Wight du continent,
     # le Solent n'y figure pas, et la route directe traversait la terre.
