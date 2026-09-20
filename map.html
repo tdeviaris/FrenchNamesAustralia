@@ -3922,7 +3922,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 colors: { 'la Recherche': '#238b45' },
                 // La Recherche fait deux fois le tour de l'Australie et les deux passages
                 // se recoupent. On les distingue par la teinte, la couleur n'ayant pas
-                // d'autre role ici : l'expedition ne compte qu'un navire.
+                // d'autre role ici : l'expedition compte deux navires, mais une seule
+                // route. La Recherche et l'Esperance ont navigue de conserve d'un bout
+                // a l'autre du voyage, et les tables ne relevent qu'une position pour
+                // les deux : le trace est commun, et `shipOrder` ne nomme que la coque
+                // sous laquelle les donnees le consignent. Les deux noms s'affichent
+                // via `shipDisplayNames` et la frise les montre l'un et l'autre.
                 // Bascule au depart d'Amboine, deja marque par un changement de section.
                 campaigns: [
                     {

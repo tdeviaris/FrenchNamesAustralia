@@ -9,8 +9,17 @@
     "deploy": "vercel --prod",
     "test": "node --test tests/**/*.test.js",
     "test:mcp": "node --test tests/mcp/*.test.js",
+    "mcp:dev": "node mcp/bin/http.js",
+    "mcp:stdio": "node mcp/bin/stdio.js",
+    "mcp:smoke": "node mcp/bin/smoke.js",
+    "mcp:inspect": "npx -y @modelcontextprotocol/inspector node mcp/bin/stdio.js",
     "setup-assistant": "node scripts/setup-assistant.js",
-    "setup-responses": "node responses/setup-vector-store.js"
+    "setup-responses": "node responses/setup-vector-store.js",
+    "rag:sources": "./rag/telecharger_sources.sh tout",
+    "rag:corpus": ".venv/bin/python rag/convertir_sources.py && .venv/bin/python rag/extraire_site.py",
+    "rag:essai": "node rag/indexer.mjs --essai",
+    "rag:indexer": "node rag/indexer.mjs",
+    "rag:essayer": "node rag/essayer.mjs"
   },
   "keywords": [
     "toponyms",

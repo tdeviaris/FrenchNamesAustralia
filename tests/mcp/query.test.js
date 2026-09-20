@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { TOPONYMS } from '../../mcp/data-store.js';
+import { hasCoordinates, normalizeState, TOPONYMS } from '../../mcp/data-store.js';
 import {
   analyzeToponyms,
   findNearbyToponyms,
@@ -14,11 +14,72 @@ import { AnalyzeToponymsSchema, SearchToponymsSchema } from '../../mcp/schemas.j
 
 test('dataset integrity invariants are preserved', () => {
   const summary = getDatasetSummary();
-  assert.equal(summary.toponyms, 671);
+  assert.equal(summary.toponyms, TOPONYMS.length);
+  assert.ok(summary.toponyms >= 1000, 'the three corpora must all be loaded');
+  assert.deepEqual(summary.expeditions, ['Baudin', 'Entrecasteaux', 'Flinders']);
   assert.equal(summary.timelineEvents, 125);
-  assert.equal(summary.invariants.uniqueCodes, 671);
+  assert.equal(summary.invariants.uniqueCodes, TOPONYMS.length);
   assert.equal(summary.invariants.missingCodes, 0);
-  assert.equal(summary.invariants.invalidCoordinates, 0);
+  assert.equal(
+    summary.invariants.unlocatedRecords,
+    TOPONYMS.filter((record) => !hasCoordinates(record)).length,
+  );
+  assert.equal(summary.invariants.unlocatedCodes.length, summary.invariants.unlocatedRecords);
+  assert.ok(
+    summary.coordinateBounds.minLongitude > 100,
+    'unlocated records must not drag the bounds to the null island',
+  );
+});
+
+test('the three expeditions are loaded with their own provenance', () => {
+  const analysis = analyzeToponyms({ groupBy: ['expedition'] });
+  const counts = Object.fromEntries(
+    analysis.groups.map((group) => [group.dimensions.expedition, group.count]),
+  );
+  assert.equal(counts.Baudin + counts.Entrecasteaux + counts.Flinders, TOPONYMS.length);
+
+  const flinders = getToponym('Flinders001', 'both');
+  assert.equal(flinders.expedition, 'Flinders');
+  assert.equal(flinders.navire, "l'Investigator");
+  assert.equal(flinders.provenance.dataset, 'data/flinders.json');
+  assert.ok(flinders.citation_fr.length > 100, 'the French quotation must be attached');
+});
+
+test('Flinders quotations and Hakluyt attributions are searchable and attached', () => {
+  const summary = getDatasetSummary();
+  assert.ok(summary.toponymsWithCitation > 300);
+  assert.ok(summary.toponymsWithAttribution > 100);
+
+  const thistle = getToponym('Flinders009', 'both');
+  assert.equal(thistle.attribution.sujet, 'John Thistle');
+  assert.ok(thistle.provenance.attribution, 'data/attributions_hakluyt.json');
+
+  const byAttribution = searchToponyms({
+    query: 'John Thistle',
+    fields: ['attributions'],
+    limit: 20,
+  });
+  assert.ok(byAttribution.items.some((record) => record.code === 'Flinders009'));
+
+  const englishOnly = getToponym('Flinders009', 'en');
+  assert.equal('citation_fr' in englishOnly, false);
+});
+
+test('Flinders filters narrow the corpus by vessel, sector, date, and uncertainty', () => {
+  const norfolk = searchToponyms({ vessel: 'le Norfolk', limit: 200 });
+  assert.ok(norfolk.total > 0);
+  assert.ok(norfolk.items.every((record) => record.navire === 'le Norfolk'));
+
+  const uncertain = analyzeToponyms({ uncertain: true, groupBy: ['expedition'] });
+  assert.ok(uncertain.recordsAnalyzed > 0);
+  assert.deepEqual(
+    uncertain.groups.map((group) => group.dimensions.expedition),
+    ['Flinders'],
+  );
+
+  const dated = searchToponyms({ dateFrom: '1802-01-01', dateTo: '1802-12-31', limit: 200 });
+  assert.ok(dated.total > 0);
+  assert.ok(dated.items.every((record) => record.date >= '1802-01-01' && record.date <= '1802-12-31'));
 });
 
 test('getToponym returns complete bilingual priority fields without truncation', () => {
@@ -73,20 +134,21 @@ test('pagination reconstructs the complete corpus without duplicates or omission
     cursor = page.nextCursor;
   } while (cursor);
 
-  assert.equal(codes.length, 671);
-  assert.equal(new Set(codes).size, 671);
+  assert.equal(codes.length, TOPONYMS.length);
+  assert.equal(new Set(codes).size, TOPONYMS.length);
   assert.deepEqual([...codes].sort(), TOPONYMS.map((record) => record.code).sort());
 });
 
 test('statistics scan all matching records and reproduce independent state counts', () => {
   const expected = TOPONYMS.reduce((groups, record) => {
-    groups[record.state] = (groups[record.state] ?? 0) + 1;
+    const state = normalizeState(record.state);
+    groups[state] = (groups[state] ?? 0) + 1;
     return groups;
   }, {});
   const analysis = analyzeToponyms({ groupBy: ['state'], distinctBy: ['code'] });
-  assert.equal(analysis.recordsScanned, 671);
-  assert.equal(analysis.recordsAnalyzed, 671);
-  assert.equal(analysis.distinctCounts.code, 671);
+  assert.equal(analysis.recordsScanned, TOPONYMS.length);
+  assert.equal(analysis.recordsAnalyzed, TOPONYMS.length);
+  assert.equal(analysis.distinctCounts.code, TOPONYMS.length);
   assert.equal(analysis.truncated, false);
 
   for (const group of analysis.groups) {
@@ -138,6 +200,38 @@ test('timeline can be filtered by date, vessel, and language', () => {
   assert.ok(result.total >= 1);
   assert.ok(result.items.every((event) => event.geographe));
   assert.ok(result.items.every((event) => 'histoire' in event && !('story' in event)));
+});
+
+test('unlocated toponyms are excluded from every geographic filter', () => {
+  const unlocated = TOPONYMS.filter((record) => !hasCoordinates(record));
+  assert.ok(unlocated.length > 0, 'the corpus still carries records without coordinates');
+
+  const nearNullIsland = findNearbyToponyms({
+    latitude: 0,
+    longitude: 0,
+    radiusKm: 500,
+    limit: 200,
+  });
+  assert.equal(nearNullIsland.totalMatches, 0);
+
+  const wholeWorld = analyzeToponyms({
+    boundingBox: { south: -90, north: 90, west: -180, east: 180 },
+  });
+  assert.equal(wholeWorld.recordsAnalyzed, TOPONYMS.length - unlocated.length);
+
+  const everything = analyzeToponyms({});
+  assert.equal(everything.geographicSummary.unlocatedRecords, unlocated.length);
+});
+
+test('state matching ignores case across the three corpora', () => {
+  const upper = searchToponyms({ states: ['QLD'], limit: 200 });
+  const mixed = searchToponyms({ states: ['Tas'], limit: 200 });
+  assert.ok(upper.total > 0);
+  assert.ok(mixed.total > 0);
+  assert.ok(
+    mixed.items.some((record) => record.expedition === 'Flinders'),
+    'Tas must also match the Flinders records',
+  );
 });
 
 test('schemas reject excessive pages and incomplete radius filters', () => {
