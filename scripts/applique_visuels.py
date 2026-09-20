@@ -11,18 +11,21 @@ Il écrivait autrefois directement dans data/flinders.json. Ce n'est plus
 possible : depuis septembre 2026 ce fichier est produit par l'onglet
 « Flinders » du classeur Toponymes, et tout ce qui entre par un autre chemin
 disparaît au premier export. Le script écrit donc dans data/visuels_flinders.json,
-d'où le classeur les importe par son menu GitHub, « Importer les visuels ».
+d'où le classeur les verse dans son onglet.
 
 Le détour par le dépôt n'est pas une faiblesse : il laisse une trace versionnée
 de chaque attribution, et il évite d'ouvrir au dépôt un accès en écriture au
 classeur. Une fois les visuels dans l'onglet, Dany en change un à la main
 quand elle veut, et c'est sa version qui fait foi.
 
+L'import dans l'onglet n'est plus un geste : « Mettre à jour les JSONs » le
+fait de lui-même, juste avant de lire l'onglet (voir scripts/Toponyms_update,
+importeVisuels). Du côté du dépôt, il suffit donc de pousser :
+
   1. python3 scripts/visuels_flinders.py        -> propose, output/visuels_flinders.json
   2. python3 scripts/applique_visuels.py --codes …   -> retient, data/visuels_flinders.json
   3. commit et push
-  4. classeur, menu GitHub > Importer les visuels
-  5. classeur, menu GitHub > Mettre à jour les JSONs
+  4. classeur, menu GitHub > Mettre à jour les JSONs
 
 Le fichier retenu s'ajoute à lui-même : un code déjà présent est remplacé, les
 autres sont conservés. Pour en retirer un, employer --retirer.
@@ -134,7 +137,7 @@ def ecrit(retenus):
         json.dumps(dict(sorted(retenus.items())), ensure_ascii=False, indent=1),
         encoding="utf-8")
     print("\n%d visuels dans %s" % (len(retenus), RETENUS.relative_to(RACINE)))
-    print("Reste à pousser, puis : classeur > menu GitHub > Importer les visuels.")
+    print("Reste à pousser, puis : classeur > menu GitHub > Mettre à jour les JSONs.")
 
 
 if __name__ == "__main__":

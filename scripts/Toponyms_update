@@ -10,6 +10,23 @@
 //                  secteur, la typologie du choix de nom, la planche, les
 //                  notes de Dany, et le crédit des images libres.
 //
+// LE MENU N'A QUE DEUX ENTRÉES, et c'est délibéré (20 septembre 2026). Il en
+// comptait six : comparer au dépôt, importer les visuels, les importer en
+// écrasant, configurer le jeton. Autant d'occasions de se tromper d'ordre --
+// et publier sans avoir importé les visuels amputait le site de ses images.
+// Rien de tout cela n'était une décision : c'étaient des étapes. Le script
+// les enchaîne donc lui-même, dans le seul ordre correct :
+//
+//     jeton (demandé s'il manque)
+//       -> import des visuels du dépôt dans l'onglet Flinders
+//       -> lecture des deux onglets
+//       -> contrôles (voir controlesAvantEnvoi)
+//       -> comparaison au dépôt, puis envoi de ce qui a bougé
+//
+// Les deux entrées qui restent sont le même travail ; la seconde passe outre
+// la limite d'un envoi par jour. C'est le seul arbitrage qui appartienne
+// encore à l'utilisatrice.
+//
 // Deux garde-fous ont été ajoutés le 19 septembre 2026, parce que le site
 // avait atteint le plafond de stockage de Vercel : chaque envoi crée un
 // déploiement, et le dépôt entier y est recopié.
@@ -63,6 +80,15 @@ function majGitHub(forcer) {
   try {
     const classeur = SpreadsheetApp.getActiveSpreadsheet();
 
+    // Étape 0 : le jeton. Sans lui rien n'est possible, et le demander ici
+    // évite d'aller chercher une entrée de menu qui n'existe plus.
+    if (!jetonGitHub()) {
+      Browser.msgBox('Mise à jour annulée',
+                     "Aucun jeton GitHub : rien n'a été envoyé.",
+                     Browser.Buttons.OK);
+      return;
+    }
+
     if (!forcer && dejaEnvoyeAujourdHui()) {
       const msg = "Un envoi a déjà eu lieu aujourd'hui.\n\n"
         + "Chaque envoi déclenche un déploiement du site, et le stockage est "
@@ -73,7 +99,13 @@ function majGitHub(forcer) {
       return;
     }
 
-    // Étape 1 : lire les deux onglets.
+    // Étape 1 : verser dans l'onglet Flinders les visuels retenus dans le
+    // dépôt. C'était autrefois un geste séparé, qu'il fallait penser à faire
+    // avant celui-ci ; l'oublier publiait un fichier privé de ses images.
+    // La mise à jour s'en charge maintenant, et dans le seul ordre correct.
+    const visuels = importeVisuels();
+
+    // Étape 2 : lire les deux onglets, l'onglet Flinders après l'import.
     const datasets = convertSheetToTwoDatasets();
     if (!datasets) {
       const errorMsg = "Conversion annulée : feuille vide ou colonne 'Expedition' manquante.";
@@ -91,7 +123,26 @@ function majGitHub(forcer) {
     Logger.log(flinders ? `Trouvé ${flinders.length} entrées pour Flinders.`
                         : `Onglet « ${FLINDERS_SHEET} » absent : Flinders n'est pas touché.`);
 
-    // Étape 2 : envoyer chaque fichier, en sautant ceux qui n'ont pas bougé.
+    // Étape 3 : les contrôles, tous faits ici. Ce qui suit ne dit jamais
+    // « tout va bien » ; il ne parle que de ce qui cloche, et demande
+    // confirmation avant de publier quelque chose d'abîmé.
+    const soucis = visuels.soucis.concat(controlesAvantEnvoi(flinders));
+    if (soucis.length) {
+      const question = "Avant de publier, à vérifier :\n\n"
+        + soucis.map((s) => '• ' + s).join('\n')
+        + "\n\nPublier quand même ?";
+      Logger.log('Contrôles : ' + soucis.join(' | '));
+      const reponse = Browser.msgBox('Contrôles avant envoi', question,
+                                     Browser.Buttons.YES_NO);
+      if (reponse !== 'yes') {
+        classeur.toast("Rien n'a été envoyé.", 'Mise à jour annulée', 8);
+        return;
+      }
+    }
+
+    // Étape 4 : envoyer chaque fichier, en sautant ceux qui n'ont pas bougé.
+    // La comparaison au dépôt se fait ici, sans rien télécharger : c'est ce
+    // que faisait « Comparer avec GitHub », devenu inutile comme geste.
     const envois = [
       { chemin: ENTRECASTEAUX_PATH, donnees: datasets.entrecasteaux,
         nom: "d'Entrecasteaux" },
@@ -101,7 +152,7 @@ function majGitHub(forcer) {
       envois.push({ chemin: FLINDERS_PATH, donnees: flinders, nom: 'Flinders' });
     }
 
-    const resume = [];
+    const resume = visuels.lignes.slice();
     let auMoinsUnEnvoi = false;
 
     envois.forEach((envoi) => {
@@ -118,6 +169,9 @@ function majGitHub(forcer) {
         resume.push(`${envoi.nom} : ${envoi.donnees.length} entrées envoyées`);
       }
     });
+    if (!flinders) {
+      resume.push(`Flinders : onglet « ${FLINDERS_SHEET} » absent, fichier laissé tel quel`);
+    }
 
     // La limite quotidienne ne compte que les envois réels : relancer le
     // script sans avoir rien modifié ne doit pas consommer la journée.
@@ -128,7 +182,7 @@ function majGitHub(forcer) {
 
     const successMsg = auMoinsUnEnvoi
       ? `Mise à jour réussie. ${resume.join(' · ')}`
-      : `Rien à envoyer : les trois fichiers sont déjà à jour sur GitHub.`;
+      : `Rien à envoyer : les fichiers sont déjà à jour sur GitHub. ${resume.join(' · ')}`;
     Logger.log(successMsg);
     classeur.toast(successMsg, auMoinsUnEnvoi ? 'Mise à jour réussie' : 'Aucun changement', 10);
 
@@ -137,6 +191,66 @@ function majGitHub(forcer) {
     Logger.log(`Erreur complète : ${e.stack || e.toString()}`);
     Browser.msgBox('Erreur', errorMsg, Browser.Buttons.OK);
   }
+}
+
+
+/**
+ * Ce qu'il faut regarder avant de publier l'onglet Flinders.
+ *
+ * Rend la liste de ce qui cloche, vide si tout va bien. Aucun de ces défauts
+ * n'empêche techniquement l'envoi : ils font un fichier valide mais fautif,
+ * et c'est précisément ce qu'un contrôle automatique doit attraper, puisque
+ * l'œil ne le verra qu'une fois le site en ligne.
+ */
+function controlesAvantEnvoi(flinders) {
+  const soucis = [];
+  if (!flinders) return soucis;
+
+  const codes = {};
+  const doublons = [];
+  const sansCode = [];
+  const sansNom = [];
+  const sansPosition = [];
+  const imagesSansCredit = [];
+
+  flinders.forEach((lieu, i) => {
+    const code = (lieu.code || '').toString().trim();
+    if (!code) { sansCode.push(`ligne ${i + 2}`); }
+    else if (codes[code]) { doublons.push(code); }
+    else { codes[code] = true; }
+
+    if (!(lieu.frenchName || '').toString().trim()) {
+      sansNom.push(code || `ligne ${i + 2}`);
+    }
+    if (lieu.lat === null || lieu.lon === null) {
+      sansPosition.push(code || `ligne ${i + 2}`);
+    }
+    // Wikimedia impose l'attribution : une image sans crédit ne se publie pas.
+    if ((lieu.imgUrl || '').toString().trim()
+        && !(lieu.imgCredit || '').toString().trim()) {
+      imagesSansCredit.push(code);
+    }
+  });
+
+  if (sansCode.length) {
+    soucis.push(`${sansCode.length} ligne(s) sans code : ` + sansCode.slice(0, 8).join(', '));
+  }
+  if (doublons.length) {
+    soucis.push(`code(s) en double : ` + doublons.slice(0, 8).join(', '));
+  }
+  if (sansNom.length) {
+    soucis.push(`${sansNom.length} toponyme(s) sans nom : ` + sansNom.slice(0, 8).join(', '));
+  }
+  if (imagesSansCredit.length) {
+    soucis.push(`${imagesSansCredit.length} image(s) sans crédit, ce que Wikimedia `
+                + `n'autorise pas : ` + imagesSansCredit.slice(0, 8).join(', '));
+  }
+  // Les positions manquantes sont connues et admises : on les compte sans en
+  // faire un défaut, pour que leur nombre ne dérive pas sans qu'on le voie.
+  if (sansPosition.length) {
+    Logger.log(`${sansPosition.length} lieu(x) sans position, ce qui est prévu.`);
+  }
+  return soucis;
 }
 
 
@@ -429,7 +543,7 @@ function uploadToGitHub(filePath, jsonContent, commitMessage) {
   try {
     const token = PropertiesService.getScriptProperties().getProperty(GITHUB_TOKEN_NAME);
     if (!token) {
-      return { success: false, error: "Token GitHub non trouvé. Configurez-le via le menu." };
+      return { success: false, error: "Jeton GitHub absent." };
     }
 
     const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${filePath}`;
@@ -506,7 +620,7 @@ function uploadToGitHub(filePath, jsonContent, commitMessage) {
  */
 function lisFichierGitHub(chemin) {
   const token = PropertiesService.getScriptProperties().getProperty(GITHUB_TOKEN_NAME);
-  if (!token) throw new Error("Token GitHub non trouvé. Configurez-le via le menu.");
+  if (!token) throw new Error("Jeton GitHub absent.");
   const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${chemin}`;
   const r = UrlFetchApp.fetch(url, {
     method: 'get',
@@ -529,20 +643,24 @@ function lisFichierGitHub(chemin) {
  * contrôle produite hors du classeur, avec leur auteur et leur licence --
  * l'attribution est une obligation, pas un ornement.
  *
- * Par défaut une cellule déjà remplie n'est pas touchée : le classeur fait
- * foi, et une image changée à la main doit le rester. « en écrasant » sert
- * quand on veut au contraire imposer la sélection du dépôt.
+ * Cette étape n'est plus une entrée de menu : la mise à jour l'exécute
+ * d'elle-même, juste avant de lire l'onglet. L'oubli de l'import était le
+ * seul moyen de publier un fichier amputé de ses images ; il n'existe plus.
+ *
+ * Une cellule déjà remplie n'est jamais touchée : le classeur fait foi, et
+ * une image changée à la main le reste. Rien n'est écrit dans le dépôt.
+ *
+ * Ne lève pas : rend un compte rendu, que la mise à jour joint au sien. Si
+ * le dépôt est injoignable, l'onglet garde ce qu'il a déjà, et l'on continue.
  */
-function importerVisuels() { majVisuels(false); }
-function importerVisuelsEnEcrasant() { majVisuels(true); }
-
-function majVisuels(ecraser) {
+function importeVisuels() {
+  const compte = { lignes: [], soucis: [] };
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(FLINDERS_SHEET);
-    if (!sheet) throw new Error(`L'onglet « ${FLINDERS_SHEET} » est introuvable.`);
+    if (!sheet) return compte;   // pas d'onglet Flinders : rien à faire
 
     const data = sheet.getDataRange().getValues();
-    if (data.length <= 1) throw new Error(`L'onglet « ${FLINDERS_SHEET} » est vide.`);
+    if (data.length <= 1) return compte;
     const entetes = data[0].map((h) => h.toString().trim());
 
     // Le champ du fichier -> la colonne de l'onglet.
@@ -559,12 +677,16 @@ function majVisuels(ecraser) {
       if (i === -1) absentes.push(colonnes[champ]); else rang[champ] = i;
     });
     if (absentes.length) {
-      throw new Error(`Colonne(s) introuvable(s) dans « ${FLINDERS_SHEET} » : `
-                      + absentes.join(', '));
+      compte.soucis.push("colonne(s) d'image introuvable(s) dans « "
+                         + FLINDERS_SHEET + " » : " + absentes.join(', '));
+      return compte;
     }
 
     const rangCode = entetes.indexOf('Code');
-    if (rangCode === -1) throw new Error("Colonne « Code » introuvable.");
+    if (rangCode === -1) {
+      compte.soucis.push("colonne « Code » introuvable dans l'onglet Flinders.");
+      return compte;
+    }
 
     const visuels = JSON.parse(lisFichierGitHub(VISUELS_PATH));
 
@@ -575,7 +697,7 @@ function majVisuels(ecraser) {
       if (code) ligneDe[code] = i;
     }
 
-    let poses = 0, inchanges = 0, preserves = 0;
+    let poses = 0, preserves = 0;
     const inconnus = [];
     const modifiees = {};          // champ -> true si la colonne a bougé
 
@@ -587,12 +709,13 @@ function majVisuels(ecraser) {
         const neuf = (visuels[code][champ] || '').toString();
         const actuel = (data[i][rang[champ]] || '').toString();
         if (actuel === neuf) return;
-        if (actuel.trim() && !ecraser) { preserves++; return; }
+        // Une cellule déjà remplie fait foi : c'est le choix de Dany.
+        if (actuel.trim()) { preserves++; return; }
         data[i][rang[champ]] = neuf;
         modifiees[champ] = true;
         touche = true;
       });
-      if (touche) poses++; else inchanges++;
+      if (touche) poses++;
     });
 
     // Une colonne entière d'un coup : quatre écritures, pas quatre cents.
@@ -600,97 +723,67 @@ function majVisuels(ecraser) {
       const colonne = data.slice(1).map((row) => [row[rang[champ]]]);
       sheet.getRange(2, rang[champ] + 1, colonne.length, 1).setValues(colonne);
     });
+    // Les écritures sont mises en file : sans ce vidage, la lecture qui suit
+    // rendrait l'onglet tel qu'il était avant l'import.
+    if (Object.keys(modifiees).length) SpreadsheetApp.flush();
 
-    const lignes = [
-      `${Object.keys(visuels).length} visuels dans le dépôt`,
-      `${poses} toponyme(s) complété(s)`,
-      `${inchanges} déjà à jour`
-    ];
+    compte.lignes.push(poses
+      ? `Visuels : ${poses} toponyme(s) complété(s) depuis le dépôt`
+      : `Visuels : rien à compléter (${Object.keys(visuels).length} déjà en place)`);
     if (preserves) {
-      lignes.push(`${preserves} cellule(s) déjà remplies, laissées telles quelles`
-                  + ` (« en écrasant » pour les remplacer)`);
+      compte.lignes.push(`Visuels : ${preserves} cellule(s) remplies à la main, respectées`);
     }
+    // Un code retenu qui ne trouve pas sa ligne perdrait son image en
+    // silence : c'est exactement ce qu'il faut dire avant de publier.
     if (inconnus.length) {
-      lignes.push(`codes absents de l'onglet : ${inconnus.join(', ')}`);
+      compte.soucis.push("code(s) du fichier des visuels absent(s) de l'onglet « "
+                         + FLINDERS_SHEET + " », leur image ne paraîtra pas : "
+                         + inconnus.join(', '));
     }
-    Logger.log(lignes.join(' · '));
-    Browser.msgBox('Import des visuels', lignes.join('\n'), Browser.Buttons.OK);
-
   } catch (e) {
-    Logger.log(`Erreur importerVisuels : ${e.stack || e.toString()}`);
-    Browser.msgBox('Erreur', e.toString(), Browser.Buttons.OK);
+    Logger.log(`importeVisuels : ${e.stack || e.toString()}`);
+    compte.soucis.push("visuels du dépôt illisibles (" + e.toString()
+                       + ") : l'onglet garde ce qu'il a déjà");
   }
+  return compte;
 }
 
 
 // ----- FONCTIONS DU MENU -----
-function setGitHubToken() {
-  const token = Browser.inputBox('Stocker le Token GitHub',
-                                'Veuillez coller votre Personal Access Token GitHub ici :',
-                                Browser.Buttons.OK_CANCEL);
-  if (token && token !== 'cancel') {
-    PropertiesService.getScriptProperties().setProperty(GITHUB_TOKEN_NAME, token);
-    Browser.msgBox('Succès', 'Votre Token GitHub a été stocké.', Browser.Buttons.OK);
-  }
-}
 
 /**
- * Compare les trois onglets à ce qui est en ligne, sans rien envoyer.
- * De quoi vérifier avant de publier, et se passer d'un envoi « pour voir ».
+ * Le jeton GitHub, demandé s'il manque.
+ *
+ * Il n'y a plus d'entrée de menu pour le poser : on ne fait pas figurer une
+ * question de plomberie à côté du seul geste qui compte. Il est stocké une
+ * fois pour toutes, et la mise à jour le réclame le jour où il manque.
  */
-function verifierSansEnvoyer() {
-  try {
-    const datasets = convertSheetToTwoDatasets();
-    if (!datasets) {
-      Browser.msgBox('Erreur', "Onglet « Source » illisible.", Browser.Buttons.OK);
-      return;
-    }
-    const flinders = convertFlindersSheet();
-    const aTester = [
-      { chemin: ENTRECASTEAUX_PATH, donnees: datasets.entrecasteaux, nom: "d'Entrecasteaux" },
-      { chemin: BAUDIN_PATH, donnees: datasets.baudin, nom: 'Baudin' }
-    ];
-    if (flinders) {
-      aTester.push({ chemin: FLINDERS_PATH, donnees: flinders, nom: 'Flinders' });
-    }
-
-    const token = PropertiesService.getScriptProperties().getProperty(GITHUB_TOKEN_NAME);
-    const lignes = aTester.map((t) => {
-      const json = JSON.stringify(t.donnees, null, 2);
-      const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${t.chemin}`;
-      const r = UrlFetchApp.fetch(url, {
-        method: 'get',
-        headers: { 'Authorization': `token ${token}`,
-                   'Accept': 'application/vnd.github.v3+json' },
-        muteHttpExceptions: true
-      });
-      const enLigne = r.getResponseCode() == 200
-        ? JSON.parse(r.getContentText()).sha : null;
-      const identique = enLigne && enLigne === gitBlobSha(json);
-      return `${t.nom} : ${t.donnees.length} entrées — `
-           + (identique ? 'identique en ligne' : 'à publier');
-    });
-    if (!flinders) {
-      lignes.push(`Flinders : onglet « ${FLINDERS_SHEET} » absent`);
-    }
-    Browser.msgBox('État par rapport à GitHub', lignes.join('\n'), Browser.Buttons.OK);
-  } catch (e) {
-    Browser.msgBox('Erreur', e.toString(), Browser.Buttons.OK);
-  }
+function jetonGitHub() {
+  const proprietes = PropertiesService.getScriptProperties();
+  let token = proprietes.getProperty(GITHUB_TOKEN_NAME);
+  if (token) return token;
+  token = Browser.inputBox(
+    'Jeton GitHub',
+    "Le jeton d'accès GitHub n'est pas encore enregistré.\n"
+    + "Collez-le ici : il sera conservé, et cette question ne reviendra pas.",
+    Browser.Buttons.OK_CANCEL);
+  if (!token || token === 'cancel') return null;
+  token = token.trim();
+  if (!token) return null;
+  proprietes.setProperty(GITHUB_TOKEN_NAME, token);
+  return token;
 }
 
+
 function onOpen() {
-  const ui = SpreadsheetApp.getUi();
-  ui.createMenu('GitHub')
-    .addItem('Mettre à jour les JSONs maintenant', 'updateJsonFilesOnGitHub')
-    .addItem('Comparer avec GitHub (sans envoyer)', 'verifierSansEnvoyer')
-    .addSeparator()
-    .addItem('Importer les visuels', 'importerVisuels')
-    .addItem('Importer les visuels (en écrasant)', 'importerVisuelsEnEcrasant')
-    .addSeparator()
+  // Deux entrées, et pas une de plus. Tout ce que les autres faisaient --
+  // comparer au dépôt, importer les visuels -- la mise à jour le fait
+  // d'elle-même, dans le bon ordre. Le second bouton n'est pas un autre
+  // travail : c'est le même, sans la limite d'un envoi par jour.
+  SpreadsheetApp.getUi()
+    .createMenu('GitHub')
+    .addItem('Mettre à jour les JSONs', 'updateJsonFilesOnGitHub')
     .addItem('Forcer la mise à jour (hors limite quotidienne)', 'forcerMiseAJourGitHub')
-    .addSeparator()
-    .addItem('Configurer le Token GitHub', 'setGitHubToken')
     .addToUi();
 }
 
