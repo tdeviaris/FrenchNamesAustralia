@@ -639,6 +639,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 return `Entre${entreMatch[1].padStart(2, '0')}`;
             }
 
+            // Les 351 toponymes de Flinders sont codes Flinders001 a Flinders351.
+            const flindersMatch = trimmed.match(/^flinders(\d+)$/i);
+            if (flindersMatch) {
+                return `Flinders${flindersMatch[1].padStart(3, '0')}`;
+            }
+
             return '';
         };
 
@@ -813,9 +819,13 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             placeIndexPromise = (async () => {
                 try {
-                    const [baudin, entre] = await Promise.all([
+                    // Les trois expeditions, comme map.html : sans flinders.json,
+                    // les 351 toponymes de Flinders s'affichaient en lien bleu
+                    // mais ne menaient nulle part, la carte ne recevant aucun code.
+                    const [baudin, entre, flinders] = await Promise.all([
                         fetch('data/baudin.json', { cache: 'no-cache' }).then((r) => r.json()),
-                        fetch('data/entrecasteaux.json', { cache: 'no-cache' }).then((r) => r.json())
+                        fetch('data/entrecasteaux.json', { cache: 'no-cache' }).then((r) => r.json()),
+                        fetch('data/flinders.json', { cache: 'no-cache' }).then((r) => r.json())
                     ]);
 
                     const index = new Map();
@@ -844,7 +854,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                         });
                     };
 
-                    [...baudin, ...entre].forEach(addEntry);
+                    [...baudin, ...entre, ...flinders].forEach(addEntry);
                     return { index, searchableKeys, knownCodes, entriesByCode };
                 } catch (err) {
                     console.error('Failed to load place index', err);
