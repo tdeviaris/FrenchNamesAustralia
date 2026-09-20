@@ -2750,7 +2750,10 @@ gtag('config', 'G-LCWV2EVPVQ');
             hideMapModalOverlay();
         };
 
-        const openMapModal = (url, title) => {
+        // urlSecours : l'original distant, quand `url` est la copie locale.
+        // La copie peut manquer ; on ne le decouvre qu'en essayant, et c'est
+        // tres bien ainsi -- l'essai ne coute rien de plus que l'affichage.
+        const openMapModal = (url, title, urlSecours) => {
             if (!mapModal || !mapModalBody) { return; }
             const normalizedUrl = (() => {
                 if (!url) { return ''; }
@@ -2781,6 +2784,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             const handleError = () => {
                 if (settled) { return; }
                 settled = true;
+                // La copie locale manque : on reprend tout avec l'original
+                // distant, une seule fois -- il n'a pas de secours a son tour.
+                if (urlSecours && urlSecours !== url) {
+                    openMapModal(urlSecours, title);
+                    return;
+                }
                 showMapModalOverlayError();
             };
 
@@ -2896,7 +2905,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             const title = mapLink.dataset.mapTitle || '';
             if (url && url.trim() !== '') {
                 event.preventDefault();
-                openMapModal(url, title);
+                openMapModal(url, title, mapLink.dataset.mapUrlRemote);
             }
         });
 
@@ -3018,7 +3027,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const title = mapLink.dataset.mapTitle || '';
                     if (url && url.trim() !== '') {
                         event.preventDefault();
-                        openMapModal(url, title);
+                        openMapModal(url, title, mapLink.dataset.mapUrlRemote);
                     }
                 });
                 mapLink.dataset.modalBound = 'true';
@@ -5992,7 +6001,6 @@ gtag('config', 'G-LCWV2EVPVQ');
 
                     const detailsUrl = (currentLang === 'fr') ? place.detailsLink : (place.detailsLink_en || place.detailsLink);
                     const linkSegments = [];
-                    let mapProbeHtml = '';
 
                     if (place.mapUrl && place.mapUrl.trim() !== "") {
                         const mapTitle = (currentLang === 'fr' && place.mapTitle_fr) ? place.mapTitle_fr : place.mapTitle_en;
@@ -6000,8 +6008,16 @@ gtag('config', 'G-LCWV2EVPVQ');
                         const localCartePath = cheminTelecharg(place.code, 'Carte');
                         if (localCartePath) {
                             const safeRemoteMapUrl = escapeHtml(place.mapUrl);
+                            // Le lien porte les deux adresses : la copie
+                            // locale, servie d'abord, et l'original distant.
+                            // Une sonde <img style="display:none"> verifiait
+                            // autrefois la presence de la copie -- mais un
+                            // navigateur telecharge une image cachee comme
+                            // une autre, et ces cartes pesent jusqu'a 18 Mo.
+                            // Ouvrir la fiche les tirait toutes, sans que
+                            // personne les regarde. La visionneuse se charge
+                            // desormais du repli, au clic et sans surcout.
                             linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${localCartePath}" data-map-url-remote="${safeRemoteMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
-                            mapProbeHtml = `<img src="${localCartePath}" style="display:none" alt="" aria-hidden="true" onerror="this.onerror=null;var c=this.closest('.popup-text-container');var l=c&&c.querySelector('.popup-map-link[data-map-url-remote]');if(l)l.dataset.mapUrl=l.dataset.mapUrlRemote;this.remove();">`;
                         } else {
                             const safeMapUrl = escapeHtml(place.mapUrl);
                             linkSegments.push(`<a href="#" class="popup-map-link" data-map-url="${safeMapUrl}" data-map-title="${safeMapTitle}">${trans['popup-map-link']}</a>`);
@@ -6100,12 +6116,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                                 </div>`;
 
                         return fixTypoInHtml(`<div class="popup-layout">
-                                    <div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}${mapProbeHtml}</div>
+                                    <div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>
                                     ${imageHtml}
                                 </div>`);
                     }
 
-                    return fixTypoInHtml(`<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}${mapProbeHtml}</div>`);
+                    return fixTypoInHtml(`<div class="popup-text-container">${textHtml}${fullWidthBlocks.join('')}</div>`);
                 }, { maxWidth: 700 });
             });
         };
