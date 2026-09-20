@@ -2384,6 +2384,27 @@ gtag('config', 'G-LCWV2EVPVQ');
             return '';
         };
 
+        // Un champ wiki_fr / wiki_en ne contient pas toujours un lien. Le
+        // classeur d'origine a laisse des tirets et des « n/a » la ou personne
+        // n'avait trouve d'article, et au moins une fois le code du toponyme
+        // lui-meme. Tester que la chaine n'est pas vide ne suffit donc pas :
+        // un tiret passait le test et fabriquait un lien vers
+        // fr.wikipedia.org/wiki/-, sous un intitule « Wikipedia » trompeur.
+        // Quand rien n'est exploitable, on n'affiche ni lien ni intitule.
+        const estLienWikiExploitable = (valeur) => {
+            if (!valeur || typeof valeur !== 'string') return false;
+            const v = valeur.trim();
+            if (!v) return false;
+            // Tirets de toutes sortes, points de suspension, mentions d'absence.
+            if (/^[-–—.\s_]*$/.test(v)) return false;
+            if (/^(n\/?a|na|nc|none|null|aucun|sans|\?+)$/i.test(v)) return false;
+            // Un code de toponyme egare : Cap Tourville portait « Baudin385 ».
+            if (/^(Baudin|Entre|Flinders)\d+$/i.test(v)) return false;
+            // Sinon c'est une URL complete, ou un titre d'article dont
+            // createWikiLinkMarkup sait reconstruire l'adresse.
+            return true;
+        };
+
         const createWikiLinkMarkup = (url, label, lang) => {
             if (!url || !label) {
                 return '';
@@ -6069,10 +6090,10 @@ gtag('config', 'G-LCWV2EVPVQ');
                     }
 
                     const wikiLink = (currentLang === 'fr') ? place.wiki_fr : place.wiki_en;
-                    if (wikiLink && wikiLink.trim() !== "") {
-                        let linkText = wikiLink.substring(wikiLink.lastIndexOf('/') + 1);
+                    if (estLienWikiExploitable(wikiLink)) {
+                        let linkText = wikiLink.trim().substring(wikiLink.trim().lastIndexOf('/') + 1);
                         linkText = decodeURIComponent(linkText).replace(/_/g, ' ');
-                        const wikiMarkup = createWikiLinkMarkup(wikiLink, linkText, wikiLang);
+                        const wikiMarkup = createWikiLinkMarkup(wikiLink.trim(), linkText, wikiLang);
                         fullWidthBlocks.push(`<p><strong>${trans['popup-wiki-label']}</strong> ${wikiMarkup}</p>`);
                     }
 

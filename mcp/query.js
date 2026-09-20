@@ -63,6 +63,20 @@ const COVERAGE_FIELDS = [
   'attribution',
 ];
 
+// Les champs wiki_fr / wiki_en ne portent pas toujours un lien : le classeur
+// d'origine y a laisse des tirets la ou personne n'avait trouve d'article, et
+// une fois le code du toponyme lui-meme. Les compter comme des liens faisait
+// remonter des fiches sans rien a montrer.
+function hasUsableWikiLink(value) {
+  if (!value || typeof value !== 'string') return false;
+  const v = value.trim();
+  if (!v) return false;
+  if (/^[-–—.\s_]*$/.test(v)) return false;
+  if (/^(n\/?a|na|nc|none|null|aucun|sans|\?+)$/i.test(v)) return false;
+  if (/^(Baudin|Entre|Flinders)\d+$/i.test(v)) return false;
+  return true;
+}
+
 function round(value, digits = 6) {
   const factor = 10 ** digits;
   return Math.round(value * factor) / factor;
@@ -247,6 +261,11 @@ function localizedFullRecord(record, language = 'both') {
   const result = { ...record, provenance: record._provenance };
   delete result._provenance;
   result.located = hasCoordinates(record);
+  // Un tiret n'est pas un lien : on le remplace par du vide plutot que de le
+  // laisser filer vers un client qui en ferait une adresse.
+  for (const cle of ['wiki_fr', 'wiki_en']) {
+    if (cle in result && !hasUsableWikiLink(result[cle])) result[cle] = '';
+  }
   if (language === 'fr') {
     delete result.characteristic;
     delete result.history;
@@ -371,7 +390,7 @@ function groupValue(record, field) {
     case 'hasMap':
       return Boolean(record.mapUrl);
     case 'hasWikipedia':
-      return Boolean(record.wiki_fr || record.wiki_en);
+      return hasUsableWikiLink(record.wiki_fr) || hasUsableWikiLink(record.wiki_en);
     case 'hasCharacteristicsFr':
       return Boolean(record.characteristic_fr);
     case 'hasCharacteristicsEn':
