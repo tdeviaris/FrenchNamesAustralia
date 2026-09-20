@@ -1,0 +1,41 @@
+# Dependances des scripts Python du depot.
+#
+#     python3 -m venv .venv
+#     .venv/bin/python3 -m pip install -r requirements.txt
+#
+# ATTENTION, LE PIEGE N'EST PAS LA VERSION MAIS L'ARCHITECTURE.
+#
+# Le 20 septembre 2026, numpy et scipy ont ete trouves compiles pour x86_64
+# dans un environnement tournant en arm64 : ils refusaient de se charger, et
+# scripts/littoral.py avec eux -- l'outil meme qui verifie que les parcours ne
+# traversent pas la terre. Figer les versions n'y aurait rien change. La cause
+# est ailleurs : pip avait tourne sous Rosetta, et avait donc pris les roues
+# x86_64. Ce fichier ne protege pas de cela.
+#
+# Avant d'installer, verifier que l'interpreteur tourne bien dans
+# l'architecture de la machine :
+#
+#     uname -m                                     # arm64 sur les Mac Apple
+#     .venv/bin/python3 -c "import platform; print(platform.machine())"
+#
+# Les deux doivent concorder. S'ils different, l'environnement a ete cree ou
+# installe sous Rosetta : le recreer depuis un terminal natif. Et pour reparer
+# sans tout refaire, une reinstallation forcee suffit :
+#
+#     .venv/bin/python3 -m pip install --force-reinstall --no-cache-dir numpy
+#
+# Seules les dependances DIRECTES figurent ici ; pip resout le reste.
+# Etaient aussi installes scipy, pandas, xlrd et pypdf : aucun script du depot
+# ne les importe. Ils ne sont pas listes, et rien ne les desinstalle.
+
+# Images : reductions, miniatures, planches de controle, montages
+pillow==12.1.1
+
+# Trait de cote et controles de trace (scripts/littoral.py)
+numpy==2.5.3
+
+# Telechargement des illustrations (scripts/telecharg_img.py)
+requests==2.32.5
+
+# Reprise du HTML des fiches (scripts/format_html.py, postprocess_html.py)
+beautifulsoup4==4.15.0

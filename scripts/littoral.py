@@ -2,8 +2,23 @@
 
 Le trait de cote est Natural Earth 10 m (ne_10m_coastline.geojson).
 """
-import io, json, math, os
-import numpy as np
+import io, json, math, os, platform, sys
+
+try:
+    import numpy as np
+except ImportError as e:
+    # Le message de numpy fait quarante lignes et ne nomme jamais la cause.
+    # Elle est presque toujours la meme : l'environnement a ete installe sous
+    # Rosetta, et porte des roues x86_64 qu'un interpreteur arm64 ne peut pas
+    # charger. Le dire en une ligne, avec le remede.
+    machine = platform.machine()
+    sys.exit(
+        "numpy ne se charge pas : %s\n"
+        "Cet interpreteur tourne en %s (%s).\n"
+        "Si l'erreur parle d'architecture incompatible, les paquets ont ete\n"
+        "installes sous une autre architecture. Reparer par :\n"
+        "    %s -m pip install --force-reinstall --no-cache-dir numpy\n"
+        "Voir requirements.txt." % (e, machine, sys.executable, sys.executable))
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAUT_COTE = os.path.join(RACINE, 'data', 'ne_10m_coastline.geojson')
