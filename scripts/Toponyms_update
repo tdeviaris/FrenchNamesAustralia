@@ -103,10 +103,17 @@ function majGitHub(forcer) {
     // dépôt. C'était autrefois un geste séparé, qu'il fallait penser à faire
     // avant celui-ci ; l'oublier publiait un fichier privé de ses images.
     // La mise à jour s'en charge maintenant, et dans le seul ordre correct.
+    Logger.log('Étape 1 : import des visuels depuis le dépôt.');
     const visuels = importeVisuels();
 
     // Étape 2 : lire les deux onglets, l'onglet Flinders après l'import.
+    const t0 = Date.now();
+    const etape = (quoi) => Logger.log(`Étape : ${quoi} (${
+      ((Date.now() - t0) / 1000).toFixed(1)} s depuis l'import)`);
+
+    etape('lecture de l’onglet Source');
     const datasets = convertSheetToTwoDatasets();
+    etape('onglet Source lu');
     if (!datasets) {
       const errorMsg = "Conversion annulée : feuille vide ou colonne 'Expedition' manquante.";
       Logger.log(errorMsg);
@@ -117,6 +124,7 @@ function majGitHub(forcer) {
     // L'onglet Flinders peut manquer sans que tout s'arrête : les deux autres
     // expéditions partent quand même, et le fichier Flinders reste tel quel.
     const flinders = convertFlindersSheet();
+    etape('onglet Flinders lu');
 
     Logger.log(`Trouvé ${datasets.entrecasteaux.length} entrées pour d'Entrecasteaux.`);
     Logger.log(`Trouvé ${datasets.baudin.length} entrées pour Baudin.`);
@@ -157,6 +165,7 @@ function majGitHub(forcer) {
 
     envois.forEach((envoi) => {
       const json = JSON.stringify(envoi.donnees, null, 2);
+      etape(`envoi de ${envoi.chemin}, ${(json.length / 1024).toFixed(0)} Ko`);
       const resultat = uploadToGitHub(envoi.chemin, json,
                                       `Mise à jour automatique (${envoi.nom})`);
       if (!resultat.success) {
@@ -656,10 +665,16 @@ function lisFichierGitHub(chemin) {
 function importeVisuels() {
   const compte = { lignes: [], soucis: [] };
   try {
+    const debut = Date.now();
+    const jalon = (quoi) => Logger.log(`importeVisuels : ${quoi} (${
+      ((Date.now() - debut) / 1000).toFixed(1)} s)`);
+
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(FLINDERS_SHEET);
     if (!sheet) return compte;   // pas d'onglet Flinders : rien à faire
 
+    jalon('onglet ouvert');
     const data = sheet.getDataRange().getValues();
+    jalon(`onglet lu, ${data.length} lignes`);
     if (data.length <= 1) return compte;
     const entetes = data[0].map((h) => h.toString().trim());
 
@@ -675,12 +690,28 @@ function importeVisuels() {
       wiki_fr:   'URL WIKI FR',
       wiki_en:   'URL WIKi EN'
     };
+    // Les quatre colonnes d'image sont indispensables : sans elles l'import
+    // n'a rien à faire. Les deux colonnes de liens sont facultatives -- si
+    // l'onglet ne les porte pas encore, on pose les images sans elles et on
+    // le dit au journal. Une colonne en option ne doit ni bloquer la
+    // publication ni réclamer un clic : c'est ce qu'elle a fait le
+    // 20 septembre 2026, laissant l'exécution attendre douze minutes.
+    const FACULTATIVES = { wiki_fr: true, wiki_en: true };
     const rang = {};
     const absentes = [];
+    const ignorees = [];
     Object.keys(colonnes).forEach((champ) => {
       const i = entetes.indexOf(colonnes[champ]);
-      if (i === -1) absentes.push(colonnes[champ]); else rang[champ] = i;
+      if (i !== -1) { rang[champ] = i; return; }
+      if (FACULTATIVES[champ]) { ignorees.push(colonnes[champ]); delete colonnes[champ]; }
+      else { absentes.push(colonnes[champ]); }
     });
+    if (ignorees.length) {
+      Logger.log("Colonne(s) de liens absente(s) de « " + FLINDERS_SHEET
+                 + " », ignorée(s) : " + ignorees.join(', '));
+      compte.lignes.push("Liens Wikipédia : colonne(s) absente(s) de l’onglet, "
+                         + "rien n’a été posé (" + ignorees.join(', ') + ")");
+    }
     if (absentes.length) {
       compte.soucis.push("colonne(s) d'image introuvable(s) dans « "
                          + FLINDERS_SHEET + " » : " + absentes.join(', '));
@@ -694,6 +725,7 @@ function importeVisuels() {
     }
 
     const visuels = JSON.parse(lisFichierGitHub(VISUELS_PATH));
+    jalon(`${Object.keys(visuels).length} visuels lus dans le dépôt`);
 
     // Où se trouve chaque toponyme dans la feuille.
     const ligneDe = {};
@@ -723,14 +755,20 @@ function importeVisuels() {
       if (touche) poses++;
     });
 
+    jalon(`${poses} ligne(s) à compléter, ${Object.keys(modifiees).length} colonne(s) à écrire`);
+
     // Une colonne entière d'un coup : six écritures, pas six cents.
     Object.keys(modifiees).forEach((champ) => {
       const colonne = data.slice(1).map((row) => [row[rang[champ]]]);
       sheet.getRange(2, rang[champ] + 1, colonne.length, 1).setValues(colonne);
+      jalon(`colonne « ${colonnes[champ]} » écrite`);
     });
     // Les écritures sont mises en file : sans ce vidage, la lecture qui suit
     // rendrait l'onglet tel qu'il était avant l'import.
-    if (Object.keys(modifiees).length) SpreadsheetApp.flush();
+    if (Object.keys(modifiees).length) {
+      SpreadsheetApp.flush();
+      jalon('écritures encaissées par Sheets');
+    }
 
     compte.lignes.push(poses
       ? `Visuels : ${poses} toponyme(s) complété(s) depuis le dépôt`

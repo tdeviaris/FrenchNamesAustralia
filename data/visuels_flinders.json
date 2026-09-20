@@ -460,7 +460,11 @@
   "wiki_en": "https://en.wikipedia.org/wiki/Voyage_of_the_Pera_and_Arnhem_to_Australia_in_1623"
  },
  "Flinders276": {
-  "wiki_en": "https://en.wikipedia.org/wiki/Salomon_Sweers"
+  "wiki_en": "https://en.wikipedia.org/wiki/Salomon_Sweers",
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Sweers_Island_02.jpg",
+  "imgCredit": "J Brew · CC BY-SA 2.0",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Sweers_Island_02.jpg",
+  "imgSujet": "Sweers Island"
  },
  "Flinders278": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Bentinck_william.png",
@@ -555,10 +559,18 @@
   "wiki_en": "https://en.wikipedia.org/wiki/Henry_George_Grey"
  },
  "Flinders318": {
-  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon"
+  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon",
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon.jpg",
+  "imgCredit": "Charles Turner · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Du_Pr%C3%A9_Alexander,_2nd_Earl_of_Caledon.jpg",
+  "imgSujet": "Du Pré Alexander, 2nd Earl of Caledon"
  },
  "Flinders319": {
-  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon"
+  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon",
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon.jpg",
+  "imgCredit": "Charles Turner · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Du_Pr%C3%A9_Alexander,_2nd_Earl_of_Caledon.jpg",
+  "imgSujet": "Du Pré Alexander, 2nd Earl of Caledon"
  },
  "Flinders321": {
   "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon"
