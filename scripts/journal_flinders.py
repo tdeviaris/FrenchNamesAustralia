@@ -140,6 +140,18 @@ POSITIONS_DITES = [
     # Cove et le releve du 8 janvier 1802, tous deux tombant a terre sur le
     # trait au 1/10 000 000, et le 30 juillet 1801, dont le « 30° 5' north »
     # contredit Porto Santo vu au ouest-nord-ouest le meme apres-midi.
+    # Seule correction de lecture de toute la table. L'edition de 1814
+    # imprime « 30° 5' north » ; a cette latitude Porto Santo serait a trois
+    # cent cinquante kilometres et releve au nord-nord-ouest, ce que Flinders
+    # ne pouvait ni voir ni relever. A 33° 5' l'ile tombe a soixante-seize
+    # kilometres dans l'ouest, et la route rejoint sans detour l'atterrage du
+    # 1er aout. Le chiffre est retabli ; la source reste citee telle qu'elle
+    # est imprimee.
+    {'date': '1801-07-30', 'lon': -15.5167, 'lat': 33.0833, 'volume': '1',
+     'appui': "« Our latitude on the 30th, was 30° 5' north, longitude 15° 31' "
+              "west ; and in the afternoon Porto Santo was seen, bearing "
+              "west-north-west ». LA LATITUDE EST LUE 33° 5' ET NON 30° 5' : "
+              "l'edition de 1814 est ici fautive"},
     {'date': '1801-08-23', 'lon': -23.0, 'lat': 11.0, 'volume': '1',
      'appui': "« These variable winds […] continued until the 23rd, in "
                "latitude 11° north and longitude 23° west ». La journée n'a "
