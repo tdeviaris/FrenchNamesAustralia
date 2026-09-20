@@ -218,6 +218,31 @@ def libelle_mois(cle):
     return f'{MOIS[int(mois) - 1]} {annee}'
 
 
+def libelle_jour(date):
+    annee, mois, jour = date.split('-')
+    quantieme = '1er' if jour == '01' else str(int(jour))
+    return f'{quantieme} {MOIS[int(mois) - 1]} {annee}'
+
+
+def entete_de_journee(date, nom_journal, complement=''):
+    """Le titre d'une journée, et une phrase qui se suffit à elle-même.
+
+    Un fichier porte un mois entier, et le découpage en morceaux indexables
+    tombe où il veut. Un titre réduit à « ## 1801-07-31 » se retrouvait noyé au
+    milieu d'un morceau parlant de Madère, et une question sur le 31 juillet
+    ramenait le bon fichier mais le mauvais passage.
+
+    On répète donc la date sous ses deux formes — en toutes lettres et en
+    chiffres — et on nomme le journal, dans une phrase qui tient seule. Où que
+    la coupe tombe, le morceau dit de quel jour il parle.
+    """
+    jour = libelle_jour(date)
+    titre = f'## {jour} — {date}'
+    if complement:
+        titre += f' ({complement})'
+    return f'\n{titre}\n\nJournée du {jour}. {nom_journal}, {date}.\n\n'
+
+
 def extrait_journaux():
     print('\n📖 Journaux publiés par le site')
     total = 0
@@ -242,7 +267,7 @@ def extrait_journaux():
             for cle_mois, journees in sorted(mois_.items()):
                 corps = []
                 for date, texte in journees:
-                    corps.append(f'\n## {date}\n\n{texte}')
+                    corps.append(entete_de_journee(date, nom_journal) + texte + '\n')
                 titre = f'{nom_journal} — {libelle_mois(cle_mois)}'
                 ecrit('journaux_site',
                       f'{ardoise(campagne)}_{ardoise(champ)}_{cle_mois}_{langue}.md',
@@ -272,7 +297,9 @@ def extrait_journaux():
         for date in sorted(oubliees):
             par_mois[date[:7]].append((date, str(oubliees[date]).strip()))
         for cle_mois, journees in sorted(par_mois.items()):
-            corps = ''.join(f'\n## {date}\n\n{texte}' for date, texte in journees)
+            corps = ''.join(
+                entete_de_journee(date, 'Journal de Désiré Breton') + texte + '\n'
+                for date, texte in journees)
             ecrit('journaux_site', f'breton_hors_carte_{cle_mois}_fr.md', entete(
                 f"Journal de Désiré Breton — {libelle_mois(cle_mois)} (journées hors carte)",
                 f'{SITE}/data/journal_breton.json',
@@ -297,8 +324,9 @@ def extrait_journaux():
                     continue
                 tete = rec.get('entete', '')
                 rep = rec.get('republicain', '')
-                corps.append(f'\n## {date}' + (f' — {rep}' if rep else '')
-                             + (f'\n\n*{tete}*' if tete else '') + f'\n\n{texte}')
+                corps.append(entete_de_journee(
+                    date, 'Journal de Nicolas Baudin, édition BnF', rep)
+                    + (f'*{tete}*\n\n' if tete else '') + texte + '\n')
             if not corps:
                 continue
             ecrit('journaux_site', f'baudin_bnf_{cle_mois}_fr.md', entete(

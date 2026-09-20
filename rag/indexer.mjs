@@ -18,6 +18,15 @@
  *   node rag/indexer.mjs                 # nouveau magasin, corpus entier
  *   node rag/indexer.mjs --reprendre vs_xxx   # complète un magasin existant
  *   node rag/indexer.mjs --essai         # compte les fichiers, n'envoie rien
+ *
+ * Pour refaire un seul dossier dans un magasin déjà en service, sans toucher
+ * au reste ni interrompre le site :
+ *
+ *   node rag/indexer.mjs --remplacer vs_xxx --dossier journaux_site --morceaux 400
+ *
+ * Les fichiers de même nom sont retirés du magasin avant que les nouveaux ne
+ * soient envoyés, sans quoi les deux versions y cohabiteraient et la même
+ * journée reviendrait deux fois dans les réponses.
  */
 
 import OpenAI from 'openai';
@@ -34,9 +43,10 @@ const JOURNAL = path.join(__dirname, 'derniere_indexation.json');
 // qu'un échec ne coûte que quelques dizaines de fichiers à refaire.
 const TAILLE_LOT = 80;
 
-function listeDuCorpus() {
+function listeDuCorpus(seulement = null) {
   const fichiers = [];
   for (const sous of fs.readdirSync(CORPUS).sort()) {
+    if (seulement && sous !== seulement) continue;
     const dossier = path.join(CORPUS, sous);
     if (!fs.statSync(dossier).isDirectory()) continue;
     for (const nom of fs.readdirSync(dossier).sort()) {
@@ -44,6 +54,37 @@ function listeDuCorpus() {
     }
   }
   return fichiers;
+}
+
+/**
+ * Retire d'un magasin les fichiers portant l'un des noms donnés.
+ *
+ * Le magasin ne connaît que des identifiants ; c'est le catalogue de fichiers
+ * du compte qui porte les noms. On le parcourt une fois plutôt que d'interroger
+ * le magasin fichier par fichier — mille huit cents allers-retours pour la
+ * même information.
+ */
+async function retireParNom(openai, magasinId, noms) {
+  const voulus = new Set(noms);
+  const idsParNom = new Map();
+  for await (const f of openai.files.list({ purpose: 'assistants' })) {
+    if (voulus.has(f.filename)) idsParNom.set(f.id, f.filename);
+  }
+  let retires = 0;
+  for (const [id, nom] of idsParNom) {
+    try {
+      await openai.vectorStores.files.del(magasinId, id);
+      await openai.files.del(id);
+      retires++;
+    } catch (erreur) {
+      // Un fichier du catalogue peut ne pas appartenir a ce magasin : sans
+      // interet ici, on passe.
+      if (!/No such|not found/i.test(String(erreur?.message))) {
+        console.log(`   ⚠️  ${nom} : ${erreur?.message || erreur}`);
+      }
+    }
+  }
+  return retires;
 }
 
 function chargeEnv() {
@@ -70,10 +111,19 @@ function inscritDansEnv(cle, valeur) {
   fs.writeFileSync(chemin, contenu);
 }
 
+function optionApres(nom) {
+  const i = process.argv.indexOf(nom);
+  return i === -1 ? null : process.argv[i + 1];
+}
+
 async function main() {
   chargeEnv();
 
-  const fichiers = listeDuCorpus();
+  const dossier = optionApres('--dossier');
+  const morceaux = Number(optionApres('--morceaux') || 0);
+  const magasinARemplacer = optionApres('--remplacer');
+
+  const fichiers = listeDuCorpus(dossier);
   const poids = fichiers.reduce((t, f) => t + fs.statSync(f).size, 0);
   const parDossier = {};
   for (const f of fichiers) {
@@ -101,6 +151,40 @@ async function main() {
   }
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+  // Remplacement d'un dossier dans un magasin deja en service.
+  if (magasinARemplacer) {
+    const noms = fichiers.map((f) => path.basename(f));
+    console.log(`♻️  Remplacement dans ${magasinARemplacer}`);
+    console.log(`   ${noms.length} fichiers${dossier ? ` du dossier ${dossier}` : ''}` +
+                `${morceaux ? `, morceaux de ${morceaux} jetons` : ''}`);
+    process.stdout.write('   retrait des versions en place… ');
+    const retires = await retireParNom(openai, magasinARemplacer, noms);
+    console.log(`${retires} retire(s)`);
+
+    const decoupe = morceaux
+      ? { chunking_strategy: { type: 'static',
+          static: { max_chunk_size_tokens: morceaux,
+                    chunk_overlap_tokens: Math.floor(morceaux / 2) } } }
+      : {};
+    let faits = 0;
+    for (let i = 0; i < fichiers.length; i += TAILLE_LOT) {
+      const lot = fichiers.slice(i, i + TAILLE_LOT);
+      const numero = Math.floor(i / TAILLE_LOT) + 1;
+      const total = Math.ceil(fichiers.length / TAILLE_LOT);
+      process.stdout.write(`   lot ${numero}/${total} (${lot.length})… `);
+      const resultat = await openai.vectorStores.fileBatches.uploadAndPoll(magasinARemplacer, {
+        files: lot.map((f) => fs.createReadStream(f)),
+        ...decoupe,
+      });
+      faits += lot.length;
+      const rates = resultat.file_counts?.failed || 0;
+      console.log(`✅ ${faits}/${fichiers.length}${rates ? `  (${rates} en échec)` : ''}`);
+    }
+    const etat = await openai.vectorStores.retrieve(magasinARemplacer);
+    console.log(`\n✅ Remplacement termine — ${JSON.stringify(etat.file_counts)}`);
+    return;
+  }
 
   const iReprise = process.argv.indexOf('--reprendre');
   let magasinId;
