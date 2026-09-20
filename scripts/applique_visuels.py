@@ -52,6 +52,8 @@ COLONNES = {
     "imgCredit": "Credit image",
     "imgSource": "Source image",
     "imgSujet": "Sujet image",
+    "wiki_fr": "URL WIKI FR",
+    "wiki_en": "URL WIKi EN",
 }
 
 
@@ -78,6 +80,8 @@ def main():
     ap.add_argument("--fichier", help="fichier contenant les codes")
     ap.add_argument("--retirer", help="codes à retirer du fichier retenu")
     ap.add_argument("--propositions", default=str(PROPOSITIONS))
+    ap.add_argument("--liens-seuls", dest="liens_seuls", action="store_true",
+                    help="n'écrit que les liens Wikipédia, sans toucher à l'image")
     ap.add_argument("--essai", action="store_true", help="n'écrit rien")
     args = ap.parse_args()
 
@@ -111,14 +115,27 @@ def main():
             continue
         if code in retenus:
             remplaces.append(code)
-        retenus[code] = {
-            "imgUrl": url_propre(p.get("url") or ""),
-            "imgCredit": credit(p),
-            "imgSource": url_propre(p.get("page") or p.get("wiki") or ""),
-            "imgSujet": p.get("sujet") or "",
-        }
+        fiche = {}
+        if not args.liens_seuls:
+            fiche = {
+                "imgUrl": url_propre(p.get("url") or ""),
+                "imgCredit": credit(p),
+                "imgSource": url_propre(p.get("page") or p.get("wiki") or ""),
+                "imgSujet": p.get("sujet") or "",
+            }
+        # Les liens Wikipedia du beneficiaire, quand la proposition les porte.
+        # Ils valent par eux-memes : une fiche peut n'avoir qu'eux, sans
+        # portrait -- Henry Waterhouse a un article, mais pas d'image.
+        for champ in ("wiki_en", "wiki_fr"):
+            if p.get(champ):
+                fiche[champ] = p[champ]
+        # Ce qui est vide n'ecrase rien : une passe de liens laisse l'image en
+        # place, une passe d'image laisse les liens. Pour retirer, --retirer.
+        retenus[code] = {**retenus.get(code, {}),
+                         **{k: v for k, v in fiche.items() if v}}
         poses += 1
-        print("%-12s %-11s %s" % (code, p.get("voie", ""), (p.get("sujet") or "")[:46]))
+        print("%-12s %-11s %s" % (code, "liens" if args.liens_seuls else p.get("voie", ""),
+                                  (p.get("sujet") or "")[:46]))
 
     if remplaces:
         print("\nvisuels remplacés : %s" % ", ".join(remplaces))

@@ -100,10 +100,21 @@ GRADES = re.compile(
 BOITE_GB = (49.5, -11.0, 61.0, 2.2)
 
 
-def appel(url):
+def appel(url, essais=3):
+    """Wikipedia laisse tomber une requete de temps a autre. Sans reprise, la
+    coupure d'une seule remonte jusqu'en haut et emporte une heure de travail
+    -- le fichier n'etant ecrit qu'a la fin. Trois tentatives, en patientant
+    un peu plus a chaque fois."""
     req = urllib.request.Request(url, headers={"User-Agent": AGENT})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return json.loads(r.read().decode("utf-8"))
+    for essai in range(1, essais + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except Exception as e:
+            if essai == essais:
+                raise
+            print(f"   (reprise {essai}/{essais - 1} apres {type(e).__name__})")
+            time.sleep(2 * essai)
 
 
 def api(base, **params):
@@ -693,6 +704,7 @@ PAGE = """<!DOCTYPE html>
  .nom {{ font-weight: 700; }}
  .meta {{ color: #666; font-size: 12px; margin-top: 4px; }}
  .voie {{ display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 10px; background: #e7eefc; color: #1a4b9c; }}
+ .voie.hakluyt {{ background: #fdf0d5; color: #8a5a00; }}
  .voie.lieu {{ background: #eee; color: #555; }}
  .voie.personne {{ background: #e7eefc; color: #1a4b9c; }}
  .voie.lieu_gb {{ background: #f3e8fd; color: #5b2a9c; }}

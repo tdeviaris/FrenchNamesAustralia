@@ -663,12 +663,17 @@ function importeVisuels() {
     if (data.length <= 1) return compte;
     const entetes = data[0].map((h) => h.toString().trim());
 
-    // Le champ du fichier -> la colonne de l'onglet.
+    // Le champ du fichier -> la colonne de l'onglet. Les deux dernières
+    // portent les liens Wikipédia du bénéficiaire du toponyme, comme les
+    // fiches Baudin et d'Entrecasteaux en ont déjà. Attention à la casse de
+    // « URL WIKi EN » : c'est l'en-tête tel qu'il est écrit dans l'onglet.
     const colonnes = {
       imgUrl:    'URL IMG',
       imgCredit: 'Credit image',
       imgSource: 'Source image',
-      imgSujet:  'Sujet image'
+      imgSujet:  'Sujet image',
+      wiki_fr:   'URL WIKI FR',
+      wiki_en:   'URL WIKi EN'
     };
     const rang = {};
     const absentes = [];
@@ -718,7 +723,7 @@ function importeVisuels() {
       if (touche) poses++;
     });
 
-    // Une colonne entière d'un coup : quatre écritures, pas quatre cents.
+    // Une colonne entière d'un coup : six écritures, pas six cents.
     Object.keys(modifiees).forEach((champ) => {
       const colonne = data.slice(1).map((row) => [row[rang[champ]]]);
       sheet.getRange(2, rang[champ] + 1, colonne.length, 1).setValues(colonne);

@@ -21,37 +21,43 @@
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Lemuel_Francis_Abbott_-_Thomas_Pasley.jpg",
   "imgCredit": "Lemuel Francis Abbott · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Lemuel_Francis_Abbott_-_Thomas_Pasley.jpg",
-  "imgSujet": "Sir Thomas Pasley, 1st Baronet"
+  "imgSujet": "Sir Thomas Pasley, 1st Baronet",
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Thomas_Pasley%2C_1st_Baronet",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Thomas_Pasley"
  },
  "Flinders015": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Samuel_Lane_%281780-1859%29_-_Admiral_Sir_Pulteney_Malcolm_%281768%E2%80%931838%29%2C_Sailor_-_PG_2050_-_National_Galleries_of_Scotland.jpg",
   "imgCredit": "Samuel Lane · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Samuel_Lane_(1780-1859)_-_Admiral_Sir_Pulteney_Malcolm_(1768%E2%80%931838),_Sailor_-_PG_2050_-_National_Galleries_of_Scotland.jpg",
-  "imgSujet": "Pulteney Malcolm"
+  "imgSujet": "Pulteney Malcolm",
+  "wiki_en": "https://en.wikipedia.org/wiki/Pulteney_Malcolm"
  },
- "Flinders018": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Sir_William_Draper_KB.jpg",
-  "imgCredit": "Thomas Gainsborough · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_William_Draper_KB.jpg",
-  "imgSujet": "William Draper (British Army officer)"
+ "Flinders028": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Pieter_Nuyts",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Pieter_Nuyts"
  },
- "Flinders033": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/J._J._Williams%2C_Portrait_of_Elizabeth_McHutcheson_Sinclair.jpg",
-  "imgCredit": "J. J. William · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:J._J._Williams,_Portrait_of_Elizabeth_McHutcheson_Sinclair.jpg",
-  "imgSujet": "Elizabeth Sinclair"
+ "Flinders029": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Pieter_Nuyts",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Pieter_Nuyts"
+ },
+ "Flinders030": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Pieter_Nuyts",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Pieter_Nuyts"
+ },
+ "Flinders034": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Hugh_Bell_%28educator%29"
  },
  "Flinders037": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Sir_John_Franklin_by_Thomas_Phillips.jpg",
   "imgCredit": "Thomas Phillips · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_John_Franklin_by_Thomas_Phillips.jpg",
-  "imgSujet": "John Franklin"
+  "imgSujet": "John Franklin",
+  "wiki_en": "https://en.wikipedia.org/wiki/John_Franklin",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_Franklin"
  },
- "Flinders039": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Lo_Tinent_General_don_Lluis_Lacy.jpg",
-  "imgCredit": "Garcia · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Lo_Tinent_General_don_Lluis_Lacy.jpg",
-  "imgSujet": "Luis de Lacy"
+ "Flinders042": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Pieter_Nuyts",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Pieter_Nuyts"
  },
  "Flinders044": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Smoky_Bay_Jetty%2C_2017_%2801%29.jpg",
@@ -59,59 +65,96 @@
   "imgSource": "https://commons.wikimedia.org/wiki/File:Smoky_Bay_Jetty,_2017_(01).jpg",
   "imgSujet": "Smoky Bay, South Australia"
  },
+ "Flinders045": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Robert_brown_botaniker.jpg",
+  "imgCredit": "Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Robert_brown_botaniker.jpg",
+  "imgSujet": "Robert Brown (botanist, born 1773)",
+  "wiki_en": "https://en.wikipedia.org/wiki/Robert_Brown_%28botanist%2C_born_1773%29",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Robert_Brown_(botaniste)"
+ },
+ "Flinders047": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Doryanthes_excelsa_%28Illustrationes_Florae_Novae_Hollandiae_plate_13%29.jpg",
+  "imgCredit": "Ferdinand Bauer · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Doryanthes_excelsa_(Illustrationes_Florae_Novae_Hollandiae_plate_13).jpg",
+  "imgSujet": "Ferdinand Bauer",
+  "wiki_en": "https://en.wikipedia.org/wiki/Ferdinand_Bauer",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Ferdinand_Bauer"
+ },
+ "Flinders048": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Portrait_of_William_Westall_%28A.R.A%29.jpg",
+  "imgCredit": "Robert Westall, 1781-1850 · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Portrait_of_William_Westall_(A.R.A).jpg",
+  "imgSujet": "William Westall",
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Westall",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Westall"
+ },
  "Flinders050": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Admiral_William_Waldegrave%2C_1st_Baron_Radstock_%281753-1825%29_by_James_Northcote.jpg",
   "imgCredit": "James Northcote · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_William_Waldegrave,_1st_Baron_Radstock_(1753-1825)_by_James_Northcote.jpg",
-  "imgSujet": "William Waldegrave, 1st Baron Radstock"
+  "imgSujet": "William Waldegrave, 1st Baron Radstock",
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Waldegrave%2C_1st_Baron_Radstock",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Waldegrave_(1er_baron_Radstock)"
  },
  "Flinders052": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Admiral_William_Waldegrave%2C_1st_Baron_Radstock_%281753-1825%29_by_James_Northcote.jpg",
   "imgCredit": "James Northcote · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_William_Waldegrave,_1st_Baron_Radstock_(1753-1825)_by_James_Northcote.jpg",
-  "imgSujet": "William Waldegrave, 1st Baron Radstock"
+  "imgSujet": "William Waldegrave, 1st Baron Radstock",
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Waldegrave%2C_1st_Baron_Radstock",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Waldegrave_(1er_baron_Radstock)"
  },
- "Flinders056": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Captain_Sir_Richard_Pearson%2C_1731-1806_RMG_BHC2942.tiff",
-  "imgCredit": "Charles Grignion the Younger · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Captain_Sir_Richard_Pearson,_1731-1806_RMG_BHC2942.tiff",
-  "imgSujet": "Richard Pearson (Royal Navy officer)"
- },
- "Flinders058": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Toussaint_Antoine_DE_CHAZAL_DE_Chamerel_-_Portrait_of_Captain_Matthew_Flinders%2C_RN%2C_1774-1814_-_Google_Art_Project.jpg",
-  "imgCredit": "Antoine Toussaint de Chazal · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Toussaint_Antoine_DE_CHAZAL_DE_Chamerel_-_Portrait_of_Captain_Matthew_Flinders,_RN,_1774-1814_-_Google_Art_Project.jpg",
-  "imgSujet": "Matthew Flinders"
+ "Flinders059": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Adam_Drummond_%28surgeon%29"
  },
  "Flinders060": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_%28cropped%29.jpg",
   "imgCredit": "Gilbert Stuart · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_(cropped).jpg",
-  "imgSujet": "Sir Isaac Coffin, 1st Baronet"
+  "imgSujet": "Sir Isaac Coffin, 1st Baronet",
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Isaac_Coffin%2C_1st_Baronet"
  },
  "Flinders061": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_%28cropped%29.jpg",
   "imgCredit": "Gilbert Stuart · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Admiral_Sir_Isaac_Coffin_by_Gilbert_Stuart_(cropped).jpg",
-  "imgSujet": "Sir Isaac Coffin, 1st Baronet"
+  "imgSujet": "Sir Isaac Coffin, 1st Baronet",
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Isaac_Coffin%2C_1st_Baronet"
+ },
+ "Flinders062": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Isaac_Coffin%2C_1st_Baronet"
+ },
+ "Flinders063": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Isaac_Coffin%2C_1st_Baronet"
  },
  "Flinders064": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/A_Portrait_of_Joseph_Whidbey.jpg",
   "imgCredit": "Unknown authorUnknown author · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:A_Portrait_of_Joseph_Whidbey.jpg",
-  "imgSujet": "Joseph Whidbey"
+  "imgSujet": "Joseph Whidbey",
+  "wiki_en": "https://en.wikipedia.org/wiki/Joseph_Whidbey"
  },
  "Flinders065": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/A_Portrait_of_Joseph_Whidbey.jpg",
   "imgCredit": "Unknown authorUnknown author · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:A_Portrait_of_Joseph_Whidbey.jpg",
-  "imgSujet": "Joseph Whidbey"
+  "imgSujet": "Joseph Whidbey",
+  "wiki_en": "https://en.wikipedia.org/wiki/Joseph_Whidbey"
+ },
+ "Flinders068": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Liguanea",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Liguanea"
  },
  "Flinders071": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/St_Denys%27_church%2C_Sleaford_-_geograph.org.uk_-_4528548.jpg",
   "imgCredit": "Julian P Guffogg · CC BY-SA 2.0",
   "imgSource": "https://commons.wikimedia.org/wiki/File:St_Denys%27_church,_Sleaford_-_geograph.org.uk_-_4528548.jpg",
   "imgSujet": "Sleaford"
+ },
+ "Flinders074": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Edmund_Grindal",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Edmund_Grindal"
  },
  "Flinders082": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/SpencerGulf_TaylorIsland2.jpg",
@@ -123,7 +166,13 @@
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/James_Gambier%2C_1st_Baron_Gambier_by_Joseph_Slater.jpg",
   "imgCredit": "Joseph Slater · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:James_Gambier,_1st_Baron_Gambier_by_Joseph_Slater.jpg",
-  "imgSujet": "James Gambier, 1st Baron Gambier"
+  "imgSujet": "James Gambier, 1st Baron Gambier",
+  "wiki_en": "https://en.wikipedia.org/wiki/James_Gambier%2C_1st_Baron_Gambier",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_James_Gambier"
+ },
+ "Flinders086": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Castle_Donington",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Castle_Donington"
  },
  "Flinders094": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/St.Margaret%27s_church%2C_Langton-by-Horncastle%2C_Lincs._-_geograph.org.uk_-_95354.jpg",
@@ -137,35 +186,87 @@
   "imgSource": "https://commons.wikimedia.org/wiki/File:Bicker,_Lincolnshire_in_2008.jpg",
   "imgSujet": "Bicker, Lincolnshire"
  },
+ "Flinders108": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Joseph_Banks",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Joseph_Banks"
+ },
+ "Flinders109": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Dalby%2C_Queensland",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Dalby_(Queensland)"
+ },
+ "Flinders110": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Marum",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Marum_(ancienne_commune)"
+ },
+ "Flinders111": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Spilsby",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Spilsby"
+ },
+ "Flinders113": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Revesby%2C_New_South_Wales"
+ },
  "Flinders119": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/George_Young_%28Admiral%29.jpg",
-  "imgCredit": "After John Smart · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:George_Young_(Admiral).jpg",
-  "imgSujet": "George Young (Royal Navy officer)"
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Sir_William_Young_caricature.jpg",
+  "imgCredit": "Robert Dighton · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_William_Young_caricature.jpg",
+  "imgSujet": "William Young (Royal Navy officer, born 1751)",
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Young_%28Royal_Navy_officer%2C_born_1751%29"
+ },
+ "Flinders121": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Robert_brown_botaniker.jpg",
+  "imgCredit": "Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Robert_brown_botaniker.jpg",
+  "imgSujet": "Robert Brown (botanist, born 1773)",
+  "wiki_en": "https://en.wikipedia.org/wiki/Robert_Brown_%28botanist%2C_born_1773%29",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Robert_Brown_(botaniste)"
  },
  "Flinders126": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/4thEarlOfHardwicke.jpg",
-  "imgCredit": "Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:4thEarlOfHardwicke.jpg",
-  "imgSujet": "Charles Yorke, 4th Earl of Hardwicke"
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/George_Romney_%281734-1802%29_-_The_Right_Honourable_Charles_Philip_Yorke_%281764%E2%80%931834%29_-_207768_-_National_Trust.jpg",
+  "imgCredit": "George Romney · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:George_Romney_(1734-1802)_-_The_Right_Honourable_Charles_Philip_Yorke_(1764%E2%80%931834)_-_207768_-_National_Trust.jpg",
+  "imgSujet": "Charles Philip Yorke",
+  "wiki_en": "https://en.wikipedia.org/wiki/Charles_Philip_Yorke",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Charles_Philip_Yorke"
  },
  "Flinders127": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Frederick%2C_4th_Earl_Spencer_KG_%281798-1857%29_by_Stephen_Catterson_Smith.jpg",
-  "imgCredit": "Stephen Catterson Smith · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Frederick,_4th_Earl_Spencer_KG_(1798-1857)_by_Stephen_Catterson_Smith.jpg",
-  "imgSujet": "Frederick Spencer, 4th Earl Spencer"
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/George_Spencer%2C_2nd_Earl_Spencer.jpg",
+  "imgCredit": "John Singleton Copley · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:George_Spencer,_2nd_Earl_Spencer.jpg",
+  "imgSujet": "George Spencer, 2nd Earl Spencer",
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Spencer%2C_2nd_Earl_Spencer",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Spencer_(2e_comte_Spencer)"
  },
  "Flinders128": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Frederick%2C_4th_Earl_Spencer_KG_%281798-1857%29_by_Stephen_Catterson_Smith.jpg",
-  "imgCredit": "Stephen Catterson Smith · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Frederick,_4th_Earl_Spencer_KG_(1798-1857)_by_Stephen_Catterson_Smith.jpg",
-  "imgSujet": "Frederick Spencer, 4th Earl Spencer"
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/George_Spencer%2C_2nd_Earl_Spencer.jpg",
+  "imgCredit": "John Singleton Copley · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:George_Spencer,_2nd_Earl_Spencer.jpg",
+  "imgSujet": "George Spencer, 2nd Earl Spencer",
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Spencer%2C_2nd_Earl_Spencer",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Spencer_(2e_comte_Spencer)"
+ },
+ "Flinders129": {
+  "wiki_en": "https://en.wikipedia.org/wiki/John_Spencer%2C_3rd_Earl_Spencer",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_Spencer_(3e_comte_Spencer)"
+ },
+ "Flinders130": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Charles_Philip_Yorke",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Charles_Philip_Yorke"
  },
  "Flinders131": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/John_Jervis%2C_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
   "imgCredit": "Workshop of Lemuel Francis Abbott · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:John_Jervis,_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
-  "imgSujet": "John Jervis, 1st Earl of St Vincent"
+  "imgSujet": "John Jervis, 1st Earl of St Vincent",
+  "wiki_en": "https://en.wikipedia.org/wiki/John_Jervis%2C_1st_Earl_of_St_Vincent",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_Jervis_(1er_comte_de_St_Vincent)"
+ },
+ "Flinders132": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/John_Jervis%2C_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
+  "imgCredit": "Workshop of Lemuel Francis Abbott · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:John_Jervis,_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
+  "imgSujet": "John Jervis, 1st Earl of St Vincent",
+  "wiki_en": "https://en.wikipedia.org/wiki/John_Jervis%2C_1st_Earl_of_St_Vincent",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_Jervis_(1er_comte_de_St_Vincent)"
  },
  "Flinders133": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Mount_lofty_from_south.jpg",
@@ -177,19 +278,33 @@
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Sir_Thomas_Troubridge%2C_1st_Baronet.jpg",
   "imgCredit": "William Beechey · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_Thomas_Troubridge,_1st_Baronet.jpg",
-  "imgSujet": "Sir Thomas Troubridge, 1st Baronet"
+  "imgSujet": "Sir Thomas Troubridge, 1st Baronet",
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Thomas_Troubridge%2C_1st_Baronet",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Thomas_Troubridge"
  },
  "Flinders138": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Sir_Thomas_Troubridge%2C_1st_Baronet.jpg",
   "imgCredit": "William Beechey · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_Thomas_Troubridge,_1st_Baronet.jpg",
-  "imgSujet": "Sir Thomas Troubridge, 1st Baronet"
+  "imgSujet": "Sir Thomas Troubridge, 1st Baronet",
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Thomas_Troubridge%2C_1st_Baronet",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Thomas_Troubridge"
+ },
+ "Flinders142": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Nicolas_Baudin",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Nicolas_Baudin"
  },
  "Flinders145": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/SirEvanNepean.JPG",
   "imgCredit": "Nepean Museum · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:SirEvanNepean.JPG",
-  "imgSujet": "Evan Nepean"
+  "imgSujet": "Evan Nepean",
+  "wiki_en": "https://en.wikipedia.org/wiki/Evan_Nepean",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Evan_Nepean"
+ },
+ "Flinders146": {
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Marsden_%28orientalist%29",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Marsden_(orientaliste)"
  },
  "Flinders147": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Prospect_Hill_lookout_northern_panorama_-_panoramio.jpg",
@@ -198,10 +313,14 @@
   "imgSujet": "File:Prospect Hill lookout northern panorama - panoramio.jpg"
  },
  "Flinders151": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Digby_Willoughby%2C_7th_Baron_Middleton_%28cropped%29.jpg",
-  "imgCredit": "After Thomas Barber · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Digby_Willoughby,_7th_Baron_Middleton_(cropped).jpg",
-  "imgSujet": "Digby Willoughby, 7th Baron Middleton"
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/NesbitWilloughby.jpg",
+  "imgCredit": "by William Greatbach, after Barber mixed-method engraving · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:NesbitWilloughby.jpg",
+  "imgSujet": "Nesbit Willoughby",
+  "wiki_en": "https://en.wikipedia.org/wiki/Nesbit_Willoughby"
+ },
+ "Flinders157": {
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Kent_%28Royal_Navy_officer%29"
  },
  "Flinders162": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Cape_barren_island.jpg",
@@ -209,17 +328,31 @@
   "imgSource": "https://commons.wikimedia.org/wiki/File:Cape_barren_island.jpg",
   "imgSujet": "Cape Barren Island"
  },
+ "Flinders163": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Sir_John_Franklin_by_Thomas_Phillips.jpg",
+  "imgCredit": "Thomas Phillips · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_John_Franklin_by_Thomas_Phillips.jpg",
+  "imgSujet": "John Franklin",
+  "wiki_en": "https://en.wikipedia.org/wiki/John_Franklin",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_Franklin"
+ },
+ "Flinders170": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Sydney_Cove",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Sydney_Cove"
+ },
+ "Flinders175": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/3rd_Duke_of_Portland.jpg",
+  "imgCredit": "After Joshua Reynolds · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:3rd_Duke_of_Portland.jpg",
+  "imgSujet": "William Cavendish-Bentinck, 3rd Duke of Portland",
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Cavendish-Bentinck%2C_3rd_Duke_of_Portland",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Cavendish-Bentinck_(3e_duc_de_Portland)"
+ },
  "Flinders176": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Benjamin_Waterhouse.jpg",
-  "imgCredit": "Rembrandt Peale · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Benjamin_Waterhouse.jpg",
-  "imgSujet": "Benjamin Waterhouse"
+  "wiki_en": "https://en.wikipedia.org/wiki/Henry_Waterhouse"
  },
  "Flinders177": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Benjamin_Waterhouse.jpg",
-  "imgCredit": "Rembrandt Peale · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Benjamin_Waterhouse.jpg",
-  "imgSujet": "Benjamin Waterhouse"
+  "wiki_en": "https://en.wikipedia.org/wiki/Henry_Waterhouse"
  },
  "Flinders196": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Mute_Swan_Emsworth2.JPG",
@@ -233,17 +366,16 @@
   "imgSource": "https://commons.wikimedia.org/wiki/File:George_Town,_Tasmania_-_panoramio.jpg",
   "imgSujet": "File:George Town, Tasmania - panoramio.jpg"
  },
- "Flinders221": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Hanneman%2C_Adriaen_-_Johan_de_Witt.jpg",
-  "imgCredit": "Adriaen Hanneman · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:Hanneman,_Adriaen_-_Johan_de_Witt.jpg",
-  "imgSujet": "Johan de Witt"
+ "Flinders219": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Norfolk_%281798_sloop%29"
  },
  "Flinders222": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/John_Jervis%2C_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
   "imgCredit": "Workshop of Lemuel Francis Abbott · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:John_Jervis,_Earl_of_St_Vincent_by_Lemuel_Francis_Abbott.jpg",
-  "imgSujet": "John Jervis, 1st Earl of St Vincent"
+  "imgSujet": "John Jervis, 1st Earl of St Vincent",
+  "wiki_en": "https://en.wikipedia.org/wiki/John_Jervis%2C_1st_Earl_of_St_Vincent",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_Jervis_(1er_comte_de_St_Vincent)"
  },
  "Flinders224": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Smooth_Island_fire_2018_-2.jpg",
@@ -251,17 +383,57 @@
   "imgSource": "https://commons.wikimedia.org/wiki/File:Smooth_Island_fire_2018_-2.jpg",
   "imgSujet": "File:Smooth Island fire 2018 -2.jpg"
  },
+ "Flinders228": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/George_Bass_engraving.png",
+  "imgCredit": "Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:George_Bass_engraving.png",
+  "imgSujet": "George Bass",
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Bass",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Bass"
+ },
+ "Flinders229": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/George_Bass_engraving.png",
+  "imgCredit": "Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:George_Bass_engraving.png",
+  "imgSujet": "George Bass",
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Bass",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Bass"
+ },
+ "Flinders233": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Henry_Hacking",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Henry_Hacking"
+ },
+ "Flinders239": {
+  "wiki_en": "https://en.wikipedia.org/wiki/James_Douglas%2C_14th_Earl_of_Morton",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/James_Douglas_(14e_comte_de_Morton)"
+ },
+ "Flinders245": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Roger_Curtis"
+ },
  "Flinders246": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Vice-Admiral_Sir_Roger_Curtis_%281746-1816%29%2C_by_British_school_of_the_18th_century.jpg",
   "imgCredit": "British school of the 18th century · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Vice-Admiral_Sir_Roger_Curtis_(1746-1816),_by_British_school_of_the_18th_century.jpg",
-  "imgSujet": "Roger Curtis"
+  "imgSujet": "Roger Curtis",
+  "wiki_en": "https://en.wikipedia.org/wiki/Roger_Curtis"
  },
  "Flinders248": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Captain_James_Bowen_%281751-1835%29%2C_by_British_school_of_the_19th_century.jpg",
   "imgCredit": "British school of the 19th century · Public domain",
   "imgSource": "https://commons.wikimedia.org/wiki/File:Captain_James_Bowen_(1751-1835),_by_British_school_of_the_19th_century.jpg",
-  "imgSujet": "James Bowen (Royal Navy officer)"
+  "imgSujet": "James Bowen (Royal Navy officer)",
+  "wiki_en": "https://en.wikipedia.org/wiki/James_Bowen_%28Royal_Navy_officer%29"
+ },
+ "Flinders249": {
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Henry_Clinton"
+ },
+ "Flinders254": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Portrait_of_William_Westall_%28A.R.A%29.jpg",
+  "imgCredit": "Robert Westall, 1781-1850 · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Portrait_of_William_Westall_(A.R.A).jpg",
+  "imgSujet": "William Westall",
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Westall",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Westall"
  },
  "Flinders255": {
   "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Charles_Townshend%2C_2nd_Viscount_Townshend_by_Sir_Godfrey_Kneller%2C_Bt_%282%29.jpg",
@@ -269,10 +441,178 @@
   "imgSource": "https://commons.wikimedia.org/wiki/File:Charles_Townshend,_2nd_Viscount_Townshend_by_Sir_Godfrey_Kneller,_Bt_(2).jpg",
   "imgSujet": "Charles Townshend, 2nd Viscount Townshend"
  },
+ "Flinders256": {
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Townshend%2C_1st_Marquess_Townshend",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Townshend"
+ },
+ "Flinders268": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Hugh_Percy%2C_2nd_Duke_of_Northumberland",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Hugh_Percy_(2e_duc_de_Northumberland)"
+ },
+ "Flinders270": {
+  "wiki_en": "https://en.wikipedia.org/wiki/HMS_Pandora_%281779%29",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/HMS_Pandora_(1779)"
+ },
+ "Flinders272": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Peter_Good"
+ },
+ "Flinders275": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Voyage_of_the_Pera_and_Arnhem_to_Australia_in_1623"
+ },
+ "Flinders276": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Salomon_Sweers"
+ },
  "Flinders278": {
-  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/3rd_Duke_of_Portland.jpg",
-  "imgCredit": "After Joshua Reynolds · Public domain",
-  "imgSource": "https://commons.wikimedia.org/wiki/File:3rd_Duke_of_Portland.jpg",
-  "imgSujet": "William Cavendish-Bentinck, 3rd Duke of Portland"
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Bentinck_william.png",
+  "imgCredit": "Based on painting by Sir T. Lawrence (1769 – 1s830) · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Bentinck_william.png",
+  "imgSujet": "Lord William Bentinck",
+  "wiki_en": "https://en.wikipedia.org/wiki/Lord_William_Bentinck",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Cavendish-Bentinck_(gouverneur_g%C3%A9n%C3%A9ral_des_Indes)"
+ },
+ "Flinders279": {
+  "wiki_en": "https://en.wikipedia.org/wiki/John_Allen_%28miner%29"
+ },
+ "Flinders284": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Richard_Wellesley%2C_1st_Marquess_Wellesley",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Richard_Wellesley_(1er_marquis_de_Wellesley)"
+ },
+ "Flinders285": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/Sir_Thomas_Lawrence_%281769-1830%29_-_Richard_Colley_Wellesley%2C_Marquess_Wellesley_%281760-1842%29_-_RCIN_400643_-_Royal_Collection.jpg",
+  "imgCredit": "Thomas Lawrence · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_Thomas_Lawrence_(1769-1830)_-_Richard_Colley_Wellesley,_Marquess_Wellesley_(1760-1842)_-_RCIN_400643_-_Royal_Collection.jpg",
+  "imgSujet": "Richard Wellesley, 1st Marquess Wellesley",
+  "wiki_en": "https://en.wikipedia.org/wiki/Richard_Wellesley%2C_1st_Marquess_Wellesley",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Richard_Wellesley_(1er_marquis_de_Wellesley)"
+ },
+ "Flinders286": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Vanderlin_Island"
+ },
+ "Flinders287": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Edward_Pellew%2C_1st_Viscount_Exmouth",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Edward_Pellew"
+ },
+ "Flinders288": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Edward_Pellew%2C_1st_Viscount_Exmouth",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Edward_Pellew"
+ },
+ "Flinders297": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sir_Richard_Bickerton.jpg",
+  "imgCredit": "\"Engraved by RIDLEY from a drawing by T MAYNARD. From an Original Picture Painted in Malta.\" · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_Richard_Bickerton.jpg",
+  "imgSujet": "Sir Richard Bickerton, 2nd Baronet",
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Richard_Bickerton%2C_2nd_Baronet"
+ },
+ "Flinders298": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_John_Barrow%2C_1st_Baronet",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/John_Barrow_(1764-1848)"
+ },
+ "Flinders303": {
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Finch%2C_9th_Earl_of_Winchilsea",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Finch_(9e_comte_de_Winchilsea)"
+ },
+ "Flinders304": {
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Finch%2C_9th_Earl_of_Winchilsea",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Finch_(9e_comte_de_Winchilsea)"
+ },
+ "Flinders306": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/James_Burney.png",
+  "imgCredit": "R. H. Dyer · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:James_Burney.png",
+  "imgSujet": "James Burney",
+  "wiki_en": "https://en.wikipedia.org/wiki/James_Burney",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/James_Burney"
+ },
+ "Flinders307": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/George_Elliot_illus_60.jpg",
+  "imgCredit": "Unknown authorUnknown author · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:George_Elliot_illus_60.jpg",
+  "imgSujet": "George Nicol (bookseller)",
+  "wiki_en": "https://en.wikipedia.org/wiki/George_Nicol_%28bookseller%29",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/George_Nicol_(libraire)"
+ },
+ "Flinders310": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Richard_Grindall"
+ },
+ "Flinders311": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Richard_Grindall"
+ },
+ "Flinders312": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Thomas_Morgan_%28deist%29"
+ },
+ "Flinders314": {
+  "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Sir_Gilbert_Blane_by_Martin_Archer_Shee.jpg",
+  "imgCredit": "Martin Archer Shee · Public domain",
+  "imgSource": "https://commons.wikimedia.org/wiki/File:Sir_Gilbert_Blane_by_Martin_Archer_Shee.jpg",
+  "imgSujet": "Gilbert Blane",
+  "wiki_en": "https://en.wikipedia.org/wiki/Gilbert_Blane"
+ },
+ "Flinders315": {
+  "wiki_en": "https://en.wikipedia.org/wiki/William_Shield",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/William_Shield"
+ },
+ "Flinders316": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Henry_George_Grey"
+ },
+ "Flinders318": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon"
+ },
+ "Flinders319": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon"
+ },
+ "Flinders321": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon"
+ },
+ "Flinders322": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Du_Pr%C3%A9_Alexander%2C_2nd_Earl_of_Caledon"
+ },
+ "Flinders323": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Arnhem",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Arnhem"
+ },
+ "Flinders324": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Robert_Dundas%2C_2nd_Viscount_Melville",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Robert_Dundas_(2e_vicomte_Melville)"
+ },
+ "Flinders325": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Robert_Dundas%2C_2nd_Viscount_Melville",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Robert_Dundas_(2e_vicomte_Melville)"
+ },
+ "Flinders326": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Robert_Dundas%2C_2nd_Viscount_Melville",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Robert_Dundas_(2e_vicomte_Melville)"
+ },
+ "Flinders330": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Robert_Dundas%2C_2nd_Viscount_Melville",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Robert_Dundas_(2e_vicomte_Melville)"
+ },
+ "Flinders332": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Robert_Dundas%2C_2nd_Viscount_Melville",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Robert_Dundas_(2e_vicomte_Melville)"
+ },
+ "Flinders338": {
+  "wiki_en": "https://en.wikipedia.org/wiki/East_India_Company",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Compagnie_britannique_des_Indes_orientales"
+ },
+ "Flinders339": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Sir_Robert_Wigram%2C_1st_Baronet"
+ },
+ "Flinders341": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Hugh_Inglis"
+ },
+ "Flinders342": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Jacob_Bosanquet"
+ },
+ "Flinders346": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Aaron_Arrowsmith",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Aaron_Arrowsmith"
+ },
+ "Flinders348": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Arnhem",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Arnhem"
+ },
+ "Flinders351": {
+  "wiki_en": "https://en.wikipedia.org/wiki/Charles_Cunningham",
+  "wiki_fr": "https://fr.wikipedia.org/wiki/Charles_Cunningham"
  }
 }
