@@ -61,3 +61,15 @@ data/ne_10m_land.geojson
 
 # Rapports produits par les scripts, relisibles en les relancant
 output/
+
+# Base de connaissance du chatbot : sources rapatriees et corpus Markdown.
+# Le depot est publie tel quel par Vercel — versionner ces dossiers reviendrait
+# a mettre en telechargement libre la transcription inedite du journal de
+# Hamelin et 2 000 pages de PDF tiers. Les deux se refabriquent :
+#   ./rag/telecharger_sources.sh tout && python3 rag/convertir_sources.py
+#   python3 rag/extraire_site.py
+rag/sources/
+rag/corpus/
+rag/derniere_indexation.json
+
+rag/.magasin_precedent
