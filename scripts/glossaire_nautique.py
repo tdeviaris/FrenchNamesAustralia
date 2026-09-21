@@ -93,21 +93,6 @@ def charge_anglais_seuls():
     return seuls
 
 
-def index_des_ancres(chemin, langue):
-    """Terme -> ancre, calcule comme rend_volet le fait, pour tous les volets."""
-    suffixe = '' if langue == 'fr' else f'-{langue}'
-    index = {}
-    for volet, (_, prefixe) in zip(lit_source(chemin), VOLETS):
-        vus = {}
-        for genre, valeur in volet['contenu']:
-            if genre != 'terme':
-                continue
-            terme = valeur[0]
-            base = f'{prefixe}-{slug(terme)}'
-            vus[base] = vus.get(base, 0) + 1
-            rang = '' if vus[base] == 1 else f'-{vus[base]}'
-            index.setdefault(aplatit_apostrophe(terme), f'{base}{rang}{suffixe}')
-    return index
 
 
 def slug(texte):
@@ -221,10 +206,7 @@ def rend_volet(volet, prefixe, langue, renvois=None):
             f'<p>{echappe(p)}</p>' for p in paragraphes) or '<p></p>'
         renvoi = (renvois or {}).get(aplatit_apostrophe(terme))
         if renvoi:
-            # Surtout pas « ancre » : ce nom porte deja l'ancre de la notice,
-            # quelques lignes plus haut, et l'ecraser mettait le tuple des
-            # cibles dans l'attribut id.
-            mots_autres, cibles, niveau, note = renvoi
+            mots_autres, niveau, note = renvoi
             if niveau == 'aucun':
                 dit = f'<em>{echappe(SANS[langue])}</em>'
             else:
@@ -232,11 +214,13 @@ def rend_volet(volet, prefixe, langue, renvois=None):
                 # l'autre -- abattre, arriver et laisser arriver se disent tous
                 # « bear away ». On les montre tous, sans quoi la notice
                 # anglaise n'en garderait qu'un, le dernier venu.
-                morceaux = []
-                for mot, cible in zip(mots_autres, cibles):
-                    morceaux.append(f'<a href="#{cible}">{echappe(mot)}</a>' if cible
-                                    else echappe(mot))
-                dit = ', '.join(morceaux)
+                #
+                # Le terme est donne en clair, sans lien. Les deux glossaires
+                # occupent la meme page, mais le selecteur de langue en masque
+                # une moitie : un lien vers l'autre langue ne menerait a rien de
+                # visible, et l'atteindre demanderait de changer de langue pour
+                # revenir ensuite. Le mot suffit a qui veut le chercher.
+                dit = ', '.join(f'<strong>{echappe(mot)}</strong>' for mot in mots_autres)
             # Les remarques sont redigees en francais, pour la relecture. On les
             # montre du cote francais ; du cote anglais, seuls les termes isoles
             # portent une note, ecrite pour eux dans la bonne langue.
@@ -274,35 +258,29 @@ def main():
         html = f.read()
 
     couples = charge_correspondances()
-    ancres = {}
-    for langue in ('fr', 'en'):
-        if os.path.exists(SOURCES[langue]):
-            ancres[langue] = index_des_ancres(SOURCES[langue], langue)
-
     # Le renvoi mene au terme de l'autre langue : on le prepare dans les deux sens.
     renvois = {'fr': {}, 'en': {}}
     accumule = {'fr': {}, 'en': {}}
     for c in couples:
         if c['en']:
             accumule['fr'].setdefault(c['fr'], []).append(
-                (c['en'], ancres.get('en', {}).get(c['en']), c['niveau'], c['note']))
+                (c['en'], c['niveau'], c['note']))
             accumule['en'].setdefault(c['en'], []).append(
-                (c['fr'], ancres.get('fr', {}).get(c['fr']), c['niveau'], c['note']))
+                (c['fr'], c['niveau'], c['note']))
         else:
-            renvois['fr'][c['fr']] = ((), (), 'aucun', c['note'])
+            renvois['fr'][c['fr']] = ((), 'aucun', c['note'])
 
     for langue in ('fr', 'en'):
         for terme, liste in accumule[langue].items():
             mots = tuple(x[0] for x in liste)
-            cibles = tuple(x[1] for x in liste)
             # Le degre le plus prudent l'emporte, et les remarques se suivent.
-            niveau = 'proche' if any(x[2] == 'proche' for x in liste) else 'sure'
-            notes = [x[3] for x in liste if x[3]]
-            renvois[langue][terme] = (mots, cibles, niveau, ' '.join(notes))
+            niveau = 'proche' if any(x[1] == 'proche' for x in liste) else 'sure'
+            notes = [x[2] for x in liste if x[2]]
+            renvois[langue][terme] = (mots, niveau, ' '.join(notes))
 
     # Les termes anglais que le francais ne nomme pas : on le dit aussi.
     for terme, pourquoi in charge_anglais_seuls().items():
-        renvois['en'].setdefault(terme, ((), (), 'aucun', pourquoi))
+        renvois['en'].setdefault(terme, ((), 'aucun', pourquoi))
 
     for langue in ('fr', 'en'):
         chemin = SOURCES[langue]
