@@ -2,7 +2,18 @@
   "mcpServers": {
     "brave-browser": {
       "command": "npx",
-      "args": ["brave-real-browser-mcp-server@latest"]
+      "args": [
+        "brave-real-browser-mcp-server@latest"
+      ]
+    },
+    "playwright-brave": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--executable-path",
+        "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+      ]
     }
   }
 }
