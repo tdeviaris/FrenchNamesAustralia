@@ -1,0 +1,183 @@
+# English nautical glossary — entries to review
+
+The terms below were extracted from the English logbooks by the site's own
+question-and-answer assistant, and their definitions were then drafted to fill
+the gaps. They are standard seafaring senses, but none has been checked against
+a period dictionary or against the text. They are listed here so that review can
+go straight to them.
+
+173 entries, out of 211 in the glossary.
+
+- **Admiral, Vice Admiral** — Flag officers, commanding a fleet or a division of one.
+- **After guard** — The men stationed aft, working the after sails and the braces.
+- **Aired with stoves** — Dried the lower decks with stoves — a measure against damp and sickness.
+- **Albatross** — The great oceanic bird of the southern seas, noted and often taken.
+- **All sail** — Every sail the ship is able to carry.
+- **Anchor, anchors** — The ground tackle by which the ship holds to the bottom.
+- **Anchorage** — A place where a ship may lie at anchor.
+- **Anchored** — Lying to an anchor.
+- **Anchoring ground** — The nature of the bottom and the hold it offers — the first thing a surveyor records.
+- **Answer a signal** — Acknowledge a signal made by another ship.
+- **Astronomical observation** — Observation of the heavenly bodies, by which position is fixed.
+- **Bank** — A raised patch of the sea bed, shoaling the water above it.
+- **Barometer, marine barometer** — The instrument for measuring the pressure of the air, hung to ride the ship's motion.
+- **Bearing, bearings** — The direction of an object from the ship, by compass.
+- **Beer** — Small beer, issued while it lasted, before the water became the only drink.
+- **Biscuit** — Ship's bread, baked hard to keep.
+- **Boat, boats** — The ship's small craft, used for sounding, watering and landing.
+- **Boatswain** — The warrant officer answerable for rigging, cordage, boats and the calling of the watch.
+- **Boatswain's mate** — His assistant, who passes the call and sees the order obeyed.
+- **Boom** — A spar extending the foot of a sail beyond the hull or the yard.
+- **Botanising** — The work of collecting and describing plants ashore.
+- **Botanist, botanists** — The naturalists charged with the plants — aboard the Investigator, Robert Brown.
+- **Botany** — The study of plants, a principal object of the voyage.
+- **Bottom** — The sea bed, and the nature of it — sand, mud, coral, rock.
+- **Breakers** — Seas breaking over a shoal or a reef, and betraying it from afar.
+- **Breeze, breezes** — Wind of moderate force; the log grades it light, moderate, fresh, strong.
+- **Brig** — A two-masted vessel, square-rigged on both masts.
+- **Cable** — The heavy rope, later chain, by which the ship rides to her anchor.
+- **Calm, nearly calm** — No wind, or too little to give the ship steerage way.
+- **Captain** — The commander of the ship; also the rank.
+- **Captains of the tops** — The seamen answerable for the work aloft at each masthead.
+- **Carpenter** — The warrant officer answerable for the hull, the masts and the pumps.
+- **Carpenter's mate** — His assistant.
+- **Carpenters' stores** — Timber, nails and tools for the repair of hull and spars.
+- **Cask of water** — The unit in which water is stowed, struck down and expended.
+- **Chain of longitude** — A series of linked determinations, each carried forward from the last.
+- **Chart** — The sea map, on which the survey is laid down.
+- **Cleaned below** — Washed and scraped the lower decks.
+- **Cleared for action** — Struck down the bulkheads and cleared the decks for battle.
+- **Close reefs** — Reduce a sail to its smallest reefed area.
+- **Cloudy** — Overcast; a state that forbids the noon observation.
+- **Commander** — The rank between lieutenant and captain.
+- **Commissioned officer** — An officer holding the King's commission, as against a warrant.
+- **Committed the body … to the deep** — The formula of burial at sea.
+- **Compass needle** — The magnetised needle of the compass, subject to variation and to the iron of the ship.
+- **Coral** — The rock built by polyps, both a subject of study and a danger to the ship.
+- **Cutter** — A ship's boat pulling several oars; also a small single-masted vessel.
+- **Dead-eyes** — Rounded blocks, pierced with three holes, used to set up the shrouds taut.
+- **Deceased** — Died; the log names the man and the day.
+- **Dip of the needle** — The inclination of the magnetic needle below the horizontal.
+- **Distance** — The run between two points, estimated or measured.
+- **Double-reefed** — Carrying two reefs, the sail reduced twice.
+- **Drizzling rain** — Fine, persistent rain.
+- **Dropped a stream anchor** — Let go the stream anchor, to steady the ship or to haul her off.
+- **Dysentery** — The flux, one of the chief killers of a ship's company.
+- **Ephemerides** — Tables of the predicted places of the heavenly bodies, without which longitude cannot be worked.
+- **Eucalyptus** — The gum tree, the dominant timber of the Australian coast.
+- **Exercised great guns** — Drilled the people at the cannon.
+- **Exercised marines at small arms** — Drilled the marines at musketry.
+- **Fathom, fathoms, fms.** — Six feet; the unit in which depth is sounded.
+- **Fine weather** — Clear and settled — the weather in which a survey advances.
+- **Fire wood** — Wood cut ashore for the galley — a chief reason for landing.
+- **Fired a shot** — Fired a gun, to signal or to bring another vessel to.
+- **Fish** — The catch, recorded both as food and as natural history.
+- **Fixed points in the survey** — The points whose position is established, and on which the rest of the survey hangs.
+- **Fore and mizen top-sails** — The topsails of the foremast and of the mizzen, taken together.
+- **Fore top-sail, F.T. sail** — The topsail of the foremast, abbreviated in the log.
+- **Fore-top-mast studding sails** — Light sails set outboard of the fore topsail in fair winds.
+- **Fore-top-mast studding-sail boom** — The spar run out along the yard to spread those sails.
+- **Fore-top-sail tie** — The rope by which the fore topsail yard is hoisted.
+- **Fresh beef** — Meat taken aboard in port, and the relief of a salt diet.
+- **Fresh breezes** — A working wind, strong enough to reduce sail but not to endanger.
+- **Gale** — Wind strong enough to compel the ship to lie to or run before it.
+- **Gig** — A light, narrow boat, fast under oars, kept for the commander's use.
+- **Grounded, took the ground** — Touched the bottom, whether by accident or design.
+- **Haze, hazy** — A thickening of the air that hides the land and stops the bearings.
+- **Helmsman** — The man at the wheel.
+- **High sea** — A heavy, running sea.
+- **Hoisted the pendant and ensign** — Showed the ship's colours.
+- **Hydrographer** — The officer of the Admiralty charged with charts and surveys.
+- **Jib** — Triangular headsail set on a stay forward of the foremast.
+- **Latitude** — The distance north or south of the equator, found by observation of the sun or a star.
+- **Lieutenant** — A commissioned officer, keeping a watch and commanding in the captain's absence.
+- **Light airs** — Wind barely perceptible, scarcely filling the sails.
+- **Light breezes** — Wind gentle but steady.
+- **Log board** — The board on which the reckoning is chalked, before being entered in the book.
+- **Log book** — The daily record of course, distance, weather and occurrence.
+- **Longitude** — The distance east or west of a meridian, the harder of the two to establish.
+- **Made the private signal** — Showed the recognition signal agreed between ships of the same service.
+- **Main sail, M. sail** — The principal square sail of the mainmast.
+- **Main top-sail** — The topsail of the mainmast.
+- **Marine, marines** — The soldiers embarked, for guard, discipline and landing parties.
+- **Master's mate** — An assistant to the master, who is answerable for the navigation.
+- **Masts** — The upright spars carrying the sails.
+- **Mate of the watch** — The officer's assistant during a watch.
+- **Meridian** — A great circle passing through the poles; by extension, the moment of the sun's passage.
+- **Midshipman** — A young gentleman training for a commission.
+- **Mizen staysail** — Triangular sail set on a stay of the mizzen mast.
+- **Mizen top-sail** — The topsail of the mizzen mast.
+- **Mizzen mast, mz. mast** — The aftermost of the three masts.
+- **Moderate breezes** — Wind of middling force, the ship carrying her ordinary sail.
+- **Muddy flats** — Shallows of soft mud, uncovering at low water.
+- **Mustered the ship's company** — Assembled the crew, to count them and to see them clean.
+- **Natural history** — The collecting and description of plants, animals and minerals.
+- **Oceanic birds** — The birds of the open sea, whose appearance often announces the land.
+- **Officer of the watch** — The officer having charge of the deck, and of the ship, during his watch.
+- **Parallel** — A circle of equal latitude.
+- **Patients** — The men under the surgeon's hands.
+- **Petty officer** — A rating with authority over others, but without warrant or commission.
+- **Pintado birds** — The Cape petrel, so called for its chequered plumage.
+- **Piped hammocks down, up** — The boatswain's call to sling the hammocks at night, to stow them at dawn.
+- **Points and ropebands** — Short lines: the first for reefing a sail, the second for bending it to its yard.
+- **Position** — The place of the ship, by latitude and longitude.
+- **Provisions** — The victuals of the ship, reckoned in months of consumption.
+- **Quadrant** — An instrument for measuring altitudes, superseded aboard by the sextant.
+- **Quartermaster** — A petty officer of the helm, the conn and the stowage of the hold.
+- **Quick sand** — Sand so loose that an anchor will not hold in it.
+- **Raft** — A makeshift float, built when no boat remains.
+- **Rain** — Rain, noted for its own sake and because it renews the water casks.
+- **Reef** — A ridge of rock or coral lying at or near the surface.
+- **Rigging** — The whole of the ropes — standing, which holds the masts, and running, which works the sails.
+- **Rock** — An isolated danger, whether showing or sunken.
+- **Rope** — Cordage in general; aboard ship each rope bears its own name and office.
+- **Sailmaker** — The man answerable for the making and repair of the sails.
+- **Sand bank** — A bank of sand, and one that shifts.
+- **Saw them clean** — Inspected the people for cleanliness, a duty of the officer of the watch.
+- **Sea** — The state of the sea, as distinct from the wind that raises it.
+- **Seaman, seamen** — The trained hands, as distinct from landsmen and boys.
+- **Serjeant of marines** — The senior non-commissioned officer of the marine detachment.
+- **Sextant** — The instrument for measuring angles between heavenly bodies, or between shore marks.
+- **Shearwaters** — Long-winged sea birds, met in great flocks off the southern coast.
+- **Ship's company** — The whole of the crew.
+- **Shoal** — Shallow water; as a verb, to grow shallower.
+- **Shower** — A brief fall of rain.
+- **Sick list** — The roll of men unfit for duty, and the measure of a ship's health.
+- **Situation** — The place of a coast or a danger, as the survey reports it.
+- **Soft bottom** — A bottom of mud or ooze, easy on a ship that takes the ground.
+- **Sooty petrels** — The short-tailed shearwater, whose rookeries astonished the expedition.
+- **Sounding ahead** — Sounding from a boat sent ahead, when the ship stands into unknown water.
+- **Sounding, soundings** — The measurement of depth by lead and line, and the depths so found.
+- **Spanker** — The fore-and-aft sail set abaft the mizzen mast.
+- **Spare top masts** — Replacement topmasts carried aboard against the loss of one.
+- **Spitting rain** — Rain falling in scattered drops.
+- **Splinter netting** — Netting rigged over the deck to catch the splinters thrown up in action.
+- **Spruce beer** — Beer brewed from spruce or a substitute, held to prevent scurvy.
+- **Squall, squally** — A sudden increase of wind, often with rain, requiring sail to be taken in at once.
+- **Stay** — A standing rope supporting a mast from forward.
+- **Stay-sails** — Triangular sails bent to the stays between the masts.
+- **Stream anchor** — A lighter anchor, used for a temporary hold or to warp the ship.
+- **Studding sails, studg. sails** — Light sails set outboard of the square sails, in fair weather only.
+- **Studding-sail boom** — The spar run out to spread a studding sail.
+- **Sweet wort** — Unfermented malt infusion, issued as an antiscorbutic.
+- **Swell** — A long undulation, running from a distant wind and outlasting it.
+- **Thermometer** — The instrument for measuring temperature, of the air and of the sea.
+- **Timber heads** — The tops of the frames, rising above the deck, to which ropes are belayed.
+- **Time-keeper, time-keepers** — The marine chronometer, which carries the time of a known meridian and so yields longitude.
+- **Took the guard per signal** — Assumed the duty of guard ship on the signal to do so.
+- **Top-gallant sails, T.Gt. sails** — The sails set above the topsails; the first to be taken in as the wind rises.
+- **Top-sail sheets** — The ropes hauling down the lower corners of a topsail.
+- **Topsails** — The sails set above the courses, the ship's working canvas.
+- **Treble-reefed** — Carrying three reefs, the sail reduced to little more than a strip.
+- **Tried for soundings** — Cast the lead without finding bottom.
+- **Turtle** — Taken ashore or afloat, and a welcome fresh meat.
+- **Usual ceremony** — The rites accompanying a burial at sea.
+- **Variable winds** — Wind shifting in direction, and trying to a ship working to windward.
+- **Vegetation, wood** — The cover of a coast, noted as a sign of soil, of water, and of timber.
+- **Vinegar** — Used to sweeten the air below as much as to season the food.
+- **Watch below** — The half of the company off duty, and at rest.
+- **Water** — The governing store: its quantity decides how long a coast can be surveyed.
+- **Watered, water supply** — Filled the casks ashore; the search for water shapes every landing.
+- **Whale boat** — A long, light, double-ended boat, handy in a surf.
+- **Windward, leeward** — Toward the wind, and away from it — the two sides of every question at sea.
+- **Yards** — The spars crossing the masts, from which the square sails hang.
