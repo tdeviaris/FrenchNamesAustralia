@@ -64,29 +64,22 @@
         .image-close:hover { background: rgba(0,0,0,0.85); }
         .image-close:focus-visible { outline: 3px solid #FFD700; }
 
-        /* --- Video d'ouverture ------------------------------------------- */
-        .video-cartes { margin: 0 0 34px 0; }
-        .video-cadre { position: relative; aspect-ratio: 16 / 9; background: #111;
-                       border-radius: 8px; overflow: hidden;
-                       box-shadow: 0 6px 20px rgba(0,0,0,0.22); }
-        .video-carte { width: 100%; height: 100%; display: block; object-fit: cover; }
-        /* Le bouton couvre toute l'image : on clique où l'on veut. */
-        .video-play { position: absolute; inset: 0; width: 100%; height: 100%;
-                      border: none; background: rgba(0,0,0,0.15); cursor: pointer;
-                      display: flex; align-items: center; justify-content: center;
-                      transition: background 0.2s; }
-        .video-play:hover { background: rgba(0,0,0,0.28); }
-        .video-play:focus-visible { outline: 3px solid #FFD700; outline-offset: -3px; }
-        .video-play svg { width: 84px; height: 60px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
-        .video-play-fond { fill: #1f1f1f; fill-opacity: 0.82; transition: fill-opacity 0.2s; }
-        .video-play:hover .video-play-fond { fill: #0056b3; fill-opacity: 0.95; }
-        .video-play-fleche { fill: #fff; }
-        /* Une fois lancée, la vidéo garde ses commandes et le bouton s'efface. */
-        .video-cadre.est-lancee .video-play { display: none; }
-        .video-cartes figcaption { margin-top: 12px; color: #444; line-height: 1.6;
-                                   font-size: 0.98rem; }
-        .video-duree { color: #777; white-space: nowrap; }
-        .video-duree::before { content: '— '; }
+        /* --- Le film des cartes anciennes --------------------------------
+           La miniature est la video elle-meme, qui montre son affiche tant
+           qu'on ne la lance pas. Elle prend donc les memes dimensions et le
+           meme habillage que les miniatures de cartes, a la pastille pres. */
+        .map-thumb--video button { position: relative; cursor: pointer; }
+        .map-thumb--video video { width: 100%; height: auto; display: block;
+                                  border-radius: 10px; background: #111;
+                                  box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+        .video-badge { position: absolute; inset: 0; display: flex;
+                       align-items: center; justify-content: center;
+                       pointer-events: none; }
+        .video-badge svg { width: 54px; height: 38px;
+                           filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
+        .video-badge-fond { fill: #1f1f1f; fill-opacity: 0.8; transition: fill 0.2s, fill-opacity 0.2s; }
+        .map-thumb--video button:hover .video-badge-fond { fill: #0056b3; fill-opacity: 0.95; }
+        .video-badge-fleche { fill: #fff; }
 
         footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
 
@@ -129,27 +122,31 @@
         <section class="content-section">
             <h1>Nautical charts <a href="resources.html"><img src="img/up-arrow.svg" alt="Back to Resources page"></a></h1>
 
-            <!-- Video d'ouverture : la cote australienne telle que les cartes
-                 l'ont montree de 1508 a 1814. Elle ne se charge pas d'elle-meme :
-                 l'affiche tient lieu d'apercu, et rien ne part avant le clic. -->
-            <figure class="video-cartes">
-                <div class="video-cadre">
-                    <video id="video-cartes-en" class="video-carte"
-                           poster="img/video-cartes-australie-poster.jpg"
-                           preload="none" playsinline
-                           src="video/cartes-australie-1508-1814-720p.mp4"></video>
-                    <button type="button" class="video-play" aria-label="Play the film full screen">
-                        <svg viewBox="0 0 68 48" aria-hidden="true" focusable="false">
-                            <path class="video-play-fond" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/>
-                            <path class="video-play-fleche" d="M45 24 27 14v20z"/>
-                        </svg>
-                    </button>
-                </div>
-                <figcaption><strong>Australia takes shape on the charts</strong> — twenty-eight maps, from 1508 to 1814, in the order they were drawn: the continent appears in fragments, distorts, is corrected, and at last closes upon itself under Flinders's hand. All are in the public domain. <span class="video-duree">2 min 34 s</span></figcaption>
-            </figure>
 
 
             <div class="entry">
+                <!-- Le film des cartes anciennes, presente comme les cartes qui
+                     suivent : meme bouton, meme miniature de 250 px. La
+                     miniature est la video elle-meme, montrant son affiche ;
+                     rien ne se charge avant le clic. -->
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-video="video-cartes-en">Australia takes shape on the charts</button></p>
+                    <div class="map-thumb map-thumb--video">
+                        <button type="button" data-video="video-cartes-en" aria-label="Play the film full screen">
+                            <video id="video-cartes-en" poster="img/video-cartes-australie-poster.jpg"
+                                   preload="none" playsinline
+                                   src="video/cartes-australie-1508-1814-720p.mp4"></video>
+                            <span class="video-badge" aria-hidden="true">
+                                <svg viewBox="0 0 68 48" focusable="false">
+                                    <path class="video-badge-fond" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/>
+                                    <path class="video-badge-fleche" d="M45 24 27 14v20z"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <p class="entry-description">Twenty-eight maps, from 1508 to 1814, in the order they were drawn. The continent appears in fragments, is distorted by the cartographers of Dieppe, corrected by successive Dutch landfalls, and at last closes upon itself under Flinders's hand. All these plates are in the public domain. <em>Two minutes thirty-four.</em></p>
+                </div>
+
                 <div class="map-block">
                     <p><button class="entry-link" type="button" data-image="img/carte-de-baudin.jpg">Baudin's Map</button></p>
                     <div class="map-thumb">
@@ -202,27 +199,31 @@
         <section class="content-section">
             <h1>Cartes marines <a href="resources.html"><img src="img/up-arrow.svg" alt="Retour à la page Ressources"></a></h1>
 
-            <!-- Video d'ouverture : la cote australienne telle que les cartes
-                 l'ont montree de 1508 a 1814. Elle ne se charge pas d'elle-meme :
-                 l'affiche tient lieu d'apercu, et rien ne part avant le clic. -->
-            <figure class="video-cartes">
-                <div class="video-cadre">
-                    <video id="video-cartes-fr" class="video-carte"
-                           poster="img/video-cartes-australie-poster.jpg"
-                           preload="none" playsinline
-                           src="video/cartes-australie-1508-1814-720p.mp4"></video>
-                    <button type="button" class="video-play" aria-label="Lire la vidéo en plein écran">
-                        <svg viewBox="0 0 68 48" aria-hidden="true" focusable="false">
-                            <path class="video-play-fond" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/>
-                            <path class="video-play-fleche" d="M45 24 27 14v20z"/>
-                        </svg>
-                    </button>
-                </div>
-                <figcaption><strong>Naissance de l’Australie sur les cartes</strong> — vingt-huit cartes, de 1508 à 1814, dans l’ordre où elles furent dressées : le continent y apparaît par fragments, se déforme, se corrige, puis se referme sur lui-même sous la plume de Flinders. Toutes sont dans le domaine public. <span class="video-duree">2 min 34 s</span></figcaption>
-            </figure>
 
 
             <div class="entry">
+                <!-- Le film des cartes anciennes, presente comme les cartes qui
+                     suivent : meme bouton, meme miniature de 250 px. La
+                     miniature est la video elle-meme, montrant son affiche ;
+                     rien ne se charge avant le clic. -->
+                <div class="map-block">
+                    <p><button class="entry-link" type="button" data-video="video-cartes-fr">Naissance de l’Australie sur les cartes</button></p>
+                    <div class="map-thumb map-thumb--video">
+                        <button type="button" data-video="video-cartes-fr" aria-label="Lire le film en plein écran">
+                            <video id="video-cartes-fr" poster="img/video-cartes-australie-poster.jpg"
+                                   preload="none" playsinline
+                                   src="video/cartes-australie-1508-1814-720p.mp4"></video>
+                            <span class="video-badge" aria-hidden="true">
+                                <svg viewBox="0 0 68 48" focusable="false">
+                                    <path class="video-badge-fond" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/>
+                                    <path class="video-badge-fleche" d="M45 24 27 14v20z"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <p class="entry-description">Vingt-huit cartes, de 1508 à 1814, dans l’ordre où elles furent dressées. Le continent y apparaît par fragments, se déforme sous la plume des cartographes de Dieppe, se corrige au fil des reconnaissances hollandaises, puis se referme enfin sur lui-même chez Flinders. Toutes ces planches sont dans le domaine public. <em>Deux minutes trente-quatre.</em></p>
+                </div>
+
                 <div class="map-block">
                     <p><button class="entry-link" type="button" data-image="img/carte-de-baudin.jpg">Carte de Baudin</button></p>
                     <div class="map-thumb">
@@ -287,13 +288,11 @@
         // et certains le bloquent hors d'un geste — on joue en place plutôt que
         // de ne rien faire.
         (() => {
-            for (const cadre of document.querySelectorAll('.video-cadre')) {
-                const video = cadre.querySelector('video');
-                const bouton = cadre.querySelector('.video-play');
-                if (!video || !bouton) continue;
+            for (const bouton of document.querySelectorAll('[data-video]')) {
+                const video = document.getElementById(bouton.dataset.video);
+                if (!video) continue;
 
                 bouton.addEventListener('click', async () => {
-                    cadre.classList.add('est-lancee');
                     video.controls = true;
                     const pleinEcran = video.requestFullscreen
                         || video.webkitRequestFullscreen
@@ -313,11 +312,10 @@
                     }
                 });
 
-                // Sortie du plein écran, ou fin du film : on rend l'affiche.
+                // Fin du film : la miniature retrouve son affiche et sa pastille.
                 video.addEventListener('ended', () => {
                     video.controls = false;
                     video.currentTime = 0;
-                    cadre.classList.remove('est-lancee');
                 });
             }
         })();
