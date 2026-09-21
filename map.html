@@ -372,13 +372,187 @@
             border-radius: 4px;
             padding: 2px 4px;
         }
+        /* La ligne de la date reprend le decoupage de celle du dessous : la
+           largeur de la reglette, puis celle de la colonne des boutons. La date
+           se centre ainsi sur la reglette, et l'icone du calendrier tombe juste
+           au-dessus du bouton de lecture. */
+        .timeline-date-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .timeline-date-zone {
+            position: relative;
+            width: 384px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Largeur de deux boutons et de leur ecart : la colonne de droite. */
+        .timeline-cal-zone {
+            width: 52px;
+            display: flex;
+            justify-content: flex-end;
+        }
         .timeline-date {
             text-align: center;
             font-weight: 700;
             font-size: 13px;
-            margin-bottom: 4px;
             white-space: nowrap;
         }
+        /* Le nom de l'expedition que la reglette suit. Il se tient au bout
+           gauche de la ligne, devant la date. Tant qu'une seule expedition est
+           affichee il n'y a rien a choisir : le nom reste, sans le chevron. */
+        .timeline-exped {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 130px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 1px 5px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background: none;
+            font-family: inherit;
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.55);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .timeline-exped:not(:disabled) {
+            color: #0b63d1;
+            border-color: rgba(11, 99, 209, 0.35);
+            background: rgba(11, 99, 209, 0.07);
+            cursor: pointer;
+        }
+        .timeline-exped:not(:disabled):hover {
+            background: rgba(11, 99, 209, 0.16);
+        }
+        .timeline-exped:focus-visible { outline: 2px solid #0b63d1; outline-offset: 1px; }
+        /* Le chevron de bascule ne parait que lorsqu'il y a deux expeditions
+           a l'ecran, donc un choix a faire. */
+        .timeline-exped-swap { font-size: 12px; line-height: 1; }
+        .timeline-exped:disabled .timeline-exped-swap { display: none; }
+
+        /* Icone calendrier : bleue comme tout ce qui se prend a la souris. Elle
+           occupe la place d'un bouton, au-dessus de celui de lecture : sa place
+           ne remue pas au gre de la longueur de la date affichee. */
+        .timeline-cal-btn {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: #0b63d1;
+            cursor: pointer;
+            border-radius: 3px;
+            line-height: 0;
+        }
+        .timeline-cal-btn:hover { color: #08408c; }
+        .timeline-cal-btn:focus-visible { outline: 2px solid #0b63d1; outline-offset: 1px; }
+        .timeline-cal-btn svg { width: 15px; height: 15px; display: block; }
+
+        /* Le calendrier de saisie. Il flotte sous la date, cale sur son bord
+           droit pour ne jamais deborder du panneau vers les boutons de zoom. */
+        .timeline-calendar {
+            position: absolute;
+            top: calc(100% + 5px);
+            right: 0;
+            z-index: 1200;
+            width: 224px;
+            box-sizing: border-box;
+            padding: 6px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            cursor: default;
+        }
+        .timeline-calendar[hidden] { display: none; }
+        .cal-head {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 5px;
+        }
+        .cal-nav {
+            flex: 0 0 auto;
+            width: 20px;
+            height: 22px;
+            padding: 0;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            background: #fff;
+            color: #0b63d1;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .cal-nav:hover:not(:disabled) { background: rgba(11, 99, 209, 0.10); }
+        .cal-nav:disabled { color: rgba(0, 0, 0, 0.25); cursor: default; }
+        .cal-head select {
+            flex: 1 1 auto;
+            min-width: 0;
+            font-family: inherit;
+            font-size: 12px;
+            color: #222;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            padding: 2px 3px;
+        }
+        .cal-head #cal-annee { flex: 0 0 62px; }
+        .cal-dows, .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+        }
+        .cal-dow {
+            text-align: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.5);
+            padding-bottom: 2px;
+        }
+        .cal-jour {
+            position: relative;
+            height: 24px;
+            padding: 0;
+            border: 0;
+            border-radius: 4px;
+            background: none;
+            font-family: inherit;
+            font-size: 11px;
+            color: #222;
+            cursor: pointer;
+        }
+        .cal-jour:hover:not(:disabled) { background: rgba(11, 99, 209, 0.12); }
+        /* Hors de la periode couverte par l'expedition : rien a y voir. */
+        .cal-jour:disabled { color: rgba(0, 0, 0, 0.22); cursor: default; }
+        .cal-jour.is-vide { visibility: hidden; }
+        .cal-jour.is-choisi { background: #0b63d1; color: #fff; font-weight: 700; }
+        /* Pastille sous les jours ou un navire a laisse un releve. */
+        .cal-jour.a-releve::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 2px;
+            width: 3px;
+            height: 3px;
+            margin-left: -1.5px;
+            border-radius: 50%;
+            background: #0b63d1;
+        }
+        .cal-jour.is-choisi.a-releve::after { background: #fff; }
         .timeline-row { display: flex; align-items: flex-start; gap: 8px; }
         /* Les crochets se placent en pourcentage de cette boite, comme les
            graduations : pas de marge interieure, sans quoi les deux reperes se
@@ -1596,7 +1770,44 @@ gtag('config', 'G-LCWV2EVPVQ');
          remarquables. Le second remonte de lui-meme quand le premier s'efface. -->
     <div class="panneaux-droite" id="panneaux-droite">
     <div class="timeline-panel" id="timeline-panel" hidden aria-label="Curseur temporel">
-        <div class="timeline-date" id="timeline-date">&mdash;</div>
+        <!-- L'expedition suivie, la date affichee, et au bout de la ligne
+             l'icone qui ouvre le calendrier de saisie. Celui-ci ne propose que
+             les jours de l'expedition. -->
+        <div class="timeline-date-row">
+          <div class="timeline-date-zone">
+            <button type="button" class="timeline-exped" id="timeline-exped" disabled>
+                <span id="timeline-exped-nom">&mdash;</span>
+                <span class="timeline-exped-swap" aria-hidden="true">&#8646;</span>
+            </button>
+            <div class="timeline-date" id="timeline-date">&mdash;</div>
+          </div>
+          <div class="timeline-cal-zone">
+            <button type="button" class="timeline-cal-btn" id="timeline-cal-btn"
+                    title="Choisir une date" aria-label="Choisir une date"
+                    aria-haspopup="dialog" aria-expanded="false">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                     stroke-width="1.4" aria-hidden="true">
+                    <rect x="1.7" y="3" width="12.6" height="11.3" rx="1.6"/>
+                    <path d="M1.7 6.4h12.6M5.2 1.7v2.6M10.8 1.7v2.6"/>
+                    <rect x="4.2" y="8.6" width="2.2" height="2.2" rx="0.5"
+                          fill="currentColor" stroke="none"/>
+                </svg>
+            </button>
+            <div class="timeline-calendar" id="timeline-calendar" hidden
+                 role="dialog" aria-label="Choisir une date">
+                <div class="cal-head">
+                    <button type="button" class="cal-nav" id="cal-prev"
+                            title="Mois précédent" aria-label="Mois précédent">&lsaquo;</button>
+                    <select id="cal-mois" aria-label="Mois"></select>
+                    <select id="cal-annee" aria-label="Année"></select>
+                    <button type="button" class="cal-nav" id="cal-next"
+                            title="Mois suivant" aria-label="Mois suivant">&rsaquo;</button>
+                </div>
+                <div class="cal-dows" id="cal-dows" aria-hidden="true"></div>
+                <div class="cal-grid" id="cal-grid"></div>
+            </div>
+          </div>
+        </div>
         <div class="timeline-row">
             <div class="timeline-ruler">
                 <div class="timeline-hors" id="timeline-hors-avant"></div>
@@ -4219,6 +4430,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                 input.addEventListener('change', () => {
                     parcoursShipWanted[key][ship] = input.checked;
                     updateParcoursVisibility(key);
+                    // L'etendue de la reglette suit les batiments affiches.
+                    timelineSynchronise();
                 });
                 const swatch = document.createElement('span');
                 swatch.className = 'ship-swatch';
@@ -5450,15 +5663,24 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const timelineActive = () => timelineKey !== null;
 
+        // La reglette ne couvre que ce qui est a l'ecran : decocher un batiment
+        // resserre ses bornes sur ceux qui restent. Sans quoi Flinders seul
+        // ferait partir le curseur du depart de Baudin, neuf mois plus tot.
         const timelineBornes = (key) => {
-            let min = Infinity, max = -Infinity;
-            Object.values(parcoursTimeline[key] || {}).forEach((serie) => {
-                serie.forEach((p) => {
-                    if (p.t < min) min = p.t;
-                    if (p.t > max) max = p.t;
+            const balaie = (filtre) => {
+                let min = Infinity, max = -Infinity;
+                Object.entries(parcoursTimeline[key] || {}).forEach(([origine, serie]) => {
+                    if (filtre && parcoursShipWanted[key]?.[origine] === false) return;
+                    serie.forEach((p) => {
+                        if (p.t < min) min = p.t;
+                        if (p.t > max) max = p.t;
+                    });
                 });
-            });
-            return Number.isFinite(min) ? { min, max } : null;
+                return Number.isFinite(min) ? { min, max } : null;
+            };
+            // Toutes les cases decochees : on garde l'etendue entiere plutot que
+            // de reduire la reglette a rien.
+            return balaie(true) || balaie(false);
         };
 
         // Position d'un groupe a un instant donne. Interpolation lineaire a
@@ -5733,7 +5955,10 @@ gtag('config', 'G-LCWV2EVPVQ');
         // de la route sur lesquels les fleches se calent.
         const timelineConstruitReperes = () => {
             const dates = new Set();
-            Object.values(parcoursTimeline[timelineKey] || {}).forEach((serie) => {
+            // Comme les bornes, les reperes ne retiennent que les batiments
+            // coches : les fleches ne doivent pas s'arreter sur un point absent.
+            Object.entries(parcoursTimeline[timelineKey] || {}).forEach(([origine, serie]) => {
+                if (parcoursShipWanted[timelineKey]?.[origine] === false) return;
                 serie.forEach((p) => dates.add(p.t));
             });
             timelineReperes = Array.from(dates).sort((a, b) => a - b);
@@ -5746,19 +5971,50 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineNext.disabled = !timelineReperes.some((d) => d > t + 1);
         };
 
-        // Ouvre la fiche du point atteint, en preferant un navire effectivement
-        // affiche : inutile de deployer la fiche d'un batiment decoche.
-        const timelineOuvreFiche = (t) => {
+        // Plusieurs batiments peuvent avoir un releve le meme jour : une seule
+        // fiche s'ouvre, et c'est celle du navire le plus haut dans cet ordre.
+        // Les coques de Baudin d'abord, celles de Flinders ensuite.
+        const TIMELINE_ORDRE_FICHE = [
+            'le Géographe', 'le Naturaliste', 'le Casuarina',
+            "l'Investigator", 'le Porpoise', 'le Cumberland',
+            'la Recherche', 'les corvettes'
+        ];
+        const timelineRangFiche = (m) => {
+            const coques = m.__coques || [m.__parcoursGroupe];
+            let rang = TIMELINE_ORDRE_FICHE.length;
+            coques.forEach((c) => {
+                const i = TIMELINE_ORDRE_FICHE.indexOf(c);
+                if (i !== -1 && i < rang) rang = i;
+            });
+            return rang;
+        };
+
+        // Le marqueur dont la fiche s'ouvrirait a cette date, ou null. On ecarte
+        // les batiments decoches et les points que les crochets ont retires de
+        // la carte : deployer la fiche d'un point absent n'aurait pas de sens.
+        const timelineMarqueurFiche = (t) => {
             const liste = parcoursMarqueurs[timelineKey]?.get(t);
-            if (!liste || !liste.length) return;
+            if (!liste || !liste.length) return null;
+            const fenetre = parcoursFenetre[timelineKey];
             const montrable = (m) => {
                 const coques = m.__coques || [m.__parcoursGroupe];
-                return coques.some((c) => parcoursShipWanted[timelineKey]?.[c] !== false);
+                if (!coques.some((c) => parcoursShipWanted[timelineKey]?.[c] !== false)) {
+                    return false;
+                }
+                return !fenetre || !Number.isFinite(m.__t)
+                    || (m.__t >= fenetre[0] && m.__t <= fenetre[1]);
             };
-            // Le releve prime sur le detour qui partage sa date.
-            const visible = liste.find((m) => montrable(m) && !m.__contournement)
-                || liste.find(montrable);
-            (visible || liste[0]).openPopup();
+            // Le releve prime sur le detour qui partage sa date ; a egalite,
+            // l'ordre des navires tranche.
+            const candidats = liste.filter(montrable).sort((a, b) =>
+                (a.__contournement ? 1 : 0) - (b.__contournement ? 1 : 0)
+                || timelineRangFiche(a) - timelineRangFiche(b));
+            return candidats[0] || null;
+        };
+
+        const timelineOuvreFiche = (t) => {
+            const marqueur = timelineMarqueurFiche(t);
+            if (marqueur) marqueur.openPopup();
         };
 
         const timelinePas = (sens) => {
@@ -5779,11 +6035,73 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineOuvreFiche(cible);
         };
 
+        // ---------------------------------------------------------------
+        //  L'expedition que la reglette suit. Les deux voyages sont separes de
+        //  sept ans : une seule reglette ne peut pas les couvrir tous deux sans
+        //  se vider en son milieu. On les affiche donc ensemble sur la carte,
+        //  mais le curseur n'en suit qu'un, nomme ici, et que l'on change d'un
+        //  clic quand les deux sont a l'ecran.
+        // ---------------------------------------------------------------
+        const timelineExped = document.getElementById('timeline-exped');
+        const timelineExpedNom = document.getElementById('timeline-exped-nom');
+        // Case de route -> nom porte par le selecteur. Baudin et Flinders
+        // commandent la meme couche : leurs deux noms s'y joignent.
+        const TIMELINE_NOMS_ROUTE = {
+            'toggle-baudin-parcours': 'Baudin',
+            'toggle-flinders-parcours': 'Flinders',
+            'toggle-entre-parcours': "d'Entrecasteaux"
+        };
+        // Nom de repli, pour une couche dont la case commande tout et qui n'a
+        // donc pas de volet nomme.
+        const TIMELINE_NOMS_COUCHE = { baudin: 'Baudin', entre: "d'Entrecasteaux" };
+
+        let timelineChoix = null;
+
+        const timelineCouchesAffichees = () =>
+            ['baudin', 'entre'].filter((k) => parcoursWanted[k]);
+
+        // Le choix tient tant que la couche retenue reste a l'ecran : cocher une
+        // seconde expedition ne doit pas deplacer le curseur sous les yeux.
+        const timelineExpedRetenue = () => {
+            const dispo = timelineCouchesAffichees();
+            if (!dispo.length) return null;
+            if (!timelineChoix || !dispo.includes(timelineChoix)) timelineChoix = dispo[0];
+            return timelineChoix;
+        };
+
+        const timelineNomCouche = (key) => {
+            const noms = voletsDe(key)
+                .map((v) => (v.route && document.getElementById(v.route)?.checked)
+                    ? TIMELINE_NOMS_ROUTE[v.route] : null)
+                .filter(Boolean);
+            // Une expedition dont la case commande tout n'a pas de volet nomme.
+            return noms.join(' & ') || TIMELINE_NOMS_COUCHE[key] || key;
+        };
+
+        const timelineMajExped = () => {
+            if (!timelineActive()) return;
+            timelineExpedNom.textContent = timelineNomCouche(timelineKey);
+            const choix = timelineCouchesAffichees().length > 1;
+            timelineExped.disabled = !choix;
+            timelineExped.title = choix
+                ? 'Changer l’expédition que suit le curseur'
+                : 'Expédition que suit le curseur';
+        };
+
+        timelineExped.addEventListener('click', () => {
+            const dispo = timelineCouchesAffichees();
+            if (dispo.length < 2) return;
+            timelineChoix = dispo.find((k) => k !== timelineChoix) || dispo[0];
+            map.closePopup();
+            timelineSynchronise();
+        });
+
         const timelineSynchronise = () => {
-            const key = parcoursWanted.baudin ? 'baudin' : (parcoursWanted.entre ? 'entre' : null);
+            const key = timelineExpedRetenue();
             if (key === null) {
                 timelineArret();
                 timelineKey = null;
+                calFerme();
                 timelinePanel.hidden = true;
                 map.removeLayer(timelineBadges);
                 return;
@@ -5791,6 +6109,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             const bornes = timelineBornes(key);
             if (!bornes) return;                 // parcours pas encore charge
             const changement = key !== timelineKey;
+            // L'instant ou l'on se trouve, a garder sous les yeux si les bornes
+            // bougent : le curseur se compte en jours depuis le debut, et ce
+            // debut vient de se deplacer.
+            const instant = timelineActive()
+                ? timelineDebut + timelineJour * JOUR_MS : null;
+            const deplacement = timelineDebut !== bornes.min || timelineFin !== bornes.max;
             timelineKey = key;
             timelineDebut = bornes.min;
             timelineFin = bornes.max;
@@ -5798,20 +6122,32 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineSlider.max = String(totalJours);
             if (changement) {
                 timelineArret();
+                // Les bornes ne sont plus les memes : la grille ouverte ment.
+                calFerme();
                 timelineJour = 0;
                 timelineSlider.value = '0';
                 timelineConstruitRegle();
                 timelineRouvreCrochets();
-            } else if (timelineTranche) {
-                // Les bornes ont pu bouger avec le chargement d'un navire :
-                // on ramene la tranche dans la nouvelle etendue.
-                timelineTranche = [
-                    Math.max(timelineDebut, Math.min(timelineTranche[0], timelineFin)),
-                    Math.min(timelineFin, Math.max(timelineTranche[1], timelineDebut))
-                ];
-            } else {
+            } else if (deplacement) {
+                // Meme expedition, mais une case de navire a change l'etendue :
+                // on reconstruit les graduations et on rattrape le curseur.
+                calFerme();
+                const jour = Math.round((instant - timelineDebut) / JOUR_MS);
+                timelineJour = Math.min(Math.max(jour, 0), totalJours);
+                timelineSlider.value = String(timelineJour);
+                timelineConstruitRegle();
+                if (timelineTranche) {
+                    timelineTranche = [
+                        Math.max(timelineDebut, Math.min(timelineTranche[0], timelineFin)),
+                        Math.min(timelineFin, Math.max(timelineTranche[1], timelineDebut))
+                    ];
+                } else {
+                    timelineRouvreCrochets();
+                }
+            } else if (!timelineTranche) {
                 timelineRouvreCrochets();
             }
+            timelineMajExped();
             timelineAppliqueTranche();
             timelineConstruitReperes();
             timelinePanel.hidden = false;
@@ -5820,6 +6156,235 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineDessineBadges();
             timelineMajBoutonsPas();
         };
+
+        // ---------------------------------------------------------------
+        //  Calendrier de saisie : l'icone a droite de la date ouvre une
+        //  grille mensuelle. Seuls les jours compris entre le premier et le
+        //  dernier releve de l'expedition affichee s'y prennent ; une pastille
+        //  signale ceux ou un navire a laisse un point.
+        // ---------------------------------------------------------------
+        const calBouton = document.getElementById('timeline-cal-btn');
+        const calPanneau = document.getElementById('timeline-calendar');
+        const calMoisSelect = document.getElementById('cal-mois');
+        const calAnneeSelect = document.getElementById('cal-annee');
+        const calPrev = document.getElementById('cal-prev');
+        const calNext = document.getElementById('cal-next');
+        const calDows = document.getElementById('cal-dows');
+        const calGrille = document.getElementById('cal-grid');
+        // Mois actuellement feuillete, independant de la date retenue.
+        let calAnneeVue = null;
+        let calMoisVue = null;
+
+        const CAL_JOURS = {
+            fr: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
+            en: ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+        };
+        const CAL_JOURS_LONGS = {
+            fr: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
+            en: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        };
+
+        // Minuit UTC du jour d'un horodatage : la reglette et les releves se
+        // comptent en jours pleins, les comparaisons doivent en faire autant.
+        const calJourDe = (ms) => {
+            const d = new Date(ms);
+            return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+        };
+        const calOuvert = () => !calPanneau.hidden;
+
+        const calRemplitAnnees = () => {
+            const a1 = new Date(timelineDebut).getUTCFullYear();
+            const a2 = new Date(timelineFin).getUTCFullYear();
+            calAnneeSelect.textContent = '';
+            for (let a = a1; a <= a2; a += 1) {
+                const opt = document.createElement('option');
+                opt.value = String(a);
+                opt.textContent = String(a);
+                calAnneeSelect.appendChild(opt);
+            }
+        };
+
+        const calRemplitMois = (lang) => {
+            const noms = parcoursMonthNames[lang] || parcoursMonthNames.en;
+            const borneMin = calJourDe(timelineDebut);
+            const borneMax = calJourDe(timelineFin);
+            calMoisSelect.textContent = '';
+            noms.forEach((nom, i) => {
+                const opt = document.createElement('option');
+                opt.value = String(i);
+                opt.textContent = nom;
+                // Un mois entierement hors du voyage ne se propose pas.
+                const finMois = Date.UTC(calAnneeVue, i + 1, 0);
+                const debutMois = Date.UTC(calAnneeVue, i, 1);
+                opt.disabled = finMois < borneMin || debutMois > borneMax;
+                calMoisSelect.appendChild(opt);
+            });
+        };
+
+        // Jours ou un navire affiche a un releve, pour la pastille. Un point
+        // dont la fiche ne s'ouvrirait pas -- batiment decoche, ou ecarte par
+        // les crochets -- ne se signale pas.
+        const calJoursAvecReleve = () => {
+            const set = new Set();
+            timelineReperes.forEach((t) => {
+                if (timelineMarqueurFiche(t)) set.add(calJourDe(t));
+            });
+            return set;
+        };
+
+        const calRend = () => {
+            if (!timelineActive() || calAnneeVue === null) return;
+            const lang = getCurrentLanguage();
+            const courts = CAL_JOURS[lang] || CAL_JOURS.en;
+            const longs = CAL_JOURS_LONGS[lang] || CAL_JOURS_LONGS.en;
+            const borneMin = calJourDe(timelineDebut);
+            const borneMax = calJourDe(timelineFin);
+            const choisi = calJourDe(timelineDebut + timelineJour * JOUR_MS);
+            const releves = calJoursAvecReleve();
+
+            calRemplitMois(lang);
+            calMoisSelect.value = String(calMoisVue);
+            calAnneeSelect.value = String(calAnneeVue);
+
+            calDows.textContent = '';
+            courts.forEach((j, i) => {
+                const el = document.createElement('div');
+                el.className = 'cal-dow';
+                el.textContent = j;
+                el.title = longs[i];
+                calDows.appendChild(el);
+            });
+
+            calGrille.textContent = '';
+            const premier = Date.UTC(calAnneeVue, calMoisVue, 1);
+            // getUTCDay() compte a partir du dimanche ; la grille part du lundi.
+            const decalage = (new Date(premier).getUTCDay() + 6) % 7;
+            const nbJours = new Date(Date.UTC(calAnneeVue, calMoisVue + 1, 0)).getUTCDate();
+            for (let i = 0; i < decalage; i += 1) {
+                const vide = document.createElement('button');
+                vide.type = 'button';
+                vide.className = 'cal-jour is-vide';
+                vide.disabled = true;
+                vide.tabIndex = -1;
+                calGrille.appendChild(vide);
+            }
+            for (let j = 1; j <= nbJours; j += 1) {
+                const t = Date.UTC(calAnneeVue, calMoisVue, j);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'cal-jour';
+                btn.textContent = String(j);
+                if (t < borneMin || t > borneMax) {
+                    btn.disabled = true;
+                } else {
+                    if (releves.has(t)) btn.classList.add('a-releve');
+                    if (t === choisi) {
+                        btn.classList.add('is-choisi');
+                        btn.setAttribute('aria-current', 'date');
+                    }
+                    btn.title = formatParcoursDateLong(
+                        new Date(t).toISOString().slice(0, 10), lang) || '';
+                    btn.addEventListener('click', () => calChoisit(t));
+                }
+                calGrille.appendChild(btn);
+            }
+
+            // Un mois de recul ou d'avance reste-t-il dans le voyage ?
+            calPrev.disabled = Date.UTC(calAnneeVue, calMoisVue, 0) < borneMin;
+            calNext.disabled = Date.UTC(calAnneeVue, calMoisVue + 1, 1) > borneMax;
+        };
+
+        // La date saisie doit toujours aboutir a une fiche. Si le jour demande
+        // ne porte pas de releve ouvrable -- jour de haute mer sans position
+        // consignee, ou point d'un batiment decoche --, on se reporte sur le
+        // releve le plus proche, avant ou apres, et le curseur l'y suit.
+        const calRepereOuvrable = (t) => {
+            let meilleur = null;
+            let ecart = Infinity;
+            timelineReperes.forEach((d) => {
+                const e = Math.abs(calJourDe(d) - t);
+                // A egalite d'ecart, le repere anterieur l'emporte.
+                if (e < ecart && timelineMarqueurFiche(d)) {
+                    ecart = e;
+                    meilleur = d;
+                }
+            });
+            return meilleur;
+        };
+
+        const calChoisit = (t) => {
+            calFerme();
+            timelineStopAnim();
+            const repere = calRepereOuvrable(t);
+            if (repere === null) {
+                timelineAllerA(t);
+                return;
+            }
+            timelineAllerA(repere);
+            timelineOuvreFiche(repere);
+        };
+
+        function calFerme() {
+            if (!calOuvert()) return;
+            calPanneau.hidden = true;
+            calBouton.setAttribute('aria-expanded', 'false');
+        }
+
+        const calOuvre = () => {
+            if (!timelineActive()) return;
+            const courant = new Date(calJourDe(timelineDebut + timelineJour * JOUR_MS));
+            calAnneeVue = courant.getUTCFullYear();
+            calMoisVue = courant.getUTCMonth();
+            calRemplitAnnees();
+            calRend();
+            calPanneau.hidden = false;
+            calBouton.setAttribute('aria-expanded', 'true');
+        };
+
+        // Feuillete d'un mois, en restant dans l'etendue du voyage.
+        const calBouge = (pas) => {
+            const t = Date.UTC(calAnneeVue, calMoisVue + pas, 1);
+            const d = new Date(t);
+            calAnneeVue = d.getUTCFullYear();
+            calMoisVue = d.getUTCMonth();
+            calRemplitAnnees();
+            calRend();
+        };
+
+        calBouton.addEventListener('click', () => {
+            if (calOuvert()) calFerme(); else calOuvre();
+        });
+        calPrev.addEventListener('click', () => calBouge(-1));
+        calNext.addEventListener('click', () => calBouge(1));
+        calMoisSelect.addEventListener('change', () => {
+            calMoisVue = Number(calMoisSelect.value);
+            calRend();
+        });
+        calAnneeSelect.addEventListener('change', () => {
+            calAnneeVue = Number(calAnneeSelect.value);
+            // L'annee changee, le mois affiche peut sortir du voyage : on le
+            // ramene alors sur la borne la plus proche.
+            const borneMin = calJourDe(timelineDebut);
+            const borneMax = calJourDe(timelineFin);
+            if (Date.UTC(calAnneeVue, calMoisVue + 1, 0) < borneMin) {
+                calMoisVue = new Date(borneMin).getUTCMonth();
+            } else if (Date.UTC(calAnneeVue, calMoisVue, 1) > borneMax) {
+                calMoisVue = new Date(borneMax).getUTCMonth();
+            }
+            calRend();
+        });
+        // Un clic ailleurs ou la touche d'echappement referment la grille.
+        document.addEventListener('pointerdown', (e) => {
+            if (!calOuvert()) return;
+            if (!calPanneau.contains(e.target) && !calBouton.contains(e.target)) calFerme();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && calOuvert()) {
+                calFerme();
+                calBouton.focus();
+            }
+        });
+        document.addEventListener('languageChanged', () => { if (calOuvert()) calRend(); });
 
         timelineSlider.addEventListener('input', () => {
             remarquablesRaz();
