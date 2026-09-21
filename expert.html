@@ -1341,6 +1341,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         // temps a construire. On ecrit du Markdown, lisible tel quel et
         // reutilisable ailleurs.
         const COMPTEUR_SAUVEGARDE = 'expertNumeroSauvegarde';
+        const SITE_PUBLIC = 'https://www.frenchplacenames.au';
 
         const prochainNomDeFichier = () => {
             let numero = 1;
@@ -1350,7 +1351,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // stockage indisponible : on repart de un
             }
             const jour = new Date().toISOString().slice(0, 10);
-            return `conversation-toponymes-${jour}-${String(numero).padStart(3, '0')}.md`;
+            return `FrenchPlacenames-${jour}-${String(numero).padStart(3, '0')}.html`;
         };
 
         const avanceLeCompteur = () => {
@@ -1362,42 +1363,88 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         };
 
-        const SITE_PUBLIC = 'https://www.frenchplacenames.au';
-
-        // Les liens typés du chatbot n'ont de sens que dans la page. Hors d'elle,
-        // on garde le libellé et l'on rend l'adresse explicite, pour que le
-        // fichier reste utile à qui le lira ailleurs.
-        const enMarkdownPortable = (texte) => texte
-            .replace(/\[([^\]]+)\]\{place:([^}]+)\}/g,
-                     (m, l, v) => `[${l}](${SITE_PUBLIC}/map.html#${encodeURIComponent(v)})`)
-            .replace(/\[([^\]]+)\]\{journal:([^}]+)\}/g,
-                     (m, l, v) => `[${l}](${SITE_PUBLIC}/map.html#${encodeURIComponent(v)})`)
-            .replace(/\[([^\]]+)\]\{person:([^}]+)\}/g,
-                     (m, l, v) => `[${l}](https://${(localStorage.getItem('language') || 'en') === 'fr' ? 'fr' : 'en'}.wikipedia.org/wiki/${v})`)
-            .replace(/\[([^\]]+)\]\{url:([^}]+)\}/g, '[$1]($2)');
-
-        const conversationEnMarkdown = () => {
-            const lang = localStorage.getItem('language') || 'en';
-            const maintenant = new Date();
-            const lignes = [
-                lang === 'fr' ? '# Conversation — Noms français du littoral australien'
-                              : '# Conversation — French place names along the Australian coastline',
-                '',
-                (lang === 'fr' ? '*Enregistrée le* ' : '*Saved on* ')
-                    + maintenant.toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-AU'),
-                '',
-                `<${SITE_PUBLIC}/expert.html>`,
-                '',
-                '---',
-                '',
-            ];
-            for (const entree of chatHistory) {
-                const qui = entree?.role === 'user'
-                    ? (lang === 'fr' ? '## Question' : '## Question')
-                    : (lang === 'fr' ? '## Réponse' : '## Answer');
-                lignes.push(qui, '', enMarkdownPortable(entree?.content || ''), '');
+        // Les renvois du chatbot ne valent que dans la page : un lien de lieu ne
+        // porte qu'un nom, que la page resout en code avant d'ouvrir la carte.
+        // Hors d'ici, il faut une adresse complete. On rejoue donc la resolution
+        // et l'on reecrit chaque ancre ; celles qu'on ne sait pas resoudre
+        // perdent leur lien plutot que de mener nulle part.
+        const rendAbsoluesLesAncres = async (conteneur, texteDeContexte) => {
+            for (const lien of conteneur.querySelectorAll('a[data-journal]')) {
+                const cible = lien.getAttribute('data-journal');
+                lien.setAttribute('href', `${SITE_PUBLIC}/map.html#${encodeURIComponent(cible)}`);
+                lien.removeAttribute('data-journal');
             }
-            return lignes.join('\n');
+            for (const lien of conteneur.querySelectorAll('a[data-place]')) {
+                const nom = lien.getAttribute('data-place');
+                const code = await resolvePlaceToCode(nom, texteDeContexte);
+                if (code) {
+                    lien.setAttribute('href', `${SITE_PUBLIC}/map.html#${code}`);
+                } else {
+                    lien.replaceWith(document.createTextNode(lien.textContent));
+                    continue;
+                }
+                lien.removeAttribute('data-place');
+            }
+            for (const lien of conteneur.querySelectorAll('a[href]')) {
+                lien.setAttribute('target', '_blank');
+                lien.setAttribute('rel', 'noopener noreferrer');
+                lien.removeAttribute('class');
+            }
+        };
+
+        // Un document autonome : peu de gens ouvrent un .md, et ses liens ne se
+        // cliquent pas. Le HTML s'ouvre dans n'importe quel navigateur et mene
+        // au site d'un clic.
+        const conversationEnHtml = async () => {
+            const lang = localStorage.getItem('language') || 'en';
+            const fr = lang === 'fr';
+            const titre = fr ? 'Conversation — Noms français du littoral australien'
+                             : 'Conversation — French place names along the Australian coastline';
+            const quand = new Date().toLocaleString(fr ? 'fr-FR' : 'en-AU');
+
+            const corps = document.createElement('div');
+            for (const entree of chatHistory) {
+                const bloc = document.createElement('div');
+                bloc.className = entree?.role === 'user' ? 'question' : 'reponse';
+                if (entree?.role === 'user') {
+                    bloc.textContent = entree.content || '';
+                } else {
+                    bloc.innerHTML = markdownToHtml(cleanAndFormatContent(entree?.content || ''));
+                    await rendAbsoluesLesAncres(bloc, entree?.content || '');
+                }
+                corps.appendChild(bloc);
+            }
+
+            return `<!DOCTYPE html>
+<html lang="${fr ? 'fr' : 'en'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${escapeHtml(titre)}</title>
+<style>
+  body { max-width: 46rem; margin: 2rem auto; padding: 0 1.2rem;
+         font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         color: #222; }
+  h1 { font-size: 1.5rem; border-bottom: 2px solid #0056b3; padding-bottom: .4rem; }
+  .date { color: #777; font-size: .9rem; margin-bottom: 2rem; }
+  .question { background: #0056b3; color: #fff; padding: .7rem 1.1rem;
+              border-radius: 14px; margin: 1.6rem 0 .8rem; white-space: pre-wrap; }
+  .reponse { background: #fafafa; border: 1px solid #e6e6e6; padding: .9rem 1.1rem;
+             border-radius: 14px; margin-bottom: 1.2rem; }
+  a { color: #0056b3; }
+  footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #ddd;
+           color: #777; font-size: .9rem; }
+</style>
+</head>
+<body>
+<h1>${escapeHtml(titre)}</h1>
+<p class="date">${fr ? 'Enregistrée le' : 'Saved on'} ${escapeHtml(quand)}</p>
+${corps.innerHTML}
+<footer>${fr ? 'Les liens renvoient à la carte du site' : 'Links point back to the site map'} —
+<a href="${SITE_PUBLIC}/expert.html">${SITE_PUBLIC}</a></footer>
+</body>
+</html>
+`;
         };
 
         const sauvegardeLaConversation = async () => {
@@ -1409,7 +1456,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 return;
             }
             const nom = prochainNomDeFichier();
-            const contenu = conversationEnMarkdown();
+            const contenu = await conversationEnHtml();
 
             // Firefox et Safari ne connaissent pas encore le selecteur de fichier ;
             // on retombe alors sur un telechargement ordinaire, qui atterrit dans
@@ -1418,10 +1465,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 try {
                     const fichier = await window.showSaveFilePicker({
                         suggestedName: nom,
-                        types: [{
-                            description: 'Markdown',
-                            accept: { 'text/markdown': ['.md'] },
-                        }],
+                        types: [{ description: 'Page web', accept: { 'text/html': ['.html'] } }],
                     });
                     const flux = await fichier.createWritable();
                     await flux.write(contenu);
@@ -1429,14 +1473,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                     avanceLeCompteur();
                     return;
                 } catch (erreur) {
-                    // L'utilisateur a referme la fenetre : on n'insiste pas.
                     if (erreur?.name === 'AbortError') return;
                     console.warn('Sélecteur de fichier indisponible', erreur);
                 }
             }
 
             const lien = document.createElement('a');
-            const url = URL.createObjectURL(new Blob([contenu], { type: 'text/markdown' }));
+            const url = URL.createObjectURL(new Blob([contenu], { type: 'text/html' }));
             lien.href = url;
             lien.download = nom;
             document.body.appendChild(lien);
