@@ -298,9 +298,16 @@
             z-index: 2;
         }
 
+        .chat-actions {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
         .chat-reset-button {
             display: block;
-            margin: 10px auto 0;
+            margin: 10px 0 0;
             padding: 4px 12px;
             border: none;
             background: none;
@@ -535,8 +542,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                             <!-- Icones injectées via JS -->
                         </button>
                     </form>
-                    <button type="button" class="chat-reset-button" id="reset-button"
-                            data-i18n="expert-reset">Nouvelle conversation</button>
+                    <div class="chat-actions">
+                        <button type="button" class="chat-reset-button" id="save-button"
+                                data-i18n="expert-save">Sauvegarder la conversation</button>
+                        <button type="button" class="chat-reset-button" id="reset-button"
+                                data-i18n="expert-reset">Nouvelle conversation</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -555,6 +566,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
         const resetButton = document.getElementById('reset-button');
+        const saveButton = document.getElementById('save-button');
 
         // La réponse arrive mot à mot, et le fil se recollait en bas à chaque
         // fragment reçu. Celui qui avait commencé à lire voyait sa ligne fuir
@@ -1194,8 +1206,11 @@ gtag('config', 'G-LCWV2EVPVQ');
             safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
             // Italique *texte*
             safe = safe.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            // Titres ### => bleu + gras
-            safe = safe.replace(/^###\s*(.+)$/gm, '<strong style="color: var(--primary-blue);">$1</strong>');
+            // Titres Markdown, de # a ###### => bleu + gras.
+            // Seul ### etait traite : le modele ecrit aussi bien ## ou #, et les
+            // diesons restaient en clair au milieu de la reponse.
+            safe = safe.replace(/^\s{0,3}#{1,6}\s+(.+?)\s*#*\s*$/gm,
+                                '<strong style="color: var(--primary-blue);">$1</strong>');
 
             // Retours à la ligne
             safe = safe.replace(/\n/g, '<br>');
@@ -1317,6 +1332,118 @@ gtag('config', 'G-LCWV2EVPVQ');
             colleLeFilEnBas();
             chatInput.value = '';
             chatInput.focus();
+        };
+
+        // --- Sauvegarde de la conversation ----------------------------------
+        //
+        // Le fil s'efface au bout d'une demi-heure et le bouton de remise a zero
+        // ne previent plus : il faut pouvoir emporter un echange qu'on a mis du
+        // temps a construire. On ecrit du Markdown, lisible tel quel et
+        // reutilisable ailleurs.
+        const COMPTEUR_SAUVEGARDE = 'expertNumeroSauvegarde';
+
+        const prochainNomDeFichier = () => {
+            let numero = 1;
+            try {
+                numero = Math.max(1, parseInt(localStorage.getItem(COMPTEUR_SAUVEGARDE), 10) || 1);
+            } catch {
+                // stockage indisponible : on repart de un
+            }
+            const jour = new Date().toISOString().slice(0, 10);
+            return `conversation-toponymes-${jour}-${String(numero).padStart(3, '0')}.md`;
+        };
+
+        const avanceLeCompteur = () => {
+            try {
+                const numero = parseInt(localStorage.getItem(COMPTEUR_SAUVEGARDE), 10) || 1;
+                localStorage.setItem(COMPTEUR_SAUVEGARDE, String(numero + 1));
+            } catch {
+                // sans compteur, le nom propose restera le meme : sans gravite
+            }
+        };
+
+        const SITE_PUBLIC = 'https://www.frenchplacenames.au';
+
+        // Les liens typés du chatbot n'ont de sens que dans la page. Hors d'elle,
+        // on garde le libellé et l'on rend l'adresse explicite, pour que le
+        // fichier reste utile à qui le lira ailleurs.
+        const enMarkdownPortable = (texte) => texte
+            .replace(/\[([^\]]+)\]\{place:([^}]+)\}/g,
+                     (m, l, v) => `[${l}](${SITE_PUBLIC}/map.html#${encodeURIComponent(v)})`)
+            .replace(/\[([^\]]+)\]\{journal:([^}]+)\}/g,
+                     (m, l, v) => `[${l}](${SITE_PUBLIC}/map.html#${encodeURIComponent(v)})`)
+            .replace(/\[([^\]]+)\]\{person:([^}]+)\}/g,
+                     (m, l, v) => `[${l}](https://${(localStorage.getItem('language') || 'en') === 'fr' ? 'fr' : 'en'}.wikipedia.org/wiki/${v})`)
+            .replace(/\[([^\]]+)\]\{url:([^}]+)\}/g, '[$1]($2)');
+
+        const conversationEnMarkdown = () => {
+            const lang = localStorage.getItem('language') || 'en';
+            const maintenant = new Date();
+            const lignes = [
+                lang === 'fr' ? '# Conversation — Noms français du littoral australien'
+                              : '# Conversation — French place names along the Australian coastline',
+                '',
+                (lang === 'fr' ? '*Enregistrée le* ' : '*Saved on* ')
+                    + maintenant.toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-AU'),
+                '',
+                `<${SITE_PUBLIC}/expert.html>`,
+                '',
+                '---',
+                '',
+            ];
+            for (const entree of chatHistory) {
+                const qui = entree?.role === 'user'
+                    ? (lang === 'fr' ? '## Question' : '## Question')
+                    : (lang === 'fr' ? '## Réponse' : '## Answer');
+                lignes.push(qui, '', enMarkdownPortable(entree?.content || ''), '');
+            }
+            return lignes.join('\n');
+        };
+
+        const sauvegardeLaConversation = async () => {
+            const lang = localStorage.getItem('language') || 'en';
+            if (!chatHistory.length) {
+                showError(lang === 'fr'
+                    ? "Il n'y a rien à sauvegarder pour le moment."
+                    : 'There is nothing to save yet.');
+                return;
+            }
+            const nom = prochainNomDeFichier();
+            const contenu = conversationEnMarkdown();
+
+            // Firefox et Safari ne connaissent pas encore le selecteur de fichier ;
+            // on retombe alors sur un telechargement ordinaire, qui atterrit dans
+            // le dossier habituel sans demander ou.
+            if (window.showSaveFilePicker) {
+                try {
+                    const fichier = await window.showSaveFilePicker({
+                        suggestedName: nom,
+                        types: [{
+                            description: 'Markdown',
+                            accept: { 'text/markdown': ['.md'] },
+                        }],
+                    });
+                    const flux = await fichier.createWritable();
+                    await flux.write(contenu);
+                    await flux.close();
+                    avanceLeCompteur();
+                    return;
+                } catch (erreur) {
+                    // L'utilisateur a referme la fenetre : on n'insiste pas.
+                    if (erreur?.name === 'AbortError') return;
+                    console.warn('Sélecteur de fichier indisponible', erreur);
+                }
+            }
+
+            const lien = document.createElement('a');
+            const url = URL.createObjectURL(new Blob([contenu], { type: 'text/markdown' }));
+            lien.href = url;
+            lien.download = nom;
+            document.body.appendChild(lien);
+            lien.click();
+            document.body.removeChild(lien);
+            URL.revokeObjectURL(url);
+            avanceLeCompteur();
         };
 
         // Signale une reponse tranchee en cours de route. Sans ce mot, une phrase
@@ -1526,16 +1653,8 @@ gtag('config', 'G-LCWV2EVPVQ');
         }
 
         // Gérer la soumission du formulaire
-        // Le bouton demande confirmation : on efface un echange qu'on ne
-        // retrouvera pas, et le geste est a portee du champ de saisie.
-        resetButton?.addEventListener('click', () => {
-            const lang = localStorage.getItem('language') || 'en';
-            const question = lang === 'fr'
-                ? 'Effacer cette conversation et repartir de zéro ?'
-                : 'Clear this conversation and start over?';
-            if (chatHistory.length && !window.confirm(question)) return;
-            remetLaConversationAZero();
-        });
+        resetButton?.addEventListener('click', remetLaConversationAZero);
+        saveButton?.addEventListener('click', sauvegardeLaConversation);
 
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
