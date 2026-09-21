@@ -32,6 +32,83 @@ VOLETS = [('manoeuvre', 'man'), ('hydrographie', 'hyd'), ('vie-bord', 'vie')]
 
 HAUT = {'fr': 'Retour en haut', 'en': 'Back to top'}
 
+CORRESPONDANCES = os.path.join(RACINE, 'docs', 'glossaire-correspondances.md')
+
+# Le tableau des correspondances n'est pas valide : il est porte dans la page
+# pour que la relecture se fasse sur piece, et le dit.
+AVERTISSEMENT = {
+    'fr': "Les renvois vers le glossaire anglais sont une proposition, en cours de "
+          "relecture.",
+    'en': "The cross-references to the French glossary are a proposal, under review.",
+}
+ETIQUETTE = {'fr': 'Anglais', 'en': 'French logbooks'}
+SANS = {'fr': "pas d'équivalent relevé", 'en': 'no counterpart recorded'}
+
+
+def aplatit_apostrophe(texte):
+    return texte.replace('\u2019', "'").strip()
+
+
+def charge_correspondances():
+    """Les rapprochements proposes, tires du tableau de docs/.
+
+    Chaque ligne du tableau porte un signe de certitude, le terme francais, le
+    terme anglais -- ou un tiret quand il n'y en a pas -- et la remarque.
+    """
+    if not os.path.exists(CORRESPONDANCES):
+        return []
+    couples = []
+    for ligne in open(CORRESPONDANCES, encoding='utf-8'):
+        m = re.match(r'^\|\s*([●◐○])\s*\|\s*\*\*(.+?)\*\*\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*$', ligne)
+        if not m:
+            continue
+        signe, fr, en, note = m.groups()
+        couples.append({
+            'fr': aplatit_apostrophe(fr),
+            'en': None if en in ('—', '-', '') else en.strip(),
+            'niveau': {'●': 'sure', '◐': 'proche', '○': 'aucun'}[signe],
+            'note': note.strip(),
+        })
+    return couples
+
+
+def charge_anglais_seuls():
+    """Le second tableau : termes anglais sans contrepartie francaise, et pourquoi."""
+    if not os.path.exists(CORRESPONDANCES):
+        return {}
+    seuls = {}
+    dans_le_tableau = False
+    for ligne in open(CORRESPONDANCES, encoding='utf-8'):
+        if ligne.startswith('## Termes anglais sans contrepartie'):
+            dans_le_tableau = True
+            continue
+        if dans_le_tableau and ligne.startswith('## '):
+            break
+        if not dans_le_tableau:
+            continue
+        m = re.match(r'^\|\s*\*\*(.+?)\*\*\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*$', ligne)
+        if m:
+            # La note francaise sert la relecture, l'anglaise s'affiche sur la page.
+            seuls[m.group(1).strip()] = m.group(3).strip() or m.group(2).strip()
+    return seuls
+
+
+def index_des_ancres(chemin, langue):
+    """Terme -> ancre, calcule comme rend_volet le fait, pour tous les volets."""
+    suffixe = '' if langue == 'fr' else f'-{langue}'
+    index = {}
+    for volet, (_, prefixe) in zip(lit_source(chemin), VOLETS):
+        vus = {}
+        for genre, valeur in volet['contenu']:
+            if genre != 'terme':
+                continue
+            terme = valeur[0]
+            base = f'{prefixe}-{slug(terme)}'
+            vus[base] = vus.get(base, 0) + 1
+            rang = '' if vus[base] == 1 else f'-{vus[base]}'
+            index.setdefault(aplatit_apostrophe(terme), f'{base}{rang}{suffixe}')
+    return index
+
 
 def slug(texte):
     """Une ancre stable : sans accent, sans ponctuation, en minuscules."""
@@ -40,6 +117,11 @@ def slug(texte):
     plat = plat.replace('œ', 'oe').replace('æ', 'ae')
     plat = re.sub(r'[^a-zA-Z0-9]+', '-', plat).strip('-').lower()
     return plat
+
+
+def italiques(texte):
+    """Le Markdown des remarques : *un mot* devient une emphase, non des etoiles."""
+    return re.sub(r'\*([^*]+)\*', r'<em>\1</em>', echappe(texte))
 
 
 def echappe(texte):
@@ -87,7 +169,7 @@ def lit_source(chemin):
     return volets
 
 
-def rend_volet(volet, prefixe, langue):
+def rend_volet(volet, prefixe, langue, renvois=None):
     """Le sommaire du volet, puis ses notices.
 
     Les deux langues tiennent le meme terme -- « Abattre » reste « Abattre »
@@ -117,6 +199,8 @@ def rend_volet(volet, prefixe, langue):
 
     if volet['intro']:
         lignes.append(f'            <p class="part-intro">{echappe(volet["intro"])}</p>')
+    if renvois:
+        lignes.append(f'            <p class="part-avis">{echappe(AVERTISSEMENT[langue])}</p>')
 
     lignes.append('            <ul class="toc">')
     for terme, ancre in zip(termes, ancres):
@@ -135,6 +219,31 @@ def rend_volet(volet, prefixe, langue):
         ancre = next(suivante)
         corps = '\n                '.join(
             f'<p>{echappe(p)}</p>' for p in paragraphes) or '<p></p>'
+        renvoi = (renvois or {}).get(aplatit_apostrophe(terme))
+        if renvoi:
+            # Surtout pas « ancre » : ce nom porte deja l'ancre de la notice,
+            # quelques lignes plus haut, et l'ecraser mettait le tuple des
+            # cibles dans l'attribut id.
+            mots_autres, cibles, niveau, note = renvoi
+            if niveau == 'aucun':
+                dit = f'<em>{echappe(SANS[langue])}</em>'
+            else:
+                # Plusieurs termes d'une langue visent parfois le meme mot dans
+                # l'autre -- abattre, arriver et laisser arriver se disent tous
+                # « bear away ». On les montre tous, sans quoi la notice
+                # anglaise n'en garderait qu'un, le dernier venu.
+                morceaux = []
+                for mot, cible in zip(mots_autres, cibles):
+                    morceaux.append(f'<a href="#{cible}">{echappe(mot)}</a>' if cible
+                                    else echappe(mot))
+                dit = ', '.join(morceaux)
+            # Les remarques sont redigees en francais, pour la relecture. On les
+            # montre du cote francais ; du cote anglais, seuls les termes isoles
+            # portent une note, ecrite pour eux dans la bonne langue.
+            if note and (langue == 'fr' or niveau == 'aucun'):
+                dit += f' — <em>{italiques(note)}</em>'
+            corps += (f'\n                <p class="renvoi renvoi--{niveau}">'
+                      f'<span class="renvoi-clef">{ETIQUETTE[langue]}</span> {dit}</p>')
         lignes.append(f'''
             <section class="entry">
                 <h4 id="{ancre}" class="entry-title is-term">
@@ -164,6 +273,37 @@ def main():
     with open(PAGE, encoding='utf-8') as f:
         html = f.read()
 
+    couples = charge_correspondances()
+    ancres = {}
+    for langue in ('fr', 'en'):
+        if os.path.exists(SOURCES[langue]):
+            ancres[langue] = index_des_ancres(SOURCES[langue], langue)
+
+    # Le renvoi mene au terme de l'autre langue : on le prepare dans les deux sens.
+    renvois = {'fr': {}, 'en': {}}
+    accumule = {'fr': {}, 'en': {}}
+    for c in couples:
+        if c['en']:
+            accumule['fr'].setdefault(c['fr'], []).append(
+                (c['en'], ancres.get('en', {}).get(c['en']), c['niveau'], c['note']))
+            accumule['en'].setdefault(c['en'], []).append(
+                (c['fr'], ancres.get('fr', {}).get(c['fr']), c['niveau'], c['note']))
+        else:
+            renvois['fr'][c['fr']] = ((), (), 'aucun', c['note'])
+
+    for langue in ('fr', 'en'):
+        for terme, liste in accumule[langue].items():
+            mots = tuple(x[0] for x in liste)
+            cibles = tuple(x[1] for x in liste)
+            # Le degre le plus prudent l'emporte, et les remarques se suivent.
+            niveau = 'proche' if any(x[2] == 'proche' for x in liste) else 'sure'
+            notes = [x[3] for x in liste if x[3]]
+            renvois[langue][terme] = (mots, cibles, niveau, ' '.join(notes))
+
+    # Les termes anglais que le francais ne nomme pas : on le dit aussi.
+    for terme, pourquoi in charge_anglais_seuls().items():
+        renvois['en'].setdefault(terme, ((), (), 'aucun', pourquoi))
+
     for langue in ('fr', 'en'):
         chemin = SOURCES[langue]
         repli = ''
@@ -172,7 +312,8 @@ def main():
             repli = ' (texte français, traduction à venir)'
         volets = lit_source(chemin)
         for volet, (cle, prefixe) in zip(volets, VOLETS):
-            html = pose(html, langue, cle, rend_volet(volet, prefixe, langue))
+            html = pose(html, langue, cle,
+                        rend_volet(volet, prefixe, langue, renvois[langue]))
         termes = sum(1 for v in volets for c in v['contenu'] if c[0] == 'terme')
         print(f'{langue} : {termes} termes posés{repli}')
 

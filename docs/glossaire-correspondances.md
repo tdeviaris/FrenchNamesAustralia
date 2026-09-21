@@ -167,23 +167,23 @@ Ceux-ci n'ont pas d'entrée au glossaire français, et la raison en dit souvent
 plus que le mot lui-même : deux marines, deux régimes alimentaires, deux
 rapports à la guerre.
 
-| Terme anglais | Pourquoi il n'a pas d'équivalent |
-|---|---|
-| **Sour krout** | Régime antiscorbutique de la Royal Navy ; les Français n'en font pas usage. |
-| **Spruce beer** | Bière d'épinette, brassée en escale contre le scorbut. |
-| **Sweet wort** | Moût non fermenté, distribué comme antiscorbutique. |
-| **Splinter netting** | Filet tendu au-dessus du pont contre les éclats, au combat. |
-| **Working up junk** | Défaire les vieux cordages pour en tirer de l'étoupe. |
-| **Cleared for action** | Préparer le navire au combat — l'Investigator est un bâtiment de guerre. |
-| **Exercised great guns** | Exercice au canon, consigné au journal comme une routine. |
-| **Piped hammocks down, up** | Le sifflet du maître d'équipage règle le coucher et le lever. |
-| **Pintado birds** | Le damier du Cap, nommé d'après son plumage. |
-| **Sooty petrels** | Le puffin à bec grêle, dont les colonies étonnèrent l'expédition. |
-| **Log board** | Ardoise où l'on porte l'estime avant de la reporter au journal. |
-| **Marine, marines** | Détachement de soldats embarqués : les corvettes françaises n'en ont pas d'équivalent. |
-| **Serjeant of marines** | Sous-officier de ce détachement. |
-| **Dip of the needle** | Inclinaison de l'aiguille aimantée, mesurée par Flinders. |
-| **Chain of longitude** | Suite de longitudes enchaînées, méthode de Flinders pour porter le méridien. |
+| Terme anglais | Pourquoi il n'a pas d'équivalent | Note affichée en anglais |
+|---|---|---|
+| **Sour krout** | Régime antiscorbutique de la Royal Navy ; les Français n'en font pas usage. | The Royal Navy's antiscorbutic regime; the French made no use of it. |
+| **Spruce beer** | Bière d'épinette, brassée en escale contre le scorbut. | Spruce beer, brewed in port against the scurvy. |
+| **Sweet wort** | Moût non fermenté, distribué comme antiscorbutique. | Unfermented malt infusion, issued as an antiscorbutic. |
+| **Splinter netting** | Filet tendu au-dessus du pont contre les éclats, au combat. | Netting rigged over the deck against splinters, in action. |
+| **Working up junk** | Défaire les vieux cordages pour en tirer de l'étoupe. | Unpicking old cordage to make oakum. |
+| **Cleared for action** | Préparer le navire au combat — l'Investigator est un bâtiment de guerre. | Clearing the ship for battle — the Investigator is a man-of-war. |
+| **Exercised great guns** | Exercice au canon, consigné au journal comme une routine. | Gun drill, entered in the log as a matter of routine. |
+| **Piped hammocks down, up** | Le sifflet du maître d'équipage règle le coucher et le lever. | The boatswain's call governs turning in and turning out. |
+| **Pintado birds** | Le damier du Cap, nommé d'après son plumage. | The Cape petrel, named for its chequered plumage. |
+| **Sooty petrels** | Le puffin à bec grêle, dont les colonies étonnèrent l'expédition. | The short-tailed shearwater, whose rookeries astonished the expedition. |
+| **Log board** | Ardoise où l'on porte l'estime avant de la reporter au journal. | The board on which the reckoning is kept before being entered in the book. |
+| **Marine, marines** | Détachement de soldats embarqués : les corvettes françaises n'en ont pas d'équivalent. | A detachment of soldiers embarked; the French corvettes carried none. |
+| **Serjeant of marines** | Sous-officier de ce détachement. | The senior non-commissioned officer of that detachment. |
+| **Dip of the needle** | Inclinaison de l'aiguille aimantée, mesurée par Flinders. | The inclination of the magnetic needle, measured by Flinders. |
+| **Chain of longitude** | Suite de longitudes enchaînées, méthode de Flinders pour porter le méridien. | A chain of linked longitudes, Flinders's method of carrying the meridian. |
 
 ## Bilan
 
@@ -192,7 +192,7 @@ rapports à la guerre.
 | ● Équivalence franche | 44 | 34 % |
 | ◐ Voisinage | 40 | 31 % |
 | ○ Pas d'équivalent | 43 | 33 % |
-| **Total** | **127** | |
+| **Total** | **127** | |  |
 
 « Tournevire » figure deux fois au glossaire français — sous les ancres et sous
 les palans — et ne compte ici qu'une fois.

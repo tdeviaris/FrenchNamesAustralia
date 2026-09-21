@@ -59,6 +59,16 @@
         .part-intro { margin: 0 0 18px 0; color: #444; }
         /* Remarque de fin de section : elle porte sur tous les termes qui la
            precedent, d'ou le filet qui la detache de la derniere notice. */
+        /* Renvoi vers le terme de l'autre langue. Le tableau qui les fournit
+           n'est pas encore valide : la teinte reste sourde et l'avis en tete du
+           volet le dit, pour qu'on ne les lise pas comme un acquis. */
+        .renvoi { margin: 6px 0 0 0; font-size: 0.9rem; color: #555; }
+        .renvoi-clef { font-weight: 600; color: #777; }
+        .renvoi-clef::after { content: ' ·'; }
+        .renvoi--aucun { color: #888; }
+        .part-avis { margin: 0 0 18px 0; padding: 8px 12px; border-left: 3px solid #c9a227;
+                     background: #fdf8e8; color: #6b5a1a; font-size: 0.92rem; }
+
         .part-note { margin: 18px 0 0 0; padding-left: 14px; border-left: 3px solid #ddd; color: #555; font-size: 0.95rem; }
         .part-section { font-family: 'Lato', sans-serif; font-size: 1.15rem; font-weight: 700; margin: 34px 0 0 0; padding-bottom: 4px; border-bottom: 1px solid #ccc; color: #444; }
 
@@ -454,6 +464,7 @@
             <h2 class="part-title">Navigation, seamanship, sails, anchoring and boats</h2>
             <!-- nautique:en:manoeuvre:debut -->
             <p class="part-intro">A first structured survey of the seafaring vocabulary used in the English-language logbooks of the expeditions. The corpus consists principally of Matthew Flinders's published narrative, *A Voyage to Terra Australis* (London, 1814), and the log of the *Investigator*. Spellings and abbreviations are kept where they are characteristic of the log — *wr.*, *fms.*, *T.Gt.*</p>
+            <p class="part-avis">The cross-references to the French glossary are a proposal, under review.</p>
             <ul class="toc">
                 <li><a href="#man-bear-away-en">Bear away</a></li>
                 <li><a href="#man-bring-to-en">Bring to</a></li>
@@ -551,6 +562,7 @@
                     </a>
                 </h4>
                 <p>Alter course away from the wind.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-abattre">Abattre</a>, <a href="#man-arriver">Arriver</a>, <a href="#man-laisser-arriver">Laisser arriver</a></p>
             </section>
 
             <section class="entry">
@@ -571,6 +583,7 @@
                     </a>
                 </h4>
                 <p>The direction steered.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-route">Route</a></p>
             </section>
 
             <section class="entry">
@@ -581,6 +594,7 @@
                     </a>
                 </h4>
                 <p>Bring the ship closer to the wind.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-au-plus-pres">Au plus près</a>, <a href="#man-serrer-le-vent">Serrer le vent</a>, <a href="#man-tenir-le-vent">Tenir le vent</a></p>
             </section>
 
             <section class="entry">
@@ -591,6 +605,7 @@
                     </a>
                 </h4>
                 <p>Reduce way and hold the ship in a controlled position.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-mettre-en-panne">Mettre en panne</a></p>
             </section>
 
             <section class="entry">
@@ -611,6 +626,7 @@
                     </a>
                 </h4>
                 <p>Set as much sail as practicable.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-forcer-de-voile">Forcer de voile</a></p>
             </section>
 
             <section class="entry">
@@ -641,6 +657,7 @@
                     </a>
                 </h4>
                 <p>Direct the ship's heading.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-cingler">Cingler</a>, <a href="#man-gouverner">Gouverner</a></p>
             </section>
 
             <section class="entry">
@@ -651,6 +668,7 @@
                     </a>
                 </h4>
                 <p>Turn the bow through the wind to change tack.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-bord">Bord</a>, <a href="#man-bordee">Bordée</a>, <a href="#man-prendre-les-amures">Prendre les amures</a>, <a href="#man-virer-de-bord">Virer de bord</a>, <a href="#man-virer-vent-devant">Virer vent devant</a></p>
             </section>
 
             <section class="entry">
@@ -661,6 +679,7 @@
                     </a>
                 </h4>
                 <p>Turn the vessel's head away from the wind.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-virer-lof-pour-lof-ou-virer-vent-arriere">Virer lof pour lof ou virer vent arrière</a></p>
             </section>
 
             <section class="entry">
@@ -681,6 +700,7 @@
                     </a>
                 </h4>
                 <p>Manoeuvring, especially beating against the wind.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-louvoyer">Louvoyer</a></p>
             </section>
 
             <p class="part-note">Flinders's narrative supplies clear examples of *haul to the wind*, *tacked*, *stood off and on* and *bore away*, while the log repeatedly records changes of sail under changing winds.</p>
@@ -705,6 +725,7 @@
                     </a>
                 </h4>
                 <p>Attached or detached a sail from its yard, stay or spar.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-degreer">Dégréer</a>, <a href="#man-deverger">Déverger</a></p>
             </section>
 
             <section class="entry">
@@ -715,6 +736,7 @@
                     </a>
                 </h4>
                 <p>Hauled a sail or its tack taut into its proper position.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-amurer">Amurer</a></p>
             </section>
 
             <section class="entry">
@@ -725,6 +747,7 @@
                     </a>
                 </h4>
                 <p>Reduce a sail to its smallest reefed area.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-voile-au-bas-ris">Voile au bas ris</a></p>
             </section>
 
             <section class="entry">
@@ -785,6 +808,7 @@
                     </a>
                 </h4>
                 <p>Furled or gathered a sail.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-carguer">Carguer</a>, <a href="#man-serrer-une-voile">Serrer une voile</a></p>
             </section>
 
             <section class="entry">
@@ -795,6 +819,7 @@
                     </a>
                 </h4>
                 <p>Triangular headsail set on a stay forward of the foremast.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-foc">Foc</a></p>
             </section>
 
             <section class="entry">
@@ -805,6 +830,7 @@
                     </a>
                 </h4>
                 <p>Released reefing to carry more canvas.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-larguer-les-ris">Larguer les ris</a></p>
             </section>
 
             <section class="entry">
@@ -855,6 +881,7 @@
                     </a>
                 </h4>
                 <p>The topsail of the mizzen mast.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-perroquet-de-fougue">Perroquet de fougue</a></p>
             </section>
 
             <section class="entry">
@@ -865,6 +892,7 @@
                     </a>
                 </h4>
                 <p>Reduce the exposed area of a sail by tying up part of it.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-prendre-un-ris">Prendre un ris</a></p>
             </section>
 
             <section class="entry">
@@ -885,6 +913,7 @@
                     </a>
                 </h4>
                 <p>The fore-and-aft sail set abaft the mizzen mast.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-brigantine">Brigantine</a></p>
             </section>
 
             <section class="entry">
@@ -895,6 +924,7 @@
                     </a>
                 </h4>
                 <p>Triangular sails bent to the stays between the masts.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-grande-voile-d-etai">Grande voile d'étai</a>, <a href="#man-voiles-d-etai">Voiles d'étai</a></p>
             </section>
 
             <section class="entry">
@@ -905,6 +935,7 @@
                     </a>
                 </h4>
                 <p>Light sails set outboard of the square sails, in fair weather only.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-bonnettes">Bonnettes</a></p>
             </section>
 
             <section class="entry">
@@ -925,6 +956,7 @@
                     </a>
                 </h4>
                 <p>The sails set above the topsails; the first to be taken in as the wind rises.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-perroquet">Perroquet</a></p>
             </section>
 
             <section class="entry">
@@ -945,6 +977,7 @@
                     </a>
                 </h4>
                 <p>The sails set above the courses, the ship's working canvas.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-hunier">Hunier</a></p>
             </section>
 
             <section class="entry">
@@ -965,6 +998,7 @@
                     </a>
                 </h4>
                 <p>Adjusted sails to the wind.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-border">Border</a></p>
             </section>
 
             <p class="part-note">The log records setting and taking in top-gallant sails, studding sails, jibs, spankers and staysails; it also records repairs to damaged sails and the repeated use of reefs.</p>
@@ -989,6 +1023,7 @@
                     </a>
                 </h4>
                 <p>The heavy rope, later chain, by which the ship rides to her anchor.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-cable">Câble</a></p>
             </section>
 
             <section class="entry">
@@ -1019,6 +1054,7 @@
                     </a>
                 </h4>
                 <p>The rope by which the fore topsail yard is hoisted.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-drisse">Drisse</a></p>
             </section>
 
             <section class="entry">
@@ -1069,6 +1105,7 @@
                     </a>
                 </h4>
                 <p>Cordage in general; aboard ship each rope bears its own name and office.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-amarre">Amarre</a></p>
             </section>
 
             <section class="entry">
@@ -1099,6 +1136,7 @@
                     </a>
                 </h4>
                 <p>Netting rigged over the deck to catch the splinters thrown up in action.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>Netting rigged over the deck against splinters, in action.</em></p>
             </section>
 
             <section class="entry">
@@ -1109,6 +1147,7 @@
                     </a>
                 </h4>
                 <p>A standing rope supporting a mast from forward.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-etai">Étai</a></p>
             </section>
 
             <section class="entry">
@@ -1139,6 +1178,7 @@
                     </a>
                 </h4>
                 <p>Unpicking old rope to make oakum or other serviceable material.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>Unpicking old cordage to make oakum.</em></p>
             </section>
 
             <section class="entry">
@@ -1149,6 +1189,7 @@
                     </a>
                 </h4>
                 <p>The spars crossing the masts, from which the square sails hang.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-vergue">Vergue</a></p>
             </section>
 
             <p class="part-note">The log mentions inspecting « the rigging, the masts and yards », repairing defects, coiling ropes for night manoeuvres, and working up junk.</p>
@@ -1173,6 +1214,7 @@
                     </a>
                 </h4>
                 <p>A place where a ship may lie at anchor.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-mouillage">Mouillage</a></p>
             </section>
 
             <section class="entry">
@@ -1183,6 +1225,7 @@
                     </a>
                 </h4>
                 <p>Lying to an anchor.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-mouiller">Mouiller</a></p>
             </section>
 
             <section class="entry">
@@ -1203,6 +1246,7 @@
                     </a>
                 </h4>
                 <p>Let go the stream anchor, to steady the ship or to haul her off.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-elonger-une-ancre">Élonger une ancre</a></p>
             </section>
 
             <section class="entry">
@@ -1213,6 +1257,7 @@
                     </a>
                 </h4>
                 <p>Lie at anchor away from the shore.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-evitage">Évitage</a></p>
             </section>
 
             <section class="entry">
@@ -1223,6 +1268,7 @@
                     </a>
                 </h4>
                 <p>A lighter anchor, used for a temporary hold or to warp the ship.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-ancre-a-jet">Ancre à jet</a></p>
             </section>
 
             <section class="entry">
@@ -1233,6 +1279,7 @@
                     </a>
                 </h4>
                 <p>Raised the anchor to get under way.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-appareiller">Appareiller</a>, <a href="#man-deplanter">Déplanter</a>, <a href="#man-deraper">Déraper</a>, <a href="#man-virer-sur-l-ancre">Virer sur l'ancre</a></p>
             </section>
 
             <p class="part-note">Flinders distinguishes between an anchorage, the nature of the bottom and the safety of the anchoring ground; he also describes a stream anchor dropped when a vessel grounded in a strong tide.</p>
@@ -1247,6 +1294,7 @@
                     </a>
                 </h4>
                 <p>The ship's small craft, used for sounding, watering and landing.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-grand-canot">Grand canot</a>, <a href="#man-chaloupe">Chaloupe</a></p>
             </section>
 
             <section class="entry">
@@ -1267,6 +1315,7 @@
                     </a>
                 </h4>
                 <p>A ship's boat pulling several oars; also a small single-masted vessel.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-canot">Canot</a></p>
             </section>
 
             <section class="entry">
@@ -1277,6 +1326,7 @@
                     </a>
                 </h4>
                 <p>A light, narrow boat, fast under oars, kept for the commander's use.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#man-petit-canot">Petit canot</a></p>
             </section>
 
             <section class="entry">
@@ -1321,6 +1371,7 @@
                     </a>
                 </h4>
                 <p>Struck down the bulkheads and cleared the decks for battle.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>Clearing the ship for battle — the Investigator is a man-of-war.</em></p>
             </section>
 
             <section class="entry">
@@ -1341,6 +1392,7 @@
                     </a>
                 </h4>
                 <p>Drilled the people at the cannon.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>Gun drill, entered in the log as a matter of routine.</em></p>
             </section>
 
             <section class="entry">
@@ -1391,6 +1443,7 @@
                     </a>
                 </h4>
                 <p>The boatswain's call to sling the hammocks at night, to stow them at dawn.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>The boatswain's call governs turning in and turning out.</em></p>
             </section>
 
             <section class="entry">
@@ -1411,6 +1464,7 @@
             <h2 class="part-title">Observation and hydrography</h2>
             <!-- nautique:en:hydrographie:debut -->
             <p class="part-intro">Depths, bearings, coordinates, instruments and weather, as the English logbooks record them.</p>
+            <p class="part-avis">The cross-references to the French glossary are a proposal, under review.</p>
             <ul class="toc">
                 <li><a href="#hyd-bank-en">Bank</a></li>
                 <li><a href="#hyd-bottom-en">Bottom</a></li>
@@ -1518,6 +1572,7 @@
                     </a>
                 </h4>
                 <p>Six feet; the unit in which depth is sounded.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-brasse">Brasse</a></p>
             </section>
 
             <section class="entry">
@@ -1568,6 +1623,7 @@
                     </a>
                 </h4>
                 <p>A ridge of rock or coral lying at or near the surface.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-prendre-un-ris">Prendre un ris</a></p>
             </section>
 
             <section class="entry">
@@ -1618,6 +1674,7 @@
                     </a>
                 </h4>
                 <p>The measurement of depth by lead and line, and the depths so found.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-sonde-et-sondage">Sonde et sondage</a></p>
             </section>
 
             <section class="entry">
@@ -1652,6 +1709,7 @@
                     </a>
                 </h4>
                 <p>An observation of the sun at rising or setting, used to find the variation of the compass.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-azimut">Azimut</a></p>
             </section>
 
             <section class="entry">
@@ -1662,6 +1720,7 @@
                     </a>
                 </h4>
                 <p>The direction of an object from the ship, by compass.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-relevement">Relèvement</a></p>
             </section>
 
             <section class="entry">
@@ -1692,6 +1751,7 @@
                     </a>
                 </h4>
                 <p>A series of linked determinations, each carried forward from the last.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>A chain of linked longitudes, Flinders's method of carrying the meridian.</em></p>
             </section>
 
             <section class="entry">
@@ -1702,6 +1762,7 @@
                     </a>
                 </h4>
                 <p>The position or reckoning from which navigation proceeds.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-estime">Estime</a></p>
             </section>
 
             <section class="entry">
@@ -1712,6 +1773,7 @@
                     </a>
                 </h4>
                 <p>The inclination of the magnetic needle below the horizontal.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>The inclination of the magnetic needle, measured by Flinders.</em></p>
             </section>
 
             <section class="entry">
@@ -1742,6 +1804,7 @@
                     </a>
                 </h4>
                 <p>The distance north or south of the equator, found by observation of the sun or a star.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-coordonnees-geographiques">Coordonnées géographiques</a>, <a href="#hyd-latitude">Latitude</a></p>
             </section>
 
             <section class="entry">
@@ -1752,6 +1815,7 @@
                     </a>
                 </h4>
                 <p>The distance east or west of a meridian, the harder of the two to establish.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-longitude">Longitude</a></p>
             </section>
 
             <section class="entry">
@@ -1802,6 +1866,7 @@
                     </a>
                 </h4>
                 <p>The variation of the magnetic needle, or of the compass.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-declinaison-magnetique-ou-variation">Déclinaison magnétique, ou variation</a></p>
             </section>
 
             <p class="part-note">Flinders computes longitude from his timekeepers and latitude from bearings, and elsewhere compares longitudes drawn from lunar distances, from survey and from astronomical observation.</p>
@@ -1816,6 +1881,7 @@
                     </a>
                 </h4>
                 <p>Observation of the heavenly bodies, by which position is fixed.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#vie-astronome">Astronome</a></p>
             </section>
 
             <section class="entry">
@@ -1826,6 +1892,7 @@
                     </a>
                 </h4>
                 <p>The instrument for measuring the pressure of the air, hung to ride the ship's motion.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-barometre-thermometre-et-hygrometre">Baromètre, thermomètre et hygromètre</a></p>
             </section>
 
             <section class="entry">
@@ -1846,6 +1913,7 @@
                     </a>
                 </h4>
                 <p>The magnetised needle of the compass, subject to variation and to the iron of the ship.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-compas-de-variation">Compas de variation</a></p>
             </section>
 
             <section class="entry">
@@ -1866,6 +1934,7 @@
                     </a>
                 </h4>
                 <p>The board on which the reckoning is chalked, before being entered in the book.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>The board on which the reckoning is kept before being entered in the book.</em></p>
             </section>
 
             <section class="entry">
@@ -1896,6 +1965,7 @@
                     </a>
                 </h4>
                 <p>The instrument for measuring angles between heavenly bodies, or between shore marks.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-cercle-de-reflexion">Cercle de réflexion</a></p>
             </section>
 
             <section class="entry">
@@ -1916,6 +1986,7 @@
                     </a>
                 </h4>
                 <p>The marine chronometer, which carries the time of a known meridian and so yields longitude.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-montre-marine">Montre marine</a>, <a href="#hyd-variation-de-la-montre">Variation de la montre</a></p>
             </section>
 
             <section class="entry">
@@ -2100,6 +2171,7 @@
                     </a>
                 </h4>
                 <p>A sudden increase of wind, often with rain, requiring sail to be taken in at once.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-grain">Grain</a></p>
             </section>
 
             <section class="entry">
@@ -2130,6 +2202,7 @@
                     </a>
                 </h4>
                 <p>Toward the wind, and away from it — the two sides of every question at sea.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#man-au-vent">Au vent</a>, <a href="#man-sous-le-vent">Sous le vent</a></p>
             </section>
 
             <p class="part-note">The recurring formulae of the journal — « fresh breezes and cloudy », « strong breezes and squally », « light airs », « a high swell » — are terse operational weather reports rather than description.</p>
@@ -2140,6 +2213,7 @@
             <h2 class="part-title">Science, health and shipboard life</h2>
             <!-- nautique:en:vie-bord:debut -->
             <p class="part-intro">Natural history, medicine, victualling, ranks and duties.</p>
+            <p class="part-avis">The cross-references to the French glossary are a proposal, under review.</p>
             <ul class="toc">
                 <li><a href="#vie-albatross-en">Albatross</a></li>
                 <li><a href="#vie-botanising-en">Botanising</a></li>
@@ -2236,6 +2310,7 @@
                     </a>
                 </h4>
                 <p>The naturalists charged with the plants — aboard the Investigator, Robert Brown.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#vie-botaniste">Botaniste</a>, <a href="#vie-naturaliste">Naturaliste</a></p>
             </section>
 
             <section class="entry">
@@ -2296,6 +2371,7 @@
                     </a>
                 </h4>
                 <p>*Coral*, *ironstone*, *quartz*, *sand stone*.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#vie-mineralogiste">Minéralogiste</a></p>
             </section>
 
             <section class="entry">
@@ -2306,6 +2382,7 @@
                     </a>
                 </h4>
                 <p>The collecting and description of plants, animals and minerals.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#vie-histoire-naturelle">Histoire naturelle</a></p>
             </section>
 
             <section class="entry">
@@ -2326,6 +2403,7 @@
                     </a>
                 </h4>
                 <p>The Cape petrel, so called for its chequered plumage.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>The Cape petrel, named for its chequered plumage.</em></p>
             </section>
 
             <section class="entry">
@@ -2346,6 +2424,7 @@
                     </a>
                 </h4>
                 <p>The short-tailed shearwater, whose rookeries astonished the expedition.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>The short-tailed shearwater, whose rookeries astonished the expedition.</em></p>
             </section>
 
             <section class="entry">
@@ -2440,6 +2519,7 @@
                     </a>
                 </h4>
                 <p>The men under the surgeon's hands.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#vie-chirurgien-ou-officier-de-sante">Chirurgien ou officier de santé</a></p>
             </section>
 
             <section class="entry">
@@ -2534,6 +2614,7 @@
                     </a>
                 </h4>
                 <p>The victuals of the ship, reckoned in months of consumption.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#vie-conserves-et-salaisons">Conserves et salaisons</a>, <a href="#vie-ravitaillement">Ravitaillement</a>, <a href="#vie-vivres">Vivres</a></p>
             </section>
 
             <section class="entry">
@@ -2544,6 +2625,7 @@
                     </a>
                 </h4>
                 <p>The spelling used in the log for sauerkraut.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>The Royal Navy's antiscorbutic regime; the French made no use of it.</em></p>
             </section>
 
             <section class="entry">
@@ -2554,6 +2636,7 @@
                     </a>
                 </h4>
                 <p>Beer brewed from spruce or a substitute, held to prevent scurvy.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>Spruce beer, brewed in port against the scurvy.</em></p>
             </section>
 
             <section class="entry">
@@ -2564,6 +2647,7 @@
                     </a>
                 </h4>
                 <p>Unfermented malt infusion, issued as an antiscorbutic.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>Unfermented malt infusion, issued as an antiscorbutic.</em></p>
             </section>
 
             <section class="entry">
@@ -2594,6 +2678,7 @@
                     </a>
                 </h4>
                 <p>Filled the casks ashore; the search for water shapes every landing.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#vie-aiguade">Aiguade</a></p>
             </section>
 
             <p class="part-note">Sour krout, vinegar, spruce beer and sweet wort belong to the preventive dietary regime of the *Investigator*; the log also records the receipt of fresh beef, beer and water.</p>
@@ -2668,6 +2753,7 @@
                     </a>
                 </h4>
                 <p>The warrant officer answerable for the hull, the masts and the pumps.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#vie-calfat">Calfat</a></p>
             </section>
 
             <section class="entry">
@@ -2718,6 +2804,7 @@
                     </a>
                 </h4>
                 <p>The officer of the Admiralty charged with charts and surveys.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">French logbooks</span> <a href="#hyd-hydrographie">Hydrographie</a>, <a href="#vie-geographe-ou-ingenieur-geographe">Géographe ou ingénieur-géographe</a></p>
             </section>
 
             <section class="entry">
@@ -2738,6 +2825,7 @@
                     </a>
                 </h4>
                 <p>The soldiers embarked, for guard, discipline and landing parties.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>A detachment of soldiers embarked; the French corvettes carried none.</em></p>
             </section>
 
             <section class="entry">
@@ -2768,6 +2856,7 @@
                     </a>
                 </h4>
                 <p>A young gentleman training for a commission.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">French logbooks</span> <a href="#vie-aspirant">Aspirant</a></p>
             </section>
 
             <section class="entry">
@@ -2828,6 +2917,7 @@
                     </a>
                 </h4>
                 <p>The senior non-commissioned officer of the marine detachment.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">French logbooks</span> <em>no counterpart recorded</em> — <em>The senior non-commissioned officer of that detachment.</em></p>
             </section>
 
             <section class="entry">
@@ -3179,6 +3269,7 @@
             <h2 class="part-title">Navigation, manœuvre, voilure, mouillage et embarcations</h2>
             <!-- nautique:fr:manoeuvre:debut -->
             <p class="part-intro">Voici un premier relevé structuré des termes de marine employés dans les journaux. Les graphies ont été modernisées dans les titres, mais les variantes historiques sont signalées lorsqu’elles apparaissent dans les manuscrits : mizaine, stribord, tems, affour, etc. Les journaux de Hamelin, Ronsard, Breton, Couture et Duvaldailly emploient effectivement ce vocabulaire dans le détail des manœuvres quotidiennes : virer, appareiller, prendre ou larguer des ris, affourcher, sonder, mettre en panne, hisser ou amener les voiles, etc.</p>
+            <p class="part-avis">Les renvois vers le glossaire anglais sont une proposition, en cours de relecture.</p>
             <ul class="toc">
                 <li><a href="#man-abattre">Abattre</a></li>
                 <li><a href="#man-allure">Allure</a></li>
@@ -3284,6 +3375,7 @@
                     </a>
                 </h4>
                 <p>Écarter l’étrave du navire de la direction du vent. Le navire « abat » lorsqu’il tourne sous le vent ; l’expression peut aussi désigner une dérive involontaire vers la côte ou sous le vent.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-bear-away-en">Bear away</a></p>
             </section>
 
             <section class="entry">
@@ -3294,6 +3386,7 @@
                     </a>
                 </h4>
                 <p>Manière dont un navire reçoit le vent et progresse par rapport à lui : au plus près, au largue, vent arrière, etc.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Les journaux anglais nomment chaque allure, jamais la notion.</em></p>
             </section>
 
             <section class="entry">
@@ -3304,6 +3397,7 @@
                     </a>
                 </h4>
                 <p>Quitter un mouillage ou un port pour prendre la mer. Pour appareiller, il faut généralement lever ou couper l’ancre, établir la voilure et donner une route au navire.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-weighed-anchor-en">Weighed anchor</a> — <em>Le français dit le départ, l'anglais le geste qui l'ouvre.</em></p>
             </section>
 
             <section class="entry">
@@ -3314,6 +3408,7 @@
                     </a>
                 </h4>
                 <p>Faire tourner le navire de manière à recevoir le vent davantage par l’arrière ; c’est l’inverse de lofer. « Arriver sur un navire » signifie se diriger vers lui en s’en rapprochant sous le vent.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-bear-away-en">Bear away</a></p>
             </section>
 
             <section class="entry">
@@ -3324,6 +3419,7 @@
                     </a>
                 </h4>
                 <p>Navigation aussi proche que possible de la direction d’où vient le vent. Un voilier ne peut pas remonter exactement face au vent : il progresse donc obliquement, en tirant des bords.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-haul-to-the-wind-en">Haul to the wind</a> — <em>L'anglais dit la manœuvre, le français l'allure obtenue.</em></p>
             </section>
 
             <section class="entry">
@@ -3334,6 +3430,7 @@
                     </a>
                 </h4>
                 <p>Trajet accompli par un voilier sur une même amure. « Tirer un bord » signifie avancer jusqu’au moment où il faut virer pour recevoir le vent de l’autre côté.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-tack-tacked-en">Tack, tacked</a> — <em>« Bord » est le côté et la portion de route ; <em>tack</em> les deux aussi.</em></p>
             </section>
 
             <section class="entry">
@@ -3344,6 +3441,7 @@
                     </a>
                 </h4>
                 <p>Parcours effectué sur une même amure ; le mot peut désigner plus largement une séquence de navigation entre deux virements.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-tack-tacked-en">Tack, tacked</a> — <em>Une bordée est un bord couru ; l'anglais ne distingue pas.</em></p>
             </section>
 
             <section class="entry">
@@ -3354,6 +3452,7 @@
                     </a>
                 </h4>
                 <p>Faire route, naviguer dans une direction donnée. Les journaux écrivent fréquemment : « cinglant toutes voiles dehors ».</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-steer-steered-en">Steer, steered</a> — <em>Cingler porte une idée de vitesse que <em>steer</em> n'a pas.</em></p>
             </section>
 
             <section class="entry">
@@ -3364,6 +3463,7 @@
                     </a>
                 </h4>
                 <p>Remettre les voiles en action afin que le navire reprenne de l’erre, après avoir été en panne, ralenti ou arrêté.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Remplir les voiles après la panne : pas de terme dans le corpus anglais.</em></p>
             </section>
 
             <section class="entry">
@@ -3374,6 +3474,7 @@
                     </a>
                 </h4>
                 <p>Augmenter la surface de voilure pour accroître la vitesse : établir des voiles supplémentaires ou larguer des ris.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-make-all-sail-en">Make all sail</a></p>
             </section>
 
             <section class="entry">
@@ -3384,6 +3485,7 @@
                     </a>
                 </h4>
                 <p>Tenir une route déterminée à la barre. « Le bâtiment ne gouvernait plus » signifie que, faute de vent ou sous l’effet de la mer, il ne répondait plus suffisamment à la barre.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-steer-steered-en">Steer, steered</a></p>
             </section>
 
             <section class="entry">
@@ -3394,6 +3496,7 @@
                     </a>
                 </h4>
                 <p>Manœuvrer pour éloigner la proue du vent, donc pour venir plus au largue.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-bear-away-en">Bear away</a></p>
             </section>
 
             <section class="entry">
@@ -3404,6 +3507,7 @@
                     </a>
                 </h4>
                 <p>Progresser contre un vent défavorable en alternant des bords sur bâbord et sur tribord. Willaumez, lors de la reconnaissance de 1793, dut ainsi louvoyer dans une mer forte et des vents contraires.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-working-en">Working</a> — <em><em>Working</em> seul, chez Flinders, signifie louvoyer.</em></p>
             </section>
 
             <section class="entry">
@@ -3414,6 +3518,7 @@
                     </a>
                 </h4>
                 <p>Réduire très fortement la marche du navire, voire le maintenir presque immobile, en disposant certaines voiles à contre. Dans les journaux, cette manœuvre sert notamment à attendre une embarcation, un autre bâtiment, ou à effectuer un sondage.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-heave-to-hove-to-en">Heave to, hove to</a></p>
             </section>
 
             <section class="entry">
@@ -3424,6 +3529,7 @@
                     </a>
                 </h4>
                 <p>Établir le navire sur une amure déterminée, bâbord ou tribord.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-tack-tacked-en">Tack, tacked</a></p>
             </section>
 
             <section class="entry">
@@ -3434,6 +3540,7 @@
                     </a>
                 </h4>
                 <p>Rejoindre un autre navire, une embarcation, la terre ou un point de rendez-vous.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Rejoindre un conserve : absent du corpus anglais.</em></p>
             </section>
 
             <section class="entry">
@@ -3444,6 +3551,7 @@
                     </a>
                 </h4>
                 <p>Direction suivie ou prescrite au navire. Une « route signalée » est une direction transmise par pavillons, signaux ou feux au bâtiment qui navigue de conserve.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-course-en">Course</a></p>
             </section>
 
             <section class="entry">
@@ -3454,6 +3562,7 @@
                     </a>
                 </h4>
                 <p>Se rapprocher autant que possible de la direction du vent : naviguer au plus près.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-haul-to-the-wind-en">Haul to the wind</a></p>
             </section>
 
             <section class="entry">
@@ -3464,6 +3573,7 @@
                     </a>
                 </h4>
                 <p>Conserver une bonne aptitude à naviguer près du vent. Un bâtiment qui « tient mieux le vent » peut remonter plus efficacement contre lui.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-haul-to-the-wind-en">Haul to the wind</a> — <em>Tenir est durable, <em>haul</em> ponctuel.</em></p>
             </section>
 
             <section class="entry">
@@ -3474,6 +3584,7 @@
                     </a>
                 </h4>
                 <p>Changer d’amure en faisant passer l’étrave face au vent.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-tack-tacked-en">Tack, tacked</a></p>
             </section>
 
             <section class="entry">
@@ -3484,6 +3595,7 @@
                     </a>
                 </h4>
                 <p>Changer d’amure en faisant passer l’arrière du navire dans le lit du vent, plutôt que l’étrave face au vent. Cette manœuvre est souvent plus risquée par forte mer. Le journal de Hamelin oppose explicitement le virage « lof pour lof » au virage « vent devant ».</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-veering-ship-en">Veering ship</a> — <em><em>Veering</em> est le virement vent arrière, non le virement vent devant.</em></p>
             </section>
 
             <section class="entry">
@@ -3494,6 +3606,7 @@
                     </a>
                 </h4>
                 <p>Virer de bord en faisant franchir au navire l’axe du vent par l’avant ; c’est le sens ordinaire de « virer de bord ».</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-tack-tacked-en">Tack, tacked</a></p>
             </section>
 
             <h3 class="part-section">B — Vent, position relative et formation de route</h3>
@@ -3506,6 +3619,7 @@
                     </a>
                 </h4>
                 <p>Le vent arrive par bâbord ; les voiles sont réglées pour cette configuration.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em><em>Port tack</em> n'apparaît pas tel quel dans le corpus.</em></p>
             </section>
 
             <section class="entry">
@@ -3516,6 +3630,7 @@
                     </a>
                 </h4>
                 <p>Le vent arrive par tribord.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em><em>Starboard tack</em> de même.</em></p>
             </section>
 
             <section class="entry">
@@ -3526,6 +3641,7 @@
                     </a>
                 </h4>
                 <p>Du côté d’où souffle le vent. Un récif « au vent » se trouve entre le navire et la direction du vent.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-windward-leeward-en">Windward, leeward</a></p>
             </section>
 
             <section class="entry">
@@ -3536,6 +3652,7 @@
                     </a>
                 </h4>
                 <p>Du côté opposé à celui d’où souffle le vent. Être « sous le vent » d’un danger peut empêcher de s’en écarter facilement à la voile.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-windward-leeward-en">Windward, leeward</a></p>
             </section>
 
             <section class="entry">
@@ -3546,6 +3663,7 @@
                     </a>
                 </h4>
                 <p>Allure dans laquelle le vent pousse le navire par l’arrière.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>L'allure est décrite, jamais nommée.</em></p>
             </section>
 
             <section class="entry">
@@ -3556,6 +3674,7 @@
                     </a>
                 </h4>
                 <p>Allure dans laquelle le vent vient de l’arrière, mais de côté ; elle est généralement favorable à la vitesse.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3566,6 +3685,7 @@
                     </a>
                 </h4>
                 <p>Direction approximativement perpendiculaire à l’axe du navire. Un objet « par le travers » est situé sur le côté du bâtiment.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em><em>Abeam</em> absent du relevé.</em></p>
             </section>
 
             <section class="entry">
@@ -3576,6 +3696,7 @@
                     </a>
                 </h4>
                 <p>Passer derrière l’arrière d’un autre navire.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3586,6 +3707,7 @@
                     </a>
                 </h4>
                 <p>Naviguer en compagnie d’un ou plusieurs bâtiments, selon une route et des signaux convenus.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Flinders navigue seul : la notion ne lui sert pas.</em></p>
             </section>
 
             <section class="entry">
@@ -3596,6 +3718,7 @@
                     </a>
                 </h4>
                 <p>Ne plus apercevoir un bâtiment, une embarcation ou la terre. Dans une escadre en reconnaissance, cela peut conduire à appliquer des consignes de rendez-vous.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <p class="part-note">Les signaux de l’expédition Baudin distinguent explicitement les ordres de virer vent devant ou vent arrière, de prendre les amures, de serrer le vent, de courir au large, de se rallier, de mettre un canot à la mer ou de le rembarquer.</p>
@@ -3610,6 +3733,7 @@
                     </a>
                 </h4>
                 <p>Fixer et tendre l’amure d’une voile — son coin inférieur placé du côté du vent — afin de lui donner sa forme de travail.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-boused-home-en">Boused home</a> — <em><em>Boused home</em> décrit l'effort, amurer le point d'amure.</em></p>
             </section>
 
             <section class="entry">
@@ -3620,6 +3744,7 @@
                     </a>
                 </h4>
                 <p>Grandes voiles établies dans la partie basse du gréement, notamment la misaine et la grand-voile. Elles donnent la majeure partie de la puissance propulsive.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Les <em>courses</em> ne figurent pas au relevé anglais.</em></p>
             </section>
 
             <section class="entry">
@@ -3630,6 +3755,7 @@
                     </a>
                 </h4>
                 <p>Voiles additionnelles établies sur les côtés des voiles principales par vent modéré, afin d’augmenter la surface de toile. Elles sont retirées lorsque le vent fraîchit.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-studding-sails-studg-sails-en">Studding sails, studg. sails</a></p>
             </section>
 
             <section class="entry">
@@ -3640,6 +3766,7 @@
                     </a>
                 </h4>
                 <p>Tirer une voile au moyen de ses écoutes afin de la rapprocher de l’axe du navire et de la régler pour l’allure suivie.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-trimmed-en">Trimmed</a> — <em>Border, c'est raidir l'écoute ; <em>trim</em> règle l'ensemble.</em></p>
             </section>
 
             <section class="entry">
@@ -3650,6 +3777,7 @@
                     </a>
                 </h4>
                 <p>Voile aurique établie sur le mât d’artimon, à l’arrière du navire.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-spanker-en">Spanker</a></p>
             </section>
 
             <section class="entry">
@@ -3660,6 +3788,7 @@
                     </a>
                 </h4>
                 <p>Relever une voile contre sa vergue ou son mât afin de diminuer sa surface exposée au vent sans nécessairement la serrer complètement.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-handed-en">Handed</a> — <em><em>Handed</em> couvre carguer et serrer.</em></p>
             </section>
 
             <section class="entry">
@@ -3670,6 +3799,7 @@
                     </a>
                 </h4>
                 <p>Retirer un élément du gréement ou une voile de sa position de service. Dans les journaux, on « dégrée les perroquets » par gros temps pour alléger le haut du navire.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-bent-unbent-en">Bent, unbent</a> — <em><em>Unbent</em> ne vaut que pour la voile, dégréer pour tout.</em></p>
             </section>
 
             <section class="entry">
@@ -3680,6 +3810,7 @@
                     </a>
                 </h4>
                 <p>Retirer une voile de sa vergue.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-bent-unbent-en">Bent, unbent</a></p>
             </section>
 
             <section class="entry">
@@ -3690,6 +3821,7 @@
                     </a>
                 </h4>
                 <p>Cordage servant à hisser une voile, une vergue ou une pièce de gréement. La rupture d’une drisse empêche de hisser ou de maintenir convenablement l’élément concerné.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-fore-top-sail-tie-en">Fore-top-sail tie</a> — <em><em>Tie</em> est la drisse d'une vergue précise.</em></p>
             </section>
 
             <section class="entry">
@@ -3700,6 +3832,7 @@
                     </a>
                 </h4>
                 <p>Gros câble fixe soutenant un mât dans le sens longitudinal ; par extension, les voiles d’étai sont les voiles triangulaires établies sur ces câbles.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-stay-en">Stay</a></p>
             </section>
 
             <section class="entry">
@@ -3710,6 +3843,7 @@
                     </a>
                 </h4>
                 <p>Voile triangulaire établie à l’avant du navire, sur un étai allant vers le beaupré. Les journaux distinguent notamment le petit foc, le grand foc et le foc d’artimon.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-jib-en">Jib</a></p>
             </section>
 
             <section class="entry">
@@ -3720,6 +3854,7 @@
                     </a>
                 </h4>
                 <p>Grande voile triangulaire établie sur un étai, employée pour compléter la voilure et améliorer la marche dans certaines allures.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-stay-sails-en">Stay-sails</a></p>
             </section>
 
             <section class="entry">
@@ -3730,6 +3865,7 @@
                     </a>
                 </h4>
                 <p>Voile carrée située au-dessus d’une basse voile. On distingue le grand hunier et le petit hunier.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-topsails-en">Topsails</a></p>
             </section>
 
             <section class="entry">
@@ -3740,6 +3876,7 @@
                     </a>
                 </h4>
                 <p>À la fois le mât situé à l’avant du grand mât et la grande voile carrée établie sur ce mât.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Le relevé anglais ne retient que le <em>fore top-sail</em>, non la misaine.</em></p>
             </section>
 
             <section class="entry">
@@ -3750,6 +3887,7 @@
                     </a>
                 </h4>
                 <p>Voile carrée placée très haut dans le gréement, au-dessus du hunier. Les perroquets sont souvent dégréés ou serrés lorsque la mer devient grosse ou que le vent forcit.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-top-gallant-sails-t-gt-sails-en">Top-gallant sails, T.Gt. sails</a></p>
             </section>
 
             <section class="entry">
@@ -3760,6 +3898,7 @@
                     </a>
                 </h4>
                 <p>Perroquet établi au-dessus de la voile de fougue, sur le mât d’artimon.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-mizen-top-sail-en">Mizen top-sail</a></p>
             </section>
 
             <section class="entry">
@@ -3770,6 +3909,7 @@
                     </a>
                 </h4>
                 <p>Petite voile haute, analogue à un perroquet, établie sur le mât d’artimon.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Le perroquet d'artimon manque au relevé anglais.</em></p>
             </section>
 
             <section class="entry">
@@ -3780,6 +3920,7 @@
                     </a>
                 </h4>
                 <p>Réduire la surface d’une voile en en repliant et attachant une partie ; on peut prendre un, deux ou trois ris selon la force du vent.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-reef-en">Reef</a></p>
             </section>
 
             <section class="entry">
@@ -3790,6 +3931,7 @@
                     </a>
                 </h4>
                 <p>Défaire les ris afin de rendre à la voile toute ou partie de sa surface.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-let-out-a-reef-out-reefs-en">Let out a reef, out reefs</a></p>
             </section>
 
             <section class="entry">
@@ -3800,6 +3942,7 @@
                     </a>
                 </h4>
                 <p>Ris particuliers permettant de réduire une voile tout en conservant une configuration adaptée à une marche rapide ou à une manœuvre de fuite.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3810,6 +3953,7 @@
                     </a>
                 </h4>
                 <p>La replier et l’attacher contre sa vergue ; elle ne reçoit alors plus le vent.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-handed-en">Handed</a></p>
             </section>
 
             <section class="entry">
@@ -3820,6 +3964,7 @@
                     </a>
                 </h4>
                 <p>Longue pièce de bois horizontale suspendue à un mât, sur laquelle est attachée une voile carrée.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-yards-en">Yards</a></p>
             </section>
 
             <section class="entry">
@@ -3830,6 +3975,7 @@
                     </a>
                 </h4>
                 <p>Voile réduite au maximum ou presque, ne laissant qu’une faible surface établie.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-close-reefs-en">Close reefs</a></p>
             </section>
 
             <section class="entry">
@@ -3840,6 +3986,7 @@
                     </a>
                 </h4>
                 <p>Ensemble des voiles établies sur les étais entre les mâts ou vers l’avant du navire.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-stay-sails-en">Stay-sails</a></p>
             </section>
 
             <p class="part-note">Le journal de Hamelin donne des inventaires de voilure très précis : basses voiles, huniers à un ris, perroquet de fougue au bas ris, brigantine, grande et fausse voile d’étai, foc et foc d’artimon. Il décrit aussi les décisions prises lors d’un coup de vent : amener les huniers, prendre des ris et dégréer les perroquets.</p>
@@ -3854,6 +4001,7 @@
                     </a>
                 </h4>
                 <p>Mouiller sur deux ancres écartées l’une de l’autre, afin de mieux maintenir le navire et de limiter son évitage. Le Naturaliste est ainsi décrit comme « affourché NE &amp;amp; SO ».</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Mouiller sur deux ancres : absent du corpus anglais.</em></p>
             </section>
 
             <section class="entry">
@@ -3864,6 +4012,7 @@
                     </a>
                 </h4>
                 <p>Petite ancre, plus légère que l’ancre principale, utilisée pour aider au mouillage, pour déplacer le navire par halage ou pour établir un affourchage.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-stream-anchor-en">Stream anchor</a></p>
             </section>
 
             <section class="entry">
@@ -3874,6 +4023,7 @@
                     </a>
                 </h4>
                 <p>Ancre principale suspendue ou préparée près du bossoir, à l’avant du navire, prête à être mouillée ou déjà remontée.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em><em>Bower anchor</em> n'est pas relevé.</em></p>
             </section>
 
             <section class="entry">
@@ -3884,6 +4034,7 @@
                     </a>
                 </h4>
                 <p>Ancre dont le câble est presque vertical : le navire est juste au-dessus d’elle, mais elle n’est pas encore décollée du fond.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3894,6 +4045,7 @@
                     </a>
                 </h4>
                 <p>Cordage servant à retenir, attacher ou fixer un navire, une embarcation ou une pièce de gréement.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-rope-en">Rope</a> — <em>Trop général : l'anglais ne distingue pas l'amarre du cordage.</em></p>
             </section>
 
             <section class="entry">
@@ -3904,6 +4056,7 @@
                     </a>
                 </h4>
                 <p>Soulager la tension d’un câble ou le retenir à l’aide d’un cordage auxiliaire, appelé bosse.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3914,6 +4067,7 @@
                     </a>
                 </h4>
                 <p>Très gros cordage reliant l’ancre au navire. Les journaux indiquent fréquemment le nombre de brasses de câble filées.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-cable-en">Cable</a></p>
             </section>
 
             <section class="entry">
@@ -3924,6 +4078,7 @@
                     </a>
                 </h4>
                 <p>Hisser l’ancre jusqu’au flanc du navire et l’y fixer après l’avoir levée. Les journaux écrivent : « l’ancre a été caponnée ».</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3934,6 +4089,7 @@
                     </a>
                 </h4>
                 <p>Masse lourde ou ancre fixe posée au fond, servant de point d’amarrage permanent ou temporaire.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3944,6 +4100,7 @@
                     </a>
                 </h4>
                 <p>Arracher une ancre qui tient fortement au fond, notamment dans la vase.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-weighed-anchor-en">Weighed anchor</a> — <em>Déplanter, c'est l'instant où l'ancre quitte le fond.</em></p>
             </section>
 
             <section class="entry">
@@ -3954,6 +4111,7 @@
                     </a>
                 </h4>
                 <p>Décoller l’ancre du fond pour pouvoir appareiller.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-weighed-anchor-en">Weighed anchor</a> — <em>Déraper est subi, <em>weigh</em> voulu.</em></p>
             </section>
 
             <section class="entry">
@@ -3964,6 +4122,7 @@
                     </a>
                 </h4>
                 <p>Détacher le câble de l’organeau ou de la patte de l’ancre ; cette opération peut permettre de récupérer le câble lorsque l’ancre est perdue ou engagée.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -3974,6 +4133,7 @@
                     </a>
                 </h4>
                 <p>Transporter ou mouiller une ancre à distance du navire, souvent à l’aide d’une chaloupe, pour aider à le déplacer, à le retenir ou à l’affourcher.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-dropped-a-stream-anchor-en">Dropped a stream anchor</a></p>
             </section>
 
             <section class="entry">
@@ -3984,6 +4144,7 @@
                     </a>
                 </h4>
                 <p>Mouvement par lequel un navire au mouillage tourne autour de son ancre sous l’effet du vent, de la marée ou du courant.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-ride-from-the-land-en">Ride from the land</a> — <em>L'anglais décrit la position, le français l'espace du tour.</em></p>
             </section>
 
             <section class="entry">
@@ -3994,6 +4155,7 @@
                     </a>
                 </h4>
                 <p>Laisser sortir davantage de câble afin de donner du mou à l’ancre ou de réduire les efforts sur elle.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4004,6 +4166,7 @@
                     </a>
                 </h4>
                 <p>Gros cordage employé pour le mouillage, le halage, le remorquage ou certaines opérations de sauvetage.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4014,6 +4177,7 @@
                     </a>
                 </h4>
                 <p>Jeter l’ancre et s’établir au mouillage.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-anchored-en">Anchored</a></p>
             </section>
 
             <section class="entry">
@@ -4024,6 +4188,7 @@
                     </a>
                 </h4>
                 <p>Petit câble attaché à l’ancre et relié à une bouée ; il sert à repérer l’ancre et, au besoin, à aider à la relever.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4034,6 +4199,7 @@
                     </a>
                 </h4>
                 <p>Dispositif de traction composé de cordages et de palans, utilisé pour augmenter la force appliquée à un câble ou à une ancre.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Le <em>messenger</em> n'est pas relevé.</em></p>
             </section>
 
             <section class="entry">
@@ -4044,6 +4210,7 @@
                     </a>
                 </h4>
                 <p>Rentrer le câble, au cabestan ou à l’aide d’un appareil de force, afin de se rapprocher de l’ancre puis de la lever.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-weighed-anchor-en">Weighed anchor</a></p>
             </section>
 
             <p class="part-note">Les journaux montrent concrètement le fonctionnement de cet ensemble : ancre à jet portée par la chaloupe, grelin d’affourche cassé, câble filé sur 150 brasses, ancre de bossoir détalinguée, bouée placée sur le bout du grelin.</p>
@@ -4058,6 +4225,7 @@
                     </a>
                 </h4>
                 <p>Très fort palan, employé lorsqu’il faut exercer une traction importante : relever une ancre, déplacer une pièce lourde, hisser une embarcation ou secourir un bâtiment.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4068,6 +4236,7 @@
                     </a>
                 </h4>
                 <p>Treuil vertical actionné par des barres ; il sert notamment à virer les câbles d’ancre.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Le cabestan manque au relevé, bien qu'il serve à chaque mouillage.</em></p>
             </section>
 
             <section class="entry">
@@ -4078,6 +4247,7 @@
                     </a>
                 </h4>
                 <p>Anneau ou boucle de cordage servant à frapper, suspendre ou relier une poulie, un palan ou une autre pièce de manœuvre.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4088,6 +4258,7 @@
                     </a>
                 </h4>
                 <p>Poulie ou pièce de bois percée, utilisée dans certaines manœuvres de traction. La « galoche de marguerite » appartient à un montage de force appliqué à un câble.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4098,6 +4269,7 @@
                     </a>
                 </h4>
                 <p>Montage de cordages et de poulies destiné à augmenter fortement la traction sur un câble, notamment lorsqu’une ancre résiste au fond. Une « double marguerite » renforce encore cet effet.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4108,6 +4280,7 @@
                     </a>
                 </h4>
                 <p>Appareil composé de poulies et d’un cordage permettant de multiplier la force de traction.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4118,6 +4291,7 @@
                     </a>
                 </h4>
                 <p>Préparer sur le pont les tours de câble qui devront pouvoir filer librement si l’on mouille ou si l’on doit donner du câble rapidement.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4128,6 +4302,7 @@
                     </a>
                 </h4>
                 <p>Voir ci-dessus : appareil de traction destiné notamment au virage des ancres.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Le <em>messenger</em> n'est pas relevé.</em></p>
             </section>
 
             <p class="part-note">Hamelin rapporte qu’une ancre résistante obligea son équipage à employer le « grand appareil » avec le tournevire ; la vergue de l’ancre finit par se courber puis par rompre. Ronsard mentionne de son côté la rupture d’une tournevire et de l’estrope de la galoche de marguerite, suivie de la mise en œuvre d’une double marguerite.</p>
@@ -4142,6 +4317,7 @@
                     </a>
                 </h4>
                 <p>Petite embarcation non pontée, propulsée à l’aviron, à la voile ou aux deux, employée pour les communications, les sondages, les débarquements et les reconnaissances.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-cutter-en">Cutter</a> — <em>Le canot français couvre plusieurs tailles ; l'anglais les nomme.</em></p>
             </section>
 
             <section class="entry">
@@ -4152,6 +4328,7 @@
                     </a>
                 </h4>
                 <p>Principale embarcation légère du navire ; il peut transporter un détachement, du matériel de levé, des vivres ou des hommes à secourir.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-boat-boats-en">Boat, boats</a></p>
             </section>
 
             <section class="entry">
@@ -4162,6 +4339,7 @@
                     </a>
                 </h4>
                 <p>Embarcation plus légère, destinée aux communications rapides ou à de petites tâches de service.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-gig-en">Gig</a></p>
             </section>
 
             <section class="entry">
@@ -4172,6 +4350,7 @@
                     </a>
                 </h4>
                 <p>Embarcation plus grande et plus robuste qu’un canot, apte au transport de matériel, d’hommes, d’eau ou de bois ; elle peut aussi recevoir une petite voilure.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#man-boat-boats-en">Boat, boats</a> — <em>La <em>longboat</em> manque au relevé anglais.</em></p>
             </section>
 
             <section class="entry">
@@ -4182,6 +4361,7 @@
                     </a>
                 </h4>
                 <p>Très petite embarcation de service, adaptée aux courtes distances, aux communications dans une rade ou au transport léger.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>AUCUN mot anglais : embarcation propre aux corvettes françaises.</em></p>
             </section>
 
             <section class="entry">
@@ -4192,6 +4372,7 @@
                     </a>
                 </h4>
                 <p>Petite embarcation légère à rames, utile pour les liaisons rapides ou les reconnaissances proches.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em><em>Yawl</em> absent du relevé.</em></p>
             </section>
 
             <section class="entry">
@@ -4202,6 +4383,7 @@
                     </a>
                 </h4>
                 <p>Lui affecter son équipage, ses avirons, ses armes, ses vivres, ses instruments et le matériel nécessaire à sa mission.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
 
             <section class="entry">
@@ -4212,6 +4394,7 @@
                     </a>
                 </h4>
                 <p>Faire monter à bord du navire une personne, une embarcation, des vivres ou du matériel ; « rembarquer » implique souvent un retour après un séjour</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
             <!-- nautique:fr:manoeuvre:fin -->
             </section>
@@ -4219,6 +4402,7 @@
             <section class="glossary-part" data-part="hydrographie">
             <h2 class="part-title">Observation et hydrographie</h2>
             <!-- nautique:fr:hydrographie:debut -->
+            <p class="part-avis">Les renvois vers le glossaire anglais sont une proposition, en cours de relecture.</p>
             <ul class="toc">
                 <li><a href="#hyd-azimut">Azimut</a></li>
                 <li><a href="#hyd-brasse">Brasse</a></li>
@@ -4248,6 +4432,7 @@
                     </a>
                 </h4>
                 <p>Direction d’un objet — astre, cap, île ou amer — mesurée par rapport au nord. La comparaison d’un azimut observé avec sa direction astronomique permet notamment d’étudier la déclinaison magnétique.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-amplitude-en">Amplitude</a> — <em>L'amplitude est un azimut pris au lever ou au coucher du soleil.</em></p>
             </section>
 
             <section class="entry">
@@ -4258,6 +4443,7 @@
                     </a>
                 </h4>
                 <p>Unité de profondeur employée dans les journaux de bord. Les sondes indiquent ainsi les fonds en brasses : « 10 brasses fond de sable gris », par exemple.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-fathom-fathoms-fms-en">Fathom, fathoms, fms.</a> — <em>Six pieds de part et d'autre : la mesure est la même.</em></p>
             </section>
 
             <section class="entry">
@@ -4268,6 +4454,7 @@
                     </a>
                 </h4>
                 <p>Instrument de mesure angulaire perfectionné par Jean-Charles de Borda. Grâce à des miroirs, il permet de mesurer l’angle entre l’horizon et un astre, ou entre deux astres. Il servait notamment aux observations astronomiques en mer et au calcul de la longitude par les distances lunaires. L’expédition Baudin possédait quatre de ces cercles au départ de France.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-sextant-en">Sextant</a> — <em>Instruments voisins, écoles différentes : Borda contre Hadley.</em></p>
             </section>
 
             <section class="entry">
@@ -4278,6 +4465,7 @@
                     </a>
                 </h4>
                 <p>Instrument distinct du cercle de réflexion, utilisé surtout à terre pour l’astronomie et la géodésie. L’observateur répète une même mesure angulaire sans remettre l’instrument à zéro, puis divise le résultat par le nombre de répétitions : cette méthode réduit les erreurs de lecture.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>Instrument français ; les Anglais s'en tiennent au sextant.</em></p>
             </section>
 
             <section class="entry">
@@ -4288,6 +4476,7 @@
                     </a>
                 </h4>
                 <p>Compas muni d’un dispositif de visée, destiné à mesurer la variation — ou déclinaison — magnétique. Il permet de comparer le nord indiqué par l’aiguille au nord géographique et de corriger les relèvements pris au compas.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-compass-needle-en">Compass needle</a> — <em>L'<em>azimuth compass</em> n'est pas nommé au relevé.</em></p>
             </section>
 
             <section class="entry">
@@ -4298,6 +4487,7 @@
                     </a>
                 </h4>
                 <p>La position d’un navire ou d’un point côtier est exprimée par une latitude et une longitude. Les journaux distinguent souvent les coordonnées observées, tirées d’observations astronomiques, des coordonnées estimées, calculées à partir de la route et de la vitesse présumée du bâtiment. Le journal de Baudin confronte ainsi une latitude observée à la longitude fournie par la montre marine.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-latitude-en">Latitude</a> — <em>L'anglais dit les deux termes, jamais le couple.</em></p>
             </section>
 
             <section class="entry">
@@ -4308,6 +4498,7 @@
                     </a>
                 </h4>
                 <p>Écart angulaire entre le nord magnétique, indiqué par l’aiguille aimantée, et le nord géographique. Cette correction était essentielle pour reporter correctement sur une carte les directions relevées au compas.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-variation-en">Variation</a> — <em>Le même mot des deux côtés, au sens près.</em></p>
             </section>
 
             <section class="entry">
@@ -4318,6 +4509,7 @@
                     </a>
                 </h4>
                 <p>Méthode consistant à calculer la position du navire à partir de sa route, de sa vitesse, du temps écoulé, des vents et des courants, sans observation astronomique directe. Elle demeure indispensable, mais peut s’écarter de la position réelle ; Baudin compare fréquemment ses résultats d’estime à ses observations et aux relèvements de terre.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-departure-en">Departure</a> — <em><em>Departure</em> est le point d'où l'estime part, non l'estime même.</em></p>
             </section>
 
             <section class="entry">
@@ -4328,6 +4520,7 @@
                     </a>
                 </h4>
                 <p>Ensemble des opérations destinées à connaître et représenter les côtes et les eaux : détermination des positions, relèvements, sondes, étude des courants et marées, esquisses côtières, puis construction des cartes. Les ingénieurs-géographes de l’expédition combinaient mesures angulaires, observations astronomiques, azimuts, sondages et dessins rapides du littoral.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#vie-hydrographer-en">Hydrographer</a> — <em>L'anglais nomme l'homme, le français la discipline.</em></p>
             </section>
 
             <section class="entry">
@@ -4338,6 +4531,7 @@
                     </a>
                 </h4>
                 <p>Distance angulaire d’un lieu à l’équateur, exprimée en degrés, minutes et secondes vers le nord ou le sud. En mer, elle pouvait être obtenue par l’observation de la hauteur du Soleil à midi, ou d’autres astres.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-latitude-en">Latitude</a></p>
             </section>
 
             <section class="entry">
@@ -4348,6 +4542,7 @@
                     </a>
                 </h4>
                 <p>Distance angulaire d’un lieu au méridien de référence. Sa détermination exigeait de comparer l’heure locale, obtenue par observation astronomique, à l’heure conservée par une montre marine : une heure de différence correspond à quinze degrés de longitude.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-longitude-en">Longitude</a></p>
             </section>
 
             <section class="entry">
@@ -4358,6 +4553,7 @@
                     </a>
                 </h4>
                 <p>Horloge de précision conçue pour conserver l’heure d’un méridien de référence à bord. Associée aux observations astronomiques, elle permettait de calculer la longitude. Les montres marines étaient donc des instruments fondamentaux des levés hydrographiques ; Louis de Freycinet en réclama une pour les travaux du Casuarina.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-time-keeper-time-keepers-en">Time-keeper, time-keepers</a></p>
             </section>
 
             <section class="entry">
@@ -4368,6 +4564,7 @@
                     </a>
                 </h4>
                 <p>Position où un navire jette l’ancre. Dans les relevés hydrographiques, le mouillage est décrit par la profondeur, la nature du fond — sable, vase, coquilles — et les relèvements des terres environnantes.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#man-anchorage-en">Anchorage</a></p>
             </section>
 
             <section class="entry">
@@ -4378,6 +4575,7 @@
                     </a>
                 </h4>
                 <p>Direction sous laquelle on observe un objet depuis le navire, exprimée en degrés par rapport au nord. Plusieurs relèvements de caps, d’îles ou de pointes permettent de fixer la position du bâtiment et de tracer la côte. Le journal hydrographique de Maurouard précise que ses relèvements sont donnés « tels que le compas les a donnés », donc avant correction de la variation.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-bearing-bearings-en">Bearing, bearings</a></p>
             </section>
 
             <section class="entry">
@@ -4388,6 +4586,7 @@
                     </a>
                 </h4>
                 <p>La sonde est l’opération qui consiste à mesurer la profondeur d’eau, traditionnellement avec une ligne lestée ; le sondage en est le résultat. La profondeur et la nature du fond renseignent sur les dangers, les hauts-fonds et la possibilité de mouiller. Baudin note par exemple avoir jeté la sonde à plusieurs reprises lorsqu’un changement de couleur de l’eau faisait soupçonner un fond moins important.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-sounding-soundings-en">Sounding, soundings</a></p>
             </section>
 
             <section class="entry">
@@ -4398,6 +4597,7 @@
                     </a>
                 </h4>
                 <p>Écart constaté entre l’heure indiquée par la montre marine et l’heure de référence qu’elle devrait conserver. Il fallait suivre et corriger cet écart, car une montre déréglée faussait directement le calcul de la longitude.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-time-keeper-time-keepers-en">Time-keeper, time-keepers</a> — <em>La marche de la montre : l'anglais la décrit sans la nommer.</em></p>
             </section>
 
             <section class="entry">
@@ -4408,6 +4608,7 @@
                     </a>
                 </h4>
                 <p>Instruments employés pour consigner la pression atmosphérique, la température et l’humidité. Les journaux de Baudin enregistrent ces données de façon suivie et les associent aux vents, aux nuages, à la pluie ou aux grains.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-barometer-marine-barometer-en">Barometer, marine barometer</a> — <em>L'hygromètre manque au relevé anglais.</em></p>
             </section>
 
             <section class="entry">
@@ -4418,6 +4619,7 @@
                     </a>
                 </h4>
                 <p>Brusque coup de vent, souvent accompagné de pluie, de grêle ou d’une forte dégradation de la visibilité. Les grains gênaient les observations astronomiques et obligeaient les bâtiments à réduire leur voilure ; Baudin mentionne des éclaircies entre les grains pour observer le Soleil.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#hyd-squall-squally-en">Squall, squally</a></p>
             </section>
             <!-- nautique:fr:hydrographie:fin -->
             </section>
@@ -4425,6 +4627,7 @@
             <section class="glossary-part" data-part="vie-bord">
             <h2 class="part-title">Sciences, santé et vie de bord</h2>
             <!-- nautique:fr:vie-bord:debut -->
+            <p class="part-avis">Les renvois vers le glossaire anglais sont une proposition, en cours de relecture.</p>
             <ul class="toc">
                 <li><a href="#vie-aiguade">Aiguade</a></li>
                 <li><a href="#vie-arrimage">Arrimage</a></li>
@@ -4454,6 +4657,7 @@
                     </a>
                 </h4>
                 <p>Lieu où les navires peuvent se procurer de l’eau douce, par une source, une rivière ou des puits creusés près du rivage. Sa recherche est une priorité vitale : l’absence d’eau douce limite les possibilités de relâche et d’exploration. À l’Anse des Sources, les Français recueillirent, en creusant des trous, une eau suffisante pour les besoins quotidiens.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#vie-watered-water-supply-en">Watered, water supply</a> — <em>Le français nomme le lieu, l'anglais l'opération.</em></p>
             </section>
 
             <section class="entry">
@@ -4464,6 +4668,7 @@
                     </a>
                 </h4>
                 <p>Organisation et fixation des vivres, instruments, matériaux et autres objets dans les cales et entreponts. Un mauvais arrimage peut rendre un objet essentiel inaccessible : Baudin explique ainsi qu’il fallut déplacer une partie du chargement pour dégager des ancres de rechange.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em><em>Stowage</em> absent du relevé, bien qu'il décide de la stabilité.</em></p>
             </section>
 
             <section class="entry">
@@ -4474,6 +4679,7 @@
                     </a>
                 </h4>
                 <p>Jeune officier en formation, placé sous les ordres des officiers supérieurs et appelé à participer aux manœuvres, aux reconnaissances en embarcation et aux relevés. Charles Baudin, aspirant, fut notamment envoyé reconnaître une baie et y découvrit les sources qui donnèrent leur nom à l’Anse des Sources.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#vie-midshipman-en">Midshipman</a></p>
             </section>
 
             <section class="entry">
@@ -4484,6 +4690,7 @@
                     </a>
                 </h4>
                 <p>Savant chargé des observations célestes nécessaires au calcul des positions et au réglage des montres marines. L’astronome emporte parfois ses instruments à terre, où la stabilité du sol rend les observations plus précises. Le rôle d’astronome figure explicitement dans le rôle d’équipage du Naturaliste.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#hyd-astronomical-observation-en">Astronomical observation</a> — <em>L'anglais n'a pas d'astronome embarqué à nommer.</em></p>
             </section>
 
             <section class="entry">
@@ -4494,6 +4701,7 @@
                     </a>
                 </h4>
                 <p>Naturaliste spécialisé dans l’étude, la collecte et la description des végétaux. Il herborise à terre, recueille graines et spécimens, et contribue à l’enrichissement des collections rapportées en France. Le botaniste fait partie du personnel scientifique embarqué sur le Naturaliste.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#vie-botanist-botanists-en">Botanist, botanists</a></p>
             </section>
 
             <section class="entry">
@@ -4504,6 +4712,7 @@
                     </a>
                 </h4>
                 <p>Ouvrier chargé de rendre étanches les jointures du bordage d’un navire, notamment en les garnissant d’étoupe et de goudron. Son travail est indispensable à l’entretien de la coque ; Baudin signale les calfats parmi les hommes employés lors des réparations et préparatifs d’escale.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#vie-carpenter-en">Carpenter</a> — <em>Le calfat est un métier distinct en France, une tâche du charpentier chez Flinders.</em></p>
             </section>
 
             <section class="entry">
@@ -4514,6 +4723,7 @@
                     </a>
                 </h4>
                 <p>Dans le vocabulaire maritime, désigne le voyage ou l’ensemble de la mission d’un bâtiment. Les « vivres de campagne » sont donc les provisions prévues pour soutenir l’équipage pendant la navigation et les opérations à terre.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>La campagne comme unité de temps et d'entreprise n'a pas son mot.</em></p>
             </section>
 
             <section class="entry">
@@ -4524,6 +4734,7 @@
                     </a>
                 </h4>
                 <p>Membre du service médical embarqué. Il soigne les malades et blessés, surveille l’état sanitaire de l’équipage et conseille le commandement. Sur le Naturaliste, Jérôme Bellefin est cité comme officier de santé ; son avis est pris en compte dans la décision de débarquer un officier gravement malade à Port Jackson.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#vie-patients-en">Patients</a> — <em>Le chirurgien n'est pas nommé au relevé : seuls ses malades le sont.</em></p>
             </section>
 
             <section class="entry">
@@ -4534,6 +4745,7 @@
                     </a>
                 </h4>
                 <p>Aliments destinés à se garder longtemps en mer, notamment les viandes salées. Elles forment une part essentielle des vivres de campagne, avec les boissons, le pain, les grains et les légumes secs. Baudin fait embarquer salaisons, bière, vin et arack avant de reprendre la mer.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#vie-provisions-en">Provisions</a> — <em>Voir aussi <em>sour krout</em>, <em>spruce beer</em>, <em>sweet wort</em>.</em></p>
             </section>
 
             <section class="entry">
@@ -4544,6 +4756,7 @@
                     </a>
                 </h4>
                 <p>Spécialiste chargé de reconnaître, mesurer et dessiner les côtes, afin de préparer les cartes. Il travaille avec les officiers et les astronomes, depuis le navire ou au cours d’expéditions à terre. Pierre Faure est ainsi désigné comme géographe du Naturaliste.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#vie-hydrographer-en">Hydrographer</a> — <em>Deux traditions savantes, deux titres.</em></p>
             </section>
 
             <section class="entry">
@@ -4554,6 +4767,7 @@
                     </a>
                 </h4>
                 <p>Étude descriptive des êtres vivants, des roches, des terrains et des phénomènes naturels. Dans une expédition de découvertes, elle comprend la collecte de spécimens, leur préparation, leur dessin, leur description et la recherche de leur répartition géographique.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#vie-natural-history-en">Natural history</a></p>
             </section>
 
             <section class="entry">
@@ -4564,6 +4778,7 @@
                     </a>
                 </h4>
                 <p>Naturaliste spécialisé dans les roches, minéraux, sols et formations géologiques. Sa présence répondait au projet scientifique de l’expédition : recueillir et étudier les productions naturelles des régions visitées. Joseph Bailly est inscrit comme minéralogiste sur le rôle du Naturaliste.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#vie-geological-terms-en">Geological terms</a> — <em>Pas de minéralogiste embarqué chez Flinders ; le vocabulaire subsiste.</em></p>
             </section>
 
             <section class="entry">
@@ -4574,6 +4789,7 @@
                     </a>
                 </h4>
                 <p>Terme général désignant un savant voué à l’étude de la nature. Selon sa spécialité, il peut être botaniste, zoologiste, minéralogiste ou médecin intéressé par l’histoire naturelle. Les naturalistes embarquent, débarquent pour récolter et observent les espèces et milieux rencontrés.</p>
+                <p class="renvoi renvoi--proche"><span class="renvoi-clef">Anglais</span> <a href="#vie-botanist-botanists-en">Botanist, botanists</a> — <em>Brown est botaniste ; le naturaliste français couvre plus large.</em></p>
             </section>
 
             <section class="entry">
@@ -4584,6 +4800,7 @@
                     </a>
                 </h4>
                 <p>Approvisionnement du navire en eau, vivres, combustible, matériaux et médicaments. Il conditionne directement la durée de la navigation. À Port Jackson, le Naturaliste se procure notamment eau, blé, légumes frais, pommes de terre et giraumons, tout en faisant soigner les malades et réparer le navire.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#vie-provisions-en">Provisions</a></p>
             </section>
 
             <section class="entry">
@@ -4594,6 +4811,7 @@
                     </a>
                 </h4>
                 <p>Arrêt d’un navire dans un port ou une rade au cours d’un voyage, pour se ravitailler, réparer, soigner l’équipage, effectuer des observations ou recevoir des ordres. Une relâche ne signifie donc pas nécessairement la fin de l’expédition.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>L'escale de réparation et de repos : décrite sans être nommée.</em></p>
             </section>
 
             <section class="entry">
@@ -4604,6 +4822,7 @@
                     </a>
                 </h4>
                 <p>Installation provisoire établie à terre lors d’une relâche. Elle peut servir d’abri pour les savants, de dépôt pour les collections, ou encore d’observatoire pour les instruments astronomiques. Baudin fit ainsi ramener au bord les tentes et instruments que l’astronome avait établis à terre.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em> — <em>La tente dressée à terre pour l'observatoire n'a pas son entrée.</em></p>
             </section>
 
             <section class="entry">
@@ -4614,6 +4833,7 @@
                     </a>
                 </h4>
                 <p>Ensemble des denrées destinées à nourrir l’équipage : biscuit, salaisons, boissons, grains, légumes secs, produits frais acquis aux escales et ressources obtenues par la pêche ou la chasse. La pénurie d’eau et de vivres est l’une des causes majeures de l’interruption ou de la modification d’une campagne.</p>
+                <p class="renvoi renvoi--sure"><span class="renvoi-clef">Anglais</span> <a href="#vie-provisions-en">Provisions</a></p>
             </section>
 
             <section class="entry">
@@ -4624,6 +4844,7 @@
                     </a>
                 </h4>
                 <p>Naturaliste spécialisé dans l’étude des animaux. À bord, son travail comprend la collecte, la conservation, la description et souvent la préparation de spécimens. François Péron, d’abord aide-zoologiste, devint le principal zoologiste de l’expédition après le départ de plusieurs savants à l’île de France.</p>
+                <p class="renvoi renvoi--aucun"><span class="renvoi-clef">Anglais</span> <em>pas d'équivalent relevé</em></p>
             </section>
             <!-- nautique:fr:vie-bord:fin -->
             </section>
