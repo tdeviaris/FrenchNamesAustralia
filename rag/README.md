@@ -150,6 +150,27 @@ quatre fois de suite avant d'aboutir.
   auteurs sur 295 avec celle de Sydney — les deux se complètent plus qu'elles
   ne se recouvrent, et les deux sont indexées.
 
+## Essayer le site en local
+
+Un simple serveur de fichiers ne suffit pas : la page du Q&R appelle
+`/api/responses-chat` sur son propre hôte, et personne ne répond — le chatbot
+reste muet sans le moindre message d'erreur. `vercel dev` le ferait, mais il
+exige une session Vercel.
+
+```bash
+npm run dev            # http://127.0.0.1:3000/expert.html
+```
+
+`scripts/serveur_local.mjs` sert le dépôt tel quel et confie toute adresse en
+`/api/` au module correspondant, en lui présentant les mêmes `req` et `res`
+qu'attend une fonction Vercel. Il lit `.env` : la clé OpenAI et
+`VECTOR_STORE_ID`. Les modules d'`api/` sont rechargés à chaque requête, et rien
+n'est mis en cache — on voit ce qu'on vient d'écrire.
+
+⚠️ `VECTOR_STORE_ID` dans `.env` doit pointer sur le magasin que l'on veut
+essayer. Il gardait longtemps l'ancien magasin de six fichiers, si bien que le
+Q&R local répondait à côté pendant que la production allait bien.
+
 ## Éprouver le magasin avant de basculer
 
 `essayer.mjs` pose cinq questions choisies pour n'avoir de réponse que dans ce

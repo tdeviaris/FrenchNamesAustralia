@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.html",
   "scripts": {
-    "start": "echo 'Use: vercel dev'",
+    "start": "node scripts/serveur_local.mjs",
     "deploy": "vercel --prod",
     "test": "node --test tests/**/*.test.js",
     "test:mcp": "node --test tests/mcp/*.test.js",
@@ -19,7 +19,8 @@
     "rag:corpus": ".venv/bin/python rag/convertir_sources.py && .venv/bin/python rag/extraire_site.py",
     "rag:essai": "node rag/indexer.mjs --essai",
     "rag:indexer": "node rag/indexer.mjs",
-    "rag:essayer": "node rag/essayer.mjs"
+    "rag:essayer": "node rag/essayer.mjs",
+    "dev": "node scripts/serveur_local.mjs"
   },
   "keywords": [
     "toponyms",
