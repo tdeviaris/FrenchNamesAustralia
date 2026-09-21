@@ -97,12 +97,17 @@ export default async function handler(req, res) {
       }
     });
 
-    stream.on('response.created', (event) => {
-      const createdId = event?.response?.id;
-      if (createdId) {
-        res.write(`data: ${JSON.stringify({ responseId: createdId })}\n\n`);
-      }
-    });
+    // L'identifiant n'est PLUS envoye a l'ouverture. Une reponse longue depasse
+    // parfois la minute que Vercel accorde a la fonction : elle est alors tuee
+    // en pleine phrase, et OpenAI, qui ne l'a jamais vue s'achever, ne
+    // l'enregistre pas. Le navigateur, lui, avait deja note l'identifiant et
+    // s'y accrochait a chaque question suivante -- qui recevait un 400
+    // « Previous response not found ». Le fil etait mort, et le rechargement
+    // n'y changeait rien puisque l'identifiant survivait dans le stockage local.
+    //
+    // On ne l'envoie donc qu'une fois la reponse menee a terme, plus bas. Une
+    // reponse coupee ne laisse aucune trace : la question suivante repart du
+    // dernier echange valide.
 
     stream.on('response.output_text.delta', (event) => {
       const content = event?.delta;
@@ -116,12 +121,15 @@ export default async function handler(req, res) {
       res.write(`data: ${JSON.stringify({ error: error.message })}\n\n`);
     });
 
-    stream.on('end', () => {
-      res.write('data: [DONE]\n\n');
-      res.end();
-    });
+    const finale = await stream.finalResponse();
 
-    await stream.finalResponse();
+    // Seule une reponse achevee et enregistree cote OpenAI peut servir de
+    // maillon a la suivante.
+    if (finale?.status === 'completed' && finale?.id) {
+      res.write(`data: ${JSON.stringify({ responseId: finale.id })}\n\n`);
+    }
+    res.write('data: [DONE]\n\n');
+    res.end();
   } catch (error) {
     console.error('Server error:', error);
 

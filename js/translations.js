@@ -26,6 +26,7 @@ const translations = {
         'expert-q1': "Quels sont les principaux enseignements de l'expédition Baudin ?",
         'expert-q2': "Quelle est l'originalité de l'expédition d'Entrecasteaux ?",
         'expert-input-placeholder': "Posez votre question...",
+        'expert-reset': "Nouvelle conversation",
         'expert-send': "Envoyer",
         'footer-text': '&copy; 2025 - Dany Bréelle - Projet "Noms Français le long de la côte Australienne"',
 
@@ -334,6 +335,7 @@ const translations = {
         'expert-q1': "What are the main findings of the Baudin expedition?",
         'expert-q2': "What makes the d'Entrecasteaux expedition unique?",
         'expert-input-placeholder': "Ask your question...",
+        'expert-reset': "New conversation",
         'expert-send': "Send",
         'footer-text': '&copy; 2025 - Dany Bréelle - "French Names Along the Australian Coastline" Project',
 

@@ -298,6 +298,31 @@
             z-index: 2;
         }
 
+        .chat-reset-button {
+            display: block;
+            margin: 10px auto 0;
+            padding: 4px 12px;
+            border: none;
+            background: none;
+            color: #777;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .chat-reset-button:hover { color: var(--primary-blue); }
+
+        /* Réponse tranchée par la limite de durée du serveur : on le dit, sobrement. */
+        .message-coupure {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px dashed #d0d0d0;
+            color: #8a6d3b;
+            font-size: 0.88rem;
+            font-style: italic;
+        }
+
         .chat-input-form {
             display: flex;
             gap: 10px;
@@ -510,6 +535,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                             <!-- Icones injectées via JS -->
                         </button>
                     </form>
+                    <button type="button" class="chat-reset-button" id="reset-button"
+                            data-i18n="expert-reset">Nouvelle conversation</button>
                 </div>
             </div>
         </div>
@@ -527,6 +554,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         const chatForm = document.getElementById('chat-form');
         const chatInput = document.getElementById('chat-input');
         const sendButton = document.getElementById('send-button');
+        const resetButton = document.getElementById('reset-button');
 
         // La réponse arrive mot à mot, et le fil se recollait en bas à chaque
         // fragment reçu. Celui qui avait commencé à lire voyait sa ligne fuir
@@ -1264,6 +1292,48 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
         };
 
+        // Repart d'une conversation vierge. C'est aussi la porte de sortie quand
+        // le fil s'est envase : une reponse tranchee, un identifiant devenu
+        // caduc, un historique qu'on ne veut plus voir.
+        const remetLaConversationAZero = () => {
+            try {
+                abortController?.abort();
+            } catch {
+                // rien a faire : la requete etait deja close
+            }
+            chatHistory = [];
+            responseId = null;
+            isProcessing = false;
+            try {
+                localStorage.removeItem(HISTORY_STORAGE_KEY);
+            } catch (err) {
+                console.warn('Unable to clear chat history', err);
+            }
+            chatMessages.innerHTML = '';
+            const intro = document.getElementById('chat-intro');
+            if (intro) intro.hidden = false;
+            clearSlowResponseNote();
+            hideTypingIndicator();
+            colleLeFilEnBas();
+            chatInput.value = '';
+            chatInput.focus();
+        };
+
+        // Signale une reponse tranchee en cours de route. Sans ce mot, une phrase
+        // qui s'arrete en plein milieu passe pour une panne du site.
+        const afficheCoupure = (bulle) => {
+            if (!bulle) return;
+            const note = document.createElement('div');
+            note.className = 'message-coupure';
+            const lang = localStorage.getItem('language') || 'en';
+            note.textContent = lang === 'fr'
+                ? "Réponse interrompue : elle dépassait le temps accordé. "
+                  + "Reformulez en demandant une partie à la fois."
+                : 'Answer cut short: it exceeded the time allowed. '
+                  + 'Try asking for one part at a time.';
+            bulle.appendChild(note);
+        };
+
         const loadChatHistory = () => {
             try {
                 const raw = localStorage.getItem(HISTORY_STORAGE_KEY);
@@ -1456,6 +1526,17 @@ gtag('config', 'G-LCWV2EVPVQ');
         }
 
         // Gérer la soumission du formulaire
+        // Le bouton demande confirmation : on efface un echange qu'on ne
+        // retrouvera pas, et le geste est a portee du champ de saisie.
+        resetButton?.addEventListener('click', () => {
+            const lang = localStorage.getItem('language') || 'en';
+            const question = lang === 'fr'
+                ? 'Effacer cette conversation et repartir de zéro ?'
+                : 'Clear this conversation and start over?';
+            if (chatHistory.length && !window.confirm(question)) return;
+            remetLaConversationAZero();
+        });
+
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -1520,11 +1601,16 @@ gtag('config', 'G-LCWV2EVPVQ');
                 const assistantMessage = addMessage('');
                 let fullResponse = '';
                 let gotFirstChunk = false;
+                // Le serveur clot par [DONE]. Sans lui, le flux a ete tranche :
+                // Vercel n'accorde qu'une minute a la fonction, et une reponse
+                // trop longue s'arrete en plein mot.
+                let fluxAcheve = false;
 
                 // Lire le stream SSE de façon robuste même si un événement
                 // est découpé sur plusieurs chunks réseau.
                 await readSseStream(response.body, (data) => {
                     if (data === '[DONE]') {
+                        fluxAcheve = true;
                         return;
                     }
 
@@ -1573,6 +1659,12 @@ gtag('config', 'G-LCWV2EVPVQ');
                 if (cleanedFinal) {
                     chatHistory.push({ role: 'assistant', content: cleanedFinal });
                     saveChatHistory();
+                }
+
+                // Une phrase qui s'arrete en plein mot sans un mot d'explication
+                // laisse croire a une panne. On le dit, et l'on dit quoi faire.
+                if (!fluxAcheve && cleanedFinal) {
+                    afficheCoupure(assistantMessage);
                 }
 
             } catch (error) {
