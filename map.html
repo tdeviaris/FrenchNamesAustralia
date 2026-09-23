@@ -183,65 +183,112 @@
             font-variant-numeric: tabular-nums;
         }
 
-        /* Expedition toggles */
+        /* Expedition toggles : un tableau, une ligne par expedition sur sa
+           couleur, trois colonnes de cases alignees sous leurs en-tetes. */
         .layer-toggle {
+            --lt-cell: 44px;
             position: absolute;
             top: calc(var(--nav-height) + 10px);
             left: 6px;
             z-index: 400; /* below popups */
             display: grid;
-            gap: 6px;
-            min-width: 150px;
+            gap: 4px;
+            width: 284px;
+            padding: 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            font-family: 'Lato', sans-serif;
         }
-        .layer-toggle label {
+        .lt-head,
+        .lt-row {
+            display: grid;
+            grid-template-columns: 1fr repeat(3, var(--lt-cell));
+            align-items: center;
+        }
+        .lt-head {
+            padding: 0 0 1px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: #5b6470;
+            text-align: center;
+        }
+        .lt-row {
             --toggle-color: #0b63d1;
+            min-height: 36px;
+            border-radius: 7px;
+            background: var(--toggle-color);
+            color: #fff;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+        }
+        .toggle-baudin { --toggle-color: #0b63d1; }
+        .toggle-entre { --toggle-color: #238b45; }
+        /* Flinders reprend le carmin de la route de l'Investigator. */
+        .toggle-flinders { --toggle-color: #c2255c; }
+        .lt-name {
+            padding: 0 6px 0 11px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .lt-cell {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
-            border-radius: 8px;
-            background: var(--toggle-color);
-            border: 1px solid var(--toggle-color);
-            color: #fff;
-            font-weight: 400;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            justify-content: center;
+            align-self: stretch;
             cursor: pointer;
-            user-select: none;
         }
-        .layer-toggle input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--toggle-color);
+        /* Case blanche cochee a la couleur de l'expedition. */
+        .lt-cell input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            display: grid;
+            place-content: center;
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            border-radius: 4px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.12);
             cursor: pointer;
-            background: #fff;
-            border: 1px solid rgba(0,0,0,0.25);
+            transition: background-color 0.15s ease, transform 0.1s ease;
         }
-        .toggle-baudin { --toggle-color: #0b63d1; background: #0b63d1 !important; border-color: #0b63d1 !important; }
-        .toggle-baudin input { accent-color: #0b63d1 !important; }
-        .toggle-entre { --toggle-color: #238b45; background: #238b45 !important; border-color: #238b45 !important; }
-        .toggle-entre input { accent-color: #238b45 !important; }
-        /* Flinders reprend le carmin de la route de l'Investigator. */
-        .toggle-flinders { --toggle-color: #c2255c; background: #c2255c !important; border-color: #c2255c !important; }
-        .toggle-flinders input { accent-color: #c2255c !important; }
-        .layer-toggle span { flex: 1; font-weight: 400; }
-        .layer-toggle-row { display: flex; gap: 6px; }
-        .layer-toggle-row > label { flex: 1; }
-        .layer-toggle-row > label.route-toggle { flex: 0 0 auto; padding: 8px 10px; }
-        .layer-toggle-row > label.route-toggle span { flex: 0; font-weight: 600; }
-        .layer-toggle-row > label.route-toggle.is-disabled {
+        .lt-cell input[type="checkbox"]::after {
+            content: "";
+            width: 9px;
+            height: 5px;
+            border-left: 2.5px solid var(--toggle-color);
+            border-bottom: 2.5px solid var(--toggle-color);
+            transform: translateY(-1px) rotate(-45deg) scale(0);
+            transition: transform 0.12s ease;
+        }
+        .lt-cell input[type="checkbox"]:checked { background: #fff; border-color: #fff; }
+        .lt-cell input[type="checkbox"]:checked::after { transform: translateY(-1px) rotate(-45deg) scale(1); }
+        .lt-cell:hover input[type="checkbox"]:not(:disabled) { background: rgba(255, 255, 255, 0.3); }
+        .lt-cell:hover input[type="checkbox"]:checked:not(:disabled) { background: #fff; }
+        .lt-cell input[type="checkbox"]:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+        .lt-cell input[type="checkbox"]:active:not(:disabled) { transform: scale(0.9); }
+        /* Carte encore a venir : la case reste a sa place, en retrait. */
+        .lt-cell.is-disabled { cursor: not-allowed; }
+        .lt-cell.is-disabled input[type="checkbox"] {
+            cursor: not-allowed;
+            border-style: dashed;
             opacity: 0.45;
-            cursor: not-allowed;
+            background: transparent;
         }
-        .layer-toggle-row > label.route-toggle.is-disabled input {
-            cursor: not-allowed;
-        }
+        /* Une route affichee remplace la recherche de lieux. */
+        .search-container.is-hidden { display: none; }
         .ship-block {
-            margin-top: 4px;
-            padding: 6px 8px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.92);
-            border: 1px solid rgba(0, 0, 0, 0.12);
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: #f3f4f6;
+            border: 1px solid rgba(0, 0, 0, 0.06);
         }
         .ship-block-title {
             font-size: 10px;
@@ -251,7 +298,7 @@
             margin-bottom: 4px;
         }
         .ship-list { display: flex; flex-direction: column; gap: 3px; }
-        /* Neutralise le style "pilule" herite de .layer-toggle label. */
+        /* Libelles de navires : texte sombre, sans le fond d'une ligne. */
         .layer-toggle .ship-block label.ship-item {
             display: flex;
             align-items: center;
@@ -1776,39 +1823,54 @@ gtag('config', 'G-LCWV2EVPVQ');
     <h1 class="visually-hidden">Carte des toponymies françaises sur le littoral australien</h1>
     <div id="map"></div>
 
-    <div class="layer-toggle" aria-label="Filtres d'expédition">
-        <div class="layer-toggle-row">
-            <label class="toggle-entre">
+    <!-- Une ligne par expedition, trois colonnes : ses lieux, sa route, sa
+         carte ancienne. Une seule carte a la fois : la decocher rend le fond
+         choisi en bas a gauche (satellite ou OpenStreetMap). -->
+    <div class="layer-toggle" role="group" aria-label="Filtres d'expédition">
+        <div class="lt-head" aria-hidden="true">
+            <span></span>
+            <span data-i18n="map-col-places">Lieux</span>
+            <span data-i18n="map-col-route">Route</span>
+            <span data-i18n="map-col-map">Carte</span>
+        </div>
+        <div class="lt-row toggle-entre">
+            <span class="lt-name" data-i18n="map-layer-entre">d’Entrecasteaux</span>
+            <label class="lt-cell" data-i18n-aria-label="map-aria-entre-places" aria-label="Lieux d'Entrecasteaux">
                 <input type="checkbox" id="toggle-entre" checked>
-                <span data-i18n="map-layer-entre">d'Entrecasteaux</span>
             </label>
-            <label class="toggle-entre route-toggle" aria-label="Afficher la route d'Entrecasteaux">
+            <label class="lt-cell route-toggle" data-i18n-aria-label="map-aria-entre-route" aria-label="Route d'Entrecasteaux">
                 <input type="checkbox" id="toggle-entre-parcours">
-                <span>route</span>
+            </label>
+            <label class="lt-cell carte-toggle" data-i18n-aria-label="map-aria-entre-map" aria-label="Carte de Beautemps-Beaupré">
+                <input type="checkbox" id="toggle-entre-carte" data-carte="beautemps">
             </label>
         </div>
         <div class="ship-block" id="ship-block-entre" hidden>
             <div class="ship-block-title">Navires</div>
             <div class="ship-list" id="ship-list-entre"></div>
         </div>
-        <div class="layer-toggle-row">
-            <label class="toggle-baudin">
+        <div class="lt-row toggle-baudin">
+            <span class="lt-name" data-i18n="map-layer-baudin">Baudin</span>
+            <label class="lt-cell" data-i18n-aria-label="map-aria-baudin-places" aria-label="Lieux Baudin">
                 <input type="checkbox" id="toggle-baudin" checked>
-                <span data-i18n="map-layer-baudin">Baudin</span>
             </label>
-            <label class="toggle-baudin route-toggle" aria-label="Afficher la route de Baudin">
+            <label class="lt-cell route-toggle" data-i18n-aria-label="map-aria-baudin-route" aria-label="Route de Baudin">
                 <input type="checkbox" id="toggle-baudin-parcours">
-                <span>route</span>
+            </label>
+            <label class="lt-cell carte-toggle" data-i18n-aria-label="map-aria-baudin-map" aria-label="Carte de Freycinet">
+                <input type="checkbox" id="toggle-baudin-carte" data-carte="freycinet">
             </label>
         </div>
-        <div class="layer-toggle-row">
-            <label class="toggle-flinders">
+        <div class="lt-row toggle-flinders">
+            <span class="lt-name" data-i18n="map-layer-flinders">Flinders</span>
+            <label class="lt-cell" data-i18n-aria-label="map-aria-flinders-places" aria-label="Lieux Flinders">
                 <input type="checkbox" id="toggle-flinders">
-                <span data-i18n="map-layer-flinders">Flinders</span>
             </label>
-            <label class="toggle-flinders route-toggle" aria-label="Afficher la route de Flinders">
+            <label class="lt-cell route-toggle" data-i18n-aria-label="map-aria-flinders-route" aria-label="Route de Flinders">
                 <input type="checkbox" id="toggle-flinders-parcours">
-                <span>route</span>
+            </label>
+            <label class="lt-cell carte-toggle" data-i18n-aria-label="map-aria-flinders-map" aria-label="Carte de Flinders">
+                <input type="checkbox" id="toggle-flinders-carte" data-carte="flinders">
             </label>
         </div>
         <!-- Baudin et Flinders partagent une seule couche de traces : ils ont
@@ -2089,17 +2151,31 @@ gtag('config', 'G-LCWV2EVPVQ');
                 minZoom: 3, maxNativeZoom: 9, maxZoom: 19, zIndex: 20,
                 bounds: [[-45, 95 + MERIDIEN_PARIS], [-5, 165 + MERIDIEN_PARIS]],
                 attribution: 'Freycinet 1808, <a href="https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~338524~90106484" target="_blank" rel="noopener">D. Rumsey</a> CC BY-NC-SA'
+            }),
+            // Pas d'option bounds : la carte franchit l'antiméridien (Nouvelle-Zélande,
+            // Tonga) et ses tuiles sont repliées, x modulo 2^z. Des bornes la
+            // couperaient net à 180°.
+            beautemps: L.tileLayer(RACINE_CARTES + 'fonds/beautemps/{z}/{x}/{y}.webp', {
+                minZoom: 3, maxNativeZoom: 8, maxZoom: 19, zIndex: 20,
+                attribution: 'Beautemps-Beaupré 1807, <a href="https://nla.gov.au/nla.obj-230810237/view" target="_blank" rel="noopener">NLA</a>'
+            }),
+            // Longitudes comptées depuis Greenwich : pas de décalage de méridien.
+            flinders: L.tileLayer(RACINE_CARTES + 'fonds/flinders/{z}/{x}/{y}.webp', {
+                minZoom: 3, maxNativeZoom: 9, maxZoom: 19, zIndex: 20,
+                bounds: [[-44.5, 102.5], [-6.5, 165.5]],
+                attribution: 'Flinders 1814, <a href="https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~331867~90100273" target="_blank" rel="noopener">D. Rumsey</a> CC BY-NC-SA'
             })
         };
 
-        // Fonds offerts par le sélecteur. « ancienne » nomme la couche posée
-        // par-dessus la vue satellite, dont le curseur règle l'opacité.
-        // Pour ajouter une carte : une entrée dans cartesAnciennes et une ici.
+        // Fonds modernes offerts par le sélecteur : la vue par défaut.
         const FONDS = [
             { id: 'satellite', cle: 'basemap-satellite' },
-            { id: 'freycinet', cle: 'basemap-freycinet', ancienne: 'freycinet' },
             { id: 'osm',       cle: 'basemap-osm' }
         ];
+        // Une carte ancienne se pose par-dessus ce fond, choisie par la
+        // colonne « Carte » du panneau des expéditions ; le curseur règle son
+        // opacité. Pour ajouter une carte : une entrée dans cartesAnciennes,
+        // et la case correspondante devient active d'elle-même.
 
         const OPACITE_DEFAUT = 75;
 
@@ -2108,24 +2184,35 @@ gtag('config', 'G-LCWV2EVPVQ');
             return Number.isFinite(v) && v >= 0 && v <= 100 ? v : OPACITE_DEFAUT;
         };
         // Reprend le choix précédent ; les visiteurs qui avaient l'ancienne case
-        // à cocher gardent le fond qu'ils avaient retenu.
+        // à cocher gardent le fond qu'ils avaient retenu. Freycinet figurait
+        // naguère parmi les fonds : il revient en carte, sur le satellite.
         const lireFond = () => {
             const enregistre = localStorage.getItem('mapBasemap');
             if (enregistre && FONDS.some(f => f.id === enregistre)) return enregistre;
+            if (enregistre && cartesAnciennes[enregistre]) return 'satellite';
             return localStorage.getItem('satelliteView') === 'false' ? 'osm' : 'satellite';
+        };
+        const lireAncienne = () => {
+            let nom = localStorage.getItem('mapCarteAncienne');
+            if (nom === null) nom = localStorage.getItem('mapBasemap');
+            return nom && cartesAnciennes[nom] ? nom : null;
         };
 
         let fondActuel = lireFond();
+        let ancienneActuelle = lireAncienne();
         let opaciteAncienne = lireOpacite();
 
-        const appliquerFond = (id) => {
+        // `ancienne` : nom de la carte posée par-dessus, ou null. Omis, on
+        // garde celle qui est affichée.
+        const appliquerFond = (id, ancienne = ancienneActuelle) => {
             const fond = FONDS.find(f => f.id === id) || FONDS[0];
+            ancienne = ancienne && cartesAnciennes[ancienne] ? ancienne : null;
 
             // fond moderne : OpenStreetMap, ou l'imagerie satellite
             const veutOsm = fond.id === 'osm';
             const veutImagerie = !veutOsm;
-            // les noms de lieux ne vont qu'avec le satellite nu
-            const veutNoms = veutImagerie && !fond.ancienne;
+            // les noms de lieux actuels ne vont qu'avec le satellite nu
+            const veutNoms = veutImagerie && !ancienne;
 
             if (veutOsm && !map.hasLayer(osm)) osm.addTo(map);
             if (!veutOsm && map.hasLayer(osm)) map.removeLayer(osm);
@@ -2136,7 +2223,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             Object.keys(cartesAnciennes).forEach(nom => {
                 const couche = cartesAnciennes[nom];
-                if (fond.ancienne === nom) {
+                if (ancienne === nom) {
                     couche.setOpacity(opaciteAncienne / 100);
                     if (!map.hasLayer(couche)) couche.addTo(map);
                 } else if (map.hasLayer(couche)) {
@@ -2145,7 +2232,11 @@ gtag('config', 'G-LCWV2EVPVQ');
             });
 
             fondActuel = fond.id;
-            try { localStorage.setItem('mapBasemap', fond.id); } catch (e) {}
+            ancienneActuelle = ancienne;
+            try {
+                localStorage.setItem('mapBasemap', fond.id);
+                localStorage.setItem('mapCarteAncienne', ancienne || '');
+            } catch (e) {}
             majControleFond();
         };
 
@@ -2162,9 +2253,8 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Le curseur ne sert que pour une carte ancienne : ailleurs il disparaît.
         function majControleFond() {
             if (!basemapSelect) return;
-            const fond = FONDS.find(f => f.id === fondActuel);
             basemapSelect.value = fondActuel;
-            if (opacityWrapper) opacityWrapper.hidden = !(fond && fond.ancienne);
+            if (opacityWrapper) opacityWrapper.hidden = !ancienneActuelle;
             if (opacitySlider) opacitySlider.value = opaciteAncienne;
             if (opacityOutput) opacityOutput.textContent = opaciteAncienne + ' %';
         }
@@ -2228,8 +2318,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             opacitySlider.addEventListener('input', function () {
                 opaciteAncienne = parseInt(this.value, 10);
-                const fond = FONDS.find(f => f.id === fondActuel);
-                if (fond && fond.ancienne) cartesAnciennes[fond.ancienne].setOpacity(opaciteAncienne / 100);
+                if (ancienneActuelle) cartesAnciennes[ancienneActuelle].setOpacity(opaciteAncienne / 100);
                 if (opacityOutput) opacityOutput.textContent = opaciteAncienne + ' %';
                 try { localStorage.setItem('mapBasemapOpacity', opaciteAncienne); } catch (e) {}
             });
@@ -2250,6 +2339,30 @@ gtag('config', 'G-LCWV2EVPVQ');
             opacityLabelElement = undefined;
         };
         mapInfoControl.addTo(map);
+
+        // Colonne « Carte » : une seule carte ancienne à la fois. Cocher une
+        // case décoche les autres ; décocher rend le fond par défaut. Une case
+        // dont la carte n'est pas encore calée reste grisée, « à venir ».
+        const casesCarte = Array.from(document.querySelectorAll('.carte-toggle input[data-carte]'));
+        const majCasesCarte = () => {
+            casesCarte.forEach(input => {
+                const dispo = Boolean(cartesAnciennes[input.dataset.carte]);
+                input.disabled = !dispo;
+                input.checked = dispo && input.dataset.carte === ancienneActuelle;
+                const cellule = input.closest('.lt-cell');
+                cellule.classList.toggle('is-disabled', !dispo);
+                if (dispo) cellule.removeAttribute('title');
+                else cellule.setAttribute('title', translate('map-coming-soon'));
+            });
+        };
+        casesCarte.forEach(input => {
+            input.addEventListener('change', () => {
+                appliquerFond(fondActuel, input.checked ? input.dataset.carte : null);
+                majCasesCarte();
+            });
+        });
+        majCasesCarte();
+        document.addEventListener('languageChanged', majCasesCarte);
 
         const updateCoordinates = (event) => {
             if (!coordinatesElement) {
@@ -5543,7 +5656,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 if (!input) return;
                 input.checked = false;
                 input.disabled = !ENABLE_ROUTE_TOGGLES;
-                const label = input.closest('label.route-toggle');
+                const label = input.closest('.route-toggle');
                 if (label) {
                     label.classList.toggle('is-disabled', !ENABLE_ROUTE_TOGGLES);
                     label.setAttribute('aria-disabled', String(!ENABLE_ROUTE_TOGGLES));
@@ -5617,12 +5730,22 @@ gtag('config', 'G-LCWV2EVPVQ');
                 buildShipControls(key);
             }
             updateParcoursVisibility(key);
+            majRechercheVisible();
             if (want) {
                 // En tâche de fond : le tracé ne l'attend pas.
                 chargeJournauxExpedition(key, getCurrentLanguage());
             }
             timelineSynchronise();
             remarquablesMaj();
+        };
+
+        // Tant qu'une route est affichée, les lieux sont masqués : la
+        // recherche, qui ne trouverait rien à montrer, s'efface avec eux.
+        const searchContainer = document.querySelector('.search-container');
+        const majRechercheVisible = () => {
+            const routeAffichee = [toggleBaudinParcours, toggleEntreParcours,
+                                   toggleFlindersParcours].some((el) => el && el.checked);
+            if (searchContainer) searchContainer.classList.toggle('is-hidden', routeAffichee);
         };
 
         const attachParcoursToggle = (key, input) => {
