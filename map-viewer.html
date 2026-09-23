@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>French Names in Australia</title>
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWV2EVPVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LCWV2EVPVQ');
+</script>
+<style>
+  :root{
+    --fond:#1d1b18; --panneau:rgba(29,27,24,.86); --bord:rgba(255,255,255,.12);
+    --texte:#efe9df; --doux:#b9b0a2; --accent:#d9b26a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--fond);color:var(--texte);
+    font:15px/1.45 Georgia,"Times New Roman",serif;overflow:hidden}
+  #carte{position:absolute;inset:0}
+
+  /* cartel */
+  #cartel{position:absolute;top:16px;left:16px;max-width:min(430px,calc(100% - 96px));
+    background:var(--panneau);border:1px solid var(--bord);border-radius:10px;
+    padding:14px 16px 12px;backdrop-filter:blur(6px);z-index:5;transition:opacity .25s}
+  #cartel h1{margin:0 0 4px;font-size:18px;font-weight:normal;letter-spacing:.01em}
+  #cartel .auteur{color:var(--doux);font-style:italic;margin:0 0 8px}
+  #cartel .source{font:12px/1.4 system-ui,sans-serif;color:var(--doux);margin:0}
+  #cartel .source a{color:var(--accent)}
+  /* Bouton plus petit que ceux de la barre d'outils : replié, le cartel ne fait
+     qu'une ligne et un bouton de 40 px en dépasserait. */
+  #cartel button.replier{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:6px}
+  #cartel button.replier svg{width:16px;height:16px;transition:transform .2s}
+  #cartel.replie{padding:6px 44px 6px 14px}
+  #cartel.replie .auteur,#cartel.replie .source{display:none}
+  #cartel.replie h1{font-size:14px;margin:0}
+  /* replié, le cartel est trop bas pour un bouton calé en haut : on le centre */
+  #cartel.replie button.replier{top:50%;transform:translateY(-50%)}
+  #cartel.replie button.replier svg{transform:rotate(180deg)}
+
+  /* barre d'outils */
+  #outils{position:absolute;top:16px;right:16px;display:flex;flex-direction:column;gap:6px;z-index:5}
+  button,#bRetour{appearance:none;border:1px solid var(--bord);background:var(--panneau);color:var(--texte);
+    width:40px;height:40px;border-radius:8px;cursor:pointer;display:grid;place-items:center;
+    backdrop-filter:blur(6px);transition:background .15s,border-color .15s;text-decoration:none}
+  button:hover,#bRetour:hover{background:rgba(60,55,48,.95);border-color:rgba(255,255,255,.28)}
+  button:focus-visible,#bRetour:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  button svg,#bRetour svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;
+    stroke-linecap:round;stroke-linejoin:round}
+  #bLangue img{width:22px;height:auto;border-radius:2px}
+  .sep{height:6px}
+
+  /* niveau de zoom */
+  #niveau{position:absolute;left:16px;bottom:16px;z-index:5;background:var(--panneau);
+    border:1px solid var(--bord);border-radius:8px;padding:6px 10px;
+    font:12px/1 system-ui,sans-serif;color:var(--doux);font-variant-numeric:tabular-nums}
+
+  /* aide clavier */
+  #aide{position:absolute;right:64px;top:16px;z-index:6;background:var(--panneau);
+    border:1px solid var(--bord);border-radius:10px;padding:12px 14px;
+    font:13px/1.7 system-ui,sans-serif;color:var(--texte);display:none;min-width:230px}
+  #aide.ouverte{display:block}
+  #aide kbd{display:inline-block;min-width:22px;text-align:center;padding:0 5px;margin-right:6px;
+    border:1px solid var(--bord);border-radius:4px;background:rgba(255,255,255,.06);
+    font:12px/20px system-ui,sans-serif}
+
+  #chargement{position:absolute;inset:0;display:grid;place-items:center;z-index:4;
+    color:var(--doux);font-style:italic;pointer-events:none;transition:opacity .4s;
+    text-align:center;padding:0 24px}
+
+  /* mini-carte : laisser OpenSeadragon la placer, on l'habille */
+  .navigator{border:1px solid var(--bord)!important;border-radius:6px;
+    background:rgba(0,0,0,.35)!important;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .navigator .displayregion{border:2px solid var(--accent)!important}
+
+  @media (max-width:560px){
+    #cartel{max-width:calc(100% - 80px)}
+    #cartel h1{font-size:15px}
+    .navigator{display:none!important}
+  }
+</style>
+</head>
+<body>
+<div id="carte"></div>
+<div id="chargement"></div>
+
+<div id="cartel" class="replie">
+  <h1 id="cTitre"></h1>
+  <p class="auteur" id="cAuteur"></p>
+  <p class="source" id="cSource"></p>
+  <button class="replier" id="bReplier">
+    <svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
+</div>
+
+<div id="outils" role="toolbar">
+  <a id="bRetour" href="maps.html"><svg viewBox="0 0 24 24"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></a>
+  <div class="sep"></div>
+  <button id="bPlus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+  <button id="bMoins"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+  <button id="bAjuster"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg></button>
+  <button id="bReel"><svg viewBox="0 0 24 24"><text x="12" y="16.5" text-anchor="middle" font-size="11" font-family="system-ui" fill="currentColor" stroke="none">1:1</text></svg></button>
+  <div class="sep"></div>
+  <button id="bEcran"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M4 15v5h5M20 15v5h-5"/><path d="M9 9l-5-5M15 9l5-5M9 15l-5 5M15 15l5 5"/></svg></button>
+  <button id="bAide"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14"/><path d="M12 17.2v.1"/></svg></button>
+  <div class="sep"></div>
+  <button id="bLangue"><img id="bLangueDrapeau" src="img/fr.svg" alt=""></button>
+</div>
+
+<div id="aide" role="dialog">
+  <div><kbd>+</kbd><kbd>−</kbd><span id="aZoom"></span></div>
+  <div><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd><span id="aDeplacer"></span></div>
+  <div><kbd>0</kbd><span id="aEntiere"></span></div>
+  <div><kbd>1</kbd><span id="aReelle"></span></div>
+  <div><kbd>F</kbd><span id="aEcran"></span></div>
+  <div style="margin-top:6px;color:var(--doux)" id="aSouris"></div>
+</div>
+
+<div id="niveau">—</div>
+
+<script src="lib/openseadragon/openseadragon.min.js"></script>
+<script>
+(function(){
+
+  // ------------------------------------------------------------------ cartes
+  // Les pyramides de tuiles vivent dans le dépôt « cartes », publié par GitHub
+  // Pages : https://github.com/tdeviaris/cartes
+  // Pour essayer une carte avant de la publier, remplacer RACINE par un chemin
+  // local, par exemple "../Cartes anciennes/cartes/".
+  var RACINE = "https://tdeviaris.github.io/cartes/";
+
+  // Les dimensions sont reprises ici pour que la page n'ait pas à lire le
+  // fichier .dzi : les tuiles se chargent alors comme de simples images, sans
+  // requête préalable ni contrainte de domaine.
+  var CARTES = {
+    freycinet: {
+      dossier: "freycinet", largeur: 20135, hauteur: 13078,
+      fr: {
+        titre: "Carte générale de la Nouvelle Hollande",
+        auteur: "Dressée par L. de Freycinet, commandant la goélette <i>le Casuarina</i>, an 1808.<br>Gravée par P. A. F. Tardieu ; écrite par Lale et Giraldon.",
+        source: "Atlas du <i>Voyage de découvertes aux Terres Australes</i>, Paris, Imprimerie impériale.<br>Numérisation : <a href=\"https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~338524~90106484\" target=\"_blank\" rel=\"noopener\">David Rumsey Map Collection</a> — CC BY-NC-SA 3.0."
+      },
+      en: {
+        titre: "General Chart of New Holland",
+        auteur: "<i>Carte générale de la Nouvelle Hollande</i> — drawn by L. de Freycinet, commander of the schooner <i>Casuarina</i>, year 1808.<br>Engraved by P. A. F. Tardieu; lettering by Lale and Giraldon.",
+        source: "Atlas to the <i>Voyage de découvertes aux Terres Australes</i>, Paris, Imprimerie impériale.<br>Digitisation: <a href=\"https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~338524~90106484\" target=\"_blank\" rel=\"noopener\">David Rumsey Map Collection</a> — CC BY-NC-SA 3.0."
+      }
+    },
+    flinders: {
+      dossier: "flinders", largeur: 23305, hauteur: 17002,
+      fr: {
+        titre: "Carte générale de la Terra Australis ou Australie",
+        auteur: "<i>General Chart of Terra Australis or Australia</i> — les parties explorées entre 1798 et 1803 par M. Flinders, commandant du <i>H.M.S. Investigator</i>.",
+        source: "Planche I de l'atlas de <i>A Voyage to Terra Australis</i>, Londres, G. &amp; W. Nicol, 1<sup>er</sup> janvier 1814.<br>Numérisation : <a href=\"https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~331867~90100273\" target=\"_blank\" rel=\"noopener\">David Rumsey Map Collection</a> — CC BY-NC-SA 3.0."
+      },
+      en: {
+        titre: "General Chart of Terra Australis or Australia",
+        auteur: "Showing the parts explored between 1798 and 1803 by M. Flinders, Commander of <i>H.M.S. Investigator</i>.",
+        source: "Plate I of the atlas to <i>A Voyage to Terra Australis</i>, London, G. &amp; W. Nicol, 1 January 1814.<br>Digitisation: <a href=\"https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~331867~90100273\" target=\"_blank\" rel=\"noopener\">David Rumsey Map Collection</a> — CC BY-NC-SA 3.0."
+      }
+    }
+  };
+
+  // ------------------------------------------------------------- traductions
+  var I18N = {
+    fr: {
+      site: "Noms français en Australie",
+      chargement: "Chargement de la carte…",
+      echec: "La carte n’a pas pu être chargée.<br>Vérifiez votre connexion, puis rechargez la page.",
+      inconnue: "Cette carte n’est pas disponible.",
+      retour: "Fermer la carte et revenir aux cartes marines",
+      replier: "Replier le cartel", deplier: "Déplier le cartel",
+      plus: "Zoomer (+)", moins: "Dézoomer (−)", ajuster: "Carte entière (0)",
+      reel: "Taille réelle — un pixel du scan par pixel d’écran (1)",
+      ecran: "Plein écran (F)", aide: "Raccourcis clavier (?)",
+      langue: "Switch to English", drapeau: "img/au.svg",
+      aZoom: "zoomer, dézoomer", aDeplacer: "se déplacer", aEntiere: "carte entière",
+      aReelle: "taille réelle", aEcran: "plein écran",
+      aSouris: "Molette ou pincement pour zoomer,<br>double-clic pour zoomer sur un point,<br>glisser pour se déplacer."
+    },
+    en: {
+      site: "French Names in Australia",
+      chargement: "Loading the map…",
+      echec: "The map could not be loaded.<br>Check your connection, then reload the page.",
+      inconnue: "This map is not available.",
+      retour: "Close the map and return to the nautical charts",
+      replier: "Collapse the caption", deplier: "Expand the caption",
+      plus: "Zoom in (+)", moins: "Zoom out (−)", ajuster: "Whole map (0)",
+      reel: "Actual size — one scan pixel per screen pixel (1)",
+      ecran: "Full screen (F)", aide: "Keyboard shortcuts (?)",
+      langue: "Passer en français", drapeau: "img/fr.svg",
+      aZoom: "zoom in, zoom out", aDeplacer: "pan", aEntiere: "whole map",
+      aReelle: "actual size", aEcran: "full screen",
+      aSouris: "Scroll or pinch to zoom,<br>double-click to zoom to a point,<br>drag to pan."
+    }
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var params = new URLSearchParams(location.search);
+  var etat = "chargement";   // chargement | echec ; « inconnue » si la carte n'existe pas
+
+  // Langue : le paramètre d’adresse l’emporte, sinon le choix mémorisé par le
+  // site (même clé que js/main.js), sinon celle du navigateur.
+  function langueInitiale(){
+    var l = params.get("lang");
+    if (!l) { try { l = localStorage.getItem("language"); } catch(e){} }
+    if (!l) l = (navigator.language || "en");
+    return /^fr/i.test(l) ? "fr" : "en";
+  }
+  var langue = langueInitiale();
+
+  // Carte demandée : ?map=freycinet, à défaut la première du catalogue.
+  var idCarte = params.get("map") || Object.keys(CARTES)[0];
+  var carte = CARTES[idCarte];
+
+  // --------------------------------------------------------------- affichage
+  function titre(el, texte){ $(el).setAttribute("title", texte); $(el).setAttribute("aria-label", texte); }
+
+  function appliquerLangue(){
+    var t = I18N[langue];
+    document.documentElement.lang = langue;
+
+    if (!carte) {
+      $("chargement").innerHTML = t.inconnue;
+      document.title = t.site;
+    } else {
+      var c = carte[langue];
+      document.title = c.titre + " — " + t.site;
+      $("cTitre").innerHTML = c.titre;
+      $("cAuteur").innerHTML = c.auteur;
+      $("cSource").innerHTML = c.source;
+      $("chargement").innerHTML = t[etat];
+    }
+
+    titre("bRetour", t.retour);
+    titre("bPlus", t.plus); titre("bMoins", t.moins);
+    titre("bAjuster", t.ajuster); titre("bReel", t.reel);
+    titre("bEcran", t.ecran); titre("bAide", t.aide);
+    titre("bLangue", t.langue);
+    $("bLangueDrapeau").src = t.drapeau;
+    $("bLangueDrapeau").alt = t.langue;
+    titre("bReplier", $("cartel").classList.contains("replie") ? t.deplier : t.replier);
+
+    $("aZoom").textContent = t.aZoom;
+    $("aDeplacer").textContent = t.aDeplacer;
+    $("aEntiere").textContent = t.aEntiere;
+    $("aReelle").textContent = t.aReelle;
+    $("aEcran").textContent = t.aEcran;
+    $("aSouris").innerHTML = t.aSouris;
+  }
+
+  appliquerLangue();
+
+  $("bLangue").onclick = function(){
+    langue = (langue === "fr") ? "en" : "fr";
+    try { localStorage.setItem("language", langue); } catch(e){}
+    appliquerLangue();
+  };
+
+  if (!carte) { $("cartel").style.display = "none"; $("outils").style.display = "none"; return; }
+
+  // ------------------------------------------------------------- visionneuse
+  var viewer = OpenSeadragon({
+    id: "carte",
+    tileSources: { Image: {
+      xmlns: "http://schemas.microsoft.com/deepzoom/2008",
+      Url: RACINE + carte.dossier + "/" + carte.dossier + "_files/",
+      Format: "jpg", Overlap: "0", TileSize: "256",
+      Size: { Width: String(carte.largeur), Height: String(carte.hauteur) } } },
+    showNavigationControl: false,        // barre d'outils maison
+    showNavigator: true, navigatorPosition: "BOTTOM_RIGHT",
+    navigatorSizeRatio: 0.16, navigatorAutoFade: false,
+    visibilityRatio: 0.6, constrainDuringPan: true,
+    minZoomImageRatio: 0.85, maxZoomPixelRatio: 2.5,
+    animationTime: 0.9, springStiffness: 7.5, blendTime: 0.15,
+    zoomPerScroll: 1.35, zoomPerClick: 2,
+    immediateRender: false, smoothTileEdgesMinZoom: 1.1,
+    gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true, flickEnabled: true },
+    gestureSettingsTouch: { pinchRotate: false, flickEnabled: true },
+    // Les tuiles viennent d'un autre domaine que la page. Sans cet en-tête, le
+    // canevas serait « contaminé » et OpenSeadragon retomberait sur un rendu
+    // logiciel ; GitHub Pages répond « Access-Control-Allow-Origin: * », ce qui
+    // permet de garder le rendu WebGL. À repasser à false si les tuiles étaient
+    // un jour servies par un hébergeur qui n'envoie pas cet en-tête.
+    crossOriginPolicy: "Anonymous"
+  });
+
+  var vp = function(){ return viewer.viewport; };
+
+  viewer.addOnceHandler("tile-loaded", function(){
+    etat = "pret";
+    $("chargement").style.opacity = 0;
+  });
+
+  // Tant qu'aucune tuile n'est arrivée, un échec signifie que l'hébergement des
+  // tuiles est injoignable : mieux vaut le dire que laisser tourner « Chargement… ».
+  viewer.addHandler("tile-load-failed", function(){
+    if (etat !== "chargement") return;
+    etat = "echec";
+    $("chargement").innerHTML = I18N[langue].echec;
+  });
+
+  // Raccourcis natifs d'OpenSeadragon : on ne garde que les flèches.
+  // (Par défaut « f » retourne la carte en miroir et « r » la fait pivoter.)
+  viewer.addHandler("canvas-key", function(e){
+    var k = e.originalEvent && e.originalEvent.key;
+    if (!/^Arrow/.test(k)) e.preventDefaultAction = true;
+  });
+
+  // zoom exprimé en % de la résolution du scan (100 % = 1 px du scan par px d'écran)
+  function majNiveau(){
+    var z = vp().viewportToImageZoom(vp().getZoom(true));
+    $("niveau").textContent = (z >= 0.1 ? Math.round(z*100) : (z*100).toFixed(1)) + " %";
+  }
+  viewer.addHandler("animation", majNiveau);
+  viewer.addHandler("open", majNiveau);
+
+  function zoom(f){ vp().zoomBy(f); vp().applyConstraints(); }
+  function reel(){ vp().zoomTo(vp().imageToViewportZoom(1)); vp().applyConstraints(); }
+  // Plein écran sur la page entière (et non sur le seul visualiseur),
+  // pour que la barre d'outils et le cartel restent visibles.
+  function ecran(){
+    var d = document, el = d.documentElement;
+    if (!(d.fullscreenElement || d.webkitFullscreenElement)) {
+      (el.requestFullscreen || el.webkitRequestFullscreen || function(){}).call(el);
+    } else {
+      (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+    }
+  }
+  function aide(){ $("aide").classList.toggle("ouverte"); }
+
+  $("bPlus").onclick   = function(){ zoom(1.6); };
+  $("bMoins").onclick  = function(){ zoom(1/1.6); };
+  $("bAjuster").onclick= function(){ vp().goHome(); };
+  $("bReel").onclick   = reel;
+  $("bEcran").onclick  = ecran;
+  $("bAide").onclick   = aide;
+  // Le cartel s'ouvre replié (classe posée dans le HTML, pour éviter qu'il
+  // apparaisse déplié le temps que le script s'exécute) ; le sens du chevron
+  // suit la classe en CSS.
+  $("bReplier").onclick = function(){
+    var replie = $("cartel").classList.toggle("replie");
+    titre("bReplier", replie ? I18N[langue].deplier : I18N[langue].replier);
+  };
+
+  document.addEventListener("keydown", function(e){
+    if (e.target.tagName === "INPUT") return;
+    switch(e.key){
+      case "+": case "=": zoom(1.6); break;
+      case "-": case "_": zoom(1/1.6); break;
+      case "0": vp().goHome(); break;
+      case "1": reel(); break;
+      case "f": case "F": ecran(); break;
+      case "?": aide(); break;
+      case "Escape": $("aide").classList.remove("ouverte"); break;
+      default: return;
+    }
+    e.preventDefault();
+  });
+})();
+</script>
+</body>
+</html>

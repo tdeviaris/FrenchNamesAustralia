@@ -109,20 +109,78 @@
             line-height: 1.3;
             margin-top: 3px;
         }
-        .map-info-satellite {
+        /* Les fournisseurs d'imagerie imposent de longues mentions, qui venaient
+           recouvrir les commandes. On les tient sur une ligne tronquée, dépliée
+           au survol ou au clavier, sans rien retirer du texte. */
+        /* esri-leaflet pose lui-même un max-width en style: il faut passer devant. */
+        .leaflet-control-attribution {
+            max-width: 46vw !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: max-width 0.2s ease;
+        }
+        .leaflet-control-attribution:hover,
+        .leaflet-control-attribution:focus-within {
+            max-width: 92vw !important;
+            white-space: normal;
+            overflow: visible;
+        }
+        @media (max-width: 768px) {
+            /* la barre d'info occupe toute la largeur : on passe au-dessus d'elle */
+            .leaflet-control-attribution {
+                max-width: 60vw !important;
+                margin-bottom: 32px !important;
+            }
+        }
+
+        /* Choix du fond et, pour les cartes anciennes, leur opacité :
+           posés à droite de l'échelle, sur la même ligne. */
+        .map-info-scale-wrapper { gap: 10px; flex-wrap: wrap; }
+        .map-info-basemap {
             display: flex;
             align-items: center;
             gap: 6px;
-            cursor: pointer;
             font-size: 0.7rem;
             line-height: 1.3;
             color: #333;
             font-family: 'Lato', sans-serif;
+            align-self: flex-end;
+            margin-bottom: 2px;
         }
-        .map-info-satellite input {
-            width: 14px;
-            height: 14px;
+        .map-info-basemap select {
+            font-family: inherit;
+            font-size: 0.7rem;
+            color: #333;
+            background: #fff;
+            border: 1px solid #555;
+            border-radius: 3px;
+            padding: 1px 4px;
+            cursor: pointer;
+            max-width: 150px;
+        }
+        .map-info-opacity {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            color: #333;
+            font-family: 'Lato', sans-serif;
+            align-self: flex-end;
+            margin-bottom: 2px;
+        }
+        .map-info-opacity[hidden] { display: none; }
+        .map-info-opacity input[type="range"] {
+            width: 90px;
             margin: 0;
+            cursor: pointer;
+            accent-color: #0056b3;
+        }
+        .map-info-opacity output {
+            min-width: 2.6em;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
         }
 
         /* Expedition toggles */
@@ -1198,7 +1256,7 @@
                 font-size: 1.4rem;
             }
 
-            /* 2. Move Satellite control into the bottom bar */
+            /* 2. Move the base map control into the bottom bar */
             .leaflet-bottom.leaflet-left {
                 display: flex;
                 align-items: stretch;
@@ -1211,9 +1269,10 @@
                 gap: 8px;
             }
 
-            .map-info-satellite {
-                font-size: 0.7rem;
-            }
+            /* à l'étroit, le curseur d'opacité passe sous l'échelle */
+            .map-info-basemap, .map-info-opacity { font-size: 0.7rem; }
+            .map-info-basemap select { max-width: 120px; }
+            .map-info-opacity input[type="range"] { width: 70px; }
         }
         .image-modal {
             position: fixed;
@@ -2013,74 +2072,127 @@ gtag('config', 'G-LCWV2EVPVQ');
             attribution: '&copy; OpenStreetMap contributors'
         });
         const esriImagery = L.esri.basemapLayer('Imagery', { zIndex: 10 });
+        // Noms de lieux actuels : ils accompagnent la vue satellite seule. Sur une
+        // carte ancienne ils se superposeraient à la toponymie gravée, qui est le
+        // sujet : on les retire alors (voir appliquerFond).
         const esriLabels  = L.esri.basemapLayer('ImageryLabels', { zIndex: 30 });
-        const imageryWithLabels = L.layerGroup([esriImagery, esriLabels]);
 
-        // Charger la vue par défaut depuis localStorage (par défaut: satellite)
-        // Réinitialisation forcée - supprimer cette ligne après le premier chargement si nécessaire
-        if (!localStorage.getItem('satelliteViewInitialized')) {
-            localStorage.setItem('satelliteView', 'true');
-            localStorage.setItem('satelliteViewInitialized', 'true');
-        }
-        let savedViewState = localStorage.getItem('satelliteView');
-        // Si aucune valeur n'existe, initialiser à 'true' (première visite)
-        if (savedViewState === null) {
-            savedViewState = 'true';
-            localStorage.setItem('satelliteView', 'true');
-        }
-        const useSatellite = savedViewState === 'true';
-        if (useSatellite) {
-            imageryWithLabels.addTo(map);
-        } else {
-            osm.addTo(map);
-        }
+        // --- Cartes anciennes calées ---------------------------------------
+        // Tuiles XYZ posées sur leur quadrillage gravé, publiées avec les autres
+        // cartes dans le dépôt « cartes » (voir map-viewer.html).
+        const RACINE_CARTES = 'https://tdeviaris.github.io/cartes/';
+        const MERIDIEN_PARIS = 2 + 20 / 60 + 14 / 3600;   // Paris vers Greenwich
+
+        // zIndex 20 : au-dessus de l'imagerie satellite (10).
+        const cartesAnciennes = {
+            freycinet: L.tileLayer(RACINE_CARTES + 'fonds/freycinet/{z}/{x}/{y}.webp', {
+                minZoom: 3, maxNativeZoom: 9, maxZoom: 19, zIndex: 20,
+                bounds: [[-45, 95 + MERIDIEN_PARIS], [-5, 165 + MERIDIEN_PARIS]],
+                attribution: 'Freycinet 1808, <a href="https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~338524~90106484" target="_blank" rel="noopener">D. Rumsey</a> CC BY-NC-SA'
+            })
+        };
+
+        // Fonds offerts par le sélecteur. « ancienne » nomme la couche posée
+        // par-dessus la vue satellite, dont le curseur règle l'opacité.
+        // Pour ajouter une carte : une entrée dans cartesAnciennes et une ici.
+        const FONDS = [
+            { id: 'satellite', cle: 'basemap-satellite' },
+            { id: 'freycinet', cle: 'basemap-freycinet', ancienne: 'freycinet' },
+            { id: 'osm',       cle: 'basemap-osm' }
+        ];
+
+        const OPACITE_DEFAUT = 75;
+
+        const lireOpacite = () => {
+            const v = parseInt(localStorage.getItem('mapBasemapOpacity'), 10);
+            return Number.isFinite(v) && v >= 0 && v <= 100 ? v : OPACITE_DEFAUT;
+        };
+        // Reprend le choix précédent ; les visiteurs qui avaient l'ancienne case
+        // à cocher gardent le fond qu'ils avaient retenu.
+        const lireFond = () => {
+            const enregistre = localStorage.getItem('mapBasemap');
+            if (enregistre && FONDS.some(f => f.id === enregistre)) return enregistre;
+            return localStorage.getItem('satelliteView') === 'false' ? 'osm' : 'satellite';
+        };
+
+        let fondActuel = lireFond();
+        let opaciteAncienne = lireOpacite();
+
+        const appliquerFond = (id) => {
+            const fond = FONDS.find(f => f.id === id) || FONDS[0];
+
+            // fond moderne : OpenStreetMap, ou l'imagerie satellite
+            const veutOsm = fond.id === 'osm';
+            const veutImagerie = !veutOsm;
+            // les noms de lieux ne vont qu'avec le satellite nu
+            const veutNoms = veutImagerie && !fond.ancienne;
+
+            if (veutOsm && !map.hasLayer(osm)) osm.addTo(map);
+            if (!veutOsm && map.hasLayer(osm)) map.removeLayer(osm);
+            if (veutImagerie && !map.hasLayer(esriImagery)) esriImagery.addTo(map);
+            if (!veutImagerie && map.hasLayer(esriImagery)) map.removeLayer(esriImagery);
+            if (veutNoms && !map.hasLayer(esriLabels)) esriLabels.addTo(map);
+            if (!veutNoms && map.hasLayer(esriLabels)) map.removeLayer(esriLabels);
+
+            Object.keys(cartesAnciennes).forEach(nom => {
+                const couche = cartesAnciennes[nom];
+                if (fond.ancienne === nom) {
+                    couche.setOpacity(opaciteAncienne / 100);
+                    if (!map.hasLayer(couche)) couche.addTo(map);
+                } else if (map.hasLayer(couche)) {
+                    map.removeLayer(couche);
+                }
+            });
+
+            fondActuel = fond.id;
+            try { localStorage.setItem('mapBasemap', fond.id); } catch (e) {}
+            majControleFond();
+        };
 
         const scaleControl = L.control.scale({ position: 'bottomleft', metric: true, imperial: false });
         scaleControl.addTo(map);
 
         let coordinatesElement;
-        let satelliteLabelElement;
-        let satelliteCheckbox;
-        const updateSatelliteLabel = () => {
-            if (satelliteLabelElement) {
-                satelliteLabelElement.textContent = translate('satellite-view-label');
+        let basemapSelect;
+        let opacityWrapper;
+        let opacitySlider;
+        let opacityOutput;
+        let opacityLabelElement;
+
+        // Le curseur ne sert que pour une carte ancienne : ailleurs il disparaît.
+        function majControleFond() {
+            if (!basemapSelect) return;
+            const fond = FONDS.find(f => f.id === fondActuel);
+            basemapSelect.value = fondActuel;
+            if (opacityWrapper) opacityWrapper.hidden = !(fond && fond.ancienne);
+            if (opacitySlider) opacitySlider.value = opaciteAncienne;
+            if (opacityOutput) opacityOutput.textContent = opaciteAncienne + ' %';
+        }
+
+        // Pose les couches maintenant que majControleFond a ses variables.
+        appliquerFond(fondActuel);
+
+        const majLibellesFond = () => {
+            if (basemapSelect) {
+                basemapSelect.setAttribute('title', translate('basemap-label'));
+                basemapSelect.setAttribute('aria-label', translate('basemap-label'));
+                Array.prototype.forEach.call(basemapSelect.options, option => {
+                    const fond = FONDS.find(f => f.id === option.value);
+                    if (fond) option.textContent = translate(fond.cle);
+                });
+            }
+            if (opacityLabelElement) opacityLabelElement.textContent = translate('basemap-opacity-short');
+            if (opacitySlider) {
+                opacitySlider.setAttribute('title', translate('basemap-opacity-label'));
+                opacitySlider.setAttribute('aria-label', translate('basemap-opacity-label'));
             }
         };
+
         const mapInfoControl = L.control({ position: 'bottomleft' });
         mapInfoControl.onAdd = () => {
             const container = L.DomUtil.create('div', 'map-info-control');
             coordinatesElement = L.DomUtil.create('div', 'map-info-coordinates', container);
             coordinatesElement.textContent = 'Lat: --°  Long: --°';
-
-            const satelliteWrapper = L.DomUtil.create('label', 'map-info-satellite', container);
-            satelliteCheckbox = L.DomUtil.create('input', '', satelliteWrapper);
-            satelliteCheckbox.type = 'checkbox';
-            satelliteLabelElement = L.DomUtil.create('span', '', satelliteWrapper);
-            satelliteLabelElement.id = 'satellite-label';
-
-            // Restaurer l'état depuis localStorage (par défaut: true)
-            const savedState = localStorage.getItem('satelliteView');
-            const isSatellite = savedState === null ? true : savedState === 'true';
-            satelliteCheckbox.checked = isSatellite;
-
-            L.DomEvent.disableClickPropagation(satelliteWrapper);
-            L.DomEvent.disableScrollPropagation(satelliteWrapper);
-
-            satelliteCheckbox.addEventListener('change', function() {
-                // Sauvegarder l'état dans localStorage
-                localStorage.setItem('satelliteView', this.checked);
-
-                if (this.checked) {
-                    map.removeLayer(osm);
-                    map.addLayer(imageryWithLabels);
-                } else {
-                    map.removeLayer(imageryWithLabels);
-                    map.addLayer(osm);
-                }
-            });
-
-            updateSatelliteLabel();
-            document.addEventListener('languageChanged', updateSatelliteLabel);
 
             const scaleWrapper = L.DomUtil.create('div', 'map-info-scale-wrapper', container);
             const scaleContainer = scaleControl._container;
@@ -2089,26 +2201,55 @@ gtag('config', 'G-LCWV2EVPVQ');
                 scaleWrapper.appendChild(scaleContainer);
             }
 
+            // à droite de l'échelle : le choix du fond, puis son opacité
+            const basemapWrapper = L.DomUtil.create('div', 'map-info-basemap', scaleWrapper);
+            basemapSelect = L.DomUtil.create('select', '', basemapWrapper);
+            FONDS.forEach(fond => {
+                const option = document.createElement('option');
+                option.value = fond.id;
+                basemapSelect.appendChild(option);
+            });
+
+            opacityWrapper = L.DomUtil.create('div', 'map-info-opacity', scaleWrapper);
+            opacityLabelElement = L.DomUtil.create('span', '', opacityWrapper);
+            opacitySlider = L.DomUtil.create('input', '', opacityWrapper);
+            opacitySlider.type = 'range';
+            opacitySlider.min = 0;
+            opacitySlider.max = 100;
+            opacitySlider.step = 1;
+            opacityOutput = L.DomUtil.create('output', '', opacityWrapper);
+
+            L.DomEvent.disableClickPropagation(scaleWrapper);
+            L.DomEvent.disableScrollPropagation(scaleWrapper);
+
+            basemapSelect.addEventListener('change', function () {
+                appliquerFond(this.value);
+            });
+
+            opacitySlider.addEventListener('input', function () {
+                opaciteAncienne = parseInt(this.value, 10);
+                const fond = FONDS.find(f => f.id === fondActuel);
+                if (fond && fond.ancienne) cartesAnciennes[fond.ancienne].setOpacity(opaciteAncienne / 100);
+                if (opacityOutput) opacityOutput.textContent = opaciteAncienne + ' %';
+                try { localStorage.setItem('mapBasemapOpacity', opaciteAncienne); } catch (e) {}
+            });
+
+            majControleFond();
+            majLibellesFond();
+            document.addEventListener('languageChanged', majLibellesFond);
+
             return container;
         };
         mapInfoControl.onRemove = () => {
-            document.removeEventListener('languageChanged', updateSatelliteLabel);
+            document.removeEventListener('languageChanged', majLibellesFond);
             coordinatesElement = undefined;
-            satelliteLabelElement = undefined;
-            satelliteCheckbox = undefined;
+            basemapSelect = undefined;
+            opacityWrapper = undefined;
+            opacitySlider = undefined;
+            opacityOutput = undefined;
+            opacityLabelElement = undefined;
         };
         mapInfoControl.addTo(map);
-
-        const syncSatelliteToggleWithLayers = () => {
-            if (!satelliteCheckbox) {
-                return;
-            }
-            const isImageryActive = map.hasLayer(imageryWithLabels);
-            if (satelliteCheckbox.checked !== isImageryActive) {
-                satelliteCheckbox.checked = isImageryActive;
-            }
-        };
-        syncSatelliteToggleWithLayers();
 
         const updateCoordinates = (event) => {
             if (!coordinatesElement) {
@@ -2124,8 +2265,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                 coordinatesElement.textContent = 'Lat: --°  Long: --°';
             }
         });
-        map.on('layeradd', syncSatelliteToggleWithLayers);
-        map.on('layerremove', syncSatelliteToggleWithLayers);
+        // Le fond n'est plus changé qu'à partir du sélecteur, qui tient l'état
+        // à jour lui-même : plus besoin de le resynchroniser sur les couches.
 
         const enforcePopupMaxHeight = (popup, callback) => {
             const scheduleCallback = () => {

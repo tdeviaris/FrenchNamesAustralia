@@ -41,8 +41,8 @@
             margin-right: 18px;
             margin-bottom: 12px;
         }
-        .map-thumb button { border: none; padding: 0; background: transparent; cursor: zoom-in; display: block; width: 100%; }
-        .map-thumb button:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
+        .map-thumb button, .map-thumb a { border: none; padding: 0; background: transparent; cursor: zoom-in; display: block; width: 100%; }
+        .map-thumb button:focus-visible, .map-thumb a:focus-visible { outline: 3px solid #FFD700; outline-offset: 6px; border-radius: 12px; }
         .map-thumb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
 
         @media (max-width: 768px) {
@@ -194,17 +194,32 @@
                 </div>
 
                 <div class="map-block">
-                    <p><button class="entry-link" type="button" data-image="img/carte-de-freycinet-1812.jpg">Freycinet's Map</button></p>
+                    <p><a class="entry-link" href="map-viewer.html?map=freycinet">Explore Freycinet's Map</a></p>
                     <div class="map-thumb">
-                        <button type="button" data-image="img/carte-de-freycinet-1812.jpg" aria-label="Open Freycinet's map">
+                        <a href="map-viewer.html?map=freycinet" aria-label="Explore Freycinet's map in the viewer">
                             <picture>
                                 <source srcset="img/carte-de-freycinet-1812.avif" type="image/avif">
                                 <img src="img/carte-de-freycinet-1812.jpg" alt="Freycinet's map (thumbnail)" loading="lazy" decoding="async">
                             </picture>
-                        </button>
+                        </a>
                     </div>
                     <p class="entry-description">This chart belongs to the context of a Franco–British controversy over the priority of a complete cartographic representation of the continent. While he was detained on the Isle de France (today Mauritius), the British navigator Matthew Flinders had in fact completed, as early as 1804, a comparable fair chart entitled <em>Australia or Terra Australis</em>. Copies were sent to Joseph Banks and to the British Admiralty; however, publication was delayed until 1814, after Flinders’s return to London in 1810.</p>
                     <p class="entry-description">The near-contemporaneous publication, in France and Great Britain, of these charts—based on surveys from contemporary expeditions—fuelled lasting debates about chronology, circulation, and the respective recognition of the hydrographic and geographical work of the two nations.</p>
+                </div>
+
+                <div class="map-block">
+                    <p><a class="entry-link" href="map-viewer.html?map=flinders">Explore Flinders's Chart</a></p>
+                    <div class="map-thumb">
+                        <a href="map-viewer.html?map=flinders" aria-label="Explore Flinders's chart in the viewer">
+                            <picture>
+                                <source srcset="img/carte-de-flinders-1814.avif" type="image/avif">
+                                <img src="img/carte-de-flinders-1814.jpg" alt="Flinders's chart (thumbnail)" loading="lazy" decoding="async">
+                            </picture>
+                        </a>
+                    </div>
+                    <p class="entry-description">Published in London on 1 January 1814 by G. &amp; W. Nicol, this plate opens the atlas to <em>A Voyage to Terra Australis</em>. It gathers the surveys Matthew Flinders carried out between 1798 and 1803, first along the coasts of New South Wales and Van Diemen's Land, then during the voyage of <em>H.M.S. Investigator</em>, which took him around almost the whole of the continent.</p>
+                    <p class="entry-description">Its title carries the trace of a disagreement. Flinders had put the name <em>Australia</em> to the Admiralty, which refused it, and the account appeared under that of <em>Terra Australis</em>. The chart keeps both, while the continent itself retains the names inherited from the Dutch navigators and from the British settlements—<em>New Holland</em> to the west, <em>New South Wales</em> to the east. It was nonetheless from this plate that the name Australia spread; the Admiralty adopted it only in 1824, ten years after its author's death.</p>
+                    <p class="entry-description">Flinders drew his fair charts during the six years of his detention on the Isle de France, and the plate bears no engraver's name beneath its frame. He died on 19 July 1814, the day after the work appeared, without having seen it published.</p>
                 </div>
             </div>
         </section>
@@ -274,17 +289,32 @@
                 </div>
 
                 <div class="map-block">
-                    <p><button class="entry-link" type="button" data-image="img/carte-de-freycinet-1812.jpg">Carte de Freycinet</button></p>
+                    <p><a class="entry-link" href="map-viewer.html?map=freycinet">Explorer la carte de Freycinet</a></p>
                     <div class="map-thumb">
-                        <button type="button" data-image="img/carte-de-freycinet-1812.jpg" aria-label="Ouvrir la carte de Freycinet">
+                        <a href="map-viewer.html?map=freycinet" aria-label="Explorer la carte de Freycinet dans la visionneuse">
                             <picture>
                                 <source srcset="img/carte-de-freycinet-1812.avif" type="image/avif">
                                 <img src="img/carte-de-freycinet-1812.jpg" alt="Carte de Freycinet (miniature)" loading="lazy" decoding="async">
                             </picture>
-                        </button>
+                        </a>
                     </div>
                     <p class="entry-description">Cette carte s’inscrit dans le contexte d’une controverse franco-britannique relative à la priorité de la représentation cartographique complète du continent. Alors qu’il était détenu à l’île de France (aujourd’hui l’île Maurice), le navigateur britannique Matthew Flinders avait en effet achevé, dès 1804, une carte au net comparable, intitulée <em>Australia or Terra Australis</em>. Des copies en avaient été transmises à Joseph Banks et à l’Amirauté britannique ; toutefois, sa publication fut retardée et n’eut lieu qu’en 1814, après le retour de Flinders à Londres en 1810.</p>
                     <p class="entry-description">La publication rapprochée, en France et en Grande-Bretagne, de ces cartes fondées sur des relevés issus d’expéditions contemporaines alimenta des débats durables portant sur la chronologie, la diffusion et la reconnaissance respective des travaux hydrographiques et géographiques des deux nations.</p>
+                </div>
+
+                <div class="map-block">
+                    <p><a class="entry-link" href="map-viewer.html?map=flinders">Explorer la carte de Flinders</a></p>
+                    <div class="map-thumb">
+                        <a href="map-viewer.html?map=flinders" aria-label="Explorer la carte de Flinders dans la visionneuse">
+                            <picture>
+                                <source srcset="img/carte-de-flinders-1814.avif" type="image/avif">
+                                <img src="img/carte-de-flinders-1814.jpg" alt="Carte de Flinders (miniature)" loading="lazy" decoding="async">
+                            </picture>
+                        </a>
+                    </div>
+                    <p class="entry-description">Publiée à Londres le 1<sup>er</sup> janvier 1814 par G. &amp; W. Nicol, cette planche ouvre l’atlas de <em>A Voyage to Terra Australis</em>. Elle réunit les levés que Matthew Flinders effectua entre 1798 et 1803, d’abord sur les côtes de la Nouvelle-Galles du Sud et de la Terre de Van Diemen, puis au cours de la campagne du <em>H.M.S. Investigator</em>, qui lui fit reconnaître le continent presque en entier.</p>
+                    <p class="entry-description">Son titre porte la trace d’un désaccord. Flinders avait proposé à l’Amirauté le nom d’<em>Australia</em>, qu’elle refusa, et la relation du voyage parut sous celui de <em>Terra Australis</em>. La carte retient les deux, tandis que le continent conserve les noms hérités des navigateurs hollandais et des établissements britanniques — <em>New Holland</em> à l’ouest, <em>New South Wales</em> à l’est. C’est pourtant de cette planche que le nom d’Australie se répandit ; l’Amirauté ne l’adopta qu’en 1824, dix ans après la mort de son auteur.</p>
+                    <p class="entry-description">Flinders mit ses cartes au net durant les six années de sa détention à l’île de France, et la planche ne porte aucun nom de graveur sous son cadre. Il mourut le 19 juillet 1814, au lendemain de la parution de l’ouvrage, sans l’avoir vu paraître.</p>
                 </div>
             </div>
         </section>
