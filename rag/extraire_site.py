@@ -14,6 +14,9 @@ Quatre gisements, quatre sorties :
   corpus/journaux_site/  le texte des journaux que porte le site, mois par
                          mois — y compris les journées sans coordonnées, que
                          la carte ne montre jamais
+  corpus/routes/         les relevés de route des trois expéditions et la
+                         table de Freycinet, par expédition et par mois, une
+                         section par journée
 
 Usage : python3 rag/extraire_site.py
 """
@@ -340,7 +343,158 @@ def extrait_journaux():
 
 
 # --------------------------------------------------------------------------
-# 4. Les autres JSON
+# 4. Les routes, relevé par relevé
+# --------------------------------------------------------------------------
+
+# Un parcours versé d'un bloc faisait un fichier de 200 à 400 Ko, une ligne par
+# jour, datée seulement « 1793-01-01 ». Le découpage en morceaux indexables
+# ramenait le bon fichier mais un morceau voisin, et le chatbot lisait la ligne
+# d'un autre jour. On reprend donc la recette des journaux : un fichier par
+# mois, un titre par journée, la date en lettres et en chiffres, et une phrase
+# qui nomme l'expédition, le navire et la position sans rien devoir au reste.
+ROUTES = {
+    # fichier : (clé, nom, navires par défaut, source des relevés)
+    'dentrecasteaux_parcours.geojson': (
+        'dentrecasteaux', "Expédition d'Entrecasteaux",
+        "la Recherche et l'Espérance",
+        "tables de route publiées par Rossel, Voyage de Dentrecasteaux (Paris, 1808)"),
+    'baudin_parcours.geojson': (
+        'baudin', "Expédition Baudin", "le Géographe et le Naturaliste",
+        "tables de route publiées par Louis de Freycinet (Paris, 1815)"),
+    'flinders_parcours.geojson': (
+        'flinders', "Voyage de Flinders", "l'Investigator",
+        "Matthew Flinders, A Voyage to Terra Australis et General Chart of Terra Australis (Londres, 1814)"),
+}
+# Libellés lisibles des champs ; les autres passent sous leur nom d'origine.
+CHAMPS_ROUTE = {
+    'section': 'Section de la table', 'table': 'Table', 'page': 'Page',
+    'page_verso': 'Page (verso)', 'page_recto': 'Page (recto)',
+    'date_republicaine': 'Date républicaine',
+    'source_latitude': 'Nature de la latitude', 'source_longitude': 'Nature de la longitude',
+    'obs_latitude': 'Latitude observée', 'obs_longitude': 'Longitude observée',
+    'vents_etat_du_ciel': 'Vents et état du ciel', 'barometre_hpa': 'Baromètre (hPa)',
+    'thermometre': 'Thermomètre', 'hygrometre': 'Hygromètre',
+    'declinaison_dms': 'Déclinaison de la boussole', 'declinaison_ref': 'Déclinaison vers',
+    'declinaison_boussole': 'Déclinaison de la boussole',
+    'remarque': 'Remarque', 'remarque_portee': 'Portée de la remarque',
+    'mouillage': 'Au mouillage', 'au_mouillage': 'Au mouillage',
+    'alerte': 'Avertissement', 'notes': 'Notes',
+}
+CHAMPS_ROUTE_TUS = {'date', 'navire', 'expedition', 'longitude_brute', 'ajustement_lon',
+                    'extrapole'}
+
+
+def dms(valeur, positif, negatif):
+    v = abs(valeur)
+    degres = int(v)
+    minutes = round((v - degres) * 60)
+    if minutes == 60:
+        degres, minutes = degres + 1, 0
+    return f"{degres}°{minutes:02d}′ {positif if valeur >= 0 else negatif}"
+
+
+def vrai(valeur):
+    return valeur is True or str(valeur).strip().lower() in ('true', 'oui', '1')
+
+
+def phrase_de_releve(date, expedition, navire, lat, lon, reconstitue):
+    jour = libelle_jour(date)
+    position = (f"latitude {dms(lat, 'N', 'S')} ({lat:.4f}), "
+                f"longitude {dms(lon, 'E', 'O')} de Greenwich ({lon:.4f})")
+    nature = ("position reconstituée, non relevée ce jour-là" if reconstitue
+              else "position de la table")
+    return f"Relevé de route du {jour}. {expedition}, {navire}, {date} : {position} — {nature}."
+
+
+def extrait_routes():
+    print('\n🧭 Routes des trois expéditions')
+    dossier = os.path.join(RACINE, 'data')
+    sortie = os.path.join(CORPUS, 'routes')
+    if os.path.isdir(sortie):
+        for vieux in os.listdir(sortie):
+            if vieux.endswith('.md'):
+                os.remove(os.path.join(sortie, vieux))
+    total = 0
+    for fichier, (cle, expedition, navires_defaut, source) in ROUTES.items():
+        de_qui = {'dentrecasteaux': "de l’expédition d'Entrecasteaux",
+                  'baudin': "de l’expédition Baudin",
+                  'flinders': "du voyage de Flinders"}[cle]
+        chemin = os.path.join(dossier, fichier)
+        if not os.path.exists(chemin):
+            continue
+        traits = json.load(open(chemin, encoding='utf-8')).get('features', [])
+        par_mois = defaultdict(lambda: defaultdict(list))
+        for t in traits:
+            p = t.get('properties', {})
+            geo = (t.get('geometry') or {}).get('coordinates') or []
+            date = str(p.get('date') or '')
+            if not re.match(r'^\d{4}-\d{2}-\d{2}$', date) or len(geo) < 2:
+                continue
+            par_mois[date[:7]][date].append((p, float(geo[1]), float(geo[0])))
+        for cle_mois, jours in sorted(par_mois.items()):
+            corps = []
+            for date in sorted(jours):
+                corps.append(f'\n## {libelle_jour(date)} — {date}\n')
+                for p, lat, lon in jours[date]:
+                    navire = p.get('navire') or navires_defaut
+                    corps.append('\n' + phrase_de_releve(date, expedition, navire, lat, lon,
+                                                          vrai(p.get('extrapole'))) + '\n')
+                    for k, v in p.items():
+                        if k in CHAMPS_ROUTE_TUS or v in ('', None) or v is False:
+                            continue
+                        v = 'oui' if v is True else v
+                        corps.append(f'- {CHAMPS_ROUTE.get(k, k)} : {v}\n')
+            nb = sum(len(v) for v in jours.values())
+            titre = f'{expedition} — route de {libelle_mois(cle_mois)}'
+            ecrit('routes', f'route_{cle}_{cle_mois}.md', entete(
+                titre, f'{SITE}/data/{fichier}', 'fr',
+                [('type', 'relevés de route'), ('expedition', expedition),
+                 ('mois', cle_mois), ('releves', nb), ('source_des_releves', source)],
+            ) + f'Relevés de route {de_qui} pour {libelle_mois(cle_mois)}, d’après les {source}. '
+              'Latitudes et longitudes ramenées au méridien de Greenwich.\n'
+              + ''.join(corps) + '\n')
+            total += 1
+        print(f'  ✅ {fichier} : {len(traits)} relevés → {len(par_mois)} mois')
+
+    # La table de Freycinet elle-même, qui garde ce que le parcours ne reprend
+    # pas : dates républicaines, longitudes comptées depuis Paris, degrés et
+    # minutes tels qu'imprimés, points lunaires et solaires.
+    import csv
+    chemin = os.path.join(dossier, 'baudin_tables_de_route.csv')
+    if os.path.exists(chemin):
+        lignes = list(csv.DictReader(open(chemin, encoding='utf-8', errors='replace')))
+        par_mois = defaultdict(list)
+        for r in lignes:
+            date = (r.get('date_gregorienne') or r.get('date') or '').strip()
+            if re.match(r'^\d{4}-\d{2}-\d{2}$', date):
+                par_mois[date[:7]].append((date, r))
+        for cle_mois, rangs in sorted(par_mois.items()):
+            corps = []
+            for date, r in sorted(rangs, key=lambda x: x[0]):
+                rep_ = (r.get('date_republicaine') or '').strip()
+                navire = (r.get('navire') or '').strip() or 'les corvettes'
+                corps.append(f"\n## {libelle_jour(date)} — {date}"
+                             + (f" ({rep_})" if rep_ else '') + f" — {navire}\n\n"
+                             f"Table de route de Freycinet, {libelle_jour(date)}, {navire}, {date}"
+                             + (f", {rep_}" if rep_ else '') + '.\n')
+                for k, v in r.items():
+                    v = (v or '').strip()
+                    if not v or k in ('date', 'date_gregorienne', 'navire', 'date_republicaine'):
+                        continue
+                    corps.append(f'- {CHAMPS_ROUTE.get(k, k)} : {v}\n')
+            ecrit('routes', f'table_freycinet_{cle_mois}.md', entete(
+                f"Tables de route de Freycinet (expédition Baudin) — {libelle_mois(cle_mois)}",
+                f'{SITE}/data/baudin_tables_de_route.csv', 'fr',
+                [('type', 'table de route'), ('mois', cle_mois), ('lignes', len(rangs)),
+                 ('note', "longitude_paris : comptée depuis le méridien de Paris ; latitude et longitude : ramenées à Greenwich")],
+            ) + ''.join(corps) + '\n')
+            total += 1
+        print(f'  ✅ baudin_tables_de_route.csv : {len(lignes)} lignes → {len(par_mois)} mois')
+    return total
+
+
+# --------------------------------------------------------------------------
+# 5. Les autres JSON
 # --------------------------------------------------------------------------
 
 def aplatit(valeur, profondeur=0):
@@ -375,7 +529,14 @@ def extrait_donnees():
     }
     fichiers = sorted(f for f in os.listdir(dossier)
                       if f.endswith(('.json', '.geojson'))
-                      and f not in JSON_IGNORES and f not in dejà_vus)
+                      and f not in JSON_IGNORES and f not in dejà_vus
+                      and f not in ROUTES)
+    # Les routes ont leur propre gisement (extrait_routes) : on retire l'ancien
+    # aplat d'un seul tenant, qui ramenait la ligne d'un autre jour.
+    for f in list(ROUTES) + ['baudin_tables_de_route.csv']:
+        vieux = os.path.join(CORPUS, 'donnees', ardoise(os.path.splitext(f)[0]) + '.md')
+        if os.path.exists(vieux):
+            os.remove(vieux)
     for fichier in fichiers:
         chemin = os.path.join(dossier, fichier)
         try:
@@ -406,8 +567,10 @@ def extrait_donnees():
         ) + '\n' + texte + '\n')
     print(f'  ✅ {len(fichiers)} fichiers de données')
 
-    # Les tables de route, qui sont des CSV et non des JSON.
-    for fichier in sorted(f for f in os.listdir(dossier) if f.endswith('.csv')):
+    # Les autres CSV. La table de Freycinet est versée mois par mois par
+    # extrait_routes().
+    for fichier in sorted(f for f in os.listdir(dossier)
+                          if f.endswith('.csv') and f != 'baudin_tables_de_route.csv'):
         with open(os.path.join(dossier, fichier), encoding='utf-8', errors='replace') as f:
             contenu = f.read()
         ecrit('donnees', ardoise(os.path.splitext(fichier)[0]) + '.md', entete(
@@ -421,6 +584,7 @@ def main():
     extrait_toponymes()
     extrait_pages()
     extrait_journaux()
+    extrait_routes()
     extrait_donnees()
     print('\n📦 Corpus')
     grand_total = 0

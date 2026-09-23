@@ -8,7 +8,7 @@ Avant, il contenait six fichiers : deux JSON de toponymes, deux textes et deux
 PDF de présentation. Le reste du site — les 483 fiches détaillées, le glossaire,
 la méthodologie, les journaux de bord — n'était pas interrogeable, et les
 journées de journal sans coordonnées, que la carte ne montre jamais, restaient
-invisibles. Il en contient aujourd'hui **1 853**, pour une trentaine de méga-octets.
+invisibles. Il en contient aujourd'hui **1 968**, pour une trentaine de méga-octets.
 
 ## La chaîne
 
@@ -53,7 +53,8 @@ l'autre état, sans qu'on sache lequel.
 | `corpus/site/` | 513 | Les 34 pages de la racine et les 483 fiches détaillées de `details/`, texte extrait. |
 | `corpus/journaux_site/` | 271 | Les journaux que porte le site, un fichier par journal et par mois. **Toutes** les journées, y compris celles sans position : 307 journées de Flinders, 42 de Baudin et 114 de Breton que la carte ne montre jamais. |
 | `corpus/journaux/` | 35 | Les journaux et documents du dehors, un fichier chacun. |
-| `corpus/donnees/` | 13 | Chronologies, attributions Hakluyt, citations, relevés de carte, tables de route. |
+| `corpus/routes/` | 118 | Les relevés de route des trois expéditions (Rossel pour d'Entrecasteaux, Freycinet pour Baudin, Flinders), un fichier par expédition et par mois, et la table de Freycinet mois par mois. Chaque journée a son titre et une phrase qui nomme l'expédition, le navire et la position. |
+| `corpus/donnees/` | 10 | Chronologies, attributions Hakluyt, citations, relevés de la carte de Flinders, repères des journaux. |
 
 Chaque `.md` commence par un en-tête YAML — titre, auteur, langue, source, cote
 — que `file_search` rend au modèle avec le passage trouvé. C'est ce qui permet
@@ -64,6 +65,17 @@ Deux fichiers de `data/` sont laissés de côté : `ne_10m_coastline.geojson` et
 `ne_10m_land.geojson`, qui sont des millions de coordonnées de littoral sans un
 mot de texte, et `img_alias.json`, qui n'est qu'une table de correspondance de
 noms de fichiers.
+
+## Pourquoi les routes sont découpées par mois
+
+Les parcours étaient d'abord versés d'un bloc : un fichier de 200 à 400 Ko par
+expédition, une ligne par jour datée « 1793-01-01 ». Le chatbot trouvait le bon
+fichier mais un morceau voisin, et lisait la ligne d'un autre jour : à « où était
+la Recherche le 1er janvier 1793 ? », il répondait par une position de décembre.
+`extrait_routes()` reprend donc la recette des journaux — un fichier par mois,
+un titre par journée, la date en lettres et en chiffres, une phrase autonome —
+et l'invite lui dit de chercher « relevé de route » avec la date sous ses deux
+formes.
 
 ## Les sources du dehors
 
