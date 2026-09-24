@@ -833,9 +833,18 @@ export function getRouteSummary(options = {}) {
   };
 }
 
+// Seul le journal de Baudin est traduit : l'anglais le remplace quand on le
+// demande, les autres journaux restent dans leur français d'origine.
+function journalText(entry, language) {
+  if (language === 'en' && entry.texte_en) return { texte: entry.texte_en };
+  if (language === 'both' && entry.texte_en) return { texte: entry.texte, texte_en: entry.texte_en };
+  return { texte: entry.texte };
+}
+
 export function searchJournals(options = {}) {
   const {
     query = '',
+    language = 'both',
     sources,
     dateFrom,
     dateTo,
@@ -867,7 +876,12 @@ export function searchJournals(options = {}) {
       entete: entry.entete,
       etat: entry.etat,
       characters: entry.texte.length,
-      texte: full ? entry.texte : excerpt(entry.texte, query, 700),
+      ...Object.fromEntries(
+        Object.entries(journalText(entry, language)).map(([key, text]) => [
+          key,
+          full ? text : excerpt(text, query, 700),
+        ]),
+      ),
       provenance: entry._provenance,
     })),
   };
@@ -906,7 +920,7 @@ export function getJournalDay(options = {}) {
       republicain: entry.republicain,
       entete: entry.entete,
       etat: entry.etat,
-      texte: entry.texte,
+      ...journalText(entry, language),
       provenance: entry._provenance,
     })),
     truncated: false,

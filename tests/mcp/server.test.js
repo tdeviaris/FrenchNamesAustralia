@@ -158,3 +158,23 @@ test('tool responses are sent once, without empty fields', async () => {
     assert.ok(data.items.every((item) => !('observation' in item) && !('provenance' in item)));
   });
 });
+
+test('Baudin\'s journal is served from the Soviche edition, in the language asked', async () => {
+  await withClient(async (client) => {
+    const french = payload(
+      await client.callTool({ name: 'get_journal_day', arguments: { date: '1802-04-08', language: 'fr' } }),
+    );
+    const autograph = french.entries.find((entry) => entry.source === 'baudin_autographe');
+    assert.ok(autograph, 'the autograph journal must be read for 8 April 1802');
+    assert.match(autograph.texte, /M\. Flinders/);
+    assert.doesNotMatch(autograph.texte, /HPlinders|bétiment|vint à borâ/);
+    assert.ok(french.entries.every((entry) => entry.source !== 'baudin_bnf'));
+
+    const english = payload(
+      await client.callTool({ name: 'get_journal_day', arguments: { date: '1802-04-08', language: 'en' } }),
+    );
+    const translated = english.entries.find((entry) => entry.source === 'baudin_autographe');
+    assert.match(translated.texte, /Flinders/);
+    assert.doesNotMatch(translated.texte, /nous|bâtiment/);
+  });
+});

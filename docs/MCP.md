@@ -101,9 +101,11 @@ Group `get_route_summary` by `coque` to count one row per ship, a shared reading
 
 ### Journal sources
 
-`baudin`, `baudin_bnf`, `breton`, `anonyme`, `geographe`.
+`baudin`, `baudin_autographe`, `breton`, `anonyme`, `geographe`.
 
-`baudin_bnf` is the transcription of the BnF manuscript; each entry carries its `entete`, its republican date, and the `etat` of the reading.
+`baudin_autographe` covers volumes 2 to 5 of Baudin's sea journal (20 February 1801 – 5 August 1803), from the autograph manuscript (Archives nationales, Marine 5JJ/37 to 40) as edited by Marc Soviche — the text `map.html` displays, read from `data/journaux/baudin_fr.json` and `baudin_en.json`. It is the only journal with an English translation: pass `language: "en"` to `search_journals` or `get_journal_day` to receive it. Three days the edition leaves out (18–20 June 1802, observations only) were transcribed by eye from the BnF typescript copy and say so in a bracketed note.
+
+The raw OCR of the BnF typescript (`data/journal_baudin_bnf.json`) is no longer served: its text was too noisy to quote.
 
 ## Resources
 

@@ -312,33 +312,6 @@ def extrait_journaux():
             total += 1
         print(f'  ✅ journal_breton.json : {len(oubliees)} journées hors carte récupérées')
 
-    # Le journal de Baudin dans l'édition imprimée de la BnF, océrisé.
-    chemin = os.path.join(RACINE, 'data', 'journal_baudin_bnf.json')
-    if os.path.exists(chemin):
-        données = json.load(open(chemin, encoding='utf-8'))
-        par_mois = defaultdict(list)
-        for date in sorted(données):
-            par_mois[date[:7]].append((date, données[date]))
-        for cle_mois, journees in sorted(par_mois.items()):
-            corps = []
-            for date, rec in journees:
-                texte = (rec.get('texte') or '').strip()
-                if not texte:
-                    continue
-                tete = rec.get('entete', '')
-                rep = rec.get('republicain', '')
-                corps.append(entete_de_journee(
-                    date, 'Journal de Nicolas Baudin, édition BnF', rep)
-                    + (f'*{tete}*\n\n' if tete else '') + texte + '\n')
-            if not corps:
-                continue
-            ecrit('journaux_site', f'baudin_bnf_{cle_mois}_fr.md', entete(
-                f"Journal de Nicolas Baudin, édition BnF — {libelle_mois(cle_mois)}",
-                "transcription océrisée de l'édition imprimée, Bibliothèque nationale de France",
-                'fr', [('journal', 'Journal de Baudin, édition BnF'), ('mois', cle_mois)],
-            ) + ''.join(corps) + '\n')
-            total += 1
-        print(f'  ✅ journal_baudin_bnf.json : {len(données)} journées')
     return total
 
 
@@ -523,7 +496,6 @@ def extrait_donnees():
     # leurs dates en titres de section ; les reverser ici en aplat n'ajouterait
     # qu'un doublon sans repère de date.
     dejà_vus = set(EXPEDITIONS) | {
-        'journal_baudin_bnf.json', 'journal_baudin_bnf.txt',
         'journal_anonyme.json', 'journal_baudin.json',
         'journal_breton.json', 'journal_geographe.json',
     }

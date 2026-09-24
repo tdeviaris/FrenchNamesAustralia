@@ -200,11 +200,11 @@ export function createFrenchNamesMcpServer() {
     {
       title: 'Search the onboard journals',
       description:
-        'Full-text search across the five transcribed journals of the Baudin expedition (Baudin, the BnF manuscript, Breton, the anonymous Naturaliste journal, and the Géographe journal). Returns excerpts around the match by default; set full to true for complete day entries.',
+        'Full-text search across the five transcribed journals of the Baudin expedition (Baudin volume 1, Baudin volumes 2 to 5 from the autograph manuscript as edited by Marc Soviche, Breton, the anonymous Naturaliste journal, and the Géographe journal). Baudin\'s autograph journal is also available in English. Returns excerpts around the match by default; set full to true for complete day entries.',
       inputSchema: SearchJournalsSchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    async (input) => result(searchJournals(input)),
+    async (input) => result(searchJournals(withLanguage(input))),
   );
 
   server.registerTool(

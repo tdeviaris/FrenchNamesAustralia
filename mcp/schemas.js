@@ -272,7 +272,7 @@ export const RouteSummarySchema = z
 
 export const JournalSourceSchema = z.enum([
   'baudin',
-  'baudin_bnf',
+  'baudin_autographe',
   'breton',
   'anonyme',
   'geographe',
@@ -282,6 +282,7 @@ export const SearchJournalsSchema = z
   .object({
     query: z.string().max(500).default(''),
     sources: z.array(JournalSourceSchema).max(5).optional(),
+    language: LanguageSchema,
     dateFrom: IsoDateSchema.optional(),
     dateTo: IsoDateSchema.optional(),
     limit: z.number().int().min(1).max(100).default(20),

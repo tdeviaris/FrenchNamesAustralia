@@ -90,11 +90,17 @@ const JOURNAL_FILES = [
     url: new URL('../data/journal_baudin.json', import.meta.url),
     title: 'Journal de Nicolas Baudin',
   },
+  // Volumes 2 à 5 du journal de mer, tels que la carte les affiche : l'édition
+  // de Marc Soviche d'après l'autographe (Archives nationales, Marine 5JJ/37 à
+  // 40), avec sa traduction anglaise. Elle remplace l'OCR brut du tapuscrit de
+  // la BnF, trop bruité pour être cité.
   {
-    source: 'baudin_bnf',
-    path: 'data/journal_baudin_bnf.json',
-    url: new URL('../data/journal_baudin_bnf.json', import.meta.url),
-    title: 'Journal de Baudin, transcription du manuscrit de la BnF',
+    source: 'baudin_autographe',
+    path: 'data/journaux/baudin_fr.json',
+    url: new URL('../data/journaux/baudin_fr.json', import.meta.url),
+    urlEn: new URL('../data/journaux/baudin_en.json', import.meta.url),
+    field: 'journal_baudin_autographe',
+    title: 'Journal de mer de Baudin, manuscrit autographe, transcription de Marc Soviche',
   },
   {
     source: 'breton',
@@ -305,18 +311,22 @@ export const ROUTE_POSITIONS = Object.freeze(
 export const ROUTE_TRAJECTORIES = Object.freeze(routeTrajectories);
 
 export const JOURNAL_ENTRIES = Object.freeze(
-  JOURNAL_FILES.flatMap(({ source, path, url, title }) => {
+  JOURNAL_FILES.flatMap(({ source, path, url, urlEn, field, title }) => {
     const raw = readJson(url);
+    const english = urlEn ? readJson(urlEn) : {};
     return Object.entries(raw)
       .filter(([date]) => /^\d{4}-\d{2}-\d{2}$/.test(date))
+      .filter(([, value]) => !field || value?.[field])
       .map(([date, value]) => {
-        const payload = Array.isArray(value) ? { texte: value.join('\n\n') } : value;
+        const picked = field ? value[field] : value;
+        const payload = Array.isArray(picked) ? { texte: picked.join('\n\n') } : picked;
         const body = typeof payload === 'string' ? { texte: payload } : payload;
         return Object.freeze({
           source,
           sourceTitle: title,
           date,
           texte: String(body.texte ?? ''),
+          texte_en: field ? String(english[date]?.[field] ?? '') : '',
           entete: body.entete ?? '',
           republicain: body.republicain ?? '',
           etat: body.etat ?? '',
@@ -368,7 +378,7 @@ export const SEARCH_INDEX = TOPONYMS.map((record) => ({
 
 export const JOURNAL_INDEX = JOURNAL_ENTRIES.map((entry) => ({
   entry,
-  normalized: normalizeText(entry.texte),
+  normalized: normalizeText(`${entry.texte} ${entry.texte_en}`),
 }));
 
 export function hasCoordinates(item) {
