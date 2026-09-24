@@ -2499,6 +2499,13 @@ gtag('config', 'G-LCWV2EVPVQ');
         };
 
         const isFiniteNumber = (value) => (Number.isFinite ? Number.isFinite(value) : isFinite(value));
+        // Un identifiant Wikipédia peut arriver déjà encodé (« d%27Alembert ») :
+        // on le décode avant de l'encoder, sans quoi « %27 » devient « %2527 ».
+        const titreWikipedia = (value = '') => {
+            let titre = String(value).trim();
+            try { titre = decodeURIComponent(titre); } catch (e) { /* « % » isolé : on garde tel quel */ }
+            return encodeURIComponent(titre);
+        };
         const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => {
             const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
             return chars[char] || char;
@@ -2615,7 +2622,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
             link.href = (data.content_urls && data.content_urls.desktop && data.content_urls.desktop.page)
-                || `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(data.title || '')}`;
+                || `https://${lang}.wikipedia.org/wiki/${titreWikipedia(data.title || '')}`;
             const label = lang === 'fr' ? 'Source\xa0: ' : 'Source: ';
             source.append(label);
             source.appendChild(link);
@@ -2701,7 +2708,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
             if (title) {
                 const wikiLang = lang === 'fr' ? 'fr' : 'en';
-                return `https://${wikiLang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+                return `https://${wikiLang}.wikipedia.org/wiki/${titreWikipedia(title)}`;
             }
             return '';
         };
@@ -2910,7 +2917,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 if (trimmedLabel && finalIdentifier) {
                     const safeLabel = escapeHtml(trimmedLabel);
                     const safeIdentifier = escapeHtml(finalIdentifier);
-                    const wikiUrl = `https://${currentDomain}.wikipedia.org/wiki/${encodeURIComponent(safeIdentifier)}`;
+                    const wikiUrl = `https://${currentDomain}.wikipedia.org/wiki/${titreWikipedia(finalIdentifier)}`;
                     return `<a href="${wikiUrl}" class="wiki-link" data-lang="${currentDomain}" data-title="${safeIdentifier}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
                 }
                 return match; // Return original if invalid

@@ -696,10 +696,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             }
 
             const normalizedLang = lang === 'fr' ? 'fr' : 'en';
-            const title = rawValue.trim();
+            let title = rawValue.trim();
             if (!title) {
                 return null;
             }
+            // Un identifiant déjà encodé (« d%27Alembert ») serait encodé deux fois.
+            try { title = decodeURIComponent(title); } catch (e) { /* « % » isolé : tel quel */ }
 
             return `https://${normalizedLang}.wikipedia.org/wiki/${encodeURIComponent(title)}`;
         };
