@@ -209,15 +209,19 @@ function excerpt(value, query, maxLength = 360) {
   return `${start > 0 ? '…' : ''}${text.slice(start, end).trim()}${end < text.length ? '…' : ''}`;
 }
 
+// Les listes ne portent qu'un court extrait de chaque récit : un client LLM lit
+// toute la réponse avant d'écrire, et get_toponym rend le texte intégral.
+const LIST_EXCERPT_LENGTH = 200;
+
 function narrativeSummary(record, language, query = '') {
   const result = {};
   if (language !== 'en') {
-    result.characteristic_fr = excerpt(record.characteristic_fr, query);
-    result.history_fr = excerpt(record.history_fr, query);
+    result.characteristic_fr = excerpt(record.characteristic_fr, query, LIST_EXCERPT_LENGTH);
+    result.history_fr = excerpt(record.history_fr, query, LIST_EXCERPT_LENGTH);
   }
   if (language !== 'fr') {
-    result.characteristic = excerpt(record.characteristic, query);
-    result.history = excerpt(record.history, query);
+    result.characteristic = excerpt(record.characteristic, query, LIST_EXCERPT_LENGTH);
+    result.history = excerpt(record.history, query, LIST_EXCERPT_LENGTH);
   }
   return result;
 }
@@ -248,12 +252,11 @@ function recordSummary(record, language = 'both', query = '') {
         }
       : {}),
     ...(record.citation_fr && language !== 'en'
-      ? { citation_fr: excerpt(record.citation_fr, query) }
+      ? { citation_fr: excerpt(record.citation_fr, query, LIST_EXCERPT_LENGTH) }
       : {}),
     ...(record.attribution ? { attribution: record.attribution } : {}),
-    detailsLink: record.detailsLink,
-    detailsLink_en: record.detailsLink_en,
-    provenance: record._provenance,
+    ...(language !== 'en' ? { detailsLink: record.detailsLink } : {}),
+    ...(language !== 'fr' ? { detailsLink_en: record.detailsLink_en } : {}),
   };
 }
 
@@ -295,7 +298,7 @@ export function searchToponyms(options = {}) {
     query = '',
     language = 'both',
     fields = Object.keys(SEARCH_FIELDS),
-    limit = 20,
+    limit = 10,
     cursor,
     ...filters
   } = options;
@@ -352,7 +355,7 @@ export function findNearbyToponyms(options) {
     expedition,
     expeditions,
     states,
-    limit = 50,
+    limit = 20,
   } = options;
 
   const matches = TOPONYMS.filter(
@@ -646,14 +649,18 @@ function routeMatchesFilters(position, options) {
   return true;
 }
 
-function routeItem(position, query = '', distanceKm = null) {
+// Une position ne porte que ce qui la distingue : les qualificatifs vrais, le
+// libellé source quand il était collectif, et l'observation de bord sur demande.
+function routeItem(position, query = '', distanceKm = null, withObservation = false) {
+  const flags = Object.fromEntries(Object.entries(position.flags).filter(([, value]) => value));
   return {
     id: position.id,
     expedition: position.expedition,
     navire: position.navire,
     navires: position.navires,
-    navireSource: position.navireSource,
-    navireCollectif: position.navireCollectif,
+    ...(position.navireCollectif
+      ? { navireSource: position.navireSource, navireCollectif: true }
+      : {}),
     date: position.date,
     date_republicaine: position.date_republicaine,
     lat: position.lat,
@@ -664,17 +671,20 @@ function routeItem(position, query = '', distanceKm = null) {
     page: position.page,
     remarque: excerpt(position.remarque, query),
     alerte: excerpt(position.alerte, query),
-    observation: {
-      latitude: position.sourceLatitude,
-      longitude: position.sourceLongitude,
-      vents_etat_du_ciel: position.vents_etat_du_ciel,
-      barometre_hpa: position.barometre_hpa,
-      thermometre: position.thermometre,
-      declinaison_dms: position.declinaison_dms,
-      declinaison_ref: position.declinaison_ref,
-    },
-    flags: position.flags,
-    provenance: position._provenance,
+    ...(withObservation
+      ? {
+          observation: {
+            latitude: position.sourceLatitude,
+            longitude: position.sourceLongitude,
+            vents_etat_du_ciel: position.vents_etat_du_ciel,
+            barometre_hpa: position.barometre_hpa,
+            thermometre: position.thermometre,
+            declinaison_dms: position.declinaison_dms,
+            declinaison_ref: position.declinaison_ref,
+          },
+        }
+      : {}),
+    ...(Object.keys(flags).length ? { flags } : {}),
   };
 }
 
@@ -684,8 +694,9 @@ export function searchRoutePositions(options = {}) {
     center,
     radiusKm,
     order = 'date',
-    limit = 50,
+    limit = 20,
     cursor,
+    includeObservation = false,
     ...filters
   } = options;
   const normalizedQuery = normalizeText(query);
@@ -727,7 +738,9 @@ export function searchRoutePositions(options = {}) {
     query,
     filters: { ...filters, center, radiusKm, order },
     ...page,
-    items: page.items.map(({ position, distanceKm }) => routeItem(position, query, distanceKm)),
+    items: page.items.map(({ position, distanceKm }) =>
+      routeItem(position, query, distanceKm, includeObservation || Boolean(filters.withWeather)),
+    ),
   };
 }
 
@@ -861,24 +874,30 @@ export function searchJournals(options = {}) {
 }
 
 export function getJournalDay(options = {}) {
-  const { date, sources } = options;
+  const { date, sources, language = 'both' } = options;
   const entries = JOURNAL_ENTRIES.filter(
     (entry) => entry.date === date && (!sources?.length || sources.includes(entry.source)),
   );
   return {
     date,
     sourcesAvailable: entries.map((entry) => entry.source),
+    language,
     routePositions: ROUTE_POSITIONS.filter((position) => position.date === date).map((position) =>
-      routeItem(position),
+      routeItem(position, '', null, true),
     ),
     remarkableDates: REMARKABLE_DATES.filter((entry) => entry.date === date).map(
-      ({ _provenance, ...entry }) => ({ ...entry, provenance: _provenance }),
+      ({ _provenance, libelle_fr, libelle_en, ...entry }) => ({
+        ...entry,
+        ...(language !== 'en' ? { libelle_fr } : {}),
+        ...(language !== 'fr' ? { libelle_en } : {}),
+        provenance: _provenance,
+      }),
     ),
     timelineEvents: TIMELINE.filter((event) => event.dateISO === date).map((event) => ({
       id: event.id,
       dateISO: event.dateISO,
-      histoire: event.histoire,
-      story: event.story,
+      ...(language !== 'en' ? { histoire: event.histoire } : {}),
+      ...(language !== 'fr' ? { story: event.story } : {}),
       provenance: event._provenance,
     })),
     entries: entries.map((entry) => ({

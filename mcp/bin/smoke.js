@@ -16,11 +16,11 @@ const url = urlIndex >= 0 ? process.argv[urlIndex + 1] : null;
 
 const CALLS = [
   ['get_dataset_summary', {}, (r) => `${r.toponyms} toponymes, ${r.routePositions} positions, ${r.journalEntries} jours de journal`],
-  ['search_toponyms', { query: 'Péron', language: 'fr', limit: 5 }, (r) => `${r.total} résultats, 1er : ${r.items[0]?.frenchName}`],
+  ['search_toponyms', { query: 'Péron', language: 'fr' }, (r) => `${r.total} résultats, 1er : ${r.items[0]?.frenchName}`],
   ['get_toponym', { code: 'Flinders009' }, (r) => `${r.frenchName} — attribué à ${r.attribution?.sujet ?? '(non attribué)'}`],
   ['find_nearby_toponyms', { latitude: -35.0, longitude: 137.5, radiusKm: 50 }, (r) => `${r.totalMatches} dans 50 km`],
   ['analyze_toponyms', { groupBy: ['expedition'] }, (r) => r.groups.map((g) => `${g.dimensions.expedition} ${g.count}`).join(', ')],
-  ['search_route_positions', { vessel: 'le Géographe', limit: 3 }, (r) => `${r.total} relevés placent le Géographe`],
+  ['search_route_positions', { vessel: 'le Géographe' }, (r) => `${r.total} relevés placent le Géographe`],
   ['get_route_summary', { groupBy: ['coque'] }, (r) => r.groups.map((g) => `${g.dimensions.coque} ${g.count}`).join(', ')],
   ['search_journals', { query: 'mouillage', limit: 3 }, (r) => `${r.total} jours de journal`],
   ['get_journal_day', { date: '1802-04-08' }, (r) => `${r.entries.length} sources, ${r.routePositions.length} positions`],
@@ -35,8 +35,8 @@ const RESOURCES = [
   'fna://journals/1802-04-08',
 ];
 
-function ko(payload) {
-  return `${Math.round(JSON.stringify(payload).length / 1024)} Ko`;
+function ko(text) {
+  return `${Math.round(text.length / 1024)} Ko`;
 }
 
 async function connect() {
@@ -64,9 +64,10 @@ for (const [name, args, describe] of CALLS) {
   try {
     const response = await client.callTool({ name, arguments: args });
     if (response.isError) throw new Error(response.content?.[0]?.text ?? 'isError');
-    const payload = response.structuredContent;
+    const text = response.content[0].text;
+    const payload = JSON.parse(text);
     console.log(
-      `  ok   ${name.padEnd(23)} ${String(Date.now() - started).padStart(4)} ms  ${ko(payload).padStart(7)}  ${describe(payload)}`,
+      `  ok   ${name.padEnd(23)} ${String(Date.now() - started).padStart(4)} ms  ${ko(text).padStart(7)}  ${describe(payload)}`,
     );
   } catch (error) {
     failures += 1;
@@ -78,7 +79,7 @@ console.log();
 for (const uri of RESOURCES) {
   try {
     const response = await client.readResource({ uri });
-    console.log(`  ok   ${uri.padEnd(34)} ${ko(JSON.parse(response.contents[0].text)).padStart(7)}`);
+    console.log(`  ok   ${uri.padEnd(34)} ${ko(response.contents[0].text).padStart(7)}`);
   } catch (error) {
     failures += 1;
     console.log(`  ÉCHEC ${uri.padEnd(34)} ${error.message}`);

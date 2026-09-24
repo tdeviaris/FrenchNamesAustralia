@@ -34,11 +34,42 @@ const READ_ONLY_ANNOTATIONS = {
   openWorldHint: false,
 };
 
+// Un client LLM lit toute la réponse avant d'écrire : elle part une seule fois,
+// en JSON compact, sans les champs vides. Doubler le texte d'un
+// structuredContent faisait lire chaque réponse deux fois.
+function compactValue(_key, value) {
+  return value === null || value === '' ? undefined : value;
+}
+
 function result(data) {
   return {
-    content: [{ type: 'text', text: JSON.stringify(data, null, 2) }],
-    structuredContent: data,
+    content: [{ type: 'text', text: JSON.stringify(data, compactValue) }],
   };
+}
+
+// Le serveur ne voit pas la question, seulement les arguments. Le modèle est
+// prié de passer la langue de la question ; à défaut, on la devine sur le texte
+// de la requête, et le français l'emporte faute d'indice.
+const ENGLISH_WORDS = new Set([
+  'the', 'of', 'and', 'where', 'what', 'when', 'who', 'which', 'how', 'why', 'was', 'were',
+  'is', 'are', 'did', 'named', 'name', 'island', 'bay', 'cape', 'river', 'ship', 'with', 'from',
+]);
+const FRENCH_WORDS = new Set([
+  'le', 'la', 'les', 'des', 'du', 'et', 'ou', 'quel', 'quelle', 'quand', 'qui', 'comment',
+  'pourquoi', 'est', 'sont', 'ile', 'baie', 'cap', 'pointe', 'riviere', 'nomme', 'navire', 'dans', 'avec',
+]);
+
+export function inferLanguage(text) {
+  const words = normalizeText(text).split(/[^a-z]+/).filter(Boolean);
+  const english = words.filter((word) => ENGLISH_WORDS.has(word)).length;
+  const french =
+    words.filter((word) => FRENCH_WORDS.has(word)).length +
+    (/[àâçéèêëîïôûùüÿœ]/i.test(String(text ?? '')) ? 1 : 0);
+  return english > french ? 'en' : 'fr';
+}
+
+function withLanguage(input) {
+  return input.language ? input : { ...input, language: inferLanguage(input.query) };
 }
 
 function notFound(message) {
@@ -60,7 +91,9 @@ export function createFrenchNamesMcpServer() {
         'find_nearby_toponyms for coordinates, analyze_toponyms for exhaustive statistics, ' +
         'search_route_positions for where a vessel was on a given day, and get_journal_day to read ' +
         'every source for one date at once. Thirty-two toponyms carry no coordinates: they are flagged ' +
-        'located: false and are excluded from geographic filters.',
+        'located: false and are excluded from geographic filters. Always pass language: "fr" or "en", ' +
+        'matching the language of the user\'s question, so that narratives come back in that language only. ' +
+        'Lists carry short excerpts; call get_toponym for the full text of a record.',
     },
   );
 
@@ -73,7 +106,7 @@ export function createFrenchNamesMcpServer() {
       inputSchema: SearchToponymsSchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    async (input) => result(searchToponyms(input)),
+    async (input) => result(searchToponyms(withLanguage(input))),
   );
 
   server.registerTool(
@@ -85,7 +118,7 @@ export function createFrenchNamesMcpServer() {
       inputSchema: GetToponymSchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    async ({ code, language }) => {
+    async ({ code, language = 'fr' }) => {
       const record = getToponym(code, language);
       return record ? result(record) : notFound(`Unknown toponym code: ${code}`);
     },
@@ -96,11 +129,11 @@ export function createFrenchNamesMcpServer() {
     {
       title: 'Find toponyms near coordinates',
       description:
-        'Find records within a radius of a latitude and longitude, ordered by Haversine distance. Returns coordinates, distance, and bilingual narrative excerpts.',
+        'Find records within a radius of a latitude and longitude, ordered by Haversine distance. Returns coordinates, distance, and short narrative excerpts in the requested language.',
       inputSchema: NearbyToponymsSchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    async (input) => result(findNearbyToponyms(input)),
+    async (input) => result(findNearbyToponyms(withLanguage(input))),
   );
 
   server.registerTool(
@@ -124,7 +157,7 @@ export function createFrenchNamesMcpServer() {
       inputSchema: SearchTimelineSchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    async (input) => result(searchTimeline(input)),
+    async (input) => result(searchTimeline(withLanguage(input))),
   );
 
   server.registerTool(
@@ -143,7 +176,7 @@ export function createFrenchNamesMcpServer() {
     {
       title: 'Search daily route positions',
       description:
-        'Search the 1875 dated positions of the Baudin, d\'Entrecasteaux, and Flinders routes. Filter by expedition, vessel, date interval, bounding box, radius, and route qualifiers such as mouillage, extrapole, or releve_carte. Returns coordinates, the route table and section, the remark, and the onboard weather reading.',
+        'Search the 1875 dated positions of the Baudin, d\'Entrecasteaux, and Flinders routes. Filter by expedition, vessel, date interval, bounding box, radius, and route qualifiers such as mouillage, extrapole, or releve_carte. Returns coordinates, the route table and section, the remark, and the qualifiers that hold; set includeObservation for the onboard weather reading.',
       inputSchema: SearchRoutePositionsSchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
@@ -183,7 +216,7 @@ export function createFrenchNamesMcpServer() {
       inputSchema: GetJournalDaySchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    async (input) => result(getJournalDay(input)),
+    async (input) => result(getJournalDay(withLanguage(input))),
   );
 
   server.registerTool(
@@ -195,7 +228,7 @@ export function createFrenchNamesMcpServer() {
       inputSchema: RemarkableDatesSchema,
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    async (input) => result(searchRemarkableDates(input)),
+    async (input) => result(searchRemarkableDates(withLanguage(input))),
   );
 
   server.registerResource(

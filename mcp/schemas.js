@@ -2,8 +2,11 @@ import { z } from 'zod';
 
 export const LanguageSchema = z
   .enum(['fr', 'en', 'both'])
-  .default('both')
-  .describe('Language of narrative fields to search and return.');
+  .optional()
+  .describe(
+    "Language of the user's question, 'fr' or 'en': narrative fields are searched and returned in that language only. " +
+      "Use 'both' only when the user asks for both languages. When omitted, the server infers it from the query text, falling back to 'fr'.",
+  );
 
 export const ExpeditionNameSchema = z.enum(['Baudin', 'Entrecasteaux', 'Flinders']);
 export const ExpeditionSchema = ExpeditionNameSchema.optional();
@@ -73,7 +76,7 @@ export const SearchToponymsSchema = z
     dateTo: IsoDateSchema.optional(),
     hasCitation: z.boolean().optional(),
     hasAttribution: z.boolean().optional(),
-    limit: z.number().int().min(1).max(200).default(20),
+    limit: z.number().int().min(1).max(200).default(10),
     cursor: z.string().max(500).optional(),
   })
   .strict();
@@ -94,7 +97,7 @@ export const NearbyToponymsSchema = z
     expedition: ExpeditionSchema,
     expeditions: ExpeditionsSchema,
     states: StatesSchema,
-    limit: z.number().int().min(1).max(200).default(50),
+    limit: z.number().int().min(1).max(200).default(20),
   })
   .strict();
 
@@ -220,8 +223,12 @@ export const SearchRoutePositionsSchema = z
       .boolean()
       .optional()
       .describe('Keep only positions that carry a wind, barometer, or thermometer reading.'),
+    includeObservation: z
+      .boolean()
+      .optional()
+      .describe('Add the onboard observation (source latitude and longitude, wind and sky, barometer, thermometer, declination). Implied by withWeather.'),
     order: z.enum(['date', 'distance']).default('date'),
-    limit: z.number().int().min(1).max(200).default(50),
+    limit: z.number().int().min(1).max(200).default(20),
     cursor: z.string().max(500).optional(),
   })
   .strict()
@@ -293,6 +300,7 @@ export const GetJournalDaySchema = z
   .object({
     date: IsoDateSchema,
     sources: z.array(JournalSourceSchema).max(5).optional(),
+    language: LanguageSchema,
   })
   .strict();
 

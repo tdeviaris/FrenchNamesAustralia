@@ -145,7 +145,7 @@ test('route search filters by vessel, date interval, and qualifiers', () => {
   assert.ok(anchored.items.every((item) => item.flags.mouillage === true));
 
   const extrapolated = searchRoutePositions({ flags: { extrapole: false }, limit: 200 });
-  assert.ok(extrapolated.items.every((item) => item.flags.extrapole === false));
+  assert.ok(extrapolated.items.every((item) => !item.flags?.extrapole));
 });
 
 test('route search orders by distance and keeps the radius honest', () => {

@@ -7,6 +7,10 @@ import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { TOPONYMS } from '../../mcp/data-store.js';
 import { createFrenchNamesMcpServer } from '../../mcp/server.js';
 
+function payload(response) {
+  return JSON.parse(response.content[0].text);
+}
+
 async function withClient(callback) {
   const server = createFrenchNamesMcpServer();
   const client = new Client({ name: 'fna-test-client', version: '1.0.0' });
@@ -41,17 +45,18 @@ test('MCP server exposes the eleven read-only tools', async () => {
   });
 });
 
-test('MCP tool call returns structured exhaustive statistics', async () => {
+test('MCP tool call returns exhaustive statistics as compact JSON', async () => {
   await withClient(async (client) => {
     const response = await client.callTool({
       name: 'analyze_toponyms',
       arguments: { groupBy: ['expedition'] },
     });
     assert.equal(response.isError, undefined);
-    assert.equal(response.structuredContent.recordsScanned, TOPONYMS.length);
-    assert.equal(response.structuredContent.recordsAnalyzed, TOPONYMS.length);
-    assert.equal(response.structuredContent.truncated, false);
-    assert.equal(response.structuredContent.groups.length, 3);
+    const data = payload(response);
+    assert.equal(data.recordsScanned, TOPONYMS.length);
+    assert.equal(data.recordsAnalyzed, TOPONYMS.length);
+    assert.equal(data.truncated, false);
+    assert.equal(data.groups.length, 3);
   });
 });
 
@@ -98,9 +103,9 @@ test('the new route and journal tools answer through the MCP transport', async (
       arguments: { expedition: 'Flinders', flags: { mouillage: true }, limit: 5 },
     });
     assert.equal(positions.isError, undefined);
-    assert.ok(positions.structuredContent.total > 0);
+    assert.ok(payload(positions).total > 0);
     assert.ok(
-      positions.structuredContent.items.every((item) => item.flags.mouillage === true),
+      payload(positions).items.every((item) => item.flags.mouillage === true),
     );
 
     const journals = await client.callTool({
@@ -108,13 +113,48 @@ test('the new route and journal tools answer through the MCP transport', async (
       arguments: { date: '1801-05-27' },
     });
     assert.equal(journals.isError, undefined);
-    assert.ok(journals.structuredContent.entries.length > 0);
+    assert.ok(payload(journals).entries.length > 0);
 
     const dates = await client.callTool({
       name: 'list_remarkable_dates',
       arguments: { expedition: 'Entrecasteaux' },
     });
     assert.equal(dates.isError, undefined);
-    assert.ok(dates.structuredContent.total > 0);
+    assert.ok(payload(dates).total > 0);
+  });
+});
+
+test('narratives come back in the language of the question only', async () => {
+  await withClient(async (client) => {
+    const explicit = payload(
+      await client.callTool({ name: 'search_toponyms', arguments: { query: 'Péron', language: 'en' } }),
+    );
+    assert.equal(explicit.language, 'en');
+    assert.ok(explicit.items.every((item) => !('history_fr' in item)));
+
+    const inferred = payload(
+      await client.callTool({ name: 'search_toponyms', arguments: { query: 'where is the island named after Peron' } }),
+    );
+    assert.equal(inferred.language, 'en');
+
+    const fallback = payload(
+      await client.callTool({ name: 'search_toponyms', arguments: { query: 'Péron' } }),
+    );
+    assert.equal(fallback.language, 'fr');
+    assert.ok(fallback.items.every((item) => !('history' in item)));
+    assert.ok(fallback.items.every((item) => (item.history_fr ?? '').length <= 202));
+  });
+});
+
+test('tool responses are sent once, without empty fields', async () => {
+  await withClient(async (client) => {
+    const response = await client.callTool({
+      name: 'search_route_positions',
+      arguments: { vessel: 'le Géographe', limit: 5 },
+    });
+    assert.equal(response.structuredContent, undefined);
+    assert.doesNotMatch(response.content[0].text, /:""|:null|\n/);
+    const data = payload(response);
+    assert.ok(data.items.every((item) => !('observation' in item) && !('provenance' in item)));
   });
 });
