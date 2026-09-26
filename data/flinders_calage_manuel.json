@@ -1,0 +1,1130 @@
+[
+ {
+  "action": "caler",
+  "date": "1801-12-08",
+  "navire": "l'Investigator",
+  "lon": 116.05575942111831,
+  "lat": -35.039396378439555,
+  "avant": [
+   116.125,
+   -34.94167
+  ],
+  "le": "2026-09-25T21:39:26"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-05",
+  "navire": "l'Investigator",
+  "lon": 118.88063858332143,
+  "lat": -34.730708478175885,
+  "avant": [
+   118.61633,
+   -34.86382
+  ],
+  "le": "2026-09-25T21:41:44"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-08",
+  "navire": "l'Investigator",
+  "lon": 120.84266529891234,
+  "lat": -33.989998050943605,
+  "avant": [
+   120.8,
+   -34.64236
+  ],
+  "le": "2026-09-25T21:44:10"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-13",
+  "navire": "l'Investigator",
+  "lon": 122.22984170191648,
+  "lat": -34.16147910725766,
+  "avant": [
+   122.44333,
+   -34.22805
+  ],
+  "le": "2026-09-25T21:50:56"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-15",
+  "navire": "l'Investigator",
+  "lon": 122.29428150258244,
+  "lat": -34.02340619778956,
+  "avant": [
+   123.04287,
+   -34.02375
+  ],
+  "le": "2026-09-25T21:54:23"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-10",
+  "navire": "l'Investigator",
+  "lon": 122.29902794607099,
+  "lat": -33.98935883318505,
+  "avant": [
+   121.91996,
+   -34.79557
+  ],
+  "le": "2026-09-25T21:56:00"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-08",
+  "navire": "l'Investigator",
+  "lon": 123.35082843529626,
+  "lat": -34.31600095709614,
+  "avant": [
+   120.84267,
+   -33.99
+  ],
+  "le": "2026-09-25T21:58:43"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-11",
+  "navire": "l'Investigator",
+  "lon": 123.04637851741401,
+  "lat": -34.12552847838622,
+  "avant": [
+   122.27597,
+   -34.04673
+  ],
+  "le": "2026-09-25T21:59:36"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-16",
+  "navire": "l'Investigator",
+  "lon": 121.01525342945315,
+  "lat": -34.01863520532334,
+  "avant": [
+   123.11154,
+   -34.01966
+  ],
+  "le": "2026-09-25T22:04:29"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-01-22",
+  "navire": "l'Investigator",
+  "avant": [
+   126.4725,
+   -32.55625
+  ],
+  "le": "2026-09-25T22:04:58"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-01-22",
+  "navire": "l'Investigator",
+  "avant": [
+   126.4725,
+   -32.55625
+  ],
+  "le": "2026-09-25T22:05:01"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-01-16",
+  "navire": "l'Investigator",
+  "avant": [
+   121.01525,
+   -34.01864
+  ],
+  "le": "2026-09-25T22:05:14"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-01-08",
+  "navire": "l'Investigator",
+  "avant": [
+   123.35083,
+   -34.316
+  ],
+  "le": "2026-09-25T22:05:29"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-08",
+  "navire": "l'Investigator",
+  "lon": 120.948486328125,
+  "lat": -33.988918483762156,
+  "avant": [
+   120.8,
+   -34.64236
+  ],
+  "le": "2026-09-25T22:05:42"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-09",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 121.82917,
+  "lat": -34.00694,
+  "avant": [
+   121.81667,
+   -35.00694
+  ],
+  "origine": {
+   "coordinates": [
+    121.81667,
+    -35.00694
+   ],
+   "properties": {
+    "date": "1802-01-09",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T22:32:58"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-08",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 120.67932128906251,
+  "lat": -34.016241889667015,
+  "avant": [
+   120.94849,
+   -33.98892
+  ],
+  "le": "2026-09-25T22:36:31"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-16",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 122.47061164260583,
+  "lat": -34.01516850030857,
+  "avant": [
+   123.11154,
+   -34.01966
+  ],
+  "le": "2026-09-25T22:37:36"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-11",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 122.53729052461395,
+  "lat": -33.997049801013624,
+  "avant": [
+   123.04638,
+   -34.12553
+  ],
+  "le": "2026-09-25T22:38:12"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-14",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 122.41160612310463,
+  "lat": -34.12775802171072,
+  "avant": [
+   122.6,
+   -34.03333
+  ],
+  "origine": {
+   "coordinates": [
+    122.6,
+    -34.03333
+   ],
+   "properties": {
+    "date": "1802-01-14",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T22:41:41"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-15",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 123.08337750726423,
+  "lat": -34.120818481292474,
+  "avant": [
+   122.29428,
+   -34.02341
+  ],
+  "le": "2026-09-25T22:44:31"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-16",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 123.175573618778,
+  "lat": -34.12989847422708,
+  "avant": [
+   122.47061,
+   -34.01517
+  ],
+  "le": "2026-09-25T22:45:38"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-15",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 122.43933342499489,
+  "lat": -34.01277693101089,
+  "avant": [
+   123.08338,
+   -34.12082
+  ],
+  "le": "2026-09-25T22:46:02"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-15",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 123.10269709432806,
+  "lat": -34.11719570785703,
+  "avant": [
+   122.43933,
+   -34.01278
+  ],
+  "le": "2026-09-25T22:46:32"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-11",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 122.44213191206372,
+  "lat": -34.01657370368055,
+  "avant": [
+   122.53729,
+   -33.99705
+  ],
+  "le": "2026-09-25T22:48:25"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-19",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 124.97897454913489,
+  "lat": -32.94924967631976,
+  "avant": [
+   124.79,
+   -33.1
+  ],
+  "origine": {
+   "coordinates": [
+    124.79,
+    -33.1
+   ],
+   "properties": {
+    "date": "1802-01-19",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814",
+    "releve_carte": "position relevée sur la carte générale que Flinders a dressée en 1814, au repère qu'il y a daté « Jan. 19. 1802 » — côte sud, à l'est de l'archipel de la Recherche. Lue sur la gravure et non observée : le géoréférencement la restitue à une douzaine de kilomètres près"
+   }
+  },
+  "le": "2026-09-25T22:53:03"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-18",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 124.46294949582497,
+  "lat": -33.14684348260966,
+  "avant": [
+   124.96667,
+   -32.88083
+  ],
+  "origine": {
+   "coordinates": [
+    124.96667,
+    -32.88083
+   ],
+   "properties": {
+    "date": "1802-01-18",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T22:57:33"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-26",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 128.73255831450126,
+  "lat": -31.944252386352147,
+  "avant": [
+   128.68333,
+   -31.85944
+  ],
+  "origine": {
+   "coordinates": [
+    128.68333,
+    -31.85944
+   ],
+   "properties": {
+    "date": "1802-01-26",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T22:57:52"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-22",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 126.49728608311523,
+  "lat": -32.65293502237534,
+  "avant": [
+   126.51974,
+   -32.51856
+  ],
+  "le": "2026-09-25T22:59:50"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-23",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 127.10278509406534,
+  "lat": -32.46427881729846,
+  "avant": [
+   127.03333,
+   -32.375
+  ],
+  "origine": {
+   "coordinates": [
+    127.03333,
+    -32.375
+   ],
+   "properties": {
+    "date": "1802-01-23",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T23:01:02"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-24",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 127.79437401178564,
+  "lat": -32.2630943796257,
+  "avant": [
+   127.63141,
+   -32.256
+  ],
+  "le": "2026-09-25T23:01:29"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-24",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 127.89768189990977,
+  "lat": -32.26794745843855,
+  "avant": [
+   127.79437,
+   -32.26309
+  ],
+  "le": "2026-09-25T23:02:28"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-25",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 128.1616909473383,
+  "lat": -32.459436266097825,
+  "avant": [
+   128.24277,
+   -32.06735
+  ],
+  "le": "2026-09-25T23:04:24"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-27",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 130.49011230468753,
+  "lat": -31.784216884487385,
+  "avant": [
+   130.29128,
+   -31.99296
+  ],
+  "le": "2026-09-25T23:05:06"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-28",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 131.89139029706573,
+  "lat": -32.1297413113413,
+  "avant": [
+   131.85,
+   -32.04167
+  ],
+  "origine": {
+   "coordinates": [
+    131.85,
+    -32.04167
+   ],
+   "properties": {
+    "date": "1802-01-28",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T23:05:33"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-29",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 132.5351386141824,
+  "lat": -32.123500286871675,
+  "avant": [
+   132.1257,
+   -32.28487
+  ],
+  "le": "2026-09-25T23:06:27"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-30",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 132.86536890156663,
+  "lat": -32.587386829098016,
+  "avant": [
+   132.36,
+   -32.44
+  ],
+  "origine": {
+   "coordinates": [
+    132.36,
+    -32.44
+   ],
+   "properties": {
+    "date": "1802-01-30",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814",
+    "releve_carte": "position relevée sur la carte générale que Flinders a dressée en 1814, au repère qu'il y a daté « Jan. 30. 1802 » — archipel de Nuyts. Lue sur la gravure et non observée : le géoréférencement la restitue à une douzaine de kilomètres près"
+   }
+  },
+  "le": "2026-09-25T23:06:38"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-19",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 135.44040587617908,
+  "lat": -35.16772156487687,
+  "avant": [
+   135.582,
+   -35.156
+  ],
+  "origine": {
+   "coordinates": [
+    135.582,
+    -35.156
+   ],
+   "properties": {
+    "date": "1802-02-19",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814",
+    "releve_carte": "position relevée sur la carte générale que Flinders a dressée en 1814, au repère qu'il y a daté « Feb. 19. 1802 » — entrée du golfe Spencer. Lue sur la gravure et non observée : le géoréférencement la restitue à une douzaine de kilomètres près"
+   }
+  },
+  "le": "2026-09-25T23:07:49"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-31",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 133.14277593113505,
+  "lat": -32.43387500989817,
+  "avant": [
+   132.97587,
+   -32.67516
+  ],
+  "le": "2026-09-25T23:09:35"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-01",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 133.12049974053213,
+  "lat": -32.377453324865,
+  "avant": [
+   133.24215,
+   -32.53773
+  ],
+  "le": "2026-09-25T23:10:44"
+ },
+ {
+  "action": "caler",
+  "date": "1802-01-31",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 132.9582017804251,
+  "lat": -32.286029205080105,
+  "avant": [
+   133.14278,
+   -32.43388
+  ],
+  "le": "2026-09-25T23:10:57"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-16",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 135.15972561182264,
+  "lat": -34.27137742425751,
+  "avant": [
+   134.84167,
+   -34.35862
+  ],
+  "le": "2026-09-25T23:27:02"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-18",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 135.33691353295035,
+  "lat": -34.81867197724129,
+  "avant": [
+   135.2452,
+   -34.94664
+  ],
+  "le": "2026-09-25T23:27:19"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-08",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 136.94549857431304,
+  "lat": -33.83970657715452,
+  "avant": [
+   137.286,
+   -33.926
+  ],
+  "origine": {
+   "coordinates": [
+    137.286,
+    -33.926
+   ],
+   "properties": {
+    "date": "1802-03-08",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814",
+    "releve_carte": "position relevée sur la carte générale que Flinders a dressée en 1814, au repère qu'il y a daté « Mar. 8. » — dans le golfe Spencer, vers sa tête. Lue sur la gravure et non observée : le géoréférencement la restitue à une douzaine de kilomètres près"
+   }
+  },
+  "le": "2026-09-25T23:28:13"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-21",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 135.9368991853241,
+  "lat": -35.08602448386376,
+  "avant": [
+   135.80909,
+   -34.96733
+  ],
+  "le": "2026-09-25T23:28:42"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-22",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 136.06655211701855,
+  "lat": -35.02830400278253,
+  "avant": [
+   136.00414,
+   -35.00293
+  ],
+  "le": "2026-09-25T23:28:51"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-23",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 136.0483552143246,
+  "lat": -34.83249628326914,
+  "avant": [
+   136.12933,
+   -34.9434
+  ],
+  "le": "2026-09-25T23:29:09"
+ },
+ {
+  "action": "caler",
+  "date": "1802-02-24",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 135.99603911907948,
+  "lat": -34.701698420016534,
+  "avant": [
+   136.11737,
+   -34.75613
+  ],
+  "le": "2026-09-25T23:29:22"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-07",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 136.61473381067404,
+  "lat": -33.923900254594614,
+  "avant": [
+   136.86638,
+   -33.91154
+  ],
+  "le": "2026-09-25T23:29:28"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-06",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 136.47370781479586,
+  "lat": -34.05968655409212,
+  "avant": [
+   136.55849,
+   -33.99461
+  ],
+  "le": "2026-09-25T23:29:38"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-05",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 136.7195908029345,
+  "lat": -34.08863409025807,
+  "avant": [
+   136.42594,
+   -34.12389
+  ],
+  "le": "2026-09-25T23:29:50"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-09",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 137.49649156532195,
+  "lat": -33.5342623656376,
+  "avant": [
+   137.68333,
+   -33.08722
+  ],
+  "origine": {
+   "coordinates": [
+    137.68333,
+    -33.08722
+   ],
+   "properties": {
+    "date": "1802-03-09",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T23:30:08"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-11",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 137.91693197790806,
+  "lat": -33.00314505370186,
+  "avant": [
+   137.786,
+   -32.978
+  ],
+  "origine": {
+   "coordinates": [
+    137.786,
+    -32.978
+   ],
+   "properties": {
+    "date": "1802-03-11",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "extrapole": true,
+    "alerte": "position calculée, non relevée : remontée de la tête du golfe Spencer. La ligne droite venue du 9 mars coupait la rive est ; ce point la dégage en n'allongeant la route que de trois pour cent, quarante-deux kilomètres au lieu de quarante et un"
+   }
+  },
+  "le": "2026-09-25T23:30:20"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-13",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 137.93997626504324,
+  "lat": -33.06812071192368,
+  "avant": [
+   137.79962,
+   -33.17953
+  ],
+  "le": "2026-09-25T23:30:34"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-15",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 137.41883736615696,
+  "lat": -33.72546579603517,
+  "avant": [
+   137.65833,
+   -33.68352
+  ],
+  "le": "2026-09-25T23:30:47"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-30",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 137.98928916359685,
+  "lat": -34.68727775554609,
+  "avant": [
+   138.225,
+   -34.78685
+  ],
+  "le": "2026-09-25T23:31:27"
+ },
+ {
+  "action": "caler",
+  "date": "1802-03-31",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 137.94506809402787,
+  "lat": -35.057334711675516,
+  "avant": [
+   138.03215,
+   -34.92392
+  ],
+  "le": "2026-09-25T23:31:38"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-01",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.19270608361415,
+  "lat": -35.165857605097614,
+  "avant": [
+   138.075,
+   -35.16056
+  ],
+  "origine": {
+   "coordinates": [
+    138.075,
+    -35.16056
+   ],
+   "properties": {
+    "date": "1802-04-01",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T23:31:41"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-02",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.0809116733499,
+  "lat": -35.715983460434416,
+  "avant": [
+   138.13615,
+   -35.3195
+  ],
+  "le": "2026-09-25T23:31:47"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-04-04",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "avant": [
+   138.18744,
+   -35.70713
+  ],
+  "le": "2026-09-25T23:32:01"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-04-04",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "avant": [
+   138.18744,
+   -35.70713
+  ],
+  "le": "2026-09-25T23:32:25"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-04-02",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "avant": [
+   138.08091,
+   -35.71598
+  ],
+  "le": "2026-09-25T23:32:42"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-04",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.08374978588273,
+  "lat": -35.73156992104275,
+  "avant": [
+   138.02302,
+   -35.62677
+  ],
+  "le": "2026-09-25T23:32:58"
+ },
+ {
+  "action": "annuler",
+  "date": "1802-04-04",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "avant": [
+   138.08375,
+   -35.73157
+  ],
+  "le": "2026-09-25T23:33:08"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-11",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 139.46142862584293,
+  "lat": -36.24066292777929,
+  "avant": [
+   139.528,
+   -36.331
+  ],
+  "origine": {
+   "coordinates": [
+    139.528,
+    -36.331
+   ],
+   "properties": {
+    "date": "1802-04-11",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814",
+    "releve_carte": "position relevée sur la carte générale que Flinders a dressée en 1814, au repère qu'il y a daté « Apr. 11. 1802 » — au sud du cap Jervis ; le libellé, illisible à la résolution ordinaire, se lit « 11 » et non « 13 » sur la gravure pleine. Lue sur la gravure et non observée : le géoréférencement la restitue à une douzaine de kilomètres près"
+   }
+  },
+  "le": "2026-09-25T23:35:31"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-12",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 139.73704743464933,
+  "lat": -36.63514443834016,
+  "avant": [
+   139.57238,
+   -36.68075
+  ],
+  "le": "2026-09-25T23:35:46"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-02",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.09915743141826,
+  "lat": -35.70773837453598,
+  "avant": [
+   138.27904,
+   -35.23679
+  ],
+  "le": "2026-09-25T23:36:21"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-05",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.5653215465223,
+  "lat": -35.876120339411756,
+  "avant": [
+   138.43523,
+   -35.71871
+  ],
+  "le": "2026-09-25T23:36:35"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-01",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.09821209314126,
+  "lat": -35.21549016657629,
+  "avant": [
+   138.19271,
+   -35.16586
+  ],
+  "le": "2026-09-25T23:37:09"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-02",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.0402084886102,
+  "lat": -35.70630615365773,
+  "avant": [
+   138.09916,
+   -35.70774
+  ],
+  "le": "2026-09-25T23:37:22"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-04",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 138.44623372032746,
+  "lat": -35.7141557748194,
+  "avant": [
+   138.39028,
+   -35.81952
+  ],
+  "le": "2026-09-25T23:37:41"
+ },
+ {
+  "action": "caler",
+  "date": "1802-04-24",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 143.56747833980344,
+  "lat": -38.95268061911881,
+  "avant": [
+   144.39584,
+   -38.94375
+  ],
+  "le": "2026-09-25T23:39:09"
+ },
+ {
+  "action": "caler",
+  "date": "1802-05-03",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 144.95959915161353,
+  "lat": -38.58777063909381,
+  "avant": [
+   144.877,
+   -38.709
+  ],
+  "origine": {
+   "coordinates": [
+    144.877,
+    -38.709
+   ],
+   "properties": {
+    "date": "1802-05-03",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, General chart of Terra Australis or Australia, Londres, 1814",
+    "releve_carte": "position relevée sur la carte générale que Flinders a dressée en 1814, au repère qu'il y a daté « May 3. » — sortie de Port Phillip ; lu en bord de vue, à confirmer. Lue sur la gravure et non observée : le géoréférencement la restitue à une douzaine de kilomètres près"
+   }
+  },
+  "le": "2026-09-25T23:39:38"
+ },
+ {
+  "action": "caler",
+  "date": "1802-05-04",
+  "navire": "l'Investigator",
+  "rang": 0,
+  "lon": 146.51513860504045,
+  "lat": -39.61799227446017,
+  "avant": [
+   146.5,
+   -39.58333
+  ],
+  "origine": {
+   "coordinates": [
+    146.5,
+    -39.58333
+   ],
+   "properties": {
+    "date": "1802-05-04",
+    "navire": "l'Investigator",
+    "expedition": "Flinders",
+    "table": "Matthew Flinders, A Voyage to Terra Australis, Londres, 1814, vol. 1",
+    "alerte": "position relevée dans le récit publié ; Flinders ne la donne pas tous les jours"
+   }
+  },
+  "le": "2026-09-25T23:40:01"
+ }
+]

@@ -860,6 +860,34 @@
         /* Ensure popups sit above toggles */
         .leaflet-popup-pane { z-index: 1200 !important; }
 
+        /* Mode calage (map.html?calage=flinders), local seulement. */
+        .calage-panel {
+            position: absolute; left: 50%; bottom: 44px; transform: translateX(-50%);
+            z-index: 1100; width: min(620px, calc(100vw - 32px));
+            background: rgba(255,255,255,0.97); border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25); padding: 10px 12px;
+            font-family: 'Lato', sans-serif; font-size: 13px; color: #222;
+        }
+        .calage-ligne { display: flex; align-items: center; gap: 8px; }
+        .calage-ligne + .calage-ligne { margin-top: 6px; }
+        .calage-titre { flex: 1; text-align: center; }
+        .calage-date { font-weight: 700; font-size: 15px; }
+        .calage-statut { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 10px;
+            font-size: 11px; font-weight: 700; background: #eee; }
+        .calage-statut.est { background: #fde7c7; color: #8a4b00; }
+        .calage-statut.cale { background: #d5f2dc; color: #17652e; }
+        .calage-statut.sans { background: #e6e6e6; color: #555; }
+        .calage-statut.rel { background: #dbe7fb; color: #1d4a8f; }
+        .calage-panel button { font: inherit; border: 1px solid #c9ced6; background: #fff;
+            border-radius: 6px; padding: 4px 9px; cursor: pointer; }
+        .calage-panel button:hover { background: #f1f4f8; }
+        .calage-panel .calage-fleche { font-size: 16px; padding: 2px 10px; }
+        .calage-extrait { max-height: 64px; overflow-y: auto; font-size: 12px; line-height: 1.35;
+            color: #444; border-top: 1px solid #eee; padding-top: 6px; }
+        .calage-aide { font-size: 11px; color: #666; }
+        .calage-progres { font-size: 11px; color: #666; white-space: nowrap; }
+        .calage-erreur { color: #b00020; font-weight: 700; }
+
         /* Search Interface */
         .search-container {
             position: absolute;
@@ -1087,6 +1115,79 @@
         .leaflet-container .leaflet-popup-close-button:focus-visible {
             outline: 2px solid #FFD700;
             outline-offset: 2px;
+        }
+
+        /* Fiche de parcours agrandie : un second bouton, a gauche de la croix,
+           etale la fiche dans l'espace libre de l'ecran pour lire les journaux
+           sans ascenseurs. La fiche quitte alors la carte pour un cadre fixe :
+           a droite du panneau des expeditions, sous les dates remarquables,
+           jusqu'en bas de l'ecran. */
+        .leaflet-popup .fiche-taille {
+            position: absolute;
+            right: 42px;
+            top: 8px;
+            width: 26px;
+            height: 26px;
+            padding: 0;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .leaflet-popup .fiche-taille:hover { background: rgba(255, 255, 255, 0.95); color: #000; }
+        .leaflet-popup .fiche-taille:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
+        /* Deux boutons ronds en haut a droite : l'en-tete leur laisse la place. */
+        .parcours-popup-date, .parcours-popup-ship { padding-right: 62px; }
+        .fiche-hote {
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            pointer-events: none;
+            background: transparent !important;
+            overflow: visible;
+        }
+        .fiche-hote .leaflet-popup.fiche-agrandie {
+            pointer-events: auto;
+            position: absolute !important;
+            left: var(--fiche-left) !important;
+            top: var(--fiche-top) !important;
+            bottom: auto !important;
+            width: var(--fiche-w);
+            margin: 0 !important;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+        .fiche-agrandie .leaflet-popup-tip-container { display: none; }
+        .fiche-hote .fiche-agrandie .leaflet-popup-content-wrapper {
+            width: 100% !important;
+            max-width: none !important;
+            max-height: var(--fiche-h);
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .fiche-hote .fiche-agrandie .leaflet-popup-content {
+            width: auto !important;
+            max-width: none !important;
+            margin-right: 20px;
+        }
+        .fiche-agrandie .parcours-popup { font-size: 14px; line-height: 1.5; }
+        .fiche-agrandie .parcours-popup-date { font-size: 16px; }
+        /* Les recits ne defilent plus chacun chez soi : ils se lisent en
+           colonnes de journal, pour occuper la largeur sans lignes trop longues. */
+        .fiche-agrandie .parcours-popup-journal {
+            max-height: none;
+            overflow: visible;
+            column-width: 36em;
+            column-gap: 2.2em;
+            column-rule: 1px solid rgba(0, 0, 0, 0.08);
         }
         
         /* Styles pour la mise en page de la popup */
@@ -3782,6 +3883,88 @@ gtag('config', 'G-LCWV2EVPVQ');
             currentOpenMarker = null;
         });
 
+        // ---------------------------------------------------------------
+        //  Fiche de parcours agrandie. Le mode vaut pour les fiches
+        //  suivantes : passer au point suivant garde la fiche etalee.
+        // ---------------------------------------------------------------
+        let ficheAgrandie = false;
+        const ficheHote = document.createElement('div');
+        // La classe de la carte garde aux boutons de la fiche leur habit.
+        ficheHote.className = 'leaflet-container fiche-hote';
+        document.body.appendChild(ficheHote);
+
+        const visible = (el) => el && !el.hidden && el.offsetParent !== null;
+        const cadreFiche = () => {
+            const marge = 10;
+            const carte = map.getContainer().getBoundingClientRect();
+            const exped = document.querySelector('.layer-toggle');
+            const left = visible(exped) ? exped.getBoundingClientRect().right + marge : carte.left + marge;
+            let top = carte.top + marge;
+            ['timeline-panel', 'remarquables-panel'].forEach((id) => {
+                const el = document.getElementById(id);
+                if (visible(el)) top = Math.max(top, el.getBoundingClientRect().bottom + marge);
+            });
+            const s = ficheHote.style;
+            s.setProperty('--fiche-left', `${left}px`);
+            s.setProperty('--fiche-top', `${top}px`);
+            s.setProperty('--fiche-w', `${Math.max(280, window.innerWidth - marge - left)}px`);
+            s.setProperty('--fiche-h', `${Math.max(200, window.innerHeight - marge - top)}px`);
+        };
+        const appliqueFiche = (popup) => {
+            const el = popup.getElement();
+            if (!el) return;
+            if (ficheAgrandie) {
+                cadreFiche();
+                if (el.parentNode !== ficheHote) ficheHote.appendChild(el);
+                el.classList.add('fiche-agrandie');
+            } else {
+                el.classList.remove('fiche-agrandie');
+                if (el.parentNode === ficheHote) {
+                    map.getPane('popupPane').appendChild(el);
+                    popup.update();
+                }
+            }
+            const b = el.querySelector('.fiche-taille');
+            const croix = el.querySelector('.leaflet-popup-close-button');
+            if (b && croix) {
+                // A cote de la croix, a la meme hauteur, quelle que soit la
+                // place que lui donnent les feuilles de style.
+                b.style.top = `${croix.offsetTop + (croix.offsetHeight - 26) / 2}px`;
+                b.style.right = `${el.clientWidth - croix.offsetLeft + 6}px`;
+            }
+            if (b) {
+                b.textContent = ficheAgrandie ? '\u2921' : '\u2922';
+                b.title = ficheAgrandie ? 'Réduire la fiche' : 'Agrandir la fiche pour lire les journaux';
+                b.setAttribute('aria-label', b.title);
+            }
+        };
+        map.on('popupopen', (event) => {
+            const popup = event.popup;
+            const el = popup.getElement();
+            if (!el || !el.querySelector('.parcours-popup')) return;
+            if (!el.querySelector('.fiche-taille')) {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'fiche-taille';
+                b.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    ficheAgrandie = !ficheAgrandie;
+                    appliqueFiche(popup);
+                });
+                el.appendChild(b);
+            }
+            appliqueFiche(popup);
+        });
+        window.addEventListener('resize', () => { if (ficheAgrandie) cadreFiche(); });
+        if (window.ResizeObserver) {
+            // Le calendrier ou les dates qui s'ouvrent deplacent le haut du cadre.
+            const obs = new ResizeObserver(() => { if (ficheAgrandie) cadreFiche(); });
+            ['panneaux-droite'].forEach((id) => { const el = document.getElementById(id); if (el) obs.observe(el); });
+            const exped = document.querySelector('.layer-toggle');
+            if (exped) obs.observe(exped);
+        }
+
         window.addEventListener('scroll', () => {
             if (wikiCardState.card && wikiCardState.link) {
                 positionWikiCard(wikiCardState.card, wikiCardState.link);
@@ -4740,6 +4923,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         const parcoursLabels = {
             fr: { temperature: 'Température', pressure: 'Pression', winds: 'Vents',
                   empty: 'Pas de relevé pour ce jour.', extrapolated: 'Position extrapolée',
+                  interpolated: 'Position estimée par interpolation',
                   atAnchor: 'Position au mouillage',
                   logbook: 'Position d’après le journal de bord',
                   corrected: 'Relevé corrigé',
@@ -4747,6 +4931,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                   original: '', traduit: '' },
             en: { temperature: 'Temperature', pressure: 'Pressure', winds: 'Winds',
                   empty: 'No reading for this day.', extrapolated: 'Extrapolated position',
+                  interpolated: 'Position estimated by interpolation',
                   atAnchor: 'Position at anchor',
                   logbook: 'Position from the ship’s log',
                   corrected: 'Corrected reading',
@@ -5179,9 +5364,13 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (extrapolated || fromLog || corrige || surCarte || contenuTables) {
                 html += `<div class="parcours-popup-body">`;
                 if (extrapolated) {
+                    // Une journée du récit sans position, placée entre deux
+                    // relevés en attendant d'être calée sur la carte de Flinders.
+                    const interpolee = Boolean(props?.interpole) && !props?.cale;
                     html += `<div class="parcours-popup-extrapolated">`
                         + `${escapeHtmlText(auMouillage ? labels.atAnchor
-                                                        : labels.extrapolated)}</div>`;
+                                            : interpolee ? labels.interpolated
+                                                         : labels.extrapolated)}</div>`;
                     if (motif) {
                         html += `<div class="parcours-popup-motif">`
                             + `${escapeHtmlText(motif)}</div>`;
@@ -5277,6 +5466,15 @@ gtag('config', 'G-LCWV2EVPVQ');
                 out.push([lat, adjusted]);
             });
             return out;
+        };
+
+        // Un point estimé par interpolation se dessine creux : le lecteur voit
+        // d'un coup d'œil ce qui fut relevé et ce qui est déduit.
+        const styleParcoursPoint = (props, color, pane) => {
+            const estime = Boolean(props?.interpole) && !props?.cale;
+            return estime
+                ? { pane, radius: 3.5, color, weight: 1.5, fillColor: '#ffffff', fillOpacity: 0.9 }
+                : { pane, radius: 3.5, color: '#ffffff', weight: 1, fillColor: color, fillOpacity: 0.95 };
         };
 
         const loadParcours = (key) => {
@@ -5544,14 +5742,15 @@ gtag('config', 'G-LCWV2EVPVQ');
                         if (entry.coques[0] !== ship) return;
                         const campaign = campaignByIndex.get(i) || null;
                         const color = campaign?.color || shipColor;
-                        const marker = L.circleMarker(latLngs[i], {
-                            pane: paneName,
-                            radius: 3.5,
-                            color: '#ffffff',
-                            weight: 1,
-                            fillColor: color,
-                            fillOpacity: 0.95
-                        });
+                        const marker = L.circleMarker(latLngs[i],
+                            styleParcoursPoint(entry.props, color, paneName));
+                        marker.__couleur = color;
+                        // Le sommet du tracé est un tableau [lat, lon] que le
+                        // cercle a recopié : le mode calage déplace les deux.
+                        marker.__sommet = latLngs[i];
+                        // La fiche se recompose depuis ces propriétés : le mode
+                        // calage les met à jour en place.
+                        marker.__props = entry.props;
                         // Signale au gestionnaire de popup de ne pas recentrer/zoomer.
                         marker.__isParcoursPoint = true;
                         const date = formatParcoursDate(entry.props?.date);
@@ -5570,7 +5769,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                         if (Number.isFinite(dateMs)) {
                             marker.on('click', () => timelineAllerA(dateMs));
                         }
-                        marker.bindPopup(() => buildParcoursPopup(entry.props, popupShip, campaign, key), {
+                        marker.bindPopup(() => buildParcoursPopup(marker.__props, popupShip, campaign, key), {
                             // Accorde a la largeur que la feuille de style
                             // donne a la fiche parcours.
                             maxWidth: 460,
@@ -6821,6 +7020,197 @@ gtag('config', 'G-LCWV2EVPVQ');
         attachParcoursToggle('baudin', toggleBaudinParcours);
         attachParcoursToggle('baudin', toggleFlindersParcours);
         attachParcoursToggle('entre', toggleEntreParcours);
+
+        // ---------------------------------------------------------------
+        //  Mode calage : map.html?calage=flinders, servi en local par
+        //  scripts/calage_flinders.py. Chaque journée de Flinders estimée
+        //  par interpolation se recale d'un clic droit sur le point de midi
+        //  que Flinders a gravé sur sa carte générale. Le serveur enregistre
+        //  la position, ré-interpole les journées encore estimées, et la
+        //  route se redessine sans recharger la page.
+        // ---------------------------------------------------------------
+        if (new URLSearchParams(location.search).get('calage') === 'flinders') {
+            const panneau = document.createElement('div');
+            panneau.className = 'calage-panel';
+            panneau.innerHTML = `
+                <div class="calage-ligne">
+                    <button type="button" class="calage-fleche" data-cal="prec" title="Jour précédent (←)">◀</button>
+                    <div class="calage-titre"><span class="calage-date">Chargement…</span>
+                        <span class="calage-statut"></span><div class="calage-navire calage-aide"></div></div>
+                    <button type="button" class="calage-fleche" data-cal="suiv" title="Jour suivant (→)">▶</button>
+                </div>
+                <div class="calage-ligne">
+                    <button type="button" data-cal="nonCale" title="Prochain jour à caler (N)">Prochain à caler</button>
+                    <button type="button" data-cal="sans" title="Pas de point gravé ce jour-là (S)">Sans point sur la carte</button>
+                    <button type="button" data-cal="annuler" title="Revenir à la position estimée (U)">Annuler le calage</button>
+                    <span class="calage-progres"></span>
+                </div>
+                <div class="calage-ligne calage-aide">Clic droit sur le point de midi gravé par Flinders pour caler cette journée. ←/→ parcourent tous les points, relevés de la source compris ; N va au prochain estimé.</div>
+                <div class="calage-extrait"></div>`;
+            document.body.appendChild(panneau);
+            L.DomEvent.disableClickPropagation(panneau);
+            L.DomEvent.disableScrollPropagation(panneau);
+            const el = (sel) => panneau.querySelector(sel);
+
+            let points = [];     // renvoyés par le serveur, dans l'ordre du parcours
+            let courant = 0;
+            const viseur = L.circleMarker([0, 0], { radius: 11, color: '#e8590c', weight: 2.5,
+                fill: false, interactive: false, pane: 'markerPane' });
+
+            const cleDe = (p) => `${p.date}@${p.navire}@${p.rang || 0}`;
+            const marqueurDe = (p) => {
+                const t = Date.parse(`${p.date}T00:00:00Z`);
+                return (parcoursMarqueurs.baudin?.get(t) || [])
+                    .filter((m) => !m.__contournement && m.__coques?.[0] === p.navire)[p.rang || 0] || null;
+            };
+
+            const texteDuJour = (date) => {
+                const lang = getCurrentLanguage();
+                const t = journauxTextes[`flinders:${lang}`]?.[date]?.journal_flinders
+                    || journauxTextes['flinders:en']?.[date]?.journal_flinders || '';
+                return String(t).trim();
+            };
+
+            const affiche = (recentrer = true) => {
+                const p = points[courant];
+                if (!p) return;
+                const etat = p.cale ? ['cale', p.releve ? 'calé (source corrigée)' : 'calé']
+                    : p.sans_point_carte ? ['sans', 'sans point gravé']
+                    : p.releve ? ['rel', p.mouillage ? 'source (mouillage)' : 'source']
+                    : ['est', p.mouillage ? 'estimé (mouillage)' : 'estimé'];
+                el('.calage-date').textContent = formatParcoursDateLong(p.date, getCurrentLanguage()) || p.date;
+                const statut = el('.calage-statut');
+                statut.className = 'calage-statut ' + etat[0];
+                statut.textContent = etat[1];
+                el('.calage-navire').textContent = `${p.navire} — ${courant + 1} / ${points.length}`;
+                const cales = points.filter((x) => x.cale).length;
+                const sans = points.filter((x) => x.sans_point_carte && !x.cale).length;
+                const reste = points.filter((x) => x.estime && !x.sans_point_carte).length;
+                el('.calage-progres').textContent = `calés ${cales} · sans point ${sans} · estimés à caler ${reste}`;
+                el('.calage-extrait').textContent = texteDuJour(p.date) || '(pas de texte pour ce jour)';
+                const ll = L.latLng(p.lat, p.lon);
+                viseur.setLatLng(ll).addTo(map);
+                if (recentrer) {
+                    const z = Math.max(map.getZoom(), 8);
+                    if (map.getZoom() < 8 || !map.getBounds().pad(-0.2).contains(ll)) map.setView(ll, z);
+                }
+                try { sessionStorage.setItem('calageFlinders', cleDe(p)); } catch (e) {}
+            };
+
+            // Met la carte à jour d'après la réponse du serveur, sans recharger.
+            const applique = (nouveaux) => {
+                let manquants = 0;
+                nouveaux.forEach((p) => {
+                    const m = marqueurDe(p);
+                    if (!m) { manquants++; return; }
+                    m.setLatLng([p.lat, p.lon]);
+                    // Le tracé est retracé depuis ces sommets par
+                    // updateParcoursVisibility, un peu plus bas.
+                    if (m.__sommet) { m.__sommet[0] = p.lat; m.__sommet[1] = p.lon; }
+                    Object.keys(m.__props).forEach((k) => delete m.__props[k]);
+                    Object.assign(m.__props, p.props);
+                    const { pane, ...style } = styleParcoursPoint(p.props, m.__couleur, null);
+                    m.setStyle(style);
+                });
+                points = nouveaux;
+                updateParcoursVisibility('baudin');
+                if (manquants) {
+                    el('.calage-aide').innerHTML = `<span class="calage-erreur">${manquants} point(s) introuvable(s) sur la carte : recharger la page.</span>`;
+                }
+            };
+
+            const envoie = async (corps) => {
+                const r = await fetch('/api/calage', { method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corps) });
+                const res = await r.json();
+                if (!r.ok) throw new Error(res.erreur || r.status);
+                const cle = points[courant] && cleDe(points[courant]);
+                applique(res.points);
+                const i = points.findIndex((x) => cleDe(x) === cle);
+                if (i >= 0) courant = i;
+            };
+
+            const prochainACaler = (depuis) => {
+                for (let k = 1; k <= points.length; k++) {
+                    const i = (depuis + k) % points.length;
+                    if (points[i].estime && !points[i].sans_point_carte) return i;
+                }
+                return depuis;
+            };
+
+            const agit = async (quoi, extra = {}) => {
+                const p = points[courant];
+                if (!p) return;
+                try {
+                    await envoie({ action: quoi, date: p.date, navire: p.navire, rang: p.rang || 0, ...extra });
+                    if (quoi === 'caler' || (quoi === 'sans' && points[courant]?.sans_point_carte)) {
+                        courant = prochainACaler(courant);
+                    }
+                    affiche();
+                } catch (e) {
+                    el('.calage-aide').innerHTML = `<span class="calage-erreur">Échec : ${escapeHtmlText(e.message)}</span>`;
+                }
+            };
+
+            map.on('contextmenu', (e) => agit('caler', { lat: e.latlng.lat, lon: e.latlng.lng }));
+            panneau.addEventListener('click', (e) => {
+                const b = e.target.closest('[data-cal]');
+                if (!b) return;
+                const quoi = b.dataset.cal;
+                if (quoi === 'prec') { courant = Math.max(0, courant - 1); affiche(); }
+                else if (quoi === 'suiv') { courant = Math.min(points.length - 1, courant + 1); affiche(); }
+                else if (quoi === 'nonCale') { courant = prochainACaler(courant); affiche(); }
+                else if (quoi === 'sans') agit('sans_point');
+                else if (quoi === 'annuler') agit('annuler');
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.target.closest('input, textarea, select')) return;
+                if (e.key === 'ArrowLeft') { courant = Math.max(0, courant - 1); affiche(); }
+                else if (e.key === 'ArrowRight') { courant = Math.min(points.length - 1, courant + 1); affiche(); }
+                else if (e.key === 'n' || e.key === 'N') { courant = prochainACaler(courant); affiche(); }
+                else if (e.key === 's' || e.key === 'S') agit('sans_point');
+                else if (e.key === 'u' || e.key === 'U') agit('annuler');
+                else return;
+                e.preventDefault();
+            });
+
+            (async () => {
+                try {
+                    const r = await fetch('/api/calage');
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    points = (await r.json()).points;
+                } catch (e) {
+                    el('.calage-date').innerHTML = '<span class="calage-erreur">Serveur de calage absent</span>';
+                    el('.calage-extrait').textContent = 'Lancer : python3 scripts/calage_flinders.py serveur';
+                    return;
+                }
+                // La route de Flinders et sa carte, sans les lieux qui la couvriraient.
+                if (!toggleFlindersParcours.checked) toggleFlindersParcours.click();
+                const carte = document.getElementById('toggle-flinders-carte');
+                if (carte && !carte.checked) carte.click();
+                await loadParcours('baudin');
+                await Promise.all([chargeJournaux('flinders', 'en'), chargeJournaux('flinders', 'fr')]);
+                // Un clic sur un point de la route amène le panneau sur sa journée.
+                points.forEach((p) => {
+                    const m = marqueurDe(p);
+                    if (!m || m.__calageClic) return;
+                    m.__calageClic = true;
+                    m.on('click', () => {
+                        const i = points.findIndex((x) => marqueurDe(x) === m);
+                        if (i >= 0) { courant = i; affiche(false); }
+                    });
+                });
+                let repris = null;
+                try { repris = sessionStorage.getItem('calageFlinders'); } catch (e) {}
+                const i = points.findIndex((x) => cleDe(x) === repris
+                    || `${x.date}@${x.navire}` === repris);
+                courant = i >= 0 ? i : prochainACaler(-1);
+                affiche();
+                // L'affichage de la route recadre la carte un instant plus
+                // tard : on revient ensuite sur la journée courante.
+                setTimeout(() => affiche(), 1500);
+            })();
+        }
 
         // Les noms de navires suivent la langue du site.
         document.addEventListener('languageChanged', () => {

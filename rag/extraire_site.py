@@ -352,6 +352,8 @@ CHAMPS_ROUTE = {
     'remarque': 'Remarque', 'remarque_portee': 'Portée de la remarque',
     'mouillage': 'Au mouillage', 'au_mouillage': 'Au mouillage',
     'alerte': 'Avertissement', 'notes': 'Notes',
+    'position_d_origine': 'Position donnée par la source (corrigée sur la carte de Flinders)',
+    'releve_carte': 'Relevé sur la carte',
 }
 CHAMPS_ROUTE_TUS = {'date', 'navire', 'expedition', 'longitude_brute', 'ajustement_lon',
                     'extrapole'}
