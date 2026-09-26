@@ -2246,6 +2246,14 @@ gtag('config', 'G-LCWV2EVPVQ');
         const RACINE_CARTES = 'https://tdeviaris.github.io/cartes/';
         const MERIDIEN_PARIS = 2 + 20 / 60 + 14 / 3600;   // Paris vers Greenwich
 
+        // Une carte générale et ses cartes détaillées, qui prennent le relais à
+        // partir du zoom 10 (minZoom), s'affichent et se règlent ensemble.
+        const avecDetails = (generale, ...details) => {
+            const groupe = L.layerGroup([generale, ...details]);
+            groupe.setOpacity = o => groupe.eachLayer(c => c.setOpacity(o));
+            return groupe;
+        };
+
         // zIndex 20 : au-dessus de l'imagerie satellite (10).
         const cartesAnciennes = {
             freycinet: L.tileLayer(RACINE_CARTES + 'fonds/freycinet/{z}/{x}/{y}.webp', {
@@ -2255,11 +2263,20 @@ gtag('config', 'G-LCWV2EVPVQ');
             }),
             // Pas d'option bounds : la carte franchit l'antiméridien (Nouvelle-Zélande,
             // Tonga) et ses tuiles sont repliées, x modulo 2^z. Des bornes la
-            // couperaient net à 180°.
-            beautemps: L.tileLayer(RACINE_CARTES + 'fonds/beautemps/{z}/{x}/{y}.webp', {
-                minZoom: 3, maxNativeZoom: 8, maxZoom: 19, zIndex: 20,
-                attribution: 'Beautemps-Beaupré 1807, <a href="https://nla.gov.au/nla.obj-230810237/view" target="_blank" rel="noopener">NLA</a>'
-            }),
+            // couperaient net à 180°. La carte particulière du canal d'Entrecasteaux
+            // est recalée sur la géographie moderne, et la carte générale corrigée
+            // sur la Tasmanie pour que la bascule se fasse sans saut.
+            beautemps: avecDetails(
+                L.tileLayer(RACINE_CARTES + 'fonds/beautemps/{z}/{x}/{y}.webp', {
+                    minZoom: 3, maxNativeZoom: 8, maxZoom: 19, zIndex: 20,
+                    attribution: 'Beautemps-Beaupré 1807, <a href="https://nla.gov.au/nla.obj-230810237/view" target="_blank" rel="noopener">NLA</a>'
+                }),
+                L.tileLayer(RACINE_CARTES + 'fonds/beautemps-canal/{z}/{x}/{y}.webp', {
+                    minZoom: 10, maxNativeZoom: 13, maxZoom: 19, zIndex: 21,
+                    bounds: [[-43.80, 146.70], [-42.55, 147.85]],
+                    attribution: 'Canal Dentrecasteaux 1807, <a href="https://nla.gov.au/nla.obj-230810562/view" target="_blank" rel="noopener">NLA</a>'
+                })
+            ),
             // Longitudes comptées depuis Greenwich : pas de décalage de méridien.
             flinders: L.tileLayer(RACINE_CARTES + 'fonds/flinders/{z}/{x}/{y}.webp', {
                 minZoom: 3, maxNativeZoom: 9, maxZoom: 19, zIndex: 20,
