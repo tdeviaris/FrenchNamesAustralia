@@ -2247,7 +2247,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         const MERIDIEN_PARIS = 2 + 20 / 60 + 14 / 3600;   // Paris vers Greenwich
 
         // Une carte générale et ses cartes détaillées, qui prennent le relais à
-        // partir du zoom 10 (minZoom), s'affichent et se règlent ensemble.
+        // partir du zoom 8 (minZoom), s'affichent et se règlent ensemble.
         const avecDetails = (generale, ...details) => {
             const groupe = L.layerGroup([generale, ...details]);
             groupe.setOpacity = o => groupe.eachLayer(c => c.setOpacity(o));
@@ -2272,7 +2272,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     attribution: 'Beautemps-Beaupré 1807, <a href="https://nla.gov.au/nla.obj-230810237/view" target="_blank" rel="noopener">NLA</a>'
                 }),
                 L.tileLayer(RACINE_CARTES + 'fonds/beautemps-canal/{z}/{x}/{y}.webp', {
-                    minZoom: 10, maxNativeZoom: 13, maxZoom: 19, zIndex: 21,
+                    minZoom: 8, maxNativeZoom: 13, maxZoom: 19, zIndex: 21,
                     bounds: [[-43.80, 146.70], [-42.55, 147.85]],
                     attribution: 'Canal Dentrecasteaux 1807, <a href="https://nla.gov.au/nla.obj-230810562/view" target="_blank" rel="noopener">NLA</a>'
                 })
