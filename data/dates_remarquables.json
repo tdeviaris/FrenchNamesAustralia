@@ -54,6 +54,15 @@
   }
  },
  {
+  "date": "1801-06-10",
+  "expedition": "B",
+  "navire": "le Géographe",
+  "libelle": {
+   "fr": "Le Géographe et le Naturaliste se perdent de vue à la suite d’une tempête",
+   "en": "Le Géographe and Le Naturaliste lose sight of each other following a storm"
+  }
+ },
+ {
   "date": "1801-06-25",
   "expedition": "B",
   "navire": "le Géographe",
