@@ -7043,19 +7043,14 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Etendue de l'Australie, que le recadrage garde toujours a l'ecran.
         const TIMELINE_AUSTRALIE = [[-44, 112], [-10, 154]];
 
-        // Route suivie depuis la date de depart jusqu'a l'arrivee en vue de
-        // l'Australie : la traversee de l'Atlantique et de l'ocean Indien doit
-        // tenir dans le cadre, pas seulement le port de depart.
-        const timelineRouteVersAustralie = (t) => {
-            const australie = L.latLngBounds(TIMELINE_AUSTRALIE);
+        // Route qui reste a parcourir depuis la date de depart : les
+        // traversees de l'Atlantique, a l'aller comme au retour, doivent tenir
+        // dans le cadre, pas seulement le port de depart.
+        const timelineRouteRestante = (t) => {
             const points = [];
             Object.entries(parcoursTimeline[timelineKey] || {}).forEach(([origine, serie]) => {
                 if (parcoursShipWanted[timelineKey]?.[origine] === false) return;
-                for (const p of serie) {
-                    if (p.t < t) continue;
-                    if (australie.contains(p.latLng)) break;
-                    points.push(p.latLng);
-                }
+                serie.forEach((p) => { if (p.t >= t) points.push(p.latLng); });
             });
             return points;
         };
@@ -7083,7 +7078,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (depart.length && !depart.every((ll) => cadre.contains(ll))) {
                 const bornes = L.latLngBounds(TIMELINE_AUSTRALIE);
                 depart.forEach((ll) => bornes.extend(ll));
-                timelineRouteVersAustralie(timelineDebut + timelineJour * JOUR_MS)
+                timelineRouteRestante(timelineDebut + timelineJour * JOUR_MS)
                     .forEach((ll) => bornes.extend(ll));
                 timelineAttenteDepart = () => {
                     timelineAttenteDepart = null;
