@@ -75,6 +75,9 @@
         .map-thumb--video video { width: 100%; height: auto; display: block;
                                   border-radius: 10px; background: #111;
                                   box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
+        /* Le poster de la video est la premiere image du film (Rosselli) :
+           c'est lui qu'on voit en plein ecran pendant le chargement, et le film
+           demarre sans saut. La miniature, elle, montre Mercator. */
         /* L'affiche est une image a nous, posee sur la video. On ne se fie pas
            au poster de l'element : une fois le film joue, le navigateur garde
            la derniere image, et le recharger ne fait que montrer la premiere du
@@ -145,7 +148,7 @@
                     <p><button class="entry-link" type="button" data-video="video-cartes-en">Australia takes shape on the charts</button></p>
                     <div class="map-thumb map-thumb--video">
                         <button type="button" data-video="video-cartes-en" aria-label="Play the film full screen">
-                            <video id="video-cartes-en" poster="img/video-cartes-australie-poster.jpg"
+                            <video id="video-cartes-en" poster="img/video-cartes-australie-debut-en.jpg"
                                    preload="none" playsinline
                                    src="video/cartes-australie-1508-1814-en-1080p.mp4"></video>
                             <img class="video-affiche" src="img/video-cartes-australie-poster.jpg"
@@ -240,7 +243,7 @@
                     <p><button class="entry-link" type="button" data-video="video-cartes-fr">Naissance de l’Australie sur les cartes</button></p>
                     <div class="map-thumb map-thumb--video">
                         <button type="button" data-video="video-cartes-fr" aria-label="Lire le film en plein écran">
-                            <video id="video-cartes-fr" poster="img/video-cartes-australie-poster.jpg"
+                            <video id="video-cartes-fr" poster="img/video-cartes-australie-debut-fr.jpg"
                                    preload="none" playsinline
                                    src="video/cartes-australie-1508-1814-fr-1080p.mp4"></video>
                             <img class="video-affiche" src="img/video-cartes-australie-poster.jpg"
