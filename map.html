@@ -355,6 +355,26 @@
         }
         a.parcours-popup-lien { text-decoration: underline; }
         .parcours-popup-vo { font-size: 10px; font-style: italic; opacity: 0.55; }
+        /* Journal traduit : traduction ou original, au choix du lecteur. */
+        [data-journal] .vo-original,
+        [data-journal].journal-vo .vo-traduit { display: none; }
+        [data-journal].journal-vo .vo-original { display: block; }
+        [data-journal].journal-vo span.vo-original { display: inline; }
+        .journal-bascule {
+            margin-left: 6px;
+            padding: 1px 7px;
+            font: inherit;
+            font-size: 10px;
+            color: inherit;
+            background: transparent;
+            border: 1px solid currentColor;
+            border-radius: 9px;
+            opacity: 0.7;
+            cursor: pointer;
+            vertical-align: 1px;
+        }
+        .journal-bascule:hover { opacity: 1; }
+        .journal-bascule:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
         /* Une journee peut porter cinq recits : chacun se plie a une hauteur
            de fenetre et defile chez lui, pour que la fiche entiere reste lisible. */
         .parcours-popup-journal {
@@ -366,6 +386,36 @@
             padding-right: 6px;
             scrollbar-width: thin;
         }
+        /* Journal tenu en releves horaires (Hamelin) : les lignes sont gardees. */
+        .parcours-popup-journal-lignes { white-space: pre-line; }
+        /* Releves horaires de Hamelin : un vrai tableau, compact, qui defile
+           de cote plutot que d'elargir la fiche. */
+        .journal-tableau-cadre { overflow-x: auto; margin: 0.3em 0 0.5em; }
+        .journal-tableau {
+            border-collapse: collapse;
+            font-size: 11px;
+            line-height: 1.3;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        .journal-tableau th, .journal-tableau td {
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            padding: 1px 5px;
+            text-align: center;
+        }
+        .journal-tableau th { font-weight: 600; background: rgba(0, 0, 0, 0.05); }
+        .journal-tableau tbody tr:nth-child(even) td { background: rgba(0, 0, 0, 0.025); }
+        /* La derniere colonne (etat du ciel) est du texte : a gauche. */
+        .journal-tableau td:last-child, .journal-tableau th:last-child { text-align: left; }
+        /* Mot raye dans le manuscrit : on le lit encore, mais barre. */
+        .journal-rature { text-decoration: line-through; opacity: 0.7; }
+        /* Relation de Labillardiere : paragraphes, titres et renvois de page. */
+        .journal-para { margin: 0 0 0.6em; }
+        .journal-para:last-child { margin-bottom: 0; }
+        .journal-titre { display: block; font-weight: 600; text-align: center; margin: 0.2em 0; }
+        .journal-page { display: block; font-size: 0.85em; color: #888; }
+        .journal-note { font-size: 0.75em; }
+        .journal-note-texte { display: block; font-size: 0.85em; color: #666; }
         .parcours-popup-remark { margin-bottom: 6px; }
         .parcours-popup-rows {
             display: grid;
@@ -1142,6 +1192,7 @@
             justify-content: center;
             z-index: 1;
         }
+        .leaflet-popup .fiche-taille svg { width: 14px; height: 14px; display: block; }
         .leaflet-popup .fiche-taille:hover { background: rgba(255, 255, 255, 0.95); color: #000; }
         .leaflet-popup .fiche-taille:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
         /* Deux boutons ronds en haut a droite : l'en-tete leur laisse la place. */
@@ -3950,7 +4001,13 @@ gtag('config', 'G-LCWV2EVPVQ');
                 b.style.right = `${el.clientWidth - croix.offsetLeft + 6}px`;
             }
             if (b) {
-                b.textContent = ficheAgrandie ? '\u2921' : '\u2922';
+                // Meme diagonale pour les deux : fleches vers l'exterieur pour
+                // agrandir, vers le centre pour reduire.
+                b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" '
+                    + 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'
+                    + (ficheAgrandie ? 'M14 4v6h6M10 20v-6H4M14 10l7-7M10 14l-7 7'
+                                     : 'M14 3h7v7M10 21H3v-7M21 3l-7 7M3 21l7-7')
+                    + '"/></svg>';
                 b.title = ficheAgrandie ? 'Réduire la fiche' : 'Agrandir la fiche pour lire les journaux';
                 b.setAttribute('aria-label', b.title);
             }
@@ -4968,6 +5025,38 @@ gtag('config', 'G-LCWV2EVPVQ');
             fr: { en: '(texte anglais, non traduit)' },
             en: { fr: '(French original)' }
         };
+        // Un journal traduit peut s'afficher dans sa langue d'origine, sans
+        // changer celle du site : mention et bouton de la bascule.
+        const MENTION_VO = {
+            fr: { en: '(texte original anglais)' },
+            en: { fr: '(French original)' }
+        };
+        const BASCULE_ORIGINAL = {
+            fr: { original: 'Voir l’original', traduction: 'Voir la traduction' },
+            en: { original: 'Show original', traduction: 'Show translation' }
+        };
+        // Champs des journaux que le lecteur a basculés vers l'original.
+        const journauxEnOriginal = new Set();
+        document.addEventListener('click', (e) => {
+            const bouton = e.target.closest('.journal-bascule');
+            if (!bouton) return;
+            e.preventDefault();
+            const bloc = bouton.closest('[data-journal]');
+            if (!bloc) return;
+            const champ = bloc.getAttribute('data-journal');
+            const vo = !bloc.classList.contains('journal-vo');
+            if (vo) journauxEnOriginal.add(champ); else journauxEnOriginal.delete(champ);
+            const aCharger = bloc.getAttribute('data-charger');
+            if (vo && aCharger) {
+                // L'original arrive : chargeJournaux recompose la fiche ouverte.
+                const [cle, langue] = aCharger.split(':');
+                bouton.disabled = true;
+                chargeJournaux(cle, langue).then(() => { bouton.disabled = false; });
+                return;
+            }
+            bloc.classList.toggle('journal-vo', vo);
+            bouton.textContent = bouton.getAttribute(vo ? 'data-vers-traduction' : 'data-vers-original');
+        });
 
         const parcoursLabelsFor = (lang) => parcoursLabels[lang] || parcoursLabels.en;
 
@@ -4975,7 +5064,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         // publiées, pas des journaux de bord eux-mêmes.
         const SOURCES_PARCOURS = {
             baudin: {
-                nom: 'Source Freycinet 1815',
+                nom: { fr: 'Source : Freycinet 1815', en: 'Source: Freycinet 1815' },
                 url: 'https://gallica.bnf.fr/ark:/12148/bpt6k74602q',
                 // La trace de l'Investigator ne vient pas des tables de
                 // Freycinet mais du recit que Flinders a publie lui-meme.
@@ -4983,21 +5072,24 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // second volume : le lien y renvoie directement.
                 parNavire: {
                     "l'Investigator": {
-                        nom: 'Source Flinders 1814',
+                        nom: { fr: "Source : 'Voyage to Terra Australis' de Flinders",
+                               en: "Source: Flinders's 'A Voyage to Terra Australis'" },
                         url: 'https://gutenberg.net.au/ebooks/e00049.html'
                     },
                     'le Porpoise': {
-                        nom: 'Source Flinders 1814',
+                        nom: { fr: "Source : 'Voyage to Terra Australis' de Flinders",
+                               en: "Source: Flinders's 'A Voyage to Terra Australis'" },
                         url: 'https://gutenberg.net.au/ebooks/e00050.html'
                     },
                     'le Cumberland': {
-                        nom: 'Source Flinders 1814',
+                        nom: { fr: "Source : 'Voyage to Terra Australis' de Flinders",
+                               en: "Source: Flinders's 'A Voyage to Terra Australis'" },
                         url: 'https://gutenberg.net.au/ebooks/e00050.html'
                     }
                 }
             },
             entre: {
-                nom: 'Source Rossel 1808',
+                nom: { fr: 'Source : Rossel 1808', en: 'Source: Rossel 1808' },
                 url: ''
             }
         };
@@ -5007,6 +5099,28 @@ gtag('config', 'G-LCWV2EVPVQ');
         // ne concerne qu'un navire ne montre que les recits ecrits a son bord.
         const SOURCES_JOURNAUX = [
             {
+                // Labillardiere, naturaliste embarque sur la Recherche :
+                // Relation du voyage a la recherche de La Perouse (an VIII),
+                // transcription integrale de septembre 2026, repartie par
+                // journee. Integration : scripts/integre_labillardiere.py.
+                champ: 'journal_labillardiere',
+                // Transcription balisee : paragraphes, titres (#), italique
+                // (*...*), exposants (<sup>) et renvois de page [t. I, p. N].
+                miseEnForme: true,
+                // Traduction anglaise (septembre 2026) : la fiche la signale et
+                // permet de revenir a l'original.
+                traductionAutomatique: true,
+                nom: { fr: 'Source : Labillardière, Relation du voyage à la recherche de La Pérouse',
+                       en: "Source: Labillardière's account of the voyage in search of La Pérouse" },
+                note: { fr: "Jacques-Julien Houtou de Labillardière, naturaliste de l'expédition, "
+                            + "Relation du voyage à la recherche de La Pérouse (Paris, an VIII), "
+                            + "transcription intégrale des deux tomes (septembre 2026). Les dates "
+                            + "républicaines de l'auteur sont corrigées d'un jour.",
+                        en: "Jacques-Julien Houtou de Labillardière, the expedition's naturalist, "
+                            + "Relation du voyage à la recherche de La Pérouse (Paris, 1800), "
+                            + "full transcription of both volumes (September 2026), translated from the French." }
+            },
+            {
                 // Flinders a publie son recit lui-meme en 1814 ; le texte est
                 // ici dans sa langue, et c'est le site francais qui le donnera
                 // comme non traduit.
@@ -5014,12 +5128,32 @@ gtag('config', 'G-LCWV2EVPVQ');
                 langue: 'en',
                 // Flinders tient son journal sur chacune de ses coques.
                 navires: ["l'Investigator", 'le Porpoise', 'le Cumberland'],
-                nom: { fr: 'Source journal de Matthew Flinders',
-                       en: "Source: Matthew Flinders's journal" },
+                nom: { fr: "Source : 'Voyage to Terra Australis' de Flinders",
+                       en: "Source: Flinders's 'A Voyage to Terra Australis'" },
                 // L'original est anglais : seule la version francaise est
                 // traduite, et la fiche ne le signale donc qu'en francais.
                 traductionAutomatique: true,
                 url: { fr: 'https://gutenberg.net.au/ebooks/e00049.html' }
+            },
+            {
+                // Le journal tenu au jour le jour sur l'Investigator, et non
+                // le recit remanie pour l'impression. Transcription de la
+                // Mitchell Library (CC BY 4.0), en deux volumes : le lien
+                // renvoie a celui de la fiche. Integration :
+                // scripts/journal_navigation_flinders.py.
+                champ: 'journal_flinders_navigation',
+                langue: 'en',
+                navires: ["l'Investigator"],
+                nom: { fr: 'Source : Journal de navigation de Flinders',
+                       en: "Source: Flinders' logbook" },
+                traductionAutomatique: true,
+                // Les releves de quart se lisent ligne a ligne.
+                lignes: true,
+                urlParPeriode: [
+                    { jusqua: '1802-07-22',
+                      url: 'https://www.sl.nsw.gov.au/collection-items/matthew-flinders-journal-hms-investigator-vol-1-1801-1802' },
+                    { url: 'https://www.sl.nsw.gov.au/matthew-flinders-journal-hms-investigator-vol2-1802-1803' }
+                ]
             },
             {
                 // Transcription du manuscrit autographe de Baudin (Archives
@@ -5029,7 +5163,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // pointera vers la page du site qui lui rend hommage.
                 champ: 'journal_baudin_autographe',
                 navires: ['le Géographe'],
-                nom: { fr: 'Source journal de mer de Baudin',
+                nom: { fr: 'Source : Journal de mer de Baudin',
                        en: "Source: Baudin's sea journal" },
                 // L'original est francais, dans la transcription de Marc
                 // Soviche : c'est la version anglaise qui est traduite.
@@ -5042,15 +5176,48 @@ gtag('config', 'G-LCWV2EVPVQ');
             {
                 champ: 'journal_baudin',
                 navires: ['le Géographe'],
-                nom: { fr: 'Source journal de mer de Baudin',
+                nom: { fr: 'Source : Journal de mer de Baudin',
                        en: "Source: Baudin's sea journal" },
                 traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2021/07/N-Baudin-Journal-de-mer-vol-1-.pdf' }
             },
             {
+                // Journal du capitaine de fregate Hamelin, commandant du Naturaliste
+                // (Archives nationales, Marine 5JJ 41-42). Cahier 1 (juillet 1800 -
+                // aout 1801) : transcription de Dany Breelle. Integration :
+                // scripts/integre_hamelin.py.
+                champ: 'journal_hamelin',
+                traductionAutomatique: true,
+                navires: ['le Naturaliste'],
+                nom: { fr: 'Source : Journal de Hamelin, commandant du Naturaliste',
+                       en: "Source: Hamelin's journal, commander of the Naturaliste" },
+                // Les releves horaires et les tableaux se lisent ligne a ligne.
+                lignes: true,
+                note: { fr: "Journal du capitaine de frégate Jacques Félix Emmanuel Hamelin, "
+                            + "cahier 1 (juillet 1800 - août 1801), transcription de Dany Bréelle.",
+                        en: "Journal of Captain Jacques Félix Emmanuel Hamelin, notebook 1 "
+                            + "(July 1800 - August 1801), transcribed by Dany Bréelle." }
+            },
+            {
+                // Cahier 2 (aout 1801 - juin 1803, AN Marine 5JJ 42) : lecture
+                // automatique du manuscrit (septembre 2026), non encore relue.
+                champ: 'journal_hamelin_manuscrit',
+                traductionAutomatique: true,
+                navires: ['le Naturaliste'],
+                nom: { fr: 'Source : Journal de Hamelin, commandant du Naturaliste (lecture du manuscrit à relire)',
+                       en: "Source: Hamelin's journal, commander of the Naturaliste (manuscript reading, to be checked)" },
+                lignes: true,
+                note: { fr: "Journal de Hamelin, cahier 2 (août 1801 - juin 1803, Archives nationales, "
+                            + "Marine 5JJ 42) : lecture automatique du manuscrit, non encore relue. "
+                            + "[?] signale une lecture douteuse, [illisible] un mot non déchiffré.",
+                        en: "Hamelin's journal, notebook 2 (August 1801 - June 1803, Archives nationales, "
+                            + "Marine 5JJ 42): automatic reading of the manuscript, not yet proofread. "
+                            + "[?] marks a doubtful reading, [illegible] an undeciphered word." }
+            },
+            {
                 champ: 'journal_anonyme',
                 navires: ['le Naturaliste'],
-                nom: { fr: 'Source anonyme à bord du Naturaliste',
+                nom: { fr: 'Source : Anonyme à bord du Naturaliste',
                        en: 'Source: anonymous, aboard the Naturaliste' },
                 traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2024/06/anon2.pdf' }
@@ -5058,7 +5225,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             {
                 champ: 'journal_geographe',
                 navires: ['le Géographe'],
-                nom: { fr: 'Source anonyme à bord du Géographe',
+                nom: { fr: 'Source : Anonyme à bord du Géographe',
                        en: 'Source: anonymous, aboard the Géographe' },
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/anon1journalbaud.pdf',
                        en: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/anon1english.pdf' }
@@ -5066,7 +5233,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             {
                 champ: 'journal_breton_geographe',
                 navires: ['le Géographe'],
-                nom: { fr: 'Source journal de Breton à bord du Géographe',
+                nom: { fr: 'Source : Journal de Breton à bord du Géographe',
                        en: "Source: Breton's journal, aboard the Géographe" },
                 traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/breton.pdf' }
@@ -5074,7 +5241,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             {
                 champ: 'journal_breton_naturaliste',
                 navires: ['le Naturaliste'],
-                nom: { fr: 'Source journal de Breton à bord du Naturaliste',
+                nom: { fr: 'Source : Journal de Breton à bord du Naturaliste',
                        en: "Source: Breton's journal, aboard the Naturaliste" },
                 traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/breton.pdf' }
@@ -5088,7 +5255,10 @@ gtag('config', 'G-LCWV2EVPVQ');
             // Flinders ecrit en anglais : l'anglais est donc l'original, et
             // le francais une traduction, signalee comme telle dans la fiche.
             flinders: { en: 'data/journaux/flinders_en.json',
-                        fr: 'data/journaux/flinders_fr.json' }
+                        fr: 'data/journaux/flinders_fr.json' },
+            // Labillardiere ecrit en francais : l'anglais est une traduction.
+            entre: { fr: 'data/journaux/entrecasteaux_fr.json',
+                     en: 'data/journaux/entrecasteaux_en.json' }
         };
         const journauxTextes = {};        // clé `${expedition}:${langue}` -> { date: { champ: texte } }
         const journauxEnCours = {};
@@ -5097,6 +5267,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         // journaux se chargent avec les siens.
         const chargeJournauxExpedition = (key, lang) => {
             chargeJournaux(key, lang);
+            // Pas de version dans la langue du site : on charge l'original,
+            // sur lequel la fiche se rabat.
+            if (!JOURNAUX_FICHIERS[key]?.[lang]) {
+                Object.keys(JOURNAUX_FICHIERS[key] || {}).forEach((l) => chargeJournaux(key, l));
+            }
             // Un journal joint n'existe pas forcement dans la langue du site :
             // celui de Flinders n'est qu'en anglais. On charge donc toutes les
             // versions qu'il declare, et la fiche se rabattra sur l'original.
@@ -5292,6 +5467,70 @@ gtag('config', 'G-LCWV2EVPVQ');
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;');
 
+        // Texte d'un journal : les ratures du manuscrit, notees entre ⟦ et ⟧
+        // (journal de navigation de Flinders), s'affichent barrees.
+        const texteJournalHtml = (value) => escapeHtmlText(value)
+            .replace(/⟦([^⟦⟧]*)⟧/g, '<del class="journal-rature">$1</del>');
+
+        // Relation de Labillardiere : la transcription garde les paragraphes,
+        // les titres de chapitre, l'italique et les exposants de l'imprime.
+        // Le texte est echappe d'abord ; seules ces marques redeviennent du HTML.
+        // Appels de note [^164-1] : le numero de la note dans la page, en
+        // exposant comme dans l'imprime (1).
+        const enLigne = (html) => html
+            .replace(/\[\^\d+-(\d+)\]/g, '<sup class="journal-note">($1)</sup>')
+            .replace(/&lt;sup&gt;(.*?)&lt;\/sup&gt;/g, '<sup>$1</sup>')
+            .replace(/\^([a-z]+)/g, '<sup>$1</sup>')
+            .replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+        const texteMisEnFormeHtml = (value) => escapeHtmlText(value)
+            .split(/\n{2,}/)
+            .map((para) => para.split('\n').map((ligne) => {
+                const l = ligne.trim();
+                if (!l) return '';
+                if (/^\[t\. I+, p\. [^\]]*\]$/.test(l)) {
+                    return `<span class="journal-page">${l}</span>`;
+                }
+                const note = l.match(/^\[\^\d+-(\d+)\]:\s*(.*)$/);
+                if (note) return `<span class="journal-note-texte">(${note[1]}) ${enLigne(note[2])}</span>`;
+                const titre = l.match(/^#+\s+(.*)$/);
+                if (titre) return `<span class="journal-titre">${enLigne(titre[1])}</span>`;
+                return enLigne(l);
+            }).filter(Boolean).join(' '))
+            .filter(Boolean)
+            .map((p) => `<p class="journal-para">${p}</p>`)
+            .join('');
+        // Journal lu ligne a ligne (Hamelin) : les releves horaires sont
+        // transcrits en lignes a barres (« 1 | SSE | O 40° S | 3,0 | … »). Un
+        // bloc de telles lignes devient un tableau ; sa premiere ligne en est
+        // l'en-tete quand elle ne commence pas par un chiffre (« H. | Vents »).
+        const estLigneTableau = (l) => (l.match(/\|/g) || []).length >= 2;
+        const tableauJournalHtml = (lignes) => {
+            const rangees = lignes.map((l) => l.split('|').map((c) => c.trim()));
+            const largeur = Math.max(...rangees.map((r) => r.length));
+            const entete = !/^\d/.test(rangees[0][0] || '') ? rangees.shift() : null;
+            const cellules = (r, balise) => Array.from({ length: largeur },
+                (_, i) => `<${balise}>${texteJournalHtml(r[i] || '')}</${balise}>`).join('');
+            return `<div class="journal-tableau-cadre"><table class="journal-tableau">`
+                + (entete ? `<thead><tr>${cellules(entete, 'th')}</tr></thead>` : '')
+                + `<tbody>${rangees.map((r) => `<tr>${cellules(r, 'td')}</tr>`).join('')}</tbody>`
+                + `</table></div>`;
+        };
+        const texteLignesHtml = (value) => {
+            const blocs = [];
+            String(value).split('\n').forEach((l) => {
+                const tableau = estLigneTableau(l);
+                const dernier = blocs[blocs.length - 1];
+                if (dernier && dernier.tableau === tableau) dernier.lignes.push(l);
+                else blocs.push({ tableau, lignes: [l] });
+            });
+            return blocs.map((b) => (b.tableau
+                ? tableauJournalHtml(b.lignes)
+                : `<div class="journal-texte">${texteJournalHtml(b.lignes.join('\n'))}</div>`)).join('');
+        };
+        const texteSourceHtml = (src, value) => (src.miseEnForme
+            ? texteMisEnFormeHtml(value)
+            : (src.lignes ? texteLignesHtml(value) : texteJournalHtml(value)));
+
         const buildParcoursPopup = (props, ship, campaign, expedition) => {
             const lang = getCurrentLanguage();
             const labels = parcoursLabelsFor(lang);
@@ -5309,7 +5548,11 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (subtitle) {
                 html += `<div class="parcours-popup-ship">${escapeHtmlText(subtitle)}</div>`;
             }
-            const source = libelleSource(props);
+            // Les references de Flinders sont redigees en francais dans les
+            // donnees (« Londres, 1814 ») : le site anglais nomme la ville.
+            const source = lang === 'en'
+                ? libelleSource(props).replace(/, Londres,/g, ', London,')
+                : libelleSource(props);
             if (source) {
                 html += `<div class="parcours-popup-source">${escapeHtmlText(source)}</div>`;
             }
@@ -5338,15 +5581,18 @@ gtag('config', 'G-LCWV2EVPVQ');
             // journee d'un autre navire a des centaines de lieues de la.
             const venuDe = String(props?.expedition || '').trim();
             const joint = Boolean(venuDe);
-            const { propre, secours } = textesJournaux(
-                joint ? venuDe.toLowerCase() : expedition, String(props?.date || ''));
+            const cleJournaux = joint ? venuDe.toLowerCase() : expedition;
+            const { propre, secours } = textesJournaux(cleJournaux, String(props?.date || ''));
             // Les coques que le releve concerne. Separees, chacune n'a droit
             // qu'aux recits tenus a son bord ; de conserve, elles n'ont qu'un
-            // point, et ce point reunit les recits des deux.
+            // point, et ce point reunit les recits de celles qui le partagent.
+            // « Les corvettes » ne designent plus le Naturaliste apres son
+            // depart de Port Jackson : le Geographe et le Casuarina n'ont alors
+            // pas droit au journal de Hamelin.
             const coques = Array.isArray(ship) ? ship : (ship ? [ship] : []);
             const dansLeBord = (src) => !Array.isArray(src.navires)
-                || coques.length !== 1
-                || src.navires.includes(coques[0]);
+                || !coques.length
+                || coques.some((c) => src.navires.includes(c));
             const journaux = SOURCES_JOURNAUX
                 .filter(dansLeBord)
                 .map((src) => {
@@ -5358,8 +5604,11 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const source = src.langue || 'fr';
                     const machine = Boolean(traduit) && src.traductionAutomatique
                         && source !== lang;
+                    // Un texte traduit garde son original a portee : la fiche
+                    // permet de basculer de l'un a l'autre.
                     return { src, texte: traduit || origine, langueSource: source,
-                             nonTraduit: !traduit && !!origine, machine };
+                             nonTraduit: !traduit && !!origine, machine,
+                             original: machine ? origine : '' };
                 })
                 .filter((j) => j.texte);
             // Le premier bloc ne s'ouvre que s'il porte vraiment du contenu de source.
@@ -5376,7 +5625,10 @@ gtag('config', 'G-LCWV2EVPVQ');
             // Le motif n'accompagne que les positions calculees. Sur un releve
             // ordinaire, le meme champ porte des notes techniques -- « longitude
             // estimee », « longitude montre » -- qui n'ont rien a dire au lecteur.
-            const motif = extrapolated ? String(props?.alerte || '').trim() : '';
+            // Les mouillages ajoutes d'apres Labillardiere portent aussi leur
+            // nom en anglais (alerte_en) pour le site anglais.
+            const motif = extrapolated
+                ? String((lang === 'en' && props?.alerte_en) || props?.alerte || '').trim() : '';
 
             if (extrapolated || fromLog || corrige || surCarte || contenuTables) {
                 html += `<div class="parcours-popup-body">`;
@@ -5414,7 +5666,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                     const src = racine?.parNavire?.[String(props?.navire || '')]
                         || racine;
                     if (src) {
-                        html += `<div class="parcours-popup-src">${lienSource(src)}</div>`;
+                        html += `<div class="parcours-popup-src">${lienSource(src, lang)}</div>`;
                     }
                     if (remark) {
                         html += `<div class="parcours-popup-remark">${escapeHtmlText(remark)}</div>`;
@@ -5433,17 +5685,48 @@ gtag('config', 'G-LCWV2EVPVQ');
                 html += `</div>`;
             }
 
-            journaux.forEach(({ src, texte, nonTraduit, machine, langueSource }) => {
+            journaux.forEach(({ src: source, texte, nonTraduit, machine, langueSource, original }) => {
+                // Un journal en plusieurs volumes renvoie a celui de la date.
+                const date = String(props?.date || '');
+                const periode = (source.urlParPeriode || [])
+                    .find((p) => !p.jusqua || date <= p.jusqua);
+                const src = periode ? { ...source, url: periode.url } : source;
                 const mention = nonTraduit
                     ? (MENTION_ORIGINAL[lang]?.[langueSource] || labels.original)
                     : (machine ? (MENTION_TRADUIT[lang]?.[langueSource] || labels.traduit) : '');
-                html += `<div class="parcours-popup-body">`
+                const classeJournal = `parcours-popup-journal${src.lignes ? ' parcours-popup-journal-lignes' : ''}`;
+                if (!machine) {
+                    html += `<div class="parcours-popup-body">`
+                        + `<div class="parcours-popup-src">${lienSource(src, lang)}`
+                        + (mention
+                            ? ` <span class="parcours-popup-vo">${escapeHtmlText(mention)}</span>`
+                            : '')
+                        + `</div>`
+                        + `<div class="${classeJournal}">${texteSourceHtml(src, texte)}</div>`
+                        + `</div>`;
+                    return;
+                }
+                // Traduction et original sont tous deux dans la fiche ; le
+                // bouton montre l'un ou l'autre sans toucher a la langue du
+                // site. Le choix vaut pour ce journal jusqu'au rechargement.
+                // L'original n'est pas toujours charge (4 Mo pour Baudin) : le
+                // premier clic va le chercher, et la fiche se recompose.
+                const vo = journauxEnOriginal.has(src.champ) && Boolean(original);
+                const libelles = BASCULE_ORIGINAL[lang] || BASCULE_ORIGINAL.en;
+                const mentionVo = MENTION_VO[lang]?.[langueSource] || '';
+                const autreLangue = lang === 'fr' ? 'en' : 'fr';
+                html += `<div class="parcours-popup-body${vo ? ' journal-vo' : ''}" data-journal="${escapeHtmlText(src.champ)}"`
+                    + (original ? '' : ` data-charger="${escapeHtmlText(cleJournaux)}:${autreLangue}"`) + `>`
                     + `<div class="parcours-popup-src">${lienSource(src, lang)}`
-                    + (mention
-                        ? ` <span class="parcours-popup-vo">${escapeHtmlText(mention)}</span>`
-                        : '')
+                    + ` <span class="parcours-popup-vo vo-traduit">${escapeHtmlText(mention)}</span>`
+                    + `<span class="parcours-popup-vo vo-original">${escapeHtmlText(mentionVo)}</span>`
+                    + ` <button type="button" class="journal-bascule"`
+                    + ` data-vers-original="${escapeHtmlText(libelles.original)}"`
+                    + ` data-vers-traduction="${escapeHtmlText(libelles.traduction)}">`
+                    + `${escapeHtmlText(vo ? libelles.traduction : libelles.original)}</button>`
                     + `</div>`
-                    + `<div class="parcours-popup-journal">${escapeHtmlText(texte)}</div>`
+                    + `<div class="${classeJournal} vo-traduit">${texteSourceHtml(src, texte)}</div>`
+                    + `<div class="${classeJournal} vo-original">${texteSourceHtml(src, original)}</div>`
                     + `</div>`;
             });
 

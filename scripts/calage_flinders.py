@@ -127,6 +127,10 @@ def proprietes_estimees(date, navire, d_avant, d_apres, mouillage):
         props['alerte'] = (f"position tenue au mouillage : le navire n'a pas bougé entre "
                            f"le relevé du {d_avant} et celui du {d_apres}")
     else:
+        # Note documentaire : dans data/flinders_parcours.geojson, cette note a
+        # depuis été réécrite à la main pour le lecteur (« entre les relevés du
+        # 5 et du 9 avril 1802 », avec alerte_en) ; l'originale est gardée dans
+        # origine_position. De même pour les « contournement de côte ».
         props['alerte'] = (f"position estimée par interpolation entre les relevés du "
                            f"{d_avant} et du {d_apres}, au prorata des jours écoulés et "
                            f"le long de la route ; elle reste à caler sur la carte de Flinders")

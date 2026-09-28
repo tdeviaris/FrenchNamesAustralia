@@ -198,8 +198,44 @@
         }
 
         .message-assistant .message-content li {
-            margin: 8px 0;
+            margin: 4px 0;
             line-height: 1.5;
+        }
+
+        .message-assistant .message-content li > ul,
+        .message-assistant .message-content li > ol {
+            margin: 4px 0;
+        }
+
+        .message-assistant .message-content .chat-table-wrap {
+            max-width: 100%;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .message-assistant .message-content .chat-table {
+            border-collapse: collapse;
+            font-size: 0.92em;
+            line-height: 1.4;
+            white-space: normal;
+        }
+
+        .message-assistant .message-content .chat-table th,
+        .message-assistant .message-content .chat-table td {
+            border: 1px solid #dde3ea;
+            padding: 6px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .message-assistant .message-content .chat-table th {
+            background: #eef3f8;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .message-assistant .message-content .chat-table tbody tr:nth-child(even) {
+            background: #f8fafc;
         }
 
         .message-assistant .message-content p + ul,
@@ -1078,7 +1114,138 @@ gtag('config', 'G-LCWV2EVPVQ');
                 + encodeURIComponent(lien.getAttribute('data-journal'));
         });
 
-        // Rendu minimal : échappement + gras/italique + liens (format personnalisé [texte]{type:valeur})
+        // Gras **texte** et italique *texte*, sur un fragment déjà échappé
+        function rendreEnLigne(fragment) {
+            return fragment
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>');
+        }
+
+        const LIGNE_TABLEAU = /^\s*\|.*\|\s*$/;
+        const SEPARATEUR_TABLEAU = /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?\s*$/;
+        const ELEMENT_LISTE = /^(\s*)([-*+•]|\d{1,3}[.)])\s+(.*)$/;
+
+        function cellulesTableau(ligne) {
+            return ligne.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => c.trim());
+        }
+
+        // Tableau Markdown (en-tête, séparateur |---|, lignes) -> <table>.
+        // Aucun saut de ligne dans le HTML produit : .message-content est en
+        // white-space: pre-wrap, et il s'afficherait comme une ligne vide.
+        function rendreTableau(lignes) {
+            const alignements = cellulesTableau(lignes[1]).map((c) =>
+                c.startsWith(':') && c.endsWith(':') ? 'center' : c.endsWith(':') ? 'right' : '');
+            const cellule = (balise, contenu, i) => {
+                const align = alignements[i] ? ` style="text-align:${alignements[i]}"` : '';
+                return `<${balise}${align}>${rendreEnLigne(contenu)}</${balise}>`;
+            };
+            const entete = cellulesTableau(lignes[0]);
+            const corps = lignes.slice(2).map((l) => {
+                const cellules = cellulesTableau(l);
+                return '<tr>' + entete.map((_, i) => cellule('td', cellules[i] || '', i)).join('') + '</tr>';
+            });
+            return '<div class="chat-table-wrap"><table class="chat-table"><thead><tr>'
+                + entete.map((c, i) => cellule('th', c, i)).join('')
+                + '</tr></thead><tbody>' + corps.join('') + '</tbody></table></div>';
+        }
+
+        // Liste à puces ou numérotée, avec imbrication selon l'indentation
+        function rendreListe(elements) {
+            let html = '';
+            const pile = [];
+            elements.forEach(({ indent, ordonnee, debut, contenu }) => {
+                while (pile.length && indent < pile[pile.length - 1].indent) {
+                    html += `</li></${pile.pop().balise}>`;
+                }
+                const balise = ordonnee ? 'ol' : 'ul';
+                let sommet = pile[pile.length - 1];
+                if (sommet && indent === sommet.indent && sommet.balise !== balise) {
+                    // puces puis numéros au même niveau : deux listes distinctes
+                    html += `</li></${pile.pop().balise}>`;
+                    sommet = pile[pile.length - 1];
+                }
+                if (!sommet || indent > sommet.indent) {
+                    const start = ordonnee && debut !== 1 ? ` start="${debut}"` : '';
+                    html += `<${balise}${start}>`;
+                    pile.push({ indent, balise });
+                } else {
+                    html += '</li>';
+                }
+                html += `<li>${rendreEnLigne(contenu)}`;
+            });
+            while (pile.length) html += `</li></${pile.pop().balise}>`;
+            return html;
+        }
+
+        // Assemble les lignes échappées en blocs : tableaux, listes, texte.
+        function rendreBlocs(lignes) {
+            const blocs = [];
+            let i = 0;
+            while (i < lignes.length) {
+                const ligne = lignes[i];
+
+                if (LIGNE_TABLEAU.test(ligne) && SEPARATEUR_TABLEAU.test(lignes[i + 1] || '')) {
+                    const lignesTableau = [ligne, lignes[i + 1]];
+                    i += 2;
+                    while (i < lignes.length && LIGNE_TABLEAU.test(lignes[i])) lignesTableau.push(lignes[i++]);
+                    blocs.push({ bloc: true, html: rendreTableau(lignesTableau) });
+                    continue;
+                }
+
+                if (ELEMENT_LISTE.test(ligne)) {
+                    const elements = [];
+                    while (i < lignes.length) {
+                        const m = lignes[i].match(ELEMENT_LISTE);
+                        if (m) {
+                            elements.push({
+                                indent: m[1].replace(/\t/g, '    ').length,
+                                ordonnee: /\d/.test(m[2]),
+                                debut: parseInt(m[2], 10) || 1,
+                                contenu: m[3]
+                            });
+                            i++;
+                        } else if (lignes[i].trim() === '' && ELEMENT_LISTE.test(lignes[i + 1] || '')) {
+                            i++; // ligne vide entre deux éléments : la liste continue
+                        } else if (lignes[i].trim() !== '' && /^\s{2,}/.test(lignes[i])) {
+                            // ligne de suite indentée : rattachée à l'élément courant
+                            elements[elements.length - 1].contenu += '<br>' + lignes[i].trim();
+                            i++;
+                        } else {
+                            break;
+                        }
+                    }
+                    blocs.push({ bloc: true, html: rendreListe(elements) });
+                    continue;
+                }
+
+                // Titres Markdown, de # a ###### => bleu + gras.
+                const titre = ligne.match(/^\s{0,3}#{1,6}\s+(.+?)\s*#*\s*$/);
+                blocs.push({
+                    bloc: false,
+                    vide: ligne.trim() === '',
+                    html: titre
+                        ? `<strong style="color: var(--primary-blue);">${rendreEnLigne(titre[1])}</strong>`
+                        : rendreEnLigne(ligne)
+                });
+                i++;
+            }
+
+            // Les lignes de texte sont reliées par <br> ; autour d'un tableau ou
+            // d'une liste, les lignes vides sont superflues (le bloc a ses marges).
+            let html = '';
+            let dernier = null;
+            blocs.forEach((b, k) => {
+                const prec = blocs[k - 1];
+                const suiv = blocs[k + 1];
+                if (b.vide && ((prec && prec.bloc) || (suiv && suiv.bloc))) return;
+                if (!b.bloc && dernier && !dernier.bloc) html += '<br>';
+                html += b.html;
+                dernier = b;
+            });
+            return html;
+        }
+
+        // Rendu minimal : échappement + gras/italique + tableaux + listes + liens (format personnalisé [texte]{type:valeur})
         function markdownToHtml(text) {
             const placeholders = [];
             const token = (id) => `__PLACEHOLDER_${id}__`;
@@ -1201,21 +1368,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                 return token(id);
             });
 
-            // Échapper le reste
-            let safe = escapeHtml(intermediate);
-
-            // Gras **texte**
-            safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-            // Italique *texte*
-            safe = safe.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            // Titres Markdown, de # a ###### => bleu + gras.
-            // Seul ### etait traite : le modele ecrit aussi bien ## ou #, et les
-            // diesons restaient en clair au milieu de la reponse.
-            safe = safe.replace(/^\s{0,3}#{1,6}\s+(.+?)\s*#*\s*$/gm,
-                                '<strong style="color: var(--primary-blue);">$1</strong>');
-
-            // Retours à la ligne
-            safe = safe.replace(/\n/g, '<br>');
+            // Échapper le reste, puis découper en blocs (tableaux, listes, texte)
+            let safe = rendreBlocs(escapeHtml(intermediate).split('\n'));
 
             // Restaurer les liens
             placeholders.forEach((html, idx) => {

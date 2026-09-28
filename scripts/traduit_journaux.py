@@ -16,10 +16,12 @@ Une journée par fichier : un lot interrompu garde ce qu'il a déjà fait, et la
 vérification porte sur chaque journée séparément.
 
 Usage :
-  python3 scripts/traduit_journaux.py prepare <chantier>
-  python3 scripts/traduit_journaux.py verifie <chantier> [--detail]
-  python3 scripts/traduit_journaux.py lots <chantier>
-  python3 scripts/traduit_journaux.py fusionne <chantier> [--ecrire]
+  python3 scripts/traduit_journaux.py prepare <chantier> [travail…]
+  python3 scripts/traduit_journaux.py verifie <chantier> [travail…] [--detail]
+  python3 scripts/traduit_journaux.py lots <chantier> [travail…]
+  python3 scripts/traduit_journaux.py fusionne <chantier> [travail…] [--ecrire]
+
+Nommer un ou plusieurs travaux (hamelin_en…) limite l'action à ceux-là.
 """
 import io
 import json
@@ -30,7 +32,7 @@ import sys
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JOURNAUX = os.path.join(RACINE, 'data', 'journaux')
 
-# Les trois chantiers : d'où vient le texte, où il va, et dans quelle langue.
+# Les chantiers : d'où vient le texte, où il va, et dans quelle langue.
 TRAVAUX = [
     {'nom': 'baudin_en',
      'source': os.path.join(JOURNAUX, 'baudin_fr.json'),
@@ -46,6 +48,27 @@ TRAVAUX = [
      'de': 'anglais', 'vers': 'français',
      'quoi': "le récit publié par Matthew Flinders, « A Voyage to Terra "
              "Australis », Londres, 1814"},
+    {'nom': 'labillardiere_en',
+     'source': os.path.join(JOURNAUX, 'entrecasteaux_fr.json'),
+     'cible': os.path.join(JOURNAUX, 'entrecasteaux_en.json'),
+     'champ': 'journal_labillardiere',
+     'de': 'français', 'vers': 'anglais',
+     'quoi': "la « Relation du voyage à la recherche de La Pérouse » de "
+             "Labillardière, Paris, an VIII"},
+    {'nom': 'hamelin_en',
+     'source': os.path.join(JOURNAUX, 'baudin_fr.json'),
+     'cible': os.path.join(JOURNAUX, 'baudin_en.json'),
+     'champ': 'journal_hamelin',
+     'de': 'français', 'vers': 'anglais',
+     'quoi': "le journal de Hamelin, commandant du Naturaliste, cahier 1, "
+             "dans la transcription de Dany Bréelle"},
+    {'nom': 'hamelin_manuscrit_en',
+     'source': os.path.join(JOURNAUX, 'baudin_fr.json'),
+     'cible': os.path.join(JOURNAUX, 'baudin_en.json'),
+     'champ': 'journal_hamelin_manuscrit',
+     'de': 'français', 'vers': 'anglais',
+     'quoi': "le journal de Hamelin, commandant du Naturaliste, cahier 2, "
+             "lecture automatique du manuscrit"},
 ]
 
 CARACTERES_PAR_LOT = 45000
@@ -149,6 +172,10 @@ def ecarts(source, traduit):
     r = len(traduit) / float(len(source)) if source else 0
     if not 0.55 <= r <= 1.75:
         e.append('longueur %.2f' % r)
+    # Les journaux lus ligne à ligne (Hamelin) doivent garder leurs lignes.
+    la, lb = source.strip().count('\n'), traduit.strip().count('\n')
+    if la != lb:
+        e.append('lignes %d -> %d' % (la + 1, lb + 1))
     a = sorted(NOMBRE.findall(source))
     b = sorted(NOMBRE.findall(traduit))
     if a != b:
@@ -249,6 +276,9 @@ def main():
     if len(sys.argv) < 3:
         sys.exit(__doc__)
     action, chantier = sys.argv[1], sys.argv[2]
+    noms = [a for a in sys.argv[3:] if not a.startswith('--')]
+    if noms:
+        TRAVAUX[:] = [t for t in TRAVAUX if t['nom'] in noms]
     if action == 'prepare':
         prepare(chantier)
     elif action == 'verifie':
