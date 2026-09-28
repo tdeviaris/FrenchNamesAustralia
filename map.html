@@ -284,6 +284,109 @@
         }
         /* Une route affichee remplace la recherche de lieux. */
         .search-container.is-hidden { display: none; }
+
+        /* Barre mobile : Lieux et Routes, et la lecture quand une route est
+           affichee. Elle se loge sous la recherche, et remonte en haut quand
+           celle-ci s'efface. */
+        .mobile-barre { display: none; }
+        @media (max-width: 768px) {
+            .mobile-barre {
+                position: absolute;
+                top: calc(var(--nav-height) + 64px);
+                left: 8px;
+                right: 48px;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 6px;
+                font-family: 'Lato', sans-serif;
+                pointer-events: none;
+            }
+            .mobile-barre > * { pointer-events: auto; }
+            .mobile-barre.en-haut { top: calc(var(--nav-height) + 8px); }
+            /* La reglette ne tient pas a cote de la barre : le bouton de
+               lecture et la date la remplacent. */
+            body .panneaux-droite { display: none; }
+        }
+        .mobile-play,
+        .mobile-menu-btn {
+            height: 36px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            color: #222;
+            cursor: pointer;
+        }
+        .mobile-play[hidden], .mobile-date[hidden] { display: none; }
+        .mobile-play {
+            width: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .mobile-icon-play {
+            width: 0; height: 0;
+            margin-left: 3px;
+            border-left: 13px solid #222;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+        /* En lecture, le bouton devient pause. */
+        .mobile-play[aria-pressed="true"] { background: #d9e8fb; border-color: #0b63d1; }
+        .mobile-play[aria-pressed="true"] .mobile-icon-play {
+            width: 12px; height: 14px;
+            margin-left: 0;
+            border: solid #222;
+            border-width: 0 4px;
+        }
+        .mobile-date {
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .mobile-menu { position: relative; }
+        .mobile-menu-btn {
+            padding: 0 14px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .mobile-menu-btn[aria-expanded="true"] { background: #fff; border-color: #0b63d1; }
+        .mobile-menu-liste {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            display: grid;
+            gap: 4px;
+            min-width: 190px;
+            padding: 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+        .mobile-menu-liste[hidden] { display: none; }
+        /* La couleur vient de la classe toggle-entre, -baudin ou -flinders. */
+        .mobile-choix {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 40px;
+            padding-left: 12px;
+            border-radius: 7px;
+            background: var(--toggle-color);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .mobile-choix .lt-cell { width: 44px; }
         .ship-block {
             padding: 6px 10px;
             border-radius: 7px;
@@ -2039,6 +2142,45 @@ gtag('config', 'G-LCWV2EVPVQ');
         </div>
     </div>
 
+    <!-- Sur mobile, le panneau des expeditions cede la place a deux menus,
+         Lieux et Routes, dont chaque case commande celle du panneau. Le
+         bouton de lecture ne parait qu'avec une route. -->
+    <div class="mobile-barre" id="mobile-barre">
+        <button type="button" class="mobile-play" id="mobile-play" hidden
+                aria-pressed="false" title="Lancer" aria-label="Lancer">
+            <span class="mobile-icon-play" aria-hidden="true"></span>
+        </button>
+        <div class="mobile-menu">
+            <button type="button" class="mobile-menu-btn" aria-expanded="false"
+                    aria-controls="mobile-liste-lieux">
+                <span data-i18n="map-col-places">Lieux</span> <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="mobile-menu-liste" id="mobile-liste-lieux" hidden>
+                <label class="mobile-choix toggle-entre"><span data-i18n="map-layer-entre">d’Entrecasteaux</span>
+                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-entre"></span></label>
+                <label class="mobile-choix toggle-baudin"><span data-i18n="map-layer-baudin">Baudin</span>
+                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-baudin"></span></label>
+                <label class="mobile-choix toggle-flinders"><span data-i18n="map-layer-flinders">Flinders</span>
+                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-flinders"></span></label>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <button type="button" class="mobile-menu-btn" aria-expanded="false"
+                    aria-controls="mobile-liste-routes">
+                <span data-i18n="map-col-route">Route</span> <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="mobile-menu-liste" id="mobile-liste-routes" hidden>
+                <label class="mobile-choix toggle-entre"><span data-i18n="map-layer-entre">d’Entrecasteaux</span>
+                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-entre-parcours"></span></label>
+                <label class="mobile-choix toggle-baudin"><span data-i18n="map-layer-baudin">Baudin</span>
+                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-baudin-parcours"></span></label>
+                <label class="mobile-choix toggle-flinders"><span data-i18n="map-layer-flinders">Flinders</span>
+                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-flinders-parcours"></span></label>
+            </div>
+        </div>
+        <span class="mobile-date" id="mobile-date" hidden></span>
+    </div>
+
     <!-- Les deux panneaux de droite s'empilent : le calendrier, puis les dates
          remarquables. Le second remonte de lui-meme quand le premier s'efface. -->
     <div class="panneaux-droite" id="panneaux-droite">
@@ -2184,7 +2326,7 @@ gtag('config', 'G-LCWV2EVPVQ');
         </div>
     </div>
 
-    <script src="js/translations.js?v=20260918"></script>
+    <script src="js/translations.js?v=20260929"></script>
     <script src="js/main.js?v=20260309"></script>
     <script>
         const defaultCenter = [-27, 135];
@@ -2419,10 +2561,43 @@ gtag('config', 'G-LCWV2EVPVQ');
         let opacityOutput;
         let opacityLabelElement;
 
+        // Sur mobile, le panneau des expéditions est masqué : le sélecteur du
+        // fond propose alors aussi les cartes anciennes, dans l'ordre des
+        // lignes du panneau.
+        const ecranMobile = window.matchMedia('(max-width: 768px)');
+        const CARTES_DU_SELECTEUR = [
+            { nom: 'beautemps', libelle: 'Beautemps-Beaupré 1807' },
+            { nom: 'freycinet', libelle: 'Freycinet 1808' },
+            { nom: 'flinders',  libelle: 'Flinders 1814' }
+        ];
+        const PREFIXE_ANCIENNE = 'ancienne:';
+
+        const remplitSelecteurFond = () => {
+            if (!basemapSelect) return;
+            basemapSelect.textContent = '';
+            FONDS.forEach(fond => {
+                const option = document.createElement('option');
+                option.value = fond.id;
+                option.textContent = translate(fond.cle);
+                basemapSelect.appendChild(option);
+            });
+            if (!ecranMobile.matches) return;
+            const groupe = document.createElement('optgroup');
+            groupe.label = translate('basemap-old-maps');
+            CARTES_DU_SELECTEUR.filter(c => cartesAnciennes[c.nom]).forEach(c => {
+                const option = document.createElement('option');
+                option.value = PREFIXE_ANCIENNE + c.nom;
+                option.textContent = c.libelle;
+                groupe.appendChild(option);
+            });
+            basemapSelect.appendChild(groupe);
+        };
+
         // Le curseur ne sert que pour une carte ancienne : ailleurs il disparaît.
         function majControleFond() {
             if (!basemapSelect) return;
-            basemapSelect.value = fondActuel;
+            basemapSelect.value = (ecranMobile.matches && ancienneActuelle)
+                ? PREFIXE_ANCIENNE + ancienneActuelle : fondActuel;
             if (opacityWrapper) opacityWrapper.hidden = !ancienneActuelle;
             if (opacitySlider) opacitySlider.value = opaciteAncienne;
             if (opacityOutput) opacityOutput.textContent = opaciteAncienne + ' %';
@@ -2435,10 +2610,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (basemapSelect) {
                 basemapSelect.setAttribute('title', translate('basemap-label'));
                 basemapSelect.setAttribute('aria-label', translate('basemap-label'));
-                Array.prototype.forEach.call(basemapSelect.options, option => {
-                    const fond = FONDS.find(f => f.id === option.value);
-                    if (fond) option.textContent = translate(fond.cle);
-                });
+                remplitSelecteurFond();
+                majControleFond();
             }
             if (opacityLabelElement) opacityLabelElement.textContent = translate('basemap-opacity-short');
             if (opacitySlider) {
@@ -2463,11 +2636,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             // à droite de l'échelle : le choix du fond, puis son opacité
             const basemapWrapper = L.DomUtil.create('div', 'map-info-basemap', scaleWrapper);
             basemapSelect = L.DomUtil.create('select', '', basemapWrapper);
-            FONDS.forEach(fond => {
-                const option = document.createElement('option');
-                option.value = fond.id;
-                basemapSelect.appendChild(option);
-            });
+            remplitSelecteurFond();
 
             opacityWrapper = L.DomUtil.create('div', 'map-info-opacity', scaleWrapper);
             opacityLabelElement = L.DomUtil.create('span', '', opacityWrapper);
@@ -2481,8 +2650,16 @@ gtag('config', 'G-LCWV2EVPVQ');
             L.DomEvent.disableClickPropagation(scaleWrapper);
             L.DomEvent.disableScrollPropagation(scaleWrapper);
 
+            // Une carte ancienne se pose sur le fond moderne en place ; un fond
+            // moderne choisi sur mobile retire la carte ancienne, que rien
+            // d'autre n'y permet de décocher.
             basemapSelect.addEventListener('change', function () {
-                appliquerFond(this.value);
+                if (this.value.startsWith(PREFIXE_ANCIENNE)) {
+                    appliquerFond(fondActuel, this.value.slice(PREFIXE_ANCIENNE.length));
+                } else {
+                    appliquerFond(this.value, ecranMobile.matches ? null : ancienneActuelle);
+                }
+                majCasesCarte();
             });
 
             opacitySlider.addEventListener('input', function () {
@@ -2532,6 +2709,11 @@ gtag('config', 'G-LCWV2EVPVQ');
         });
         majCasesCarte();
         document.addEventListener('languageChanged', majCasesCarte);
+        // Passer d'un écran large à un écran étroit ajoute ou retire les
+        // cartes anciennes du sélecteur.
+        const surChangementEcran = () => { remplitSelecteurFond(); majControleFond(); };
+        if (ecranMobile.addEventListener) ecranMobile.addEventListener('change', surChangementEcran);
+        else if (ecranMobile.addListener) ecranMobile.addListener(surChangementEcran);
 
         const updateCoordinates = (event) => {
             if (!coordinatesElement) {
@@ -6252,6 +6434,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             const routeAffichee = [toggleBaudinParcours, toggleEntreParcours,
                                    toggleFlindersParcours].some((el) => el && el.checked);
             if (searchContainer) searchContainer.classList.toggle('is-hidden', routeAffichee);
+            mobileSynchronise();
         };
 
         const attachParcoursToggle = (key, input) => {
@@ -6259,6 +6442,66 @@ gtag('config', 'G-LCWV2EVPVQ');
             const volet = voletsDe(key).find((v) => v.route === input.id) || null;
             input.addEventListener('change', () => basculeParcours(key, input, volet));
         };
+
+        // ---------------------------------------------------------------
+        //  Barre mobile. Ses cases ne tiennent aucun etat propre : chacune
+        //  coche celle du panneau qu'elle nomme et declenche son `change`,
+        //  puis toutes se relisent sur le panneau, qui a pu en decocher
+        //  d'autres (une route efface les lieux).
+        // ---------------------------------------------------------------
+        const mobileBarre = document.getElementById('mobile-barre');
+        const mobilePlay = document.getElementById('mobile-play');
+        const mobileDate = document.getElementById('mobile-date');
+        const mobileCases = Array.from(mobileBarre.querySelectorAll('input[data-cible]'));
+        const mobileMenus = Array.from(mobileBarre.querySelectorAll('.mobile-menu'));
+
+        function mobileSynchronise() {
+            mobileCases.forEach((c) => {
+                const cible = document.getElementById(c.dataset.cible);
+                if (!cible) return;
+                c.checked = cible.checked;
+                c.disabled = cible.disabled;
+            });
+            const routeAffichee = [toggleBaudinParcours, toggleEntreParcours,
+                                   toggleFlindersParcours].some((el) => el && el.checked);
+            mobileBarre.classList.toggle('en-haut', routeAffichee);
+            mobilePlay.hidden = !routeAffichee;
+            mobileDate.hidden = !routeAffichee;
+        }
+
+        mobileCases.forEach((c) => {
+            c.addEventListener('change', () => {
+                const cible = document.getElementById(c.dataset.cible);
+                if (!cible || cible.disabled) return;
+                cible.checked = c.checked;
+                cible.dispatchEvent(new Event('change'));
+                mobileSynchronise();
+            });
+        });
+
+        const mobileFermeMenus = (sauf) => {
+            mobileMenus.forEach((m) => {
+                if (m === sauf) return;
+                m.querySelector('.mobile-menu-liste').hidden = true;
+                m.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
+            });
+        };
+        mobileMenus.forEach((m) => {
+            const bouton = m.querySelector('.mobile-menu-btn');
+            const liste = m.querySelector('.mobile-menu-liste');
+            bouton.addEventListener('click', () => {
+                mobileFermeMenus(m);
+                mobileSynchronise();
+                liste.hidden = !liste.hidden;
+                bouton.setAttribute('aria-expanded', String(!liste.hidden));
+            });
+        });
+        // Un toucher ailleurs referme le menu ouvert.
+        document.addEventListener('pointerdown', (e) => {
+            if (!mobileMenus.some((m) => m.contains(e.target))) mobileFermeMenus();
+        });
+        L.DomEvent.disableClickPropagation(mobileBarre);
+        L.DomEvent.disableScrollPropagation(mobileBarre);
 
 
         // ---------------------------------------------------------------
@@ -6573,6 +6816,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (!timelineActive()) return;
             const iso = new Date(timelineDebut + timelineJour * JOUR_MS).toISOString().slice(0, 10);
             timelineDateEl.textContent = formatParcoursDateLong(iso, getCurrentLanguage()) || iso;
+            mobileDate.textContent = timelineDateEl.textContent;
         };
 
         const TIMELINE_INITIALES = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
@@ -6650,10 +6894,31 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Rend les points, qu'on efface le temps du defilement. Appelee par le
         // bouton d'arret, par la fin du parcours, et des qu'on reprend la main
         // sur le curseur ou les fleches.
+        // Le defilement ne laisse que le trait des routes : les points de toutes
+        // les routes affichees et les marqueurs des lieux s'effacent, sans que
+        // les cases bougent. L'arret les rend tels qu'on les avait.
+        const timelineCacheLesPoints = () => {
+            pointsCachesParDefilement = true;
+            Object.keys(parcoursLayers).forEach((k) => updateParcoursVisibility(k));
+            Object.values(expeditionLayers).forEach((couche) => map.removeLayer(couche));
+        };
+
         const timelineRendLesPoints = () => {
             if (!pointsCachesParDefilement) return;
             pointsCachesParDefilement = false;
-            if (timelineActive()) updateParcoursVisibility(timelineKey);
+            Object.keys(parcoursLayers).forEach((k) => updateParcoursVisibility(k));
+            selectedExpeditions.forEach((k) => {
+                if (expeditionLayers[k]) map.addLayer(expeditionLayers[k]);
+            });
+        };
+
+        // Recadrage en cours avant le depart : son rappel, pour que l'arret
+        // l'annule.
+        let timelineAttenteDepart = null;
+
+        const timelineMajBoutonsLecture = (enCours) => {
+            timelinePlay.setAttribute('aria-pressed', String(enCours));
+            if (mobilePlay) mobilePlay.setAttribute('aria-pressed', String(enCours));
         };
 
         const timelineStopAnim = () => {
@@ -6661,7 +6926,11 @@ gtag('config', 'G-LCWV2EVPVQ');
                 cancelAnimationFrame(timelineAnim);
                 timelineAnim = null;
             }
-            timelinePlay.setAttribute('aria-pressed', 'false');
+            if (timelineAttenteDepart) {
+                map.off('moveend', timelineAttenteDepart);
+                timelineAttenteDepart = null;
+            }
+            timelineMajBoutonsLecture(false);
             timelineRendLesPoints();
         };
 
@@ -6690,8 +6959,25 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineAnim = requestAnimationFrame(timelineBoucle);
         };
 
+        // Positions des batiments affiches au moment ou le defilement part. Un
+        // navire dont la position est inconnue a cette date compte pour son
+        // prochain releve : c'est la qu'on le verra apparaitre.
+        const timelinePointsDeDepart = (t) => {
+            const points = [];
+            Object.entries(parcoursTimeline[timelineKey] || {}).forEach(([origine, serie]) => {
+                if (parcoursShipWanted[timelineKey]?.[origine] === false) return;
+                const ici = timelinePosition(serie, t)
+                    || serie.find((p) => p.t >= t)?.latLng;
+                if (ici) points.push(ici);
+            });
+            return points;
+        };
+
+        // Etendue de l'Australie, que le recadrage garde toujours a l'ecran.
+        const TIMELINE_AUSTRALIE = [[-44, 112], [-10, 154]];
+
         const timelineDemarre = () => {
-            if (!timelineActive() || timelineAnim !== null) return;
+            if (!timelineActive() || timelineAnim !== null || timelineAttenteDepart) return;
             // Le defilement va parcourir toutes les dates : le repere affiche
             // ne dirait plus ou l'on est.
             remarquablesRaz();
@@ -6702,9 +6988,29 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineDernierTick = 0;
             // La carte se degage : le trait des routes reste, les points s'en
             // vont, et les badges avancent dessus sans rien qui les brouille.
-            pointsCachesParDefilement = true;
-            updateParcoursVisibility(timelineKey);
-            timelinePlay.setAttribute('aria-pressed', 'true');
+            timelineCacheLesPoints();
+            timelineMajBoutonsLecture(true);
+
+            // Un depart hors du cadre -- Brest, Le Havre, Spithead -- se
+            // montrerait dans le vide : on recule d'abord jusqu'a le voir, avec
+            // l'Australie entiere, et le defilement part une fois la carte posee.
+            const depart = timelinePointsDeDepart(timelineDebut + timelineJour * JOUR_MS);
+            const cadre = map.getBounds().pad(-0.05);
+            if (depart.length && !depart.every((ll) => cadre.contains(ll))) {
+                const bornes = L.latLngBounds(TIMELINE_AUSTRALIE);
+                depart.forEach((ll) => bornes.extend(ll));
+                timelineAttenteDepart = () => {
+                    timelineAttenteDepart = null;
+                    timelineAnim = requestAnimationFrame(timelineBoucle);
+                };
+                map.once('moveend', timelineAttenteDepart);
+                map.flyToBounds(bornes, {
+                    paddingTopLeft: [20, 70],
+                    paddingBottomRight: [20, 50],
+                    duration: 1.2
+                });
+                return;
+            }
             timelineAnim = requestAnimationFrame(timelineBoucle);
         };
 
@@ -7165,6 +7471,11 @@ gtag('config', 'G-LCWV2EVPVQ');
             timelineMajBoutonsPas();
         });
         timelinePlay.addEventListener('click', timelineDemarre);
+        // Sur mobile, un seul bouton : lecture, puis pause.
+        mobilePlay.addEventListener('click', () => {
+            if (timelineAnim !== null || timelineAttenteDepart) timelineStopAnim();
+            else timelineDemarre();
+        });
         timelineStop.addEventListener('click', timelineArret);
         timelinePrev.addEventListener('click', () => timelinePas(-1));
         timelineNext.addEventListener('click', () => timelinePas(1));
