@@ -127,10 +127,16 @@
             overflow: visible;
         }
         @media (max-width: 768px) {
-            /* la barre d'info occupe toute la largeur : on passe au-dessus d'elle */
+            /* Sur la ligne du bas, à droite de la barre d'info : la mention se
+               tronque à la place qui reste (--place-attribution, mesurée en JS). */
             .leaflet-control-attribution {
-                max-width: 60vw !important;
-                margin-bottom: 32px !important;
+                max-width: var(--place-attribution, 40vw) !important;
+                margin-bottom: 0 !important;
+            }
+            /* touchée, elle se déplie au-dessus de la barre */
+            .leaflet-control-attribution:hover,
+            .leaflet-control-attribution:focus-within {
+                max-width: 92vw !important;
             }
         }
 
@@ -1331,6 +1337,22 @@
             width: auto !important;
             max-width: none !important;
             margin-right: 20px;
+        }
+        /* Plein ecran sur mobile : les bornes des fiches ordinaires (380 px de
+           large, 65 % de la hauteur) sont levees, et les coins redeviennent
+           droits. */
+        @media (max-width: 768px) {
+            .fiche-hote { z-index: 1300; }
+            .fiche-hote .leaflet-popup.fiche-agrandie { max-width: none; }
+            .fiche-hote .fiche-agrandie .leaflet-popup-content-wrapper {
+                height: var(--fiche-h);
+                border-radius: 0;
+            }
+            .fiche-hote .fiche-agrandie .leaflet-popup-content {
+                max-height: none;
+                overflow: visible;
+                margin: 16px 16px 24px;
+            }
         }
         .fiche-agrandie .parcours-popup { font-size: 14px; line-height: 1.5; }
         .fiche-agrandie .parcours-popup-date { font-size: 16px; }
@@ -2565,6 +2587,16 @@ gtag('config', 'G-LCWV2EVPVQ');
         // fond propose alors aussi les cartes anciennes, dans l'ordre des
         // lignes du panneau.
         const ecranMobile = window.matchMedia('(max-width: 768px)');
+
+        // La barre d'info change de largeur (curseur d'opacité des cartes
+        // anciennes, rotation) : la mention des sources prend le reste.
+        const barreInfo = document.querySelector('.map-info-control');
+        if (barreInfo && window.ResizeObserver) {
+            new ResizeObserver(() => {
+                const place = Math.max(60, window.innerWidth - barreInfo.getBoundingClientRect().right - 4);
+                document.documentElement.style.setProperty('--place-attribution', `${place}px`);
+            }).observe(barreInfo);
+        }
         const CARTES_DU_SELECTEUR = [
             { nom: 'beautemps', libelle: 'Beautemps-Beaupré 1807' },
             { nom: 'freycinet', libelle: 'Freycinet 1808' },
@@ -3567,8 +3599,11 @@ gtag('config', 'G-LCWV2EVPVQ');
             document.getElementById('map')?.focus({ preventScroll: true });
         };
 
-        const openImageModal = (src, alt) => {
+        // `secours` : adresses a essayer tour a tour si l'image ne vient pas.
+        const openImageModal = (src, alt, secours = '') => {
             if (!modal || !modalImage) { return; }
+            modalImage.dataset.secours = secours;
+            modalImage.onerror = () => imageSecours(modalImage);
             modalImage.src = src;
             modalImage.alt = alt;
             modal.classList.add('open');
@@ -3780,7 +3815,7 @@ gtag('config', 'G-LCWV2EVPVQ');
             const buttonImg = button.dataset.img || button.querySelector('img')?.src || '';
             const buttonAlt = button.dataset.alt || button.querySelector('img')?.alt || '';
             if (buttonImg) {
-                openImageModal(buttonImg, buttonAlt);
+                openImageModal(buttonImg, buttonAlt, button.dataset.secours || '');
             }
         });
 
@@ -3856,7 +3891,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                 const buttonImg = button.dataset.img || button.querySelector('img')?.src || mainImage?.src;
                 const buttonAlt = button.dataset.alt || button.querySelector('img')?.alt || mainImage?.alt || '';
                 if (buttonImg) {
-                    button.addEventListener('click', () => openImageModal(buttonImg, buttonAlt));
+                    button.addEventListener('click', () => openImageModal(
+                        button.dataset.img || buttonImg, buttonAlt, button.dataset.secours || ''));
                     button.dataset.modalBound = 'true';
                 }
             });
@@ -4060,6 +4096,28 @@ gtag('config', 'G-LCWV2EVPVQ');
             return repaired;
         }
         // Preview AVIF → JPEG pour les images locales des popups
+        // Wikimedia refuse en rafale les fichiers originaux (HTTP 429) et
+        // demande qu'on se serve de ses vignettes, aux largeurs qu'il publie.
+        // Une image deja plus etroite que la vignette n'en a pas : l'original
+        // reste alors en dernier recours.
+        const vignetteWikimedia = (url, largeur) => {
+            const m = /^(https:\/\/upload\.wikimedia\.org\/wikipedia\/[a-z]+)\/([0-9a-f])\/([0-9a-f]{2})\/([^/?#]+)$/.exec(url || '');
+            if (!m) return null;
+            const [, base, a, ab, nom] = m;
+            const ext = /\.tiff?$/i.test(nom) ? '.jpg' : (/\.svg$/i.test(nom) ? '.png' : '');
+            return `${base}/thumb/${a}/${ab}/${nom}/${largeur}px-${nom}${ext}`;
+        };
+
+        // Passe a l'adresse suivante de data-secours ; la liste epuisee,
+        // l'image renonce. Appelee par l'attribut onerror des fiches.
+        window.imageSecours = (img) => {
+            const liste = (img.dataset.secours || '').split('|').filter(Boolean);
+            const suivante = liste.shift();
+            img.dataset.secours = liste.join('|');
+            if (!suivante) { img.onerror = null; return; }
+            img.src = suivante;
+        };
+
         const enhancePopupImagesWithAvif = (() => {
             const avifCache = new Map(); // avifSrc → Promise<boolean>
             const hasAvif = (avifSrc) => {
@@ -4145,6 +4203,16 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const visible = (el) => el && !el.hidden && el.offsetParent !== null;
         const cadreFiche = () => {
+            const s = ficheHote.style;
+            // Sur un telephone, la fiche agrandie prend l'ecran entier, barre
+            // de navigation comprise : il n'y a pas de place a partager.
+            if (ecranMobile.matches) {
+                s.setProperty('--fiche-left', '0px');
+                s.setProperty('--fiche-top', '0px');
+                s.setProperty('--fiche-w', `${window.innerWidth}px`);
+                s.setProperty('--fiche-h', `${window.innerHeight}px`);
+                return;
+            }
             const marge = 10;
             const carte = map.getContainer().getBoundingClientRect();
             const exped = document.querySelector('.layer-toggle');
@@ -4154,7 +4222,6 @@ gtag('config', 'G-LCWV2EVPVQ');
                 const el = document.getElementById(id);
                 if (visible(el)) top = Math.max(top, el.getBoundingClientRect().bottom + marge);
             });
-            const s = ficheHote.style;
             s.setProperty('--fiche-left', `${left}px`);
             s.setProperty('--fiche-top', `${top}px`);
             s.setProperty('--fiche-w', `${Math.max(280, window.innerWidth - marge - left)}px`);
@@ -6976,6 +7043,23 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Etendue de l'Australie, que le recadrage garde toujours a l'ecran.
         const TIMELINE_AUSTRALIE = [[-44, 112], [-10, 154]];
 
+        // Route suivie depuis la date de depart jusqu'a l'arrivee en vue de
+        // l'Australie : la traversee de l'Atlantique et de l'ocean Indien doit
+        // tenir dans le cadre, pas seulement le port de depart.
+        const timelineRouteVersAustralie = (t) => {
+            const australie = L.latLngBounds(TIMELINE_AUSTRALIE);
+            const points = [];
+            Object.entries(parcoursTimeline[timelineKey] || {}).forEach(([origine, serie]) => {
+                if (parcoursShipWanted[timelineKey]?.[origine] === false) return;
+                for (const p of serie) {
+                    if (p.t < t) continue;
+                    if (australie.contains(p.latLng)) break;
+                    points.push(p.latLng);
+                }
+            });
+            return points;
+        };
+
         const timelineDemarre = () => {
             if (!timelineActive() || timelineAnim !== null || timelineAttenteDepart) return;
             // Le defilement va parcourir toutes les dates : le repere affiche
@@ -6999,6 +7083,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             if (depart.length && !depart.every((ll) => cadre.contains(ll))) {
                 const bornes = L.latLngBounds(TIMELINE_AUSTRALIE);
                 depart.forEach((ll) => bornes.extend(ll));
+                timelineRouteVersAustralie(timelineDebut + timelineJour * JOUR_MS)
+                    .forEach((ll) => bornes.extend(ll));
                 timelineAttenteDepart = () => {
                     timelineAttenteDepart = null;
                     timelineAnim = requestAnimationFrame(timelineBoucle);
@@ -8009,22 +8095,32 @@ gtag('config', 'G-LCWV2EVPVQ');
                     }
 
                     if (place.imgUrl && place.imgUrl.trim() !== "") {
-                        const escapedImg = escapeHtml(place.imgUrl);
+                        const distante = place.imgUrl.trim();
                         const localImgPath = cheminTelecharg(place.code, 'Img');
-                        const imgSrc = localImgPath || escapedImg;
-                        const imgOnerror = localImgPath
-                            ? ` data-remote="${escapedImg}" onerror="this.onerror=null;this.src=this.dataset.remote;var b=this.closest('button');if(b)b.dataset.img=this.dataset.remote;"`
-                            : '';
+                        // Chaque image tente d'abord la copie locale, puis une
+                        // vignette Wikimedia, et l'original en dernier.
+                        const chaine = (...urls) => escapeHtml(
+                            urls.filter((u, i) => u && urls.indexOf(u) === i).join('|'));
+                        const vignetteGrande = vignetteWikimedia(distante, 1280);
+                        const imgSrc = localImgPath || escapeHtml(vignetteGrande || distante);
+                        const secoursGrand = localImgPath
+                            ? chaine(vignetteGrande, distante)
+                            : chaine(vignetteGrande ? distante : null);
+                        const surErreur = ` onerror="imageSecours(this);var b=this.closest('button');if(b){b.dataset.img=this.src;b.dataset.secours=this.dataset.secours;}"`;
+                        const imgOnerror = ` data-secours="${secoursGrand}"${surErreur}`;
                         // La vignette du telephone n'a que faire de cinq mille
                         // pixels : elle prend la miniature, quand elle existe.
+                        // Une image deja petite n'a pas de miniature : la
+                        // copie locale entiere la remplace alors.
                         const miniSrc = localImgPath
                             ? localImgPath.replace(/\.jpg$/i, '_min.jpg') : null;
-                        const thumbSrc = miniSrc || imgSrc;
-                        const thumbOnerror = miniSrc
-                            ? ` data-plein="${imgSrc}" onerror="this.onerror=null;this.src=this.dataset.plein;"`
-                            : imgOnerror;
+                        const vignettePetite = vignetteWikimedia(distante, 330);
+                        const thumbSrc = miniSrc || escapeHtml(vignettePetite || distante);
+                        const thumbOnerror = ` data-secours="${miniSrc
+                            ? chaine(localImgPath, vignettePetite, distante)
+                            : chaine(vignettePetite ? distante : null)}" onerror="imageSecours(this);"`;
                         const mobileThumbHtml = `
-                                <button type="button" class="popup-image-button popup-image-thumb" data-img="${imgSrc}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
+                                <button type="button" class="popup-image-button popup-image-thumb" data-img="${imgSrc}" data-secours="${secoursGrand}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
                                     <img src="${thumbSrc}" alt="${safeAlt}" loading="lazy"${thumbOnerror}>
                                 </button>`;
 
@@ -8041,7 +8137,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
                         const imageHtml = `
                                 <div class="popup-image-wrapper">
-                                    <button type="button" class="popup-image-button" data-img="${imgSrc}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
+                                    <button type="button" class="popup-image-button" data-img="${imgSrc}" data-secours="${secoursGrand}" data-alt="${safeAlt}" aria-label="${trans['popup-image-expand-label']}">
                                         <img src="${imgSrc}" alt="${safeAlt}" class="popup-image" loading="lazy"${imgOnerror}>
                                     </button>
                                     ${creditHtml}
