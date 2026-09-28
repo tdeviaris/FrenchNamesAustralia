@@ -6,7 +6,8 @@ Ce n'est pas le recit publie en 1814 (champ journal_flinders), mais le
 journal tenu au jour le jour sur l'Investigator, conserve a la Mitchell
 Library (State Library of New South Wales, Safe 1/24 et Safe 1/25) et
 transcrit par ses benevoles. Les deux volumes, exportes en PDF depuis le
-site de la bibliotheque, sont dans Toponymes/docs :
+site de la bibliotheque, sont dans
+Toponymes/01_Sources/Journaux_de_bord/Flinders :
 
     vol. 1 : 19 janvier 1801 - juillet 1802 (Port Jackson)
     vol. 2 : 22 juillet 1802 - 10 juin 1803
@@ -26,7 +27,7 @@ data/journaux/flinders_en.json et flinders_fr.json : ni le GeoJSON du
 parcours, ni le champ journal_flinders n'y sont touches.
 
     python3 scripts/journal_navigation_flinders.py extraire
-        -> Toponymes/sources/flinders_navigation/en/AAAA-MM-JJ.txt, une
+        -> Toponymes/01_Sources/Numerisations/flinders_navigation/en/AAAA-MM-JJ.txt, une
            journee par fichier, sources de la traduction
     python3 scripts/journal_navigation_flinders.py ratures [--ecrire]
         -> marque entre ⟦ et ⟧, dans les fichiers en/ deja extraits, les
@@ -42,14 +43,14 @@ from collections import OrderedDict
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOPONYMES = os.path.dirname(RACINE)
-DOCS = os.path.join(TOPONYMES, 'docs')
+DOCS = os.path.join(TOPONYMES, '01_Sources', 'Journaux_de_bord', 'Flinders')
 VOLUMES = [
     ("Matthew Flinders journal on HMS 'Investigator', vol. 1, 1801-1802.pdf",
      dt.date(1801, 7, 17), '[Page 58]'),
     ("Matthew Flinders journal on the Investigator, vol. 2, 24 July 1802-10 June 1803.pdf",
      dt.date(1802, 7, 22), None),
 ]
-SOURCES = os.path.join(TOPONYMES, 'sources', 'flinders_navigation')
+SOURCES = os.path.join(TOPONYMES, '01_Sources', 'Numerisations', 'flinders_navigation')
 PARCOURS = os.path.join(RACINE, 'data', 'flinders_parcours.geojson')
 JOURNAUX = {l: os.path.join(RACINE, 'data', 'journaux', f'flinders_{l}.json') for l in ('en', 'fr')}
 CHAMP = 'journal_flinders_navigation'

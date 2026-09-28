@@ -119,7 +119,7 @@ Depuis septembre 2026, le site porte le journal **entier**, journée par
 journée, en français et en anglais (`data/journaux/baudin_{fr,en}.json`,
 champs `journal_hamelin` et `journal_hamelin_manuscrit`) : le cahier 1 dans la
 transcription de Dany Bréelle, le cahier 2 dans une lecture du manuscrit
-(photos du microfilm, `docs/Hamelin/images/`), relue sur l'original pour les
+(photos du microfilm, `Toponymes/01_Sources/Journaux_de_bord/Hamelin/images/`), relue sur l'original pour les
 passages douteux. `extraire_site.py` les verse dans `corpus/journaux_site/`.
 La lecture brute du cahier 2 n'est plus indexée : ses journées corrigées la
 remplacent.

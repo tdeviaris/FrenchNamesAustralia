@@ -24,7 +24,9 @@ import unicodedata
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCES = os.path.join(RACINE, 'rag', 'sources')
 CORPUS = os.path.join(RACINE, 'rag', 'corpus', 'journaux')
-DOCS_PROJET = os.path.join(os.path.dirname(RACINE), 'docs')
+SOURCES_PROJET = os.path.join(os.path.dirname(RACINE), '01_Sources')
+JOURNAUX_PROJET = os.path.join(SOURCES_PROJET, 'Journaux_de_bord')
+BIBLIOGRAPHIE_PROJET = os.path.join(SOURCES_PROJET, 'Bibliographie')
 
 SYDNEY = 'https://baudin.sydney.edu.au/journals/'
 
@@ -270,7 +272,7 @@ def convertit_gutenberg(motif):
 
 
 def convertit_documents_locaux(motif):
-    """Les pièces déjà présentes dans docs/, à la racine du projet Toponymes."""
+    """Les pièces déjà présentes dans docs/ du site et dans Toponymes/01_Sources/."""
     print('\n📙 Documents déposés dans docs/')
     pieces = [
         ('Flinders_Toponymy.pdf', os.path.join(RACINE, 'docs'),
@@ -278,18 +280,18 @@ def convertit_documents_locaux(motif):
          'Dany Bréelle', 'en',
          "Journal of the Hakluyt Society, https://www.hakluyt.com/downloadable_files/Journal/Flinders_Toponymy.pdf",
          [('expedition', 'Flinders')]),
-        ('Flinders Journal Investigator Transcription.doc', DOCS_PROJET,
+        ('Flinders Journal Investigator Transcription.doc', os.path.join(JOURNAUX_PROJET, 'Flinders'),
          "Journal de bord de l'Investigator (transcription)",
          'Matthew Flinders', 'en',
-         "transcription du journal de bord de l'Investigator, dossier docs/ du projet",
+         "transcription du journal de bord de l'Investigator, dossier 01_Sources/ du projet",
          [('expedition', 'Flinders'), ('navire', "l'Investigator")]),
-        ('Baudin Journal de mer complet.docx', DOCS_PROJET,
+        ('Baudin Journal de mer complet.docx', os.path.join(JOURNAUX_PROJET, 'Baudin'),
          "Journal de mer autographe de Nicolas Baudin (transcription Marc Soviche)",
          'Nicolas Baudin', 'fr',
          "transcription de Marc Soviche d'après les Archives nationales, Marine 5JJ36 à 5JJ40",
          [('expedition', 'Baudin'), ('transcription', 'Marc Soviche'),
           ('cote', 'ANF Marine 5JJ36-5JJ40')]),
-        ('Baudin-Bibliography-Current-9-September-2023.docx', DOCS_PROJET,
+        ('Baudin-Bibliography-Current-9-September-2023.docx', BIBLIOGRAPHIE_PROJET,
          "Bibliographie du Baudin Legacy Project (9 septembre 2023)",
          '', 'en',
          "Baudin Legacy Project, université de Sydney",
@@ -297,7 +299,7 @@ def convertit_documents_locaux(motif):
         # L'export EndNote de Dany Bréelle : 504 références, francophones pour
         # l'essentiel, avec les cotes BnF et les liens Gallica. Elle ne partage
         # que 84 auteurs sur 295 avec celle de Sydney — les deux se complètent.
-        ('Références Terres Australes Endnotes Sept 26.rtf', DOCS_PROJET,
+        ('Références Terres Australes Endnotes Sept 26.rtf', BIBLIOGRAPHIE_PROJET,
          "Références sur les Terres australes (bibliographie Dany Bréelle)",
          'Dany Bréelle', 'fr',
          "bibliographie de travail de Dany Bréelle, export EndNote de septembre 2026",

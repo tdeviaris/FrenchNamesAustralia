@@ -85,7 +85,7 @@ def main() -> int:
     parser.add_argument(
         "--input",
         type=Path,
-        default=repo_root / "Parcours et Chronologie" / "Historique Baudin.tsv",
+        default=repo_root / "03_Parcours" / "Chronologies_et_tables" / "Historique Baudin.tsv",
         help="Chemin vers le fichier TSV source.",
     )
     parser.add_argument(
