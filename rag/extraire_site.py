@@ -52,6 +52,10 @@ JOURNAUX_DU_SITE = {
     'journal_breton_naturaliste': "Journal de Désiré Breton (le Naturaliste)",
     'journal_geographe': "Journal de bord du Géographe",
     'journal_flinders': "Récit de Matthew Flinders, A Voyage to Terra Australis",
+    'journal_flinders_navigation': "Journal de navigation de Flinders sur l'Investigator (State Library of NSW)",
+    'journal_hamelin': "Journal de Hamelin, commandant du Naturaliste, cahier 1 (transcription de Dany Bréelle)",
+    'journal_hamelin_manuscrit': "Journal de Hamelin, commandant du Naturaliste, cahier 2 (lecture du manuscrit)",
+    'journal_labillardiere': "Labillardière, Relation du voyage à la recherche de La Pérouse",
 }
 
 MOIS = ('janvier février mars avril mai juin juillet août septembre '
@@ -250,7 +254,8 @@ def extrait_journaux():
     print('\n📖 Journaux publiés par le site')
     total = 0
     for fichier, langue in (('baudin_fr.json', 'fr'), ('baudin_en.json', 'en'),
-                            ('flinders_fr.json', 'fr'), ('flinders_en.json', 'en')):
+                            ('flinders_fr.json', 'fr'), ('flinders_en.json', 'en'),
+                            ('entrecasteaux_fr.json', 'fr'), ('entrecasteaux_en.json', 'en')):
         chemin = os.path.join(RACINE, 'data', 'journaux', fichier)
         if not os.path.exists(chemin):
             continue
