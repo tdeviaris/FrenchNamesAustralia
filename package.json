@@ -13,7 +13,6 @@
     "mcp:stdio": "node mcp/bin/stdio.js",
     "mcp:smoke": "node mcp/bin/smoke.js",
     "mcp:inspect": "npx -y @modelcontextprotocol/inspector node mcp/bin/stdio.js",
-    "setup-assistant": "node scripts/setup-assistant.js",
     "setup-responses": "node responses/setup-vector-store.js",
     "rag:sources": "./rag/telecharger_sources.sh tout",
     "rag:corpus": ".venv/bin/python rag/convertir_sources.py && .venv/bin/python rag/extraire_site.py",

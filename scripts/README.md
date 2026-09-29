@@ -4,8 +4,7 @@ Ce répertoire regroupe les scripts utilisés pour générer / nettoyer des cont
 
 ## Assistant IA
 
-- `setup-assistant.js` : crée / met à jour l’assistant OpenAI (upload des fichiers de connaissance, création de l’assistant, sauvegarde de l’ID).
-  - Usage : `node scripts/setup-assistant.js`
+La base de connaissance de l’assistant est fabriquée par `rag/` (voir `rag/README.md`). L’ancien `setup-assistant.js` (API Assistants) est archivé hors dépôt, dans `Toponymes/_archives/versions_precedentes_site/`.
 
 ## Données / conversions
 
