@@ -7133,9 +7133,12 @@ gtag('config', 'G-LCWV2EVPVQ');
         const timelineMajBoutonsPas = () => {
             if (!timelineActive() || !timelineReperes.length) return;
             const t = timelineDebut + timelineJour * JOUR_MS;
-            timelinePrev.disabled = !timelineReperes.some((d) => d < t - 1);
-            timelineNext.disabled = !timelineReperes.some((d) => d > t + 1);
+            const reperes = timelineReperesDe(timelineNavireOuvert());
+            timelinePrev.disabled = !reperes.some((d) => d < t - 1);
+            timelineNext.disabled = !reperes.some((d) => d > t + 1);
         };
+        // Ouvrir ou fermer une fiche change le batiment que suivent les fleches.
+        map.on('popupopen popupclose', () => setTimeout(timelineMajBoutonsPas, 0));
 
         // Plusieurs batiments peuvent avoir un releve le meme jour : une seule
         // fiche s'ouvre, et c'est celle du navire le plus haut dans cet ordre.
@@ -7158,12 +7161,14 @@ gtag('config', 'G-LCWV2EVPVQ');
         // Le marqueur dont la fiche s'ouvrirait a cette date, ou null. On ecarte
         // les batiments decoches et les points que les crochets ont retires de
         // la carte : deployer la fiche d'un point absent n'aurait pas de sens.
-        const timelineMarqueurFiche = (t) => {
+        // `navire` : ne retenir que les points de ce batiment.
+        const timelineMarqueurFiche = (t, navire = null) => {
             const liste = parcoursMarqueurs[timelineKey]?.get(t);
             if (!liste || !liste.length) return null;
             const fenetre = parcoursFenetre[timelineKey];
             const montrable = (m) => {
                 const coques = m.__coques || [m.__parcoursGroupe];
+                if (navire && !coques.includes(navire)) return false;
                 if (!coques.some((c) => parcoursShipWanted[timelineKey]?.[c] !== false)) {
                     return false;
                 }
@@ -7178,27 +7183,54 @@ gtag('config', 'G-LCWV2EVPVQ');
             return candidats[0] || null;
         };
 
-        const timelineOuvreFiche = (t) => {
-            const marqueur = timelineMarqueurFiche(t);
+        const timelineOuvreFiche = (t, navire = null) => {
+            const marqueur = timelineMarqueurFiche(t, navire);
             if (marqueur) marqueur.openPopup();
         };
+
+        // Fiche de parcours ouverte : les fleches suivent son batiment, sans
+        // sauter sur un autre qui aurait un releve plus proche. Un point
+        // partage par deux coques de conserve garde celle qu'on suivait deja ;
+        // a defaut, la premiere dans l'ordre des fiches.
+        let timelineNavireSuivi = null;
+        const timelineNavireOuvert = () => {
+            const m = currentOpenMarker;
+            if (!m || !m.__isParcoursPoint || !Number.isFinite(m.__t)) return null;
+            if (!(parcoursMarqueurs[timelineKey]?.get(m.__t) || []).includes(m)) return null;
+            const coques = m.__coques || [m.__parcoursGroupe];
+            if (timelineNavireSuivi && coques.includes(timelineNavireSuivi)) return timelineNavireSuivi;
+            const rang = (c) => {
+                const i = TIMELINE_ORDRE_FICHE.indexOf(c);
+                return i === -1 ? TIMELINE_ORDRE_FICHE.length : i;
+            };
+            return coques.slice().sort((a, b) => rang(a) - rang(b))[0];
+        };
+
+        // Dates ou les fleches peuvent s'arreter : celles du batiment suivi
+        // quand une fiche est ouverte, sinon celles de tous.
+        const timelineReperesDe = (navire) => (navire
+            ? timelineReperes.filter((d) => timelineMarqueurFiche(d, navire))
+            : timelineReperes);
 
         const timelinePas = (sens) => {
             if (!timelineActive() || !timelineReperes.length) return;
             timelineStopAnim();
+            const navire = timelineNavireOuvert();
+            timelineNavireSuivi = navire;
+            const reperes = timelineReperesDe(navire);
             const t = timelineDebut + timelineJour * JOUR_MS;
             let cible;
             if (sens > 0) {
-                cible = timelineReperes.find((d) => d > t + 1);
+                cible = reperes.find((d) => d > t + 1);
             } else {
-                const avant = timelineReperes.filter((d) => d < t - 1);
+                const avant = reperes.filter((d) => d < t - 1);
                 cible = avant[avant.length - 1];
             }
             if (cible === undefined) return;
             timelineAllerA(cible);
             // Le pas a pas ouvre la fiche et la laisse ouverte ; seul le
             // defilement automatique les referme.
-            timelineOuvreFiche(cible);
+            timelineOuvreFiche(cible, navire);
         };
 
         // ---------------------------------------------------------------
