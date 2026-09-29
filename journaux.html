@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journaux de bord comparés | French Place Names Australia</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="stylesheet" href="css/nav.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+        :root { --nav-height: 72px; --bleu: #0056b3; --bleu-vif: #0b63d1; }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            background-color: #999;
+            color: #333;
+            padding-top: var(--nav-height);
+        }
+        /* Page large : les colonnes de journaux ont besoin de toute la place. */
+        .container { max-width: 1600px; margin: 0 auto; padding: 16px; }
+        .content-section {
+            background: #fff;
+            padding: clamp(12px, 2vw, 20px);
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .content-section h2 {
+            font-size: 1.6rem; font-weight: 700; color: #333; text-align: center;
+            border-bottom: 2px solid var(--bleu); padding-bottom: 6px; margin: 0 0 12px;
+        }
+        .maquette {
+            display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px;
+            background: #fff3cd; color: #7a5b00; font-size: 0.75rem; font-weight: 700;
+            vertical-align: middle; letter-spacing: 0.03em;
+        }
+
+        /* ---------- Les trois etapes de la selection ---------- */
+        .filtres {
+            display: grid;
+            grid-template-columns: minmax(200px, 0.9fr) minmax(240px, 1fr) minmax(300px, 2.2fr);
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 900px) { .filtres { grid-template-columns: 1fr; } }
+        .etape {
+            border: 1px solid #e5edf6; border-radius: 12px; background: #fbfdff;
+            padding: 8px 12px;
+        }
+        .etape h3 {
+            margin: 0 0 6px; font-size: 0.95rem; color: var(--bleu);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: var(--bleu); color: #fff; font-size: 0.75rem;
+        }
+        .choix { display: flex; align-items: center; gap: 8px; margin: 3px 0; cursor: pointer; }
+        /* Les navires de Baudin, en retrait sous l'expedition. */
+        .choix.sous-choix { margin-left: 24px; font-size: 0.88rem; }
+        .choix.sous-choix.eteint { opacity: 0.45; cursor: default; }
+        .choix input { accent-color: var(--bleu-vif); width: 16px; height: 16px; margin: 0; }
+        .choix .periode { color: #888; font-size: 0.8rem; margin-left: auto; white-space: nowrap; }
+        .pastille-exp {
+            width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto;
+        }
+
+        /* Dates : champ + icone calendrier, comme sur la carte. */
+        .ligne-date { display: flex; align-items: center; gap: 8px; margin: 4px 0; position: relative; }
+        .periode-grille { display: flex; align-items: center; gap: 10px; }
+        .periode-dates { flex: 0 1 auto; }
+        .champ-date { width: 180px; }
+        .jour-boutons { display: flex; gap: 4px; }
+        /* Boutons de la carte (map.html, point precedent / suivant). */
+        .timeline-btn {
+            width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+            padding: 0; border: 1px solid rgba(0,0,0,0.25); border-radius: 4px; background: #fff; cursor: pointer;
+        }
+        .timeline-btn:hover:not(:disabled) { background: #f0f0f0; }
+        .timeline-btn:disabled { opacity: 0.35; cursor: default; }
+        .timeline-icon-next, .timeline-icon-prev {
+            width: 6px; height: 6px; border: solid #333; border-width: 2px 2px 0 0;
+        }
+        .timeline-icon-next { transform: rotate(45deg); margin-left: -3px; }
+        .timeline-icon-prev { transform: rotate(-135deg); margin-right: -3px; }
+        .ligne-date label { width: 34px; font-size: 0.85rem; color: #555; }
+        .champ-date {
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid rgba(0,0,0,0.2); border-radius: 6px; padding: 5px 6px 5px 10px;
+            background: #fff; font-size: 0.9rem; min-height: 30px;
+        }
+        .cal-btn {
+            width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+            padding: 0; border: 0; background: none; color: var(--bleu-vif); cursor: pointer;
+            border-radius: 3px; line-height: 0;
+        }
+        .cal-btn:hover { color: #08408c; }
+        .cal-btn svg { width: 15px; height: 15px; display: block; }
+        /* Dates remarquables : la meme liste deroulante que sur la carte. */
+        .remarquables-select {
+            width: 100%; margin-top: 6px; font-family: inherit; font-size: 0.82rem; color: #222;
+            background: #fff; border: 1px solid rgba(0,0,0,0.2); border-radius: 6px; padding: 5px 6px;
+        }
+
+        /* Le calendrier de saisie : copie de celui de la carte (map.html). */
+        .timeline-calendar {
+            position: absolute; top: calc(100% + 5px); right: 0; z-index: 1200;
+            width: 224px; padding: 6px; background: #fff;
+            border: 1px solid rgba(0,0,0,0.2); border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .timeline-calendar[hidden] { display: none; }
+        .cal-head { display: flex; align-items: center; gap: 4px; margin-bottom: 5px; }
+        .cal-nav {
+            flex: 0 0 auto; width: 20px; height: 22px; padding: 0;
+            border: 1px solid rgba(0,0,0,0.2); border-radius: 4px; background: #fff;
+            color: var(--bleu-vif); font-size: 14px; line-height: 1; cursor: pointer;
+        }
+        .cal-nav:hover:not(:disabled) { background: rgba(11,99,209,0.10); }
+        .cal-nav:disabled { color: rgba(0,0,0,0.25); cursor: default; }
+        .cal-head select {
+            flex: 1 1 auto; min-width: 0; font-family: inherit; font-size: 12px; color: #222;
+            background: #fff; border: 1px solid rgba(0,0,0,0.2); border-radius: 4px; padding: 2px 3px;
+        }
+        .cal-head .cal-annee { flex: 0 0 62px; }
+        .cal-dows, .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
+        .cal-dow { text-align: center; font-size: 10px; font-weight: 700; color: rgba(0,0,0,0.5); padding-bottom: 2px; }
+        .cal-jour {
+            position: relative; height: 24px; padding: 0; border: 0; border-radius: 4px;
+            background: none; font-family: inherit; font-size: 11px; color: #222; cursor: pointer;
+        }
+        .cal-jour:hover:not(:disabled) { background: rgba(11,99,209,0.12); }
+        .cal-jour:disabled { color: rgba(0,0,0,0.22); cursor: default; }
+        .cal-jour.is-vide { visibility: hidden; }
+        .cal-jour.is-choisi { background: var(--bleu-vif); color: #fff; font-weight: 700; }
+        .cal-jour.dans-periode:not(.is-choisi) { background: rgba(11,99,209,0.10); }
+        .cal-jour.a-releve::after {
+            content: ''; position: absolute; left: 50%; bottom: 2px; width: 3px; height: 3px;
+            margin-left: -1.5px; border-radius: 50%; background: var(--bleu-vif);
+        }
+        .cal-jour.is-choisi.a-releve::after { background: #fff; }
+
+        /* Journaux : une colonne par expedition ; le nom de chacune se tient
+           sur la ligne du titre de l'etape, au-dessus de sa colonne. */
+        .journaux-grille { display: grid; column-gap: 18px; row-gap: 0; align-items: start; }
+        .journaux-grille .entete { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; min-height: 22px; }
+        .journaux-grille .entete h3 { margin: 0; }
+        .groupe-titre { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+        .journaux-grille .choix { margin: 1px 0; line-height: 1.25; font-size: 0.92rem; }
+        .choix.vide { opacity: 0.45; cursor: default; }
+        .choix .nb { color: #888; font-size: 0.78rem; margin-left: auto; white-space: nowrap; }
+        .choix .navire { color: #888; font-style: italic; font-size: 0.82rem; }
+        .aucun { color: #999; font-style: italic; font-size: 0.9rem; }
+        .tout { font: inherit; font-size: 0.75rem; margin-left: auto; border: 0; background: none; color: var(--bleu-vif); cursor: pointer; }
+
+        /* ---------- Le tableau comparatif ---------- */
+        .cadre {
+            height: 68vh; min-height: 360px; overflow: auto;
+            border: 1px solid #d8e2ee; border-radius: 8px; background: #fff;
+        }
+        table.comparaison { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; }
+        .comparaison th, .comparaison td {
+            vertical-align: top; text-align: left; padding: 10px 12px;
+            border-bottom: 1px solid #edf1f6; border-right: 1px solid #edf1f6;
+        }
+        /* En-tete fixe en haut, colonne des dates fixe a gauche. */
+        .comparaison thead th {
+            position: sticky; top: 0; z-index: 2; background: #f4f8fd;
+            border-bottom: 2px solid var(--bleu); font-size: 0.85rem;
+        }
+        .comparaison thead th .auteur { display: block; font-weight: 700; color: #222; }
+        .comparaison thead th .sous { display: block; font-weight: 400; color: #777; font-size: 0.78rem; margin-top: 2px; }
+        .comparaison thead th .bande { display: block; height: 3px; border-radius: 2px; margin-bottom: 6px; }
+        .comparaison .col-date {
+            position: sticky; left: 0; z-index: 1; background: #fbfdff;
+            width: 120px; min-width: 120px; font-size: 0.85rem;
+        }
+        .comparaison thead .col-date { z-index: 3; background: #f4f8fd; }
+        .comparaison td.col-date .jour { font-weight: 700; color: #222; white-space: nowrap; }
+        .comparaison td.col-date .semaine { color: #888; font-size: 0.78rem; }
+        .comparaison td.col-date .remarquable {
+            margin-top: 6px; font-size: 0.75rem; color: #7a5b00; background: #fff8e1;
+            border-left: 3px solid #e0b000; padding: 3px 5px; border-radius: 0 4px 4px 0;
+        }
+        .comparaison td.texte {
+            width: 380px; min-width: 300px; max-width: 420px;
+            font-family: 'EB Garamond', Georgia, serif; font-size: 1.02rem; line-height: 1.45; color: #2a2a2a;
+        }
+        .comparaison td.texte.vide { background: repeating-linear-gradient(135deg, #fafafa 0 6px, #f4f4f4 6px 12px); }
+        .comparaison tbody tr:hover td.texte:not(.vide) { background: #fffdf5; }
+        /* Un long texte ne fait pas exploser la ligne : il se replie. */
+        .replie { max-height: 14em; overflow: hidden; position: relative; }
+        .replie::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3em;
+            background: linear-gradient(transparent, #fff);
+        }
+        .deplie {
+            font: inherit; font-family: 'Lato', sans-serif; font-size: 0.78rem;
+            border: 0; background: none; color: var(--bleu-vif); cursor: pointer; padding: 4px 0 0;
+        }
+        .lignes { white-space: pre-line; }
+        /* Releves horaires de Hamelin : le tableau de la fiche parcours
+           (map.html), qui defile de cote plutot que d'elargir la colonne. */
+        .journal-tableau-cadre { overflow-x: auto; margin: 0.3em 0 0.5em; }
+        .journal-tableau {
+            border-collapse: collapse; font-family: 'Lato', sans-serif; font-size: 11px;
+            line-height: 1.3; white-space: nowrap; font-variant-numeric: tabular-nums;
+        }
+        .journal-tableau th, .journal-tableau td {
+            border: 1px solid rgba(0,0,0,0.15); padding: 1px 5px; text-align: center;
+        }
+        .journal-tableau th { font-weight: 600; background: rgba(0,0,0,0.05); }
+        .journal-tableau tbody tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+        .journal-tableau td:last-child, .journal-tableau th:last-child { text-align: left; }
+        .journal-para { margin: 0 0 0.6em; }
+        .journal-para:last-child { margin-bottom: 0; }
+        .journal-rature { text-decoration: line-through; opacity: 0.7; }
+        .etat { padding: 40px; text-align: center; color: #888; }
+        footer { background: #1f1f1f; color: #fff; text-align: center; padding: 20px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html" id="nav-home" data-i18n="nav-home">Accueil</a></li>
+        <li><a href="objet.html" id="nav-objet" data-i18n="nav-objet">Objet</a></li>
+        <li><a href="map.html" id="nav-map" data-i18n="nav-map">Carte</a></li>
+        <li><a href="expert.html" id="nav-ai" data-i18n="nav-ai">Q&R IA</a></li>
+        <li><a href="resources.html" id="nav-resources" data-i18n="nav-resources">Ressources</a></li>
+        <li><a href="presentation.html" id="nav-about" data-i18n="nav-about">À propos</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button type="button" id="lang-fr" title="Passer en Français"><img src="img/fr.svg" alt="Français"></button>
+        <button type="button" id="lang-en" title="Switch to English"><img src="img/au.svg" alt="English"></button>
+    </div>
+</nav>
+
+<main class="container">
+    <section class="content-section">
+        <h2><span data-t="titre">Journaux de bord comparés</span><span class="maquette" data-t="maquette">MAQUETTE</span></h2>
+
+        <div class="filtres">
+            <div class="etape">
+                <h3><span class="num">1</span><span data-t="etape1">Expéditions</span></h3>
+                <div id="expeditions"></div>
+            </div>
+            <div class="etape">
+                <h3><span class="num">2</span><span data-t="etape2">Période</span></h3>
+                <div class="periode-grille">
+                <div class="periode-dates">
+                <div class="ligne-date">
+                    <label data-t="du">Du</label>
+                    <div class="champ-date"><span id="debut-txt">—</span>
+                        <button type="button" class="cal-btn" data-borne="debut" aria-haspopup="dialog">
+                            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="1.7" y="3" width="12.6" height="11.3" rx="1.6"/><path d="M1.7 6.4h12.6M5.2 1.7v2.6M10.8 1.7v2.6"/><rect x="4.2" y="8.6" width="2.2" height="2.2" rx="0.5" fill="currentColor" stroke="none"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="ligne-date">
+                    <label data-t="au">Au</label>
+                    <div class="champ-date"><span id="fin-txt">—</span>
+                        <button type="button" class="cal-btn" data-borne="fin" aria-haspopup="dialog">
+                            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="1.7" y="3" width="12.6" height="11.3" rx="1.6"/><path d="M1.7 6.4h12.6M5.2 1.7v2.6M10.8 1.7v2.6"/><rect x="4.2" y="8.6" width="2.2" height="2.2" rx="0.5" fill="currentColor" stroke="none"/></svg>
+                        </button>
+                    </div>
+                    <div class="timeline-calendar" id="calendrier" hidden role="dialog">
+                        <div class="cal-head">
+                            <button type="button" class="cal-nav" id="cal-prev">&lsaquo;</button>
+                            <select id="cal-mois"></select>
+                            <select id="cal-annee" class="cal-annee"></select>
+                            <button type="button" class="cal-nav" id="cal-next">&rsaquo;</button>
+                        </div>
+                        <div class="cal-dows" id="cal-dows"></div>
+                        <div class="cal-grid" id="cal-grid"></div>
+                    </div>
+                </div>
+                </div>
+                <!-- Jour precedent / suivant, comme les boutons de point de la
+                     carte ; actifs quand la periode tient en un seul jour. -->
+                <div class="jour-boutons">
+                    <button type="button" id="jour-prec" class="timeline-btn"><span class="timeline-icon-prev"></span></button>
+                    <button type="button" id="jour-suiv" class="timeline-btn"><span class="timeline-icon-next"></span></button>
+                </div>
+                </div>
+                <select class="remarquables-select" id="remarquables"></select>
+            </div>
+            <div class="etape">
+                <div class="journaux-grille" id="journaux"></div>
+            </div>
+        </div>
+
+        <div class="cadre" id="cadre"><div class="etat" data-t="attente">Chargement…</div></div>
+    </section>
+</main>
+
+<div data-include-footer></div>
+<script src="js/translations.js?v=20260921-glossaires"></script>
+<script src="js/main.js?v=20260905-resources"></script>
+<script>
+(() => {
+    // ------------------------------------------------------------------
+    //  Donnees : les memes fichiers que la carte (data/journaux/*.json).
+    //  Deux champs qui se relaient dans le temps (volumes d'un meme journal,
+    //  ou changement de navire) forment une seule colonne.
+    // ------------------------------------------------------------------
+    const EXPEDITIONS = [
+        { cle: 'entre', couleur: '#238b45', debut: '1791-09-10', fin: '1793-10-20',
+          nom: { fr: "d'Entrecasteaux", en: "d'Entrecasteaux" },
+          fichiers: { fr: 'data/journaux/entrecasteaux_fr.json', en: 'data/journaux/entrecasteaux_en.json' } },
+        { cle: 'baudin', couleur: '#0b63d1', debut: '1800-10-19', fin: '1803-08-07',
+          nom: { fr: 'Baudin', en: 'Baudin' },
+          fichiers: { fr: 'data/journaux/baudin_fr.json', en: 'data/journaux/baudin_en.json' } },
+        { cle: 'flinders', couleur: '#c2255c', debut: '1801-07-18', fin: '1803-12-17',
+          nom: { fr: 'Flinders', en: 'Flinders' },
+          fichiers: { fr: 'data/journaux/flinders_fr.json', en: 'data/journaux/flinders_en.json' } }
+    ];
+    const JOURNAUX = [
+        { id: 'labillardiere', exp: 'entre', champs: ['journal_labillardiere'], forme: 'paras',
+          nom: { fr: 'Labillardière', en: 'Labillardière' },
+          sous: { fr: 'Relation du voyage', en: 'Account of the voyage' }, navire: 'la Recherche' },
+        { id: 'baudin', exp: 'baudin', champs: ['journal_baudin', 'journal_baudin_autographe'],
+          nom: { fr: 'Nicolas Baudin', en: 'Nicolas Baudin' },
+          sous: { fr: 'Journal de mer', en: 'Sea journal' }, navire: 'le Géographe' },
+        { id: 'hamelin', exp: 'baudin', champs: ['journal_hamelin', 'journal_hamelin_manuscrit'], forme: 'lignes',
+          nom: { fr: 'Hamelin', en: 'Hamelin' },
+          sous: { fr: 'Journal du commandant', en: "Commander's journal" }, navire: 'le Naturaliste' },
+        { id: 'breton', exp: 'baudin', champs: ['journal_breton_geographe', 'journal_breton_naturaliste'],
+          nom: { fr: 'Breton', en: 'Breton' },
+          sous: { fr: 'Journal d’aspirant', en: "Midshipman's journal" }, navire: 'Géographe, puis Naturaliste' },
+        { id: 'charles', exp: 'baudin', champs: ['journal_charles_baudin'], forme: 'paras',
+          nom: { fr: 'Charles Baudin', en: 'Charles Baudin' },
+          sous: { fr: 'Souvenirs de jeunesse', en: 'Memories of My Youth' }, navire: 'le Géographe' },
+        { id: 'anon-nat', exp: 'baudin', champs: ['journal_anonyme'],
+          nom: { fr: 'Anonyme', en: 'Anonymous' },
+          sous: { fr: 'Journal du Naturaliste', en: 'Naturaliste logbook' }, navire: 'le Naturaliste' },
+        { id: 'anon-geo', exp: 'baudin', champs: ['journal_geographe'],
+          nom: { fr: 'Anonyme', en: 'Anonymous' },
+          sous: { fr: 'Journal du Géographe', en: 'Géographe logbook' }, navire: 'le Géographe' },
+        { id: 'flinders', exp: 'flinders', champs: ['journal_flinders'],
+          nom: { fr: 'Flinders', en: 'Flinders' },
+          sous: { fr: 'A Voyage to Terra Australis', en: 'A Voyage to Terra Australis' }, navire: "l'Investigator" },
+        { id: 'flinders-nav', exp: 'flinders', champs: ['journal_flinders_navigation'], forme: 'lignes',
+          nom: { fr: 'Flinders', en: 'Flinders' },
+          sous: { fr: 'Journal de navigation', en: 'Logbook' }, navire: "l'Investigator" }
+    ];
+
+    // Le navire de chaque champ, pour les cases Geographe / Naturaliste.
+    const NAVIRES = ['le Géographe', 'le Naturaliste'];
+    const CHAMP_NAVIRE = {
+        journal_baudin: 'le Géographe', journal_baudin_autographe: 'le Géographe',
+        journal_charles_baudin: 'le Géographe', journal_geographe: 'le Géographe',
+        journal_breton_geographe: 'le Géographe',
+        journal_hamelin: 'le Naturaliste', journal_hamelin_manuscrit: 'le Naturaliste',
+        journal_anonyme: 'le Naturaliste', journal_breton_naturaliste: 'le Naturaliste'
+    };
+    // Un repere du Casuarina suit le Geographe, qu'il accompagne.
+    const NAVIRE_REPERE = { 'le Casuarina': 'le Géographe' };
+
+    const T = {
+        fr: { titre: 'Journaux de bord comparés', maquette: 'MAQUETTE',
+              etape1: 'Expéditions', etape2: 'Période', etape3: 'Journaux', du: 'Du', au: 'Au',
+              tout: 'tout cocher', rien: 'tout décocher', attente: 'Chargement…',
+              aucuneExp: 'Cochez au moins une expédition.', aucunJournal: 'Cochez au moins un journal.',
+              aucunJour: 'Aucune entrée pour ces journaux sur la période.',
+              jours: (n) => `${n} jour${n > 1 ? 's' : ''}`, date: 'Date', suite: 'Lire la suite', moins: 'Replier',
+              choisir: 'Choisir une date', jourPrec: 'Jour précédent', jourSuiv: 'Jour suivant',
+              unJour: 'Disponible quand la période tient en un seul jour', moisPrec: 'Mois précédent', moisSuiv: 'Mois suivant',
+              remarquables: 'Choisir une date remarquable…',
+              navires: { 'le Géographe': 'le Géographe', 'le Naturaliste': 'le Naturaliste' } },
+        en: { titre: 'Ships’ journals compared', maquette: 'MOCK-UP',
+              etape1: 'Expeditions', etape2: 'Period', etape3: 'Journals', du: 'From', au: 'To',
+              tout: 'select all', rien: 'clear all', attente: 'Loading…',
+              aucuneExp: 'Tick at least one expedition.', aucunJournal: 'Tick at least one journal.',
+              aucunJour: 'No entries in these journals for this period.',
+              jours: (n) => `${n} day${n === 1 ? '' : 's'}`, date: 'Date', suite: 'Read more', moins: 'Collapse',
+              choisir: 'Choose a date', jourPrec: 'Previous day', jourSuiv: 'Next day',
+              unJour: 'Available when the period is a single day', moisPrec: 'Previous month', moisSuiv: 'Next month',
+              remarquables: 'Choose a notable date…',
+              navires: { 'le Géographe': 'the Géographe', 'le Naturaliste': 'the Naturaliste' } }
+    };
+    const MOIS = {
+        fr: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+        en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    };
+    const JOURS_COURTS = { fr: ['L', 'M', 'M', 'J', 'V', 'S', 'D'], en: ['M', 'T', 'W', 'T', 'F', 'S', 'S'] };
+
+    // Etat de la page : l'exemple de depart montre la rencontre d'Encounter Bay.
+    const etat = {
+        exps: new Set(['baudin', 'flinders']),
+        debut: '1802-04-01', fin: '1802-04-15',
+        navires: new Set(NAVIRES),
+        journaux: new Set(['baudin', 'hamelin', 'flinders']),
+        deplies: new Set()
+    };
+    // Une periode peut venir de l'adresse : journaux.html?du=1801-09-05&au=1801-09-07
+    const params = new URLSearchParams(location.search);
+    const dateValide = (d) => /^\d{4}-\d{2}-\d{2}$/.test(d || '');
+    if (dateValide(params.get('du'))) etat.debut = params.get('du');
+    if (dateValide(params.get('au'))) etat.fin = params.get('au');
+    if (etat.fin < etat.debut) etat.fin = etat.debut;
+    const donnees = {};      // `${exp}:${lang}` -> { date: { champ: texte } }
+    let remarquables = [];
+
+    const lang = () => (document.documentElement.lang || 'fr').startsWith('en') ? 'en' : 'fr';
+    const t = (k) => T[lang()][k];
+    const echappe = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
+    const ms = (d) => Date.UTC(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10));
+    const dateLongue = (d) => {
+        const j = +d.slice(8, 10);
+        return lang() === 'fr'
+            ? `${j === 1 ? '1er' : j} ${MOIS.fr[+d.slice(5, 7) - 1]} ${d.slice(0, 4)}`
+            : `${j} ${MOIS.en[+d.slice(5, 7) - 1]} ${d.slice(0, 4)}`;
+    };
+    const jourSemaine = (d) => new Date(ms(d)).toLocaleDateString(lang() === 'fr' ? 'fr-FR' : 'en-AU', { weekday: 'long', timeZone: 'UTC' });
+
+    const charge = (exp) => {
+        const cle = `${exp.cle}:${lang()}`;
+        if (!donnees[cle]) {
+            donnees[cle] = fetch(exp.fichiers[lang()]).then((r) => r.json());
+        }
+        return donnees[cle];
+    };
+
+    // Bornes : du debut de la premiere expedition cochee a la fin de la derniere.
+    const bornes = () => {
+        const choisies = EXPEDITIONS.filter((e) => etat.exps.has(e.cle));
+        if (!choisies.length) return null;
+        return [choisies.map((e) => e.debut).sort()[0], choisies.map((e) => e.fin).sort().pop()];
+    };
+
+    // Une expedition qu'on coche arrive avec tous ses journaux coches : on
+    // decoche ensuite ceux qu'on ne veut pas lire.
+    const ajouteExpedition = (cle) => {
+        if (etat.exps.has(cle)) return;
+        etat.exps.add(cle);
+        JOURNAUX.filter((j) => j.exp === cle).forEach((j) => etat.journaux.add(j.id));
+    };
+
+    // ------------------------------------------------------------------
+    //  Etape 1 : expeditions
+    // ------------------------------------------------------------------
+    const rendExpeditions = () => {
+        const box = document.getElementById('expeditions');
+        box.innerHTML = EXPEDITIONS.map((e) => `
+            <label class="choix"><input type="checkbox" value="${e.cle}" ${etat.exps.has(e.cle) ? 'checked' : ''}>
+                <span class="pastille-exp" style="background:${e.couleur}"></span>${echappe(e.nom[lang()])}
+                <span class="periode">${e.debut.slice(0, 4)}–${e.fin.slice(0, 4)}</span></label>`
+            + (e.cle !== 'baudin' ? '' : NAVIRES.map((n) => `
+            <label class="choix sous-choix${etat.exps.has('baudin') ? '' : ' eteint'}">
+                <input type="checkbox" data-navire="${n}" ${etat.navires.has(n) ? 'checked' : ''}
+                       ${etat.exps.has('baudin') ? '' : 'disabled'}>${echappe(t('navires')[n])}</label>`).join(''))).join('');
+        // Cocher les deux navires, c'est lire les deux ; il en reste toujours un.
+        box.querySelectorAll('input[data-navire]').forEach((c) => c.addEventListener('change', () => {
+            const n = c.dataset.navire;
+            if (c.checked) etat.navires.add(n);
+            else if (etat.navires.size > 1) etat.navires.delete(n);
+            else c.checked = true;
+            majTout();
+        }));
+        box.querySelectorAll('input:not([data-navire])').forEach((c) => c.addEventListener('change', () => {
+            c.checked ? ajouteExpedition(c.value) : etat.exps.delete(c.value);
+            // La periode reste dans les bornes des expeditions retenues.
+            const b = bornes();
+            if (b) {
+                if (etat.debut < b[0] || etat.debut > b[1]) etat.debut = b[0];
+                if (etat.fin > b[1] || etat.fin < b[0]) etat.fin = b[1];
+                if (etat.fin < etat.debut) etat.fin = etat.debut;
+            }
+            majTout();
+        }));
+    };
+
+    // ------------------------------------------------------------------
+    //  Etape 2 : periode, avec le calendrier de la carte
+    // ------------------------------------------------------------------
+    const cal = document.getElementById('calendrier');
+    const calMois = document.getElementById('cal-mois');
+    const calAnnee = document.getElementById('cal-annee');
+    let calBorne = null, calA = null, calM = null;
+    let joursAvecTexte = new Set();
+
+    const EXP_REPERE = { B: 'baudin', F: 'flinders', E: 'entre' };
+    const remarquablesRetenues = () => remarquables.filter((r) => {
+        const exp = EXP_REPERE[r.expedition];
+        if (!etat.exps.has(exp)) return false;
+        if (exp !== 'baudin') return true;
+        return etat.navires.has(NAVIRE_REPERE[r.navire] || r.navire);
+    });
+
+    // Jour precedent / suivant : on saute au jour voisin qui a un texte dans
+    // l'un des journaux coches, comme le point voisin sur la carte.
+    const jourVoisin = (sens) => {
+        const b = bornes();
+        if (!b || etat.debut !== etat.fin) return null;
+        const jours = [...joursAvecTexte].filter((d) => d >= b[0] && d <= b[1]).sort();
+        return sens > 0 ? jours.find((d) => d > etat.debut) || null
+                        : jours.filter((d) => d < etat.debut).pop() || null;
+    };
+    const majJourBoutons = () => {
+        [['jour-prec', -1, 'jourPrec'], ['jour-suiv', 1, 'jourSuiv']].forEach(([id, sens, cle]) => {
+            const btn = document.getElementById(id);
+            btn.disabled = !jourVoisin(sens);
+            btn.title = etat.debut === etat.fin ? t(cle) : `${t(cle)} — ${t('unJour')}`;
+            btn.setAttribute('aria-label', t(cle));
+        });
+    };
+    [['jour-prec', -1], ['jour-suiv', 1]].forEach(([id, sens]) =>
+        document.getElementById(id).addEventListener('click', () => {
+            const d = jourVoisin(sens);
+            if (d) { etat.debut = etat.fin = d; majTout(); }
+        }));
+
+    const rendPeriode = () => {
+        document.getElementById('debut-txt').textContent = dateLongue(etat.debut);
+        document.getElementById('fin-txt').textContent = dateLongue(etat.fin);
+        document.querySelectorAll('.cal-btn').forEach((b) => { b.title = t('choisir'); });
+        document.getElementById('cal-prev').title = t('moisPrec');
+        document.getElementById('cal-next').title = t('moisSuiv');
+        // Dates remarquables des expeditions et navires coches ; en choisir une
+        // ramene la periode a ce seul jour.
+        const sel = document.getElementById('remarquables');
+        const liste = remarquablesRetenues();
+        sel.innerHTML = `<option value="">${echappe(t('remarquables'))}</option>` + liste.map((r) =>
+            `<option value="${r.date}">${r.date.slice(8, 10)}-${r.date.slice(5, 7)}-${r.date.slice(0, 4)}\u00a0 ${echappe(r.libelle[lang()] || r.libelle.fr)}</option>`).join('');
+        sel.value = etat.debut === etat.fin && liste.some((r) => r.date === etat.debut) ? etat.debut : '';
+        sel.onchange = () => { if (sel.value) { etat.debut = etat.fin = sel.value; majTout(); } };
+    };
+
+    const calRend = () => {
+        const b = bornes();
+        if (!b) return;
+        const min = ms(b[0]), max = ms(b[1]);
+        const l = lang();
+        calAnnee.innerHTML = '';
+        for (let a = +b[0].slice(0, 4); a <= +b[1].slice(0, 4); a += 1) calAnnee.add(new Option(a, a));
+        calMois.innerHTML = '';
+        MOIS[l].forEach((nom, i) => {
+            const o = new Option(nom, i);
+            o.disabled = Date.UTC(calA, i + 1, 0) < min || Date.UTC(calA, i, 1) > max;
+            calMois.add(o);
+        });
+        calMois.value = calM; calAnnee.value = calA;
+        document.getElementById('cal-dows').innerHTML = JOURS_COURTS[l].map((j) => `<div class="cal-dow">${j}</div>`).join('');
+        const grille = document.getElementById('cal-grid');
+        grille.innerHTML = '';
+        const premier = Date.UTC(calA, calM, 1);
+        const decalage = (new Date(premier).getUTCDay() + 6) % 7;
+        for (let i = 0; i < decalage; i += 1) grille.insertAdjacentHTML('beforeend', '<button class="cal-jour is-vide" disabled></button>');
+        const nb = new Date(Date.UTC(calA, calM + 1, 0)).getUTCDate();
+        const choisi = etat[calBorne];
+        for (let j = 1; j <= nb; j += 1) {
+            const d = iso(Date.UTC(calA, calM, j));
+            const btn = document.createElement('button');
+            btn.type = 'button'; btn.className = 'cal-jour'; btn.textContent = j;
+            // On ne peut pas finir avant le debut, ni commencer apres la fin.
+            const horsBornes = ms(d) < min || ms(d) > max
+                || (calBorne === 'fin' && d < etat.debut) || (calBorne === 'debut' && d > etat.fin);
+            if (horsBornes) btn.disabled = true;
+            else {
+                if (joursAvecTexte.has(d)) btn.classList.add('a-releve');
+                if (d === choisi) btn.classList.add('is-choisi');
+                else if (d >= etat.debut && d <= etat.fin) btn.classList.add('dans-periode');
+                btn.title = dateLongue(d);
+                btn.addEventListener('click', () => { etat[calBorne] = d; cal.hidden = true; majTout(); });
+            }
+            grille.appendChild(btn);
+        }
+        document.getElementById('cal-prev').disabled = Date.UTC(calA, calM, 0) < min;
+        document.getElementById('cal-next').disabled = Date.UTC(calA, calM + 1, 1) > max;
+    };
+
+    document.querySelectorAll('.cal-btn').forEach((btn) => btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const borne = btn.dataset.borne;
+        if (!cal.hidden && calBorne === borne) { cal.hidden = true; return; }
+        calBorne = borne;
+        const d = etat[borne];
+        calA = +d.slice(0, 4); calM = +d.slice(5, 7) - 1;
+        // Le calendrier se pose sous le champ qui l'a ouvert.
+        btn.closest('.ligne-date').appendChild(cal);
+        cal.hidden = false;
+        calRend();
+    }));
+    document.getElementById('cal-prev').addEventListener('click', () => { calM -= 1; if (calM < 0) { calM = 11; calA -= 1; } calRend(); });
+    document.getElementById('cal-next').addEventListener('click', () => { calM += 1; if (calM > 11) { calM = 0; calA += 1; } calRend(); });
+    calMois.addEventListener('change', () => { calM = +calMois.value; calRend(); });
+    calAnnee.addEventListener('change', () => { calA = +calAnnee.value; calRend(); });
+    cal.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', () => { cal.hidden = true; });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cal.hidden = true; });
+
+    // ------------------------------------------------------------------
+    //  Etape 3 : journaux ayant du contenu pour ces expeditions
+    // ------------------------------------------------------------------
+    const champRetenu = (c) => !CHAMP_NAVIRE[c] || etat.navires.has(CHAMP_NAVIRE[c]);
+    const texteDe = (jr, jour) => jr.champs.filter(champRetenu).map((c) => jour?.[c]).filter(Boolean).join('\n\n');
+    const journalVisible = (jr) => etat.exps.has(jr.exp) && jr.champs.some(champRetenu);
+
+    const rendJournaux = (sources) => {
+        const box = document.getElementById('journaux');
+        const exps = EXPEDITIONS.filter((e) => etat.exps.has(e.cle));
+        const titre = `<h3><span class="num">3</span><span>${echappe(t('etape3'))}</span></h3>`;
+        const bouton = `<button type="button" class="tout" id="tout"></button>`;
+        if (!exps.length) {
+            box.style.gridTemplateColumns = '1fr';
+            box.innerHTML = `<div class="entete">${titre}</div><p class="aucun">${t('aucuneExp')}</p>`;
+            return;
+        }
+        box.style.gridTemplateColumns = `repeat(${exps.length}, minmax(0, 1fr))`;
+        // Premiere rangee : le titre de l'etape devant le nom de la premiere
+        // expedition, puis le nom des autres, le bouton au bout.
+        const entetes = exps.map((e, i) => `<div class="entete">${i === 0 ? titre : ''}
+            <span class="groupe-titre" style="color:${e.couleur}">${echappe(e.nom[lang()])}</span>
+            ${i === exps.length - 1 ? bouton : ''}</div>`).join('');
+        box.innerHTML = entetes + exps.map((e) => {
+            const items = JOURNAUX.filter((j) => j.exp === e.cle && journalVisible(j)).map((j) => {
+                const data = sources[e.cle] || {};
+                const n = Object.keys(data).filter((d) => d >= etat.debut && d <= etat.fin && texteDe(j, data[d])).length;
+                return `<label class="choix${n ? '' : ' vide'}"><input type="checkbox" value="${j.id}"
+                            ${etat.journaux.has(j.id) ? 'checked' : ''} ${n ? '' : 'disabled'}>
+                        <span>${echappe(j.nom[lang()])} <span class="navire">— ${echappe(j.sous[lang()])}</span></span>
+                        <span class="nb">${t('jours')(n)}</span></label>`;
+            }).join('');
+            return `<div class="groupe">${items}</div>`;
+        }).join('');
+        box.querySelectorAll('input').forEach((c) => c.addEventListener('change', () => {
+            c.checked ? etat.journaux.add(c.value) : etat.journaux.delete(c.value);
+            majTout();
+        }));
+        const actifs = [...box.querySelectorAll('input:not(:disabled)')];
+        const tous = actifs.length && actifs.every((c) => c.checked);
+        const bt = document.getElementById('tout');
+        bt.textContent = tous ? t('rien') : t('tout');
+        bt.onclick = () => { actifs.forEach((c) => (tous ? etat.journaux.delete(c.value) : etat.journaux.add(c.value))); majTout(); };
+    };
+
+    // ------------------------------------------------------------------
+    //  Le tableau : une colonne de dates, une colonne par journal coche
+    // ------------------------------------------------------------------
+    const texteJournalHtml = (v) => echappe(v).replace(/⟦([^⟦⟧]*)⟧/g, '<del class="journal-rature">$1</del>');
+    // Journal lu ligne a ligne (Hamelin) : meme traitement que la fiche
+    // parcours de map.html. Un bloc de lignes a barres (« 1 | SSE | … ») devient
+    // un tableau, dont la premiere ligne est l'en-tete si elle ne commence pas
+    // par un chiffre.
+    const estLigneTableau = (l) => (l.match(/\|/g) || []).length >= 2;
+    const tableauJournalHtml = (lignes) => {
+        const rangees = lignes.map((l) => l.split('|').map((c) => c.trim()));
+        const largeur = Math.max(...rangees.map((r) => r.length));
+        const entete = !/^\d/.test(rangees[0][0] || '') ? rangees.shift() : null;
+        const cellules = (r, balise) => Array.from({ length: largeur },
+            (_, i) => `<${balise}>${texteJournalHtml(r[i] || '')}</${balise}>`).join('');
+        return `<div class="journal-tableau-cadre"><table class="journal-tableau">`
+            + (entete ? `<thead><tr>${cellules(entete, 'th')}</tr></thead>` : '')
+            + `<tbody>${rangees.map((r) => `<tr>${cellules(r, 'td')}</tr>`).join('')}</tbody>`
+            + `</table></div>`;
+    };
+    const texteLignesHtml = (value) => {
+        const blocs = [];
+        String(value).split('\n').forEach((l) => {
+            const tableau = estLigneTableau(l);
+            const dernier = blocs[blocs.length - 1];
+            if (dernier && dernier.tableau === tableau) dernier.lignes.push(l);
+            else blocs.push({ tableau, lignes: [l] });
+        });
+        return blocs.map((b) => (b.tableau
+            ? tableauJournalHtml(b.lignes)
+            : `<div class="lignes">${texteJournalHtml(b.lignes.join('\n'))}</div>`)).join('');
+    };
+
+    const rendTexte = (jr, texte) => {
+        if (jr.forme === 'lignes') return texteLignesHtml(texte);
+        const s = texteJournalHtml(texte);
+        if (jr.forme === 'paras') {
+            return s.split(/\n{2,}/).map((p) => `<p class="journal-para">${p.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')}</p>`).join('');
+        }
+        return `<div class="${jr.forme === 'lignes' ? 'lignes' : ''}">${s.replace(/\n{2,}/g, '\n\n')}</div>`;
+    };
+
+    const rendTableau = (sources) => {
+        const cadre = document.getElementById('cadre');
+        const cols = JOURNAUX.filter((j) => journalVisible(j) && etat.journaux.has(j.id));
+        const dates = new Set();
+        cols.forEach((j) => Object.entries(sources[j.exp] || {}).forEach(([d, v]) => {
+            if (d >= etat.debut && d <= etat.fin && texteDe(j, v)) dates.add(d);
+        }));
+        // Une colonne sans aucun texte sur la periode ne s'affiche pas.
+        const pleines = cols.filter((j) => [...dates].some((d) => texteDe(j, sources[j.exp]?.[d])));
+        const liste = [...dates].sort();
+        if (!etat.exps.size) { cadre.innerHTML = `<div class="etat">${t('aucuneExp')}</div>`; return; }
+        if (!pleines.length) { cadre.innerHTML = `<div class="etat">${t(cols.length ? 'aucunJour' : 'aucunJournal')}</div>`; return; }
+        const couleur = (j) => EXPEDITIONS.find((e) => e.cle === j.exp).couleur;
+        const tete = `<tr><th class="col-date">${t('date')}</th>${pleines.map((j) => `
+            <th><span class="bande" style="background:${couleur(j)}"></span>
+                <span class="auteur">${echappe(j.nom[lang()])}</span>
+                <span class="sous">${echappe(j.sous[lang()])} · ${echappe(j.navire)}</span></th>`).join('')}</tr>`;
+        const corps = liste.map((d) => {
+            const rem = remarquablesRetenues().filter((r) => r.date === d);
+            const cellules = pleines.map((j) => {
+                const texte = texteDe(j, sources[j.exp]?.[d]);
+                if (!texte) return '<td class="texte vide"></td>';
+                const cle = `${j.id}:${d}`;
+                // Un seul jour a l'ecran : tout se lit deplie, sans bouton.
+                const long = etat.debut !== etat.fin && texte.length > 900;
+                const ouvert = etat.deplies.has(cle);
+                return `<td class="texte"><div class="${long && !ouvert ? 'replie' : ''}">${rendTexte(j, texte)}</div>`
+                    + (long ? `<button type="button" class="deplie" data-cle="${cle}">${ouvert ? t('moins') : t('suite')}</button>` : '')
+                    + '</td>';
+            }).join('');
+            return `<tr><td class="col-date"><div class="jour">${echappe(dateLongue(d))}</div>
+                <div class="semaine">${echappe(jourSemaine(d))}</div>
+                ${rem.map((r) => `<div class="remarquable">${echappe(r.libelle[lang()] || r.libelle.fr)}</div>`).join('')}</td>${cellules}</tr>`;
+        }).join('');
+        const defilement = cadre.scrollTop;
+        cadre.innerHTML = `<table class="comparaison"><thead>${tete}</thead><tbody>${corps}</tbody></table>`;
+        cadre.scrollTop = defilement;
+        cadre.querySelectorAll('.deplie').forEach((b) => b.addEventListener('click', () => {
+            const c = b.dataset.cle;
+            etat.deplies.has(c) ? etat.deplies.delete(c) : etat.deplies.add(c);
+            rendTableau(sources);
+        }));
+    };
+
+    // ------------------------------------------------------------------
+    const majTout = async () => {
+        document.querySelectorAll('[data-t]').forEach((el) => { const v = t(el.dataset.t); if (typeof v === 'string') el.textContent = v; });
+        rendExpeditions();
+        rendPeriode();
+        const exps = EXPEDITIONS.filter((e) => etat.exps.has(e.cle));
+        if (exps.some((e) => !donnees[`${e.cle}:${lang()}`])) {
+            document.getElementById('cadre').innerHTML = `<div class="etat">${t('attente')}</div>`;
+        }
+        const sources = {};
+        await Promise.all(exps.map(async (e) => { sources[e.cle] = await charge(e); }));
+        // Pastilles du calendrier : jours ou l'un des journaux retenus a un texte.
+        joursAvecTexte = new Set();
+        JOURNAUX.filter((j) => journalVisible(j) && etat.journaux.has(j.id)).forEach((j) =>
+            Object.entries(sources[j.exp] || {}).forEach(([d, v]) => { if (texteDe(j, v)) joursAvecTexte.add(d); }));
+        rendJournaux(sources);
+        rendTableau(sources);
+        majJourBoutons();
+        if (!cal.hidden) calRend();
+    };
+
+    fetch('data/dates_remarquables.json').then((r) => r.json()).then((d) => { remarquables = d || []; majTout(); });
+    // Le site change de langue en reecrivant <html lang> : la page suit.
+    new MutationObserver(() => majTout()).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
+</body>
+</html>
