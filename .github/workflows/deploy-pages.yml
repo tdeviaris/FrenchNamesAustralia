@@ -1,16 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Le site est servi par Vercel, qui se deploie a chaque push. GitHub Pages
+# n'est pas disponible pour ce depot prive : lance a chaque push, ce workflow
+# echouait et envoyait un mail. Il ne part plus qu'a la main.
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/entrecasteaux.json'
-      - 'data/baudin.json'
-      - '**.html'
-      - '**.css'
-      - '**.js'
-
   workflow_dispatch:
 
 permissions:
