@@ -140,8 +140,8 @@
             }
         }
 
-        /* Choix du fond et, pour les cartes anciennes, leur opacité :
-           posés à droite de l'échelle, sur la même ligne. */
+        /* Choix du fond et, pour les cartes anciennes, leur opacité, puis
+           l'échelle à leur droite, sur la même ligne. */
         .map-info-scale-wrapper { gap: 10px; flex-wrap: wrap; }
         .map-info-basemap {
             display: flex;
@@ -178,7 +178,7 @@
         }
         .map-info-opacity[hidden] { display: none; }
         .map-info-opacity input[type="range"] {
-            width: 90px;
+            width: 60px;
             margin: 0;
             cursor: pointer;
             accent-color: #0056b3;
@@ -1595,8 +1595,14 @@
 
             /* à l'étroit, le curseur d'opacité passe sous l'échelle */
             .map-info-basemap, .map-info-opacity { font-size: 0.7rem; }
-            .map-info-basemap select { max-width: 120px; }
-            .map-info-opacity input[type="range"] { width: 70px; }
+            .map-info-basemap select { max-width: 110px; }
+            .map-info-scale-wrapper { gap: 6px; }
+            .map-info-opacity input[type="range"] { width: 50px; }
+            /* Le curseur et sa valeur se passent de libellé : la place gagnée
+               garde l'échelle sur la ligne, et la barre laisse toujours de
+               quoi lire le début de la mention des sources. */
+            .map-info-opacity > span { display: none; }
+            .map-info-control { max-width: calc(100vw - 64px); }
         }
         .image-modal {
             position: fixed;
@@ -2588,15 +2594,6 @@ gtag('config', 'G-LCWV2EVPVQ');
         // lignes du panneau.
         const ecranMobile = window.matchMedia('(max-width: 768px)');
 
-        // La barre d'info change de largeur (curseur d'opacité des cartes
-        // anciennes, rotation) : la mention des sources prend le reste.
-        const barreInfo = document.querySelector('.map-info-control');
-        if (barreInfo && window.ResizeObserver) {
-            new ResizeObserver(() => {
-                const place = Math.max(60, window.innerWidth - barreInfo.getBoundingClientRect().right - 4);
-                document.documentElement.style.setProperty('--place-attribution', `${place}px`);
-            }).observe(barreInfo);
-        }
         const CARTES_DU_SELECTEUR = [
             { nom: 'beautemps', libelle: 'Beautemps-Beaupré 1807' },
             { nom: 'freycinet', libelle: 'Freycinet 1808' },
@@ -2659,13 +2656,8 @@ gtag('config', 'G-LCWV2EVPVQ');
             coordinatesElement.textContent = 'Lat: --°  Long: --°';
 
             const scaleWrapper = L.DomUtil.create('div', 'map-info-scale-wrapper', container);
-            const scaleContainer = scaleControl._container;
-            if (scaleContainer) {
-                scaleContainer.classList.remove('leaflet-control');
-                scaleWrapper.appendChild(scaleContainer);
-            }
 
-            // à droite de l'échelle : le choix du fond, puis son opacité
+            // le choix du fond, puis son opacité, et l'échelle à leur droite
             const basemapWrapper = L.DomUtil.create('div', 'map-info-basemap', scaleWrapper);
             basemapSelect = L.DomUtil.create('select', '', basemapWrapper);
             remplitSelecteurFond();
@@ -2678,6 +2670,12 @@ gtag('config', 'G-LCWV2EVPVQ');
             opacitySlider.max = 100;
             opacitySlider.step = 1;
             opacityOutput = L.DomUtil.create('output', '', opacityWrapper);
+
+            const scaleContainer = scaleControl._container;
+            if (scaleContainer) {
+                scaleContainer.classList.remove('leaflet-control');
+                scaleWrapper.appendChild(scaleContainer);
+            }
 
             L.DomEvent.disableClickPropagation(scaleWrapper);
             L.DomEvent.disableScrollPropagation(scaleWrapper);
@@ -2717,6 +2715,17 @@ gtag('config', 'G-LCWV2EVPVQ');
             opacityLabelElement = undefined;
         };
         mapInfoControl.addTo(map);
+
+        // Mesurée une fois la barre posée : avant, elle n'existe pas encore.
+        // La barre d'info change de largeur (curseur d'opacité des cartes
+        // anciennes, rotation) : la mention des sources prend le reste.
+        const barreInfo = document.querySelector('.map-info-control');
+        if (barreInfo && window.ResizeObserver) {
+            new ResizeObserver(() => {
+                const place = Math.max(60, window.innerWidth - barreInfo.getBoundingClientRect().right - 4);
+                document.documentElement.style.setProperty('--place-attribution', `${place}px`);
+            }).observe(barreInfo);
+        }
 
         // Colonne « Carte » : une seule carte ancienne à la fois. Cocher une
         // case décoche les autres ; décocher rend le fond par défaut. Une case
