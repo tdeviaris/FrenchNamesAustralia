@@ -50,6 +50,7 @@ JOURNAUX_DU_SITE = {
     'journal_anonyme': "Journal anonyme du Naturaliste",
     'journal_breton_geographe': "Journal de Désiré Breton (le Géographe)",
     'journal_breton_naturaliste': "Journal de Désiré Breton (le Naturaliste)",
+    'journal_charles_baudin': "Souvenirs de jeunesse de l'amiral Charles Baudin (le Géographe, récit dicté après coup)",
     'journal_geographe': "Journal de bord du Géographe",
     'journal_flinders': "Récit de Matthew Flinders, A Voyage to Terra Australis",
     'journal_flinders_navigation': "Journal de navigation de Flinders sur l'Investigator (State Library of NSW)",

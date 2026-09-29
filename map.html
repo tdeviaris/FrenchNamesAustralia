@@ -5503,6 +5503,24 @@ gtag('config', 'G-LCWV2EVPVQ');
                        en: "Source: Breton's journal, aboard the Naturaliste" },
                 traductionAutomatique: true,
                 url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/07/breton.pdf' }
+            },
+            {
+                // Souvenirs dictes bien apres le voyage par Charles Baudin,
+                // aspirant sur le Geographe (SHD Vincennes, 1 GG2, carton 11).
+                // Recit peu date : chaque passage va a la date la plus proche
+                // du parcours, la fin au dernier point (7 aout 1803). La
+                // version anglaise est la traduction publiee par Sydney.
+                // Integration : scripts/journal_charles_baudin.py.
+                champ: 'journal_charles_baudin',
+                navires: ['le Géographe'],
+                miseEnForme: true,
+                // Traduction publiee (Malcolm Leader), non automatique : la
+                // fiche anglaise garde le bouton vers l'original francais.
+                traduction: true,
+                nom: { fr: "Source : Souvenirs de jeunesse de l'amiral Charles Baudin",
+                       en: 'Source: Memories of My Youth by Admiral Charles Baudin' },
+                url: { fr: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/06/charlesbaudinsouvenirsFr.pdf',
+                       en: 'https://baudin.sydney.edu.au/wp-content/uploads/2019/06/charlesbaudinsouvenirsenglish.pdf' }
             }
         ];
 
@@ -5860,7 +5878,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                     // defaut le francais, qui est le cas de tous les journaux
                     // de l'expedition Baudin.
                     const source = src.langue || 'fr';
-                    const machine = Boolean(traduit) && src.traductionAutomatique
+                    const machine = Boolean(traduit)
+                        && (src.traductionAutomatique || src.traduction)
                         && source !== lang;
                     // Un texte traduit garde son original a portee : la fiche
                     // permet de basculer de l'un a l'autre.
