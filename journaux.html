@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journaux de bord comparés | French Place Names Australia</title>
-    <meta name="robots" content="noindex">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
     <link rel="stylesheet" href="css/nav.css">
     <style>
@@ -18,8 +17,8 @@
             color: #333;
             padding-top: var(--nav-height);
         }
-        /* Page large : les colonnes de journaux ont besoin de toute la place. */
-        .container { max-width: 1600px; margin: 0 auto; padding: 16px; }
+        /* Toute la largeur : les colonnes de journaux ont besoin de la place. */
+        .container { max-width: none; margin: 0; padding: 16px; }
         .content-section {
             background: #fff;
             padding: clamp(12px, 2vw, 20px);
@@ -30,11 +29,6 @@
         .content-section h2 {
             font-size: 1.6rem; font-weight: 700; color: #333; text-align: center;
             border-bottom: 2px solid var(--bleu); padding-bottom: 6px; margin: 0 0 12px;
-        }
-        .maquette {
-            display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px;
-            background: #fff3cd; color: #7a5b00; font-size: 0.75rem; font-weight: 700;
-            vertical-align: middle; letter-spacing: 0.03em;
         }
 
         /* ---------- Les trois etapes de la selection ---------- */
@@ -240,7 +234,7 @@
 
 <main class="container">
     <section class="content-section">
-        <h2><span data-t="titre">Journaux de bord comparés</span><span class="maquette" data-t="maquette">MAQUETTE</span></h2>
+        <h2><span data-t="titre">Journaux de bord comparés</span></h2>
 
         <div class="filtres">
             <div class="etape">
@@ -297,7 +291,7 @@
 </main>
 
 <div data-include-footer></div>
-<script src="js/translations.js?v=20260921-glossaires"></script>
+<script src="js/translations.js?v=20261001-journaux"></script>
 <script src="js/main.js?v=20260905-resources"></script>
 <script>
 (() => {
@@ -360,7 +354,7 @@
     const NAVIRE_REPERE = { 'le Casuarina': 'le Géographe' };
 
     const T = {
-        fr: { titre: 'Journaux de bord comparés', maquette: 'MAQUETTE',
+        fr: { titre: 'Journaux de bord comparés',
               etape1: 'Expéditions', etape2: 'Période', etape3: 'Journaux', du: 'Du', au: 'Au',
               tout: 'tout cocher', rien: 'tout décocher', attente: 'Chargement…',
               aucuneExp: 'Cochez au moins une expédition.', aucunJournal: 'Cochez au moins un journal.',
@@ -370,7 +364,7 @@
               unJour: 'Disponible quand la période tient en un seul jour', moisPrec: 'Mois précédent', moisSuiv: 'Mois suivant',
               remarquables: 'Choisir une date remarquable…',
               navires: { 'le Géographe': 'le Géographe', 'le Naturaliste': 'le Naturaliste' } },
-        en: { titre: 'Ships’ journals compared', maquette: 'MOCK-UP',
+        en: { titre: 'Ships’ journals compared',
               etape1: 'Expeditions', etape2: 'Period', etape3: 'Journals', du: 'From', au: 'To',
               tout: 'select all', rien: 'clear all', attente: 'Loading…',
               aucuneExp: 'Tick at least one expedition.', aucunJournal: 'Tick at least one journal.',
@@ -387,12 +381,13 @@
     };
     const JOURS_COURTS = { fr: ['L', 'M', 'M', 'J', 'V', 'S', 'D'], en: ['M', 'T', 'W', 'T', 'F', 'S', 'S'] };
 
-    // Etat de la page : l'exemple de depart montre la rencontre d'Encounter Bay.
+    // Etat de la page : l'exemple de depart montre la rencontre d'Encounter Bay
+    // (8 avril 1802), vue du Geographe et de l'Investigator.
     const etat = {
         exps: new Set(['baudin', 'flinders']),
-        debut: '1802-04-01', fin: '1802-04-15',
-        navires: new Set(NAVIRES),
-        journaux: new Set(['baudin', 'hamelin', 'flinders']),
+        debut: '1802-04-08', fin: '1802-04-08',
+        navires: new Set(['le Géographe']),
+        journaux: new Set(['baudin', 'flinders']),
         deplies: new Set()
     };
     // Une periode peut venir de l'adresse : journaux.html?du=1801-09-05&au=1801-09-07
