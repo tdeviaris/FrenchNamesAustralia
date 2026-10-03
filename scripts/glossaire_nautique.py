@@ -22,7 +22,8 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(RACINE, 'glossary.html')
 SOURCES = {
     'fr': os.path.join(RACINE, 'docs', 'glossaire-nautique.md'),
-    'en': os.path.join(RACINE, 'docs', 'glossaire-nautique.en.md'),
+    # Le relevé anglais (termes de Flinders) est commun aux deux sites.
+    'en': os.path.join(RACINE, 'commun', 'docs', 'glossaire-nautique.en.md'),
 }
 
 # Ordre des volets dans le fichier source, et prefixe de leurs ancres. Le
