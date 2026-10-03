@@ -306,10 +306,7 @@
           fichiers: { fr: 'data/journaux/entrecasteaux_fr.json', en: 'data/journaux/entrecasteaux_en.json' } },
         { cle: 'baudin', couleur: '#0b63d1', debut: '1800-10-19', fin: '1803-08-07',
           nom: { fr: 'Baudin', en: 'Baudin' },
-          fichiers: { fr: 'data/journaux/baudin_fr.json', en: 'data/journaux/baudin_en.json' } },
-        { cle: 'flinders', couleur: '#c2255c', debut: '1801-07-18', fin: '1803-12-17',
-          nom: { fr: 'Flinders', en: 'Flinders' },
-          fichiers: { fr: 'data/journaux/flinders_fr.json', en: 'data/journaux/flinders_en.json' } }
+          fichiers: { fr: 'data/journaux/baudin_fr.json', en: 'data/journaux/baudin_en.json' } }
     ];
     const JOURNAUX = [
         { id: 'labillardiere', exp: 'entre', champs: ['journal_labillardiere'], forme: 'paras',
@@ -332,13 +329,7 @@
           sous: { fr: 'Journal du Naturaliste', en: 'Naturaliste logbook' }, navire: 'le Naturaliste' },
         { id: 'anon-geo', exp: 'baudin', champs: ['journal_geographe'],
           nom: { fr: 'Anonyme', en: 'Anonymous' },
-          sous: { fr: 'Journal du Géographe', en: 'Géographe logbook' }, navire: 'le Géographe' },
-        { id: 'flinders', exp: 'flinders', champs: ['journal_flinders'],
-          nom: { fr: 'Flinders', en: 'Flinders' },
-          sous: { fr: 'A Voyage to Terra Australis', en: 'A Voyage to Terra Australis' }, navire: "l'Investigator" },
-        { id: 'flinders-nav', exp: 'flinders', champs: ['journal_flinders_navigation'], forme: 'lignes',
-          nom: { fr: 'Flinders', en: 'Flinders' },
-          sous: { fr: 'Journal de navigation', en: 'Logbook' }, navire: "l'Investigator" }
+          sous: { fr: 'Journal du Géographe', en: 'Géographe logbook' }, navire: 'le Géographe' }
     ];
 
     // Le navire de chaque champ, pour les cases Geographe / Naturaliste.
@@ -382,12 +373,12 @@
     const JOURS_COURTS = { fr: ['L', 'M', 'M', 'J', 'V', 'S', 'D'], en: ['M', 'T', 'W', 'T', 'F', 'S', 'S'] };
 
     // Etat de la page : l'exemple de depart montre la rencontre d'Encounter Bay
-    // (8 avril 1802), vue du Geographe et de l'Investigator.
+    // (8 avril 1802), vue du Geographe.
     const etat = {
-        exps: new Set(['baudin', 'flinders']),
+        exps: new Set(['baudin']),
         debut: '1802-04-08', fin: '1802-04-08',
         navires: new Set(['le Géographe']),
-        journaux: new Set(['baudin', 'flinders']),
+        journaux: new Set(['baudin']),
         deplies: new Set()
     };
     // Une periode peut venir de l'adresse : journaux.html?du=1801-09-05&au=1801-09-07

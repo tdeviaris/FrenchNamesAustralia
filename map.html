@@ -2144,18 +2144,6 @@ gtag('config', 'G-LCWV2EVPVQ');
                 <input type="checkbox" id="toggle-baudin-carte" data-carte="freycinet">
             </label>
         </div>
-        <div class="lt-row toggle-flinders">
-            <span class="lt-name" data-i18n="map-layer-flinders">Flinders</span>
-            <label class="lt-cell" data-i18n-aria-label="map-aria-flinders-places" aria-label="Lieux Flinders">
-                <input type="checkbox" id="toggle-flinders">
-            </label>
-            <label class="lt-cell route-toggle" data-i18n-aria-label="map-aria-flinders-route" aria-label="Route de Flinders">
-                <input type="checkbox" id="toggle-flinders-parcours">
-            </label>
-            <label class="lt-cell carte-toggle" data-i18n-aria-label="map-aria-flinders-map" aria-label="Carte de Flinders">
-                <input type="checkbox" id="toggle-flinders-carte" data-carte="flinders">
-            </label>
-        </div>
         <!-- Baudin et Flinders partagent une seule couche de traces : ils ont
              croise les memes cotes aux memes annees. Les deux volets se posent
              donc sous les deux cases, et chaque case allume les batiments de
@@ -2163,10 +2151,6 @@ gtag('config', 'G-LCWV2EVPVQ');
         <div class="ship-block" id="ship-block-baudin" hidden>
             <div class="ship-block-title">Navires Baudin</div>
             <div class="ship-list" id="ship-list-baudin"></div>
-        </div>
-        <div class="ship-block" id="ship-block-baudin-flinders" hidden>
-            <div class="ship-block-title">Navires Flinders</div>
-            <div class="ship-list" id="ship-list-baudin-flinders"></div>
         </div>
     </div>
 
@@ -2188,8 +2172,6 @@ gtag('config', 'G-LCWV2EVPVQ');
                     <span class="lt-cell"><input type="checkbox" data-cible="toggle-entre"></span></label>
                 <label class="mobile-choix toggle-baudin"><span data-i18n="map-layer-baudin">Baudin</span>
                     <span class="lt-cell"><input type="checkbox" data-cible="toggle-baudin"></span></label>
-                <label class="mobile-choix toggle-flinders"><span data-i18n="map-layer-flinders">Flinders</span>
-                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-flinders"></span></label>
             </div>
         </div>
         <div class="mobile-menu">
@@ -2202,8 +2184,6 @@ gtag('config', 'G-LCWV2EVPVQ');
                     <span class="lt-cell"><input type="checkbox" data-cible="toggle-entre-parcours"></span></label>
                 <label class="mobile-choix toggle-baudin"><span data-i18n="map-layer-baudin">Baudin</span>
                     <span class="lt-cell"><input type="checkbox" data-cible="toggle-baudin-parcours"></span></label>
-                <label class="mobile-choix toggle-flinders"><span data-i18n="map-layer-flinders">Flinders</span>
-                    <span class="lt-cell"><input type="checkbox" data-cible="toggle-flinders-parcours"></span></label>
             </div>
         </div>
         <span class="mobile-date" id="mobile-date" hidden></span>
@@ -2596,8 +2576,7 @@ gtag('config', 'G-LCWV2EVPVQ');
 
         const CARTES_DU_SELECTEUR = [
             { nom: 'beautemps', libelle: 'Beautemps-Beaupré 1807' },
-            { nom: 'freycinet', libelle: 'Freycinet 1808' },
-            { nom: 'flinders',  libelle: 'Flinders 1814' }
+            { nom: 'freycinet', libelle: 'Freycinet 1808' }
         ];
         const PREFIXE_ANCIENNE = 'ancienne:';
 
@@ -4878,27 +4857,14 @@ gtag('config', 'G-LCWV2EVPVQ');
                 label: "d'Entrecasteaux",
                 color: '#238b45',
                 dataUrl: `data/entrecasteaux.json`
-            },
-            // Les noms de Flinders ne sont pas francais : la fiche les annonce
-            // autrement, d'ou `libelleNom`.
-            flinders: {
-                key: 'flinders',
-                label: 'Flinders',
-                color: '#c2255c',
-                dataUrl: `data/flinders.json`,
-                libelleNom: 'popup-flinders-name'
             }
         };
 
-        // Les noms de Flinders sont anglais : ils restent eteints au premier
-        // affichage, et attendent qu'on coche leur case.
         const expeditionLayers = {
             baudin: L.layerGroup().addTo(map),
-            entre: L.layerGroup().addTo(map),
-            flinders: L.layerGroup()
+            entre: L.layerGroup().addTo(map)
         };
-        let selectedExpeditions = new Set(
-            Object.keys(expeditionConfigs).filter((key) => key !== 'flinders'));
+        let selectedExpeditions = new Set(Object.keys(expeditionConfigs));
 
         const ensureRoutesPane = () => {
             const paneName = 'routesPane';
@@ -4940,23 +4906,6 @@ gtag('config', 'G-LCWV2EVPVQ');
                 // Une couleur par coque, et une seule. Un trajet parcouru de
                 // conserve se trace des deux couleurs, la seconde en tirets
                 // par-dessus la premiere.
-                // L'Investigator de Flinders croise la route de Baudin : sa
-                // trace est jointe ici pour qu'on puisse les voir ensemble,
-                // mais elle vient d'une autre source et d'un autre fichier.
-                // Flinders change deux fois de bord en 1803 : l'Investigator
-                // est condamne a Port Jackson, le Porpoise se perd sur Wreck
-                // Reef, et il finit sur la goelette Cumberland. Trois coques,
-                // trois traces.
-                urlsJointes: ['data/flinders_parcours.geojson'],
-                journauxJoints: ['flinders'],
-                // Flinders ne donne sa position que de loin en loin : avec le
-                // seuil commun, sa route se briserait en une vingtaine de
-                // troncons. On la garde d'un seul tenant.
-                ruptureJours: {
-                    "l'Investigator": 400,
-                    'le Porpoise': 400,
-                    'le Cumberland': 400
-                },
                 shipOrder: ['le Géographe', 'le Naturaliste', 'le Casuarina',
                             "l'Investigator", 'le Porpoise', 'le Cumberland'],
                 // Les cases se rangent en deux volets, chacun commande par sa
@@ -4969,11 +4918,7 @@ gtag('config', 'G-LCWV2EVPVQ');
                       bloc: 'ship-block-baudin',
                       route: 'toggle-baudin-parcours',
                       navires: ['le Géographe', 'le Naturaliste', 'le Casuarina',
-                                'les corvettes'] },
-                    { liste: 'ship-list-baudin-flinders',
-                      bloc: 'ship-block-baudin-flinders',
-                      route: 'toggle-flinders-parcours',
-                      navires: ["l'Investigator", 'le Porpoise', 'le Cumberland'] }
+                                'les corvettes'] }
                 ],
                 colors: {
                     'le Géographe': '#e8590c',
