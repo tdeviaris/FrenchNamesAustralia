@@ -136,8 +136,8 @@ const translations = {
 
         // --- Page Objet (objet.html) ---
         'objet-title': "Objet",
-        'objet-flinders-entry': "<a class=\"resource-primary-link\" href=\"https://flindersplacenames.au/\" target=\"_blank\" rel=\"noopener\">Les expéditions de Flinders</a>",
-        'objet-flinders-description': "<p>Les toponymes donnés par le navigateur britannique Matthew Flinders ont désormais leur propre site, <em>Flinders Place Names</em>, qui suit ses campagnes successives :</p><ul><li><em>Reliance</em> et <em>Tom Thumb</em> (1795-1796)</li><li><em>Francis</em> (1798)</li><li><em>Norfolk</em> (1798-1799)</li><li><em>Investigator</em> (1801-1803)</li></ul><p><a href=\"https://flindersplacenames.au/\" target=\"_blank\" rel=\"noopener\">flindersplacenames.au</a></p>",
+        'objet-flinders-entry': "<a class=\"resource-primary-link\" href=\"https://flinders-place-names.vercel.app/\" target=\"_blank\" rel=\"noopener\">Les expéditions de Flinders</a>",
+        'objet-flinders-description': "<p>Les toponymes donnés par le navigateur britannique Matthew Flinders ont désormais leur propre site, <em>Flinders Place Names</em>, qui suit ses campagnes successives :</p><ul><li><em>Reliance</em> et <em>Tom Thumb</em> (1795-1796)</li><li><em>Francis</em> (1798)</li><li><em>Norfolk</em> (1798-1799)</li><li><em>Investigator</em> (1801-1803)</li></ul><p><a href=\"https://flinders-place-names.vercel.app/\" target=\"_blank\" rel=\"noopener\">flindersplacenames.au</a></p>",
 
         // --- Page À propos (presentation.html) ---
         'about-title': "À propos",
@@ -463,8 +463,8 @@ const translations = {
 
         // --- Objet Page (objet.html) ---
         'objet-title': "Aim",
-        'objet-flinders-entry': "<a class=\"resource-primary-link\" href=\"https://flindersplacenames.au/\" target=\"_blank\" rel=\"noopener\">Flinders's Expeditions</a>",
-        'objet-flinders-description': "<p>The place names given by the British navigator Matthew Flinders now have their own website, <em>Flinders Place Names</em>, which follows his successive campaigns:</p><ul><li><em>Reliance</em> and <em>Tom Thumb</em> (1795-1796)</li><li><em>Francis</em> (1798)</li><li><em>Norfolk</em> (1798-1799)</li><li><em>Investigator</em> (1801-1803)</li></ul><p><a href=\"https://flindersplacenames.au/\" target=\"_blank\" rel=\"noopener\">flindersplacenames.au</a></p>",
+        'objet-flinders-entry': "<a class=\"resource-primary-link\" href=\"https://flinders-place-names.vercel.app/\" target=\"_blank\" rel=\"noopener\">Flinders's Expeditions</a>",
+        'objet-flinders-description': "<p>The place names given by the British navigator Matthew Flinders now have their own website, <em>Flinders Place Names</em>, which follows his successive campaigns:</p><ul><li><em>Reliance</em> and <em>Tom Thumb</em> (1795-1796)</li><li><em>Francis</em> (1798)</li><li><em>Norfolk</em> (1798-1799)</li><li><em>Investigator</em> (1801-1803)</li></ul><p><a href=\"https://flinders-place-names.vercel.app/\" target=\"_blank\" rel=\"noopener\">flindersplacenames.au</a></p>",
 
         // --- About Page (presentation.html) ---
         'about-title': "About",
