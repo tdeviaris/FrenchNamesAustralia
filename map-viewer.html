@@ -121,7 +121,7 @@
 
 <div id="niveau">—</div>
 
-<script src="lib/openseadragon/openseadragon.min.js"></script>
+<script src="commun/lib/openseadragon/openseadragon.min.js"></script>
 <script>
 (function(){
 
@@ -216,7 +216,7 @@
   var etat = "chargement";   // chargement | echec ; « inconnue » si la carte n'existe pas
 
   // Langue : le paramètre d’adresse l’emporte, sinon le choix mémorisé par le
-  // site (même clé que js/main.js), sinon celle du navigateur.
+  // site (même clé que commun/js/main.js), sinon celle du navigateur.
   function langueInitiale(){
     var l = params.get("lang");
     if (!l) { try { l = localStorage.getItem("language"); } catch(e){} }
