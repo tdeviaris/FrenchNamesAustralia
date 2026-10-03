@@ -1,0 +1,3 @@
+[submodule "commun"]
+	path = commun
+	url = https://github.com/tdeviaris/toponymes-commun.git
