@@ -20,7 +20,7 @@ import OpenAI from 'openai';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { TOPONYMES_INSTRUCTIONS } from '../responses/instructions.js';
+import { TOPONYMES_INSTRUCTIONS } from '../commun/api/instructions.js';
 
 const RACINE = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 

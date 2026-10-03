@@ -33,5 +33,5 @@ recours si l’on veut revenir à une base minuscule pour un essai.
 ## API (Vercel)
 
 - Endpoint : `api/responses-chat.js`
-- Instructions du modèle : `responses/instructions.js`
+- Instructions du modèle : `commun/api/instructions.js` (dépôt toponymes-commun)
 - Frontend : `expert.html`
