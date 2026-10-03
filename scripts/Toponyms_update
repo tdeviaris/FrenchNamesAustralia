@@ -170,7 +170,9 @@ function majGitHub(forcer) {
     // Étape 3 : les contrôles, tous faits ici. Ce qui suit ne dit jamais
     // « tout va bien » ; il ne parle que de ce qui cloche, et demande
     // confirmation avant de publier quelque chose d'abîmé.
-    const soucis = visuels.soucis.concat(controlesAvantEnvoi(flinders));
+    const soucis = visuels.soucis
+      .concat(controlesSource(datasets))
+      .concat(controlesAvantEnvoi(flinders));
     if (soucis.length) {
       const question = "Avant de publier, à vérifier :\n\n"
         + soucis.map((s) => '• ' + s).join('\n')
@@ -233,6 +235,25 @@ function majGitHub(forcer) {
     Logger.log(`Erreur complète : ${e.stack || e.toString()}`);
     dis('Erreur', errorMsg);
   }
+}
+
+
+/**
+ * Ce qu'il faut regarder avant de publier l'onglet Source : un toponyme sans
+ * nom français ne s'affiche plus sur sa fiche.
+ */
+function controlesSource(datasets) {
+  const soucis = [];
+  [['d’Entrecasteaux', datasets.entrecasteaux], ['Baudin', datasets.baudin]]
+    .forEach(([nom, lieux]) => {
+      const sansNom = lieux.filter((l) => !(l.frenchName || '').toString().trim())
+                           .map((l, i) => l.code || `entrée ${i + 1}`);
+      if (sansNom.length) {
+        soucis.push(`${nom} : ${sansNom.length} toponyme(s) sans nom français : `
+                    + sansNom.slice(0, 8).join(', '));
+      }
+    });
+  return soucis;
 }
 
 
@@ -340,10 +361,24 @@ function convertSheetToTwoDatasets() {
   }
 
   // Crée un mappage des en-têtes vers leur index pour un accès facile.
+  // Les en-têtes sont normalisés (espaces, casse) : le 1er octobre 2026, un
+  // en-tête « French name » retouché dans le classeur n'a plus été reconnu,
+  // et tous les noms français sont partis vides sur le site.
+  const norme = (h) => (h || '').toString().replace(/\s+/g, ' ').trim().toLowerCase();
   const headerMap = {};
   headers.forEach((header, index) => {
-    headerMap[header] = index;
+    headerMap[norme(header)] = index;
   });
+
+  // Sans ces colonnes, le fichier produit serait valide mais vidé de
+  // l'essentiel : on s'arrête plutôt que de publier.
+  const requises = ['Code', 'French name', 'latitude South', 'longitude East',
+                    'fiche detaillee F', 'detailed information sheet E'];
+  const manquantes = requises.filter((h) => !(norme(h) in headerMap));
+  if (manquantes.length) {
+    throw new Error(`Onglet « ${SHEET_NAME} » : colonne(s) introuvable(s) : `
+                    + manquantes.join(', ') + '. Vérifiez la ligne d’en-tête.');
+  }
 
   const entrecasteaux_data = [];
   const baudin_data = [];
@@ -354,7 +389,7 @@ function convertSheetToTwoDatasets() {
 
       // Fonction pour obtenir une valeur de manière sûre
       const getValue = (headerName) => {
-        const value = row[headerMap[headerName]];
+        const value = row[headerMap[norme(headerName)]];
         return value !== null && value !== undefined ? value : '';
       };
 
