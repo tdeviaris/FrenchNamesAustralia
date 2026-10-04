@@ -58,7 +58,8 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# littoral.py est commun aux deux sites (commun/scripts/) ; lancer depuis la racine du site.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'commun', 'scripts'))
 from littoral import Cote, Terre, km, RACINE
 
 GEOJSON = os.path.join(RACINE, 'data', 'baudin_parcours.geojson')
