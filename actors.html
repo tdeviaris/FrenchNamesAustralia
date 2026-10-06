@@ -21,6 +21,13 @@
         .content-section p.intro { margin: 0 0 18px 0; }
         .toc { margin: 0 0 20px 0; padding-left: 18px; column-count: 2; column-gap: 32px; }
         .toc li { margin: 6px 0; break-inside: avoid; }
+        .expedition-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 24px 0 36px; }
+        .expedition-nav-group { padding: 18px 20px; background: #f5f7f9; border-left: 4px solid var(--accent); border-radius: 6px; }
+        .expedition-nav-group h3 { margin: 0 0 10px; font-size: 1.08rem; color: #174873; }
+        .expedition-nav-group .toc { margin: 0; column-count: 1; }
+        .expedition-group { margin-top: 42px; }
+        .expedition-group-title { margin: 0 0 10px; padding: 0 0 9px; border-bottom: 1px solid #b7c6d5; color: #174873; font-size: clamp(1.35rem, 2.5vw, 1.7rem); }
+        .expedition-group .entry:first-of-type .entry-title { margin-top: 24px; }
         .entry-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; margin-top: 30px; scroll-margin-top: calc(var(--nav-height) + 16px); }
         .entry-title a.backtop { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; }
         .entry-title a.backtop img { width: 24px; height: 24px; opacity: 0.8; transition: opacity 0.2s ease; }
@@ -92,6 +99,7 @@
             .entry-image { width: 100%; max-width: 450px; margin: 0 auto; }
             .entry-text { text-align: left; }
             .toc { column-count: 1; }
+            .expedition-nav { grid-template-columns: 1fr; }
         }
 
     
@@ -137,17 +145,30 @@
             <h2 class="subtitle">The explorers and scientists of the d'Entrecasteaux and Baudin expeditions</h2>
 
             <p class="intro">
-                These pages present the main actors of the two great French expeditions that mapped and named many places along the Australian coasts.
+                These notices present the principal figures involved in the two major French expeditions that charted and named numerous places along the Australian coast.
             </p>
 
-	            <ul class="toc">
-	                <li><a href="#baudin-en">Nicolas Baudin</a></li>
-	                <li><a href="#beautemps-beaupre-en">Charles-François Beautemps-Beaupré</a></li>
-	                <li><a href="#entrecasteaux-en">Antoine Bruni d'Entrecasteaux</a></li>
-	                <li><a href="#freycinet-en">Louis de Freycinet</a></li>
-	                <li><a href="#lesueur-en">Charles-Alexandre Lesueur</a></li>
-	                <li><a href="#peron-en">François Péron</a></li>
-	            </ul>
+	            <div class="expedition-nav">
+                    <div class="expedition-nav-group">
+                        <h3>The d’Entrecasteaux expedition</h3>
+                        <ul class="toc">
+                            <li><a href="#entrecasteaux-en">Antoine Bruni d’Entrecasteaux</a></li>
+                            <li><a href="#kermadec-en">Jean-Michel Huon de Kermadec</a></li>
+                            <li><a href="#rossel-en">Élisabeth-Paul-Édouard de Rossel</a></li>
+                            <li><a href="#beautemps-beaupre-en">Charles-François Beautemps-Beaupré</a></li>
+                        </ul>
+                    </div>
+                    <div class="expedition-nav-group">
+                        <h3>The Baudin expedition</h3>
+                        <ul class="toc">
+                            <li><a href="#baudin-en">Nicolas Baudin</a></li>
+                            <li><a href="#hamelin-en">Jacques Félix Emmanuel Hamelin</a></li>
+                            <li><a href="#freycinet-en">Louis de Freycinet</a></li>
+                            <li><a href="#peron-en">François Péron</a></li>
+                            <li><a href="#lesueur-en">Charles-Alexandre Lesueur</a></li>
+                        </ul>
+                    </div>
+	            </div>
 
 	            <section class="entry">
 	                <h2 id="baudin-en" class="entry-title">
@@ -162,9 +183,29 @@
                         </picture>
                     </div>
                     <div class="entry-text">
-                        <p>Nicolas Baudin, born in 1754 in Saint-Martin-de-Ré, was a distinguished French mariner and explorer. After several expeditions to the Indian Ocean and, notably, to the West Indies - the latter voyage aboard La Belle Angélique proving decisive in his selection - he was appointed by Bonaparte, in agreement with the scholars of the Institut national des sciences et des arts, to lead a major voyage of discovery to the Southern Lands. The expedition departed from Le Havre in October 1800 aboard two corvettes: Le Géographe, commanded by Baudin himself, and Le Naturaliste, under the command of Hamelin.</p>
-                        <p>Between 1801 and 1803, the expedition collected over 100,000 specimens of natural history, produced more than 1,500 sketches and paintings, and mapped extensive portions of the southern and western coasts of New Holland (Australia), as well as parts of the eastern and northern coasts of Van Diemen's Land (Tasmania). During the voyage, Baudin met the British navigator Matthew Flinders in southern Australia, as both were exploring the continent's southern coastline.</p>
-                        <p>Baudin died of tuberculosis in September 1803 on the island of Mauritius, on his return journey. His expedition left a significant scientific legacy, and many places in Australia still bear the names assigned at the conclusion of the voyage.</p>
+                        <p>Nicolas Baudin, born in 1754 at Saint-Martin-de-R&eacute;, was a leading French mariner and explorer. After several voyages in the Indian Ocean and later to the West Indies &mdash; notably the expedition of <em>La Belle Ang&eacute;lique</em>, which played an important part in his selection &mdash; he was appointed by Bonaparte, with the support of the scholars of the Institut national des sciences et des arts, to command a major voyage of discovery to the southern lands. The expedition left Le Havre in October 1800 aboard two corvettes: <em>Le G&eacute;ographe</em>, commanded by Baudin himself, and <em>Le Naturaliste</em>, under the command of Jacques F&eacute;lix Emmanuel Hamelin.</p>
+                        <p>Between 1801 and 1803, Baudin directed the reconnaissance and charting of extensive stretches of the Australian coastline. Under his command, the officers and hydrographers surveyed much of the southern and western coasts of New Holland, together with part of the eastern and northern coasts of Van Diemen&rsquo;s Land. Baudin oversaw the organisation of the reconnaissance, the navigation of the vessels and the work undertaken to determine more precisely the position and form of capes, bays, islands and other coastal features, which later provided the geographical framework for the voyage&rsquo;s cartography and nomenclature. At the same time, his naturalists assembled more than 100,000 natural-history specimens, while his artists produced over 1,500 drawings and paintings.<br>In April 1802, during the reconnaissance of the southern coast, Baudin met the British navigator Matthew Flinders, who was himself engaged in surveying and charting this part of the continent.</p>
+                        <p>Baudin died of tuberculosis in September 1803 at &Icirc;le de France, present-day Mauritius, during the return voyage. The expedition produced important scientific and cartographic results, and many places in Australia still bear names associated with the voyage. Baudin himself, however, was absent from the official nomenclature published after the expedition: none of the names retained by P&eacute;ron and Freycinet commemorated him.</p>
+                        <p>It was ultimately Matthew Flinders who gave Baudin&rsquo;s name to a feature on the Australian coast. During their meeting at Encounter Bay, Baudin had pointed out to him a group of low rocks lying offshore. Flinders named them <em>Baudin&rsquo;s Rocks</em> and later explained in <em>A Voyage to Terra Australis</em> that he retained the name because no designation had been assigned to them in P&eacute;ron&rsquo;s published account. Baudin&rsquo;s name thus entered the geography of Australia not through the official nomenclature of his own expedition, but through the British navigator whom he had met on the southern coast of the continent.</p>
+                    </div>
+                </div>
+            </section>
+
+	            <section class="entry">
+	                <h2 id="hamelin-en" class="entry-title">
+                    <span>Jacques Félix Emmanuel Hamelin</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/hamelin.png" alt="Portrait of Jacques Félix Emmanuel Hamelin" loading="lazy" decoding="async">
+                    </div>
+                    <div class="entry-text">
+                        <p>Jacques Félix Emmanuel Hamelin, born at Honfleur in 1768, began his career in the merchant marine before entering the French Navy in 1792. Promoted to ensign in 1793, lieutenant in 1795 and frigate captain in 1796, he had already acquired substantial experience of navigation and command before his departure for the southern lands.</p>
+                        <p>In 1800, while serving as second-in-command to Dumanoir Le Pelley aboard <em>Le Formidable</em>, Hamelin was chosen to replace Captain Maingon in command of <em>Le Naturaliste</em>, the second vessel of the expedition led by Nicolas Baudin. His appointment, supported by Dumanoir and Latouche-Tréville, was approved by the First Consul on 30 August 1800. Hamelin had already reached Le Havre and taken charge of the corvette’s preparation.</p>
+                        <p>During the expedition, he commanded <em>Le Naturaliste</em> throughout the first campaign, often operating separately from <em>Le Géographe</em> for extended periods. He took a direct part in the reconnaissance and survey of the Australian coast, particularly in Western Australia. After the expedition’s stay at Port Jackson in 1802, Baudin decided to send <em>Le Naturaliste</em> back to France carrying an important part of the scientific collections. Hamelin brought the vessel safely to Le Havre in June 1803, nearly ten months before the return of <em>Le Géographe</em>.</p>
+                        <p>His naval career continued after the voyage. Promoted to ship-of-the-line captain in 1803, he later served with distinction in the Indian Ocean, was made rear-admiral in 1811, and in 1833 became Director-General of the Dépôt des cartes et plans. He died while still in service in 1839.</p>
+                        <p>The nomenclature published after the Baudin expedition was more generous to several officers and scientists than to the expedition’s commander. Hamelin nevertheless received two place names in Western Australia. One of them was <em>Havre Hamelin</em>, now Hamelin Pool, in Shark Bay. His name was thus preserved in the geography of Australia through the expedition’s official nomenclature, whereas Baudin’s own name was entirely absent from it.</p>
                     </div>
                 </div>
             </section>
@@ -179,10 +220,11 @@
                         <img src="img/beautemps-beaupre.jpg" alt="Portrait of Charles-François Beautemps-Beaupré">
                     </div>
                     <div class="entry-text">
-                        <p>Charles-François Beautemps-Beaupré, born on 6 August 1766 in La Neuville-au-Pont in Champagne and died on 16 March 1854 in Paris, is considered the father of modern hydrography. He was first employed as an unpaid student under his cousin Jean-Nicolas Buache, chief hydrographic engineer of the Marine Depot in 1783.</p>
-                        <p>In 1791, he embarked on La Recherche under d'Entrecasteaux's command as the first hydrographic engineer to search for La Pérouse, who had been missing since 1788. From 1791 to 1796, he took advantage of the expedition to conduct surveys of the coasts of the countries visited, experimenting with new methods, particularly Jean-Charles de Borda's reflecting circle.</p>
-                        <p>He established the foundations that made hydrography a true science, soon adopted by all navies. The Appendix to d'Entrecasteaux's voyage, containing all of Beautemps-Beaupré's work from this period and published in 1808, had considerable impact as it "revolutionized the hydrographic methods" used previously.</p>
-                        <p>After returning to France in 1796, he was appointed deputy curator of the Depot of Marine Maps and Plans in 1799. He then proceeded to survey the French Empire's coastline, work that earned him entry into the Academy of Sciences in 1810. His contributions revolutionized marine cartography and precision navigation.</p>
+                        <p>Charles-François Beautemps-Beaupré, born on 6 August 1766 at La Neuville-au-Pont in Champagne and died in Paris on 16 March 1854, is widely regarded as the father of modern hydrography. He began his career in 1783 as an unpaid pupil under his cousin Jean-Nicolas Buache, Chief Hydrographic Engineer at the Dépôt de la Marine.</p>
+                        <p>In 1791, he sailed aboard <em>La Recherche</em> under the command of d’Entrecasteaux as the expedition’s principal hydrographic engineer, on the voyage sent in search of La Pérouse, who had been missing since 1788. Between 1791 and 1796, he used the expedition to carry out detailed surveys of the coasts visited, while testing and refining new methods, notably through the use of Jean-Charles de Borda’s reflecting circle.</p>
+                        <p>His work helped establish the foundations of hydrography as a rigorous scientific discipline, and his methods were soon adopted by navies elsewhere. The <em>Appendice au voyage de d’Entrecasteaux</em>, which brought together Beautemps-Beaupré’s work from this period and was published in 1808, had a considerable impact, since it effectively “revolutionised hydrographic methods” as they had previously been practised.</p>
+                        <p>After returning to France in 1796, he was appointed assistant curator at the Dépôt des cartes et plans de la Marine in 1799. He subsequently undertook surveys of the coasts of the French Empire, work that contributed to his election to the Académie des sciences in 1810. His methods transformed marine cartography and greatly improved the precision of navigation.</p>
+                        <p>Despite the importance and quality of his hydrographic and cartographic work, <strong>no place name on the Australian coastline surveyed by Beautemps-Beaupré bears his name</strong>. This absence may be explained, at least in part, by the social and professional hierarchies that still structured the French Navy: Beautemps-Beaupré held the status of a hydrographic engineer rather than that of a naval officer, a distinction that the changes brought about by the French Revolution had not yet entirely erased. His work was nevertheless recognised in the expedition’s nomenclature beyond Australia: the name <strong>Beautemps-Beaupré</strong> was given to the islands he surveyed in New Caledonia, now known as the <strong>Beautemps-Beaupré Islands</strong>.</p>
                     </div>
                 </div>
             </section>
@@ -197,10 +239,50 @@
                         <img src="img/entrecasteaux.jpg" alt="Portrait of Antoine Bruni d'Entrecasteaux">
                     </div>
                     <div class="entry-text">
-                        <p>Antoine Raymond Joseph de Bruni, Chevalier d'Entrecasteaux (8 November 1737 – 21 July 1793) was a French naval officer, explorer and colonial administrator. Educated at a Jesuit school, he was enrolled in the French Navy in 1754 by his father who opposed his religious vocation.</p>
-                        <p>He is best known for leading the 1791-1794 expedition in search of La Pérouse, who had been missing for three years. Promoted to rear-admiral upon departure from Brest on 28 September 1791, he commanded two ships, La Recherche and L'Espérance.</p>
-                        <p>D'Entrecasteaux was fortunate to have excellent officers and scientists, notably the hydrographic engineer Charles-François Beautemps-Beaupré, now regarded as the father of modern French hydrography. The expedition mapped in detail the coasts of Tasmania and Western Australia in 1792-1793.</p>
-                        <p>D'Entrecasteaux died of scurvy on 21 July 1793. Although he did not find La Pérouse, his voyage produced important surveys of several Pacific islands, as well as reports on their vegetation, weather patterns, languages and cultures.</p>
+                        <p>Antoine Raymond Joseph de Bruni, chevalier d’Entrecasteaux (1737–1793), was a French naval officer, explorer and colonial administrator. Educated at a Jesuit college, he initially considered a religious vocation, but entered the French Navy in 1754 at his father’s insistence. Over the following decades, he acquired extensive experience of naval command and long-distance navigation.</p>
+                        <p>He is best known for commanding the expedition sent in 1791 in search of La Pérouse, who had been missing for three years. Promoted to rear-admiral shortly before his departure from Brest on 28 September 1791, d’Entrecasteaux commanded <em>La Recherche</em>, accompanied by <em>L’Espérance</em> under Jean-Michel Huon de Kermadec.</p>
+                        <p>The expedition brought together experienced naval officers and a substantial scientific staff, including the hydrographic engineer Charles-François Beautemps-Beaupré, whose surveying methods would make an important contribution to the development of modern hydrography. In 1792 and 1793, the two vessels carried out detailed reconnaissance and hydrographic surveys of parts of the coasts of Van Diemen’s Land and south-western New Holland, greatly improving European cartographic knowledge of these shores.</p>
+                        <p>As commander, d’Entrecasteaux had to reconcile the different demands of navigation, hydrographic surveying and natural-history research. Relations between officers and naturalists were sometimes strained, while political divisions among the scientific staff added further difficulties. Despite this, he supported the work of the naturalists, encouraged them to specialise in different fields and sought to integrate their research with the broader objectives of the voyage. His authority and conduct were widely respected within the expedition, and he appears to have retained the confidence of both officers and savants despite the tensions that occasionally arose between them.</p>
+                        <p>D’Entrecasteaux died of scurvy on 21 July 1793, before the expedition had completed its voyage. Although the search for La Pérouse was unsuccessful, the expedition produced important hydrographic surveys and observations on the natural history, climate, languages and societies of the regions it visited.</p>
+                        <p>The voyage also left a lasting mark on Australian toponymy, with D’Entrecasteaux’s name preserved in several geographical features associated with the expedition’s surveys. Bruny Island and Cape Bruny in Tasmania retain his family name, while the major passage surveyed in south-eastern Van Diemen’s Land was named Canal d’Entrecasteaux, now D’Entrecasteaux Channel, after his death during the preparation of the expedition’s charts. Point D’Entrecasteaux in Western Australia likewise commemorates the commander of the voyage.</p>
+                    </div>
+                </div>
+            </section>
+
+	            <section class="entry">
+	                <h2 id="kermadec-en" class="entry-title">
+                    <span>Jean-Michel Huon de Kermadec</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/kermadec.png" alt="Portrait of Jean-Michel Huon de Kermadec" loading="lazy" decoding="async">
+                    </div>
+                    <div class="entry-text">
+                        <p>Jean-Michel Huon de Kermadec, born in Brest in 1748, entered the French Royal Navy as a <em>garde de la marine</em> in 1766. He served aboard several vessels before being promoted to <em>enseigne de vaisseau</em> in 1773. He took part in the Battle of Ushant in 1778, followed by the operations at Grenada and Savannah in 1779. After several further campaigns, he joined d’Entrecasteaux aboard <em>La Résolution</em> in 1785 and was promoted to <em>major de vaisseau</em> the following year.</p>
+                        <p>He received his first command, <em>Le Rhône</em>, in 1789 and became a member of the Académie de Marine that same year. After again serving under d’Entrecasteaux aboard <em>Le Patriote</em> in 1790–1791, he was appointed commander of <em>L’Espérance</em>, the second vessel of the expedition sent in search of Lapérouse.</p>
+                        <p>During the voyage, Huon de Kermadec shared with d’Entrecasteaux responsibility for the naval operations and coastal reconnaissance undertaken by the two frigates. Like Hamelin a few years later during the Baudin expedition, he played an essential role in the operation of an expedition conducted by two vessels that sailed in company while also carrying out their own reconnaissance in order to advance the mission of the voyage.</p>
+                        <p>He died in 1793 during the expedition’s stay in New Caledonia and was buried on the offshore island of Poudioué.</p>
+                        <p>The voyage’s nomenclature preserved the memory of its senior officers to a considerable degree. Huon de Kermadec was thus honoured with several place names, including <strong>Île Huon</strong> and <strong>Rivière Huon</strong> in Tasmania.</p>
+                    </div>
+                </div>
+            </section>
+
+	            <section class="entry">
+	                <h2 id="rossel-en" class="entry-title">
+                    <span>Élisabeth-Paul-Édouard de Rossel</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Back to top"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/rossel.png" alt="Portrait of Élisabeth-Paul-Édouard de Rossel" loading="lazy" decoding="async">
+                    </div>
+                    <div class="entry-text">
+                        <p>Élisabeth-Paul-Édouard de Rossel, born at Sens in 1765, entered the French Royal Navy as a <em>garde de la marine</em> in 1780, during the American War of Independence. After serving aboard several vessels, he joined d’Entrecasteaux on <em>La Résolution</em> and was promoted to lieutenant in 1789. In 1791, he embarked on <em>La Recherche</em> as part of the expedition sent in search of Lapérouse.</p>
+                        <p>After d’Entrecasteaux’s death in July 1793, followed by that of Alexandre d’Hesmivy d’Auribeau, who had succeeded him in command of the expedition, Rossel became its senior officer. He then devoted particular attention to preserving the journals, observations, charts and other documents assembled during the voyage, which represented the principal nautical and hydrographic results of the expedition.</p>
+                        <p>The return of these documents to France was, however, interrupted by the war. In 1795, during the voyage back from Java via the Cape, the cases containing a large part of the expedition’s charts, journals and surveys were seized by the British and transferred to London. Beautemps-Beaupré’s charts and original working sheets were examined at the Admiralty, notably by the hydrographer Alexander Dalrymple. Rossel remained in England until the Peace of Amiens. The documents were eventually returned to France in 1802, but only in part: several charts and plans were still missing from the material restored to the Dépôt de la Marine.</p>
+                        <p>Back in France, Rossel joined the Dépôt des cartes et plans in 1803 and took charge of publishing the results of the voyage. He oversaw the edition of the <em>Voyage de d’Entrecasteaux</em>, published in 1808, while Beautemps-Beaupré’s hydrographic work was assembled and prepared for the atlas. Rossel later became Director-General of the Dépôt, was elected to the Académie des sciences in 1811 and was appointed honorary rear-admiral in 1822. He died in 1829.</p>
+                        <p>His role in the history of the expedition’s nomenclature thus continued long after the voyage itself had ended. Together with Beautemps-Beaupré, Rossel participated in the preparation and publication of the charts on which the names assigned during the voyage, or added during the preparation of the atlas, were fixed. It was in this context that the major passage surveyed in south-eastern Van Diemen’s Land was named <strong>Canal d’Entrecasteaux</strong>, now <strong>D’Entrecasteaux Channel</strong>, after the commander’s death. Rossel himself was commemorated in the name <strong>Pointe Rossel</strong>.</p>
                     </div>
                 </div>
             </section>
@@ -215,11 +297,11 @@
                         <img src="img/freycinet.jpg" alt="Portrait of Louis de Freycinet">
                     </div>
                     <div class="entry-text">
-                        <p>Born on 8 August 1779 in Mont&eacute;limar (Dr&ocirc;me), Louis Claude de Saulces de Freycinet took part in the Baudin expedition to the Southern Lands (1800-1803), of which he became one of the most active officers. He embarked as an ensign aboard the <em>Naturaliste</em>, before being promoted acting lieutenant at Timor on 20 October 1801, then confirmed in that rank in March 1803.</p>
-                        <p>On 23 September 1802, during the stop at Port Jackson, he took command of the <em>Casuarina</em>, then rejoined the <em>G&eacute;ographe</em> at &Icirc;le de France (Mauritius) on 29 August 1803. The younger brother of Henri Freycinet, an ensign aboard the <em>G&eacute;ographe</em>, he completed, after the death of Fran&ccedil;ois P&eacute;ron in 1810, the second volume of the expedition&rsquo;s official account, <em>Voyage de d&eacute;couvertes aux Terres australes</em>. On his return, he was tasked with compiling the expedition&rsquo;s cartography and publishing the <em>Atlas des cartes</em>, as well as the volume <em>Navigation et g&eacute;ographie</em>.</p>
-                        <p>He pursued a long naval career. It was notably marked by his scientific voyage in the Pacific aboard the <em>Uranie</em> (1817-1820), in which his wife Rose also took part.</p>
-                        <p>Elected to the Academy of Sciences in 1825, he contributed to the foundation of the Geographical Society and published several major works devoted to his voyages, thus contributing to the influence of French science and to knowledge of the Southern Lands.</p>
-                        <p>He died on 18 August 1842 at the family residence in Saulce-sur-Rh&ocirc;ne (Dr&ocirc;me).</p>
+                        <p>Born on 8 August 1779 at Montélimar in the Drôme, Louis Claude de Saulces de Freycinet took part in the Baudin expedition to the southern lands (1800–1803), becoming one of its most active officers. He joined the voyage as an <em>enseigne de vaisseau</em> aboard <em>Le Naturaliste</em>, before being appointed acting lieutenant at Timor on 20 October 1801 and confirmed in that rank in March 1803.</p>
+                        <p>On 23 September 1802, during the expedition’s stay at Port Jackson, he took command of the <em>Casuarina</em>, which was employed to extend and complete the reconnaissance undertaken by <em>Le Géographe</em>. He rejoined the latter at Île de France (Mauritius) on 29 August 1803. The younger brother of Henri Freycinet, an <em>enseigne de vaisseau</em> aboard <em>Le Géographe</em>, he played an important part in the hydrographic surveys carried out during the second phase of the voyage.</p>
+                        <p>After returning to France, Freycinet was entrusted with assembling and preparing the expedition’s cartographic work for publication. Following François Péron’s death in 1810, he completed the second volume of the official account, <em>Voyage de découvertes aux Terres australes</em>, and also oversaw the publication of the <em>Atlas des cartes</em> and the volume <em>Navigation et géographie</em>. He thus played a direct role in fixing, in the expedition’s official publications, the geographical and hydrographic results of the voyage.</p>
+                        <p>He subsequently pursued a long naval career, marked in particular by his scientific voyage through the Pacific aboard the <em>Uranie</em> (1817–1820), in which his wife, Rose, also took part. Elected to the Académie des sciences in 1825, he contributed to the founding of the Société de géographie and published several major works on his voyages. He died on 18 August 1842 at the family residence at Saulce-sur-Rhône in the Drôme.</p>
+                        <p>Together with François Péron, Freycinet also played a central role in shaping the nomenclature published after the expedition. A large proportion of the names chosen by Baudin during the voyage was replaced by a new nomenclature devised in France, in which considerable prominence was given to scientists, naval officers, writers, and figures from the political and administrative life of Napoleonic France. Members of the expedition itself were also widely commemorated, including Péron, Boullanger, Lesueur, Leschenault, Faure, and both Louis Freycinet and his brother Henri. The name of the Freycinet brothers remains particularly prominent in Tasmania today through <strong>Freycinet Peninsula</strong>, which commemorates both Louis and Henri Freycinet.</p>
                     </div>
                 </div>
             </section>
@@ -234,10 +316,11 @@
                         <img src="img/lesueur.jpg" alt="Portrait of Charles-Alexandre Lesueur">
                     </div>
                     <div class="entry-text">
-                        <p>Charles-Alexandre Lesueur (1778&ndash;1846) was a French naturalist, artist, and explorer, born in Le Havre on 1 January 1778. Upon learning of the preparations for the expedition to the Southern Lands, he enlisted in 1800 as an assistant gunner, as did his colleague Nicolas-Martin Petit (1777&ndash;1804). Baudin, however, soon recognized their artistic abilities and assigned both men to illustrate the expedition&rsquo;s official records. Lesueur and Petit proved to be exceptionally accomplished draughtsmen.</p>
-                        <p>Following the desertion of several artists&mdash;owing, among other causes, to the harsh conditions at sea&mdash;Lesueur and Petit became the expedition&rsquo;s two official illustrators. Under the guidance of the zoologist Fran&ccedil;ois P&eacute;ron, Lesueur specialized in zoological subjects and acquired the foundations of natural history, while Petit devoted himself primarily to ethnographic representation. Lesueur&rsquo;s drawings, together with those of Petit, were later reproduced in the Atlas volumes published to accompany the expedition&rsquo;s official historical account.</p>
-                        <p>After the expedition, and following Petit&rsquo;s death from gangrene in August 1804, Lesueur pursued a lengthy sojourn in the United States (1816&ndash;1837). There he contributed substantially to the scientific exploration of the American frontier and took part in Robert Owen&rsquo;s utopian community at New Harmony. During these years he assembled a considerable body of writings, drawings, and paintings.</p>
-                        <p>Returning to France in 1837, Lesueur was appointed curator of the Natural History Museum of Le Havre in March 1846. He died suddenly nine months later, on 12 December 1846, leaving behind a significant artistic and scientific legacy.</p>
+                        <p>Charles-Alexandre Lesueur (1778–1846) was a French naturalist, artist and explorer, born at Le Havre on 1 January 1778. Having learned of the preparations for the expedition to the southern lands, he enlisted in 1800 as an assistant gunner, as did Nicolas-Martin Petit (1777–1804). Baudin, however, quickly recognised their artistic abilities and entrusted them with illustrating the expedition’s official records.</p>
+                        <p>Following the departure of several artists, prompted in part by the harsh conditions of life at sea, Lesueur became, together with Petit, one of the expedition’s two principal illustrators. Under the direction of the zoologist François Péron, he specialised in zoological subjects and acquired a solid grounding in natural history, while Petit concentrated mainly on ethnographic representation. Their drawings were later reproduced in the volumes of the <em>Atlas</em> published to accompany the expedition’s official account.</p>
+                        <p>After the voyage, and following Petit’s death from gangrene in August 1804, Lesueur spent many years in the United States (1816–1837). There he made a substantial contribution to the scientific exploration of the American frontier and took part in Robert Owen’s utopian community at New Harmony. During these years, he assembled a considerable body of writings, drawings and paintings.</p>
+                        <p>Returning to France in 1837, Lesueur was appointed curator of the Muséum d’histoire naturelle du Havre in March 1846. He died suddenly nine months later, on 12 December 1846, leaving an important artistic and scientific legacy.</p>
+                        <p>Lesueur was also widely commemorated in the nomenclature published after the expedition. Three place names were assigned in his honour, placing him among the members of the voyage most strongly represented in the toponymy established by Péron and Freycinet. This distinction was probably not unrelated to the close ties between Lesueur and Péron: companions on the voyage, scientific collaborators and close friends, they continued to work together after the expedition. Petit, despite being the other major artist of the voyage, did not receive comparable toponymic recognition. The choices embodied in the nomenclature therefore reflect not only the roles performed and contributions made during the voyage, but also, in some cases, the personal relationships and affinities of those responsible for fixing the names.</p>
                     </div>
                 </div>
             </section>
@@ -255,10 +338,12 @@
                         </picture>
                     </div>
                     <div class="entry-text">
-                        <p>Fran&ccedil;ois P&eacute;ron (1775&ndash;1810) was a French naturalist and explorer, born in C&eacute;rilly. After an initial military career interrupted by injury, he turned to the study of medicine and natural history in Paris. In 1800, he joined the Baudin expedition to the Southern Lands, embarking aboard <em>Le G&eacute;ographe</em> and <em>Le Naturaliste</em>. Initially recruited as an assistant zoologist on <em>Le G&eacute;ographe</em>, he became the expedition&rsquo;s principal zoologist and anthropologist following the departure of several naturalists at &Icirc;le de France (Mauritius) in 1801.</p>
-                        <p>He collaborated closely with the expedition&rsquo;s artist, Charles-Alexandre Lesueur (1778&ndash;1846), who produced drawings and watercolours of the specimens P&eacute;ron transmitted to him.</p>
-                        <p>Following the death of Nicolas Baudin, the Ministry of the Interior entrusted P&eacute;ron with the preparation of the expedition&rsquo;s official account. Elected a corresponding member of the Institut in 1805, he published several scientific memoirs based on the collections brought back from the Southern Lands, thereby contributing to the emergence of major concepts in early biology.</p>
-                        <p>He died prematurely of tuberculosis in 1810, at the age of thirty-five. His work and scientific contributions left a considerable legacy, significantly enriching European knowledge of Australia and its natural environment.</p>
+                        <p>François Péron (1775–1810) was a French naturalist and explorer, born at Cérilly. After an early military career was cut short by injury, he turned to the study of medicine and natural history in Paris. In 1800, he joined the Baudin expedition to the southern lands and sailed aboard <em>Le Géographe</em> and <em>Le Naturaliste</em>. Initially appointed as an assistant zoologist on <em>Le Géographe</em>, he became the expedition’s principal zoologist and anthropologist following the departure of several naturalists at Île de France (Mauritius) in 1801.</p>
+                        <p>He worked closely with the expedition’s artist, Charles-Alexandre Lesueur, who produced drawings and watercolours of the specimens Péron passed on to him.</p>
+                        <p>After Nicolas Baudin’s death, the Ministry of the Interior entrusted Péron with the preparation of the official account of the expedition. Elected a corresponding member of the Institut in 1805, he published several scientific memoirs based on the collections brought back from the southern lands and contributed to the emergence of important concepts in the developing biological sciences.</p>
+                        <p>He died prematurely of tuberculosis in 1810, at the age of thirty-five. His writings and scientific work left a substantial legacy, making a lasting contribution to European knowledge of Australia and its natural environment.</p>
+                        <p>Péron also played a central role, together with Louis Freycinet, in shaping the nomenclature published after the expedition. A large proportion of the names chosen by Baudin during the voyage was replaced by a new nomenclature devised in France and strongly influenced by the scientific, cultural and political context of the Napoleonic period.</p>
+                        <p>Péron himself was particularly well represented: <strong>four place names were assigned in his honour</strong>, the highest number among members of the expedition, equal to that given to Charles Boullanger. One of these can be attributed with certainty to Louis Freycinet: in his account of the survey of Shark Bay, Freycinet states that the large peninsula forming the eastern shore of <em>Havre H. Freycinet</em> “received the name of my friend M. Péron”. This <strong>Presqu’île Péron</strong> is the present-day <strong>Peron Peninsula</strong> in Western Australia. Péron’s name also remains associated with <strong>Cape Peron / Point Peron</strong>, near Rockingham, and with the <strong>Peron Islands</strong> in the Northern Territory.</p>
                     </div>
                 </div>
             </section>
@@ -272,17 +357,30 @@
             <h2 class="subtitle">Les explorateurs et scientifiques des expéditions d'Entrecasteaux et Baudin</h2>
 
             <p class="intro">
-                Ces pages présentent les principaux acteurs des deux grandes expéditions françaises qui ont cartographié et nommé de nombreux lieux le long des côtes australiennes.
+                Ces notices présentent les principaux acteurs des deux grandes expéditions françaises qui ont cartographié et nommé de nombreux lieux le long des côtes australiennes.
             </p>
 
-	            <ul class="toc">
-	                <li><a href="#baudin-fr">Nicolas Baudin</a></li>
-	                <li><a href="#beautemps-beaupre-fr">Charles-François Beautemps-Beaupré</a></li>
-	                <li><a href="#entrecasteaux-fr">Antoine Bruny d'Entrecasteaux</a></li>
-	                <li><a href="#freycinet-fr">Louis de Freycinet</a></li>
-	                <li><a href="#lesueur-fr">Charles-Alexandre Lesueur</a></li>
-	                <li><a href="#peron-fr">François Péron</a></li>
-	            </ul>
+	            <div class="expedition-nav">
+                    <div class="expedition-nav-group">
+                        <h3>Expédition d’Entrecasteaux</h3>
+                        <ul class="toc">
+                            <li><a href="#entrecasteaux-fr">Antoine Bruni d’Entrecasteaux</a></li>
+                            <li><a href="#kermadec-fr">Jean-Michel Huon de Kermadec</a></li>
+                            <li><a href="#rossel-fr">Élisabeth-Paul-Édouard de Rossel</a></li>
+                            <li><a href="#beautemps-beaupre-fr">Charles-François Beautemps-Beaupré</a></li>
+                        </ul>
+                    </div>
+                    <div class="expedition-nav-group">
+                        <h3>Expédition Baudin</h3>
+                        <ul class="toc">
+                            <li><a href="#baudin-fr">Nicolas Baudin</a></li>
+                            <li><a href="#hamelin-fr">Jacques Félix Emmanuel Hamelin</a></li>
+                            <li><a href="#freycinet-fr">Louis de Freycinet</a></li>
+                            <li><a href="#peron-fr">François Péron</a></li>
+                            <li><a href="#lesueur-fr">Charles-Alexandre Lesueur</a></li>
+                        </ul>
+                    </div>
+	            </div>
 
 	            <section class="entry">
 	                <h2 id="baudin-fr" class="entry-title">
@@ -297,9 +395,29 @@
                         </picture>
                     </div>
                     <div class="entry-text">
-                        <p>Nicolas Baudin, né en 1754 à Saint-Martin-de-Ré, fut un marin et explorateur français de premier plan. Après plusieurs expéditions dans l'océan Indien et, notablement, aux Antilles - ce dernier voyage à bord de La Belle Angélique s'étant révélé décisif dans le choix de sa personne - il fut nommé par Bonaparte, en accord avec les savants de l'Institut national des sciences et des arts, pour diriger un grand voyage de découvertes vers les Terres australes. L'expédition quitta le Havre en octobre 1800 à bord de deux corvettes : Le Géographe, commandé par Baudin lui-même, et Le Naturaliste, placé sous le commandement de Hamelin.</p>
-                        <p>Entre 1801 et 1803, l'expédition recueillit plus de 100 000 spécimens d'histoire naturelle, réalisa plus de 1 500 esquisses et peintures, et cartographia une large partie des côtes sud et ouest de la Nouvelle-Hollande (Australie), ainsi qu'une portion des côtes est et nord de la Terre de Diemen (Tasmanie). Au cours de ce voyage, Baudin rencontra le navigateur britannique Matthew Flinders en Australie méridionale, alors que ce dernier explorait également la côte sud du continent.</p>
-                        <p>Baudin mourut de la tuberculose en septembre 1803 à l'île Maurice, sur le chemin du retour. Son expédition laissa un héritage scientifique considérable, et de nombreux lieux en Australie portent encore aujourd'hui les noms attribués à l'issue du voyage.</p>
+                        <p>Nicolas Baudin, n&eacute; en 1754 &agrave; Saint-Martin-de-R&eacute;, fut un marin et explorateur fran&ccedil;ais de premier plan. Apr&egrave;s plusieurs campagnes dans l&rsquo;oc&eacute;an Indien puis aux Antilles &mdash; notamment le voyage de <em>La Belle Ang&eacute;lique</em>, qui joua un r&ocirc;le important dans le choix de sa candidature &mdash; il fut nomm&eacute; par Bonaparte, avec l&rsquo;appui des savants de l&rsquo;Institut national des sciences et des arts, pour diriger un grand voyage de d&eacute;couvertes vers les Terres australes. L&rsquo;exp&eacute;dition quitta Le Havre en octobre 1800 &agrave; bord de deux corvettes : <em>Le G&eacute;ographe</em>, command&eacute; par Baudin lui-m&ecirc;me, et <em>Le Naturaliste</em>, plac&eacute; sous le commandement de Jacques F&eacute;lix Emmanuel Hamelin.</p>
+                        <p>Entre 1801 et 1803, Baudin dirigea la reconnaissance et la cartographie de vastes portions du littoral australien. Sous son commandement, les officiers et hydrographes relev&egrave;rent une grande partie des c&ocirc;tes m&eacute;ridionales et occidentales de la Nouvelle-Hollande, ainsi qu&rsquo;une partie des c&ocirc;tes orientales et septentrionales de la Terre de Diemen. Baudin supervisa l&rsquo;organisation des reconnaissances, la navigation des b&acirc;timents et les travaux destin&eacute;s &agrave; pr&eacute;ciser la position et la forme des caps, baies, &icirc;les et autres accidents du littoral, qui servirent ensuite de support &agrave; la cartographie et &agrave; la nomenclature du voyage. Parall&egrave;lement, ses naturalistes r&eacute;unirent plus de 100 000 sp&eacute;cimens d&rsquo;histoire naturelle et ses artistes r&eacute;alis&egrave;rent plus de 1 500 dessins et peintures.<br>En avril 1802, au cours de la reconnaissance de la c&ocirc;te m&eacute;ridionale, Baudin rencontra le navigateur britannique Matthew Flinders, lui-m&ecirc;me engag&eacute; dans le relev&eacute; et la cartographie de cette partie du continent.</p>
+                        <p>Baudin mourut de la tuberculose en septembre 1803 &agrave; l&rsquo;&icirc;le de France, aujourd&rsquo;hui Maurice, pendant le voyage de retour. L&rsquo;exp&eacute;dition laissa d&rsquo;importants r&eacute;sultats scientifiques et cartographiques, et de nombreux lieux d&rsquo;Australie portent encore aujourd&rsquo;hui des noms issus de sa mission. Baudin lui-m&ecirc;me fut toutefois absent de la nomenclature officielle publi&eacute;e apr&egrave;s le voyage : aucun des noms retenus par P&eacute;ron et Freycinet ne lui rendit hommage.</p>
+                        <p>Ce fut finalement Matthew Flinders qui donna son nom &agrave; un lieu du littoral australien. Lors de leur rencontre &agrave; Encounter Bay, Baudin lui avait signal&eacute; un groupe de rochers bas situ&eacute; au large de la c&ocirc;te. Flinders les nomma <em>Baudin&rsquo;s Rocks</em> et expliqua plus tard dans <em>A Voyage to Terra Australis</em> qu&rsquo;il avait conserv&eacute; cette appellation parce qu&rsquo;aucun nom ne leur avait &eacute;t&eacute; attribu&eacute; dans le r&eacute;cit publi&eacute; par P&eacute;ron. Le nom de Baudin entra ainsi dans la g&eacute;ographie australienne non par la nomenclature officielle de sa propre exp&eacute;dition, mais par l&rsquo;interm&eacute;diaire du navigateur britannique qu&rsquo;il avait rencontr&eacute; sur la c&ocirc;te sud du continent.</p>
+                    </div>
+                </div>
+            </section>
+
+	            <section class="entry">
+	                <h2 id="hamelin-fr" class="entry-title">
+                    <span>Jacques Félix Emmanuel Hamelin</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/hamelin.png" alt="Portrait de Jacques Félix Emmanuel Hamelin" loading="lazy" decoding="async">
+                    </div>
+                    <div class="entry-text">
+                        <p>Jacques Félix Emmanuel Hamelin, né à Honfleur en 1768, fit d’abord carrière dans la marine marchande avant d’entrer dans la Marine de l’État en 1792. Promu enseigne de vaisseau en 1793, lieutenant de vaisseau en 1795 puis capitaine de frégate en 1796, il acquit une solide expérience du commandement et du service en mer avant son départ pour les Terres australes.</p>
+                        <p>En 1800, alors qu’il servait comme second de Dumanoir Le Pelley sur <em>Le Formidable</em>, Hamelin fut choisi pour remplacer le capitaine Maingon à la tête du <em>Naturaliste</em>, second bâtiment de l’expédition commandée par Nicolas Baudin. Sa nomination, soutenue par Dumanoir et Latouche-Tréville, fut approuvée par le Premier Consul le 30 août 1800. Hamelin rejoignit Le Havre quelques jours plus tôt et prit en charge la préparation de la corvette.</p>
+                        <p>Pendant l’expédition, il commanda <em>Le Naturaliste</em> au cours de la première campagne, souvent séparé du <em>Géographe</em> pendant de longues périodes. Il participa directement aux reconnaissances et aux levés des côtes australiennes, notamment en Australie-Occidentale. Après l’escale de Port Jackson en 1802, Baudin décida de renvoyer <em>Le Naturaliste</em> en France avec une partie importante des collections scientifiques. Hamelin ramena le navire au Havre en juin 1803, près de dix mois avant le retour du <em>Géographe</em>.</p>
+                        <p>Après le voyage, sa carrière se poursuivit dans la Marine. Promu capitaine de vaisseau en 1803, il servit notamment dans l’océan Indien, fut nommé contre-amiral en 1811 et devint en 1833 directeur général du Dépôt des cartes et plans. Il mourut en activité en 1839.</p>
+                        <p>La nomenclature publiée après l’expédition Baudin fut plus généreuse envers plusieurs officiers et savants qu’envers son commandant. Hamelin reçut néanmoins deux toponymes en Australie-Occidentale. Parmi eux figure le <em>Havre Hamelin</em>, aujourd’hui Hamelin Pool, dans Shark Bay. Son nom fut ainsi conservé dans la géographie australienne par la nomenclature officielle du voyage, alors que celui de Baudin en fut entièrement absent.</p>
                     </div>
                 </div>
             </section>
@@ -318,24 +436,65 @@
                         <p>En 1791, il embarqua sur La Recherche sous le commandement de d'Entrecasteaux en tant que premier ingénieur hydrographe pour partir à la recherche de La Pérouse, disparu depuis 1788. De 1791 à 1796, il profita de l'expédition pour effectuer des relevés des côtes des pays visités, expérimentant de nouvelles méthodes, notamment le cercle à réflexion de Jean-Charles de Borda.</p>
                         <p>Il établit les bases qui firent de l'hydrographie une véritable science, rapidement adoptée par toutes les marines. L'Appendice au voyage de d'Entrecasteaux, contenant tous les travaux de Beautemps-Beaupré de cette période et publié en 1808, eut un impact considérable car il "révolutionna les méthodes hydrographiques" utilisées jusqu'alors.</p>
                         <p>De retour en France en 1796, il fut nommé sous-conservateur du Dépôt des cartes et plans de la Marine en 1799. Il procéda dès lors au relevé des côtes de l'Empire français, travail qui lui valut son entrée à l'Académie des sciences en 1810. Ses contributions révolutionnèrent la cartographie marine et la navigation de précision.</p>
+                        <p>Malgré l’importance et la qualité alors sans précédent de ses travaux hydrographiques et cartographiques, <strong>aucun toponyme du littoral australien qu’il releva ne porte le nom de Beautemps-Beaupré</strong>. Cette absence peut sans doute s’expliquer, au moins en partie, par les hiérarchies sociales et professionnelles qui structuraient encore la Marine française : Beautemps-Beaupré avait le statut d’ingénieur hydrographe et non celui d’officier, distinction que les transformations révolutionnaires n’avaient pas encore entièrement effacée. Son travail fut néanmoins reconnu dans la nomenclature du voyage au-delà de l’Australie : le nom de <strong>Beautemps-Beaupré</strong> fut attribué aux îles qu’il reconnut en Nouvelle-Calédonie, aujourd’hui <strong>Beautemps-Beaupré Islands</strong>.</p>
                     </div>
                 </div>
             </section>
 
 	            <section class="entry">
 	                <h2 id="entrecasteaux-fr" class="entry-title">
-                    <span>Antoine Bruny d'Entrecasteaux</span>
+	                    <span>Antoine Bruni d'Entrecasteaux</span>
                     <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
                 </h2>
                 <div class="entry-content">
                     <div class="entry-image">
-                        <img src="img/entrecasteaux.jpg" alt="Portrait d'Antoine Bruny d'Entrecasteaux">
+                        <img src="img/entrecasteaux.jpg" alt="Portrait d'Antoine Bruni d'Entrecasteaux">
                     </div>
                     <div class="entry-text">
-                        <p>Antoine Raymond Joseph de Bruni, chevalier d'Entrecasteaux (8 novembre 1737 – 21 juillet 1793) était un officier de marine, explorateur et administrateur colonial français. Formé dans une école jésuite, il fut enrôlé dans la Marine française en 1754 par son père qui s'opposa à sa vocation religieuse.</p>
-                        <p>Il est surtout connu pour avoir dirigé l'expédition de 1791-1794 à la recherche de La Pérouse, dont on était sans nouvelles depuis trois ans. Promu contre-amiral au départ de Brest le 28 septembre 1791, il commandait deux navires, La Recherche et L'Espérance.</p>
-                        <p>D'Entrecasteaux eut la chance d'avoir d'excellents officiers et scientifiques, notamment l'ingénieur hydrographe Charles-François Beautemps-Beaupré, aujourd'hui considéré comme le père de l'hydrographie française moderne. L'expédition cartographia en détail les côtes de la Tasmanie et de l'Australie-Occidentale en 1792-1793.</p>
-                        <p>D'Entrecasteaux mourut du scorbut le 21 juillet 1793. Bien qu'il n'ait pas retrouvé La Pérouse, son voyage produisit d'importants relevés de plusieurs îles du Pacifique, ainsi que des rapports sur leur végétation, leurs conditions météorologiques, leurs langues et leurs cultures.</p>
+                        <p>Antoine Raymond Joseph de Bruni, chevalier d’Entrecasteaux (1737–1793), fut un officier de marine, explorateur et administrateur colonial français. Élève dans un collège jésuite, il envisagea d’abord une vocation religieuse, mais entra dans la Marine en 1754 à l’instigation de son père. Au cours des décennies suivantes, il acquit une solide expérience du commandement et de la navigation au long cours.</p>
+                        <p>Il est surtout connu pour avoir dirigé l’expédition envoyée en 1791 à la recherche de La Pérouse, disparu depuis trois ans. Promu contre-amiral peu avant son départ de Brest, le 28 septembre 1791, d’Entrecasteaux commandait <em>La Recherche</em>, accompagnée de <em>L’Espérance</em> sous les ordres de Jean-Michel Huon de Kermadec.</p>
+                        <p>L’expédition réunissait des officiers expérimentés et un important groupe de savants, parmi lesquels l’ingénieur hydrographe Charles-François Beautemps-Beaupré, dont les méthodes de levé jouèrent un rôle majeur dans le développement de l’hydrographie moderne. En 1792 et 1793, les deux bâtiments effectuèrent des reconnaissances détaillées et des levés hydrographiques sur plusieurs secteurs des côtes de la Terre de Van Diemen et du sud-ouest de la Nouvelle-Hollande, améliorant considérablement la connaissance cartographique européenne de ces rivages.</p>
+                        <p>Comme commandant, d’Entrecasteaux dut concilier les exigences parfois divergentes de la navigation, des levés hydrographiques et des recherches d’histoire naturelle. Les relations entre officiers et savants furent parfois tendues, tandis que les divisions politiques au sein du personnel scientifique ajoutaient encore aux difficultés. Malgré cela, il soutint activement le travail des naturalistes, les encouragea à se spécialiser dans des domaines distincts et chercha à intégrer leurs recherches aux objectifs généraux du voyage. Son autorité et sa conduite furent largement appréciées au sein de l’expédition, et il semble avoir conservé la confiance aussi bien des officiers que des savants malgré les tensions qui purent les opposer.</p>
+                        <p>D’Entrecasteaux mourut du scorbut le 21 juillet 1793, avant l’achèvement du voyage. Si l’expédition ne retrouva pas La Pérouse, elle produisit d’importants levés hydrographiques ainsi que de nombreuses observations sur l’histoire naturelle, le climat, les langues et les sociétés des régions visitées.</p>
+                        <p>Le voyage laissa également une empreinte durable dans la toponymie australienne, avec plusieurs lieux associés aux reconnaissances de l’expédition qui conservent le nom de d’Entrecasteaux. <strong>Bruny Island</strong> et <strong>Cape Bruny</strong>, en Tasmanie, reprennent son nom de famille, tandis que le grand passage relevé dans le sud-est de la Terre de Van Diemen reçut après sa mort, lors de la préparation des cartes de l’expédition, le nom de <strong>Canal d’Entrecasteaux</strong>, aujourd’hui <strong>D’Entrecasteaux Channel</strong>. <strong>Point D’Entrecasteaux</strong>, en Australie-Occidentale, commémore également le commandant du voyage.</p>
+                    </div>
+                </div>
+            </section>
+
+	            <section class="entry">
+	                <h2 id="kermadec-fr" class="entry-title">
+                    <span>Jean-Michel Huon de Kermadec</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/kermadec.png" alt="Portrait de Jean-Michel Huon de Kermadec" loading="lazy" decoding="async">
+                    </div>
+                    <div class="entry-text">
+                        <p>Jean-Michel Huon de Kermadec, né à Brest en 1748, entra dans la Marine royale comme garde de la marine en 1766. Il servit sur plusieurs bâtiments avant d’être promu enseigne de vaisseau en 1773. Il prit part à la bataille d’Ouessant en 1778, puis aux opérations de Grenade et de Savannah en 1779. Après plusieurs autres campagnes, il rejoignit d’Entrecasteaux sur <em>La Résolution</em> en 1785 et fut promu major de vaisseau l’année suivante.</p>
+                        <p>Il obtint son premier commandement, <em>Le Rhône</em>, en 1789 et devint la même année membre de l’Académie de Marine. Après avoir de nouveau servi sous d’Entrecasteaux sur <em>Le Patriote</em> en 1790–1791, il fut nommé commandant de <em>L’Espérance</em>, second bâtiment de l’expédition envoyée à la recherche de Lapérouse.</p>
+                        <p>Pendant le voyage, Huon de Kermadec partagea avec d’Entrecasteaux la conduite des opérations nautiques et des reconnaissances entreprises par les deux frégates. Comme Hamelin quelques années plus tard dans l’expédition Baudin, il joua un rôle essentiel dans le fonctionnement d’une expédition menée par deux bâtiments qui naviguaient de concert tout en conduisant leurs propres reconnaissances afin de faire progresser la mission du voyage.</p>
+                        <p>Il mourut en 1793 au cours du séjour de l’expédition en Nouvelle-Calédonie et fut enterré sur l’île de Poudioué.</p>
+                        <p>La nomenclature du voyage conserva largement la mémoire de ses principaux officiers. Huon de Kermadec fut ainsi honoré par plusieurs noms de lieux, dont en Tasmanie <strong>Île Huon</strong> et <strong>Rivière Huon</strong>.</p>
+                    </div>
+                </div>
+            </section>
+
+	            <section class="entry">
+	                <h2 id="rossel-fr" class="entry-title">
+                    <span>Élisabeth-Paul-Édouard de Rossel</span>
+                    <a class="backtop" href="#top"><img src="img/up-arrow.svg" alt="Retour en haut"></a>
+                </h2>
+                <div class="entry-content">
+                    <div class="entry-image">
+                        <img src="img/rossel.png" alt="Portrait d’Élisabeth-Paul-Édouard de Rossel" loading="lazy" decoding="async">
+                    </div>
+                    <div class="entry-text">
+                        <p>Élisabeth-Paul-Édouard de Rossel, né à Sens en 1765, entra dans la Marine royale comme garde de la marine en 1780, pendant la guerre d’Indépendance américaine. Après avoir servi sur plusieurs bâtiments, il rejoignit d’Entrecasteaux à bord de <em>La Résolution</em> et fut promu lieutenant de vaisseau en 1789. En 1791, il embarqua sur <em>La Recherche</em> pour l’expédition envoyée à la recherche de Lapérouse.</p>
+                        <p>Après la mort de d’Entrecasteaux en juillet 1793, puis celle d’Alexandre d’Hesmivy d’Auribeau, qui lui avait succédé à la tête de l’expédition, Rossel devint l’officier supérieur du voyage. Il s’attacha alors à préserver les journaux, observations, cartes et autres documents recueillis au cours de la campagne, qui constituaient l’essentiel des résultats nautiques et hydrographiques de l’expédition.</p>
+                        <p>Le retour de ces documents en France fut cependant interrompu par la guerre. En 1795, au cours du voyage de retour depuis Java via Le Cap, les caisses contenant une grande partie des cartes, journaux et relevés de l’expédition furent saisies par les Britanniques et transférées à Londres. Les cartes et les minutes de Beautemps-Beaupré furent examinées à l’Amirauté, notamment par l’hydrographe Alexander Dalrymple. Rossel demeura en Angleterre jusqu’à la paix d’Amiens. Les documents furent finalement restitués à la France en 1802, mais cette restitution ne fut que partielle : plusieurs cartes et plans manquaient encore à l’ensemble rendu au Dépôt de la Marine.</p>
+                        <p>De retour en France, Rossel entra au Dépôt des cartes et plans en 1803 et prit en charge la publication des résultats du voyage. Il dirigea notamment l’édition du <em>Voyage de d’Entrecasteaux</em>, publié en 1808, tandis que les travaux hydrographiques de Beautemps-Beaupré furent réunis et mis en forme pour l’atlas. Rossel devint par la suite directeur général du Dépôt, fut élu à l’Académie des sciences en 1811 et nommé contre-amiral honoraire en 1822. Il mourut en 1829.</p>
+                        <p>Son rôle dans l’histoire de la nomenclature se prolongea ainsi bien après la fin de l’expédition. Avec Beautemps-Beaupré, Rossel participa à la mise en ordre et à la publication des cartes sur lesquelles furent fixés les noms attribués au cours du voyage ou lors de la préparation de l’atlas. C’est notamment dans ce contexte que le grand passage reconnu au sud-est de la Terre de Diemen reçut, après la mort du commandant, le nom de <strong>Canal d’Entrecasteaux</strong>, aujourd’hui <strong>D’Entrecasteaux Channel</strong>. Rossel fut lui-même honoré par la <strong>Pointe Rossel</strong>.</p>
                     </div>
                 </div>
             </section>
@@ -350,11 +509,11 @@
                         <img src="img/freycinet.jpg" alt="Portrait de Louis de Freycinet">
                     </div>
                     <div class="entry-text">
-                        <p>N&eacute; le 8 ao&ucirc;t 1779 &agrave; Mont&eacute;limar (Dr&ocirc;me), Louis Claude de Saulces de Freycinet participa &agrave; l&rsquo;exp&eacute;dition Baudin aux Terres Australes (1800-1803), dont il devint l&rsquo;un des officiers les plus actifs. Il y embarqua comme enseigne de vaisseau &agrave; bord du <em>Naturaliste</em>, avant d&rsquo;&ecirc;tre promu lieutenant par int&eacute;rim &agrave; Timor le 20 octobre 1801, puis confirm&eacute; dans ce grade en mars 1803.</p>
-                        <p>Le 23 septembre 1802, lors de l&rsquo;escale &agrave; Port Jackson, il prit le commandement de la <em>Casuarina</em>, puis retrouva le <em>G&eacute;ographe</em> &agrave; l&rsquo;&Icirc;le de France (Maurice) le 29 ao&ucirc;t 1803. Fr&egrave;re cadet d&rsquo;Henri Freycinet, enseigne de vaisseau sur le <em>G&eacute;ographe</em>, il acheva, apr&egrave;s la mort de Fran&ccedil;ois P&eacute;ron en 1810, le deuxi&egrave;me volume du r&eacute;cit officiel de l&rsquo;exp&eacute;dition, <em>Voyage de d&eacute;couvertes aux Terres australes</em>. &Agrave; son retour, il fut charg&eacute; de compiler la cartographie de l&rsquo;exp&eacute;dition et de publier l&rsquo;<em>Atlas des cartes</em>, ainsi que le volume <em>Navigation et g&eacute;ographie</em>.</p>
-                        <p>Il mena une longue carri&egrave;re dans la marine. Celle-ci fut marqu&eacute;e notamment par son voyage scientifique dans le Pacifique &agrave; bord de l&rsquo;<em>Uranie</em> (1817-1820), auquel prit part &eacute;galement son &eacute;pouse, Rose.</p>
-                        <p>&Eacute;lu &agrave; l&rsquo;Acad&eacute;mie des sciences en 1825, il contribua &agrave; la fondation de la Soci&eacute;t&eacute; de g&eacute;ographie et publia plusieurs ouvrages majeurs consacr&eacute;s &agrave; ses voyages, participant ainsi au rayonnement de la science fran&ccedil;aise et &agrave; la connaissance des terres australes.</p>
-                        <p>Il d&eacute;c&eacute;da le 18 ao&ucirc;t 1842 dans la r&eacute;sidence familiale &agrave; Saulce-sur-Rh&ocirc;ne (Dr&ocirc;me).</p>
+                        <p>Né le 8 août 1779 à Montélimar (Drôme), Louis Claude de Saulces de Freycinet participa à l’expédition Baudin aux Terres australes (1800–1803), dont il devint l’un des officiers les plus actifs. Il y embarqua comme enseigne de vaisseau à bord du <em>Naturaliste</em>, avant d’être promu lieutenant par intérim à Timor le 20 octobre 1801, puis confirmé dans ce grade en mars 1803.</p>
+                        <p>Le 23 septembre 1802, lors de l’escale à Port Jackson, il prit le commandement de la <em>Casuarina</em>, chargée de compléter les reconnaissances menées par le <em>Géographe</em>. Il retrouva ce dernier à l’Île de France (Maurice) le 29 août 1803. Frère cadet d’Henri Freycinet, enseigne de vaisseau sur le <em>Géographe</em>, il joua un rôle important dans les reconnaissances hydrographiques de la seconde partie du voyage.</p>
+                        <p>À son retour en France, Freycinet fut chargé de rassembler et de mettre en forme les travaux cartographiques de l’expédition. Après la mort de François Péron en 1810, il acheva le deuxième volume du récit officiel, <em>Voyage de découvertes aux Terres australes</em>, et assura également la publication de l’<em>Atlas des cartes</em> ainsi que du volume <em>Navigation et géographie</em>. Il contribua ainsi directement à fixer dans les publications officielles les résultats géographiques et hydrographiques du voyage.</p>
+                        <p>Il poursuivit ensuite une longue carrière dans la Marine, marquée notamment par son voyage scientifique dans le Pacifique à bord de l’<em>Uranie</em> (1817–1820), auquel prit également part son épouse, Rose. Élu à l’Académie des sciences en 1825, il contribua à la fondation de la Société de géographie et publia plusieurs ouvrages majeurs consacrés à ses voyages. Il mourut le 18 août 1842 dans la résidence familiale de Saulce-sur-Rhône (Drôme).</p>
+                        <p>Freycinet joua enfin, avec François Péron, un rôle central dans l’élaboration de la nomenclature publiée après l’expédition. Une grande partie des noms choisis par Baudin pendant le voyage fut remplacée par une nouvelle nomenclature élaborée en France, dans laquelle une large place fut accordée aux savants, aux officiers, aux hommes de lettres et aux personnalités du monde politique et administratif de l’époque napoléonienne. Les membres de l’expédition eux-mêmes y furent largement honorés, notamment Péron, Boullanger, Lesueur, Leschenault, Faure, ainsi que Louis Freycinet et son frère Henri. Le nom des frères Freycinet demeure aujourd’hui particulièrement visible en Tasmanie avec <strong>Freycinet Peninsula</strong>, qui commémore Louis et Henri Freycinet.</p>
                     </div>
                 </div>
             </section>
@@ -369,10 +528,11 @@
                         <img src="img/lesueur.jpg" alt="Portrait de Charles-Alexandre Lesueur">
                     </div>
                     <div class="entry-text">
-                        <p>Charles-Alexandre Lesueur (1778&ndash;1846) fut un naturaliste, artiste et explorateur fran&ccedil;ais, n&eacute; au Havre le 1<sup>er</sup> janvier 1778. Inform&eacute; des pr&eacute;paratifs de l&rsquo;exp&eacute;dition aux Terres australes, il s&rsquo;engagea en 1800 comme aide-canonnier, tout comme son coll&egrave;gue Nicolas-Martin Petit (1777&ndash;1804). Baudin reconnut toutefois rapidement leurs aptitudes artistiques et les chargea tous deux d&rsquo;illustrer les archives officielles de l&rsquo;exp&eacute;dition. Lesueur et Petit se r&eacute;v&eacute;l&egrave;rent des dessinateurs d&rsquo;un tr&egrave;s haut niveau.</p>
-                        <p>&Agrave; la suite de la d&eacute;sertion de plusieurs artistes, due notamment aux rudes conditions de vie en mer, Lesueur et Petit devinrent les deux illustrateurs officiels de l&rsquo;exp&eacute;dition. Sous la direction du zoologiste Fran&ccedil;ois P&eacute;ron, Lesueur se sp&eacute;cialisa dans les sujets zoologiques et acquit les bases de l&rsquo;histoire naturelle, tandis que Petit se consacra principalement &agrave; la repr&eacute;sentation ethnographique. Les dessins de Lesueur, avec ceux de Petit, furent ensuite reproduits dans les volumes de l&rsquo;Atlas publi&eacute;s pour accompagner le r&eacute;cit historique officiel de l&rsquo;exp&eacute;dition.</p>
-                        <p>Apr&egrave;s l&rsquo;exp&eacute;dition, et apr&egrave;s la mort de Petit de la gangr&egrave;ne en ao&ucirc;t 1804, Lesueur effectua un long s&eacute;jour aux &Eacute;tats-Unis (1816&ndash;1837). Il y contribua de mani&egrave;re substantielle &agrave; l&rsquo;exploration scientifique de la fronti&egrave;re am&eacute;ricaine et participa &agrave; la communaut&eacute; utopique de Robert Owen &agrave; New Harmony. Durant ces ann&eacute;es, il rassembla un ensemble consid&eacute;rable d&rsquo;&eacute;crits, de dessins et de peintures.</p>
-                        <p>De retour en France en 1837, Lesueur fut nomm&eacute; conservateur du Mus&eacute;um d&rsquo;histoire naturelle du Havre en mars 1846. Il mourut subitement neuf mois plus tard, le 12 d&eacute;cembre 1846, laissant un important h&eacute;ritage artistique et scientifique.</p>
+                        <p>Charles-Alexandre Lesueur (1778–1846) fut un naturaliste, artiste et explorateur français, né au Havre le 1er janvier 1778. Informé des préparatifs de l’expédition aux Terres australes, il s’engagea en 1800 comme aide-canonnier, tout comme Nicolas-Martin Petit (1777–1804). Baudin reconnut toutefois rapidement leurs aptitudes artistiques et les chargea d’illustrer les archives officielles du voyage.</p>
+                        <p>À la suite du départ de plusieurs artistes, dû notamment aux rudes conditions de vie en mer, Lesueur devint, avec Petit, l’un des deux principaux illustrateurs de l’expédition. Sous la direction du zoologiste François Péron, il se spécialisa dans les sujets zoologiques et acquit une solide formation en histoire naturelle, tandis que Petit se consacra principalement à la représentation ethnographique. Leurs dessins furent ensuite reproduits dans les volumes de l’<em>Atlas</em> publiés pour accompagner le récit officiel de l’expédition.</p>
+                        <p>Après le voyage, et après la mort de Petit des suites de la gangrène en août 1804, Lesueur effectua un long séjour aux États-Unis (1816–1837). Il y contribua de manière substantielle à l’exploration scientifique de la frontière américaine et participa à la communauté utopique de Robert Owen à New Harmony. Durant ces années, il rassembla un ensemble considérable d’écrits, de dessins et de peintures.</p>
+                        <p>De retour en France en 1837, Lesueur fut nommé conservateur du Muséum d’histoire naturelle du Havre en mars 1846. Il mourut subitement neuf mois plus tard, le 12 décembre 1846, laissant un important héritage artistique et scientifique.</p>
+                        <p>Lesueur fut également largement honoré dans la nomenclature publiée après l’expédition. <strong>Trois noms de lieux</strong> lui furent attribués, ce qui le place parmi les membres du voyage les plus représentés dans la toponymie établie par Péron et Freycinet. Cette distinction n’est sans doute pas sans rapport avec les liens étroits qui unissaient Lesueur à Péron : compagnons de voyage, collaborateurs scientifiques et proches amis, ils poursuivirent leur travail ensemble après l’expédition. Petit, pourtant l’autre grand dessinateur du voyage, ne bénéficia pas d’une reconnaissance toponymique comparable. Les choix de la nomenclature reflètent ainsi non seulement les fonctions exercées et les contributions au voyage, mais aussi, dans certains cas, les relations personnelles et les affinités de ceux qui furent chargés d’en fixer les noms.</p>
                     </div>
                 </div>
             </section>
@@ -390,10 +550,12 @@
                         </picture>
                     </div>
                     <div class="entry-text">
-                        <p>Fran&ccedil;ois P&eacute;ron (1775&ndash;1810) fut un naturaliste et explorateur fran&ccedil;ais, n&eacute; &agrave; C&eacute;rilly. Apr&egrave;s une premi&egrave;re carri&egrave;re militaire interrompue par une blessure, il se consacra &agrave; l&rsquo;&eacute;tude de la m&eacute;decine et de l&rsquo;histoire naturelle &agrave; Paris. En 1800, il rejoignit l&rsquo;exp&eacute;dition Baudin aux Terres australes et embarqua &agrave; bord du <em>G&eacute;ographe</em> et du <em>Naturaliste</em>. D&rsquo;abord recrut&eacute; comme aide-zoologiste sur le <em>G&eacute;ographe</em>, il devint le principal zoologiste et l&rsquo;anthropologue de l&rsquo;exp&eacute;dition &agrave; la suite du d&eacute;part de plusieurs naturalistes &agrave; l&rsquo;&Icirc;le de France (Maurice) en 1801.</p>
-                        <p>Il collabora &eacute;troitement avec l&rsquo;artiste de l&rsquo;exp&eacute;dition, Charles-Alexandre Lesueur, qui r&eacute;alisa les dessins et aquarelles des sp&eacute;cimens qu&rsquo;il lui transmit.</p>
-                        <p>&Agrave; la mort de Nicolas Baudin, le minist&egrave;re de l&rsquo;Int&eacute;rieur lui confia la r&eacute;daction du r&eacute;cit officiel de l&rsquo;exp&eacute;dition. &Eacute;lu membre correspondant de l&rsquo;Institut en 1805, il publia plusieurs m&eacute;moires scientifiques fond&eacute;s sur les collections rapport&eacute;es des Terres australes et contribua ainsi &agrave; l&rsquo;&eacute;mergence de concepts majeurs de la biologie naissante.</p>
-                        <p>Il mourut pr&eacute;matur&eacute;ment de la tuberculose en 1810, &agrave; l&rsquo;&acirc;ge de trente-cinq ans. Son &oelig;uvre et ses travaux laiss&egrave;rent un h&eacute;ritage scientifique consid&eacute;rable, enrichissant durablement les connaissances europ&eacute;ennes relatives &agrave; l&rsquo;Australie et &agrave; son environnement naturel.</p>
+                        <p>François Péron (1775–1810) fut un naturaliste et explorateur français, né à Cérilly. Après une première carrière militaire interrompue par une blessure, il se consacra à l’étude de la médecine et de l’histoire naturelle à Paris. En 1800, il rejoignit l’expédition Baudin aux Terres australes et embarqua à bord du <em>Géographe</em> et du <em>Naturaliste</em>. D’abord recruté comme aide-zoologiste sur le <em>Géographe</em>, il devint le principal zoologiste et l’anthropologue de l’expédition à la suite du départ de plusieurs naturalistes à l’Île de France (Maurice) en 1801.</p>
+                        <p>Il collabora étroitement avec l’artiste de l’expédition, Charles-Alexandre Lesueur, qui réalisa les dessins et aquarelles des spécimens qu’il lui transmit.</p>
+                        <p>À la mort de Nicolas Baudin, le ministère de l’Intérieur lui confia la rédaction du récit officiel de l’expédition. Élu membre correspondant de l’Institut en 1805, il publia plusieurs mémoires scientifiques fondés sur les collections rapportées des Terres australes et contribua ainsi à l’émergence de concepts majeurs de la biologie naissante.</p>
+                        <p>Il mourut prématurément de la tuberculose en 1810, à l’âge de trente-cinq ans. Son œuvre et ses travaux laissèrent un héritage scientifique considérable, enrichissant durablement les connaissances européennes relatives à l’Australie et à son environnement naturel.</p>
+                        <p>Péron joua également un rôle central, avec Louis Freycinet, dans l’élaboration de la nomenclature publiée après l’expédition. Une grande partie des noms choisis par Baudin au cours du voyage fut remplacée par une nouvelle nomenclature établie en France et fortement marquée par le contexte scientifique, culturel et politique de l’époque napoléonienne.</p>
+                        <p>Péron lui-même y fut particulièrement honoré : <strong>quatre noms de lieux lui furent attribués</strong>, soit le nombre le plus élevé parmi les membres de l’expédition, à égalité avec Charles Boullanger. L’un d’eux peut être attribué avec certitude à Louis Freycinet : dans son récit de la reconnaissance de Shark Bay, celui-ci précise que la grande presqu’île formant la rive orientale du <em>Havre H. Freycinet</em> « reçut le nom de mon ami M. Péron ». Cette <strong>Presqu’île Péron</strong> est l’actuelle <strong>Peron Peninsula</strong>, en Australie-Occidentale. Le nom de Péron demeure également associé à <strong>Cape Peron / Point Peron</strong>, près de Rockingham, ainsi qu’aux <strong>Peron Islands</strong> dans le Territoire du Nord.</p>
                     </div>
                 </div>
             </section>
@@ -424,6 +586,69 @@
     </div>
 
     <script>
+        // Group the notices by expedition while preserving their existing content and layout.
+        function groupActorsByExpedition() {
+            const groupsByLanguage = {
+                en: [
+                    {
+                        id: 'entrecasteaux-group-en',
+                        title: 'The d’Entrecasteaux expedition',
+                        actors: ['entrecasteaux-en', 'kermadec-en', 'rossel-en', 'beautemps-beaupre-en']
+                    },
+                    {
+                        id: 'baudin-group-en',
+                        title: 'The Baudin expedition',
+                        actors: ['baudin-en', 'hamelin-en', 'freycinet-en', 'peron-en', 'lesueur-en']
+                    }
+                ],
+                fr: [
+                    {
+                        id: 'entrecasteaux-group-fr',
+                        title: 'Expédition d’Entrecasteaux',
+                        actors: ['entrecasteaux-fr', 'kermadec-fr', 'rossel-fr', 'beautemps-beaupre-fr']
+                    },
+                    {
+                        id: 'baudin-group-fr',
+                        title: 'Expédition Baudin',
+                        actors: ['baudin-fr', 'hamelin-fr', 'freycinet-fr', 'peron-fr', 'lesueur-fr']
+                    }
+                ]
+            };
+
+            Object.entries(groupsByLanguage).forEach(([language, groups]) => {
+                const container = document.querySelector(`[data-lang="${language}"] .content-section`);
+                if (!container) return;
+
+                groups.forEach(({ id, title, actors }) => {
+                    const group = document.createElement('section');
+                    group.className = 'expedition-group';
+                    group.setAttribute('aria-labelledby', id);
+
+                    const heading = document.createElement('h2');
+                    heading.id = id;
+                    heading.className = 'expedition-group-title';
+                    heading.textContent = title;
+                    group.appendChild(heading);
+
+                    actors.forEach(actorId => {
+                        const actorHeading = document.getElementById(actorId);
+                        const entry = actorHeading ? actorHeading.closest('.entry') : null;
+                        if (entry) group.appendChild(entry);
+                    });
+
+                    container.appendChild(group);
+                });
+            });
+
+            // Reapply direct-link scrolling after the entries have moved into their groups.
+            if (window.location.hash) {
+                const target = document.getElementById(window.location.hash.slice(1));
+                if (target) requestAnimationFrame(() => target.scrollIntoView());
+            }
+        }
+
+        groupActorsByExpedition();
+
         // Lightbox management for portraits
         const lightbox = document.getElementById('portraitLightbox');
         const lightboxImg = lightbox.querySelector('img');
