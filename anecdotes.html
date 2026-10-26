@@ -4,11 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title data-i18n="anecdotes-meta-title">Anecdotes — French Place Names Australia</title>
-<meta content="Anecdotes : histoire des expéditions françaises en Australie, documents et illustrations." name="description"/>
+<title data-i18n="anecdotes-meta-title">Au fil des voyages — French Place Names Australia</title>
+<meta content="Au fil des voyages : départs de navires, vie à bord et récits des expéditions françaises en Australie." name="description"/>
 <link href="img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="commun/css/nav.css" rel="stylesheet"/>
-<link href="commun/css/resource-features.css?v=20260905b" rel="stylesheet"/>
+<link href="commun/css/resource-features.css?v=20261025a" rel="stylesheet"/>
+<style>
+.voyage-group { max-width: 980px; margin: 34px auto 0; }
+.voyage-group + .voyage-group { margin-top: 42px; padding-top: 34px; border-top: 1px solid #d7d2c8; }
+.voyage-group-title { margin: 0; color: #213f56; font-size: clamp(1.45rem, 2.6vw, 1.9rem); text-align: left; }
+.voyage-group-title::after { content: ""; display: block; width: 64px; height: 3px; margin-top: 10px; border-radius: 3px; background: #c59742; }
+.voyage-group-intro { max-width: 780px; margin: 14px 0 24px; color: #4e5962; line-height: 1.65; }
+.departure-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.departure-card { overflow: hidden; border: 1px solid #d8d1c4; border-radius: 14px; background: #fff; box-shadow: 0 10px 26px rgba(30, 42, 50, .12); }
+.departure-card video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #172027; }
+.departure-card-body { padding: 20px 22px 22px; }
+.departure-card-body h3 { margin: 5px 0 10px; color: #213f56; font-family: 'EB Garamond', Georgia, serif; font-size: 1.42rem; line-height: 1.25; }
+.departure-card-body p:last-child { margin: 0; color: #46515a; line-height: 1.6; }
+.departure-date { margin: 0; color: #8b6529; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+@media(max-width:768px) {
+  .voyage-group { margin-top: 28px; }
+  .voyage-group + .voyage-group { margin-top: 32px; padding-top: 28px; }
+  .departure-grid { grid-template-columns: 1fr; }
+  .departure-card-body { padding: 18px; }
+}
+</style>
 </head>
 <body>
 <nav>
@@ -30,9 +50,26 @@
 </div>
 </nav>
 <main class="container">
-<section class="content-section" data-lang="fr"><h1>Anecdotes <a href="resources.html"><img alt="Retour aux Ressources" src="img/up-arrow.svg" style="width:24px;vertical-align:middle;margin-left:8px;"/></a></h1>
-<p class="intro">Vies et compagnons de voyage : deux histoires à bord des expéditions.</p>
-<article class="story story-card ship-rubric"><h2>Une femme à bord</h2>
+<section class="content-section" data-lang="fr"><h1>Au fil des voyages <a href="resources.html"><img alt="Retour aux Ressources" src="img/up-arrow.svg" style="width:24px;vertical-align:middle;margin-left:8px;"/></a></h1>
+<p class="intro">Départs, vies et compagnons de voyage : des récits au fil des expéditions.</p>
+<section class="voyage-group departure-group" aria-labelledby="departures-fr-title">
+<h2 class="voyage-group-title" id="departures-fr-title">Le départ des navires</h2>
+<p class="voyage-group-intro">Deux récits filmés consacrés aux départs de <em>La Recherche</em> et de <em>L’Espérance</em> depuis Brest en 1791, puis du <em>Géographe</em> et du <em>Naturaliste</em> depuis Le Havre en 1800.</p>
+<div class="departure-grid">
+<article class="departure-card">
+<video aria-label="Le départ de La Recherche et de L’Espérance de Brest en 1791" controls playsinline poster="img/anecdotes/depart-recherche-esperance.jpg" preload="metadata"><source src="media/anecdotes/depart-recherche-esperance-fr.mp4" type="video/mp4"/>Votre navigateur ne permet pas de lire cette vidéo. <a href="media/anecdotes/depart-recherche-esperance-fr.mp4">Ouvrir la vidéo</a>.</video>
+<div class="departure-card-body"><p class="departure-date">Brest · 28 septembre 1791</p><h3>Le départ de <em>La Recherche</em> et de <em>L’Espérance</em></h3><p>Le contexte révolutionnaire, les préparatifs à Brest et l’appareillage des deux frégates envoyées à la recherche de La Pérouse.</p></div>
+</article>
+<article class="departure-card">
+<video aria-label="Le départ du Géographe et du Naturaliste du Havre en 1800" controls playsinline poster="img/anecdotes/depart-geographe-naturaliste.jpg" preload="metadata"><source src="media/anecdotes/depart-geographe-naturaliste-fr.mp4" type="video/mp4"/>Votre navigateur ne permet pas de lire cette vidéo. <a href="media/anecdotes/depart-geographe-naturaliste-fr.mp4">Ouvrir la vidéo</a>.</video>
+<div class="departure-card-body"><p class="departure-date">Le Havre · 19 octobre 1800</p><h3>Le départ du <em>Géographe</em> et du <em>Naturaliste</em></h3><p>La préparation scientifique du voyage de Nicolas Baudin et le départ des deux corvettes à destination des Terres australes.</p></div>
+</article>
+</div>
+</section>
+<section class="voyage-group life-on-board-group" aria-labelledby="life-on-board-fr-title">
+<h2 class="voyage-group-title" id="life-on-board-fr-title">La vie à bord</h2>
+<p class="voyage-group-intro">Destins singuliers et compagnons de voyage au quotidien.</p>
+<article class="story story-card ship-rubric"><h2>Marie-Louise Girardin — une femme à bord</h2>
 <p class="subtitle">Louis Girardin — Marie-Louise Victoire Girardin · 1754–1794</p>
 <figure><a data-resource-modal="image" href="img/anecdotes/girardin-aquarelle.png"><img alt="Évocation de Marie-Louise Girardin en tenue masculine sur le pont de La Recherche" loading="lazy" src="img/anecdotes/girardin-aquarelle.png"/></a><figcaption>Aquarelle d’évocation générée par IA : Girardin sous l’identité de Louis, à bord de La Recherche. Portrait imaginé.</figcaption></figure>
 <h3>Des bâtiments interdits aux femmes</h3>
@@ -54,9 +91,27 @@
 <blockquote class="resource-quote story-quote"><p class="quote-label"><strong>Extrait du journal de Levillain (Version française modernisée)</strong></p><p>Mon pauvre chien Kismy, que j’avais prêté par complaisance à M. Millius, lieutenant de vaisseau, qui lui était lui aussi quelque peu attaché — mon plus fidèle ami, auquel mon attachement ne faisait aucun doute —, avait pris peur de la lame et n’avait jamais voulu se laisser attraper pour être embarqué. Finalement, on avait été obligé de le laisser. Hélas, je ne puis retenir mes larmes. Mon pauvre chien, mon fidèle et vieil ami ! Il faut avoir eu un animal semblable pour comprendre la douleur que l’on ressent lorsqu’on est privé de celui auquel on était attaché !</p><p>Cette perte est considérable à bien des égards, particulièrement pour la zoologie. Comment, en effet, se procurer des quadrupèdes sans chien ? Comment rapporter une pièce de gibier des marais ? Comment, lorsqu’un oiseau aquatique a été abattu sur une pièce d’eau, récupérer l’un de ceux qui sont tombés dans l’eau ?</p><p>Hélas, il me semble encore entendre les cris et les hurlements plaintifs de ce pauvre animal. Puisse la nature lui indiquer les moyens de survivre en chassant pour son propre compte, ou en cherchant à s’attacher à quelque indigène bienveillant. Ce pauvre animal était aimé de tout le monde à bord ; il était si doux et si affectueux que tout l’équipage l’aimait beaucoup.</p><p>Je ne puis en parler davantage : mes yeux se remplissent à nouveau de larmes et je n’y vois plus assez pour continuer. Pour la première fois que je m’attache ainsi à un animal, je suis bien malheureux !</p></blockquote>
 <section class="sources"><h3>Source et document</h3><p>Récit repris de la <a data-resource-modal="sheet" href="details/Baudin443F.html">fiche détaillée de Levillain</a>, d’après son journal.</p><p><a href="https://baudin.sydney.edu.au/wp-content/uploads/2019/07/levillainANF5JJ52french.pdf" rel="noopener noreferrer" target="_blank">Journal de Stanislas Levillain — The Baudin Legacy Project ↗</a></p></section></article>
 </section>
-<section class="content-section" data-lang="en"><h1>Anecdotes <a href="resources.html"><img alt="Back to Resources" src="img/up-arrow.svg" style="width:24px;vertical-align:middle;margin-left:8px;"/></a></h1>
-<p class="intro">Lives and travelling companions: two stories aboard the expeditions.</p>
-<article class="story story-card ship-rubric"><h2>A Woman on Board</h2>
+</section>
+<section class="content-section" data-lang="en"><h1>Chronicles <a href="resources.html"><img alt="Back to Resources" src="img/up-arrow.svg" style="width:24px;vertical-align:middle;margin-left:8px;"/></a></h1>
+<p class="intro">Departures, lives and travelling companions: stories from across the expeditions.</p>
+<section class="voyage-group departure-group" aria-labelledby="departures-en-title">
+<h2 class="voyage-group-title" id="departures-en-title">Ships Setting Sail</h2>
+<p class="voyage-group-intro">Two film accounts of <em>La Recherche</em> and <em>L’Espérance</em> leaving Brest in 1791, followed by <em>Le Géographe</em> and <em>Le Naturaliste</em> leaving Le Havre in 1800.</p>
+<div class="departure-grid">
+<article class="departure-card">
+<video aria-label="La Recherche and L’Espérance leaving Brest in 1791" controls playsinline poster="img/anecdotes/depart-recherche-esperance.jpg" preload="metadata"><source src="media/anecdotes/depart-recherche-esperance-en.mp4" type="video/mp4"/>Your browser cannot play this video. <a href="media/anecdotes/depart-recherche-esperance-en.mp4">Open the video</a>.</video>
+<div class="departure-card-body"><p class="departure-date">Brest · 28 September 1791</p><h3><em>La Recherche</em> and <em>L’Espérance</em> Set Sail</h3><p>The revolutionary context, the final preparations in Brest, and the departure of the two frigates sent in search of La Pérouse.</p></div>
+</article>
+<article class="departure-card">
+<video aria-label="Le Géographe and Le Naturaliste leaving Le Havre in 1800" controls playsinline poster="img/anecdotes/depart-geographe-naturaliste.jpg" preload="metadata"><source src="media/anecdotes/depart-geographe-naturaliste-en.mp4" type="video/mp4"/>Your browser cannot play this video. <a href="media/anecdotes/depart-geographe-naturaliste-en.mp4">Open the video</a>.</video>
+<div class="departure-card-body"><p class="departure-date">Le Havre · 19 October 1800</p><h3><em>Le Géographe</em> and <em>Le Naturaliste</em> Set Sail</h3><p>The scientific preparation of Nicolas Baudin’s voyage and the two corvettes’ departure for the Southern Lands.</p></div>
+</article>
+</div>
+</section>
+<section class="voyage-group life-on-board-group" aria-labelledby="life-on-board-en-title">
+<h2 class="voyage-group-title" id="life-on-board-en-title">Life on Board</h2>
+<p class="voyage-group-intro">Remarkable lives and travelling companions in the everyday world of the expeditions.</p>
+<article class="story story-card ship-rubric"><h2>Marie-Louise Girardin — A Woman on Board</h2>
 <p class="subtitle">Louis Girardin — Marie-Louise Victoire Girardin · 1754–1794</p>
 <figure><a data-resource-modal="image" href="img/anecdotes/girardin-aquarelle.png"><img alt="Depiction of Marie-Louise Girardin in male attire on the deck of La Recherche" loading="lazy" src="img/anecdotes/girardin-aquarelle.png"/></a><figcaption>AI-generated evocative watercolour: Girardin under the identity of Louis, aboard La Recherche. Imagined portrait.</figcaption></figure>
 <h3>Women Barred from French Naval Ships</h3>
@@ -77,6 +132,7 @@
 <h3>A naturalist’s working companion</h3><p>The loss is also a practical blow. Levillain explains how useful a dog is for retrieving quadrupeds, marsh game and birds shot over water. His testimony brings together affection for an animal companion and the everyday challenges of collecting zoological specimens.</p>
 <blockquote class="resource-quote story-quote"><p class="quote-label"><strong>Extract from Levillain’s journal</strong></p><p>My poor dog Kismy, whom I had lent as a favour to Mr Millius, a naval lieutenant who had also become somewhat attached to him — my most faithful friend, to whom my own attachment was beyond doubt — had become frightened by the surf and had never allowed himself to be caught so that he could be taken aboard. In the end, they had been obliged to leave him behind. Alas, I cannot hold back my tears. My poor dog, my faithful old friend! One must have had such an animal to understand the pain one feels when deprived of a creature to whom one had become attached.</p><p>This loss is considerable in many respects, particularly for zoology. How are we to obtain quadrupeds without a dog? How are we to retrieve game from the marshes? How, when a waterbird has been shot over a stretch of water, are we to recover one of the birds that has fallen into the water?</p><p>Alas, I seem still to hear the cries and mournful howls of this poor animal. May nature show him how to survive by hunting for himself, or by finding some gentle Indigenous person to whom he can attach himself. The poor animal was loved by everyone on board; he was so gentle and affectionate that the entire crew was very fond of him.</p><p>I can no longer speak of him. My eyes fill with tears again and I can no longer see well enough to continue. The first time I have ever become so attached to an animal, and I am truly miserable!</p></blockquote>
 <section class="sources"><h3>Source and document</h3><p>Adapted from <a data-resource-modal="sheet" href="details/Baudin443E.html">Levillain’s detailed entry</a>, based on his journal.</p><p><a href="https://baudin.sydney.edu.au/wp-content/uploads/2019/07/levillainANF5JJ52french.pdf" rel="noopener noreferrer" target="_blank">Stanislas Levillain’s journal — The Baudin Legacy Project (French) ↗</a></p></section></article>
+</section>
 </section>
 </main>
 <div data-include-footer=""></div>
