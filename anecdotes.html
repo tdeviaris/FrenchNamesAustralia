@@ -141,5 +141,20 @@
 <script src="commun/js/traductions-communes.js?v=20261003"></script>
 <script src="js/translations.js?v=20260905-resources"></script>
 <script src="commun/js/main.js?v=20260905-resources"></script>
-<script src="commun/js/resource-modals.js?v=20260905b"></script></body>
+<script src="commun/js/resource-modals.js?v=20260905b"></script>
+<script>
+// Une seule vidéo à la fois : lancer une vidéo arrête les autres,
+// et un clic ailleurs que sur une vidéo met en pause celle en cours.
+(function () {
+  function pauserSauf(garder) {
+    document.querySelectorAll('video, audio').forEach(function (media) {
+      if (media !== garder && !media.paused) media.pause();
+    });
+  }
+  document.addEventListener('play', function (e) { pauserSauf(e.target); }, true);
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('video')) pauserSauf(null);
+  }, true);
+})();
+</script></body>
 </html>
