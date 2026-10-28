@@ -18,6 +18,8 @@
 .departure-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
 .departure-card { overflow: hidden; border: 1px solid #d8d1c4; border-radius: 14px; background: #fff; box-shadow: 0 10px 26px rgba(30, 42, 50, .12); }
 .departure-card video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #172027; }
+.departure-card video:fullscreen { object-fit: contain; background: #000; }
+.departure-card video:-webkit-full-screen { object-fit: contain; background: #000; }
 .departure-card-body { padding: 20px 22px 22px; }
 .departure-card-body h3 { margin: 5px 0 10px; color: #213f56; font-family: 'EB Garamond', Georgia, serif; font-size: 1.42rem; line-height: 1.25; }
 .departure-card-body p:last-child { margin: 0; color: #46515a; line-height: 1.6; }
