@@ -171,6 +171,54 @@
                 justify-content: center;
             }
         }
+        .resource-item-art--zoomable img { cursor: zoom-in; transition: opacity 0.2s ease; }
+        .resource-item-art--zoomable img:hover { opacity: 0.85; }
+
+        /* Visionneuse plein écran de l'illustration (même rendu que actors.html) */
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .image-lightbox.active {
+            display: flex;
+        }
+        .image-lightbox img {
+            width: 90vw;
+            height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+        }
+        .image-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            font-size: 28px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background 0.2s ease;
+        }
+        .image-lightbox-close:hover {
+            background: #f2f2f2;
+        }
+        .image-lightbox-close:focus-visible {
+            outline: 3px solid #FFD700;
+        }
     </style>
 <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCWV2EVPVQ"></script>
@@ -235,8 +283,8 @@ gtag('config', 'G-LCWV2EVPVQ');
                 <p data-i18n-html="objet-flinders-entry"><a class="resource-primary-link" href="https://flindersplacenames.au/" target="_blank" rel="noopener">Les expéditions de Flinders</a></p>
                 <div class="resource-item-content resource-item-content--top">
                     <div class="resource-item-copy" data-i18n-html="objet-flinders-description"></div>
-                    <div class="resource-item-art resource-item-art--portrait" aria-hidden="true">
-                        <img src="img/navire-investigator.jpg" alt="" loading="lazy" decoding="async" title="H.M. Sloop Investigator 1802 — Wikimedia Commons, domaine public">
+                    <div class="resource-item-art resource-item-art--portrait resource-item-art--zoomable">
+                        <img id="investigator-img" src="img/navire-investigator.jpg" alt="" loading="lazy" decoding="async" title="H.M. Sloop Investigator 1802 — Wikimedia Commons, domaine public">
                     </div>
                 </div>
             </div>
@@ -290,6 +338,12 @@ gtag('config', 'G-LCWV2EVPVQ');
     </main>
 
     <div data-include-footer></div>
+
+    <!-- Visionneuse plein écran de l'illustration du navire de Flinders -->
+    <div class="image-lightbox" id="imageLightbox">
+        <button type="button" class="image-lightbox-close" aria-label="Fermer" data-i18n-aria-label="objet-lightbox-close">&times;</button>
+        <img src="" alt="">
+    </div>
 
     <script src="commun/js/traductions-communes.js?v=20261003"></script>
     <script src="js/translations.js?v=20261004-domaine"></script>
@@ -347,6 +401,35 @@ gtag('config', 'G-LCWV2EVPVQ');
 
             audio.addEventListener('play', () => updatePressed(true));
             audio.addEventListener('pause', () => updatePressed(false));
+        })();
+
+        // Visionneuse plein écran de l'illustration du navire de Flinders
+        (() => {
+            const image = document.getElementById('investigator-img');
+            const lightbox = document.getElementById('imageLightbox');
+            if (!image || !lightbox) return;
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxClose = lightbox.querySelector('.image-lightbox-close');
+
+            image.addEventListener('click', () => {
+                lightboxImg.src = image.src;
+                lightboxImg.alt = image.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+            });
         })();
     </script>
 </body>
