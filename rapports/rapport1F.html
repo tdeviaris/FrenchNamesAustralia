@@ -3,169 +3,128 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Rapport du capitaine de frégate Pierre Milius sur la mission - dans le Port Western (côte méridionale de la Nouvelle-Hollande) (9-17 avril 1802)
-  </title>
+  <title>Rapport du capitaine de frégate Pierre Milius — Port Western, 9-17 avril 1802</title>
   <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
   <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
   <style>
    :root {
-            --image-max-width: 1000px;
-            --page-max-width: 1200px; /* 120% de --image-max-width */
-        }
+     --image-max-width: 1000px;
+     --page-max-width: 1200px;
+     --ink: #35312d;
+     --rust: #9c5738;
+     --paper: #fdfbf7;
+     --note: #f5efe5;
+   }
    body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 2.5em 1.5em;
-            background-color: #fdfdfd;
-        }
-        .page {
-            max-width: var(--page-max-width);
-            margin: 0 auto;
-        }
-        .document-header {
-            text-align: center;
-            margin: 1.5em 0 2em;
-        }
-        .document-header h1 {
-            font-size: 1.6em;
-            line-height: 1.25;
-            margin: 0 0 0.4em 0;
-        }
-        .document-header h1 .title-line {
-            display: block;
-        }
-        .document-header p {
-            margin: 0.2em 0;
-            font-weight: 600;
-        }
-        figure {
-            margin: 2.5em 0;
-            text-align: center;
-        }
-        figure img {
-            width: 100%;
-            max-width: var(--image-max-width);
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        figure figcaption {
-            margin-top: 0.8em;
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555;
-        }
-        figure figcaption p {
-            margin: 0.25em 0;
-        }
-        .main-text {
-            text-align: justify;
-            margin-bottom: 2em;
-        }
-        .main-text p {
-            margin: 0 0 1em;
-        }
-        .references-section {
-            border-top: 1px solid #ccc;
-            padding-top: 1em;
-            margin-top: 2em;
-            font-size: 0.95em;
-        }
-        .references-section h2 {
-            font-size: 1.2em;
-            font-style: normal;
-        }
-        .references-section ul {
-            list-style: disc;
-            padding-left: 1.5em;
-            margin: 0.5em 0 0;
-        }
-        .references-section li {
-            margin: 0.4em 0;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+     line-height: 1.65;
+     color: var(--ink);
+     margin: 0;
+     padding: 2.5em 1.5em;
+     background: var(--paper);
+   }
+   .page { max-width: var(--page-max-width); margin: 0 auto; }
+   .document-header { text-align: center; margin: 1.5em 0 2em; }
+   .document-header h1 { font-size: 1.6em; line-height: 1.25; margin: 0; }
+   .title-line { display: block; }
+   .editorial-note {
+     max-width: 980px;
+     margin: 0 auto 2.4em;
+     padding: 1.15em 1.3em;
+     border-left: 4px solid var(--rust);
+     background: var(--note);
+     color: #423b35;
+     text-align: left;
+   }
+   .main-text { text-align: justify; margin-bottom: 2em; }
+   .main-text p { margin: 0 0 1.05em; }
+   figure { margin: 2.6em 0; text-align: center; }
+   figure > img, figure > a > img {
+     width: 100%;
+     max-width: var(--image-max-width);
+     height: auto;
+     border: 1px solid #d8d0c4;
+     border-radius: 5px;
+     padding: 5px;
+     box-sizing: border-box;
+     background: #fff;
+     box-shadow: 0 9px 24px rgba(52, 43, 34, 0.09);
+   }
+   figcaption { margin: 0.8em auto 0; max-width: 920px; font-size: 0.91em; font-style: italic; color: #5b554f; }
+   .facsimile-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25em; align-items: start; }
+   .facsimile-card { margin: 0; }
+   .facsimile-card a { display: block; background: #e9e1d4; border: 1px solid #cfc4b5; border-radius: 5px; overflow: hidden; box-shadow: 0 8px 20px rgba(52, 43, 34, 0.12); }
+   .facsimile-card img { display: block; width: 100%; height: auto; border: 0; padding: 0; background: transparent; }
+   .editorial-aside { display: block; margin-top: 0.8em; padding: 0.8em 1em; background: #f7f2ea; border-left: 3px solid #b98568; text-align: left; font-size: 0.94em; color: #504840; }
+   .source { border-top: 1px solid #d7d0c6; margin-top: 2.4em; padding-top: 1.2em; font-size: 0.95em; text-align: left; }
+   a { color: #0056b3; text-decoration: none; }
+   a:hover { text-decoration: underline; }
+   @media (max-width: 760px) {
+     body { padding: 1.5em 1em; }
+     .facsimile-pair { grid-template-columns: 1fr; }
+   }
   </style>
  </head>
  <body>
   <div class="page">
    <header class="document-header">
     <h1>
-     <span class="title-line">
-      Rapport du capitaine de frégate Pierre Milius sur la mission
-     </span>
-     <span class="title-line">
-      dans le Port Western (côte méridionale de la Nouvelle-Hollande) (9-17 avril 1802)
-     </span>
+     <span class="title-line">Rapport du capitaine de frégate Pierre Milius</span>
+     <span class="title-line">Port Western (côte méridionale de la Nouvelle-Hollande), 9-17 avril 1802</span>
     </h1>
    </header>
+   <p class="editorial-note">
+    <strong>Note éditoriale.</strong> Ce rapport transmet les observations, les suppositions et le vocabulaire de Pierre Milius. Les échanges qu'il décrit reposent largement sur des gestes dont le sens demeurait incertain pour chacun. Les aquarelles ne sont donc pas des reconstitutions : elles proposent des fragments possibles, avec des contours volontairement incomplets. Seul Milius est représenté ; une main isolée et de légères ombres évoquent certains gestes et présences rapportés dans le texte. Les gestes qu'il dit avoir joués ou exagérés sont montrés comme une pantomime. Le passage relatif aux bouches reste dans la transcription, mais n'est pas illustré.
+   </p>
    <div class="main-text">
-    <p>
-     Le 19 du mois de Germinal, étant arrivés par 28°46’ de latitude sud et 143°37’ de longitude orientale du méridien de Paris, nous eûmes la vue de l’île située à l’entrée du Port Western. Le temps était beau et le vent faible.
+    <p>Le 19 du mois de Germinal, étant arrivés par 28°46’ de latitude sud et 143°37’ de longitude orientale du méridien de Paris, nous eûmes la vue de l’île située à l’entrée du Port Western. Le temps était beau et le vent faible.</p>
+    <figure>
+     <a href="rapport1_microfiche_4030.jpg" target="_blank" rel="noopener"><img alt="Première page du rapport de Milius photographiée sur microfiche" src="rapport1_microfiche_4030.jpg"/></a>
+     <figcaption>Ouverture du rapport de Milius, reproduction photographique de la microfiche. Cliquer pour agrandir.</figcaption>
+    </figure>
+    <p>Le commandant Hamelin se décida à envoyer reconnaître et visiter ce port, pour y aller mouiller suivant les circonstances. J’obtins l’ordre d’y aller faire les remarques nécessaires afin d’y piloter le bâtiment. L’ingénieur géographe Faure fut chargé d’en lever le plan, et moi je devais m’occuper des sondes et des relèvements. Le botaniste Leschenault demanda et obtint la permission de m’accompagner… …</p>
+    <p>Je mis sous voiles et fis signal au petit canot commandé par l’aspirant Brévédent de passer à couple. Je lui donnai l’ordre de se diriger dans la partie orientale de l’île et de faire des recherches sur le passage que les Anglais ont fermé par un banc de sable. Le courant que j’avais observé pendant la nuit me faisait penser qu’il devait exister une ouverture qui communiquât au nord… …</p>
+    <p>Toute la partie sud de l’île est bordée de récifs ; la mer roule sans cesse sur une plage de sable… et y cause un bruit épouvantable… Les terres environnantes du grand bassin… sont peu élevées, et, comme dans toute l’étendue du port, couvertes d’arbres qui viennent même dans l’eau… Cette partie de la Nouvelle-Hollande est peu habitée. Je découvris une colonne de fumée dans le grand bassin… Je m’en approchai et entendis les cris des naturels, qui me faisaient signe de venir à eux ; et, par leurs gestes, je compris qu’ils m’indiquaient l’endroit où je pourrais débarquer commodément. J’abordai sur cette côte et descendis sur le rivage accompagné du botaniste Leschenault. J’ordonnai aux deux canots de ne pas se laisser échouer, et je consignai tout le monde à bord pour ne pas épouvanter, par le nombre, ces paisibles habitants.</p>
+    <p>Nous nous assîmes, le citoyen Leschenault et moi, au pied d’une falaise… et nous leur fîmes signe de venir à nous en leur donnant des marques d’amitié. Ils ne répondirent à notre invitation que par la plus grande méfiance : pas un d’eux n’osa descendre, et cependant ils nous avaient appelés !…</p>
+    <p>Ils bavardèrent fort longtemps, sans que nous puissions comprendre ce qu’ils désiraient. Croyant néanmoins qu’ils nous invitaient à laisser nos vêtements et à gravir la falaise pour aller les trouver, je mis mes habits bas et j’ôtai ma chemise, ce qui parut les satisfaire. Je commençai ensuite à monter la falaise ; et, comme elle était écore [bord escarpé], ils m’indiquaient de m’accrocher aux herbes. Je leur fis en vain des démonstrations pour les inviter à venir me donner la main : ils témoignèrent la même défiance. Près enfin d’arriver sur le même plan qu’eux, je fis semblant de ne pouvoir plus monter, et j’étendis un bras vers eux, comme pour les supplier de me sauver ; mais aucun de ces malheureux n’avança pour me secourir.</p>
+    <figure>
+     <img alt="Aquarelle suggestive de Milius jouant l'épuisement pendant l'ascension de la falaise, avec de légères ombres en haut de la pente" src="rapport1_falaise_aquarelle.png"/>
+     <figcaption>Évocation aquarellée du geste joué par Milius sur la falaise. Les ombres suggèrent une présence hors cadre sans prétendre restituer la rencontre.</figcaption>
+    </figure>
+    <div class="facsimile-pair">
+     <figure class="facsimile-card">
+      <a href="rapport1_microfiche_4048.jpg" target="_blank" rel="noopener"><img alt="Microfiche du passage où Milius commence à gravir la falaise" src="rapport1_microfiche_4048.jpg"/></a>
+      <figcaption>Le début de l'ascension dans le manuscrit, cliché IMGP4048.</figcaption>
+     </figure>
+     <figure class="facsimile-card">
+      <a href="rapport1_microfiche_4049.jpg" target="_blank" rel="noopener"><img alt="Microfiche de la suite du passage de la falaise, de la montre et du soleil" src="rapport1_microfiche_4049.jpg"/></a>
+      <figcaption>La suite du passage, puis la montre et le soleil, cliché IMGP4049.</figcaption>
+     </figure>
+    </div>
+    <p>Bref, arrivé sur cette hauteur, ils me parlèrent tous à la fois, en s’éloignant de moi. Je vis bien que mon pantalon et mes souliers leur en imposaient, et qu’ils voulaient me voir nu comme eux. Je pris donc le parti de les quitter. Je sortis ma montre, qu’ils aperçurent en poussant un cri d’étonnement. Je leur montrai le soleil, et je traçai sur le terrain son mouvement diurne, qu’ils parurent comprendre. Je leur livrai mon pantalon et mes souliers, qu’ils ramassèrent soigneusement, enveloppant les souliers, et ils me firent signe de les suivre pour aller me chauffer et manger.</p>
+    <figure>
+     <img alt="Aquarelle suggestive de Milius tenant sa montre et traçant le mouvement du soleil dans le sable, avec des ombres discrètes" src="rapport1_montre_soleil_aquarelle.png"/>
+     <figcaption>La montre, le soleil et le tracé au sol : tentative de communication telle que Milius la raconte, laissée volontairement ouverte à l'interprétation.</figcaption>
+    </figure>
+    <p>Je leur témoignai beaucoup de répugnance à marcher pieds nus, et je me laissai tomber à terre pour leur faire voir que mes souliers m’étaient absolument utiles. L’un d’eux alors arracha un brin d’herbe sèche et posa le plat de la main dessus, sans doute pour m’indiquer que le chemin était beau et que je n’avais rien à souffrir.</p>
+    <figure>
+     <img alt="Aquarelle suggestive de Milius assis près de ses souliers et d'une main posée sur l'herbe" src="rapport1_souliers_main_aquarelle.png"/>
+     <figcaption>La chute jouée, les souliers et la main sur l'herbe. Seul le geste décrit est évoqué ; la signification que Milius lui attribue demeure une hypothèse.</figcaption>
+    </figure>
+    <p>Ils me regardèrent beaucoup et parurent assez satisfaits de me voir d’une forme semblable à la leur. Ils faisaient quelques mouvements pour m’engager à les imiter ; et, quand je les avais exécutés, ils témoignaient leur joie en riant. M’ayant demandé de voir ma bouche, en me montrant la leur que j’aperçus bien meulée, j’en fis de même et j’obtins de nouveaux rires…
+     <span class="editorial-aside"><strong>Choix iconographique :</strong> ce passage est conservé comme partie du témoignage de Milius, mais il n'est pas mis en image afin d'éviter une reconstruction intrusive de corps et de pratiques qu'il observait sans toujours les comprendre.</span>
     </p>
     <figure>
-     <img alt="" src="rapport1_html_934df853.jpg"/>
+     <a href="rapport1_microfiche_4050.jpg" target="_blank" rel="noopener"><img alt="Microfiche du passage des souliers, de la main sur l'herbe et de la bouche" src="rapport1_microfiche_4050.jpg"/></a>
+     <figcaption>Le passage des souliers, de la main sur l'herbe et de la bouche dans le manuscrit, cliché IMGP4050.</figcaption>
     </figure>
-   <p>
-    Le commandant Hamelin se décida à envoyer reconnaître et visiter ce port, pour y aller mouiller suivant les circonstances. J’obtins l’ordre d’y aller faire les remarques nécessaires afin d’y piloter le bâtiment. L’ingénieur géographe Faure fut chargé d’en lever le plan, et moi je devais m’occuper des sondes et des relèvements. Le botaniste Leschenault demanda et obtint la permission de m’accompagner… …
-   </p>
+    <p>Mais il me fut impossible d’en approcher à plus d’un pas et demi ou deux : le moindre de mes gestes les faisait disparaître… …</p>
+    <p><strong>Conclusion.</strong> Le Port Western, situé sur la côte méridionale de la Nouvelle-Hollande, pourrait offrir un grand intérêt à une nation qui aurait en vue de former un établissement sur cette côte ; mais il faudrait, préalablement, faire des recherches dans le fond du bassin pour y trouver une ravine d’eau douce… Le Port Western peut être considéré comme une excellente relâche pour un vaisseau qui, faisant des découvertes, aurait des avaries majeures… et serait obligé de chercher un abri contre le mauvais temps. Le fond est généralement partout de sable… On trouve, en dehors de ce bassin, en sortant par le petit passage, plusieurs sources d’eau vive qui s’écoulent parmi de grosses pierres granitiques qui bordent l’Île Western. À bord de la corvette <em>Le Naturaliste</em>, le 27 Germinal an 10. Signé : Le capitaine de frégate Milius.</p>
     <figure>
-     <img alt="" src="rapport1_html_86122540.jpg"/>
+     <a href="rapport1_microfiche_4059.jpg" target="_blank" rel="noopener"><img alt="Dernière page du rapport de Milius avec sa signature" src="rapport1_microfiche_4059.jpg"/></a>
+     <figcaption>Dernière page et signature de Milius, reproduction photographique de la microfiche, cliché IMGP4059.</figcaption>
     </figure>
-   <p>
-    Je mis sous voiles et fis signal au petit canot commandé par l’aspirant Brévédent de passer à couple. Je lui donnai l’ordre de se diriger dans la partie orientale de l’île et de faire des recherches sur le passage que les Anglais ont fermé par un banc de sable. Le courant que j’avais observé pendant la nuit me faisait penser qu’il devait exister une ouverture qui communiquât au nord… …
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_dcce71fe.jpg"/>
-    </figure>
-   <p>
-    Toute la partie sud de l’île est bordée de récifs ; la mer roule sans cesse sur une plage de sable… et y cause un bruit épouvantable… Les terres environnantes du grand bassin… sont peu élevées, et, comme dans toute l’étendue du port, couvertes d’arbres qui viennent même dans l’eau… Cette partie de la Nouvelle-Hollande est peu habitée. Je découvris une colonne de fumée dans le grand bassin… Je m’en approchai et entendis les cris des naturels, qui me faisaient signe de venir à eux ; et, par leurs gestes, je compris qu’ils m’indiquaient l’endroit où je pourrais débarquer commodément. J’abordai sur cette côte et descendis sur le rivage accompagné du botaniste Leschenault. J’ordonnai aux deux canots de ne pas se laisser échouer, et je consignai tout le monde à bord pour ne pas épouvanter, par le nombre, ces paisibles habitants.
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_8cd41988.jpg"/>
-    </figure>
-   <p>
-    Nous nous assîmes, le citoyen Leschenault et moi, au pied d’une falaise… et nous leur fîmes signe de venir à nous en leur donnant des marques d’amitié. Ils ne répondirent à notre invitation que par la plus grande méfiance : pas un d’eux n’osa descendre, et cependant ils nous avaient appelés !…
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_9b3d4bca.jpg"/>
-    </figure>
-   <p>
-    Ils bavardèrent fort longtemps, sans que nous puissions comprendre ce qu’ils désiraient. Croyant néanmoins qu’ils nous invitaient à laisser nos vêtements et à gravir la falaise pour aller les trouver, je mis mes habits bas et j’ôtai ma chemise, ce qui parut les satisfaire. Je commençai ensuite à monter la falaise ; et, comme elle était écore [bord escarpé], ils m’indiquaient de m’accrocher aux herbes. Je leur fis en vain des démonstrations pour les inviter à venir me donner la main : ils témoignèrent la même défiance. Près enfin d’arriver sur le même plan qu’eux, je fis semblant de ne pouvoir plus monter, et j’étendis un bras vers eux, comme pour les supplier de me sauver ; mais aucun de ces malheureux n’avança pour me secourir.
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_dece502d.jpg"/>
-    </figure>
-   <p>
-    Bref, arrivé sur cette hauteur, ils me parlèrent tous à la fois, en s’éloignant de moi. Je vis bien que mon pantalon et mes souliers leur en imposaient, et qu’ils voulaient me voir nu comme eux. Je pris donc le parti de les quitter. Je sortis ma montre, qu’ils aperçurent en poussant un cri d’étonnement. Je leur montrai le soleil, et je traçai sur le terrain son mouvement diurne, qu’ils parurent comprendre. Je leur livrai mon pantalon et mes souliers, qu’ils ramassèrent soigneusement, enveloppant les souliers, et ils me firent signe de les suivre pour aller me chauffer et manger.
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_ac472823.jpg"/>
-    </figure>
-   <p>
-     Je leur témoignai beaucoup de répugnance à marcher pieds nus, et je me laissai tomber à terre pour leur faire voir que mes souliers m’étaient absolument utiles. L’un d’eux alors arracha un brin d’herbe sèche et posa le plat de la main dessus, sans doute pour m’indiquer que le chemin était beau et que je n’avais rien à souffrir. Ils me regardèrent beaucoup et parurent assez satisfaits de me voir d’une forme semblable à la leur. Ils faisaient quelques mouvements pour m’engager à les imiter ; et, quand je les avais exécutés, ils témoignaient leur joie en riant. M’ayant demandé de voir ma bouche, en me montrant la leur que j’aperçus bien meulée, j’en fis de même et j’obtins de nouveaux rires…
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_484a3bcb.jpg"/>
-    </figure>
-   <p>
-    Mais il me fut impossible d’en approcher à plus d’un pas et demi ou deux : le moindre de mes gestes les faisait disparaître… …<br/>
-    Conclusion Le Port Western, situé sur la côte méridionale de la Nouvelle-Hollande, pourrait offrir un grand intérêt à une nation qui aurait en vue de former un établissement sur cette côte ; mais il faudrait, préalablement, faire des recherches dans le fond du bassin pour y trouver une ravine d’eau douce… Le Port Western peut être considéré comme une excellente relâche pour un vaisseau qui, faisant des découvertes, aurait des avaries majeures… et serait obligé de chercher un abri contre le mauvais temps. Le fond est généralement partout de sable… On trouve, en dehors de ce bassin, en sortant par le petit passage, plusieurs sources d’eau vive qui s’écoulent parmi de grosses pierres granitiques qui bordent l’Île Western. À bord de la corvette Le Naturaliste, le 27 Germinal an 10. Signé : Le capitaine de frégate Milius.
-   </p>
-   <p>
-    Archives Nationales de France/MAR/5JJ/24
-   </p>
+    <p class="source"><strong>Source :</strong> Archives nationales de France, MAR/5JJ/24. Les fac-similés présentés ici sont des photographies de consultation sur microfiche.</p>
    </div>
   </div>
  </body>

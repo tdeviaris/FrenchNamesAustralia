@@ -3,169 +3,128 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Report by frigate captain Pierre Milius on the mission in Port Western (southern coast of New Holland) (9-17 April 1802)
-  </title>
+  <title>Report by frigate captain Pierre Milius — Port Western, 9-17 April 1802</title>
   <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
   <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
   <style>
    :root {
-            --image-max-width: 1000px;
-            --page-max-width: 1200px; /* 120% de --image-max-width */
-        }
+     --image-max-width: 1000px;
+     --page-max-width: 1200px;
+     --ink: #35312d;
+     --rust: #9c5738;
+     --paper: #fdfbf7;
+     --note: #f5efe5;
+   }
    body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 2.5em 1.5em;
-            background-color: #fdfdfd;
-        }
-        .page {
-            max-width: var(--page-max-width);
-            margin: 0 auto;
-        }
-        .document-header {
-            text-align: center;
-            margin: 1.5em 0 2em;
-        }
-        .document-header h1 {
-            font-size: 1.6em;
-            line-height: 1.25;
-            margin: 0 0 0.4em 0;
-        }
-        .document-header h1 .title-line {
-            display: block;
-        }
-        .document-header p {
-            margin: 0.2em 0;
-            font-weight: 600;
-        }
-        figure {
-            margin: 2.5em 0;
-            text-align: center;
-        }
-        figure img {
-            width: 100%;
-            max-width: var(--image-max-width);
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        figure figcaption {
-            margin-top: 0.8em;
-            font-size: 0.9em;
-            font-style: italic;
-            color: #555;
-        }
-        figure figcaption p {
-            margin: 0.25em 0;
-        }
-        .main-text {
-            text-align: justify;
-            margin-bottom: 2em;
-        }
-        .main-text p {
-            margin: 0 0 1em;
-        }
-        .references-section {
-            border-top: 1px solid #ccc;
-            padding-top: 1em;
-            margin-top: 2em;
-            font-size: 0.95em;
-        }
-        .references-section h2 {
-            font-size: 1.2em;
-            font-style: normal;
-        }
-        .references-section ul {
-            list-style: disc;
-            padding-left: 1.5em;
-            margin: 0.5em 0 0;
-        }
-        .references-section li {
-            margin: 0.4em 0;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+     line-height: 1.65;
+     color: var(--ink);
+     margin: 0;
+     padding: 2.5em 1.5em;
+     background: var(--paper);
+   }
+   .page { max-width: var(--page-max-width); margin: 0 auto; }
+   .document-header { text-align: center; margin: 1.5em 0 2em; }
+   .document-header h1 { font-size: 1.6em; line-height: 1.25; margin: 0; }
+   .title-line { display: block; }
+   .editorial-note {
+     max-width: 980px;
+     margin: 0 auto 2.4em;
+     padding: 1.15em 1.3em;
+     border-left: 4px solid var(--rust);
+     background: var(--note);
+     color: #423b35;
+     text-align: left;
+   }
+   .main-text { text-align: justify; margin-bottom: 2em; }
+   .main-text p { margin: 0 0 1.05em; }
+   figure { margin: 2.6em 0; text-align: center; }
+   figure > img, figure > a > img {
+     width: 100%;
+     max-width: var(--image-max-width);
+     height: auto;
+     border: 1px solid #d8d0c4;
+     border-radius: 5px;
+     padding: 5px;
+     box-sizing: border-box;
+     background: #fff;
+     box-shadow: 0 9px 24px rgba(52, 43, 34, 0.09);
+   }
+   figcaption { margin: 0.8em auto 0; max-width: 920px; font-size: 0.91em; font-style: italic; color: #5b554f; }
+   .facsimile-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25em; align-items: start; }
+   .facsimile-card { margin: 0; }
+   .facsimile-card a { display: block; background: #e9e1d4; border: 1px solid #cfc4b5; border-radius: 5px; overflow: hidden; box-shadow: 0 8px 20px rgba(52, 43, 34, 0.12); }
+   .facsimile-card img { display: block; width: 100%; height: auto; border: 0; padding: 0; background: transparent; }
+   .editorial-aside { display: block; margin-top: 0.8em; padding: 0.8em 1em; background: #f7f2ea; border-left: 3px solid #b98568; text-align: left; font-size: 0.94em; color: #504840; }
+   .source { border-top: 1px solid #d7d0c6; margin-top: 2.4em; padding-top: 1.2em; font-size: 0.95em; text-align: left; }
+   a { color: #0056b3; text-decoration: none; }
+   a:hover { text-decoration: underline; }
+   @media (max-width: 760px) {
+     body { padding: 1.5em 1em; }
+     .facsimile-pair { grid-template-columns: 1fr; }
+   }
   </style>
  </head>
  <body>
   <div class="page">
    <header class="document-header">
     <h1>
-     <span class="title-line">
-      Report by frigate captain Pierre Milius on the mission
-     </span>
-     <span class="title-line">
-      in Port Western (southern coast of New Holland) (9-17 April 1802)
-     </span>
+     <span class="title-line">Report by frigate captain Pierre Milius</span>
+     <span class="title-line">Port Western (southern coast of New Holland), 9-17 April 1802</span>
     </h1>
    </header>
+   <p class="editorial-note">
+    <strong>Editorial note.</strong> This report conveys Pierre Milius's observations, assumptions and vocabulary. The exchanges he describes relied largely on gestures whose meaning remained uncertain to everyone involved. The watercolours are therefore not reconstructions: they offer possible fragments with deliberately incomplete contours. Only Milius is depicted; an isolated hand and faint shadows evoke some of the gestures and presences mentioned in the text. Gestures that he says he acted or exaggerated are shown as pantomime. The passage concerning mouths remains in the transcription but is not illustrated.
+   </p>
    <div class="main-text">
-    <p>
-     On the 19th day of Germinal, having reached 28°46’ south latitude and 143°37’ east longitude from the Paris meridian, we sighted the island at the entrance to Port Western. The weather was fine and the wind light.
+    <p>On the 19th day of Germinal, having reached 28°46’ south latitude and 143°37’ east longitude from the Paris meridian, we sighted the island at the entrance to Port Western. The weather was fine and the wind light.</p>
+    <figure>
+     <a href="rapport1_microfiche_4030.jpg" target="_blank" rel="noopener"><img alt="First page of Milius's report photographed from microfiche" src="rapport1_microfiche_4030.jpg"/></a>
+     <figcaption>Opening of Milius's report, photographed from the microfiche. Click to enlarge.</figcaption>
+    </figure>
+    <p>Commander Hamelin decided to have this port reconnoitred and visited, so that we might anchor there depending on circumstances. I received the order to go there and make the necessary observations so as to pilot the ship in. The engineer-geographer Faure was tasked with drawing up its plan, and I was to attend to soundings and bearings. The botanist Leschenault asked and obtained permission to accompany me… …</p>
+    <p>I set sail and signalled to the small boat commanded by midshipman Brévédent to come alongside. I ordered him to head for the eastern part of the island and to examine the passage which the English have closed off with a sandbank. The current I had observed during the night led me to think that there must be an opening communicating to the north… …</p>
+    <p>The whole southern part of the island is bordered by reefs; the sea constantly breaks on a sandy beach… and produces a frightful noise… The lands around the great basin… are low, and, as throughout the port, covered with trees that even reach into the water… This part of New Holland is sparsely inhabited. I discovered a column of smoke in the great basin… I approached it and heard the cries of the natives, who signalled for me to come to them; and from their gestures I understood that they were indicating the spot where I could land conveniently. I came ashore on this coast and went down to the beach accompanied by the botanist Leschenault. I ordered the two boats not to let themselves run aground, and I confined everyone to the boat so as not to frighten these peaceful inhabitants by our numbers.</p>
+    <p>We sat down, Citizen Leschenault and I, at the foot of a cliff… and signalled to them to come to us, showing them marks of friendship. They replied to our invitation only with the greatest distrust: not one of them dared to come down, and yet they had called to us!…</p>
+    <p>They chattered for a very long time, without our being able to understand what they wanted. Believing, however, that they were inviting us to leave our clothes and climb the cliff to meet them, I let my outer garments fall and took off my shirt, which seemed to satisfy them. I then began to climb the cliff; and as it was steep [sheer bank], they indicated that I should cling to the grasses. I vainly made signs to invite them to come and give me a hand: they showed the same distrust. Just as I was about to reach the same level as them, I pretended I could climb no further, and stretched out an arm towards them, as if begging them to save me; but none of these unfortunate people stepped forward to help me.</p>
+    <figure>
+     <img alt="Suggestive watercolour of Milius pretending to struggle while climbing the cliff, with faint shadows at the top of the slope" src="rapport1_falaise_aquarelle.png"/>
+     <figcaption>A watercolour evocation of Milius's acted gesture on the cliff. The shadows suggest an off-frame presence without claiming to reconstruct the encounter.</figcaption>
+    </figure>
+    <div class="facsimile-pair">
+     <figure class="facsimile-card">
+      <a href="rapport1_microfiche_4048.jpg" target="_blank" rel="noopener"><img alt="Microfiche of the passage in which Milius begins to climb the cliff" src="rapport1_microfiche_4048.jpg"/></a>
+      <figcaption>The beginning of the climb in the manuscript, photograph IMGP4048.</figcaption>
+     </figure>
+     <figure class="facsimile-card">
+      <a href="rapport1_microfiche_4049.jpg" target="_blank" rel="noopener"><img alt="Microfiche continuing the cliff passage and mentioning the watch and sun" src="rapport1_microfiche_4049.jpg"/></a>
+      <figcaption>The continuation of the passage, followed by the watch and sun, photograph IMGP4049.</figcaption>
+     </figure>
+    </div>
+    <p>In short, having reached this height, they all spoke to me at once, keeping away from me. I could see that my trousers and shoes impressed them, and that they wanted to see me naked like them. I therefore decided to leave them. I took out my watch, which they noticed with a cry of astonishment. I pointed out the sun to them, and traced on the ground its daily movement, which they seemed to understand. I gave them my trousers and my shoes, which they carefully picked up, wrapping the shoes, and they signalled for me to follow them to warm myself and eat.</p>
+    <figure>
+     <img alt="Suggestive watercolour of Milius holding his watch and tracing the sun's movement in the sand, with faint shadows" src="rapport1_montre_soleil_aquarelle.png"/>
+     <figcaption>The watch, the sun and the line traced on the ground: an attempted communication as Milius recounts it, deliberately left open to interpretation.</figcaption>
+    </figure>
+    <p>I showed them great reluctance to walk barefoot, and threw myself on the ground to show them that my shoes were absolutely necessary to me. One of them then pulled up a strand of dry grass and laid the flat of his hand on it, no doubt to indicate that the path was good and that I would have nothing to suffer.</p>
+    <figure>
+     <img alt="Suggestive watercolour of Milius seated near his shoes and an isolated hand resting on dry grass" src="rapport1_souliers_main_aquarelle.png"/>
+     <figcaption>The acted fall, the shoes and the hand on the grass. Only the reported gesture is evoked; the meaning Milius attributed to it remains conjectural.</figcaption>
+    </figure>
+    <p>They looked at me a great deal and seemed quite satisfied to see that I was of a similar form to theirs. They made some movements to urge me to imitate them; and when I had performed them, they showed their joy by laughing. Having asked to see my mouth, showing me theirs, which I could see was well filed, I did the same and obtained new laughter…
+     <span class="editorial-aside"><strong>Image choice:</strong> this passage is retained as part of Milius's testimony, but it is not visualised, in order to avoid an intrusive reconstruction of bodies and practices that he observed without always understanding them.</span>
     </p>
     <figure>
-     <img alt="" src="rapport1_html_934df853.jpg"/>
+     <a href="rapport1_microfiche_4050.jpg" target="_blank" rel="noopener"><img alt="Microfiche of the passage concerning the shoes, hand on grass and mouths" src="rapport1_microfiche_4050.jpg"/></a>
+     <figcaption>The passage concerning the shoes, hand on grass and mouths in the manuscript, photograph IMGP4050.</figcaption>
     </figure>
-   <p>
-    Commander Hamelin decided to have this port reconnoitred and visited, so that we might anchor there depending on circumstances. I received the order to go there and make the necessary observations so as to pilot the ship in. The engineer-geographer Faure was tasked with drawing up its plan, and I was to attend to soundings and bearings. The botanist Leschenault asked and obtained permission to accompany me… …
-   </p>
+    <p>But it was impossible for me to get closer than a pace and a half or two: the slightest gesture on my part made them disappear… …</p>
+    <p><strong>Conclusion.</strong> Port Western, situated on the southern coast of New Holland, could be of great interest to a nation intending to establish a settlement on this coast; but it would first be necessary to make investigations in the bottom of the basin to find a fresh-water ravine… Port Western may be considered an excellent refuge for a vessel engaged in discoveries that might have major damage… and be forced to seek shelter from bad weather. The bottom is generally sandy everywhere… Outside this basin, when leaving by the small passage, there are several springs of fresh water that flow among large granite boulders bordering Western Isle. Aboard the corvette <em>Le Naturaliste</em>, 27 Germinal Year 10. Signed: Frigate Captain Milius.</p>
     <figure>
-     <img alt="" src="rapport1_html_86122540.jpg"/>
+     <a href="rapport1_microfiche_4059.jpg" target="_blank" rel="noopener"><img alt="Final page of Milius's report bearing his signature" src="rapport1_microfiche_4059.jpg"/></a>
+     <figcaption>Final page and Milius's signature, photographed from the microfiche, photograph IMGP4059.</figcaption>
     </figure>
-   <p>
-    I set sail and signalled to the small boat commanded by midshipman Brévédent to come alongside. I ordered him to head for the eastern part of the island and to examine the passage which the English have closed off with a sandbank. The current I had observed during the night led me to think that there must be an opening communicating to the north… …
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_dcce71fe.jpg"/>
-    </figure>
-   <p>
-    The whole southern part of the island is bordered by reefs; the sea constantly breaks on a sandy beach… and produces a frightful noise… The lands around the great basin… are low, and, as throughout the port, covered with trees that even reach into the water… This part of New Holland is sparsely inhabited. I discovered a column of smoke in the great basin… I approached it and heard the cries of the natives, who signalled for me to come to them; and from their gestures I understood that they were indicating the spot where I could land conveniently. I came ashore on this coast and went down to the beach accompanied by the botanist Leschenault. I ordered the two boats not to let themselves run aground, and I confined everyone to the boat so as not to frighten these peaceful inhabitants by our numbers.
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_8cd41988.jpg"/>
-    </figure>
-   <p>
-    We sat down, Citizen Leschenault and I, at the foot of a cliff… and signalled to them to come to us, showing them marks of friendship. They replied to our invitation only with the greatest distrust: not one of them dared to come down, and yet they had called to us!…
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_9b3d4bca.jpg"/>
-    </figure>
-   <p>
-    They chattered for a very long time, without our being able to understand what they wanted. Believing, however, that they were inviting us to leave our clothes and climb the cliff to meet them, I let my outer garments fall and took off my shirt, which seemed to satisfy them. I then began to climb the cliff; and as it was steep [sheer bank], they indicated that I should cling to the grasses. I vainly made signs to invite them to come and give me a hand: they showed the same distrust. Just as I was about to reach the same level as them, I pretended I could climb no further, and stretched out an arm towards them, as if begging them to save me; but none of these unfortunate people stepped forward to help me.
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_dece502d.jpg"/>
-    </figure>
-   <p>
-    In short, having reached this height, they all spoke to me at once, keeping away from me. I could see that my trousers and shoes impressed them, and that they wanted to see me naked like them. I therefore decided to leave them. I took out my watch, which they noticed with a cry of astonishment. I pointed out the sun to them, and traced on the ground its daily movement, which they seemed to understand. I gave them my trousers and my shoes, which they carefully picked up, wrapping the shoes, and they signalled for me to follow them to warm myself and eat.
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_ac472823.jpg"/>
-    </figure>
-   <p>
-     I showed them great reluctance to walk barefoot, and threw myself on the ground to show them that my shoes were absolutely necessary to me. One of them then pulled up a strand of dry grass and laid the flat of his hand on it, no doubt to indicate that the path was good and that I would have nothing to suffer. They looked at me a great deal and seemed quite satisfied to see that I was of a similar form to theirs. They made some movements to urge me to imitate them; and when I had performed them, they showed their joy by laughing. Having asked to see my mouth, showing me theirs, which I could see was well filed, I did the same and obtained new laughter…
-   </p>
-    <figure>
-     <img alt="" src="rapport1_html_484a3bcb.jpg"/>
-    </figure>
-   <p>
-    But it was impossible for me to get closer than a pace and a half or two: the slightest gesture on my part made them disappear… …<br/>
-    Conclusion Port Western, situated on the southern coast of New Holland, could be of great interest to a nation intending to establish a settlement on this coast; but it would first be necessary to make investigations in the bottom of the basin to find a fresh-water ravine… Port Western may be considered an excellent refuge for a vessel engaged in discoveries that might have major damage… and be forced to seek shelter from bad weather. The bottom is generally sandy everywhere… Outside this basin, when leaving by the small passage, there are several springs of fresh water that flow among large granite boulders bordering Western Isle. Aboard the corvette <em>Le Naturaliste</em>, 27 Germinal Year 10. Signed: Frigate Captain Milius.
-   </p>
-   <p>
-    Archives Nationales de France/MAR/5JJ/24
-   </p>
+    <p class="source"><strong>Source:</strong> Archives nationales de France, MAR/5JJ/24. The facsimiles shown here are reference photographs made from microfiche.</p>
    </div>
   </div>
  </body>
