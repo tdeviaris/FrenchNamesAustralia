@@ -8,6 +8,9 @@
   </title>
   <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
   <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;display=swap" rel="stylesheet"/>
   <style>
    :root { --image-max-width: 1000px; --page-max-width: 1200px; }
    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 2.5em 1.5em; background-color: #fdfdfd; }
@@ -20,6 +23,22 @@
    .main-text { text-align: justify; margin-bottom: 2em; }
    .main-text p { margin: 0 0 1em; }
    .main-text h2, .main-text h3 { text-align: left; margin: 1.3em 0 0.6em; }
+   .main-text h3 { font-size: 1.12em; border-top: 1px solid #e5e5e5; padding-top: 0.85em; }
+   .source-excerpt { position: relative; overflow: hidden; margin: 1.7em 0 2em; padding: clamp(1.2em, 3vw, 2em); border: 1px solid #d8c8aa; border-left: 5px solid #9b7442; border-radius: 5px; background: linear-gradient(145deg, rgba(255,255,255,0.72), rgba(241,229,204,0.5)), #f8f1e3; box-shadow: 0 10px 28px rgba(66, 49, 31, 0.09); }
+   .source-excerpt::after { content: "“"; position: absolute; z-index: 0; right: 0.08em; top: -0.24em; font-family: Georgia, serif; font-size: 9em; line-height: 1; color: rgba(122, 91, 54, 0.075); pointer-events: none; }
+   .source-excerpt > * { position: relative; z-index: 1; }
+   .source-excerpt .excerpt-heading { margin: 0 0 1.15em; padding: 0 3.5em 0.75em 0; border-bottom: 1px solid rgba(122, 91, 54, 0.26); color: #684a2d; font-size: 0.92em; font-weight: 700; letter-spacing: 0.045em; line-height: 1.45; text-align: left; text-transform: uppercase; }
+   .source-excerpt .excerpt-meta { display: block; margin-top: 0.35em; color: #705f4f; font-size: 0.92em; font-weight: 500; letter-spacing: normal; text-transform: none; }
+   .source-excerpt .excerpt-subheading { margin: -0.25em 0 1em; color: #705f4f; font-family: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.1em; font-style: italic; text-align: left; }
+   .source-excerpt .excerpt-quote { margin: 0 0 0.8em; color: #33291f; font-family: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif; font-size: clamp(1.12em, 1.5vw, 1.28em); font-weight: 500; letter-spacing: 0.006em; line-height: 1.55; text-align: left; }
+   .source-excerpt .excerpt-editorial { margin: 1.35em 0 0.9em; padding-top: 0.9em; border-top: 1px solid rgba(122, 91, 54, 0.26); color: #66594c; font-size: 0.88em; font-style: italic; text-align: left; }
+   .source-excerpt figure { margin: 1.35em 0; }
+   .source-excerpt figure img { background: #fffdf7; border-color: #d8c8aa; }
+   @media (max-width: 640px) {
+    .source-excerpt { margin-left: -0.35em; margin-right: -0.35em; padding: 1.15em 1em; }
+    .source-excerpt .excerpt-heading { padding-right: 2.25em; }
+    .source-excerpt::after { font-size: 6.5em; }
+   }
    .references-section { border-top: 1px solid #ccc; padding-top: 1em; margin-top: 2em; font-size: 0.95em; }
    .references-section h2 { font-size: 1.2em; font-style: normal; margin: 0 0 0.6em; }
    .references-section ul { list-style: disc; padding-left: 1.5em; margin: 0.5em 0 0; }
@@ -86,69 +105,76 @@
     <p>
      Par cette intervention, le site est &#224; la fois restaur&#233; et r&#233;interpr&#233;t&#233;. L’acte mat&#233;riel s’accompagne d’une nomination explicite : le lieu prend d&#233;sormais le nom de cap de l’Inscription, consacrant aux yeux des Europ&#233;ens son statut de rep&#232;re historique et m&#233;moriel.
     </p>
-    <p>
-     Extraits du journal d’Hamelin:
+    <section aria-labelledby="hamelin-excerpt-title" class="source-excerpt">
+    <p class="excerpt-heading" id="hamelin-excerpt-title">
+     Extraits du journal d’Hamelin
+     <span class="excerpt-meta">27 messidor an IX (16 juillet 1801) — feuillets 268–269</span>
     </p>
-    <p>
+    <p class="excerpt-quote">
      … Le mtre de timonerie m&#39;a fait son raport sur ce qu&#39;il a pu voir touchant la mar&#233;e et m&#39;a rapport&#233; un plat d&#39;&#233;tain applati sur lequel se lisait une inscription que laissa sur l&#39;ile Hartogs le navigateur commdt l&#39;Endraght en 1616 et celle que grava au dessous, en 1697, Vlaming commandant le Geelving.Il a trouv&#233; cette esp&#232;ce de m&#233;daille sur la pointe NE, tomb&#233;e au pied du poteau (pourri aujourd&#39;hui) sur lequel elle &#233;tait clou&#233;e autre fois…
     </p>
-    <p>
+    <p class="excerpt-quote">
      Si cette inscription eut encore tenu au poteau, j’eus fait un crime au ma&#238;tre de timonerie d’avoir, pr l&#39;en arracher, porter sur elle une main sacril&#232;ge, mais comme il l&#39;a trouv&#233;e sur la terre, expos&#233;e &#224; s&#39;y ensevelir par son seul poids, je lui ai su bon gr&#233; de l&#39;avoir apport&#233;e abord.
     </p>
-    <p>
+    <p class="excerpt-quote">
      J&#39;ai ordonn&#233; au mtre charpentier de pr&#233;parer de suite un poteau sur lequel je la ferai solidement clouer et je l&#39;enverrai planter au lieu o&#249; il y a 181 an le pla&#231;a le navigateur hollandais. Il me semble que de semblables monuments devraient toujours &#234;tre aussi respect&#233;s…
     </p>
-    <p>
+    <p class="excerpt-quote">
      Exp&#233;di&#233; &#224; 22heures mon canot sous l&#39;aspirant Duval Dailly pour porter &#224; lile Dirk Hartogs les naturalistes Bailly et Bellefin qui doivent y faire deux jours de recherches.
     </p>
-    <p>
+    <p class="excerpt-quote">
      Je l&#39;ai en m&#234;me tems charg&#233; de planter sur la cote orientale de la dite ile, dans un des points les plus remarquables, un poteau portant l&#39;inscription (sur une feuille de plomb) dont suit copie :[texte dispos&#233; dans un cercle] &quot;R&#233;publquefran&#231;. Exp&#233;dition de d&#233;couvertes, sous les ordres du Captaine de Vau Baudin. La corvette le Naturaliste;Captne Hamelin. 27 mdor an 9 (16 juillet 1801).
     </p>
-    <p>
-     Extraits du journal de Stanislas Levillain, assistant zoologist [les &#171;&#160;y&#160;&#187; correspondent de nos jours &#224; des &#171;&#160;i&#160;&#187;], pp.36-39
+    </section>
+    <section aria-labelledby="levillain-excerpt-title" class="source-excerpt">
+    <p class="excerpt-heading" id="levillain-excerpt-title">
+     Extraits du journal de Stanislas Levillain, assistant zoologist, pp. 36–39
+     <span class="excerpt-meta">Dans la transcription, les &#171;&#160;y&#160;&#187; correspondent de nos jours &#224; des &#171;&#160;i&#160;&#187;.</span>
     </p>
-    <p>
+    <p class="excerpt-subheading">
      Le 3 du dit. [3 Thermidor, 22 juillet 1801]
     </p>
-    <p>
+    <p class="excerpt-quote">
      …Le Cen. Letier [Le citoyen Le Thiers], chef de timonerie &amp; Bourgeois timonier, furent envoy&#233;e pour poser le pavillon &amp; la bouteille dont j’ay deja parl&#233;, &#233;tant arriv&#233;e sur la pointe N.de cette isle ils ont trouv&#233; une plaque de plomb sur lequel &#233;toit &#233;crit en hollandais ce qui suit cy contre – elle etoit detach&#233;e du bois sur laquelle elle avoit &#233;t&#233; pr&#233;c&#233;demmt.clou&#233;e. Le baton existoit encore ademy et etoit tenu entre deux rochers.
     </p>
-    <p>
+    <p class="excerpt-quote">
      Le Cen Letier [Le citoyen Le Thiers], en sen retournant &#224; bord porta cette plaque auCapne. [capitaine] qui en prie copie et la fit clouer de nouveau sur lemorceau de bois en y ajoutant un petit pavillon hollandais…
     </p>
     <figure>
      <img alt="Illustration" src="rapport3_image4.png"/>
     </figure>
-    <p>
+    <p class="excerpt-quote">
      Cette plaque &lt;arrondie&gt; de plomb &#224; &#233;t&#233; clou&#233;e avec des clous de cuivre sur un morceau de bois &lt;recouvert depeinture noire&gt;, et on en a charg&#233; le Cen. Bellefin medecin de la faire placer o&#251; bon luy semblera, l’invitant &#224; la mettre dans l’endroit &lt;la position&gt; le plus apparent possible
     </p>
-    <p>
+    <p class="excerpt-quote">
      …
     </p>
-    <p>
+    <p class="excerpt-quote">
      Copie de ce qui &#233;toit ecrit sur la plaque de plomb, trouv&#233;e sur la pointe N. de l’isle Dick Hartogs. Lattitude [blanc], longt [blanc].
     </p>
     <figure>
      <img alt="Illustration" src="rapport3_image5.png"/>
     </figure>
-    <p>
+    <p class="excerpt-editorial">
      Transcription revue pour en améliorer la lisibilité (orthographe et syntaxe modernisées).
     </p>
-    <p>
+    <p class="excerpt-quote">
      Les citoyens Le Thiers, chef de timonerie, et Bourgeois, timonier, furent envoyés pour poser le pavillon et la bouteille dont j’ai déjà parlé [il s’agit d’une bouteille contenant des dépêches pour le commandant Baudin dans le cas où celui-ci passerait sur l’île].
     </p>
-    <p>
+    <p class="excerpt-quote">
      Étant arrivés sur la pointe nord de cette île, ils ont trouvé une plaque de plomb sur laquelle était écrit en hollandais ce qui suit ci-contre ; elle était détachée du bois sur lequel elle avait été précédemment clouée. Le bâton existait encore à demi et était tenu entre deux rochers.
     </p>
-    <p>
+    <p class="excerpt-quote">
      Le citoyen Le Thiers, en s’en retournant à bord, porta cette plaque au capitaine, qui en prit copie et la fit clouer de nouveau sur le morceau de bois, en y ajoutant un petit pavillon hollandais…
     </p>
-    <p>
+    <p class="excerpt-quote">
      Cette plaque de plomb a été clouée avec des clous de cuivre sur un morceau de bois , et l’on a chargé le citoyen Bellefin, médecin, de la faire placer où bon lui semblera, en l’invitant à la mettre dans l’endroit le plus apparent possible…
     </p>
-    <p>
+    <p class="excerpt-quote">
      Copie de ce qui était écrit sur la plaque de plomb trouvée sur la pointe nord de l’île Dick Hartog. Latitude [blanc], longitude [blanc].
-    </p>    <h3>
+    </p>
+    </section>
+    <h3>
      Planche 4. 1818 — Louis de Freycinet : circulation des objets et savoirs
     </h3>
     <figure>

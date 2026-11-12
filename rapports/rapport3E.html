@@ -8,6 +8,9 @@
   </title>
   <link href="../img/favicon32.png" rel="icon" sizes="32x32" type="image/png"/>
   <link href="../img/favicon16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;display=swap" rel="stylesheet"/>
   <style>
    :root { --image-max-width: 1000px; --page-max-width: 1200px; }
    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.65; color: #333; margin: 0; padding: 2.5em 1.5em; background-color: #fdfdfd; }
@@ -21,9 +24,21 @@
    .main-text p { margin: 0 0 1em; }
    .main-text h2, .main-text h3 { text-align: left; margin: 1.3em 0 0.6em; }
    .main-text h3 { font-size: 1.12em; border-top: 1px solid #e5e5e5; padding-top: 0.85em; }
-   .excerpt-heading { font-weight: 600; margin-top: 1.1em; }
-   .excerpt-subheading { font-style: italic; color: #444; }
-   .excerpt-quote { margin-left: 1.2em; padding-left: 0.9em; border-left: 3px solid #d9d9d9; text-align: left; }
+   .source-excerpt { position: relative; overflow: hidden; margin: 1.7em 0 2em; padding: clamp(1.2em, 3vw, 2em); border: 1px solid #d8c8aa; border-left: 5px solid #9b7442; border-radius: 5px; background: linear-gradient(145deg, rgba(255,255,255,0.72), rgba(241,229,204,0.5)), #f8f1e3; box-shadow: 0 10px 28px rgba(66, 49, 31, 0.09); }
+   .source-excerpt::after { content: "“"; position: absolute; z-index: 0; right: 0.08em; top: -0.24em; font-family: Georgia, serif; font-size: 9em; line-height: 1; color: rgba(122, 91, 54, 0.075); pointer-events: none; }
+   .source-excerpt > * { position: relative; z-index: 1; }
+   .source-excerpt .excerpt-heading { margin: 0 0 1.15em; padding: 0 3.5em 0.75em 0; border-bottom: 1px solid rgba(122, 91, 54, 0.26); color: #684a2d; font-size: 0.92em; font-weight: 700; letter-spacing: 0.045em; line-height: 1.45; text-align: left; text-transform: uppercase; }
+   .source-excerpt .excerpt-meta { display: block; margin-top: 0.35em; color: #705f4f; font-size: 0.92em; font-weight: 500; letter-spacing: normal; text-transform: none; }
+   .source-excerpt .excerpt-subheading { margin: -0.25em 0 1em; color: #705f4f; font-family: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.1em; font-style: italic; text-align: left; }
+   .source-excerpt .excerpt-quote { margin: 0 0 0.8em; color: #33291f; font-family: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif; font-size: clamp(1.12em, 1.5vw, 1.28em); font-weight: 500; letter-spacing: 0.006em; line-height: 1.55; text-align: left; }
+   .source-excerpt .excerpt-editorial { margin: 1.35em 0 0.9em; padding-top: 0.9em; border-top: 1px solid rgba(122, 91, 54, 0.26); color: #66594c; font-size: 0.88em; font-style: italic; text-align: left; }
+   .source-excerpt figure { margin: 1.35em 0; }
+   .source-excerpt figure img { background: #fffdf7; border-color: #d8c8aa; }
+   @media (max-width: 640px) {
+    .source-excerpt { margin-left: -0.35em; margin-right: -0.35em; padding: 1.15em 1em; }
+    .source-excerpt .excerpt-heading { padding-right: 2.25em; }
+    .source-excerpt::after { font-size: 6.5em; }
+   }
    .references-section { border-top: 1px solid #ccc; padding-top: 1em; margin-top: 2em; font-size: 0.95em; }
    .references-section h2 { font-size: 1.2em; font-style: normal; margin: 0 0 0.6em; }
    .references-section ul { list-style: disc; padding-left: 1.5em; margin: 0.5em 0 0; }
@@ -90,8 +105,10 @@
     <p>
      Through this intervention, the site was both restored and reinterpreted. The material act was accompanied by explicit naming: the place henceforth took the name Cape Inscription, consolidating in European eyes its status as a historical and memorial landmark.
     </p>
-    <p class="excerpt-heading">
-     Excerpts from Hamelin's journal [27 Messidor, Year 9 (16 July 1801)]: English translation (orthography and syntax slightly modernized).
+    <section aria-labelledby="hamelin-excerpt-title" class="source-excerpt">
+    <p class="excerpt-heading" id="hamelin-excerpt-title">
+     Excerpts from Hamelin's journal
+     <span class="excerpt-meta">27 Messidor, Year 9 (16 July 1801) — folios 268–269. English translation; orthography and syntax slightly modernized.</span>
     </p>
     <p class="excerpt-quote">
      The master made his report to me concerning what he had been able to observe with respect to the tide, and brought back a flattened pewter plate bearing an inscription left on Hartogs Island by the navigator commanding the Eendracht in 1616, and that engraved beneath it in 1697 by Vlaming, commander of the Geelvinck.
@@ -120,7 +137,9 @@ Expedition of Discovery, under the command of Captain Baudin.<br/>
 The corvette Le Naturaliste; Captain Hamelin.<br/>
 27 Messidor, Year 9 (16 July 1801).”
     </p>
-    <p class="excerpt-heading">
+    </section>
+    <section aria-labelledby="levillain-excerpt-title" class="source-excerpt">
+    <p class="excerpt-heading" id="levillain-excerpt-title">
      Excerpts from the journal of Stanislas Levillain, assistant zoologist, pp. 36-39
     </p>
     <p class="excerpt-subheading">
@@ -147,6 +166,7 @@ The corvette Le Naturaliste; Captain Hamelin.<br/>
     <figure>
      <img alt="Illustration" src="rapport3_image5.png"/>
     </figure>
+    </section>
     <h3>
      Plate 4. 1818 — Louis de Freycinet: circulation of objects and knowledge
     </h3>
