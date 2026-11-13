@@ -14,16 +14,20 @@ racine du projet :
 Prérequis : pip install requests Pillow
 Optionnel : brew install libavif  (pour les previews AVIF)
 
-Usage : python3 scripts/telecharg_img.py
+Usage :
+  python3 scripts/telecharg_img.py
+  python3 scripts/telecharg_img.py --refresh-img Baudin255
 """
 
 import io
+import argparse
 import json
 import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
+from urllib.parse import quote, unquote, urlsplit
 
 try:
     import requests
@@ -42,6 +46,7 @@ ROOT_DIR   = SCRIPT_DIR.parent
 DATA_DIR   = ROOT_DIR / "data"
 IMG_DIR    = ROOT_DIR / "img_telecharg"
 LOG_FILE   = SCRIPT_DIR / "telecharg_img.log"
+MANIFEST_FILE = DATA_DIR / "img_sources.json"
 
 JSON_FILES = ["baudin.json", "entrecasteaux.json", "flinders.json"]
 
@@ -70,6 +75,37 @@ AVIFENC          = shutil.which("avifenc")  # None si non installé
 
 def is_wikipedia_url(url: str) -> bool:
     return "wikimedia.org" in url or "wikipedia.org" in url
+
+
+def wikimedia_download_url(url: str, width: int = 1600) -> str:
+    """Transforme une page Commons File: en URL d'image téléchargeable.
+
+    Les liens lisibles copiés depuis Commons peuvent ainsi rester dans la
+    colonne URL IMG du tableau. Les URL directes upload.wikimedia.org et les
+    autres sources sont conservées telles quelles.
+    """
+    try:
+        parsed = urlsplit(url.strip())
+    except ValueError:
+        return url
+
+    if parsed.netloc.lower() != "commons.wikimedia.org":
+        return url
+
+    prefix = "/wiki/"
+    if not parsed.path.startswith(prefix):
+        return url
+
+    title = unquote(parsed.path[len(prefix):])
+    if not title.lower().startswith("file:"):
+        return url
+
+    filename = title[5:].replace(" ", "_")
+    encoded = quote(filename, safe="")
+    return (
+        "https://commons.wikimedia.org/wiki/Special:Redirect/file/"
+        f"{encoded}?width={width}"
+    )
 
 
 def save_jpeg(raw: bytes, dest_path: Path, rule: dict) -> str:
@@ -198,7 +234,12 @@ def download_raw(url: str) -> tuple[bytes | None, str]:
     return None, f"KO (429 après {MAX_RETRIES} tentatives)"
 
 
-def process_entry(entry: dict, log_parts: list[str]) -> None:
+def process_entry(
+    entry: dict,
+    log_parts: list[str],
+    refresh_codes: set[str],
+    source_manifest: dict[str, str],
+) -> None:
     """Traite un enregistrement JSON : télécharge imgUrl et mapUrl si remplis."""
     code = entry.get("code", "???")
     results = []
@@ -214,7 +255,16 @@ def process_entry(entry: dict, log_parts: list[str]) -> None:
 
         mini_path = IMG_DIR / f"{code}_{suffix}_min.avif"
 
-        if jpg_path.exists():
+        manifest_key = f"{code}_{suffix}"
+        recorded_source = source_manifest.get(manifest_key, "")
+        source_changed = bool(
+            jpg_path.exists() and recorded_source and recorded_source != url
+        )
+        force_refresh = (
+            (suffix == "Img" and code in refresh_codes) or source_changed
+        )
+
+        if jpg_path.exists() and not force_refresh:
             # JPEG déjà présent — complète l'AVIF et la miniature s'ils manquent
             manques = []
             if AVIFENC and not avif_path.exists():
@@ -228,12 +278,14 @@ def process_entry(entry: dict, log_parts: list[str]) -> None:
             results.append(f"{suffix} OK")
             continue
 
-        print(f"  {code} {suffix}: {url[:70]}...", end=" ", flush=True)
+        download_url = wikimedia_download_url(url)
+        action = "actualisation" if force_refresh else "téléchargement"
+        print(f"  {code} {suffix}: {action} {url[:70]}...", end=" ", flush=True)
 
         if is_wikipedia_url(url):
             time.sleep(WIKIPEDIA_DELAY)
 
-        raw, dl_msg = download_raw(url)
+        raw, dl_msg = download_raw(download_url)
         if raw is None:
             print(dl_msg)
             results.append(f"{suffix} {dl_msg}")
@@ -245,6 +297,16 @@ def process_entry(entry: dict, log_parts: list[str]) -> None:
             print(f"KO (image: {e})")
             results.append(f"{suffix} KO (image: {e})")
             continue
+
+        source_manifest[manifest_key] = url
+
+        if force_refresh:
+            for derived in (
+                avif_path,
+                jpg_path.with_name(jpg_path.stem + "_min.jpg"),
+                jpg_path.with_name(jpg_path.stem + "_min.avif"),
+            ):
+                derived.unlink(missing_ok=True)
 
         avif_msg = generate_avif(jpg_path)
         # La carte s'ouvre en grand, jamais en vignette : elle n'a pas besoin
@@ -258,6 +320,26 @@ def process_entry(entry: dict, log_parts: list[str]) -> None:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--refresh-img",
+        action="append",
+        default=[],
+        metavar="CODE",
+        help=(
+            "retélécharge le portrait de ce code même si sa copie locale existe; "
+            "l'option peut être répétée"
+        ),
+    )
+    args = parser.parse_args()
+    refresh_codes = set(args.refresh_img)
+
+    try:
+        with open(MANIFEST_FILE, encoding="utf-8") as f:
+            source_manifest = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        source_manifest = {}
+
     IMG_DIR.mkdir(exist_ok=True)
 
     if AVIFENC:
@@ -279,7 +361,11 @@ def main() -> None:
         print(f"\n=== {json_filename} ({len(entries)} entrées) ===")
 
         for entry in entries:
-            process_entry(entry, log_parts)
+            process_entry(entry, log_parts, refresh_codes, source_manifest)
+
+    with open(MANIFEST_FILE, "w", encoding="utf-8") as f:
+        json.dump(dict(sorted(source_manifest.items())), f, indent=2, ensure_ascii=False)
+        f.write("\n")
 
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(log_parts) + "\n")

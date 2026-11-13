@@ -1,0 +1,1025 @@
+{
+  "_meta": {
+    "spreadsheetId": "1bF_fuVv-rr-KbWFBcYbGhPihuRE0fXr3Q2_0XhxvQfs",
+    "sheet": "Source",
+    "fields": [
+      "characteristic_fr",
+      "characteristic",
+      "history_fr",
+      "history"
+    ]
+  },
+  "Entre23": {
+    "characteristic": [
+      "La Recherche",
+      "L’Espérance"
+    ]
+  },
+  "Baudin064": {
+    "history_fr": [
+      "mémoires"
+    ],
+    "history": [
+      "memoirs"
+    ]
+  },
+  "Baudin065": {
+    "characteristic_fr": [
+      "La Princesse de Clèves"
+    ],
+    "characteristic": [
+      "La Princesse de Clèves"
+    ],
+    "history_fr": [
+      "La Princesse de Clèves"
+    ],
+    "history": [
+      "La Princesse de Clèves"
+    ]
+  },
+  "Baudin067": {
+    "history_fr": [
+      "Clélie, histoire romaine",
+      "Artamène ou le Grand Cyrus"
+    ],
+    "history": [
+      "Clélie, histoire romaine"
+    ]
+  },
+  "Baudin072": {
+    "characteristic_fr": [
+      "Lettres d’une Péruvienne"
+    ],
+    "history_fr": [
+      "Lettres d’une Péruvienne",
+      "Cénie"
+    ],
+    "history": [
+      "Lettres d’une Péruvienne",
+      "Cénie"
+    ]
+  },
+  "Baudin073": {
+    "history_fr": [
+      "Le Rêve de d’Alembert"
+    ],
+    "history": [
+      "D’Alembert’s Dream"
+    ]
+  },
+  "Baudin077": {
+    "characteristic_fr": [
+      "l’Iliade",
+      "l’Odyssée"
+    ],
+    "characteristic": [
+      "Iliad",
+      "Odyssey"
+    ],
+    "history_fr": [
+      "Vies des hommes illustres",
+      "Pensées pour moi-même"
+    ],
+    "history": [
+      "Lives of the Illustrious Men",
+      "Meditations"
+    ]
+  },
+  "Baudin081": {
+    "history_fr": [
+      "Essais de morale et de politique"
+    ],
+    "history": [
+      "Essais de morale et de politique"
+    ]
+  },
+  "Baudin088": {
+    "characteristic_fr": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin091": {
+    "history_fr": [
+      "Mémoires"
+    ]
+  },
+  "Baudin094": {
+    "history_fr": [
+      "Esquisse d’un tableau historique des progrès de l’esprit humain"
+    ],
+    "history": [
+      "Historical Picture of the Progress of the Human Mind"
+    ]
+  },
+  "Baudin095": {
+    "history_fr": [
+      "Le Siège de Calais,"
+    ],
+    "history": [
+      "Le Siège de Calais"
+    ]
+  },
+  "Baudin096": {
+    "characteristic_fr": [
+      "Compagnie des Filles de la Charité"
+    ],
+    "characteristic": [
+      "Company of the Daughters of Charity"
+    ],
+    "history_fr": [
+      "Filles de la Charité"
+    ],
+    "history": [
+      "Daughters of Charity"
+    ]
+  },
+  "Baudin097": {
+    "history_fr": [
+      "le Casuarina"
+    ],
+    "history": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin098": {
+    "history_fr": [
+      "Les Aventures de Télémaque"
+    ],
+    "history": [
+      "Les Aventures de Télémaque"
+    ]
+  },
+  "Baudin099": {
+    "characteristic_fr": [
+      "Casuarina"
+    ],
+    "characteristic": [
+      "le Casuarina"
+    ]
+  },
+  "Baudin104": {
+    "history_fr": [
+      "Casuarina"
+    ],
+    "history": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin105": {
+    "characteristic_fr": [
+      "Géorgiques"
+    ],
+    "characteristic": [
+      "Georgics"
+    ],
+    "history_fr": [
+      "La Pitié",
+      "Les Trois Règnes de la nature",
+      "Énéide"
+    ],
+    "history": [
+      "La Pitié",
+      "Les Trois Règnes de la nature",
+      "Aeneid"
+    ]
+  },
+  "Baudin106": {
+    "history_fr": [
+      "le Mémorial de Sainte-Hélène",
+      "Loup et l’Agneau"
+    ],
+    "history": [
+      "the Mémorial de Sainte-Hélène,",
+      "The Wolf and the Lamb"
+    ]
+  },
+  "Baudin108": {
+    "history_fr": [
+      "Tartuffe",
+      "L’Avare"
+    ],
+    "history": [
+      "Tartuffe",
+      "L’Avare"
+    ]
+  },
+  "Baudin109": {
+    "characteristic_fr": [
+      "Atrée et Thyeste",
+      "Rhadamiste et Zénobie"
+    ],
+    "characteristic": [
+      "Atrée et Thyeste",
+      "Rhadamiste et Zénobie"
+    ],
+    "history_fr": [
+      "Rhadamiste et Zénobie",
+      "Mahomet"
+    ],
+    "history": [
+      "Rhadamiste et Zénobie",
+      "Mahomet"
+    ]
+  },
+  "Baudin110": {
+    "characteristic_fr": [
+      "Fontenay",
+      "La Retraite",
+      "Chaulieu à Fontenay"
+    ],
+    "characteristic": [
+      "Fontenay",
+      "La Retraite",
+      "Chaulieu à Fontenay,"
+    ]
+  },
+  "Baudin111": {
+    "characteristic_fr": [
+      "Le Casuarina"
+    ],
+    "characteristic": [
+      "Le Casuarina"
+    ],
+    "history_fr": [
+      "Le Géographe",
+      "le Géographe",
+      "Le Casuarina"
+    ],
+    "history": [
+      "Le Géographe",
+      "The Casuarina"
+    ]
+  },
+  "Baudin112": {
+    "characteristic_fr": [
+      "Vies parallèles"
+    ],
+    "characteristic": [
+      "Parallel Lives"
+    ]
+  },
+  "Baudin113": {
+    "history_fr": [
+      "Histoire romaine"
+    ],
+    "history": [
+      "Histoire romaine"
+    ]
+  },
+  "Baudin115": {
+    "characteristic_fr": [
+      "Tableau du climat et du sol des États-Unis d’Amérique"
+    ],
+    "characteristic": [
+      "Tableau du climat et du sol des États-Unis d’Amérique"
+    ]
+  },
+  "Baudin119": {
+    "history_fr": [
+      "Analyse des infiniment petits pour l’intelligence des lignes courbes"
+    ],
+    "history": [
+      "Analyse des infiniment petits pour l’intelligence des lignes courbes"
+    ]
+  },
+  "Baudin120": {
+    "characteristic_fr": [
+      "Essai sur l’astronomie"
+    ],
+    "characteristic": [
+      "Essay on Astronomy"
+    ]
+  },
+  "Baudin121": {
+    "history_fr": [
+      "Code civil",
+      "Discours préliminaire"
+    ],
+    "history": [
+      "Civil Code",
+      "Discours préliminaire"
+    ]
+  },
+  "Baudin122": {
+    "characteristic_fr": [
+      "Éléments de géométrie"
+    ],
+    "characteristic": [
+      "Éléments de géométrie"
+    ]
+  },
+  "Baudin126": {
+    "history_fr": [
+      "Le Monde ou Traité de la lumière,"
+    ],
+    "history": [
+      "The World, or Treatise on Light"
+    ]
+  },
+  "Baudin140": {
+    "characteristic_fr": [
+      "Histoire universelle"
+    ],
+    "characteristic": [
+      "Universal History"
+    ],
+    "history_fr": [
+      "Histoire universelle"
+    ],
+    "history": [
+      "Universal History"
+    ]
+  },
+  "Baudin143": {
+    "characteristic_fr": [
+      "Histoire philosophique et politique des établissements et du commerce des Européens dans les deux Indes"
+    ],
+    "characteristic": [
+      "Histoire philosophique et politique des établissements et du commerce des Européens dans les deux Indes"
+    ],
+    "history_fr": [
+      "Histoire philosophique et politique des établissements et du commerce des Européens dans les deux Indes"
+    ],
+    "history": [
+      "Histoire philosophique et politique des établissements et du commerce des Européens dans les deux Indes"
+    ]
+  },
+  "Baudin150": {
+    "history_fr": [
+      "Considérations sur les diverses méthodes à suivre dans l’observation des peuples sauvages."
+    ],
+    "history": [
+      "Considérations sur les diverses méthodes à suivre dans l’observation des peuples sauvages"
+    ]
+  },
+  "Baudin152": {
+    "history_fr": [
+      "Histoire de Scipion l’Africain"
+    ],
+    "history": [
+      "Histoire de Scipion l’Africain"
+    ]
+  },
+  "Baudin154": {
+    "history_fr": [
+      "Élégies maternelles",
+      "Mérope"
+    ]
+  },
+  "Baudin155": {
+    "history_fr": [
+      "le Casuarina"
+    ],
+    "history": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin172": {
+    "history_fr": [
+      "Le Solitaire et la Fortune"
+    ],
+    "history": [
+      "Le Solitaire et la Fortune",
+      "The Hermit and Fortune"
+    ]
+  },
+  "Baudin173": {
+    "history_fr": [
+      "Le Vacher et le Garde-chasse",
+      "Plaisir d’amour",
+      "Célestine"
+    ],
+    "history": [
+      "Le Vacher et le Garde-chasse",
+      "Plaisir d’amour",
+      "Célestine"
+    ]
+  },
+  "Baudin174": {
+    "characteristic_fr": [
+      "Les Saisons"
+    ],
+    "characteristic": [
+      "Les Saisons"
+    ]
+  },
+  "Baudin185": {
+    "characteristic_fr": [
+      "Cométographie, ou Traité historique et théorique des comètes"
+    ],
+    "characteristic": [
+      "Cométographie, ou Traité historique et théorique des comètes"
+    ]
+  },
+  "Baudin186": {
+    "history_fr": [
+      "la Mécanique céleste"
+    ],
+    "history": [
+      "the Mécanique céleste"
+    ]
+  },
+  "Baudin187": {
+    "history_fr": [
+      "Voyage dans les mers de l’Inde"
+    ],
+    "history": [
+      "Voyage dans les mers de l’Inde"
+    ]
+  },
+  "Baudin195": {
+    "history_fr": [
+      "Origines gauloises,"
+    ],
+    "history": [
+      "Origines gauloises,"
+    ]
+  },
+  "Baudin201": {
+    "characteristic_fr": [
+      "Histoire naturelle, générale et particulière"
+    ],
+    "characteristic": [
+      "Histoire naturelle, générale et particulière"
+    ]
+  },
+  "Baudin202": {
+    "characteristic_fr": [
+      "Le Géographe",
+      "le Casuarina"
+    ]
+  },
+  "Baudin205": {
+    "history_fr": [
+      "Alexandre"
+    ]
+  },
+  "Baudin209": {
+    "characteristic_fr": [
+      "La Boudeuse",
+      "L’Étoile"
+    ],
+    "characteristic": [
+      "La Boudeuse",
+      "L’Étoile"
+    ]
+  },
+  "Baudin225": {
+    "characteristic_fr": [
+      "Casuarina",
+      "Géographe"
+    ],
+    "characteristic": [
+      "e Casuarina",
+      "Le Géographe"
+    ],
+    "history_fr": [
+      "Casuarina"
+    ],
+    "history": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin226": {
+    "history_fr": [
+      "La Surveillante",
+      "HMS Quebec",
+      "Quebec"
+    ],
+    "history": [
+      "La Surveillante",
+      "HMS Quebec",
+      "Quebec"
+    ]
+  },
+  "Baudin228": {
+    "history_fr": [
+      "Géographe",
+      "Naturaliste"
+    ],
+    "history": [
+      "Le Géographe",
+      "Le Naturaliste"
+    ]
+  },
+  "Baudin231": {
+    "history_fr": [
+      "Belle-Poule"
+    ],
+    "history": [
+      "Belle-Poule"
+    ]
+  },
+  "Baudin233": {
+    "characteristic_fr": [
+      "Vétéran"
+    ],
+    "characteristic": [
+      "Vétéran"
+    ],
+    "history_fr": [
+      "le Vétéran"
+    ],
+    "history": [
+      "Le Vétéran"
+    ]
+  },
+  "Baudin234": {
+    "characteristic_fr": [
+      "le Vétéran"
+    ],
+    "characteristic": [
+      "Le Vétéran"
+    ]
+  },
+  "Baudin235": {
+    "characteristic_fr": [
+      "Le Vétéran"
+    ],
+    "characteristic": [
+      "Le Vétéran"
+    ]
+  },
+  "Baudin244": {
+    "history_fr": [
+      "Encyclopédie méthodique",
+      "La médecine éclairée par les sciences physiques"
+    ]
+  },
+  "Baudin246": {
+    "history_fr": [
+      "Cosmotheoria"
+    ],
+    "history": [
+      "Cosmotheoria"
+    ]
+  },
+  "Baudin248": {
+    "history_fr": [
+      "Œuvres"
+    ],
+    "history": [
+      "Œuvres"
+    ]
+  },
+  "Baudin251": {
+    "history_fr": [
+      "Casuarina",
+      "Nouvelle construction d’alambic pour faire toute sorte de distillation : en grand, etc., en deux parties"
+    ],
+    "history": [
+      "Nouvelle construction d’alambic pour faire toute sorte de distillation : en grand, etc., en deux parties"
+    ]
+  },
+  "Baudin252": {
+    "history_fr": [
+      "Installation des vaisseaux",
+      "Livre des signaux communs à toutes les armées navales"
+    ],
+    "history": [
+      "Installation des vaisseaux",
+      "Livre des signaux communs à toutes les armées navales"
+    ]
+  },
+  "Baudin253": {
+    "history_fr": [
+      "Le Géographe"
+    ],
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin254": {
+    "characteristic_fr": [
+      "Mémoire sur l’organisation des troupes et de l’artillerie de la marine"
+    ],
+    "characteristic": [
+      "Mémoire sur l’organisation des troupes et de l’artillerie de la marine"
+    ]
+  },
+  "Baudin260": {
+    "characteristic_fr": [
+      "Voyage de découvertes aux terres australes"
+    ],
+    "characteristic": [
+      "Voyage de découvertes aux terres australes"
+    ]
+  },
+  "Baudin263": {
+    "history_fr": [
+      "Géographe"
+    ],
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin329": {
+    "history_fr": [
+      "Précis d’observations de chirurgie faites à l’Hôtel-Dieu de Lyon",
+      "De l’esprit qui doit diriger le manuel des opérations de chirurgie",
+      "De la médecine interne appliquée aux maladies chirurgicales"
+    ],
+    "history": [
+      "Précis d’observations de chirurgie faites à l’Hôtel-Dieu de Lyon",
+      "De l’esprit qui doit diriger le manuel des opérations de chirurgie",
+      "De la médecine interne appliquée aux maladies chirurgicales"
+    ]
+  },
+  "Baudin355": {
+    "history_fr": [
+      "Catalogue des Substances Minérales Recueillies pendant le Voyage de découvertes commandé par le Capitaine Baudin"
+    ]
+  },
+  "Baudin399": {
+    "characteristic_fr": [
+      "le Casuarina"
+    ],
+    "characteristic": [
+      "le Casuarina"
+    ]
+  },
+  "Baudin401": {
+    "characteristic": [
+      "the Géographe"
+    ],
+    "history_fr": [
+      "Géographe",
+      "Casuarina",
+      "le Géographe"
+    ],
+    "history": [
+      "the Géographe",
+      "Casuarina",
+      "Géographe"
+    ]
+  },
+  "Baudin408": {
+    "characteristic_fr": [
+      "Naturaliste"
+    ]
+  },
+  "Baudin409": {
+    "characteristic_fr": [
+      "le Géographe,"
+    ],
+    "characteristic": [
+      "the Géographe"
+    ],
+    "history_fr": [
+      "Le Géographe",
+      "Le Naturaliste"
+    ],
+    "history": [
+      "Le Géographe",
+      "Le Naturaliste"
+    ]
+  },
+  "Baudin411": {
+    "characteristic_fr": [
+      "le Naturaliste"
+    ],
+    "characteristic": [
+      "Naturaliste"
+    ]
+  },
+  "Baudin412": {
+    "characteristic_fr": [
+      "Le Casuarina"
+    ],
+    "characteristic": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin415": {
+    "history_fr": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin433": {
+    "history_fr": [
+      "le Naturaliste",
+      "Géographe"
+    ],
+    "history": [
+      "Le Naturaliste",
+      "Le Géographe"
+    ]
+  },
+  "Baudin437": {
+    "characteristic_fr": [
+      "Naturaliste"
+    ],
+    "characteristic": [
+      "Le Naturaliste"
+    ]
+  },
+  "Baudin438": {
+    "characteristic_fr": [
+      "Naturaliste",
+      "le Géographe",
+      "le Casuarina"
+    ],
+    "characteristic": [
+      "Le Naturaliste",
+      "Le Géographe",
+      "Le Casuarina"
+    ],
+    "history_fr": [
+      "Naturaliste"
+    ],
+    "history": [
+      "le Naturaliste"
+    ]
+  },
+  "Baudin443": {
+    "characteristic_fr": [
+      "Naturaliste"
+    ],
+    "characteristic": [
+      "the Naturaliste"
+    ]
+  },
+  "Baudin445": {
+    "characteristic_fr": [
+      "le Géographe",
+      "le Naturaliste"
+    ]
+  },
+  "Baudin446": {
+    "characteristic_fr": [
+      "Naturaliste"
+    ],
+    "characteristic": [
+      "Le Naturaliste"
+    ],
+    "history_fr": [
+      "Naturaliste",
+      "Géographe"
+    ],
+    "history": [
+      "le Naturaliste",
+      "le Géographe"
+    ]
+  },
+  "Baudin447": {
+    "history_fr": [
+      "Géographe"
+    ],
+    "history": [
+      "le Géographe"
+    ]
+  },
+  "Baudin448": {
+    "characteristic_fr": [
+      "Géographe"
+    ],
+    "characteristic": [
+      "le Géographe"
+    ]
+  },
+  "Baudin449": {
+    "history_fr": [
+      "Le Géographe"
+    ],
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin450": {
+    "characteristic_fr": [
+      "Géographe"
+    ],
+    "characteristic": [
+      "le Géographe"
+    ]
+  },
+  "Baudin451": {
+    "characteristic_fr": [
+      "le Naturaliste",
+      "Le Géographe"
+    ],
+    "characteristic": [
+      "le Naturaliste",
+      "Le Géographe."
+    ]
+  },
+  "Baudin456": {
+    "characteristic_fr": [
+      "Géographe",
+      "Naturaliste"
+    ],
+    "characteristic": [
+      "Le Géographe",
+      "le Naturaliste"
+    ]
+  },
+  "Baudin457": {
+    "history_fr": [
+      "le Naturaliste"
+    ],
+    "history": [
+      "le Naturaliste"
+    ]
+  },
+  "Baudin458": {
+    "history_fr": [
+      "Géographe"
+    ],
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin460": {
+    "characteristic_fr": [
+      "Géographe"
+    ],
+    "characteristic": [
+      "le Géographe"
+    ],
+    "history_fr": [
+      "Géographe"
+    ],
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin464": {
+    "characteristic_fr": [
+      "Naturaliste"
+    ],
+    "characteristic": [
+      "le Naturaliste"
+    ],
+    "history_fr": [
+      "Naturaliste"
+    ]
+  },
+  "Baudin465": {
+    "characteristic_fr": [
+      "Géographe"
+    ],
+    "characteristic": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin468": {
+    "characteristic_fr": [
+      "Naturaliste"
+    ],
+    "characteristic": [
+      "le Naturaliste"
+    ]
+  },
+  "Baudin485": {
+    "characteristic_fr": [
+      "La Montagne"
+    ],
+    "characteristic": [
+      "La Montagn"
+    ]
+  },
+  "Baudin490": {
+    "history_fr": [
+      "le Casuarina"
+    ],
+    "history": [
+      "le Casuarina"
+    ]
+  },
+  "Baudin495": {
+    "history_fr": [
+      "Géographe"
+    ],
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin499": {
+    "history_fr": [
+      "Le Géographe",
+      "le Casuarina"
+    ],
+    "history": [
+      "Le Géographe",
+      "Le Casuarina"
+    ]
+  },
+  "Baudin501": {
+    "history_fr": [
+      "Le Naturaliste"
+    ],
+    "history": [
+      "le Naturaliste"
+    ]
+  },
+  "Baudin504": {
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin505": {
+    "characteristic_fr": [
+      "le Géographe",
+      "le Casuarina"
+    ]
+  },
+  "Baudin506": {
+    "history_fr": [
+      "le Géographe"
+    ],
+    "history": [
+      "Le Géographe"
+    ]
+  },
+  "Baudin516": {
+    "history_fr": [
+      "le Casuarina",
+      "Le Casuarina"
+    ],
+    "history": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin519": {
+    "history_fr": [
+      "Foudroyant"
+    ],
+    "history": [
+      "Le Foudroyant"
+    ]
+  },
+  "Baudin534": {
+    "characteristic_fr": [
+      "Naturaliste",
+      "le Casuarina",
+      "le Géographe"
+    ],
+    "characteristic": [
+      "Le Naturaliste",
+      "Le Casuarina",
+      "Le Géographe"
+    ],
+    "history_fr": [
+      "le Casuarina",
+      "Casuarina"
+    ],
+    "history": [
+      "Le Naturaliste",
+      "Le Casuarina"
+    ]
+  },
+  "Baudin543": {
+    "characteristic_fr": [
+      "Le Redoutable"
+    ],
+    "history_fr": [
+      "Redoutable",
+      "Victory,"
+    ],
+    "history": [
+      "e Redoutable",
+      "the Victory"
+    ]
+  },
+  "Baudin553": {
+    "history_fr": [
+      "Naturaliste"
+    ],
+    "history": [
+      "Le Naturaliste"
+    ]
+  },
+  "Baudin557": {
+    "history_fr": [
+      "le Casuarina"
+    ],
+    "history": [
+      "Le Casuarina"
+    ]
+  },
+  "Baudin579": {
+    "history_fr": [
+      "Les Aventures de Télémaque"
+    ],
+    "history": [
+      "The Adventures of Telemachus/",
+      "Aventures de Télémaque"
+    ]
+  },
+  "Baudin589": {
+    "history_fr": [
+      "le Géographe",
+      "le Casuarina"
+    ]
+  },
+  "Baudin592": {
+    "characteristic_fr": [
+      "Casuarina"
+    ]
+  },
+  "Baudin596": {
+    "history_fr": [
+      "Le Géographe"
+    ]
+  }
+}
