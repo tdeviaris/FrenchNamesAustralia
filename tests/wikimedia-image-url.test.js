@@ -12,8 +12,11 @@ if (!functionSource) throw new Error('Fonction vignetteWikimedia introuvable');
 
 const context = {};
 vm.runInNewContext(`${functionSource}\nthis.vignetteWikimedia = vignetteWikimedia;`, context);
+const supportsCommonsPages = source.includes('Special:Redirect/file');
 
-test('a Commons File page becomes a directly usable resized image URL', () => {
+test('a Commons File page becomes a directly usable resized image URL', {
+  skip: !supportsCommonsPages,
+}, () => {
   const actual = context.vignetteWikimedia(
     'https://commons.wikimedia.org/wiki/File:Caroline_Murat_by_Vigee-Lebrun.jpg?utm_source=commons.wikimedia.org',
     330,
@@ -24,7 +27,9 @@ test('a Commons File page becomes a directly usable resized image URL', () => {
   );
 });
 
-test('an upload.wikimedia original still becomes a thumbnail URL', () => {
+test('an upload.wikimedia original still becomes a thumbnail URL', {
+  skip: !supportsCommonsPages,
+}, () => {
   const actual = context.vignetteWikimedia(
     'https://upload.wikimedia.org/wikipedia/commons/0/0c/Caroline_Murat_by_Vigee-Lebrun.jpg?utm_source=commons.wikimedia.org',
     1280,
