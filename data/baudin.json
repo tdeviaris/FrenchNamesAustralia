@@ -1816,7 +1816,7 @@
     "mapTitle_fr": "Esquisse hydrographique du golfe Joséphine, figurant la route suivie par le Casuarina, les sondages effectués et les toponymes relevés par Boullanger. La baie Caroline constitue l’extrémité septentrionale du golfe.\nRéférence : MAP/6JJ/5/A/23.\nSource : Archives nationales de France.",
     "mapTitle_en": "Hydrographic sketch of Joséphine Gulf, showing the course followed by the Casuarina, the soundings taken, and the place names recorded by Boullanger. Caroline Bay forms the northern extremity of the gulf.\nReference: MAP/6JJ/5/A/23.\nSource: National Archives of France.",
     "origin_fr": "",
-    "detailsLink": "",
+    "detailsLink": "Baudin070F.html",
     "detailsLink_en": "Baudin070E.html"
   },
   {
@@ -6804,9 +6804,9 @@
     "wiki_en": "https://en.wikipedia.org/wiki/Pierre_Andr%C3%A9_de_Suffren",
     "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Pierre-Andr%C3%A9_de_Suffren_de_Saint-Tropez.jpg",
     "other_link": "",
-    "mapUrl": "",
-    "mapTitle_fr": "",
-    "mapTitle_en": "",
+    "mapUrl": "https://www.siv.archives-nationales.culture.gouv.fr/mm/media/download/FRAN_0147_0304_L-medium.jpg",
+    "mapTitle_fr": "Groupe des îles St Pierre, St François [Australie], du Géographe…, par Boullanger, ingénieur-géographe, 1802–1803. MAP/6JJ/5/A, pièce 24. Source : Archives nationales de France.",
+    "mapTitle_en": "Group of the St Pierre, St François [Australia] and Géographe Islands…, by Boullanger, engineer-geographer, 1802–1803. MAP/6JJ/5/A, item 24. Source: Archives nationales de France.",
     "origin_fr": "Suffren est à l’étranger le plus connu des marins français. Pour les auteurs anglophones, Suffren est pratiquement le seul amiral français digne de figurer parmi les plus grands marins. De son vivant déjà, Suffren fait l’admiration de ses confrères anglais qui finissent par le surnommer « l’amiral Satan\". Clerk of Eldin, penseur naval britannique de la fin du xviiie siècle, vante son « mérite, sa bravoure, ses talents militaires » pour bâtir des théories navales dont se serait inspiré Nelson1",
     "detailsLink": "Baudin009F.html",
     "detailsLink_en": ""
@@ -7042,8 +7042,8 @@
     "mapTitle_fr": "Carte d’une partie de la Terre Napoléon (à la Nouvelle-Hollande), 6e feuille, dressée par MM. L. Freycinet, commandant le Casuarina, et Boullanger, ingénieur hydrographe, d’après leurs observations et celles de MM. H. Freycinet et Bernier, mai 1802 et février 1803.\nDans Voyage de découvertes aux Terres australes, partie Navigation et Géographie, atlas, planche 18, Paris, 1812 [sic ; publié en 1815].",
     "mapTitle_en": "Map of Part of Terre Napoléon (in New Holland), 6th sheet, drawn up by Messrs L. Freycinet, commander of the Casuarina, and Boullanger, hydrographic engineer, from their observations and those of Messrs H. Freycinet and Bernier, May 1802 and February 1803.\nIn Voyage de découvertes aux Terres australes, Navigation and Geography section, atlas, plate 18, Paris, 1812 [sic; published in 1815].",
     "origin_fr": "",
-    "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink": "Baudin070F.html",
+    "detailsLink_en": "Baudin070E.html"
   },
   {
     "code": "Baudin272",
@@ -7095,7 +7095,9 @@
     "mapTitle_en": "Sketch of the Baie des Saints. “Detailed plan of the Baie des Saints, situated north of the Îles Saint-Pierre et Saint-François, based on surveys carried out in the western part by Ransonnet and Faure, and in the eastern part by Bonnefoi and Bernier”, 1802–1803. Anse Tourville appears on the left-hand side of the map, west of Île des Olives, now St Peter Island. Cape Beaufort, referred to by Baudin as “Pointe sans eau”, marks its northern entrance. It is shown surrounded by sandbanks exposed at low tide and covered with low coastal vegetation. MAP/6JJ/4/B, item 102. Source: Archives nationales de France.",
     "origin_fr": "",
     "detailsLink": "",
-    "detailsLink_en": ""
+    "detailsLink_en": "",
+    "imgCredit": "Jean Nocret, Public domain, via Wikimedia Commons",
+    "imgSource": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_de_Bourbon_Duke_of_Beaufort_by_Jean_Nocret_(Baltimore_Museum_of_Art).jpg"
   },
   {
     "code": "Baudin274",
