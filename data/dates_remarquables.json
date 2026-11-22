@@ -302,7 +302,7 @@
   "navire": "la Recherche",
   "libelle": {
    "fr": "Arrivée au port du Nord, Terre de Van-Diémen",
-   "en": "Arrival at the North harbour, Van Diemen's Land"
+   "en": "Arrival at Port du Nord, Van Diemen's Land"
   }
  },
  {
@@ -311,7 +311,7 @@
   "navire": "la Recherche",
   "libelle": {
    "fr": "Appareillage du port du Nord pour Amboine",
-   "en": "Sailing from the North harbour for Amboina"
+   "en": "Sailing from Port du Nord for Amboina"
   }
  },
  {
@@ -338,7 +338,7 @@
   "navire": "la Recherche",
   "libelle": {
    "fr": "Arrivée au port de l'Espérance, terre de Nuyts",
-   "en": "Arrival at Esperance harbour, Nuyts Land"
+   "en": "Arrival at Port de l’Espérance, Nuyts Land"
   }
  },
  {
@@ -347,7 +347,7 @@
   "navire": "la Recherche",
   "libelle": {
    "fr": "Départ du port de l'Espérance pour la Terre de Van-Diémen",
-   "en": "Departure from Esperance harbour for Van Diemen's Land"
+   "en": "Departure from Port de l’Espérance for Van Diemen's Land"
   }
  },
  {
@@ -356,7 +356,7 @@
   "navire": "la Recherche",
   "libelle": {
    "fr": "Arrivée au port du Sud, Terre de Van-Diémen",
-   "en": "Arrival at the South harbour, Van Diemen's Land"
+   "en": "Arrival at Port du Sud, Van Diemen's Land"
   }
  },
  {
@@ -365,7 +365,7 @@
   "navire": "la Recherche",
   "libelle": {
    "fr": "Appareillage du port du Sud pour Tongatabou",
-   "en": "Sailing from the South harbour for Tongatapu"
+   "en": "Sailing from Port du Sud for Tongatapu"
   }
  },
  {
@@ -446,7 +446,7 @@
   "navire": "la Recherche",
   "libelle": {
    "fr": "Arrivée sur la rade de Sourabaya, terme du voyage",
-   "en": "Arrival in the Surabaya roadstead, the end of the voyage"
+   "en": "Arrival in the rade de Sourabaya, the end of the voyage"
   }
  },
  {
